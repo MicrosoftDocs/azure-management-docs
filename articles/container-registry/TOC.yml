@@ -88,8 +88,6 @@
       items:
       - name: About connected registry
         href: intro-connected-registry.md
-      - name: Access to connected registry
-        href: overview-connected-registry-access.md
       - name: Create connected registry
         href: quickstart-create-connected-registry.md
       - name: Deploy connected registry to Azure Arc

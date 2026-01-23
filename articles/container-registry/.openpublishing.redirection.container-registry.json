@@ -236,6 +236,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/container-registry/overview-connected-registry-access.md",
+      "redirect_url": "/azure/container-registry/intro-connected-registry",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/container-registry/container-registry-tutorial-github-sign-notation-trusted-signing.md",
       "redirect_url": "/azure/container-registry/container-registry-tutorial-github-sign-notation-artifact-signing",
       "redirect_document_id": false
