@@ -671,37 +671,37 @@ else {
 
 ### How to use the script
 
-#### 1. Login to Azure
+1. Sign in to Azure
 
-Open your PowerShell terminal and sign in.
+   Open your PowerShell terminal and sign in.
+   
+   ```powershell
+   Connect-AzAccount
+   ```
 
-```powershell
-Connect-AzAccount
-```
+2. Run a What-If analysis
 
-#### 2. Run a What-If analysis
+   First run the script with the `-WhatIf` switch. This will list the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
+   ```
 
-It is highly recommended to run the script with the `-WhatIf` switch first. This will list the servers that meet the criteria without actually deleting them.
+   Review the output to ensure only the intended servers are listed.
 
-```powershell
-.\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
-```
+3. Perform the cleanup
 
-Review the output to ensure only the intended servers are listed.
+   Once you are confident in the list of servers to be removed, run the script without the switch.
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60
+   ```
 
-#### 3. Perform the cleanup
-
-Once you are confident in the list of servers to be removed, run the script without the switch.
-
-```powershell
-.\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60
-```
-
-To clean up servers disconnected for a longer period (e.g., 6 months), increase the day count:
-
-```powershell
-.\Cleanup-StaleArcServers.ps1 -DaysDisconnected 180
-```
+   To clean up servers disconnected for a longer period (e.g., 6 months), increase the day count:
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 180
+   ```
 
 ## Related content
 
