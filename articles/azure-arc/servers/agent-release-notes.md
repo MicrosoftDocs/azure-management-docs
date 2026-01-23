@@ -32,7 +32,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.60/AzureConnect
 
 | Feature|Windows|Linux| Change Type|
 | -------- | -------- | -------- | -------- |
-| **Guest Config** |**1.26.103.0**|**1.29.103.0**||
+| **Guest Config** |**1.29.103.0**|**1.26.103.0**||
 |Address CVE 2026-21224|✓|✓|Security Fix  |
 |Fixed bugs that cause Machine Configuration agent and GC worker to crash|✓|✓|Bug Fix|
 |Added additional parameter validation to ExtensionCleanup.ps1|✓||Improvement|
@@ -46,7 +46,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnect
 
 |Feature |Windows |Linux|Change Type|
 | -------- | -------- | -------- | -------- |
-|**Guest Config**   |**1.26.102.0** |**1.29.102.0**||
+|**Guest Config**   |**1.29.102.0** |**1.26.102.0**||
 |Increased unzipped extension package size limit from 400 MB to 1GB |✓|✓|Improvement|
 |Changed behavior on extension install when extension files already exist. Now, install will continue after attempting cleanup instead of failing.|✓|✓|Improvement|
 |Updated bundled PowerShell version from 7.4.7 to 7.4.13.|✓|✓|Improvement|
