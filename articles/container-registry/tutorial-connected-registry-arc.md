@@ -1,5 +1,5 @@
 ---
-title: Secure and Deploy Connected Registry Arc Extension
+title: Secure Deployment Options for the Connected Registry Extension
 description: "Learn to secure the connected registry Arc extension deployment with HTTPS, TLS, optional no TLS, BYOC certificate, and trust distribution."
 author: rayoef
 ms.author: rayoflores
@@ -12,13 +12,13 @@ ms.custom: sfi-ropc-nochange
 # Customer intent: "As a DevOps engineer, I want to securely deploy the connected registry Arc extension with TLS encryption and trust distribution management, so that I can ensure safe and trusted communication between containers and the registry in my Kubernetes cluster."
 ---
 
-# Tutorial: Secure deployment methods for the connected registry extension
+# Secure deployment options for the connected registry extension with Azure Container Registry
 
 These tutorials cover various deployment scenarios for the connected registry extension in an Arc-enabled Kubernetes cluster. Once the connected registry extension is installed, you can synchronize images from your cloud registry to on-premises or remote locations.  
 
 Before you dive in, take a moment to learn how [Arc-enabled Kubernetes][Arc-enabled Kubernetes] works conceptually.
 
-The connected registry can be securely deployed using various encryption methods. To ensure a successful deployment, follow the quickstart guide to review prerequisites and other pertinent information. By default, the connected registry is configured with HTTPS, ReadOnly mode, Trust Distribution, and the Cert Manager service. You can add more customizations and dependencies as needed, depending on your scenario. 
+The connected registry can be securely deployed using various encryption methods. To ensure a successful deployment, follow the quickstart guide to review prerequisites and other pertinent information. By default, the connected registry is configured with HTTPS, ReadOnly mode, Trust Distribution, and the Cert Manager service. You can add more customizations and dependencies as needed, depending on your scenario.
 
 ### What is Cert Manager service? 
 
