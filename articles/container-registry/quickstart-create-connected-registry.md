@@ -13,7 +13,7 @@ ms.service: azure-container-registry
 
 # Create a connected registry for your Azure Container Registry
 
-This article shows how to use the Azure CLI or Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The [connected registry feature of Azure Container Registry](intro-connected-registry.md) allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with a cloud=based Azure container registry.
+This article shows how to use the Azure CLI or Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The [connected registry feature of Azure Container Registry](intro-connected-registry.md) allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with a cloud-based Azure container registry.
 
 In this article, you create two connected registry resources for an existing cloud registry: one that supports read and write (artifact pull and push) functionality, and one that supports read-only functionality.
 
@@ -82,7 +82,7 @@ Use the [az acr connected-registry create][az-acr-connected-registry-create] com
 
 ```azurecli
 # Set the CONNECTED_REGISTRY_READ environment variable to provide a name for the connected registry with read-write functionality
-CONNECTED_REGISTRY_RW=<connnected-registry-name>
+CONNECTED_REGISTRY_RW=<connected-registry-name>
 az acr connected-registry create --registry $REGISTRY_NAME \
   --name $CONNECTED_REGISTRY_RW \
   --repository "hello-world" "acr/connected-registry" \
@@ -119,7 +119,7 @@ Use the [az acr connected-registry create][az-acr-connected-registry-create] com
 
 ```azurecli
 # Set the CONNECTED_REGISTRY_READ environment variable to provide a name for the connected registry with read-only functionality
-CONNECTED_REGISTRY_RO=<connnected-registry-name>
+CONNECTED_REGISTRY_RO=<connected-registry-name>
 az acr connected-registry create --registry $REGISTRY_NAME \
   --parent $CONNECTED_REGISTRY_RW \
   --name $CONNECTED_REGISTRY_RO \
