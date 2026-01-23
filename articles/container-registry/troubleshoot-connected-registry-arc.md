@@ -10,13 +10,13 @@ ms.custom: sfi-ropc-nochange
 # Customer intent: "As an IT operator managing Arc-enabled Kubernetes clusters, I want to troubleshoot common issues with the connected registry extension, so that I can ensure successful installations and maintain proper functionality."
 ---
 
-# Troubleshoot connected registry extension 
+# Troubleshoot connected registry problems 
 
-This article discusses some common error messages that you may receive when you install or update the connected registry extension for Arc-enabled Kubernetes clusters.
+This article describes common error messages that you might receive when you install or update the connected registry extension for Arc-enabled Kubernetes clusters.
 
 ## Check extension and pod status
 
-The connected registry extension is released as a Helm chart and installed by Helm V3. All components of the connected registry extension are installed in the _connected-registry_ namespace. Use the following commands to check the extension status.
+The connected registry extension is a Helm chart. All components of the connected registry extension are installed in the _connected-registry_ namespace. Use the following commands to check the extension status.
 
 ```bash
 # get the extension status 
@@ -27,31 +27,27 @@ kubectl get pod -n connected-registry
 kubectl get events -n connected-registry   --sort-by='.lastTimestamp'
 ```
 
-## Resolve common errors
+## Troubleshoot extension installation or updates
 
-Review this section to find tips on resolving errors you may encounter when installing or updating the connected registry extension.
+Use the following suggestions to resolve errors you might encounter when installing or updating the connected registry extension.
 
 ### Error: can't reuse a name that is still in use
 
-This error means the extension name you specified already exists. Use a different name for the extension.
+This error message means the extension name you specified already exists. Use a different name for the extension.
 
 The connected registry name must start with a letter and contain only alphanumeric characters. It must be 5 to 40 characters long.
 
-### Error: unable to create new content in namespace _connected-registry_ because it's being terminated 
+### Error: unable to create new content in namespace _connected-registry_ because it's being terminated
 
-This error happens when an uninstallation operation isn't finished, and another installation operation is triggered. Run `az k8s-extension show` command to check the provisioning status of the extension and make sure the extension has been uninstalled before taking other actions.
+This error message occurs when an uninstallation operation isn't finished, and another installation operation starts. Run the `az k8s-extension show` command to check the provisioning status of the extension. Make sure the extension is uninstalled before taking other actions.
 
-### Error: failed in download the Chart path not found 
+### Error: failed in download the Chart path not found
 
-This error happens when you specify an extension version that doesn't exist. Update your command to use a valid version, or to use the latest extension version, don't specify `--version` at all.
-
-## Common scenarios
-
-This section describes common scenarios that may cause issues when installing or updating the connected registry extension, and how to resolve them.
+This error message occurs when you specify an extension version that doesn't exist. Update your command to use a valid version. To use the latest extension version, don't specify `--version`.
 
 ### Installation fails without an error message
 
-If the extension generates an error message when you create or update it, inspect where the creation failed by running the `az k8s-extension list` command:
+If the extension generates an error message when you create or update it, check where the creation failed by running the `az k8s-extension list` command.
 
 ```bash
 az k8s-extension list \ 
@@ -60,64 +56,61 @@ az k8s-extension list \
 --cluster-type connectedClusters
 ```
  
-To resolve this issue, try restarting the cluster, and make sure the KubernetesConfiguration service provider is registered. Alternately, delete and reinstall the connected registry extension.
+To resolve this problem, try restarting the cluster, and make sure the KubernetesConfiguration service provider is registered. Or, delete and reinstall the connected registry extension.
 
 ### Extension creation stuck in running state
 
-**Possibility 1:** Issue with Persistent Volume Claim (PVC)
+One reason for this problem is due to issues with Persistent Volume Claim (PVC). Check the status of the connected registry PVC by running the following command:
 
-- Check status of connected registry PVC 
 ```bash
 kubectl get pvc -n connected-registry -o yaml connected-registry-pvc
-``` 
+```
 
-The value of _phase_ under _status_ should be _bound_. If it doesn’t change from _pending_, delete the extension. 
+The value of `phase` under `status` should be `bound`. If it doesn't change from `pending, delete the extension and try again.
 
-- Check whether the desired storage class is in your list of storage classes: 
+Check whether the desired storage class is in your list of storage classes:
 
 ```bash
 kubectl get storageclass --all-namespaces
-``` 
+```
 
-- If not, recreate the extension and add
-   
+If it's not, recreate the extension and add:
+
 ```bash
 --config pvc.storageClassName=”standard”` 
-``` 
+```
 
-- Alternatively, it could be an issue with not having enough space for the PVC. Recreate the extension with the parameter  
+If you need more space for the PVC, try recreating the extension with this parameter:
 
 ```bash
---config pvc.storageRequest=”250Gi”` 
+--config pvc.storageRequest="250Gi"` 
 ``` 
 
-**Possibility 2:** Connection String is bad 
-
-- Check the logs for the connected registry Pod: 
+The extension can also get stuck due to a bad connection string. Check the logs for the connected registry pod:
 
 ```bash
 kubectl get pod -n connected-registry
-``` 
+```
 
-- Copy the name of the connected registry pod (e.g.: “connected-registry-8d886cf7f-w4prp") and paste it into the following command: 
+Copy the name of the connected registry pod (for example, `connected-registry-xxxxxxxxx-xxxxx`) and paste it into the following command:
 
 ```bash
-kubectl logs -n connected-registry connected-registry-8d886cf7f-w4prp
+kubectl logs -n connected-registry connected-registry-xxxxxxxxx-xxxxx
 ```  
 
-- If you see the following error message, the connected registry's connection string is bad: 
+If you see the following error message, the connected registry's connection string is bad:
 
 ```bash
 Response: '{"errors":[{"code":"UNAUTHORIZED","message":"Incorrect Password","detail":"Please visit https://aka.ms/acr#UNAUTHORIZED for more information."}]}' 
-``` 
+```
 
-- Ensure that a _protected-settings-extension.json_ file has been created 
+To resolve this problem, ensure that a protected-settings-extension.json file is created:
 
 ```bash
 cat protected-settings-extension.json
-``` 
+```
 
-- If needed, regenerate _protected-settings-extension.json_ 
+If needed, regenerate protected-settings-extension.json.
 
 ```bash
 cat << EOF > protected-settings-extension.json  
@@ -130,9 +123,9 @@ cat << EOF > protected-settings-extension.json
 --query ACR_REGISTRY_CONNECTION_STRING --output tsv --yes)" 
 } 
 EOF
-``` 
+```
 
-- Update the extension to include the new connection string 
+Then update the extension to include the new connection string.
 
 ```bash
 az k8s-extension update \ 
@@ -143,66 +136,62 @@ az k8s-extension update \
 --config-protected-file protected-settings-extension.json
 ```
 
-### Extension created, but connected registry is not in 'Online' state 
+### Extension created, but connected registry isn't in **Online** state
 
-**Possibility 1:** Previous connected registry has not been deactivated 
+This scenario commonly happens when you delete a previous connected registry extension and create a new one for the same connected registry.
 
-This scenario commonly happens when a previous connected registry extension has been deleted and a new one has been created for the same connected registry. 
-
-- Check the logs for the connected registry Pod: 
+Check the logs for the connected registry pod:
 
 ```bash
 kubectl get pod -n connected-registry
 ```
 
-- Copy the name of the connected registry pod (e.g.: “connected-registry-xxxxxxxxx-xxxxx") and paste it into the following command: 
+Copy the name of the connected registry pod (for example, `connected-registry-xxxxxxxxx-xxxxx`) and paste it into the following command:
 
 ```bash
 kubectl logs -n connected-registry connected-registry-xxxxxxxxx-xxxxx
 ```
 
-- If you see the following error message, the connected registry needs to be deactivated:  
+If you see the following error message, deactivate the connected registry:  
 
-`Response: '{"errors":[{"code":"ALREADY_ACTIVATED","message":"Failed to activate the connected registry as it is already activated by another instance. Only one instance is supported at any time.","detail":"Please visit https://aka.ms/acr#ALREADY_ACTIVATED for more information."}]}'` 
+`Response: '{"errors":[{"code":"ALREADY_ACTIVATED","message":"Failed to activate the connected registry as it is already activated by another instance. Only one instance is supported at any time.","detail":"Please visit https://aka.ms/acr#ALREADY_ACTIVATED for more information."}]}'`
 
-- Run the following command to deactivate:  
+Run the following command to deactivate:  
 
 ```azurecli
 az acr connected-registry deactivate -n <myconnectedregistry> -r <mycontainerregistry>
 ```
 
-After a few minutes, the connected registry pod should be recreated, and the error should disappear. 
+If successful, fter a few minutes, the connected registry pod is recreated, and the error should no longer occur.
 
 ## Enable logging
 
-- Run the `az acr connected-registry update` command to update the connected registry extension with the debug log level:
+Run the `az acr connected-registry update` command to update the connected registry extension with the debug log level:
 
 ```azurecli
 az acr connected-registry update --registry mycloudregistry --name myacrregistry --log-level debug
 ```
 
-- The following log levels can be applied to aid in troubleshooting:
+Apply the following log levels to help troubleshoot problems:
 
-  - **Debug** provides detailed information for debugging purposes.
+- **Debug** provides detailed information for debugging purposes.
 
-  - **Information** provides general information for debugging purposes.
+- **Information** provides general information for debugging purposes.
 
-  - **Warning** indicates potential problems that aren't yet errors but might become one if no action is taken.
+- **Warning** indicates potential problems that aren't yet errors but might become errors if no action is taken.
 
-  - **Error** logs errors that prevent an operation from completing.
+- **Error** logs errors that prevent an operation from completing.
 
-  - **None** turns off logging, so no log messages are written.
+- **None** turns off logging, so no log messages are written.
 
-- Adjust the log level as needed to troubleshoot the issue.
+Adjust the log levels as needed to troubleshoot the problem further.
 
-The active selection provides more options to adjust the verbosity of logs when debugging issues with a connected registry. The following options are available:
+The connected registry log level is specific to the connected registry's operations and determines the severity of messages that the connected registry handles. Use this setting to manage the logging behavior of the connected registry itself.
 
-The connected registry log level is specific to the connected registry's operations and determines the severity of messages that the connected registry handles. This setting is used to manage the logging behavior of the connected registry itself.
+**--log-level** sets the log level on the instance. The log level determines the severity of messages that the logger handles. By setting the log level, you can filter out messages that are below a certain severity. For example, if you set the log level to `warning`, the logger handles warnings, errors, and critical messages, but it ignores information and debug messages.
 
-**--log-level** set the log level on the instance. The log level determines the severity of messages that the logger handle. By setting the log level, you can filter out messages that are below a certain severity. For example, if you set the log level to "warning" the logger handles warnings, errors, and critical messages, but it ignores information and debug messages.
+The Azure CLI log level controls the verbosity of the output messages during the operation of the Azure CLI. The Azure CLI (`az`) provides several verbosity options for log levels, which you can adjust to control the amount of output information during its operation:
 
-The az cli log level controls the verbosity of the output messages during the operation of the Azure CLI. The Azure CLI (az) provides several verbosity options for log levels, which can be adjusted to control the amount of output information during its operation:
+**--verbose** increases the verbosity of the logs. It provides more detailed information than the default setting, which can be useful for identifying problems.
 
-**--verbose** increases the verbosity of the logs. It provides more detailed information than the default setting, which can be useful for identifying issues.
-
-**--debug** enables full debug logs. Debug logs provide the most detailed information, including all the information provided at the "verbose" level plus more details intended for diagnosing problems.
+**--debug** enables full debug logs. Debug logs provide the most detailed information, including all the information provided at the `verbose` level plus more details intended for diagnosing problems.

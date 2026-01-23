@@ -16,7 +16,7 @@ ms.custom: sfi-ropc-blocked
 
 In this article, you learn how to deploy the connected registry extension to an Arc-enabled Kubernetes cluster using Azure CLI.
 
-The [connected registry feature of Azure Container Registry](intro-connected-registry.md) enables efficient management and access to containerized workloads, whether on-premises or at remote sites. By integrating with Azure Arc, the service ensures a seamless and unified lifecycle management experience for Kubernetes-based containerized workloads. Deploying the connected registry Arc extension on Arc-enabled Kubernetes clusters simplifies the management and access of these workloads.
+The [connected registry feature of Azure Container Registry](intro-connected-registry.md) enables efficient management and access to containerized workloads, whether on-premises or at remote sites. Deploying the connected registry Arc extension on Arc-enabled Kubernetes clusters simplifies the management and access of these workloads.
 
 ## Prerequisites
 
@@ -95,7 +95,7 @@ The `clusterIP` must be from the cluster subnet IP range. The `service.clusterIP
 >
 > To deploy a specific version of the connected registry extension, include the `--version <version number>` parameter in your [az-k8s-extension-create][az-k8s-extension-create] command.
 
-## Verify the connected registry extension deployment
+## Verify connected registry extension deployment
 
 To verify the deployment of the connected registry extension in the Arc-enabled Kubernetes cluster, run the [az k8s-extension show][az-k8s-extension-show] command to check the deployment status of the connected registry extension:
 

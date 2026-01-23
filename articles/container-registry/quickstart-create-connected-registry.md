@@ -15,7 +15,7 @@ ms.service: azure-container-registry
 
 This article shows how to use the Azure CLI or Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The [connected registry feature of Azure Container Registry](intro-connected-registry.md) allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with a cloud=based Azure container registry.
 
-In this article, you create two connected registry resources for an existing cloud registry: one that supports read and write (artifact pull and push) functionality, and one that supports read-only functionality. 
+In this article, you create two connected registry resources for an existing cloud registry: one that supports read and write (artifact pull and push) functionality, and one that supports read-only functionality.
 
 After creating a connected registry, you [can deploy and use it on your on-premises or remote infrastructure](quickstart-connected-registry-arc-cli.md).
 
@@ -170,25 +170,26 @@ myconnectedregro    ReadOnly     Offline             myconnectedregrw
 
 ## Configure the connected registry sync schedule and window
 
-In this article, you create the connected registries without a defined synchronization schedule and window. YOu can optionally use a specific schedule. To do so, use the [az acr connected-registry update][az-acr-connected-registry-update] to set a schedule. Use CRON expressions to define the sync schedule and the ISO 8601 duration format for the sync window.
+The steps in this article create connected registries without a defined synchronization schedule and window. To define a specific schedule after you create your registry, use the `az acr connected-registry update` command to set a schedule. Use CRON expressions to define the sync schedule and the ISO 8601 duration format for the sync window.
 
-For example, the following command configures the connected registry to schedule a daily sync at 12:00 PM UTC, wiht a  4 hour synchronization window (PT4H):
+For example, the following command configures the connected registry to schedule a daily sync at 12:00 PM UTC with a  4 hour synchronization window (PT4H):
 
-```azurecli 
+```azurecli
 az acr connected-registry update --registry myacrregistry \ 
 --name myconnectedregistry \ 
 --sync-schedule "0 12 * * *" \
 --sync-window PT4H
 ```
 
-In this example, the connected registry will sync every minute with the cloud registry:
+This example command configures the connected registry will sync every minute with the cloud registry:
 
-```azurecli 
+```azurecli
 az acr connected-registry update --registry myacrregistry \ 
 --name myconnectedregistry \ 
 --sync-schedule "* * * * *"    
 ```
 
+You can also enter values for **Schedule** and **Sync window** in the **Sync properties** section of the connected registry in the Azure portal.
 
 ## Next steps
 

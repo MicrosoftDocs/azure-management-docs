@@ -49,7 +49,7 @@ Run the [az-k8s-extension-create][az-k8s-extension-create] command in the [quick
 
 ## Deploy connected registry extension using bring your own certificate (BYOC)
 
-The bring your own certificate (BYOC) option allows you to use your own public certificate and private key pair, giving you control over certificate management. This setup enables you to deploy the connected registry extension with encryption.
+Bring your own certificate (BYOC) allows you to use your own public certificate and private key pair, giving you control over certificate management. This setup enables you to deploy the connected registry extension with encryption.
 
 > [!NOTE]
 > BYOC is useful for customers who bring their own certificate that is already trusted by their Kubernetes nodes. Don't manually update nodes to trust certificates.
