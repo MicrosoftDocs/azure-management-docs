@@ -94,8 +94,6 @@
         href: quickstart-connected-registry-arc-cli.md
       - name: Secure deployment options
         href: tutorial-connected-registry-arc.md
-      - name: Sync connected registry
-        href: tutorial-connected-registry-sync.md
       - name: Pull image from connected registry
         href: pull-images-from-connected-registry.md
       - name: Troubleshoot Connected registry
