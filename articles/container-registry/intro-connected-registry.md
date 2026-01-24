@@ -1,6 +1,6 @@
 ---
 title: Connected Registry in Azure Container Registry
-description: Discover the connected registry feature in Azure Container Registry. Learn about its benefits and practical use cases for container management.
+description: Use the connected registry of Azure Container Registry to help speed up access to registry artifacts. on-premises or remote.
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: overview
@@ -11,104 +11,110 @@ ms.custom: references_regions
 
 # What is a connected registry? 
 
-In this article, you learn about the *connected registry* feature of [Azure Container Registry](container-registry-intro.md). A connected registry is an on-premises or remote replica that synchronizes container images with your cloud-based Azure container registry. Use a connected registry to help speed-up access to registry artifacts on-premises or remote.
+The connected registry feature of [Azure Container Registry](container-registry-intro.md) enables an on-premises or remote replica that synchronizes container images with your cloud-based Azure container registry. Use a connected registry to help speed up access to registry artifacts hosted on-premises or remotely.
 
-### Billing
+A cloud-based Azure container registry provides [features](container-registry-intro.md#key-features) including geo-replication, integrated security, Azure-managed storage, and integration with Azure development and deployment pipelines. However, you might want to extend your cloud investments to your on-premises and field solutions, requiring options outside of the standard cloud-based Azure container registry, or you might have intermittent or limited connectivity to the cloud.
 
->[!IMPORTANT]
-> There are **important recent changes** to the connected registry billing which began on August 1, 2025. The pricing calculator is being updated to reflect this change as well. 
+In on-premises or remote environments, container workloads need container images and related artifacts to be available nearby in order to maintain performance and reliability. Connected registries provide a performant, on-premises registry solution that regularly synchronizes content with a cloud-based Azure container registry.
 
-- A monthly price of $10 will apply for each connected registry deployed on or after August 1, 2025.
-- This price represents Microsoft's commitment to deliver high-quality services and product support.
-- This cost applies to the Azure subscription that is associated with the parent registry.
+## Pricing and availability
 
-## Available regions
+The connected registry feature is currently available only for the **Premium** [service tier](container-registry-skus.md) (SKU).
 
-A connected registry can be deployed in any region where Azure Container Registry is available.
+You can deploy a connected registry in any region where Azure Container Registry is available.
 
-## Scenarios
-
-A cloud-based Azure container registry provides [features](container-registry-intro.md#key-features) including geo-replication, integrated security, Azure-managed storage, and integration with Azure development and deployment pipelines. At the same time, customers are extending their cloud investments to their on-premises and field solutions.
-
-To run with the required performance and reliability in on-premises or remote environments, container workloads need container images and related artifacts to be available nearby. The connected registry provides a performant, on-premises registry solution that regularly synchronizes content with a cloud-based Azure container registry.
-
-Scenarios for a connected registry include:
-
-* Connected factories
-* Point-of-sale retail locations
-* Shipping, oil-drilling, mining, and other occasionally connected environments
+Changes to connected registry billing begin on August 1, 2025. These changes include a monthly charge applied to the Azure subscription associated with the parent registry. For more information, see [Azure Container Registry pricing](https://azure.microsoft.com/pricing/details/container-registry/).
 
 ## How does the connected registry work?
 
-The connected registry can be deployed on a server or device on-premises, or an environment that supports container workloads on-premises such as Azure Arc-enabled Kubernetes clusters. The connected registry synchronizes container images and other OCI (Open Container Initiative) artifacts with a cloud-based Azure container registry.
+You can deploy a connected registry on a server or device on-premises, or in an environment that supports container workloads on-premises, such as [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview). The connected registry synchronizes container images and other OCI (Open Container Initiative) artifacts with a cloud-based Azure container registry.
 
-The following image shows a typical deployment model for the connected registry using Azure Arc-enabled Kubernetes. 
+The following diagram shows a typical deployment model for a connected registry using an Azure Arc-enabled Kubernetes cluster.
 
 :::image type="content" source="media/intro-connected-registry/connected-registry-azure-arc.png" alt-text="Diagram of connected registry overview using Arc-enabled Kubernetes.":::
 
-### Deployment
+### Deployment and synchronization
 
-Each connected registry is a resource you manage within a cloud-based Azure container registry. The top parent in the connected registry hierarchy is an Azure container registry in the Azure cloud. The connected registry can be deployed on Arc-enabled Kubernetes clusters. To install the connected registry, use Azure tools such as CLI or portal. 
+You manage each connected registry as a resource within a cloud-based Azure container registry. This Azure container registry is the parent of the connected registry.
 
-Deploy the connected registry Arc extension to the Arc-enabled Kubernetes cluster. Secure the connection with TLS (Transport Layer Security) using default configurations for read-only access and a continuous sync window. This setup allows the connected registry to synchronize images from the Azure container registry (ACR) to the connected registry on-premises, enabling image pulls from the connected registry.
+You can [deploy the connected registry Arc extension to the Arc-enabled Kubernetes cluster](quickstart-connected-registry-arc-cli.md). Secure the connection by using TLS (Transport Layer Security) with default configurations for read-only access and a continuous sync window. This setup allows the connected registry to synchronize images from the Azure container registry (ACR) to the connected registry on-premises, enabling image pulls from the connected registry.
 
-The connected registry's *activation status* indicates whether it on-premises.
+The connected registry's *activation status* indicates whether it's deployed on-premises (**Active**) or not currently deployed (**Inactive**).
 
-* **Active** - The connected registry is currently deployed on-premises. It can't be deployed again until it deactivates. 
-* **Inactive** - The connected registry isn't deployed on-premises. It can be deployed at this time.  
- 
-### Content synchronization
+Once the connected registry is **Active**, it regularly accesses the cloud registry to synchronize container images and OCI artifacts.
 
-The connected registry regularly accesses the cloud registry to synchronize container images and OCI artifacts. 
-
-It can also be configured to synchronize a subset of the repositories from the cloud registry or to synchronize only during certain intervals to reduce traffic between the cloud and the premises.
+You can also [configure synchronization](tutorial-connected-registry-sync.md) to synchronize a subset of the repositories from the cloud registry, or to synchronize only during certain intervals, to reduce traffic between the cloud and the premises.
 
 ### Modes
 
-A connected registry can work in one of two modes: *ReadWrite* or *ReadOnly*
+A connected registry works in one of two modes: `ReadWrite` or `ReadOnly`.
 
-**ReadOnly mode** - The default mode, when the connected registry is in ReadOnly mode, clients can only pull (read) artifacts. This configuration is used in scenarios where clients need to pull a container image to operate. This default mode aligns with our secure-by-default approach and is effective starting with CLI version 2.60.0.
+**`ReadOnly mode`** is the default. When the connected registry is in `ReadOnly` mode, clients can only pull (read) artifacts. Use this configuration in scenarios where clients need to pull a container image to operate. This default mode aligns with the secure-by-default approach.
 
-**ReadWrite mode** - This mode allows clients to pull and push artifacts (read and write) to the connected registry. Artifacts that are pushed to the connected registry will be synchronized with the cloud registry. The ReadWrite mode is useful when a local development environment is in place. The images are pushed to the local connected registry and from there they're synchronized to the cloud.
+**`ReadWrite mode`** - This mode allows clients to [pull and push artifacts (read and write) to the connected registry](pull-images-from-connected-registry.md). Artifacts that you push to the connected registry synchronize with the cloud registry. The ReadWrite mode is useful when a local development environment is in place. You push the images to the local connected registry, and from there they're synchronized to the cloud-based parent registry.
 
-### Registry hierarchy
-
-Each connected registry must be connected to a parent. The top parent is the cloud registry.  
-
-Child registries must be compatible with their parent capabilities. Thus, both ReadOnly and ReadWrite modes of the connected registries can be children of a connected registry operating in ReadWrite mode, but only a ReadOnly mode registry can be a child of a connected registry operating in ReadOnly mode.  
+Connected registries must be compatible with their parent registry capabilities. If a parent registry uses `ReadWrite` mode, child registries can use either mode. However, if the parent registry uses `ReadOnly` mode, child registries must also use `ReadOnly` mode.  
 
 ## Client access
 
-On-premises clients use standard tools such as the Docker CLI to push or pull content from a Connected registry. To manage client access, you create Azure container registry [non-Microsoft Microsoft Entra tokens][non-Microsoft Entra token-based repository permissions] for access to each connected registry. You can scope the client tokens for pull or push access to one or more repositories in the registry.
+On-premises clients use standard tools such as the Docker CLI to push or pull content from a connected registry. To manage client access, create Azure container registry [non-Microsoft Entra tokens](container-registry-token-based-repository-permissions.md) for access to each connected registry. You can scope the client tokens for pull or push access to one or more repositories in the registry.
 
-Each connected registry also needs to regularly communicate with its parent registry. For this purpose, the registry is issued a synchronization token (*sync token*) by the cloud registry. This token is used to authenticate with its parent registry for synchronization and management operations.
+Each connected registry also needs to regularly communicate with its parent registry. For this purpose, the cloud registry issues the registry a synchronization token (*sync token*). Use this token to authenticate with its parent registry for synchronization and management operations.
 
-For more information, see [Manage access to a connected registry][overview-connected-registry-access].
+The following diagram shows how each connected registry uses two different types of tokens.
 
-## Limitations
+![Connected registry authentication verview](media/intro-connected-registry/connected-registry-authentication-overview.svg)
 
-- Number of tokens and scope maps is [limited](container-registry-skus.md) to 20,000 each for a single container registry. This indirectly limits the number of connected registries for a cloud registry, because every Connected registry needs a sync and client token.
-- Number of repository permissions in a scope map is limited to 500.
-- Number of clients for the connected registry is currently limited to 50.
-- Number of connected registries per container registry is currently limited to 50.
-- [Image locking](container-registry-image-lock.md) through repository/manifest/tag metadata isn't currently supported for connected registries.
-- [Repository delete](container-registry-delete.md) isn't supported on the connected registry using ReadOnly mode.
-- [Resource logs](monitor-service-reference.md#resource-logs) for connected registries are currently not supported.
+> [!IMPORTANT]
+> Store token passwords for each connected registry in a safe location. After you create them, you can't retrieve token passwords. You can regenerate token passwords at any time.
+
+### Client tokens
+
+To manage client access to a connected registry, create tokens scoped for actions on one or more repositories. After creating a token, configure the connected registry to accept the token by using the [az acr connected-registry update](/cli/azure/acr/connected-registry#az-acr-connected-registry-update) command. A client can then use the token credentials to access a connected registry endpoint in order to use Docker CLI commands to pull or push images to the connected registry.
+
+Update client tokens, passwords, or scope maps as needed by using [az acr token](/cli/azure/acr#az-acr-token) and [az acr scope-map](/cli/azure/acr#az-acr-scope-map) commands. Client token updates automatically propagate to the connected registries that accept the token.
+
+A client token accesses the connected registry's endpoint. The connected registry endpoint is the login server URI, which is typically the IP address of the server or device that hosts it.
+
+### Sync token
+
+Each connected registry uses a sync token to authenticate with its immediate parent, which can be another connected registry or the cloud registry.
+
+The sync token and passwords are generated automatically when you create the connected registry resource. Run the [az acr connected-registry get-settings][/cli/azure/acr/connected-registry#az-acr-connected-registry-get-settings] command to regenerate the passwords, or update them in the Azure portal.
+
+By default, the sync token has permission to synchronize selected repositories with its parent. It also has permissions to read and write synchronization messages on a gateway used to communicate with the connected registry's parent. These messages control the synchronization schedule and manage other updates between the connected registry and its parent.
+
+Update sync tokens, passwords, or scope maps as needed by using [az acr token](/cli/azure/acr#az-acr-token) and [az acr scope-map](/cli/azure/acr#az-acr-scope-map) commands. Sync token updates automatically propagate to the connected registry. Follow the standard practices of rotating passwords when updating the sync token.
+
+> [!NOTE]
+> You can't delete the sync token until you delete the connected registry associated with the token. To disable a connected registry, set the status of the sync token to `disabled`.
+
+A sync token accesses the endpoint of the parent registry, which is either another connected registry endpoint or the cloud registry itself. When scoped to access the cloud registry, the sync token needs to reach two registry endpoints:
+
+- The fully qualified login server name, such as `contoso.azurecr.io`. This endpoint is used for authentication.
+- A fully qualified regional [data endpoint](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for the cloud registry, such as `contoso.westus2.data.azurecr.io`. This endpoint is used to exchange messages with the connected registry for synchronization purposes. 
+
+## Current limitations
+
+When you use connected registries, be aware of the following limitations:
+
+- The number of tokens and scope maps for a single container registry is [limited](container-registry-skus.md) to 20,000 each. This limit indirectly limits the number of connected registries for a cloud registry, because every connected registry needs a sync token and a client token.
+- The number of repository permissions in a scope map is limited to 500.
+- The number of clients for the connected registry is limited to 50.
+- The number of connected registries per container registry is limited to 50.
+- [Image locking](container-registry-image-lock.md) through repository, manifest, or tag metadata isn't supported for connected registries.
+- [Repository delete](container-registry-delete.md) isn't supported on the connected registry when using ReadOnly mode.
+- [Resource logs](monitor-service-reference.md#resource-logs) for connected registries aren't supported.
 - Connected registry is coupled with the registry's home region data endpoint. Automatic migration for [geo-replication](container-registry-geo-replication.md) isn't supported.
-- Deletion of a connected registry needs manual removal of the containers on-premises and removal of the respective scope map or tokens in the cloud.
+- Deletion of a connected registry requires manual removal of the containers on-premises and removal of the respective scope map or tokens in the cloud.
 - Connected registry sync limitations are as follows:
   - For continuous sync:
-    - `minMessageTtl` is one day
-    - `maxMessageTtl` is 90 days
+    - `minMessageTtl` is one day.
+    - `maxMessageTtl` is 90 days.
   - For occasionally connected scenarios, where you want to specify sync window:
-    - `minSyncWindow` is 1 hr
-    - `maxSyncWindow` is seven days
+    - `minSyncWindow` is 1 hr.
+    - `maxSyncWindow` is seven days.
 
-## Conclusion
+## Next steps
 
-In this article, you learned about the connected registry and some basic concepts. To learn more about specific scenarios where connected registry can be utilized, continue into one of the following articles.
-
-> [!div class="nextstepaction"]
-<!-- LINKS - internal -->
-[overview-connected-registry-access]:overview-connected-registry-access.md
-[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md
+- Learn how to [create a connected registry resource](quickstart-create-connected-registry.md) and [deploy the connected registry to Azure Arc-enabled Kubernetes](quickstart-connected-registry-arc-cli.md).
