@@ -162,7 +162,7 @@ Run the following command to deactivate:
 az acr connected-registry deactivate -n <myconnectedregistry> -r <mycontainerregistry>
 ```
 
-If successful, fter a few minutes, the connected registry pod is recreated, and the error should no longer occur.
+If successful, after a few minutes, the connected registry pod is recreated, and the error should no longer occur.
 
 ## Enable logging
 

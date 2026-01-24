@@ -58,20 +58,20 @@ Add the public certificate and private key string variable and value pair when d
 
 1. Create self-signed SSL cert with connected-registry service IP as the SAN:
 
-  ```bash
-    mkdir /certs
-  ```
+   ```bash
+   mkdir /certs
+   ```
 
-  ```bash
-  openssl req -newkey rsa:4096 -nodes -sha256 -keyout /certs/mycert.key -x509 -days 365 -out /certs/mycert.crt -addext   "subjectAltName = IP:<service IP>"
-  ```
+   ```bash
+   openssl req -newkey rsa:4096 -nodes -sha256 -keyout /certs/mycert.key -x509 -days 365 -out /certs/mycert.crt -addext   "subjectAltName = IP:<service IP>"
+   ```
 
 1. Get base64 encoded strings of these cert files:
 
-  ```bash
-  export TLS_CRT=$(cat mycert.crt | base64 -w0) 
-  export TLS_KEY=$(cat mycert.key | base64 -w0) 
-  ```
+   ```bash
+   export TLS_CRT=$(cat mycert.crt | base64 -w0) 
+   export TLS_KEY=$(cat mycert.key | base64 -w0) 
+   ```
 
 1. Create a protected settings file with secret in JSON format, similar to the following example:
 
