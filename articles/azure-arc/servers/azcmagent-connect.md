@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent connect`
 description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 12/01/2025
+ms.date: 01/26/2026
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
@@ -79,6 +79,10 @@ Certificate-based authentication is a more secure way to authenticate using serv
 To authenticate with a service principal using a certificate, provide the service principal's application ID, tenant ID, and path to the certificate file: `--service-principal-id [appId] --service-principal-cert [pathToPEMorPFXfile] --tenant-id [tenantid]`
 
 For more information, see [create a service principal for RBAC with certificate-based authentication](/cli/azure/azure-cli-sp-tutorial-3).
+
+Windows users have the option to use an exportable or nonexportable certificate in Windows certificate stores for onboarding. The certificate can be stored in Personal, Trusted Root Certification Authorities, Trusted Publishers, or Third-Party Root Certification Authorities under Local Machine Certificate Store or Current User Certificate Store. Password-protected certificates aren't currently supported.
+
+To authenticate with a service principal using a certificate from Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
 
 ### Access token
 
