@@ -82,7 +82,7 @@ For more information, see [create a service principal for RBAC with certificate-
 
 Windows users have the option to use an exportable or nonexportable certificate in Windows certificate stores for onboarding. The certificate can be stored in Personal, Trusted Root Certification Authorities, Trusted Publishers, or Third-Party Root Certification Authorities under Local Machine Certificate Store or Current User Certificate Store. Password-protected certificates aren't currently supported.
 
-To authenticate with a service principal using a certificate from the Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
+To authenticate with a service principal using a certificate from a Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
 
 ### Access token
 
