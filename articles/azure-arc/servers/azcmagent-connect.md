@@ -80,9 +80,9 @@ To authenticate with a service principal using a certificate, provide the servic
 
 For more information, see [create a service principal for RBAC with certificate-based authentication](/cli/azure/azure-cli-sp-tutorial-3).
 
-Windows users have the option to use an exportable or nonexportable certificate in Windows certificate stores for onboarding. The certificate can be stored in Personal, Trusted Root Certification Authorities, Trusted Publishers, Third-Party Root Certification Authorities under Local Machine Certificate Store or Current User Certificate Store. Password-protected certificates aren't currently supported.
+Windows users have the option to use an exportable or nonexportable certificate in Windows certificate stores for onboarding. The certificate can be stored in Personal, Trusted Root Certification Authorities, Trusted Publishers, or Third-Party Root Certification Authorities under Local Machine Certificate Store or Current User Certificate Store. Password-protected certificates aren't currently supported.
 
-To authenticate with a service principal using a certificate from Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
+To authenticate with a service principal using a certificate from the Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
 
 ### Access token
 
