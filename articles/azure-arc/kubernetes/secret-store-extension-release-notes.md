@@ -8,6 +8,21 @@ ms.topic: release-notes
 # Release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## January 2026
+### 1.2.1
+ - Support for ARM64 architectures.
+ - The Helm chart now uses SHA-256 digests to identify image versions instead of tags.
+ - Security updates to internal components:
+     - Update Go to 1.25.5
+     - Update kubectl container image to v1.35.0-1
+
+### 1.1.6
+ - The Helm chart now uses SHA-256 digests to identify image versions instead of tags.
+ - Security updates to internal components:
+     - Update Go to 1.25.5
+     - Update kubectl container image to v1.35.0-1
+
+
 ## November 2025
 ### 1.1.5
 - (Preview feature) Simplified configurations are supported via `AKVSync` resources. See the getting started and reference guides.
