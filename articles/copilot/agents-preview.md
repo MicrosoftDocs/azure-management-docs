@@ -17,6 +17,7 @@ Agents (preview) in Azure Copilot extends the current capabilities of Azure Copi
 Azure agent orchestration intelligently surfaces the right agent at the right time to assist you with your request. Currently, the preview features agents that help you with:
 
 - [Deployments and infrastructure](deployment-agent.md)
+- [Migration](migration-agent.md)
 - [Observability](observability-agent.md)
 - [Optimization](optimization-agent.md)
 - [Resiliency](resiliency-agent.md)
