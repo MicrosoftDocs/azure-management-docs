@@ -22,7 +22,7 @@ To check the KERNEL-VERSION of your node pools run:
 kubectl get nodes -o wide
 ```
 
-Then, compare the kernel version of your node pools with the latest kernel published on [packages.microsoft.com](https://packages.microsoft.com/cbl-mariner/).
+Then compare the kernel version of your node pools with the latest kernel published on [packages.microsoft.com](https://packages.microsoft.com/cbl-mariner/).
 
 ## Symptom
 
@@ -31,9 +31,9 @@ A common symptom of this issue includes:
 
 ## Causes
 
-There are two primary causes for this issue: 
-1. Automatic node-image upgrades weren't enabled when the node pool was created.
-1. The base image that AKS uses to start clusters runs two weeks behind the latest kernel versions due to their rollout procedure.
+This issue has two primary causes: 
+1. Automatic node image upgrades weren't enabled when the node pool was created.
+2. The base image that AKS uses to start clusters runs approximately two weeks behind the latest kernel versions due to the rollout procedure.
 
 ## Solution
 
@@ -49,7 +49,7 @@ az aks create --name testAzureLinuxCluster --resource-group testAzureLinuxResour
 
 ### Enable automatic node-image upgrades by using ARM templates
 
-To enable automatic node-image upgrades when using an ARM template you can set the [upgradeChannel](/azure/templates/microsoft.containerservice/managedclusters?tabs=bicep&pivots=deployment-language-bicep#managedclusterautoupgradeprofile) property in `autoUpgradeProfile` to `node-image`.
+To enable automatic node image upgrades when using an ARM template, set the [upgradeChannel](/azure/templates/microsoft.containerservice/managedclusters?tabs=bicep&pivots=deployment-language-bicep#managedclusterautoupgradeprofile) property in `autoUpgradeProfile` to `node-image`.
 
 ```json
     autoUpgradeProfile: {
@@ -72,10 +72,11 @@ To enable automatic node-image upgrades when using a Terraform template, you can
 -->
 ### Reboot the nodes
 
-When updating the kernel version, you need to reboot the node to use the new kernel version. We recommend that you set up the [kured daemonset](/azure/aks/node-updates-kured). [Kured](https://github.com/kubereboot/kured) to monitor your nodes for the `/var/run/reboot-required` file, drain the workload, and reboot the nodes.
+When you update the kernel version, you need to reboot the node to use the new kernel. We recommend setting up the [kured daemonset](/azure/aks/node-updates-kured). [Kured](https://github.com/kubereboot/kured) monitors your nodes for the `/var/run/reboot-required` file, drains the workload, and reboots the nodes.
 
 ## Workaround: Manual upgrades
-If you need a quick workaround, you can manually upgrade the node-image on a cluster using [az aks nodepool upgrade](/azure/aks/node-image-upgrade#upgrade-a-specific-node-pool). This can be done by running 
+
+If you need a quick workaround, you can manually upgrade the node image on a cluster using [az aks nodepool upgrade](/azure/aks/node-image-upgrade#upgrade-a-specific-node-pool). Run the following command: 
 
 ```azurecli
 az aks nodepool upgrade \
