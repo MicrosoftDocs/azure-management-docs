@@ -59,15 +59,19 @@ landingContent:
           - text: Azure PowerShell
             url: /powershell/module/az.portal
             
-  # Card
-  - title: Manage access to the Azure portal
+ # Card
+  - title: Customize the Azure portal
     linkLists:
-      - linkListType: reference
+      - linkListType: how-to-guide
         links:
-          - text: Safelist the Azure portal URLs
-            url: azure-portal-safelist-urls.md
-          - text: Azure role-based access control for dashboards
-            url: azure-portal-dashboard-share-access.md
+          - text: Manage Azure portal settings and preferences
+            url: set-preferences.md
+          - text: View and filter resource information
+            url: manage-filter-resource-views.md
+          - text: Create a dashboard
+            url: azure-portal-dashboards.md
+          - text: Add, remove, and sort favorites
+            url: azure-portal-add-remove-sort-favorites.md
 
   # Card
   - title: Azure mobile app
@@ -83,17 +87,14 @@ landingContent:
           - text: Use Microsoft Entra ID
             url: mobile-app/microsoft-entra-id.md
 
- # Card
-  - title: Customize the Azure portal
+  # Card
+  - title: Manage access to the Azure portal
     linkLists:
-      - linkListType: how-to-guide
+      - linkListType: reference
         links:
-          - text: Manage Azure portal settings and preferences
-            url: set-preferences.md
-          - text: View and filter resource information
-            url: manage-filter-resource-views.md
-          - text: Create a dashboard
-            url: azure-portal-dashboards.md
-          - text: Add, remove, and sort favorites
-            url: azure-portal-add-remove-sort-favorites.md
+          - text: Safelist the Azure portal URLs
+            url: azure-portal-safelist-urls.md
+          - text: Azure role-based access control for dashboards
+            url: azure-portal-dashboard-share-access.md
+
 
