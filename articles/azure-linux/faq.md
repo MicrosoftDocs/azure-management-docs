@@ -23,7 +23,7 @@ This article answers common questions about the Azure Linux Container Host.
 
 ### What is Azure Linux?
 
-The Azure Linux Container Host is an operating system image that's optimized for running container workloads on [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes). Microsoft maintains the Azure Linux Container Host and based it on Azure Linux (also known as *Mariner*), an open-source Linux distribution created by Microsoft.
+The Azure Linux Container Host is an operating system image that's optimized for running container workloads on [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes). Microsoft maintains the Azure Linux Container Host, which is based on Azure Linux (also known as *Mariner*), an open-source Linux distribution created by Microsoft.
 
 ### What are the benefits of using Azure Linux?
 
@@ -31,11 +31,11 @@ For more information, see the [Azure Linux Container Host key benefits](./intro-
 
 ### What's the difference between Azure Linux and Mariner?
 
-Azure Linux and Mariner are the same image with different branding. Use the Azure Linux OS SKU when referring to the image on AKS. To migrate from OS SKU Mariner to OS SKU AzureLinux you can utilize the [In-Place OS SKU Migration feature](/azure/azure-linux/tutorial-azure-linux-migration). 
+Azure Linux and Mariner are the same image with different branding. Use the Azure Linux operating system SKU when referring to the image on AKS. To migrate from the Mariner OS SKU to the AzureLinux OS SKU, you can use the [In-Place OS SKU Migration feature](/azure/azure-linux/tutorial-azure-linux-migration). 
 
 ### Are Azure Linux container images supported on AKS?
 
-The only supported container images are the Microsoft .NET and Open JDK container images based on Azure Linux. All other images are on a best effort community support basis in our [GitHub issues page](https://github.com/microsoft/CBL-Mariner/issues).
+Microsoft officially supports the Microsoft .NET and Open JDK container images based on Azure Linux. Community members provide best-effort support for all other images through the [GitHub issues page](https://github.com/microsoft/CBL-Mariner/issues).
 
 ### What's the pricing for Azure Linux?
 
@@ -55,17 +55,17 @@ Yes. Azure Linux is an open-source project with a thriving community of contribu
 
 ### What is the Service Level Agreement (SLA) for CVEs?
 
-High and critical CVEs are taken seriously and may be released out-of-band as a package update before a new AKS node image is available. Medium and low CVEs are included in the next image release.
+Microsoft takes high and critical CVEs seriously and may release them out-of-band as a package update before a new AKS node image becomes available. Medium and low CVEs are included in the next scheduled image release.
 
 For more information on CVEs, see [Azure Linux Container Host for AKS core concepts](./concepts-core.md#cve-infrastructure).
 
 ### How does Microsoft notify users of new Azure Linux versions?
 
-Azure Linux releases can be tracked alongside AKS releases on the [AKS release tracker](/azure/aks/release-tracker).
+You can track Azure Linux releases alongside AKS releases on the [AKS release tracker](/azure/aks/release-tracker).
 
 ### Does the Azure Linux Container Host support AppArmor?
 
-No, the Azure Linux Container Host doesn't support AppArmor. Instead, it supports SELinux, which can be manually configured.
+No, the Azure Linux Container Host doesn't support AppArmor. Instead, it supports SELinux, which you can configure manually.
 
 ### How does Azure Linux read time for time synchronization on Azure?
 
@@ -73,11 +73,11 @@ For time synchronization, Azure Linux reads the time from the Azure VM host usin
 
 ### How can I get help with Azure Linux?
 
-Submit a [GitHub issue](https://github.com/microsoft/CBL-Mariner/issues/new/choose) to ask a question, provide feedback, or submit a feature request. Please create an [Azure support request](./support-help.md#create-an-azure-support-request) for any issues or bugs.
+Submit a [GitHub issue](https://github.com/microsoft/CBL-Mariner/issues/new/choose) to ask a question, provide feedback, or request a feature. For technical issues or bugs, create an [Azure support request](./support-help.md#create-an-azure-support-request).
 
 ### How can I stay informed of updates and new releases?
 
-We're hosting public community calls for Azure Linux users to get together and discuss new features, provide feedback, and learn more about how others use Azure Linux. In each session, we will feature a new demo. The schedule for the upcoming community calls is as follows:
+Microsoft hosts public community calls for Azure Linux users to discuss new features, provide feedback, and learn how others use Azure Linux. Each session features a new demo. The schedule for upcoming community calls is as follows:
 
 | Date | Time | Meeting link |
 | --- | --- | --- |
@@ -91,40 +91,40 @@ We're hosting public community calls for Azure Linux users to get together and d
 
 ### Is there a migration tool available to switch from a different distro to Azure Linux on Azure Kubernetes Service (AKS)?
 
-Yes, the migration from another distro to Azure Linux on AKS is straightforward. For more information, see [Tutorial 3 - Migrating to Azure Linux](./tutorial-azure-linux-migration.md).
+Yes, migrating from another distribution to Azure Linux on AKS is straightforward. For more information, see [Tutorial 3 - Migrating to Azure Linux](./tutorial-azure-linux-migration.md).
 
 ### Can an existing AKS cluster be updated to use the Azure Linux Container Host, or does a new cluster with the Azure Linux Container Host need to be created?
 
-An existing AKS cluster can add an Azure Linux node pool with the `az aks nodepool add` command and specifying `--os-sku AzureLinux`. Once a node pool starts, it can coexist with another distro and work gets scheduled between both node pools. For detailed instructions see, [Tutorial 2 - Add an Azure Linux node pool to your existing cluster](./tutorial-azure-linux-add-nodepool.md).
+You can add an Azure Linux node pool to an existing AKS cluster using the `az aks nodepool add` command with the `--os-sku AzureLinux` parameter. Once the node pool starts, it can coexist with another distribution, and Kubernetes schedules workloads across both node pools. For detailed instructions, see [Tutorial 2 - Add an Azure Linux node pool to your existing cluster](./tutorial-azure-linux-add-nodepool.md).
 
 ### Can I use a specific Azure Linux version indefinitely?
 
-You can decide to opt out of automatic node image upgrades and manually upgrade your node image to control what version of Azure Linux you use. This way, you can use a specific Azure Linux version for as long as you want.
+You can opt out of automatic node image upgrades and manually upgrade your node image to control which version of Azure Linux you use. This approach allows you to use a specific Azure Linux version for as long as needed.
 
-### I added a new node pool on an AKS cluster using the Azure Linux Container Host, but the kernel version isn't the same as the one that booted. Is this intended?
+### I added a new node pool on an AKS cluster using the Azure Linux Container Host, but the kernel version isn't the same as the one that booted. Is this expected behavior?
 
-The base image that AKS uses to start clusters runs about two weeks behind the latest packages. When the image was built, the latest kernel was booted when the cluster started. However, one of the first things the cluster does is install package updates, which is where the new kernel came from. Most updated packages take effect immediately, but in order for a new kernel to be used the node needs to reboot.
+Yes, this is expected. The base image that AKS uses to start clusters typically runs about two weeks behind the latest packages. When AKS builds the image, the cluster boots with the latest kernel available at that time. However, one of the first actions the cluster performs is installing package updates, which includes a newer kernel version. Most updated packages take effect immediately, but a new kernel requires a node reboot to become active.
 
-The expected pattern for rebooting is to run a tool like [Kured](https://github.com/weaveworks/kured), which monitors each node, then gracefully reboots the cluster one machine at a time to bring everything up to date.
+To enable automatic reboots, run a tool like [Kured](https://github.com/weaveworks/kured). Kured monitors each node and gracefully reboots the cluster one machine at a time to apply kernel updates.
 
 ## Update FAQs
 
 ### What is Azure Linux's release cycle?
 
-Azure Linux releases major image versions every ~two years, using the Linux LTS kernel and regularly updating the new stable packages. Monthly updates with CVE fixes are also made.
+Azure Linux releases major image versions approximately every two years. Each major version uses the Linux Long-Term Support (LTS) kernel and regularly updates stable packages. Microsoft also releases monthly updates with CVE fixes.
 
 ### How do upgrades from one major Azure Linux version to another work?
 
-When upgrading between major Azure Linux versions, a [SKU migration](./tutorial-azure-linux-migration.md) is required. In the next major Azure Linux version release, the osSKU will be a rolling release.
+Upgrading between major Azure Linux versions requires a [SKU migration](./tutorial-azure-linux-migration.md). In the next major Azure Linux version release, the operating system SKU will support rolling releases.
 
 ### When are the latest Azure Linux Container Host image/node image released?
 
-New Azure Linux Container Host base images on AKS are built weekly, but the release cycle may not be as frequent. We spend a week performing end-to-end testing, and the image version may take a few days to roll out to all regions.
+Microsoft builds new Azure Linux Container Host base images for AKS weekly, but releases occur less frequently. Each image undergoes a week of end-to-end testing before release. After testing completes, the image version takes a few days to roll out to all regions.
 
 ### Is it possible to skip multiple Azure Linux minor versions during an upgrade?
 
-If you choose to manually upgrade your node image instead of using automatic node image upgrades, you can skip Azure Linux minor versions during an upgrade. The next manual node image upgrade you perform upgrades you to the latest Azure Linux Container Host for AKS image.
+If you manually upgrade your node image instead of using automatic node image upgrades, you can skip Azure Linux minor versions. The next manual node image upgrade will update your nodes to the latest Azure Linux Container Host for AKS image.
 
 ### Some packages (CNCF, K8s) have a more aggressive release cycle, and I don't want to be up to a year behind. Does the Azure Linux Container Host have any plans for more frequent upgrades?
 
-The Azure Linux Container Host adopts newer CNCF packages like K8s with higher cadence and doesn't delay them for annual releases. However, major compiler upgrades or deprecating language stacks like Python 2.7x may be held for major releases.
+The Azure Linux Container Host adopts newer Cloud Native Computing Foundation (CNCF) packages like Kubernetes more frequently and doesn't delay them for annual releases. However, Microsoft reserves major compiler upgrades and deprecation of language stacks (such as Python 2.7x) for major releases.
