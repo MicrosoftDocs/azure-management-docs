@@ -12,6 +12,9 @@ The Azure portal is a web-based, unified console that you can use to create and 
 
 The Azure portal is designed for resiliency and continuous availability. It has a presence in every Azure datacenter. This configuration makes the Azure portal resilient to individual datacenter failures and helps avoid network slowdowns by being close to users. The Azure portal updates continuously and requires no downtime for maintenance activities. You can access the Azure portal by using [any supported browser](azure-portal-supported-browsers-devices.md).
 
+> [!TIP]
+> If you don't have an Azure subscription and want to explore the Azure portal, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
 In this article, you learn about the different parts of the Azure portal.
 
 ## Home
