@@ -12,7 +12,7 @@ ms.date: 11/20/2023
 
 # Quickstart: Deploy an Azure Linux Container Host for an AKS cluster using Azure PowerShell
 
-Get started with the Azure Linux Container Host by using Azure PowerShell to deploy an Azure Linux Container Host for an AKS cluster. After installing the prerequisites, you create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
+This quickstart shows you how to use Azure PowerShell to deploy an Azure Linux Container Host for an AKS cluster. You'll create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
@@ -26,9 +26,9 @@ Get started with the Azure Linux Container Host by using Azure PowerShell to dep
 
 ## Create a resource group
 
-An [Azure resource group][azure-resource-group] is a logical group in which Azure resources are deployed and managed. When creating a resource group, you need to specify a location. This location is the storage location of your resource group metadata and where your resources run in Azure if you don't specify another region during resource creation.
+An [Azure resource group][azure-resource-group] is a logical group in which Azure resources are deployed and managed. When you create a resource group, you must specify a location. This location determines where the resource group metadata is stored and where your resources run in Azure if you don't specify another region during resource creation.
 
-The following example creates resource group named *testAzureLinuxResourceGroup* in the *eastus* region.
+The following example creates a resource group named *testAzureLinuxResourceGroup* in the *eastus* region.
 
 - Create a resource group using the [`New-AzResourceGroup`][new-azresourcegroup] cmdlet.
 
