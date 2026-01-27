@@ -1,7 +1,7 @@
 ---
 title: Get started with the Azure Quickstart Center 
 description: Use the Azure Quickstart Center guided experience to get started with Azure. Learn to set up, migrate, and innovate.
-ms.date: 01/27/26
+ms.date: 01/27/2026
 ms.topic: concept-article
 # Customer intent: "As an Azure user new to cloud computing, I want to use the Azure Quickstart Center to learn about Azure setup and resources, so that I can improve my knowledge and efficiently manage a cloud environment for my organization."
 ---
@@ -12,11 +12,9 @@ Azure Quickstart Center is a guided experience in the Azure portal that helps yo
 
 ## Use Quickstart Center
 
-To use Quickstart Center, first sign in to the [Azure portal](https://portal.azure.com). Then, in the search bar, type "Quickstart Center", and select it.
+To use Quickstart Center, first sign in to the [Azure portal](https://portal.azure.com). Then, in the search bar, type "Quickstart Center", and select it. You can also go to Quickstart Center by selecting **All services** from the Azure portal menu. Select **General** from the service menu, scroll down to **Get started**, and then select **Quickstart Center**.
 
-You can also go to Quickstart Center by selecting **All services** from the Azure portal menu. Then select **General** from the service menu. Scroll down to **Get started**, and select **Quickstart Center**.
-
-Quickstart Center shows three sections: **Get started**, **Projects and guides**, and **Take an online course**.
+Quickstart Center has three sections: **Get started**, **Projects and guides**, and **Take an online course**.
 
 ## Get started
 
