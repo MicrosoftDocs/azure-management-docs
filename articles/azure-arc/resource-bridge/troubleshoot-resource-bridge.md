@@ -42,6 +42,15 @@ az arcappliance get-credentials -n <Arc resource bridge name> -g <resource group
 az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified output directory>
    ```
 
+### Restore from backup or snapshot is unsupported
+In general, snapshots or VM backup restorations of the Arc resource bridge are not supported. If the appliance is rolled back using a VM snapshot or backup due to a failed upgrade, the state may no longer match Azure’s recorded state, resulting in an irreversible mismatch. You should avoid using hypervisor‑level or VM‑level snapshot or restore operations on the appliance, as doing so will break upgrade integrity, block future updates, or prevent the resource from returning to a healthy state.  If the resource bridge is restored from these unsupported methods, the only supported recovery path is a recovery operation. 
+
+Follow the recovery guidance for your Arc private cloud:
+
+- **Arc-enabled VMware:** Follow the [Arc-enabled VMware recovery guide](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). 
+- **Azure Local:** Contact Microsoft Support. Arc resource bridge is an integrated component of Azure Local and any changes should be guided by the support team.
+- **Arc-enabled SCVMM:** Follow the [Arc-enabled SCVMM recovery guide](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery).
+
 ### Get login credentials error on Azure CLI v2.70.0
 
 You may encounter an error when running az arcappliance commands that looks like this:
