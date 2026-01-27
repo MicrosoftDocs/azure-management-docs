@@ -15,7 +15,7 @@ ms.date: 04/06/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
 
-In AKS, nodes with the same configuration are grouped together into node pools. Each pool contains the virtual machines that run your applications. In the previous tutorial, you created an Azure Linux Container Host cluster with a single node pool. To meet varying compute or storage requirements of your applications, you can create additional user node pools.
+In AKS, nodes with the same configuration are grouped together into node pools. Each pool contains the virtual machines (VMs) that run your applications. In the previous tutorial, you created an Azure Linux Container Host cluster with a single node pool. To meet varying compute or storage requirements of your applications, you can create additional user node pools.
 
 This tutorial is part two of a five-part series. You'll learn how to:
 

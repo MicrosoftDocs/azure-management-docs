@@ -12,7 +12,7 @@ ms.custom: template-concept, linux-related-content
 
 # Core concepts for the Azure Linux Container Host for AKS
 
-Microsoft Azure Linux is an open-source project maintained by Microsoft. Microsoft is responsible for the entire Azure Linux Container Host stack, from the Linux kernel to the Common Vulnerabilities and Exposures (CVEs) infrastructure, support, and end-to-end validation. With Azure Linux, you can easily create an AKS cluster without worrying about details such as verification and critical security vulnerability patches from a third-party distribution.
+Microsoft Azure Linux is an open-source project maintained by Microsoft. Microsoft is responsible for the entire Azure Linux Container Host stack, from the Linux kernel to the Common Vulnerabilities and Exposures (CVE) infrastructure, support, and end-to-end validation. With Azure Linux, you can easily create an AKS cluster without worrying about details such as verification and critical security vulnerability patches from a third-party distribution.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
