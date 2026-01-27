@@ -12,11 +12,11 @@ ms.date: 04/06/2025
 
 # Tutorial: Create a cluster with the Azure Linux Container Host for AKS
 
-To create a cluster with the Azure Linux Container Host, you use:
-1. Azure resource groups, a logical container into which Azure resources are deployed and managed.
-1. [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes), a hosted Kubernetes service that allows you to quickly create a production ready Kubernetes cluster.
+To create a cluster with the Azure Linux Container Host, you need:
+1. An Azure resource group, which is a logical container for deploying and managing Azure resources.
+2. [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes), a hosted Kubernetes service that allows you to quickly create a production-ready Kubernetes cluster.
 
-In this tutorial, part one of five, you learn how to:
+This tutorial is part one of a five-part series. You'll learn how to:
 
 > [!div class="checklist"]
 > * Install the Kubernetes CLI, `kubectl`.
@@ -24,7 +24,7 @@ In this tutorial, part one of five, you learn how to:
 > * Create and deploy an Azure Linux Container Host cluster.
 > * Configure `kubectl` to connect to your Azure Linux Container Host cluster.
 
-In later tutorials, you learn how to add an Azure Linux node pool to an existing cluster and migrate existing nodes to Azure Linux.
+Later tutorials in this series cover adding an Azure Linux node pool to an existing cluster and migrating existing nodes to Azure Linux.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
@@ -34,11 +34,11 @@ In later tutorials, you learn how to add an Azure Linux node pool to an existing
 
 ## Create a resource group
 
-When creating a resource group, it is required to specify a location. This location is: 
-- The storage location of your resource group metadata.
-- Where your resources run in Azure if you don't specify another region when creating a resource.
+When you create a resource group, you must specify a location. This location determines: 
+- Where the resource group metadata is stored.
+- Where your resources run in Azure if you don't specify another region during resource creation.
 
-Before running the command, environment variables are declared to ensure unique resource names for each deployment.
+Before running the command, declare environment variables to ensure unique resource names for each deployment.
 
 ```bash
 export REGION="EastUS2"
@@ -62,7 +62,7 @@ az group create --name $RESOURCE_GROUP_NAME --location $REGION
 
 ## Create an Azure Linux Container Host cluster
 
-Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the Azure Linux Container Host with an Azure Linux image. The following example creates an Azure Linux Container Host cluster. 
+Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision an Azure Linux Container Host cluster. The following example creates an Azure Linux Container Host cluster. 
 
 ```bash
 az aks create --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP_NAME --os-sku AzureLinux

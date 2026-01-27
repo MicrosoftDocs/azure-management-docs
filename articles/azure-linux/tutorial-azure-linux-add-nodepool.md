@@ -15,27 +15,27 @@ ms.date: 04/06/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
 
-In AKS, nodes with the same configurations are grouped together into node pools. Each pool contains the VMs that run your applications. In the previous tutorial, you created an Azure Linux Container Host cluster with a single node pool. To meet the varying compute or storage requirements of your applications, you can create additional user node pools.
+In AKS, nodes with the same configuration are grouped together into node pools. Each pool contains the virtual machines that run your applications. In the previous tutorial, you created an Azure Linux Container Host cluster with a single node pool. To meet varying compute or storage requirements of your applications, you can create additional user node pools.
 
-In this tutorial, part two of five, you learn how to:
+This tutorial is part two of a five-part series. You'll learn how to:
 
 > [!div class="checklist"]
 >
 > * Add an Azure Linux node pool.
 > * Check the status of your node pools.
 
-In later tutorials, you learn how to migrate nodes to Azure Linux and enable telemetry to monitor your clusters.
+Later tutorials in this series cover migrating nodes to Azure Linux and enabling telemetry to monitor your clusters.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
 ## Prerequisites
 
-* In the previous tutorial, you created and deployed an Azure Linux Container Host cluster. If you haven't done these steps and would like to follow along, start with [Tutorial 1: Create a cluster with the Azure Linux Container Host for AKS](./tutorial-azure-linux-create-cluster.md).
+* You completed the previous tutorial where you created and deployed an Azure Linux Container Host cluster. If you haven't completed this step and would like to follow along, start with [Tutorial 1: Create a cluster with the Azure Linux Container Host for AKS](./tutorial-azure-linux-create-cluster.md).
 * You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
 ## Add an Azure Linux node pool
 
-To add an Azure Linux node pool into your existing cluster, use the `az aks nodepool add` command and specify `--os-sku AzureLinux`. The following example creates a node pool named *ALnodepool* that runs three nodes in the *testAzureLinuxCluster* cluster in the *testAzureLinuxResourceGroup* resource group. Environment variables are declared below and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
+To add an Azure Linux node pool to your existing cluster, use the `az aks nodepool add` command and specify `--os-sku AzureLinux`. The following example creates a node pool named *ALnodepool* that runs three nodes in the *testAzureLinuxCluster* cluster within the *testAzureLinuxResourceGroup* resource group. The code declares environment variables and appends a random suffix to the resource group and cluster names to ensure uniqueness.
 
 ```azurecli-interactive
 export RANDOM_SUFFIX=$(openssl rand -hex 3)
