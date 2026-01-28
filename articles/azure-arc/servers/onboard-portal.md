@@ -43,8 +43,8 @@ Use the Azure portal to create a script that automates the agent download and in
    1. Under **Authentication**, select **Authenticate machines manually**, then select **Next**.
 1. Under **Tags**, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards.
 1. Select **Next**.
-1. Under **Download and run script**, select your deployment method, then review the summary information. If you need to make changes, select **Previous** and make necessary edits.
-1. Select **Download**.
+1. Under **Download and run script**, review the summary information. If you need to make changes, select **Previous** and make necessary edits.
+1. Select **Download**, then select **Close**.
 
 For Windows, you're prompted to save `OnboardingScript.ps1`, and for Linux `OnboardingScript.sh` to your computer.
 
