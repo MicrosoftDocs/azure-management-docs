@@ -85,7 +85,6 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
    # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
    Restart-Service -Name HIMDS
    ```
-   <!-- Explanation: Replaced placeholder proxy values with a concrete example, as requested in agent feedback. -->
 
    > [!NOTE]
    > The agent doesn't support setting proxy authentication.
@@ -103,8 +102,6 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
    - `--cloud` (string, example: `AzureCloud`)
    - `--proxy` (string, example: `http://proxy.example.com:8080`)
 
-   <!-- Explanation: Added a concise parameter table immediately above the Windows connect command per agent feedback. -->
-
    ```powershell
    & "$env:ProgramFiles\AzureConnectedMachineAgent\azcmagent.exe" connect `
      --resource-group "myResourceGroup" `
@@ -112,7 +109,6 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
      --location "eastus" `
      --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
    ```
-   <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
 
 # [Scripted install](#tab/win-script)
 
@@ -167,8 +163,6 @@ The script also contains logic to identify the supported and unsupported distrib
    bash ~/Install_linux_azcmagent.sh --proxy "proxy.contoso.com:8080"
    ```
 
-   <!-- Explanation: Added a concrete proxy example value as required by the agent feedback. -->
-
 1. After installing the agent, configure it to communicate with the Azure Arc service:
 
    **Parameters**
@@ -180,8 +174,6 @@ The script also contains logic to identify the supported and unsupported distrib
    - `--cloud` (string, example: `AzureCloud`)
    - `--proxy` (string, example: `http://proxy.example.com:8080`)
 
-   <!-- Explanation: Added a concise parameter table immediately above the Linux connect command per agent feedback. -->
-
    ```bash
    azcmagent connect \
      --resource-group "myResourceGroup" \
@@ -190,7 +182,6 @@ The script also contains logic to identify the supported and unsupported distrib
      --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e" \
      --cloud "AzureCloud"
    ```
-   <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
 
 # [Scripted install](#tab/linux-script)
 
