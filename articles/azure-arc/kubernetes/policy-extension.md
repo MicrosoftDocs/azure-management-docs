@@ -2,7 +2,7 @@
 title: "Azure Arc-enabled Kubernetes validation"
 ms.date: 01/28/2026
 ms.topic: how-to
-description: "Install Azure Policy extension for Azure Arc"
+description: "Install Azure Policy extension in Kubernetes clusters connected via Azure Arc"
 # Customer intent: As a DevOps engineer, I want to understand which Kubernetes distributions have passed conformance tests for Azure Policy extension for Azure Arc, so that I can ensure compatibility and successful integration for managing my clusters across cloud environments.
 ---
 # Azure Policy Extension for Azure Arc
@@ -86,7 +86,5 @@ Enabled external data.
  - Gatekeeper v3.21.0-1
 
 > Release notes in this document are **specific to the Azure Policy Extension** and do not reflect other extensions in Azure Arc.
-
-Additional version-specific notes should be appended to this section as new releases become available.
 
 ---
