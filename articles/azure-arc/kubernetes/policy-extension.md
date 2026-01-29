@@ -51,7 +51,7 @@ The Azure Policy Extension **can be installed** on the following Kubernetes dist
 
 ## Azure Red Hat OpenShift (ARO) Considerations
 
-Azure Red Hat OpenShift (ARO) clusters ship with **Azure Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
+Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
 
 To disable ARO Guardrails, run the following commands **in order**:
 
