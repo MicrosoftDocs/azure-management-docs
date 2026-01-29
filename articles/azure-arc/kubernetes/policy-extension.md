@@ -80,7 +80,6 @@ Addressed policy extension installation failure in aks_workload distribution
 Added RKE2 support.
 Enabled mutation.
 Enabled external data.
-
  - Released Jan 2026
  - Policy Image v1.15.4
  - Gatekeeper v3.21.0-1
