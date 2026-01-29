@@ -43,7 +43,7 @@ The Azure Policy Extension **can be installed** on the following Kubernetes dist
 | AWS | eks | 1.27+ |
 | Google | gke | 1.27+ |
 | Rancher | rancher_rke | 1.27+ |
-| Samsung | tks | 1.27+ |
+| VMware | tkg | 1.27+ |
 | Any | generic | 1.27+ |
 
 
