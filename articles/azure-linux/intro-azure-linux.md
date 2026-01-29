@@ -24,8 +24,7 @@ To learn more about Azure Linux, see the [Azure Linux GitHub repository](https:/
 > AKS customers will automatically move to Azure Linux 3.0 when upgrading their AKS versions from 1.31 to 1.32. No additional action is required.
 > To learn more, see [Quickstart: Enable Azure Linux 3.0](./how-to-enable-azure-linux-3.md).
 
-> [!IMPORTANT]
-> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+[!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
 ## Azure Linux Container Host key benefits
 
@@ -67,12 +66,13 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 - [NVIDIA V100][nvidia-v100]
 - [NVIDIA T4][nvidia-t4]
 - [NVIDIA NC A100 V4][nvidia-nc-a100-v4]
+- [NVIDIA NDasr A100 V4][nvidia-ndasr-a100-v4]
+- [NVIDIA NDm A100 V4][nvidia-ndm-a100-v4]
+- [NVIDIA NCads H100 V5][nvidia-ncads-h100-v5]
 
 Get started deploying NVIDIA GPU workloads on AKS with Azure Linux [here][use-nvidia-gpu].
 
 > [!NOTE]
-> - Azure Linux does not yet support additional GPU series on AKS (NVIDIA H100, H200, etc.). All other VM SKUs that are available on AKS are available with Azure Linux.
-> - Azure Linux does not currently support the MIG (Multi-Instance GPU) feature on AKS.
 > - If there are specific GPU series you'd like to see supported on AKS with Azure Linux, or if you have other prioritization requests, please file an issue in the [AKS GitHub repository](https://github.com/Azure/AKS/issues).
 
 ## Next steps
@@ -85,6 +85,10 @@ Get started deploying NVIDIA GPU workloads on AKS with Azure Linux [here][use-nv
 [nvidia-v100]: /azure/virtual-machines/ncv3-series
 [nvidia-t4]: /azure/virtual-machines/nct4-v3-series
 [nvidia-nc-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/nca100v4-series
+[nvidia-ndasr-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndasra100v4-series
+[nvidia-ndm-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndma100v4-series
+[nvidia-ncads-h100-v5]: /azure/virtual-machines/sizes/gpu-accelerated/ncadsh100v5-series
+
 [use-nvidia-gpu]: /azure/aks/use-nvidia-gpu
 [cis-benchmarks]: /azure/aks/cis-azure-linux
 

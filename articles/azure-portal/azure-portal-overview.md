@@ -1,36 +1,39 @@
 ---
 title: What is the Azure portal?
 description: The Azure portal is a graphical user interface that you can use to manage your Azure services. Learn how to navigate and find resources in the Azure portal.
-ms.date: 07/18/2024
+ms.date: 01/26/2026
 ms.topic: overview
 # Customer intent: "As an Azure user, I want to navigate and manage my resources through a web-based interface, so that I can efficiently create, monitor, and optimize my cloud services."
 ---
 
 # What is the Azure portal?
 
-The Azure portal is a web-based, unified console that lets you create and manage all your Azure resources. With the Azure portal, you can manage your Azure subscription using a graphical user interface. You can build, manage, and monitor everything from simple web apps to complex cloud deployments in the portal. For example, you can set up a new database, increase the compute power of your virtual machines, and monitor your monthly costs. You can review all available resources, and use guided wizards to create new ones.
+The Azure portal is a web-based, unified console that you can use to create and manage all your Azure resources. By using the Azure portal, you can manage your Azure subscription through a graphical user interface. You can build, manage, and monitor everything from simple web apps to complex cloud deployments in the portal. For example, you can set up a new database, increase the compute power of your virtual machines, and monitor your monthly costs. You can review all available resources and use guided wizards to create new ones.
 
-The Azure portal is designed for resiliency and continuous availability. It has a presence in every Azure datacenter. This configuration makes the Azure portal resilient to individual datacenter failures and helps avoid network slowdowns by being close to users. The Azure portal updates continuously, and it requires no downtime for maintenance activities. You can access the Azure portal with [any supported browser](azure-portal-supported-browsers-devices.md).
+The Azure portal is designed for resiliency and continuous availability. It has a presence in every Azure datacenter. This configuration makes the Azure portal resilient to individual datacenter failures and helps avoid network slowdowns by being close to users. The Azure portal updates continuously and requires no downtime for maintenance activities. You can access the Azure portal by using [any supported browser](azure-portal-supported-browsers-devices.md).
+
+> [!TIP]
+> If you don't have an Azure subscription and want to explore the Azure portal, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 In this article, you learn about the different parts of the Azure portal.
 
 ## Home
 
-By default, the first thing you see after you [sign in to the portal](https://portal.azure.com) is **Home**. This page compiles resources that help you get the most from your Azure subscription. Select **Create a resource** to quickly create a new resource in the current subscription, or choose a service to start working in. For quick and easy access to work in progress, we show a list of your most recently visited resources. We also include links to free online courses, documentation, and other useful resources.
+By default, the first thing you see after you [sign in to the portal](https://portal.azure.com) is **Home**. This page compiles resources that help you get the most from your Azure subscription. Select **Create a resource** to quickly create a new resource in the current subscription, or choose a service to start working in. For quick and easy access to work in progress, the portal shows a list of your most recently visited resources. It also includes links to free online courses, documentation, and other useful resources.
 
 ## Portal elements and controls
 
-The [portal menu](#portal-menu) and page header are global elements that are always present in the Azure portal. These persistent features are the "shell" for the user interface associated with each individual service or feature. The header provides access to global controls.
+The [portal menu](#portal-menu) and page header are global elements that always appear in the Azure portal. These persistent features form the "shell" for the user interface associated with each individual service or feature. The header provides access to global controls.
 
-The working pane for a resource or service may also have a [service menu](#service-menu) with commands specific to that area.
+The working pane for a resource or service might also have a [service menu](#service-menu) with commands specific to that area.
 
-The illustration below labels the basic elements of the Azure portal, each of which are described in the following table. In this example, the current focus is a virtual machine (VM), but the same elements generally apply, no matter what type of resource or service you're working with.
+The following illustration labels the basic elements of the Azure portal. Each element is described in the following table. In this example, the current focus is a virtual machine (VM), but the same elements generally apply, no matter what type of resource or service you're working with.
 
 :::image type="content" source="media/azure-portal-overview/portal-callouts.png" alt-text="Screenshot showing the full screen portal view and a key to UI elements." lightbox="media/azure-portal-overview/portal-callouts.png":::
 
 |Key|Description |
 |:---:|---|
-|1|**[Portal menu](#portal-menu)**. This global element can help you to navigate between services. Here, the portal menu is in flyout mode, so it's hidden until you select the menu icon.|
+|1|**[Portal menu](#portal-menu)**. Use this global element to navigate between services. Here, the portal menu is in flyout mode, so it's hidden until you select the menu icon.|
 |2|**Breadcrumb**. Use the breadcrumb links to move back a level in your workflow.|
 |3|**Page header**. Appears at the top of every portal page and holds global elements.|
 |4|**Global search**. Use the search bar in the page header to quickly find a specific resource, a service, or documentation.|
@@ -64,17 +67,17 @@ If you choose docked mode for the portal menu, it's always visible. You can sele
 
 ## Service menu
 
-The service menu appears when you're working with an Azure service or resource. Commands in this menu are contextual to the service or resource that you're working with. You can use the search box at the top of the service menu to quickly find commands.
+The service menu appears when you work with an Azure service or resource. The commands in this menu are contextual to the service or resource that you're working with. Use the search box at the top of the service menu to quickly find commands.
 
-By default, menu items appear collapsed within menu groups. If you prefer to have all menu items expanded by default, you can set **Service menu behavior** to **Expanded** in your [portal settings](set-preferences.md#service-menu-behavior).
+By default, the portal displays menu items as collapsed within menu groups. If you prefer to have all menu items expanded by default, set **Service menu behavior** to **Expanded** in your [portal settings](set-preferences.md#service-menu-behavior).
 
-When you're working within a service, you can select any top-level menu item to expand it and see the available commands within that menu group. Select that top-level item again to collapse that menu group.
+When you work within a service, select any top-level menu item to expand it and see the available commands within that menu group. Select that top-level item again to collapse that menu group.
 
 To toggle all folders in a service menu between collapsed and expanded, select the expand/collapse icon near the service icon search box.
 
 :::image type="content" source="media/azure-portal-overview/service-menu-toggle.png" alt-text="Screenshot showing the icon to toggle service menu items between collapsed and expanded.":::
 
-If you use certain service menu commands frequently, you may want to save them as favorites for that service. To do so, hover over the command and then select the star icon.
+If you frequently use certain service menu commands, save them as favorites for that service. To add a command to your favorites, hover over the command and then select the star icon.
 
 :::image type="content" source="media/azure-portal-overview/service-menu-add-favorite.png" alt-text="Screenshot showing the star icon to add a service menu command to favorites.":::
 
@@ -82,11 +85,11 @@ When you save a command as a favorite, it appears in a **Favorites** folder near
 
 :::image type="content" source="media/azure-portal-overview/service-menu-favorites.png" alt-text="Screenshot of the Favorites folder in a service menu.":::
 
-Your menu group selections are preserved by resource type and throughout sessions. For example, if you add a favorite command while working with a VM, that command will appear in your **Favorites** if you later work with a different VM. Specific menu groups will also appear collapsed or expanded based on your previous selections.
+The portal preserves your menu group selections throughout sessions by resource type. For example, if you add a favorite command while working with a VM, that command appears in your **Favorites** when you later work with a different VM. Specific menu groups also appear collapsed or expanded based on your previous selections.
 
 ## Dashboard
 
-Dashboards provide a focused view of the resources in your subscription that matter most to you. We give you a default dashboard to get you started. You can customize this dashboard to bring resources you use frequently into a single view, or to display other information.
+Dashboards provide a focused view of the resources in your subscription that matter most to you. The portal provides a default dashboard to get you started. You can customize this dashboard to bring resources you frequently use into a single view, or to display other information.
 
 You can create other dashboards for your own use, or publish customized dashboards and share them with other users in your organization. For more information, see [Create and share dashboards in the Azure portal](../azure-portal/azure-portal-dashboards.md).
 
@@ -94,7 +97,7 @@ As noted earlier, you can [set your startup page to Dashboard](set-preferences.m
 
 ## Get started
 
-If you're a new subscriber, you'll have to create a resource before there's anything to manage. Select **+ Create a resource** from the portal menu or **Home** page to view the services available in the Azure Marketplace. You'll find hundreds of applications and services from many providers here, all certified to run on Azure.
+If you're a new subscriber, you need to create a resource before there's anything to manage. Select **+ Create a resource** from the portal menu or **Home** to view the services available in the Marketplace. You can find hundreds of applications and services from many providers, all certified to run on Azure.
 
 To view all available services, select **All services** from the sidebar.
 

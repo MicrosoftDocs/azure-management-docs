@@ -187,13 +187,11 @@ or
 az sql mi-arc show --name sqldemo --k8s-namespace my-namespace --use-k8s
 ```
 
-Example output:
+Example output, your output will be different:
 
 ```console
  "status": {
-    "endpoints": {
-      "logSearchDashboard": "https://10.120.230.404:5601/app/kibana#/discover?_a=(query:(language:kuery,query:'custom_resource_name:sqldemo'))",
-      "metricsDashboard": "https://10.120.230.46:3000/d/40q72HnGk/sql-managed-instance-metrics?var-hostname=sqldemo-0",
+    "endpoints": {...
       "mirroring": "10.15.100.150:5022",
       "primary": "10.15.100.150,1433",
       "secondary": "10.15.100.156,1433"

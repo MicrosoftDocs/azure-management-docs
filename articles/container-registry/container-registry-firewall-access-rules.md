@@ -129,25 +129,25 @@ For example, create an outbound network security group rule with destination **A
 
 ## Enable dedicated data endpoints 
 
-> [!WARNING]
+> [!NOTE]
 > If you previously configured client firewall access to the existing `*.blob.core.windows.net` endpoints, switching to dedicated data endpoints will impact client connectivity, causing pull failures. To ensure clients have consistent access, add the new data endpoint rules to the client firewall rules. Once completed, enable dedicated data endpoints for your registries using the Azure CLI or other tools.
+> 
+> During image pulls, if dedicated data endpoints are enabled, ACR gives the client a temporary download link each time it needs to fetch an image layer. This link points to the dedicated data endpoint and is valid for 20 minutes, providing a secure, short-lived URL for downloading the layer. After 20 minutes, the link expires, and the client simply requests a new one if it needs to download another layer when pulling images.
 
 Dedicated data endpoints is an optional feature of the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container Registry service tiers](container-registry-skus.md). 
 
 You can enable dedicated data endpoints using the Azure portal or the Azure CLI. The data endpoints follow a regional pattern, `<registry-name>.<region>.data.azurecr.io`. In a geo-replicated registry, enabling data endpoints enables endpoints in all replica regions.
 
-### Portal
+### Azure portal
 
-To enable data endpoints using the portal:
+To enable data endpoints using the Azure portal:
 
 1. Navigate to your container registry.
 1. Select **Networking** > **Public access**.
-1. Select the **Enable dedicated data endpoint** checkbox.
+1. Select the **Use dedicated data endpoint** checkbox.
 1. Select **Save**.
 
-The data endpoint or endpoints appear in the portal.
-
-:::image type="content" source="media/container-registry-firewall-access-rules/dedicated-data-endpoints-portal.png" alt-text="Dedicated data endpoints in portal":::
+You now see the data endpoints in the Azure portal.
 
 ### Azure CLI
 

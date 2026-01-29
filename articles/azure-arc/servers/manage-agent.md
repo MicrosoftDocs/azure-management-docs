@@ -535,6 +535,174 @@ The Connected Machine agent [sends a regular heartbeat message](overview.md#agen
 
 Develop a plan for responding and investigating these incidents, including setting up resource Health alerts to get notified when such incidents occur. For more information, see [Create Resource Health alerts in the Azure portal](/azure/service-health/resource-health-alert-monitor-guide).]
 
+## Remove stale server resources
+
+If a server is decommissioned or disconnected without cleanly removing the agent, the resource usually remains in the Azure portal with a "Disconnected" status. Over time, these stale resources can clutter your environment.
+
+The following PowerShell script allows you to identify and delete Azure Arc-enabled servers that have been disconnected for a specified number of days.
+
+### Prerequisites
+
+*   **Azure PowerShell**: The `Az` module installed.
+*   **Permissions**: Reader access to query via Azure Resource Graph, and Contributor/Owner (or `Microsoft.HybridCompute/machines/delete`) to delete the resources.
+
+### The cleanup script
+
+This script uses [Azure Resource Graph](/azure/governance/resource-graph/overview) to query `Microsoft.HybridCompute/machines` resources where the status is `Disconnected` and the `lastStatusChange` timestamp is older than the configured threshold.
+
+Save the following code as `Cleanup-StaleArcServers.ps1`.
+
+```powershell
+<#
+.SYNOPSIS
+    Identifies and removes stale Azure Arc-enabled servers that have been disconnected for a specified number of days.
+
+.DESCRIPTION
+    This script queries Azure Resource Graph to find Azure Arc-enabled servers (Microsoft.HybridCompute/machines)
+    that have a status of 'Disconnected' and have not updated their status for more than the specified number of days.
+    It supports a -WhatIf parameter to preview the resources that would be deleted.
+
+.PARAMETER DaysDisconnected
+    The number of days a server must be disconnected to be considered stale. Default is 60.
+
+.PARAMETER Scope
+    Optional. The scope to query (e.g., a specific Subscription ID or Management Group ID). 
+    If not specified, queries all subscriptions the current context has access to.
+
+.PARAMETER WhatIf
+    If specified, the script will only list the resources specifically targeting for deletion without actually deleting them.
+
+.EXAMPLE
+    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
+    Lists Arc servers disconnected for more than 60 days.
+
+.EXAMPLE
+    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 90
+    Permanently deletes Arc servers disconnected for more than 90 days.
+
+.NOTES
+    Author: Microsoft
+    Date: 2026-01-12
+    Requires: Az.ResourceGraph, Az.Resources
+#>
+
+param (
+    [int]$DaysDisconnected = 60,
+    
+    [string]$Scope,
+
+    [switch]$WhatIf
+)
+
+# Check for Azure connection
+try {
+    $context = Get-AzContext -ErrorAction Stop
+    Write-Host "Connected to Azure context: $($context.Name)" -ForegroundColor Cyan
+}
+catch {
+    Write-Error "Not connected to Azure. Please run 'Connect-AzAccount' first."
+    exit
+}
+
+# Construct the KQL query
+# We look for resources of type hybridcompute/machines
+# Status must be Disconnected
+# lastStatusChange must be older than $DaysDisconnected
+$kqlQuery = @"
+Resources
+| where type == 'microsoft.hybridcompute/machines'
+| where properties.status == 'Disconnected'
+| where properties.lastStatusChange < ago($($DaysDisconnected)d)
+| project id, name, resourceGroup, subscriptionId, location, status = properties.status, lastStatusChange = properties.lastStatusChange
+"@
+
+Write-Host "Searching for Arc servers disconnected for more than $DaysDisconnected days..." -ForegroundColor Yellow
+
+# Execute Search
+$params = @{
+    Query = $kqlQuery
+}
+
+if (-not [string]::IsNullOrWhiteSpace($Scope)) {
+    $params.Add('Scope', $Scope)
+}
+
+try {
+    $staleServers = Search-AzGraph @params -ErrorAction Stop
+}
+catch {
+    Write-Error "Failed to query Azure Resource Graph. Ensure resource graph module is installed and you have read permissions.`nError: $_"
+    exit
+}
+
+if ($staleServers.Count -eq 0) {
+    Write-Host "No stale Arc servers found matching the criteria." -ForegroundColor Green
+    exit
+}
+
+Write-Host "Found $($staleServers.Count) stale servers." -ForegroundColor Yellow
+
+# Process results
+foreach ($server in $staleServers) {
+    $message = "Deleting '$($server.name)' in RG '$($server.resourceGroup)' (Disconnected since: $($server.lastStatusChange))"
+    
+    if ($WhatIf) {
+        Write-Host "[WhatIf] $message" -ForegroundColor Cyan
+    }
+    else {
+        Write-Host $message -ForegroundColor White
+        try {
+            Remove-AzResource -ResourceId $server.id -Force -ErrorAction Stop
+            Write-Host "Successfully deleted '$($server.name)'." -ForegroundColor Green
+        }
+        catch {
+            Write-Error "Failed to delete '$($server.name)'. Error: $_"
+        }
+    }
+}
+
+if ($WhatIf) {
+    Write-Host "`n[WhatIf] Run completed. No resources were deleted. Remove -WhatIf to execute deletion." -ForegroundColor Cyan
+}
+else {
+    Write-Host "`nCleanup completed." -ForegroundColor Green
+}
+```
+
+### How to use the script
+
+1. Sign in to Azure
+
+   Open your PowerShell terminal and sign in.
+   
+   ```powershell
+   Connect-AzAccount
+   ```
+
+2. Run a What-If analysis
+
+   First run the script with the `-WhatIf` switch. This will list the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
+   ```
+
+   Review the output to ensure only the intended servers are listed.
+
+3. Perform the cleanup
+
+   Once you are confident in the list of servers to be removed, run the script without the switch.
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60
+   ```
+
+   To clean up servers disconnected for a longer period (e.g., 6 months), increase the day count:
+   
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 180
+   ```
+
 ## Related content
 
 * Find troubleshooting information in the [Troubleshoot Connected Machine agent guide](troubleshoot-agent-onboard.md).

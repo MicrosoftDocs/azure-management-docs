@@ -87,7 +87,7 @@
         href: conceptual-gitops-flux2-ci-cd.md
       - name: Multi-cluster workload management with Azure Kubernetes Fleet Manager
         displayName: azure kubernetes fleet manager, multicluster
-        href: /azure/kubernetes-fleet/concepts-multi-cluster-workload-management.md
+        href: /azure/kubernetes-fleet/concepts-multi-cluster-workload-management
       - name: Multi-cluster workload management with GitOps
         displayName: multicluster
         href: conceptual-workload-management.md
@@ -172,6 +172,7 @@
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
   - name: Simplify network connectivity
     href: arc-gateway-simplify-networking.md
+    displayName: gateway, arc gateway
   - name: Troubleshooting
     items:
     - name: Platform issues

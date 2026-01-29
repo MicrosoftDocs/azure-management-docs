@@ -4,12 +4,12 @@
   expanded: true
   items:
   - name: Overview
-    expanded: false
+    expanded: true
     items:
     - name: About Container Registry
       href: container-registry-intro.md
   - name: Quickstarts
-    expanded: true
+    expanded: false
     items:
     - name: Create container registry - CLI
       href: container-registry-get-started-azure-cli.md
@@ -84,6 +84,20 @@
       href: container-registry-image-formats.md
     - name: Tag and version images
       href: container-registry-image-tag-version.md
+    - name: Connected registry
+      items:
+      - name: About connected registry
+        href: intro-connected-registry.md
+      - name: Create connected registry
+        href: quickstart-create-connected-registry.md
+      - name: Deploy connected registry to Azure Arc
+        href: quickstart-connected-registry-arc-cli.md
+      - name: Secure deployment options
+        href: tutorial-connected-registry-arc.md
+      - name: Pull images from connected registry
+        href: pull-images-from-connected-registry.md
+      - name: Troubleshoot connected registry
+        href: troubleshoot-connected-registry-arc.md
     - name: Artifact streaming
       href: container-registry-artifact-streaming.md
     - name: Geo-replication
@@ -180,13 +194,14 @@
           href: container-registry-configure-conditional-access.md
         - name: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
           href: container-registry-disable-authentication-as-arm.md
-      - name: Microsoft Entra role-based access control and authorization
+      - name: Role-based access control and authorization
         items:
-        - name: Microsoft Entra permissions and role assignments
+        - name: Overview
           href: container-registry-rbac-built-in-roles-overview.md
-          displayName: permissions, authorization
-        - name: Microsoft Entra repository permissions
+          displayName: permission, authorization, role, assign, entra, rbac, built-in
+        - name: Azure ABAC repository permissions
           href: container-registry-rbac-abac-repository-permissions.md
+          displayName: authorization, role, assign, entra, attribute
         - name: Role directory reference
           href: container-registry-rbac-built-in-roles-directory-reference.md
           displayName: permissions, authorization
@@ -220,12 +235,12 @@
       items:
       - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
         href: overview-sign-verify-artifacts.md
-      - name: Sign container images with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-sign-verify-notation-trusted-signing.md
-      - name: Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-github-sign-notation-trusted-signing.md
-      - name: Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-github-verify-notation-trusted-signing.md
+      - name: Sign container images with Notation and Artifact Signing
+        href: container-registry-tutorial-sign-verify-notation-artifact-signing.md
+      - name: Sign container images in GitHub workflow with Notation and Artifact Signing
+        href: container-registry-tutorial-github-sign-notation-artifact-signing.md
+      - name: Verify container images in GitHub workflow with Notation and Artifact Signing
+        href: container-registry-tutorial-github-verify-notation-artifact-signing.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
         href: container-registry-tutorial-sign-build-push.md
       - name: Sign container images with Notation and AKV using a CA issued certificate
@@ -255,7 +270,7 @@
           - name: Scan with Microsoft Defender for Cloud
             href: scan-images-defender.md
 - name: Tasks
-  expanded: true
+  expanded: false
   items:
   - name: Overview
     expanded: false
@@ -263,7 +278,7 @@
     - name: About ACR Tasks
       href: container-registry-tasks-overview.md
   - name: Quickstarts
-    expanded: true
+    expanded: false
     items:
     - name: Build, push, and run image - CLI
       href: container-registry-quickstart-task-cli.md
@@ -320,39 +335,6 @@
         href: container-registry-tasks-logs.md
       - name: Manage network bypass policy for tasks
         href: manage-network-bypass-policy-for-tasks.md
-- name: Connected registry
-  expanded: true
-  items:
-  - name: Overview
-    expanded: false
-    items:
-    - name: About connected registry
-      href: intro-connected-registry.md
-  - name: Quickstarts
-    expanded: true
-    items:
-    - name: Create connected registry
-      href: quickstart-create-connected-registry.md
-    - name: Deploy connected registry to Azure Arc
-      href: quickstart-connected-registry-arc-cli.md
-  - name: Tutorials
-    items:
-    - name: Secure and deploy Connected registry Arc extension
-      href: tutorial-connected-registry-arc.md
-    - name: Sync Connected registry with Azure arc
-      href: tutorial-connected-registry-sync.md
-    - name: Upgrade Connected registry with Azure arc
-      href: tutorial-connected-registry-upgrade.md
-    - name: Troubleshoot Connected registry with Azure arc
-      href: troubleshoot-connected-registry-arc.md
-  - name: Concepts
-    items:
-    - name: Access to connected registry
-      href: overview-connected-registry-access.md
-  - name: How-to guides
-    items:
-    - name: Pull image from connected registry
-      href: pull-images-from-connected-registry.md
 - name: Reference
   expanded: false
   items:
@@ -411,11 +393,6 @@
     href: troubleshoot-artifact-cache.md
   - name: Troubleshoot Continuous Patching
     href: troubleshoot-continuous-patching.md
-- name: Glossary
-  expanded: false
-  items:
-  - name: Glossary for Connected registry with Azure Arc
-    href: connected-registry-glossary.md
 - name: Resources
   expanded: false
   items:

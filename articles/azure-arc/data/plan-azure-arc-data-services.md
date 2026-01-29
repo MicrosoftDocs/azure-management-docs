@@ -106,9 +106,6 @@ You can deploy Azure Arc-enabled data services on various types of Kubernetes cl
 When you're creating Azure Arc-enabled data services, regardless of the service or distribution option you choose, you'll need to provide the following information:
 
 - **Data controller name**: A descriptive name for your data controller (for example, *production-dc* or *seattle-dc*). The name must meet [Kubernetes naming standards](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/).
-
-- **Username**: The username for the Kibana/Grafana administrator user.
-- **Password**: The password for the Kibana/Grafana administrator user.
 - **Name of your Kubernetes namespace**: The name of the Kubernetes namespace where you want to create the data controller.
 - **Connectivity mode**: Determines the degree of connectivity from your Azure Arc-enabled data services environment to Azure. Your choice of connectivity mode determines the options for deployment methods. For more information, see [Connectivity modes and requirements](./connectivity.md).
 - **Azure subscription ID**: The Azure subscription GUID for where you want to create the data controller resource in Azure. All deployments of SQL Managed Instance enabled by Azure Arc are also created in and billed to this subscription.

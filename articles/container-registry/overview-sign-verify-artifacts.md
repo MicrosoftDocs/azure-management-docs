@@ -42,9 +42,9 @@ If verification fails, consumers can block the artifact from being pulled, used 
 *Notation* is the Notary Project tooling for signing and verifying OCI artifacts. Notation integrates with multiple key providers, including:
 
 - **Azure Key Vault**: Users manage their own certificate lifecycle, including issuance, rotation, and expiration. This choice provides strong control and flexibility for organizations that want to maintain direct management of their certificates.
-- **Trusted Signing**: Provides *zero-touch certificate management* and issues *short-lived certificates* automatically. These features simplify the signing experience while maintaining strong security guarantees.
+- **Artifact Signing**: Provides *zero-touch certificate management* and issues *short-lived certificates* automatically. These features simplify the signing experience while maintaining strong security guarantees.
 
-Organizations can choose Key Vault for full control or adopt Trusted Signing for a streamlined experience.
+Organizations can choose Key Vault for full control or adopt Artifact Signing for a streamlined experience.
 
 ## Scenarios for signing and verifying
 
@@ -92,22 +92,22 @@ Signing in a GitHub workflow:
 
 - [Sign a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
 
-### Signing with Trusted Signing
+### Signing with Artifact Signing
 
 Signing via the Notation CLI:
 
-- [Sign container images by using Notation and Trusted Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-artifact-signing.md)
 
 Signing in a GitHub workflow:
 
-- [Sign container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+- [Sign container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-artifact-signing.md)
 
 ### Verification
 
 Verification in a GitHub workflow:
 
 - [Verify container images in a GitHub workflow by using Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
-- [Verify container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
+- [Verify container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-artifact-signing.md)
 
 Verification on AKS:
 

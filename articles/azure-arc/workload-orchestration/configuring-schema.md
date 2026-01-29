@@ -35,7 +35,6 @@ rules:
       allowedValues: #array applicable for string, int, float (optional)
       disallowedValues: #array applicable for string, int, float (optional)
       expression: # any valid expression. should be wrapped in expression template like: "${{ expression }}"
-      editableAt: #array of levels ex: Line, Factory where value can be edited at (optional)
       editableBy: # array of personas Ex: IT, OT who can edit the value. (optional)
       minValue: # minimum number  (optional)
       maxValue: # maximum number (optional)
@@ -62,7 +61,6 @@ The following constraints apply to the rules defined in the configuration schema
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
 - The `editableBy` property accepts either IT, OT or both values. If IT is set, this parameter isn't shown on the workload orchestration portal and has to be configured via CLI. If OT is set, this parameter is visible on the workload orchestration portal and can be set via CLI also.
-- The `editableAt` parameter accepts any hierarchy level value as defined during context creation, for example, `Line`, `Factory`, or `City`.
 
 ## Including and referencing rules from another schema
 
@@ -82,14 +80,9 @@ rules:
       LogSettings.LogOutput.EnableConsole:
         type: boolean
         required: true
-        editableAt:
-        - Line
       SupportedHttpMethods:
         type: array[string]
         required: true
-        editableAt:
-        - Factory
-
 ```
 
 **Scenario 1**
@@ -107,9 +100,6 @@ rules:
       TempSettings.Threshold:
         type: int
         required: true
-        editableAt:
-          - Line
-
 ```  
 
 The final schema is generated as follows. The content of *LogSettingsSchema* is included in the final schema:
@@ -126,21 +116,15 @@ rules:
       LogSettings.LogOutput.EnableConsole:
         type: boolean
         required: true
-        editableAt:
-        - Line
       SupportedHttpMethods:
         type: array[string]
         required: true
-        editableAt:
-        - Factory
       TempSettings:
         type: object
         required: true
       TempSettings.Threshold:
         type: int
         required: true
-        editableAt:
-          - Line
 ```
 
 **Scenario 2**
@@ -157,8 +141,6 @@ rules:
       TempSettings.Threshold:
         type: int
         required: true
-        editableAt:
-          - Line
 ```
 
 The final schema is generated as follows. Only `LogSettings` and its children are included. *SupportedHttpMethods* is skipped as the syntax included specific object - `LogSettings`.
@@ -175,16 +157,12 @@ rules:
       LogSettings.LogOutput.EnableConsole:
         type: boolean
         required: true
-        editableAt:
-        - Line
       TempSettings:
         type: object
         required: true
       TempSettings.Threshold:
         type: int
         required: true
-        editableAt:
-          - Line
 ```
 
 ## Custom validation using expressions

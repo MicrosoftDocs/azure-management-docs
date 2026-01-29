@@ -7,7 +7,7 @@ metadata:
   ms.topic: faq
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
-  ms.date: 09/29/2025
+  ms.date: 01/16/2026
   ms.custom: references-regions
 
 title: Azure Container Storage enabled by Azure Arc (preview) FAQ
@@ -31,6 +31,24 @@ sections:
           - Australia East
           - Germany West Central
 
+      - question: What are the firewall requirements?
+        answer: |
+          You can find the general [Arc firewall requirements here](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud).
+
+          For this Arc extension, you must allow outbound permit rules for the following sites:
+
+          For storage accounts:
+
+          - `https://*.blob.core.windows.net/`
+          - `https://*.dfs.fabric.microsoft.com/`
+
+          For Azure Monitor:
+
+          - `https://*.monitoring.core.windows.net/`
+          - `https://*.warm.ingest.monitor.core.windows.net/`
+          - `https://*.hot.ingest.monitor.core.windows.net/`
+          - `https://*.microsoftmetrics.com/`
+
       - question: How do I uninstall a previous version of Azure Container Storage enabled by Azure Arc?
         answer: |
           If you previously installed a version of Azure Container Storage enabled by Azure Arc earlier than **2.1.0-preview**, you must uninstall that previous instance in order to install the newer version. If you installed the **1.2.0-preview** release or earlier, [use these instructions](faq.yml#if-i-installed-the-1-2-0-preview-or-any-earlier-release--how-do-i-uninstall-the-extension). Versions after **2.1.0-preview** are upgradeable and don't require this uninstall.
@@ -38,9 +56,9 @@ sections:
             1. In order to delete the old version of the extension, the Kubernetes resources holding references to old version of the extension must be cleaned up. Any pending resources can delay the clean-up of the extension. There are at least two ways to clean up these resources: either using `kubectl delete <resource_type> <resource_name>`, or by "unapplying" the YAML files used to create the resources. The resources that need to be deleted are typically the pods, the PVC referenced, and the subvolume CRD (if Cloud Ingest Edge Volume was configured). Alternatively, the following four YAML files can be passed to `kubectl delete -f` using the following commands in the specified order. These variables must be updated with your information:
 
             - `YOUR_DEPLOYMENT_FILE_NAME_HERE`: Add your deployment file names. In the example in this article, the file name used was `deploymentExample.yaml`. If you created multiple deployments, each one must be deleted on a separate line.
-            - `YOUR_PVC_FILE_NAME_HERE`: Add your Persistent Volume Claim file names. In the example in this article, if you used the Cloud Ingest Edge Volume, the file name used was `cloudIngestPVC.yaml`. If you used the Local Shared Edge Volume, the file name used was `localSharedPVC.yaml`. If you created multiple PVCs, each one must be deleted on a separate line.
-            - `YOUR_EDGE_SUBVOLUME_FILE_NAME_HERE`: Add your Edge subvolume file names. In the example in this article, the file name used was `edgeSubvolume.yaml`. If you created multiple subvolumes, each one must be deleted on a separate line.
-            - `YOUR_EDGE_STORAGE_CONFIGURATION_FILE_NAME_HERE`: Add your Edge storage configuration file name here. In the example in this article, the file name used was `edgeConfig.yaml`.
+            - `YOUR_PVC_FILE_NAME_HERE`: Add your Persistent Volume Claim file names. In this example, if you used the Cloud Ingest Edge Volume, the file name used was `cloudIngestPVC.yaml`. If you used the Local Shared Edge Volume, the file name used was `localSharedPVC.yaml`. If you created multiple PVCs, each one must be deleted on a separate line.
+            - `YOUR_EDGE_SUBVOLUME_FILE_NAME_HERE`: Add your Edge subvolume file names. In this example, the file name used was `edgeSubvolume.yaml`. If you created multiple subvolumes, each one must be deleted on a separate line.
+            - `YOUR_EDGE_STORAGE_CONFIGURATION_FILE_NAME_HERE`: Add your Edge storage configuration file name here. In this example, the file name used was `edgeConfig.yaml`.
 
                 ```bash
                 kubectl delete -f "<YOUR_DEPLOYMENT_FILE_NAME_HERE.yaml>"
@@ -78,7 +96,7 @@ sections:
 
           3. If you installed the extension before the **1.1.0-preview** release (released on 4/19/24) and have a preexisting `config.json` file, the `config.json` schema changed. Remove the old `config.json` file using `rm config.json`.
         
-      - question: Is there a limit to how many files can be in a Local Shared Volume? How about an Ingest subvolume?
+      - question: Is there a limit to how many files can be in a Local Shared Volume? What about an Ingest subvolume?
         answer: |
           The maximum number of files allowed in a Local Shared Volume is tied to the underlying storage limits. The maximum number of files is roughly 65,000 for every 1GB of provisioned storage capacity. Ingest subvolumes are subject to the same storage specific limitations (for example, 65,000 for every 1GB of provisioned storage capacity); however, they also have an upper limit based on metadata storage capacity. This limit is roughly 1.5-1.75 million files total. 
           
@@ -90,8 +108,8 @@ sections:
       - question: Can ACStor triplication occur on a single physical device?
         answer: No, ACStor triplication isn't designed to operate on a single physical device with three attached hard drives.
 
-      - question: Is there support for ARM deployments? 
-        answer: No, Azure Container Storage enabled by Azure Arc doesn't support ARM deployments, at this time, Arc itself does not support ARM, so neither does this Arc extension.
+      - question: Is there support for Azure Resource Manager (ARM) deployments? 
+        answer: No, Azure Container Storage enabled by Azure Arc doesn't support ARM deployments. At this time, Arc itself does not support ARM, so neither does this Arc extension.
 
       - question: What types of encryption are used?
         answer: |
@@ -107,5 +125,5 @@ sections:
       - question: Is data encrypted at REST?
         answer: Data persisted by the Azure Container Storage enabled by Azure Arc extension is encrypted at REST if the underlying platform provides encrypted disks.
 
-      - question: Why Storage Blob Data Owner role?
-        answer: When using Extension Identity, permissions as a StorageBlobDataOwner role are needed to write data. Is there a reason it needs Owner instead of just Contributor? Yes, the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
+      - question: Why is the Storage Blob Data Owner role needed?
+        answer: When using an Extension Identity, permissions as a `StorageBlobDataOwner` role are needed to write data. The role must be an Owner instead of just a Contributor, because the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.

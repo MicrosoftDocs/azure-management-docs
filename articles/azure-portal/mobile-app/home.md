@@ -1,7 +1,7 @@
 ---
 title: Azure mobile app Home
 description: Azure mobile app Home surfaces the most essential information and the resources you use most often.
-ms.date: 08/28/2024
+ms.date: 01/21/2026
 ms.topic: concept-article
 # Customer intent: As a mobile user managing Azure resources, I want to customize my app home screen with essential display cards, so that I can quickly access and organize the tools and information I use most often.
 ---
@@ -24,37 +24,39 @@ Current card options include:
 - **Service Health**: A current count of service issues, maintenance, health advisories, and security advisories.
 - **Cloud Shell**: Quick access to the [Cloud Shell terminal](cloud-shell.md).
 - **Recent resources**: A list of your four most recently viewed resources, with the option to see all.
-- **Favorites**: A list of the resources you have added to your favorites, and the option to see all.
+- **Favorites**: A list of the resources you've added to your favorites, and the option to see all.
 - **Dashboards (preview)**: Access to [shared dashboards](../dashboard-hub.md).
+
+You also see the **Copilot** icon, which you can use to [launch Azure Copilot](azure-copilot.md).
 
 :::image type="content" source="media/azure-mobile-app-home-layout.png" alt-text="Screenshot of the Azure mobile app Home screen with several display cards.":::
 
 ## Customize Azure mobile app Home
 
-You can customize the cards displayed on your Azure mobile app **Home** by selecting the :::image type="icon" source="media/edit-icon.png" border="false"::: **Edit** icon in the top right of **Home**. From there, you can select which cards you see by toggling the switch. You can also drag and drop the display cards in the list to reorder how they appear on your **Home**.
+You can customize the cards displayed on your Azure mobile app **Home** by selecting the three dots near the top of **Home**, then selecting **Customize Home**. From there, select which cards you want to see by toggling the switch. You can also drag and drop the display cards in the list to reorder how they appear on your **Home**.
 
-For instance, you could rearrange the default order as follows:
+For example, you could rearrange the default order as follows:
 
 :::image type="content" source="media/azure-mobile-app-home-edit.png" alt-text="Screenshot showing the customization screen for the Azure mobile app Home screen.":::
 
-This would result in a **Home** similar to the following image:
+This customization results in the following layout:
 
 :::image type="content" source="media/azure-mobile-app-updated-home.png" alt-text="Screenshot of the Azure mobile app Home screen with display cards in a new order.":::
 
 ## Global search
 
-The global search button appears the top left of **Home**. Select this button to search for anything specific you may be looking for on your Azure account. This includes:
+The global search button appears near the top of **Home**. You can use this to search for anything specific, such as:
 
 - Resources
 - Services
 - Resource groups
 - Subscriptions
 
-You can filter these results by subscription using the **Home** filtering option.
-
 ## Filtering
 
-In the top right of **Home**, you'll see a filter option. When selecting the filter icon, the app gives you the option to filter the results shown on **Home** by specific subscriptions. This includes results for:
+You can filter the information and search results shown on **Home** by one or more specific subscriptions. This filtering option is specific to **Home**, and it doesn't filter results for the other sections.
+
+To do so, in the upper right of **Home**, select the three dots and then select **Filter**. Your selection will apply to information shown in the following sections:
 
 - Resource groups
 - Azure services
@@ -62,10 +64,8 @@ In the top right of **Home**, you'll see a filter option. When selecting the fil
 - Service health
 - Global search
 
-This filtering option is specific to **Home**, and doesn't filter for the other bottom navigation sections.
-
 ## Next steps
 
 - Learn more about the [Azure mobile app](overview.md).
-- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc) or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc) or [Google Play](https://aka.ms/azureapp/android/doc).
 

@@ -204,7 +204,7 @@ The following steps are required to set up the Azure resources for workload orch
     > [!NOTE]
     > To connect to an AKS cluster through the Azure portal, follow these steps:
     > 
-    > 1. Open the [Azure portal](https://ms.portal.azure.com) and log in with your Azure account.
+    > 1. Open the [Azure portal](https://portal.azure.com) and log in with your Azure account.
     > 1. In the search bar at the top of the portal, type **Kubernetes services** and select it from the search results to access the Kubernetes services page.
     > 1. From the list of Kubernetes services, select the **AKS cluster** you want to connect to.
     > 1. On the **Overview page** of your AKS cluster, click on the **Connect** button from the top menu.
@@ -496,24 +496,6 @@ To use a resource group, run the following commands:
     az rest --method put --url "$siteId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
     ```
 
-1. Create the schema.
-
-    ```bash
-    schemaName="<schema name>"
-    schemaId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{\"location\":\"$location\"}"
-    ```
-
-1. Create the schema reference.
-
-    ```bash
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
-
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
-    ```
-
 ### [PowerShell](#tab/powershell)
 
 1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
@@ -572,24 +554,6 @@ To use a resource group, run the following commands:
     
     # For resource group-based sites
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
-    ```
-
-1. Create the schema.
-
-    ```powershell
-    $schemaName="<schema name>"
-    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
-    ```
-
-1. Create the schema reference.
-
-    ```powershell
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
     ```
 
 ***

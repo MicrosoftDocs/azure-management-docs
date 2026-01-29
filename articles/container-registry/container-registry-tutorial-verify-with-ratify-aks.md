@@ -18,7 +18,7 @@ Ensuring a secure production environment involves maintaining the integrity and 
 
 ## Scenarios
 
-This article covers two primary scenarios for implementing signature verification of container images by using Ratify on AKS. The scenarios differ based on how you manage certificates for signing and verification: using Azure Key Vault for traditional certificate management or using the Microsoft Trusted Signing service for zero-touch certificate lifecycle management. Choose the scenario that aligns with your current certificate management approach and security requirements.
+This article covers two primary scenarios for implementing signature verification of container images by using Ratify on AKS. The scenarios differ based on how you manage certificates for signing and verification: using Azure Key Vault for traditional certificate management or using the Microsoft Artifact Signing service for zero-touch certificate lifecycle management. Choose the scenario that aligns with your current certificate management approach and security requirements.
 
 ### Use Key Vault for certificate management
 
@@ -32,21 +32,21 @@ As the image producer, you can follow these articles to sign container images in
 
 - For signing via self-signed certificates, see [Sign container images by using Notation, Azure Key Vault, and a self-signed certificate](container-registry-tutorial-sign-build-push.md).
 - For signing via certificates issued by a certificate authority (CA), see [Sign container images by using Notation, Azure Key Vault, and a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md).
-- For signing in Azure DevOps pipelines, see [Sign and verify a container image by using Notation in an Azure pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- For signing in Azure pipelines, see [Sign and verify a container image by using Notation in an Azure pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
 - For signing in GitHub workflows, see [Sign a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
 
-### Use Trusted Signing for certificate management
+### Use Artifact Signing for certificate management
 
-In this scenario, an image producer signs container images in Container Registry by using certificates managed by Trusted Signing rather than Key Vault. Because Trusted Signing provides zero-touch certificate lifecycle management, producers no longer need to handle certificate issuance, rotation, or expiration.
+In this scenario, an image producer signs container images in Container Registry by using certificates managed by Artifact Signing rather than Key Vault. Because Artifact Signing provides zero-touch certificate lifecycle management, producers no longer need to handle certificate issuance, rotation, or expiration.
 
-On the consumer side, Trusted Signing produces short-lived certificates. Image consumers configure timestamping during verification to maintain trust after certificates expire.
+On the consumer side, Artifact Signing produces short-lived certificates. Image consumers configure timestamping during verification to maintain trust after certificates expire.
 
 Additionally, Ratify and cluster policies are configured on AKS to verify signatures at deployment time. Any image that fails verification is blocked if the policy effect is set to `Deny`. The blocking helps ensure that only trusted and unaltered images are deployed.
 
-As the image producer, you can follow these articles for signing container images by using Trusted Signing:
+As the image producer, you can follow these articles for signing container images by using Artifact Signing:
 
-- [Sign container images by using Notation and Trusted Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
-- [Sign container images in GitHub workflows by using Notation and Trusted Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-artifact-signing.md)
+- [Sign container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-artifact-signing.md)
 
 This article guides you, as the image consumer, through the process of verifying container image signatures by using Ratify and Azure Policy on AKS clusters.
 
@@ -59,7 +59,7 @@ Here are the high-level steps for signature verification:
 
 1. **Set up identity and access controls for Container Registry**: Configure the identity that Ratify uses to access Container Registry with the necessary roles.
 
-2. **Set up identity and access controls for Key Vault**: Configure the identity that Ratify uses to access Key Vault with the necessary roles. Skip this step if images are signed via Trusted Signing.
+2. **Set up identity and access controls for Key Vault**: Configure the identity that Ratify uses to access Key Vault with the necessary roles. Skip this step if images are signed via Artifact Signing.
 
 3. **Set up Ratify on your AKS cluster**: Set up Ratify by using a Helm chart installation as a standard Kubernetes service.
 
@@ -139,7 +139,7 @@ az role assignment create \
 
 ### Configure access to Key Vault
 
-Skip this step if you use Trusted Signing for certificate management.
+Skip this step if you use Artifact Signing for certificate management.
 
 The `Key Vault Secrets User` role is required for your identity to fetch the entire certificate chain from your key vault. Use the following code to assign the role:
 
@@ -160,10 +160,10 @@ With the identity and access controls properly configured, you can now install R
 
 The following sections cover two key aspects of the Ratify setup:
 
-- Understanding the Helm chart parameters required for your certificate management approach (Key Vault or Trusted Signing)
+- Understanding the Helm chart parameters required for your certificate management approach (Key Vault or Artifact Signing)
 - Installing Ratify with the appropriate configuration to enable signature verification
 
-The configuration parameters vary depending on whether you're using Key Vault or Trusted Signing for certificate management. Be sure to follow the instructions that match your chosen scenario.
+The configuration parameters vary depending on whether you're using Key Vault or Artifact Signing for certificate management. Be sure to follow the instructions that match your chosen scenario.
 
 ### Know your Helm chart parameters
 
@@ -205,13 +205,13 @@ If you have multiple certificates for signature verification, specify extra para
 | `azurekeyvault.certificates[1].name`              | Name of the certificate                                                    | `"$CERT_NAME_2"`                      |
 | `notation.trustPolicies[0].trustedIdentities[1]`  | Another subject field of the signing certificate, indicating what you trust  | `"x509.subject: $SUBJECT_2"`          |
 
-#### [Trusted Signing](#tab/trusted-signing)
+#### [Artifact Signing](#tab/artifact-signing)
 
 You need to configure:
 
 - The identity that you set up previously for accessing Container Registry.
 - A Notary Project trust policy for signature verification, including `registryScopes`, `trustStores`, and `trustedIdentities`.
-- A timestamping configuration, because Trusted Signing issues short-lived certificates.
+- A timestamping configuration, because Artifact Signing issues short-lived certificates.
 
 This table provides details about the parameters:
 
@@ -219,14 +219,14 @@ This table provides details about the parameters:
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | `azureWorkloadIdentity.clientId`                  | Client ID of the Azure workload identity                                             | `"$IDENTITY_CLIENT_ID"`               |
 | `oras.authProviders.azureWorkloadIdentityEnabled` | Azure workload identity for Container Registry authentication (enable or disable)                                      | `true`                                |
-| `notationCerts[0]`                                | File path to the PEM-formatted Trusted Signing root certificate file                            | `"$TS_ROOT_CERT_FILEPATH"`               |
+| `notationCerts[0]`                                | File path to the PEM-formatted Artifact Signing root certificate file                            | `"$TS_ROOT_CERT_FILEPATH"`               |
 | `notationCerts[1]`                                | File path to the PEM-formatted TSA root certificate file                                        | `"$TSA_ROOT_CERT_FILEPATH"`           |
 | `notation.trustPolicies[0].registryScopes[0]`     | Repository URI that the policy applies to                                                        | `"$REPO_URI"`                         |
-| `notation.trustPolicies[0].trustStores[0]`        | Trust stores where the Trusted Signing root certificate is stored                                  | `ca:notationCerts`[0]                 |
+| `notation.trustPolicies[0].trustStores[0]`        | Trust stores where the Artifact Signing root certificate is stored                                  | `ca:notationCerts`[0]                 |
 | `notation.trustPolicies[0].trustStores[1]`        | Trust stores where the TSA root certificate is stored                                              | `tsa:notationCerts[1]`                |
-| `notation.trustPolicies[0].trustedIdentities[0]`  | Subject field of the Trusted Signing certificate, with prefix `x509.subject:` indicating what you trust  | `"x509.subject: $SUBJECT"`            |
+| `notation.trustPolicies[0].trustedIdentities[0]`  | Subject field of the Artifact Signing certificate, with prefix `x509.subject:` indicating what you trust  | `"x509.subject: $SUBJECT"`            |
 
-If you have multiple Trusted Signing certificate profiles, you can add other trusted identities:
+If you have multiple Artifact Signing certificate profiles, you can add other trusted identities:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
@@ -265,9 +265,9 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 
 For timestamping support, you need to specify additional parameters: `--set-file notationCerts[0]="$TSA_ROOT_CERT_FILE"` and `--set notation.trustPolicies[0].trustStores[1]="ca:azurekeyvault"`.
 
-#### [Trusted Signing](#tab/trusted-signing)
+#### [Artifact Signing](#tab/artifact-signing)
 
-By default, the Trusted Signing root certificate and TSA root certificate are in `.crt` format. Before you pass them to the Helm installation, you must convert them to PEM format.
+By default, the Artifact Signing root certificate and TSA root certificate are in `.crt` format. Before you pass them to the Helm installation, you must convert them to PEM format.
 
 On Linux, you can use the following commands to download and convert the certificates:
 
@@ -275,7 +275,7 @@ On Linux, you can use the following commands to download and convert the certifi
 export TS_ROOT_CERT_URL="https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
 export TSA_ROOT_CERT_URL="http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
-# Download and convert the Trusted Signing root certificate
+# Download and convert the Artifact Signing root certificate
 curl -o msft-identity-verification-root-cert-2020.crt $TS_ROOT_CERT_URL
 openssl x509 -in msft-identity-verification-root-cert-2020.crt -out msft-identity-verification-root-cert-2020.pem -outform PEM
     
@@ -492,7 +492,7 @@ kubectl apply -f https://notaryproject.github.io/ratify/library/default/samples/
 
 Ratify configurations are [Kubernetes custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). You can update these resources without reinstalling Ratify:
 
-- To update Key Vault-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Trusted Signing-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
+- To update Key Vault-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Artifact Signing-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
 - To update Notary Project trust policies and stores, use the Ratify `Verifier` custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/verifiers).
 - To authenticate and interact with Container Registry (or other OCI-compliant registries), use the Ratify Store custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/stores).
 

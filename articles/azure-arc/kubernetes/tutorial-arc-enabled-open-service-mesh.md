@@ -433,8 +433,6 @@ The MeshConfig "osm-mesh-config" is invalid: spec.traffic.enableEgress: Invalid 
 
 Alternatively, to edit `osm-mesh-config` in Azure portal, select **Edit configuration** from the cluster's Open Service Mesh pane. Make the desired changes, then select **Review + save**.
 
-:::image type="content" source="media/tutorial-arc-enabled-open-service-mesh/osm-portal-configuration-edit.png" alt-text="Screenshot of the Edit configuration option for Open Service Mesh in the Azure portal.":::
-
 ## Using Azure Arc-enabled OSM
 
 To start using OSM capabilities, you need to first onboard the application namespaces to the service mesh. Download the OSM CLI from the [OSM GitHub releases page](https://github.com/openservicemesh/osm/releases/). Once the namespaces are added to the mesh, you can configure the SMI policies to achieve the desired OSM capability.

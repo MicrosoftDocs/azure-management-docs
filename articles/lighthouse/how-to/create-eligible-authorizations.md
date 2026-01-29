@@ -40,7 +40,7 @@ Administrators in the managing tenant can review all Privileged Identity Managem
 
 ## Eligible authorization elements
 
-You can create an eligible authorization when onboarding customers with Azure Resource Manager templates or by publishing a Managed Services offer to Azure Marketplace. Each eligible authorization must include three elements: the user, the role, and the access policy.
+You can create an eligible authorization when onboarding customers with Azure Resource Manager templates or by publishing a Managed Services offer to Microsoft Marketplace. Each eligible authorization must include three elements: the user, the role, and the access policy.
 
 ### User
 
@@ -84,7 +84,7 @@ If you don’t include any approvers, the user will be able to activate the elig
 
 ## Create eligible authorizations using Managed Services offers
 
-To onboard your customer to Azure Lighthouse, you can publish Managed Services offers to Azure Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you can now specify whether the **Access type** for each [Authorization](/azure/marketplace/create-managed-service-offer-plans#authorizations) should be **Active** or **Eligible**.
+To onboard your customer to Azure Lighthouse, you can publish Managed Services offers to Microsoft Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you can now specify whether the **Access type** for each [Authorization](/azure/marketplace/create-managed-service-offer-plans#authorizations) should be **Active** or **Eligible**.
 
 When you select **Eligible**, the user in your authorization will be able to activate the role according to the access policy you configure. You must set a maximum duration between 30 minutes and 8 hours, and specify whether you'll require multifactor authentication. You can also add up to 10 approvers if you choose to use them, providing a display name and a principal ID for each one.
 

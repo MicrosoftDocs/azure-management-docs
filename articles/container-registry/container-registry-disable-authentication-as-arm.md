@@ -151,17 +151,19 @@ To configure your registries to accept only ACR-scoped Microsoft Entra authentic
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Navigate to your **Azure Container Registry** > **Resource Group** > **Settings** > **Policies**.
+1. Go to the resource group that contains your Azure Container Registry.
 
-   :::image type="content" source="media/container-registry-enable-conditional-policy/01-azure-policies.png" alt-text="Screenshot showing how to navigate Azure policies.":::
+1. In the service menu, under **Settings**, select **Policies**.
 
-1. Navigate to  **Azure Policy**, On the **Assignments** tab, select **Assign policy**.
+   :::image type="content" source="media/container-registry-enable-conditional-policy/01-azure-policies.png" alt-text="Screenshot showing how to navigate to Azure policies.":::
 
-   :::image type="content" source="media/container-registry-enable-conditional-policy/02-Assign-policy.png" alt-text="Screenshot showing how to assign a policy.":::
+1. On the **Policy** page, under **Authoring**, select **Assignments** and select **Assign policy**.
 
-1. On the **Assign policy** tab, use filters to search and find the **Scope**, **Policy definition**, and **Assignment name**.
+   :::image type="content" source="media/container-registry-enable-conditional-policy/02-Assign-policy.png" alt-text="Screenshot showing how to open the Assign policy page.":::
 
-   :::image type="content" source="media/container-registry-enable-conditional-policy/03-Assign-policy-tab.png" alt-text="Screenshot of the assign policy tab.":::
+1. On the **Assign policy** page, use filters to search and find the **Scope**, **Policy definition**, and **Assignment name**.
+
+   :::image type="content" source="media/container-registry-enable-conditional-policy/03-Assign-policy-tab.png" alt-text="Screenshot of the Assign policy page.":::
 
 1. Select **Scope** to filter and search for the **Subscription** and **ResourceGroup** and choose **Select**.
 

@@ -10,7 +10,7 @@ metadata:
   ms.topic: landing-page
   author: JnHs
   ms.author: jenhayes
-  ms.date: 01/09/2025
+  ms.date: 01/20/2026
   
 landingContent:
   - title: About Azure Lighthouse
@@ -57,7 +57,7 @@ landingContent:
             url: ./how-to/publish-managed-services-offers.md
       - linkListType: concept
         links:
-          - text: Managed Services offers in Azure Marketplace
+          - text: Managed Services offers in Microsoft Marketplace
             url: ./concepts/managed-services-offers.md
             
   - title: Customer experiences

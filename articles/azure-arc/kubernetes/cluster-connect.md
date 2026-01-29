@@ -11,7 +11,7 @@ description: "With cluster connect, you can securely connect to Azure Arc-enable
 
 With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes clusters from anywhere without requiring any inbound port to be enabled on the firewall.
 
-Access to the `apiserver` of the Azure Arc-enabled Kubernetes cluster enables the following scenarios:
+Access to the API server of the Azure Arc-enabled Kubernetes cluster enables the following scenarios:
 
 - Interactive debugging and troubleshooting.
 - Cluster access to Azure services for [custom locations](custom-locations.md) and other resources created on top of it.
@@ -81,7 +81,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - For a Microsoft Entra group account:
 
      ```azurecli
-     AAD_ENTITY_ID=$(az ad signed-in-user show --query id -o tsv)
+     AAD_ENTITY_ID=$(az ad group show --group <group-name> --query id -o tsv)
      ```
 
    - For a Microsoft Entra single user account:
@@ -98,7 +98,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
 
       ```console
       kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
@@ -130,12 +130,12 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - For a Microsoft Entra application:
 
      ```azurepowershell
-     $AAD_ENTITY_ID = (az ad sp show --id <id> --query objectId -o tsv)
+     $AAD_ENTITY_ID = (az ad sp show --id <id> --query id -o tsv)
      ```
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
 
      ```console
      kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
@@ -154,7 +154,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. With the `kubeconfig` file pointing to the `apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -192,7 +192,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-1. With the `kubeconfig` file pointing to the `apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -257,13 +257,13 @@ Now you can access the cluster from a different client. Run the following steps 
      > [!NOTE]
      > This command opens the proxy and blocks the current shell.
 
-1. In a different shell session, use `kubectl` to send requests to the cluster:
+1. In a different shell session, use `kubectl` to send requests to the cluster. For example, run the following command:
 
    ```powershell
-   kubectl get pods -A
+   kubectl get pods -default
    ```
 
-You should now see a response from the cluster containing the list of all pods under the `default` namespace.
+If the connection is working properly, you see a response from the cluster containing the list of all pods under the `default` namespace.
 
 ## Known limitations
 

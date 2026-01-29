@@ -125,88 +125,93 @@ The solution is named CityHub and is deployed at the target, which means that th
 
 ## Prepare the solution template
 
-To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
-
-> [!IMPORTANT]
-> If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is region, city, and factory. If the solution is to be deployed at city level, then the `editable_at` field in the schema accepts only region and city levels.
+To create the solution schema, configuration template and solution template, you can use the sample files provided in **Service Groups/Scenario2_NonLeafTarget** within [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
 
 ### [Bash](#tab/bash)
 
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-file ./regionHub-schema.yaml -l "$l"
+    ```
+
+1. Create the region config template file and link it to **region** hierarchy level
+
+    ```bash
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./regionHub-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $regionSiteId --context-id $contextId
     ```
 
 1. Create the solution template file. 
 
     ```bash
-    solutionName="CityHub Solution"    
-
     az workload-orchestration solution-template create \
-        --solution-template-name "$solutionName" \
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is CityHub Solution" \
-        --config-template-file ./cityHub-config-template.yaml \
-        --specification "@specs.json" \
+        --configuration-template-file ./regionHub-solution-template.yaml \
+        --specification "@regionHub-specs.json" \
         --version "1.0.0"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create the solution schema file. 
+1. Create the solution schema file.
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-file ./regionHub-schema.yaml -l "$l"
+    ```
+
+1. Create the region config template file and link it to **region** hierarchy level
+
+    ```powershell
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./regionHub-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $regionSiteId --context-id $contextId
     ```
 
 1. Create the solution template file. 
 
     ```powershell
-    $solutionName = "CityHub Solution"    
-
-    az workload-orchestration solution-template create `
-        --solution-template-name $solutionName `
-        -g $rg `
-        -l $l `
-        --capabilities "Use for soap production" `
-        --description "This is CityHub Solution" `
-        --config-template-file ./cityHub-config-template.yaml `
-        --specification '@specs.json' `
+    az workload-orchestration solution-template create \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "Use for soap production" \
+        --description "This is CityHub Solution" \
+        --configuration-template-file ./regionHub-solution-template.yaml \
+        --specification "@regionHub-specs.json" \
         --version "1.0.0"
     ```
 ***
 
-## Set the configuration for the solution template
+## Set the configuration for the solution
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for region service group.
+1. Set the configuration for region site.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level1Name"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
     ```
 
-1. Set the configuration for city service group.
+1. Set the configuration for target at City level.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level2Name"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for region service group.
+1. Set the configuration for region site.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level1Name
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
     ```
 
-1. Set the configuration for city service group.
+1. Set the configuration for target at City level.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level2Name
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
     ```
 ***
 

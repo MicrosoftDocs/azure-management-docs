@@ -3,78 +3,77 @@ title: Priority Community Support
 description: Introducing Priority Community Support for Azure Developer Support customers.
 ms.topic: overview
 ms.custom: support-help-page
-ms.date: 03/10/2025
+ms.date: 12/16/2025
 # Customer intent: As an Azure Developer Support Plan customer, I want to access Priority Community Support for technical inquiries so that I can receive timely, expert assistance and benefit from shared solutions in the community.
 ---
 
-# Priority community support (PCS) for Azure developer support plan customers 
+# Priority Community Support (PCS) for Azure Developer Support Plan customers
 
-Starting February 12, 2025, we enhanced the **Azure Developer Support Plan** by introducing **Priority Community Support (PCS)** as the **first line of support** in the **Azure portal**. This change is part of our ongoing effort to streamline support services and provide faster, more efficient assistance for customers using Azure.
+The [Azure Developer Support Plan](https://azure.microsoft.com/support/plans/developer/) includes **Priority Community Support (PCS)** as the first line of support in the Azure portal. This change was introduced on February 12, 2025, as part of an ongoing effort to streamline support services and provide faster, more efficient assistance for customers using Microsoft Azure.
 
-## What is changing?
+## What is Priority Community Support (PCS)?
 
-With the introduction of PCS, Developer Support Plan customers will now receive high-quality answers to their technical Azure-related questions directly on Microsoft Q&A. This service is managed by Azure engineers, Community Experts, and Microsoft Most Valuable Professionals (MVPs), ensuring that inquiries are addressed by knowledgeable professionals. 
+With Priority Community Support, Developer Support Plan customers get high-quality answers to technical Azure-related questions directly on [Microsoft Q&A](/answers/tags/133/azure). Azure engineers, Community Experts, and Microsoft Most Valuable Professionals (MVPs) manage this service, allowing knowledgeable professionals to address these inquiries.
 
-Customers can expect responses within 8 business hours for Severity C requests, maintaining the same initial response time as before. This adjustment aims to efficiently address "how-to" inquiries and common technical questions in a public forum, allowing the broader community to benefit from shared knowledge.
+Customers can expect responses within eight business hours for Severity C requests, maintaining the same initial response time as before. This adjustment efficiently addresses "how-to" inquiries and common technical questions in a public forum, so the broader community benefits from shared knowledge.
 
-For complex issues that can't be resolved through the Q&A platform, our engineers will seamlessly escalate the matter by creating a support ticket on the customer's behalf, ensuring that more intricate problems receive the attention they require.
+For complex problems that can't be resolved through the Q&A platform, engineers seamlessly escalate the matter by creating a support ticket on the customer's behalf, ensuring that more intricate problems receive the attention they require.
 
-This new approach brings several key benefits: 
+This approach brings several key benefits:
 
-- Faster Responses: Get responses within **eight business hours**, improving response efficiency. 
-- Expert Knowledge: Technical insights are provided by Azure engineers, Community Champions, and MVPs with deep subject-matter expertise. 
-- Knowledge Sharing: Answers will be visible to other customers, helping the broader community find solutions faster. 
-- Seamless Escalation: If an issue requires further investigation, our engineers will escalate the case and **create a support ticket on your behalf**. 
+- **Faster responses**. Get responses within eight business hours, improving response efficiency.
+- **Expert knowledge**. Azure engineers, Community Champions, and MVPs with deep subject-matter expertise provide technical insights.
+- **Knowledge sharing**. Other customers can see the answers, helping the broader community find solutions faster.
+- Seamless escalation. If an issue requires further investigation, engineers escalate the case and create a support ticket on your behalf.
 
-## How to access priority community support (PCS)?
+## Access Priority Community Support (PCS)
 
-Customers with the Azure Developer Support Plan can access PCS in two ways: 
+Customers with the [Azure Developer Support Plan](https://azure.microsoft.com/support/plans/developer/) can access PCS in two ways.
 
-- Via the Azure portal 
+In the Azure portal:
 
-   - Navigate to **Support + Troubleshooting** 
-   - Select **Create a Support Request**
-   - Choose **Get Support on Microsoft Q&A** 
+1. Navigate to **Help + support**.
+1. Select **Create a support request**.
+1. Choose **Ask the Azure community**.
 
-- Via Microsoft Learn 
+On Microsoft Learn:
 
-   - Sign in with the account linked to your **Azure Developer Support Plan**
-   - Post your technical question on **Microsoft Q&A** with the appropriate Azure service tag
+1. Sign in with the account linked to your Azure Developer Support Plan.
+1. Post your technical question on [Microsoft Q&A](/answers/tags/133/azure) with the appropriate Azure service tag.
 
-## Handle customer-specific data and privacy
+## Customer-specific data and privacy
 
-We understand that some technical issues require **sharing sensitive information**, such as **logs, account details, or confidential data**. To **protect customer privacy**, we follow these best practices:
+Some technical problems require sharing sensitive information, such as logs, account details, or confidential data. To protect privacy, we follow these best practices:
 
-- **Private Message**: If additional details are required, a Microsoft engineer will **reach out to you privately** to collect necessary information.
-- **No Public Data Sharing**: Sensitive customer information **will never be shared publicly** on **Microsoft Q&A**. Our engineers will guide you to a secure channel for troubleshooting when needed.
+- **Private messages**: If you need to provide extra details, a Microsoft engineer can reach out to you privately to collect the necessary information.
+- **No public data sharing**: Never share sensitive customer information publicly on Microsoft Q&A. If needed, engineers will guide you to a secure channel for troubleshooting.
 
-## What if my issue requires a support ticket? 
+## What if my problem requires a support ticket?
 
-While most "how-to" questions will be resolved within Microsoft Q&A, we recognize that some complex issues require deeper investigation. 
+Most "how-to" questions get resolved within Microsoft Q&A. However, some complex problems require deeper investigation.
 
-- For such cases, our engineers will create a support ticket on your behalf, ensuring smooth escalation without requiring you to initiate it manually. 
-- Existing support tickets will continue as usual, but all new technical inquiries must be posted on Microsoft Q&A.
+For these problems, engineers create a support ticket on your behalf. This process ensures smooth escalation without requiring you to initiate it manually.
 
-## Can I still create a support ticket for non-technical issues? 
+Existing support tickets continue as usual, but you must still post new technical inquiries on Microsoft Q&A.
 
-Customers with an **Azure Developer Support Plan** can still create tickets for **non-technical issues, including: 
+## Can I still create a support ticket for non-technical issues?
 
-- Billing & Subscription Issues 
-- Quota Increases 
-- Service Limit Adjustments 
+Customers with a Developer Support Plan can still create tickets for non-technical issues, including:
+
+- Billing and subscription problems
+- Quota increases
+- Service limit adjustments
 
 ## Upgrade to a higher-tier support plan
 
-The Developer Support Plan covers **trial and non-production environments** with minimal business impact (**Severity C**). If you need faster or 24/7 support, consider upgrading: 
+The [Developer Support Plan](https://azure.microsoft.com/support/plans/developer/) covers trial and nonproduction environments with minimal business impact (Severity C). If you need faster or 24/7 support, consider upgrading your plan:
 
-- Navigate to **Help + Support** in the Azure portal 
-- Select **Upgrade Support Plan** 
-- Choose from **Standard** or **Professional Direct** plans
+1. Go to **Help + Support** in the Azure portal.
+1. Select **Choose the right support plan**.
+1. Choose from **Standard** or **Professional Direct** plans. For more information, [compare Azure support plans](https://azure.microsoft.com/support/plans/).
 
-[Compare Azure Support Plans](https://azure.microsoft.com/support/plans/)
+## PCS availability and global coverage
 
-## Availability and global coverage 
-
-- Business Hours: 9:00 AM – 5:00 PM local time (Monday – Friday) 
-- North America Extended Hours: 6:00 AM – 6:00 PM Pacific Time 
-- Global Coverage: The Microsoft Azure expert team operates worldwide, ensuring timely responses across different time zones.
+- Business hours: 9:00 AM – 5:00 PM local time (Monday – Friday).
+- North America extended hours: 6:00 AM – 6:00 PM Pacific Time.
+- Global coverage: The Azure expert team operates worldwide, ensuring timely responses across different time zones.

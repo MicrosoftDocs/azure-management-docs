@@ -154,7 +154,7 @@ If you set the storage class using the `--storage-class` or `-sc`parameter, that
 Important factors to consider when choosing a storage class for the data controller pods:
 
 - You **must** use a remote, shared storage class in order to ensure data durability and so that if a pod or node dies that when the pod is brought back up it can connect again to the persistent volume.
-- The data being written to the controller SQL instance, metrics DB, and logs DB is typically fairly low volume and not sensitive to latency so ultra-fast performance storage is not critical. If you have users that are frequently using the Grafana and Kibana interfaces and you have a large number of database instances, then your users might benefit from faster performing storage.
+- The data being written to the controller SQL instance, metrics DB, and logs DB is typically fairly low volume and not sensitive to latency so ultra-fast performance storage is not critical. If you have users that are frequently using the logs interface and you have a large number of database instances, then your users might benefit from faster performing storage.
 - The storage capacity required is variable with the number of database instances that you have deployed because logs and metrics are collected for each database instance. Data is retained in the logs and metrics DB for two (2) weeks before it is purged. 
 - Changing the storage class post deployment is difficult, not documented, and not supported. Be sure to choose the storage class correctly at deployment time.
 

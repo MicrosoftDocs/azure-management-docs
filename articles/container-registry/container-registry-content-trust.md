@@ -15,6 +15,8 @@ ms.devlang: azurecli
 Azure Container Registry implements the [Docker Content Trust (DCT)][docker-content-trust] model to enable pushing and pulling signed images. This article gets you started with enabling DCT in your container registries. DCT is a feature of the [Premium service tier](container-registry-skus.md) of Container Registry.
 
 > [!IMPORTANT]
+> Starting May 31, 2026, Docker Content Trust cannot be enabled on new container registries or registries that haven't enabled it previously.
+>
 > DCT will be deprecated and completely removed on March 31, 2028. For details and transition guidance, refer to [Transition from Docker Content Trust to Notary Project](./container-registry-content-trust-deprecation.md).
 
 ## Limitations
@@ -46,9 +48,7 @@ Your first step is to enable DCT at the registry level. After you enable DCT, cl
 
 Enabling DCT for your registry doesn't restrict registry usage to only consumers who have DCT enabled. Consumers who don't have DCT enabled can continue to use your registry as normal. Consumers who enabled DCT in their clients, however, can see *only* signed images in your registry.
 
-To enable DCT for your registry by using the Azure portal, go to the registry. Under **Policies**, select **Content trust** > **Enabled** > **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
-
-:::image type="content" source="./media/container-registry-content-trust/content-trust-01-portal.png" alt-text="Screenshot that shows the toggle for enabling Docker Content Trust for a registry in the Azure portal.":::
+To enable DCT for your registry by using the Azure portal, go to the registry. Under **Policies**, select **Content trust**. Select **Enabled**, then select **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
 
 ## Enable DCT for the client
 
@@ -216,9 +216,7 @@ If you lose access to your root key, you lose access to the signed tags in any r
 > [!WARNING]
 > Disabling and re-enabling DCT in your registry *deletes all trust data for all signed tags in every repository in your registry*. This action is irreversible. Container Registry can't recover deleted trust data. Disabling DCT does not delete the images themselves.
 
-To disable DCT for your registry, go to the registry in the Azure portal. Under **Policies**, select **Content Trust** > **Disabled** > **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
-
-:::image type="content" source="./media/container-registry-content-trust/content-trust-03-portal.png" alt-text="Screenshot of the confirmation message about disabling Docker Content Trust for a registry in the Azure portal.":::
+To disable DCT for your registry, go to the registry in the Azure portal. Under **Policies**, select **Content Trust**. Select **Disabled**, then select **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
 
 ## Related content
 

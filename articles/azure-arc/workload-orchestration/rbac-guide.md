@@ -37,12 +37,12 @@ The following table provides a summary of the roles you can create and the actio
 |Admin|Full access to all workload orchestration resources and actions|Use Azure Core Contributor role|
 |Onboarding admin| |`Microsoft.Edge/contexts/*`, `Microsoft.Edge/targets/write`, `Microsoft.Edge/targets/read`|
 |Solution author|Read-write solutions and their versions| `Microsoft.Edge/contexts/read`, `Microsoft.Edge/solutionTemplates/*`,  `Microsoft.Edge/targets/solutions/*`|
-|Solution viewer|Read solutions and their versions |`Microsoft.Edge/contexts/read`, `Microsoft.Edge/solutionTemplates/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/solutionTemplates/versions/read`|
-|Configuration author|<ul><li>Read site and target to view hierarchy </li><li> Read dynamic schemas and read-write shared schemas</li><li>Read-write all configuration RTs</li><li>Read, resolve, and publish solution binding</li><li>Read resolved and published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/configurationtemplates/*`, `Microsoft.Edge/schemaReferences/read`, `Microsoft.Edge/schemas/*`, `Microsoft.Edge/configurations/*`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/targets/solutions/*`, `Microsoft.Edge/targets/reviewSolutionVersion/action`, `Microsoft.Edge/targets/publishSolutionVersion/action`|
-|Configuration viewer|<ul><li>Read site and target to view hierarchy </li><li>Read dynamic and shared schemas</li><li>Read all configuration RTs</li><li>Read solution bindings</li><li>Read resolved and published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/configurationtemplates/read`, `Microsoft.Edge/schemaReferences/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/versions/read`, `Microsoft.Edge/configurations/read`, `Microsoft.Edge/configurations/dynamicConfigurations/read`, `Microsoft.Edge/configurations/dynamicConfigurations/versions/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`|
-|Deployment admin|<ul><li>Read-write-delete targets</li><li>Read solution bindings</li><li>Read resolved and published configuration</li><li>Monitor published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/targets/write`,`Microsoft.ExtendedLocation/customLocations/read`, `Microsoft.Edge/configurationReferences/read`, `Microsoft.Edge/schemaReferences/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/versions/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`|
-|Deployment manager|<ul><li>Read targets </li><li>Read solution bindings</li><li>Read resolved and published configuration</li><li>Deploy published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/configurationReferences/read`, `Microsoft.Edge/schemaReferences/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/read`, `Microsoft.Edge/schemas/dynamicSchemas/versions/read`, `Microsoft.Edge/targets/installSolution/action`, `Microsoft.Edge/targets/uninstallSolution/action`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`|
-|Deployment viewer|<ul><li>Read targets </li><li>Read solution bindings</li><li>Read resolved and published configuration</li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`|
+|Solution viewer|Read solutions and their versions |`Microsoft.Edge/contexts/read`, `Microsoft.Edge/solutionTemplates/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/solutionTemplates/versions/read`, `Microsoft.edge/solutionTemplates/versions/solutionschemas/read`, `microsoft.edge/solutionmetadatas/*/read` |
+|Configuration author|<ul><li>Read site and target to view hierarchy </li><li> Read dynamic schemas and read-write shared schemas</li><li>Read-write all configuration RTs</li><li>Read, resolve, and publish solution binding</li><li>Read resolved and published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/configtemplates/*`, `Microsoft.Edge/schemas/*`, `Microsoft.Edge/configurations/*`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/targets/solutions/*`, `Microsoft.Edge/targets/reviewSolutionVersion/action`, `Microsoft.Edge/targets/publishSolutionVersion/action`, `Microsoft.edge/solutionTemplates/versions/solutionschemas/read`, `microsoft.edge/configtemplates/versions/configtemplateschemas/read`, `microsoft.edge/solutionmetadatas/*/read`, `microsoft.edge/hierarchyconfigurationmetadatas/*/read`|
+|Configuration viewer|<ul><li>Read site and target to view hierarchy </li><li>Read dynamic and shared schemas</li><li>Read all configuration RTs</li><li>Read solution bindings</li><li>Read resolved and published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/configtemplates/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/configurations/read`, `Microsoft.Edge/configurations/dynamicConfigurations/read`, `Microsoft.Edge/configurations/dynamicConfigurations/versions/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`, `Microsoft.Edge/configtemplates/read`, `Microsoft.Edge/configtemplates/configtemplatemetadatas/read`, `Microsoft.edge/configtemplates/versions/configtemplateschemas/read`, `microsoft.edge/solutionmetadatas/*/read`, `microsoft.edge/hierarchyconfigurationmetadatas/*/read`|
+|Deployment admin|<ul><li>Read-write-delete targets</li><li>Read solution bindings</li><li>Read resolved and published configuration</li><li>Monitor published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/sites/read`, `Microsoft.Edge/targets/write`,`Microsoft.ExtendedLocation/customLocations/read`, `Microsoft.Edge/configurationReferences/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`, `Microsoft.Edge/configtemplates/configtemplatemetadatas/read`, `Microsoft.edge/configtemplates/versions/configtemplateschemas/read`, `microsoft.edge/solutionmetadatas/*/read`, `microsoft.edge/hierarchyconfigurationmetadatas/*/read`|
+|Deployment manager|<ul><li>Read targets </li><li>Read solution bindings</li><li>Read resolved and published configuration</li><li>Deploy published configuration </li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/configurationReferences/read`, `Microsoft.Edge/schemas/read`, `Microsoft.Edge/targets/installSolution/action`, `Microsoft.Edge/targets/uninstallSolution/action`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`, `Microsoft.Edge/configtemplates/configtemplatemetadatas/read`, `Microsoft.edge/configtemplates/versions/configtemplateschemas/read`, `microsoft.edge/solutionmetadatas/*/read`, `microsoft.edge/hierarchyconfigurationmetadatas/*/read`|
+|Deployment viewer|<ul><li>Read targets </li><li>Read solution bindings</li><li>Read resolved and published configuration</li></ul>|`Microsoft.Edge/contexts/read`, `Microsoft.Edge/targets/read`, `Microsoft.Edge/targets/solutions/read`, `Microsoft.Edge/targets/solutions/versions/read`, `Microsoft.Edge/targets/solutions/instances/read`, `Microsoft.Edge/targets/solutions/instances/histories/read`, `Microsoft.Edge/configtemplates/configtemplatemetadatas/read`, `Microsoft.edge/configtemplates/versions/configtemplateschemas/read`, `microsoft.edge/solutionmetadatas/*/read`, `microsoft.edge/hierarchyconfigurationmetadatas/*/read`|
 
 ### Available objects and their actions
 
@@ -61,17 +61,19 @@ The following sections list the available objects and their actions that you can
 - `Microsoft.Edge/schemas/read`: Allows reading schema information.
 - `Microsoft.Edge/schemas/versions/write`: Allows writing schema versions.
 - `Microsoft.Edge/schemas/versions/read`: Allows reading schema versions.
-- `Microsoft.Edge/schemas/dynamicSchemas/read`: Allows reading dynamic schemas.
-- `Microsoft.Edge/schemas/dynamicSchemas/versions/read`: Allows reading versions of dynamic schemas.
-- `Microsoft.Edge/schemaReferences/read`: Allows reading schema references.
 
 #### Configuration Templates
 
-- `Microsoft.Edge/configurationtemplates/write`: Allows writing configuration templates.
-- `Microsoft.Edge/configurationtemplates/read`: Allows reading configuration templates.
-- `Microsoft.Edge/configurationtemplates/versions/read`: Allows reading versions of configuration templates.
-- `Microsoft.Edge/configurationtemplates/createVersion/action`: Allows creating a new version of a configuration template.
-- `Microsoft.Edge/configurationtemplates/removeVersion/action`: Allows removing a version of a configuration template.
+- `Microsoft.Edge/configtemplates/write`: Allows writing configuration templates.
+- `Microsoft.Edge/configtemplates/read`: Allows reading configuration templates.
+- `Microsoft.Edge/configtemplates/versions/read`: Allows reading versions of configuration templates.
+- `Microsoft.Edge/configtemplates/createVersion/action`: Allows creating a new version of a configuration template.
+- `Microsoft.Edge/configtemplates/removeVersion/action`: Allows removing a version of a configuration template.
+- `Microsoft.Edge/configtemplates/configtemplatemetadatas/read`: Allows reading linked hierarchies.
+- `Microsoft.edge/configtemplates/versions/configtemplateschemas/read`: Allows reading rendered schema for specific configuration template version.
+- `microsoft.edge/hierarchyconfigurationmetadatas/read`: Allows reading a configuration template for a specific linked site hierarchy.
+- `microsoft.edge/hierarchyconfigurationmetadatas/versions/read`: Allows reading a rendered schema for specific version for a specific linked site hierarchy.
+
 
 #### Configurations
 
@@ -88,6 +90,10 @@ The following sections list the available objects and their actions that you can
 - `Microsoft.Edge/solutionTemplates/versions/read`: Allows reading versions of solution templates.
 - `Microsoft.Edge/solutionTemplates/createVersion/action`: Allows creating a new version of a solution template.
 - `Microsoft.Edge/solutionTemplates/removeVersion/action`: Allows removing a version of a solution template.
+- `Microsoft.edge/solutionTemplates/versions/solutionschemas/read`: Allows reading rendered schema for specific solution template version.
+- `microsoft.edge/solutionmetadatas/read`: Allows reading a solution template for a specific target whose capability is matched with.
+- `microsoft.edge/solutionmetadatas/versions/read`: Allows reading a rendered schema for specific version for a specific target whose capability is matched with.
+
 
 #### Targets
 
@@ -139,9 +145,9 @@ The following table describes some of the user scenarios and the associated cust
 
 The following table shows recommended actions for different user roles when using a custom-defined role at a service group level. For more information about service groups, see [Service groups for workload orchestration](service-group.md).
 
-#### Service group reader​
+#### Service group contributor
 
-A Service group reader​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
+A Service group contributor​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
 
 |Description|Actions|
 |---|---|

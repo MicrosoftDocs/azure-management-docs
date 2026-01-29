@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 09/29/2025
+ms.date: 12/17/2025
 ms.custom: references_regions
 # Customer intent: As a system administrator, I want to access the release notes for the Azure Connected Machine agent, so that I can stay informed about updates, fixes, and new features to ensure optimal performance and compliance of my cloud-based infrastructure.
 ---
@@ -10,7 +10,7 @@ ms.custom: references_regions
 # What's new with Azure Connected Machine agent
 
 > [!WARNING]
-> Effective January 2026, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
+> Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
 The Azure Connected Machine agent receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about:
 
@@ -21,10 +21,24 @@ The Azure Connected Machine agent receives improvements on an ongoing basis. To 
 This page is updated monthly, so revisit it regularly. If you're looking for items older than six months, you can find them in [archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md).
 
 > [!IMPORTANT]
-> For Windows, starting from agent version 1.56, you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
+> Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
 
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
+
+## Version 1.60 - January 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.60/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature|Windows|Linux| Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config** |**1.29.103.0**|**1.26.103.0**||
+|Address CVE 2026-21224|✓|✓|Security Fix  |
+|Fixed bugs that cause Machine Configuration agent and GC worker to crash|✓|✓|Bug Fix|
+|Added additional parameter validation to ExtensionCleanup.ps1|✓||Improvement|
+|Enhanced reliability for compliance evaluation for ApplyAndAutoCorrect Machine Configuration policy assignments|✓|✓|Improvement|
+|**Azcmagent**|**1.60.03293.2680**|**1.60.03293.809**||
+|Address CVE 2026-21224|✓|✓|Security Fix|
 
 ## Version 1.59 - December 2025
 
@@ -32,7 +46,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnect
 
 |Feature |Windows |Linux|Change Type|
 | -------- | -------- | -------- | -------- |
-|**Guest Config**   |**1.26.102.0** |**1.29.102.0**||
+|**Guest Config**   |**1.29.102.0** |**1.26.102.0**||
 |Increased unzipped extension package size limit from 400 MB to 1GB |✓|✓|Improvement|
 |Changed behavior on extension install when extension files already exist. Now, install will continue after attempting cleanup instead of failing.|✓|✓|Improvement|
 |Updated bundled PowerShell version from 7.4.7 to 7.4.13.|✓|✓|Improvement|
@@ -129,101 +143,6 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnect
 
 - Added support for managed identity-based custom policy downloads.
 
-## Version 1.53 - June 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- [Linux Only] Resolved "No public key" error by adding GPG package signature validation.
-
-### New features and enhancements
-
-- [Linux Only] Replaced the use of `daemon-reexec` with `daemon-reload` when setting environment variables.
-
-## Version 1.52 - May 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.52/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Fixed a bug in the installer where the installation would fail if the TPM udev rule could not be created.
-
-### New features and enhancements
-
-- Added `--include-all` flag to `azcmagent check` to enable network checks beyond onboarding scenarios.
-
-- [Linux Only] GC 1.26.90.0: Added HIMDS as a dependent service for the Extension service.
-
-- [Linux Only] Added `journalctl` logs to the `.zip` generated by `azcmagent logs`.
-
-- [Windows Only] GC 1.29.95.0: Added dependent DLLs needed to support Windows Server 2012.
-
-- [Windows Only] Added Windows Event Logs to the `.zip` generated by `azcmagent logs`.
-
-## Version 1.51 - April 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.51/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Extension Delete improvements to ensure removal requests are always attempted irrespective of Version mismatches and other out of sync cases
-
-- Redacted upstream proxy data before sending configuration details to HIS to enhance security.
-
-### New features and enhancements
-
-- Updated Dependencies
-  - Upgraded to **PowerShell 7.4.7**
-  - Upgraded to **.NET 8.0**
-
-- IP address caching to reduce excessive DNS resolver calls.
-
-- [Windows only] **Optimized PayGo processing** for improved efficiency.
-
-- Enabled Arc proxy to run by default
-
-- Added detection for Microsoft System Center Configuration Manager and Microsoft System Center Operations Manager
-
-- Enhanced logging with security annotations in `azcmagent` and `himds` logs.
-
-## Version 1.50 - March 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.50/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- If an extension package fails to download **10 times**, the download request will fail instead of continuing until timeout.
-- Fixed a deadlock issue in the Policy agent that occurred in certain edge cases.
-
-### New features and enhancements
-
-- **Tags Input:** Now supports **escaped characters** using backslashes when running `azcmagent connect`.
-- **Location Flag:** Automatically removes spaces from user-provided values for `--location`.
-- **Request Logging:** The optional `Client-Id` header is now logged for requests made to HIMDS.
-
-## Version 1.49 - February 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.49/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Added retry logic for reading the status file before sending a report if the agent fails to deserialize it the first time.
-- Suppressed terminal error due to a certificate having a negative serial number. This error will be reenabled in January 2026; customers should update their certificates before then, especially if using SSL inspection.
-
-### New features and enhancements
-
-- Increased package size limit for AMA only.
-- Preserved `HandlerManifest.json` file during deletion to prevent extension removal failures.
-- Added detection for PostgreSQL and MySQL.
-- Compressed archived logs.
-- Display certificate chain information for failed requests (if the TLS handshake reaches the cert stage).
-- Display absolute path for log zip files to improve visibility.
-- Updated recommended actions for failures to reach Service endpoints.
-- Windows only:
-  - The agent now saves MSI certificates both on disk and in the Windows cert store (only for Windows Servers 2019 (10.0.17763) and newer).
-  - Added authentication option to use certificates from the Windows cert store for `azcmagent connect` and `azcmagent disconnect`.
-    
 > [!NOTE]
 > This article contains updates covering the past six months. For earlier releases, see [Archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md)
 

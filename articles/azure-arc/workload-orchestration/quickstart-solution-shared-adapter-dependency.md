@@ -357,13 +357,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. View parameters of FSAD at child level.
 
     ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName2"
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName2" --version $appVersion --solution
     ```
 
 1. Edit parameters of FSAD at child level.
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName2"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -371,13 +371,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. View parameters of FSAD at child level.
 
     ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName2
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName2" --version $appVersion --solution
     ```
 
 1. Edit parameters of FSAD at child level.
 
     ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $childName --solution-template-name $appName2
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ***
