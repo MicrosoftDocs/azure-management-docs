@@ -45,7 +45,7 @@ Create a site to manage geographically related resources.
    |--|--|
    | Site name | Custom name for a site. |
    | Display name | Custom display name for a site. |
-   | Site address| Physical address for a site. Providing the country name is mandatory. The street address, city, state/province, and postal code are optional.|
+   | Site address| Physical address for a site. Providing the country/region name is mandatory. The street address, city, state/province, and postal code are optional.|
    | Site scope | Select either **Subscription** or **Resource group**. You can define the scope only when you create a site. You can't modify it later. Use the site manager to view and manage all the resources in the scope. |
    | Subscription/Resource group | Select the subscription/resource group according to the site scope. |
    | Parent site| Subscription scope sites don't have a parent site. Resource group scope sites can only be a child of the parent subscription scope site.|
