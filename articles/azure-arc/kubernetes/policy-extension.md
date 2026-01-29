@@ -1,5 +1,5 @@
 ---
-title: "Azure Arc-enabled Kubernetes validation"
+title: "Azure Policy extension Installation"
 ms.date: 01/28/2026
 ms.topic: how-to
 description: "Install Azure Policy extension in Kubernetes clusters connected via Azure Arc"
