@@ -22,7 +22,7 @@ The following Kubernetes distributions **have passed conformance testing**. This
 | Provider Name | Distribution Name | Kubernetes Version Required |
 |--------------|------------------|-----------------------------|
 | Azure | aks_workload | 1.27+ |
-| Red Hat | openShift | 1.27+ |
+| Red Hat | openshift | 1.27+ |
 | CNCF | kind | 1.27+ |
 | SUSE/Rancher | rke2 | 1.27+ |
 | CNCF | minikube | 1.27+ |
