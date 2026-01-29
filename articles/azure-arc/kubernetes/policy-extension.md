@@ -2,7 +2,7 @@
 title: "Azure Arc-enabled Kubernetes validation"
 ms.date: 01/28/2026
 ms.topic: how-to
-description: "Azure Policy extension for Azure Arc"
+description: "Install Azure Policy extension for Azure Arc"
 # Customer intent: As a DevOps engineer, I want to understand which Kubernetes distributions have passed conformance tests for Azure Policy extension for Azure Arc, so that I can ensure compatibility and successful integration for managing my clusters across cloud environments.
 ---
 # Azure Policy Extension for Azure Arc
@@ -22,7 +22,7 @@ The following Kubernetes distributions **have passed conformance testing**. This
 | Provider Name | Distribution Name | Kubernetes Version Required |
 |--------------|------------------|-----------------------------|
 | Azure | aks_workload | 1.27+ |
-| Red Hat | OpenShift | 1.27+ |
+| Red Hat | openShift | 1.27+ |
 | CNCF | kind | 1.27+ |
 | SUSE/Rancher | rke2 | 1.27+ |
 | CNCF | minikube | 1.27+ |
