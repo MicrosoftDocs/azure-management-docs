@@ -77,7 +77,7 @@ Addressed policy extension installation failure in aks_workload distribution
  - Gatekeeper v3.21.0-1
 
 ### 1.16.0
-Added RKE2 support. 
+Added RKE2 support.
 Enabled mutation.
 Enabled external data.
 
