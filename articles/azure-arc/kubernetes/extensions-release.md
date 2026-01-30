@@ -58,7 +58,7 @@ Once guardrails are disabled, you may proceed with installing the Azure Policy E
 
 #### 1.16.1
 
-Fixed policy extension installation bug in aks_workload distribution
+Fixed policy extension installation bug in AKS on Azure Local (AKS enabled by Azure Arc).
 Added RKE2 support.
 Enabled mutation.
 Enabled external data.
