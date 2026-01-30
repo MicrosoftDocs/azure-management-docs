@@ -30,9 +30,9 @@ The following Kubernetes distributions **have been validated in conformance test
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
-- **Supported distributions without conformance validation**: KS Edge, EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), TKG (VMware Tanzu Kubernetes Grid)
+- **Supported distributions without conformance validation**: AKS Edge, EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), TKG (VMware Tanzu Kubernetes Grid)
 
-> kubeadm is currently NOT supported in Azure Policy extension.
+> kubeadm is currently not supported in Azure Policy extension.
 
 ---
 
