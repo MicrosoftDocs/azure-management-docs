@@ -45,7 +45,7 @@ The Run command is available across many configurations:
 > Run command on Azure Arc-enabled servers does not support authenticating blobs using Managed Identities yet. 
 
 > [!NOTE]
-> RunCommand on Linux does not allow names longer than 36 characters.
+> Run command on Linux does not allow names longer than 36 characters.
 
 ## Next steps
 Learn how to use Run command:
