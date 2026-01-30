@@ -71,7 +71,10 @@ Once guardrails are disabled, you may proceed with installing the Azure Policy E
 
 ### 1.16.1
 
-Addressed policy extension installation failure in aks_workload distribution
+Fixed policy extension installation bug in aks_workload distribution
+Added RKE2 support.
+Enabled mutation.
+Enabled external data.
  - Released Jan 2026
  - Policy Image v1.15.4
  - Gatekeeper v3.21.0-1

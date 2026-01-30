@@ -24,6 +24,27 @@ For more information, see [Container insights for Azure Arc-enabled Kubernetes c
 
 ## Azure Policy
 
+- **Supported distributions**
+
+### Supported Distributions (with conformance validation)
+
+The following Kubernetes distributions **have passed conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
+
+#### AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat Openshift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s
+
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat Openshift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s
+
+### Supported Distributions (without conformance validation)
+
+The Azure Policy Extension **can be installed** on the following Kubernetes distributions; however, **conformance testing has not been completed**.
+
+> Installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
+
+
+
+
+
+
 Azure Policy extends [Gatekeeper](https://github.com/open-policy-agent/gatekeeper), an admission controller webhook for [Open Policy Agent](https://www.openpolicyagent.org/) (OPA). Use Gatekeeper with OPA to consistently apply centralized, at-scale enforcements and safeguards on your clusters.
 
 For more information, see [Understand Azure Policy for Kubernetes clusters](/azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
