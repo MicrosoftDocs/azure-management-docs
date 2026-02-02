@@ -135,7 +135,7 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 The GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
 
 > [!IMPORTANT]
-> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. The command below adds `--config "redis-ha.enabled=false` to install the extension on a single node.
+> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. The command below adds `--config "redis-ha\.enabled=false` to install the extension on a single node.
 
  This command creates the simplest configuration installing the ArgoCD components to a new `argocd` namespace with cluster-wide access. Cluster-wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. For example: `namespace1,namespace2`
 
@@ -145,7 +145,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --name argocd \
 --extension-type Microsoft.ArgoCD \
 --release-train preview \
---config redis-ha.enabled=false \
+--config redis-ha\.enabled=false \
 --config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
 
@@ -159,7 +159,7 @@ This installation command creates a new `<namespace>` namespace and installs the
 An alternative installation method recommended for production usage is [workload identity](/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
 
 > [!IMPORTANT]
-> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. Use `'redis-ha.enabled': false` to install the extension on a single node.
+> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. Use `'redis-ha\\.enabled': false` to install the extension on a single node.
 
 To create the extension with workload identity, first replace the following variables with your own values in this Bicep template:
 
