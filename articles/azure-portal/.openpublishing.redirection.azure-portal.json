@@ -105,6 +105,26 @@
         "redirect_url": "/azure/azure-portal/dashboard-hub",
         "redirect_document_id": false
       },
+     {
+        "source_path_from_root": "/articles/azure-portal/quick-create-bicep.md",
+        "redirect_url": "/azure/azure-portal/azure-portal-dashboards-create-programmatically",
+        "redirect_document_id": false
+      },
+     {
+        "source_path_from_root": "/articles/azure-portal/quick-create-template.md",
+        "redirect_url": "/azure/azure-portal/azure-portal-dashboards-create-programmatically",
+        "redirect_document_id": false
+      },
+     {
+        "source_path_from_root": "/articles/azure-portal/quickstart-portal-dashboard-azure-cli.md",
+        "redirect_url": "/azure/azure-portal/azure-portal-dashboards-create-programmatically",
+        "redirect_document_id": false
+      },
+     {
+        "source_path_from_root": "/articles/azure-portal/quickstart-portal-dashboard-powershell.md",
+        "redirect_url": "/azure/azure-portal/azure-portal-dashboards-create-programmatically",
+        "redirect_document_id": false
+      },
       {
         "source_path_from_root": "/articles/azure-portal/resource-group-portal.md",
         "redirect_url": "/azure/azure-resource-manager/management/manage-resources-portal",
