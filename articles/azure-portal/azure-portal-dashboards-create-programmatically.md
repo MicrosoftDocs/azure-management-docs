@@ -27,9 +27,9 @@ First, download the JSON representation of an existing dashboard. From the dashb
 
 If you prefer, you can retrieve the representation and other information about the dashboard resource programmatically, such as by using [REST APIs](/rest/api/resources/Resources/Get).
 
-## Create a dashboard template
+## Create the dashboard template
 
-Azure lets you orchestrate the deployment of multiple resources, such as dashboards. You create a deployment template that expresses the set of resources to deploy and the relationships between them. In this case, you create a template by modifying the JSON you downloaded. 
+Azure lets you orchestrate the deployment of multiple resources, such as dashboards. You create a deployment template that expresses the set of resources to deploy and the relationships between them. In this case, you create a template by modifying the JSON you downloaded.
 
 The JSON format of each deployed template resource is the same as if you were creating them individually by uploading an exported dashboard, except that the template language adds a few concepts like variables, parameters, basic functions, and more. This extended syntax is only supported in the context of a template deployment. For more information, see [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax).
 
@@ -42,6 +42,7 @@ resourceId: "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/
 ```
 
 This resource ID can be replaced with a parameterized version that you can use with other VMs, such as:
+
 ```json
 resourceId: "[resourceId(parameters('virtualMachineResourceGroup'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
 ```
@@ -77,12 +78,11 @@ Once you configure your template, deploy it by using any of the following method
 
 ### Deploy the dashboard template in the Azure portal
 
-1. Select the following image to sign in to Azure and open a template.
-
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.portal%2Fazure-portal-dashboard%2Fazuredeploy.json":::
-
-1. Select or enter the appropriate project and instance details, and then select **Review + create**.
-
+1. Go to the [Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template).
+1. Select **Build your own template in the editor**.
+1. In the **Edit template** page, select **Load file** to upload your dashboard template JSON file.
+1. After the template loads, select **Save**.
+1. Provide your project and instance details, and then select **Review + create**.
 1. Select **Create**. You see a notification when the dashboard is deployed successfully.
 
 ### Deploy the dashboard template by using the Azure CLI
