@@ -6,7 +6,7 @@ ms.author: cwatson
 ms.topic: concept-article
 ms.date: 02/02/2026
 ms.subservice: edge-rag
-ai-usage: ai-assisted
+ai-usage: ai-generated
 ms.custom:
   - build-2025
 # Customer intent: As an IT administrator or technical decision maker, I want to stay updated on the latest features and improvements for Edge RAG so that I can effectively plan, deploy, and manage the Edge RAG solution in my organization.
