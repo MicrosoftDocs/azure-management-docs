@@ -6,8 +6,8 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 11/17/2025
-ai-usage: ai-assisted
+ms.date: 02/02/2026
+ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Edge RAG release so that I can plan updates for my organization.
 
@@ -17,7 +17,40 @@ ai-usage: ai-assisted
 
 Edge RAG Preview enabled by Azure Arc helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Edge RAG in your organization.
 
-Release notes are updated with each new version.
+## February 2026
+
+**Extension version**: `0.8.5` [Preview]
+
+This release includes bug fixes, reliability improvements, and critical security updates.
+
+### Search and query
+
+This release improves the accuracy and reliability of search operations.
+
+- Deep search returns accurate results for complex queries, including time-based and count-based questions.
+- Timeouts for LLM inference calls, Vector DB queries, and database operations prevent resource exhaustion.
+- Error messages clearly show whether the system is unavailable or the knowledge base is empty.
+
+### Data ingestion
+
+Data ingestion is more robust and handles edge cases without failure.
+
+- The system skips files without extensions and reports which files it skipped and why.
+- You can now ingest to empty folders or folders with mixed content without failures.
+- NFS connection validation checks accessibility, socket connections, and permissions, and provides clear error messages when problems occur.
+- You can configure timeouts for document conversion, SharePoint connections, and file processing to prevent indefinite hangs.
+
+### Diagnostics and observability
+
+Improved log access makes troubleshooting deployment issues faster. You can access logs during and after deployment failures, so you can identify root causes faster.
+
+### Security updates
+
+This release addresses critical and high-severity vulnerabilities.
+
+- This release fixes a critical Next.js denial-of-service vulnerability (GHSA-5j59-xgg2-r9c4) through an upgrade to version 14.2.35.
+- This release resolves a high-severity Langchain XXE vulnerability that could allow unauthorized file access during document parsing.
+- Dependency updates resolve version conflicts and improve system stability.
 
 ## November 2025
 
@@ -38,7 +71,7 @@ For more information, see [What's new in Edge RAG](whats-new.md).
 
 **Extension version**: `0.1.5` [Preview]
 
-- Resolved authentication issues for endpoints created by Azure AI Foundry for bring your own model (BYOM) deployments.
+- Resolved authentication problems for endpoints that Azure AI Foundry created for bring your own model (BYOM) deployments.
 - Temporarily disabled chat history to improve performance. Each question is answered based only on retrieved content.
 - Improved security.
 
