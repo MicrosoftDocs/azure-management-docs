@@ -118,7 +118,7 @@ Using `Connect-AzContainerRegistry` with Azure identities enables [Azure role-ba
 
 ## Service principal
 
-If you assign a [service principal](/azure/active-directory/develop/app-objects-and-service-principals) to your registry, your application or service can use it for headless authentication. Service principals enable[Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) in a registry. You can assign multiple service principals to a registry, so you can use different [supported roles](container-registry-rbac-built-in-roles-overview.md) for specific applications.
+If you assign a [service principal](/azure/active-directory/develop/app-objects-and-service-principals) to your registry, your application or service can use it for headless authentication. Service principals enable [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) in a registry. You can assign multiple service principals to a registry, so you can use different [supported roles](container-registry-rbac-built-in-roles-overview.md) for specific applications.
 
 For more information, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
