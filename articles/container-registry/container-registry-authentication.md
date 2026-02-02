@@ -18,7 +18,7 @@ For most scenarios, authenticate by using one of the following Microsoft Entra I
 * [Individual login](#authenticate-with-microsoft-entra-id) - Authenticate directly to a registry
 * [Service principal](#service-principal) - Use a Microsoft Entra service principal for unattended, or "headless," authentication by applications and container orchestrators
 
-## Authentication options for Azure container registry
+## Authentication options
 
 The following table lists available authentication methods and typical scenarios, with links to more details.
 
@@ -29,9 +29,9 @@ The following table lists available authentication methods and typical scenarios
 |---------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------|----------------------------------|--------------------------------------------|
 | [Individual Microsoft Entra identity](#individual-login-with-azure-ad)                | `az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell                             | Interactive push/pull by developers, testers                                    | Yes                              | Microsoft Entra token must be renewed every 3 hours     |
 | [Microsoft Entra service principal](#service-principal)                  | `docker login`<br/><br/>`az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell<br/><br/> Registry login settings in APIs or tooling                                         | Unattended push from CI/CD pipeline<br/><br/> Unattended pull to Azure or external services  | Yes                              | SP password default expiry is 1 year       |
-| [Microsoft Entra managed identity for Azure resources](container-registry-authentication-managed-identity.md)  | `docker login`<br/><br/> `az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell                                       | Unattended push from Azure CI/CD pipeline<br/><br/> Unattended pull to Azure services<br/><br/>For a list of managed identity role assignment scenarios, consult the [ACR role assignment scenarios](container-registry-rbac-built-in-roles-overview.md).  | Yes<br/><br/>[Microsoft Entra RBAC role assignments with ACR built-in roles](container-registry-rbac-built-in-roles-overview.md)<br/><br/>[Microsoft Entra attribute-based access control (ABAC) for **Microsoft Entra-based repository permissions**](container-registry-rbac-abac-repository-permissions.md)                              | Use only from select Azure services that [support managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities#azure-services-that-support-managed-identities-for-azure-resources)              |
-| [Admin user](#admin-account)                            | `docker login`                                          | Interactive push/pull by individual developer or tester<br/><br/>Portal deployment of image from registry to Azure App Service or Azure Container Instances                      | No, always pull and push access  | Single account per registry, not recommended for multiple users         |
-| [Non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)               | `docker login`<br/><br/>`az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell    | Interactive push/pull to repository by individual developer or tester<br/><br/> Unattended pull from repository by individual system or external device                  | Token-based repository permissions **does not** support Microsoft Entra RBAC role assignments.<br/><br/>For Microsoft Entra-based repository permissions, see [Microsoft Entra attribute-based access control (ABAC) for **Microsoft Entra-based repository permissions**](container-registry-rbac-abac-repository-permissions.md) instead.                           | Not currently integrated with Microsoft Entra identity  |
+| [Microsoft Entra managed identity for Azure resources](container-registry-authentication-managed-identity.md)  | `docker login`<br/><br/> `az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell                                       | Unattended push from Azure CI/CD pipeline<br/><br/> Unattended pull to Azure services<br/><br/>For a list of managed identity role assignment scenarios, see [ACR Entra permissions and role assignments](container-registry-rbac-built-in-roles-overview.md).  | Yes                              | Can only be used from select Azure services that [support managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities#azure-services-that-support-managed-identities-for-azure-resources)              |
+| [Admin user](#admin-account)                            | `docker login`                                          | Interactive push/pull by individual developer or tester<br/><br/>Portal deployment of image from registry to Azure App Service or Azure Container Instances                      | No, always pull and push access  | High level of access. Single account per registry; not recommended for multiple users         |
+| [Non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)               | `docker login`<br/><br/>`az acr login` in Azure CLI<br/><br/> `Connect-AzContainerRegistry` in Azure PowerShell    | Interactive push/pull to repository by individual developer or tester<br/><br/> Unattended pull from repository by individual system or external device                  | Token-based repository permissions **does not** support Microsoft Entra RBAC role assignments.<br/><br/>For Microsoft Entra-based repository permissions, see [Azure attribute-based access control (ABAC) repository permissions in Azure Container Registry](container-registry-rbac-abac-repository-permissions.md) instead.                           | Not currently integrated with Microsoft Entra ID |
 
 <a name='individual-login-with-azure-ad'></a>
 
@@ -57,7 +57,7 @@ For registry access, the token that `az acr login` uses is valid for **3 hours**
 
 Using `az acr login` with Azure identities enables [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview). For some scenarios, you might want to sign in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with [specific roles](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios, or for a workgroup or a development workflow where you don't want to manage individual access, you can also sign in by using a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
 
-### az acr login with --expose-token
+### Use az acr login without Docker daemon
 
 In some cases, you need to authenticate by using `az acr login` when the Docker daemon isn't running in your environment. For example, you might need to run `az acr login` in a script in Azure Cloud Shell, which provides the Docker CLI but doesn't run the Docker daemon.
 
@@ -87,6 +87,7 @@ Then, run `docker login`, passing `00000000-0000-0000-0000-000000000000` as the 
 ```console
 docker login myregistry.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password-stdin <<< $TOKEN
 ```
+
 Likewise, you can use the token returned by `az acr login` with the `helm registry login` command to authenticate with the registry:
 
 ```console
