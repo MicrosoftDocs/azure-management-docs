@@ -38,8 +38,6 @@ Azure Policy extends [Gatekeeper](https://github.com/open-policy-agent/gatekeepe
 
 For more information, see [Understand Azure Policy for Kubernetes clusters](/azure/governance/policy/concepts/policy-for-kubernetes/#install-azure-policy-extension-for-azure-arc-enabled-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
 
----
-
 ### Azure Red Hat OpenShift (ARO) Considerations
 
 Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
@@ -55,8 +53,6 @@ oc patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "p
 ```
 
 Once guardrails are disabled, you may proceed with installing the Azure Policy Extension.
-
----
 
 ### Azure Policy Extension Release Notes
 
