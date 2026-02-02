@@ -13,9 +13,7 @@ ms.custom:
 
 # Tutorial: Deploy applications using GitOps with ArgoCD
 
-This tutorial describes how to use GitOps in a Kubernetes cluster. GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment.
-
-While the source in this tutorial is a Git repository, ArgoCD supports other common file sources such as Helm and Open Container Initiative (OCI) repositories.
+This tutorial describes how to use GitOps in a Kubernetes cluster. GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment. ArgoCD also supports other common file sources, such as Helm and Open Container Initiative (OCI) repositories.
 
 > [!NOTE]
 > Starting with version 1.0.0-preview, the ArgoCD extension uses the [community Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). **This change is a breaking change as the configuration keys have changed**. If you installed a previous version (0.0.x) of the extension, uninstall the extension and reinstall the latest with updated configuration keys.
