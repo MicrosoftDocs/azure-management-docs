@@ -11,14 +11,12 @@ ms.date: 02/02/2026
 
 # Authenticate with Azure Container Registry
 
-There are several ways to authenticate with an Azure container registry, each of which is applicable to one or more registry usage scenarios.
+You can authenticate with an Azure container registry in several ways. Review these options to determine what works best for your container registry usage scenario.
 
-In most cases, we recommend authenticating via one of the following Microsoft Entra ID-based methods:
+For most scenarios, authenticate by using one of the following Microsoft Entra ID-based methods:
 
-* Authenticate to a registry directly via [individual login](#individual-login-with-azure-ad)
-* Applications and container orchestrators can perform unattended, or "headless," authentication by using a Microsoft Entra [service principal](#service-principal)
-
-
+* [Individual login](#authenticate-with-microsoft-entra-id) - Authenticate directly to a registry
+* [Service principal](#service-principal) - Use a Microsoft Entra service principal for unattended, or "headless," authentication by applications and container orchestrators
 
 ## Authentication options for Azure container registry
 
@@ -39,37 +37,37 @@ The following table lists available authentication methods and typical scenarios
 
 ## Authenticate with Microsoft Entra ID
 
-When working with your registry directly, such as pulling images to and pushing images from a development workstation to a registry you created, authenticate by using your individual Azure identity. 
+When working with your registry directly, such as pulling images and pushing images from a development workstation to a registry you created, authenticate by using your individual Azure identity. 
 
 ### [Azure CLI](#tab/azure-cli)
 
-Sign in to the [Azure CLI](/cli/azure/install-azure-cli) with [az login](/cli/azure/reference-index#az-login), and then run the [az acr login](/cli/azure/acr#az-acr-login) command:
+Sign in to the [Azure CLI](/cli/azure/install-azure-cli) by using [az login](/cli/azure/reference-index#az-login), and then run the [az acr login](/cli/azure/acr#az-acr-login) command:
 
 ```azurecli
 az login
 az acr login --name <acrName>
 ```
 
-When you log in with `az acr login`, the CLI uses the token created when you executed `az login` to seamlessly authenticate your session with your registry. To complete the authentication flow, the Docker CLI and Docker daemon must be installed and running in your environment. `az acr login` uses the Docker client to set a Microsoft Entra token in the `docker.config` file. Once you've logged in this way, your credentials are cached, and subsequent `docker` commands in your session don't require a username or password.
+When you sign in by using `az acr login`, the CLI uses the token created when you executed `az login` to seamlessly authenticate your session with your registry. To complete the authentication flow, the Docker CLI and Docker daemon must be installed and running in your environment. `az acr login` uses the Docker client to set a Microsoft Entra token in the `docker.config` file. After you sign in this way, your credentials are cached, and subsequent `docker` commands in your session don't require a username or password.
 
 > [!TIP]
 > Also use `az acr login` to authenticate an individual identity when you want to push or pull artifacts other than Docker images to your registry, such as [OCI artifacts](container-registry-manage-artifact.md).
 
-For registry access, the token used by `az acr login` is valid for **3 hours**, so we recommend that you always log in to the registry before running a `docker` command. If your token expires, refresh it by using the `az acr login` command again to reauthenticate.
+For registry access, the token that `az acr login` uses is valid for **3 hours**, so always sign in to the registry before running a `docker` command. If your token expires, refresh it by using the `az acr login` command again to reauthenticate.
 
-Using `az acr login` with Azure identities provides [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with [specific roles](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios, or for a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
+Using `az acr login` with Azure identities enables [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview). For some scenarios, you might want to sign in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with [specific roles](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios, or for a workgroup or a development workflow where you don't want to manage individual access, you can also sign in by using a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
 
 ### az acr login with --expose-token
 
-In some cases, you need to authenticate with `az acr login` when the Docker daemon isn't running in your environment. For example, you might need to run `az acr login` in a script in Azure Cloud Shell, which provides the Docker CLI but doesn't run the Docker daemon.
+In some cases, you need to authenticate by using `az acr login` when the Docker daemon isn't running in your environment. For example, you might need to run `az acr login` in a script in Azure Cloud Shell, which provides the Docker CLI but doesn't run the Docker daemon.
 
-For this scenario, run `az acr login` first with the `--expose-token` parameter. This option exposes an access token instead of logging in through the Docker CLI.
+For this scenario, run `az acr login` with the `--expose-token` parameter. This option returns an access token instead of signing in through the Docker CLI.
 
 ```azurecli
 az acr login --name <acrName> --expose-token
 ```
 
-Output displays the access token, abbreviated here:
+The output displays the access token, abbreviated here:
 
 ```console
 {
@@ -78,13 +76,13 @@ Output displays the access token, abbreviated here:
 }
 ```
 
-For registry authentication, we recommend that you store the token credential in a safe location and follow recommended practices to manage [docker login](https://docs.docker.com/engine/reference/commandline/login/) credentials. For example, store the token value in an environment variable:
+For registry authentication, store the token credential in a safe location and follow recommended practices to manage [docker login](https://docs.docker.com/engine/reference/commandline/login/) credentials. For example, store the token value in an environment variable:
 
 ```azurecli
 TOKEN=$(az acr login --name <acrName> --expose-token --output tsv --query accessToken)
 ```
 
-Then, run `docker login`, passing `00000000-0000-0000-0000-000000000000` as the username and using the access token as password:
+Then, run `docker login`, passing `00000000-0000-0000-0000-000000000000` as the username and using the access token as the password:
 
 ```console
 docker login myregistry.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password-stdin <<< $TOKEN
@@ -99,27 +97,27 @@ echo $TOKEN | helm registry login myregistry.azurecr.io \
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-When working with your registry directly, such as pulling images to and pushing images from a development workstation to a registry you created, authenticate by using your individual Azure identity. Sign in to [Azure PowerShell](/powershell/azure/uninstall-az-ps) with [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount), and then run the [Connect-AzContainerRegistry](/powershell/module/az.containerregistry/connect-azcontainerregistry) cmdlet:
+When you work directly with your registry, such as pulling images to and pushing images from a development workstation to a registry you created, authenticate by using your individual Azure identity. Sign in to [Azure PowerShell](/powershell/azure/uninstall-az-ps) by using [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount), and then run the [Connect-AzContainerRegistry](/powershell/module/az.containerregistry/connect-azcontainerregistry) cmdlet:
 
 ```azurepowershell
 Connect-AzAccount
 Connect-AzContainerRegistry -Name <acrName>
 ```
 
-When you log in with `Connect-AzContainerRegistry`, PowerShell uses the token created when you executed `Connect-AzAccount` to seamlessly authenticate your session with your registry. To complete the authentication flow, the Docker CLI and Docker daemon must be installed and running in your environment. `Connect-AzContainerRegistry` uses the Docker client to set a Microsoft Entra token in the `docker.config` file. Once you've logged in this way, your credentials are cached, and subsequent `docker` commands in your session don't require a username or password.
+When you sign in by using `Connect-AzContainerRegistry`, PowerShell uses the token created when you executed `Connect-AzAccount` to seamlessly authenticate your session with your registry. To complete the authentication flow, the Docker CLI and Docker daemon must be installed and running in your environment. `Connect-AzContainerRegistry` uses the Docker client to set a Microsoft Entra token in the `docker.config` file. After you sign in this way, your credentials are cached, and subsequent `docker` commands in your session don't require a username or password.
 
 > [!TIP]
 > Also use `Connect-AzContainerRegistry` to authenticate an individual identity when you want to push or pull artifacts other than Docker images to your registry, such as [OCI artifacts](container-registry-manage-artifact.md).
 
-For registry access, the token used by `Connect-AzContainerRegistry` is valid for **3 hours**, so we recommend that you always log in to the registry before running a `docker` command. If your token expires, refresh it by using the `Connect-AzContainerRegistry` command again to reauthenticate.
+For registry access, the token used by `Connect-AzContainerRegistry` is valid for **3 hours**, so always log in to the registry before running a `docker` command. If your token expires, refresh it by using the `Connect-AzContainerRegistry` command again to reauthenticate.
 
-Using `Connect-AzContainerRegistry` with Azure identities provides [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with [specific roles](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios, or for a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
+Using `Connect-AzContainerRegistry` with Azure identities enables [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview). For some scenarios, you might want to sign in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with [specific roles](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios, or for a workgroup or a development workflow where you don't want to manage individual access, you can also sign in by using a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
 
 ---
 
 ## Service principal
 
-If you assign a [service principal](/azure/active-directory/develop/app-objects-and-service-principals) to your registry, your application or service can use it for headless authentication. Service principals allow [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) in a registry. You can assign multiple service principals to one a registry, allowing you to enable different [supported roles](container-registry-rbac-built-in-roles-overview.md) for specific applications.
+If you assign a [service principal](/azure/active-directory/develop/app-objects-and-service-principals) to your registry, your application or service can use it for headless authentication. Service principals enable[Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) in a registry. You can assign multiple service principals to a registry, so you can use different [supported roles](container-registry-rbac-built-in-roles-overview.md) for specific applications.
 
 For more information, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
@@ -130,10 +128,10 @@ Each container registry includes an admin user account, which is disabled by def
 The admin account is currently required for some scenarios to deploy an image from a container registry to certain Azure services. For example, the admin account is needed when you use the Azure portal to deploy a container image from a registry directly to [Azure Container Instances](/azure/container-instances/container-instances-using-azure-container-registry) or [Azure Web Apps for Containers](container-registry-tutorial-deploy-app.md).
 
 > [!IMPORTANT]
-> The admin account is designed for a single user to access the registry, mainly for testing purposes. We don't recommend sharing the admin account credentials among multiple users. All users authenticating with the admin account appear as a single user with push and pull access to the registry. Changing or disabling this account disables registry access for all users who use its credentials. [Individual identity](#authenticate-with-microsoft-entra-id) is recommended for users and [service principals](#service-principal) for headless scenarios.
+> The admin account is designed for a single user to access the registry, mainly for testing purposes. Don't share the admin account credentials among multiple users. All users authenticating with the admin account appear as a single user with push and pull access to the registry. Changing or disabling this account disables registry access for all users who use its credentials. Use [individual identity](#authenticate-with-microsoft-entra-id) for users and [service principals](#service-principal) for headless scenarios.
 
-The admin account has two passwords, both of which can be regenerated. Regenerating passwords for admin accounts takes approximately 60 seconds to replicate and become available. Because the account has two passwords, you can maintain connection to the registry by using one password while you regenerate the other. If the admin account is enabled, you can pass the username and either password to the `docker login` command when prompted for basic authentication to the registry.
-For recommended practices to manage login credentials, see the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command reference.
+The admin account has two passwords, both of which you can regenerate. Regenerating passwords for admin accounts takes approximately 60 seconds to replicate and become available. Because the account has two passwords, you can maintain connection to the registry by using one password while you regenerate the other. If you enable the admin account, you can pass the username and either password to the `docker login` command when prompted for basic authentication to the registry.
+For recommended practices to manage authentication credentials, see the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command reference.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -155,7 +153,7 @@ Update-AzContainerRegistry -Name <acrName> -ResourceGroupName myResourceGroup -E
 
 You can also enable the admin user for your registry in the Azure portal. In the resource menu, under **Settings**, select **Access keys**. Then check the **Admin user** box to enable the account. The admin username is displayed, along with the two passwords, which you can show or regenerate as needed.
 
-## Sign in with an alternative container tool instead of Docker
+## Sign in by using an alternative container tool instead of Docker
 
 In some scenarios, you need to use alternative container tools like `podman` instead of  Docker.
 
