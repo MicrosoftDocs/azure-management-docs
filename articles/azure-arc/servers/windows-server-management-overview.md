@@ -40,6 +40,7 @@ Upon attestation, customers receive access to the following at no additional cos
 - Network HUD
 - Best Practices Assessment
 - Azure Site Recovery Configuration
+- Azure File Sync
 
 Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
 
