@@ -6,7 +6,7 @@
     href: azure-portal-overview.md
   - name: Get started with Azure Quickstart Center
     href: azure-portal-quickstart-center.md
-  - name: Quickstart: Create a VM in the portal
+  - name: Quickstart - Create a VM in the portal
     href: /azure/virtual-machines/windows/quick-create-portal?context=/azure/azure-portal/context/context
 - name: Portal experience
   items:
