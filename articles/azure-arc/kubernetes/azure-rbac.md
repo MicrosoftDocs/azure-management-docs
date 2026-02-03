@@ -350,7 +350,17 @@ After the proxy process is running, you can open another tab in your console to 
      sudo chmod +x /usr/local/bin/kubelogin 
      ```
 
-1. Kubelogin can be used to authenticate with Azure Arc-enabled clusters by requesting a proof-of-possession (PoP) token. [Convert](https://azure.github.io/kubelogin/concepts/azure-arc.html) the kubeconfig using kubelogin to use the appropriate [login mode](https://azure.github.io/kubelogin/concepts/login-modes.html). For example, for [device code login](https://azure.github.io/kubelogin/concepts/login-modes/devicecode.html) with a Microsoft Entra user, the commands would be as follows:
+1. Kubelogin can be used to authenticate with Azure Arc-enabled clusters by requesting a proof-of-possession (PoP) token. [Convert](https://azure.github.io/kubelogin/concepts/azure-arc.html) the kubeconfig using kubelogin to use the appropriate [login mode](https://azure.github.io/kubelogin/concepts/login-modes.html). Below are the commands for interactive login or device code login with an Entra user account:
+
+For [interactive login with a Microsoft Entra user](https://azure.github.io/kubelogin/concepts/login-modes/interactive.html), the command would be as follows:
+
+   ```bash
+   export KUBECONFIG=/path/to/kubeconfig
+
+   kubelogin convert-kubeconfig -l interactive --pop-enabled --pop-claims "u=/ARM/ID/OF/CLUSTER"
+   ```
+
+For [device code login](https://azure.github.io/kubelogin/concepts/login-modes/devicecode.html) with a Microsoft Entra user, the commands would be as follows:
 
    ```bash
    export KUBECONFIG=/path/to/kubeconfig
