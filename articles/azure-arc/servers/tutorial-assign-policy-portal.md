@@ -94,8 +94,7 @@ scope="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
 
 # Get the policy definition ID (filter by displayName)
 policyDefinitionId=$(az policy definition list \
-    --query "[?displayName=='$policyDefinitionName'].id | [0]" \
-    -o tsv)
+    --query "[?displayName=='$policyDefinitionName'].id | [0]" -o tsv)
 
 # Assign the policy
 az policy assignment create \
@@ -108,8 +107,7 @@ You can also run the following command to display a list of the available polici
 
 ```azurecli-interactive
 az policy definition list \
-    --query "sort_by([], &displayName)[].{DisplayName:displayName, Name:name}" \
-    -o table
+    --query "sort_by([], &displayName)[].{DisplayName:displayName, Name:name}" -o table
 ```
 
 ---
@@ -123,7 +121,7 @@ You're now ready to identify noncompliant resources to understand the compliance
 
    :::image type="content" source="./media/tutorial-assign-policy-portal/compliance-policy.png" alt-text="Screenshot of Policy Compliance page showing policy compliance for the selected scope." border="true":::
 
-   Any existing resources that aren't compliant with the new assignment displays as **Non-compliant** under **Compliance state**.
+   Any existing resources that aren't compliant with the new assignment display as **Non-compliant** under **Compliance state**.
 
 When a condition is evaluated against your existing resources and found true, those resources are marked as noncompliant with the policy. The following table shows how different policy effects work with the condition evaluation for the resulting compliance state. Although you don't see the evaluation logic in the Azure portal, the compliance state results are shown. The compliance state result is either **Compliant** or **Non-compliant**.
 
@@ -169,7 +167,7 @@ To remove the assignment that you created, follow these steps.
    Once you discover the assignment name, remove it with the following command:
 
    ```azurepowershell
-   Remove-AzPolicyAssignment -Name "<assignmentName>"
+   Remove-AzPolicyAssignment -Name "<myPolicyAssignment>"
    ```
 
 # [Azure CLI](#tab/azurecli)
