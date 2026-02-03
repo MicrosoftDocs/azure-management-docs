@@ -145,13 +145,13 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --name argocd \
 --extension-type Microsoft.ArgoCD \
 --release-train preview \
---config redis-ha\.enabled=false \
+--config "redis-ha\.enabled=false" \
 --config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
 
 This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`.  ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.
 
-> [!NOTE
+> [!NOTE]
 > For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in your Azure CLI command when configuring the extension.
 
 ## Create GitOps (ArgoCD) extension with workload identity
@@ -216,7 +216,14 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
       'config-maps.argocd-rbac-cm.data.policy\\.default': defaultPolicy
       'config-maps.argocd-rbac-cm.data.policy\\.csv': policy
       'config-maps.argocd-cmd-params-cm.data.application\\.namespaces': 'default, argocd'
-    }
+      'azure.workloadIdentity.clientId': workloadIdentityClientId
+      'azure.workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
+      'configs.cm.oidc\\.config': oidcConfig
+      'configs.cm.url': url
+      'configs.rbac.policy\\.default': defaultPolicy
+      'configs.rbac.policy\\.csv': policy
+      'configs.params.application\\.namespaces': 'default, argocd'
+   }
   }
 }
 ```
@@ -225,7 +232,7 @@ The Bicep template can be created using this command:
 
 `az deployment group create --resource-group <resource-group> --template-file <bicep-file>`
 
-> [!NOTE
+> [!NOTE]
 > For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in the Bicep template when configuring the extension.
 
 ### Parameters
