@@ -72,10 +72,6 @@ When using [az acr login](/cli/azure/acr#az-acr-login) with a Microsoft Entra id
 az acr login --name myregistry
 ```
 
-Related links:
-
-* [az acr login succeeds but docker fails with error: unauthorized: authentication required](container-registry-faq.yml#az-acr-login-succeeds-but-docker-fails-with-error--unauthorized--authentication-required)
-
 ### Confirm credentials to access registry
 
 Check the validity of the credentials you use for your scenario, or were provided to you by a registry owner. Some possible issues:
