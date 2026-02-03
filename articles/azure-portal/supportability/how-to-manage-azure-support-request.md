@@ -11,10 +11,10 @@ ms.date: 02/02/2026
 
 After you [create an Azure support request](how-to-create-azure-support-request.md), you can manage it in the [Azure portal](https://portal.azure.com).
 
-> [!TIP]
-> You can create and manage requests programmatically by using the [Azure support ticket REST API](/rest/api/support) or [Azure CLI](/cli/azure/support). Additionally, you can view open requests, reply to your support engineer, or edit the severity of your ticket in the [Azure mobile app](https://azure.microsoft.com/get-started/azure-portal/mobile-app/).
-
 To manage a support request, you must have the [Owner](/azure/role-based-access-control/built-in-roles#owner), [Contributor](/azure/role-based-access-control/built-in-roles#contributor), or [Support Request Contributor](/azure/role-based-access-control/built-in-roles#support-request-contributor) role at the subscription level. To manage a support request that you created without a subscription, you must be an [Admin](/azure/active-directory/roles/permissions-reference).
+
+> [!TIP]
+> In addition to using the Azure portal, you can create and manage requests programmatically by using the [Azure support ticket REST API](/rest/api/support) or [Azure CLI](/cli/azure/support). You can also use the [Azure mobile app](https://azure.microsoft.com/get-started/azure-portal/mobile-app/) to view open requests, reply to your support engineer, or edit the severity of your ticket.
 
 ## View support requests
 
@@ -50,7 +50,7 @@ Follow these steps if you need to change the severity level of an existing suppo
 
       :::image type="content" source="media/how-to-manage-azure-support-request/unassigned-can-change-severity.png" alt-text="Select a new severity level":::
 
-    - If a support engineer is assigned, you see a screen like the following. Select **OK**, and then [send a message](#send-a-message-about-a-support-request) requesting the severity level change.
+    - If a support engineer is assigned, you see a screen like the following. Select **OK**, and then send a message requesting the severity level change.
 
       :::image type="content" source="media/how-to-manage-azure-support-request/assigned-cant-change-severity.png" alt-text="Can't select a new severity level":::
 
