@@ -93,8 +93,7 @@ enabled" \
 scope="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
 
 # Get the policy definition ID (filter by displayName)
-policyDefinitionId=$(az policy definition list \
-    --query "[?displayName=='$policyDefinitionName'].id | [0]" -o tsv)
+policyDefinitionId=$(az policy definition list --query "[?displayName=='$policyDefinitionName'].id | [0]" -o tsv)
 
 # Assign the policy
 az policy assignment create \
