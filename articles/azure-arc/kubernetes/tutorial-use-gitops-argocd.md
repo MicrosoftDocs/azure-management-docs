@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps"
 description: "This tutorial shows how to use GitOps with ArgoCD in Azure Arc and AKS clusters."
-ms.date: 10/06/2025
+ms.date: 02/02/2026
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -13,19 +13,19 @@ ms.custom:
 
 # Tutorial: Deploy applications using GitOps with ArgoCD
 
-This tutorial describes how to use GitOps in a Kubernetes cluster. GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment.
+This tutorial describes how to use GitOps in a Kubernetes cluster. GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment. ArgoCD also supports other common file sources, such as Helm and Open Container Initiative (OCI) repositories.
+
+> [!NOTE]
+> Starting with version 1.0.0-preview, the ArgoCD extension uses the [community Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). **This change is a breaking change as the configuration keys have changed**. If you installed a previous version (0.0.x) of the extension, uninstall the extension and reinstall the latest with updated configuration keys.
 
 > [!IMPORTANT]
 > GitOps with ArgoCD is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 > For production GitOps extension support, try the [GitOps extension using Flux](tutorial-use-gitops-flux2.md).
 
-> [!TIP]
-> While the source in this tutorial is a Git repository, ArgoCD supports other common file sources such as Helm and Open Container Initiative (OCI) repositories.
-
 ## Prerequisites
 
-To deploy applications using GitOps, you need either an Azure Arc-enabled Kubernetes cluster or an AKS cluster:
+To deploy applications using GitOps, you need either an Azure Arc-enabled Kubernetes cluster or an AKS cluster.
 
 #### Azure Arc-enabled Kubernetes clusters
 
@@ -84,6 +84,9 @@ To deploy applications using GitOps, you need either an Azure Arc-enabled Kubern
   Microsoft.KubernetesConfiguration  RegistrationRequired  Registered
   ```
 
+> [!TIP]
+> While the source in this tutorial is a Git repository, ArgoCD supports other common file sources such as Helm and Open Container Initiative (OCI) repositories.
+
 #### Version and region support
 
 GitOps is currently supported in [all regions that Azure Arc-enabled Kubernetes supports](https://azure.microsoft.com/global-infrastructure/services/?regions=all&products=kubernetes-service,azure-arc). GitOps is currently supported in a subset of the regions that AKS supports. The GitOps service is adding new supported regions on a regular cadence.
@@ -132,7 +135,7 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 The GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
 
 > [!IMPORTANT]
-> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. The command below adds `--config deployWithHighAvailability=false` to install the extension on a single node.
+> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. The command below adds `--config "redis-ha\.enabled=false` to install the extension on a single node.
 
  This command creates the simplest configuration installing the ArgoCD components to a new `argocd` namespace with cluster-wide access. Cluster-wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. For example: `namespace1,namespace2`
 
@@ -142,19 +145,21 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --name argocd \
 --extension-type Microsoft.ArgoCD \
 --release-train preview \
---config deployWithHighAvailability=false \
---config namespaceInstall=false \
+--config "redis-ha\.enabled=false" \
 --config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
 
-If you want to limit ArgoCD access to a specific namespace, use the `--config namespaceInstall=true` along with `--target-namespace <namespace>` parameters. This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`. The installation command also enables the ability to install multiple instances of ArgoCD in the same cluster. ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.
+This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`.  ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.
+
+> [!NOTE]
+> For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in your Azure CLI command when configuring the extension.
 
 ## Create GitOps (ArgoCD) extension with workload identity
 
 An alternative installation method recommended for production usage is [workload identity](/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
 
 > [!IMPORTANT]
-> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. Add `--config deployWithHighAvailability=false` to install the extension on a single node.
+> The HA mode is the default configuration and requires three nodes in the cluster to be able to install. Use `'redis-ha\\.enabled': false` to install the extension on a single node.
 
 To create the extension with workload identity, first replace the following variables with your own values in this Bicep template:
 
@@ -202,7 +207,8 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
     extensionType: 'Microsoft.ArgoCD'
     releaseTrain: 'preview'
     configurationSettings: {
-      'workloadIdentity.enable': 'true'
+      'redis-ha.enabled': 'true'
+      'azure.workloadIdentity.enabled': 'true'
       'workloadIdentity.clientId': workloadIdentityClientId
       'workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
       'config-maps.argocd-cm.data.oidc\\.config': oidcConfig
@@ -210,7 +216,14 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
       'config-maps.argocd-rbac-cm.data.policy\\.default': defaultPolicy
       'config-maps.argocd-rbac-cm.data.policy\\.csv': policy
       'config-maps.argocd-cmd-params-cm.data.application\\.namespaces': 'default, argocd'
-    }
+      'azure.workloadIdentity.clientId': workloadIdentityClientId
+      'azure.workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
+      'configs.cm.oidc\\.config': oidcConfig
+      'configs.cm.url': url
+      'configs.rbac.policy\\.default': defaultPolicy
+      'configs.rbac.policy\\.csv': policy
+      'configs.params.application\\.namespaces': 'default, argocd'
+   }
   }
 }
 ```
@@ -218,6 +231,9 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
 The Bicep template can be created using this command:
 
 `az deployment group create --resource-group <resource-group> --template-file <bicep-file>`
+
+> [!NOTE]
+> For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in the Bicep template when configuring the extension.
 
 ### Parameters
 
@@ -290,10 +306,10 @@ The AKS store demo application was installed into the `pets` namespace. See the 
 ArgoCD configmaps can be updated after installation and other extension configuration settings using the following command:
 
 ```azurecli
-az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.ArgoCD –-config "config-maps.argocd-cm.data.url='https://<public-ip-for-argocd-ui>/auth/callback'”
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.ArgoCD –-config "configs.cm.url='https://<public-ip-for-argocd-ui>/auth/callback'"
 ```
 
-It's important to update the ArgoCD configmap through the extension, so the settings don't get overwritten.  [Applying the bicep template](#create-gitops-argocd-extension-with-workload-identity) is an alternate method to the `az cli` to update the configuration.
+Update the ArgoCD configmap through the extension, so the settings don't get overwritten.  [Applying the Bicep template](#create-gitops-argocd-extension-with-workload-identity) is an alternate method to using Azure CLI to update the configuration.
 
 ## Delete the extension
 
