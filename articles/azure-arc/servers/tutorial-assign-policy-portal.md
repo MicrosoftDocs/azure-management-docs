@@ -106,8 +106,7 @@ az policy assignment create \
 You can also run the following command to display a list of the available policies by the policy name.
 
 ```azurecli-interactive
-az policy definition list \
-    --query "sort_by([], &displayName)[].{DisplayName:displayName, Name:name}" -o table
+az policy definition list --query "sort_by([], &displayName)[].{DisplayName:displayName, Name:name}" -o table
 ```
 
 ---
