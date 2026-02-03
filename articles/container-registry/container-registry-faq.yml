@@ -261,7 +261,7 @@ sections:
           This is usually due to the machine being on a slow network. Check your network download speed. To improve speed, consider using an Azure Virtual Machine (VM) in the same region as your registry to improve network speed.
           
       - question: |
-           Why does `docker pull` fail with error: `unauthorized: authentication required`
+          Why does `docker pull` fail with error: `unauthorized: authentication required`
         answer: |
           
           First, make sure you use an all lowercase server URL, for example, `docker push myregistry.azurecr.io/myimage:latest`, even if the registry resource name is uppercase or mixed case, like `myRegistry`.
