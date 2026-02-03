@@ -39,7 +39,7 @@ You can configure lists of the extensions that you want to allow and block on se
 
 ## Extensions
 
-Azure Arc-enabled servers supports a wide range of VM extensions for both Windows and Linux machines. The lists below highlight some of the most commonly used extensions. Each table includes the extension name, publisher, type, deployment or information link and supported OS link. The details below are required when installing or managing the extension via CLI, templates, or automation tools.
+Azure Arc-enabled servers support a wide range of VM extensions for both Windows and Linux machines. The lists below highlight some of the most commonly used extensions. Each table includes the extension name, publisher, type, deployment or information link and supported OS link. The details below are required when installing or managing the extension via CLI, templates, or automation tools.
 
 - Name: Name of the extension
 - Publisher: Confirms the source and trustworthiness of the extension, ensuring it comes from a recognized provider.
