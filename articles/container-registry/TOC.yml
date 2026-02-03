@@ -372,8 +372,12 @@
 - name: Troubleshoot
   expanded: false
   items:
-  - name: Troubleshoot login, authentication, and authorization issues
+  - name: FAQ
+    href: container-registry-faq.yml
+    displayName: frequently asked questions, issues, problems
+  - name: Troubleshoot authentication issues
     href: container-registry-troubleshoot-login-authn-authz.md
+    displayName: authentication, authorization, login, log in, signin, entra
   - name: Troubleshoot network issues
     href: container-registry-troubleshoot-access.md
   - name: Troubleshoot performance issues
@@ -381,18 +385,16 @@
   - name: Detect common issues
     href: container-registry-check-health.md
     displayName: check, health
-  - name: Technical Support policies
-    href: container-registry-support-policies.md
-  - name: FAQ
-    href: container-registry-faq.yml
-  - name: API Deprecation
-    href: container-registry-api-deprecation.md
   - name: Troubleshoot Artifact streaming
     href: troubleshoot-artifact-streaming.md
   - name: Troubleshoot Artifact cache
     href: troubleshoot-artifact-cache.md
   - name: Troubleshoot Continuous Patching
     href: troubleshoot-continuous-patching.md
+  - name: Technical support policies
+    href: container-registry-support-policies.md
+  - name: API deprecation
+    href: container-registry-api-deprecation.md
 - name: Resources
   expanded: false
   items:

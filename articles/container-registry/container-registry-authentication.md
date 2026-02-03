@@ -152,7 +152,7 @@ Update-AzContainerRegistry -Name <acrName> -ResourceGroupName myResourceGroup -E
 
 ---
 
-You can also enable the admin user for your registry in the Azure portal. In the resource menu, under **Settings**, select **Access keys**. Then check the **Admin user** box to enable the account. The admin username is displayed, along with the two passwords, which you can show or regenerate as needed.
+You can also enable the admin user for your registry in the Azure portal. In the service menu, under **Settings**, select **Access keys**. Then check the **Admin user** box to enable the account. The admin username is displayed, along with the two passwords, which you can show or regenerate as needed.
 
 ## Sign in by using an alternative container tool instead of Docker
 
