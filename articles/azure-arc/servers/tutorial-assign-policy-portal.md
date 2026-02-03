@@ -94,7 +94,8 @@ scope="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
 
 # Get the policy definition ID (filter by displayName)
 policyDefinitionId=$(az policy definition list \
-    --query "[?displayName=='$policyDefinitionName'].id | [0]" \ -o tsv)
+    --query "[?displayName=='$policyDefinitionName'].id | [0]" \
+    -o tsv)
 
 # Assign the policy
 az policy assignment create \
@@ -122,7 +123,7 @@ You're now ready to identify noncompliant resources to understand the compliance
 
    :::image type="content" source="./media/tutorial-assign-policy-portal/compliance-policy.png" alt-text="Screenshot of Policy Compliance page showing policy compliance for the selected scope." border="true":::
 
-   Any existing resources that aren't compliant with the new assignment shows **Non-compliant** under **Compliance state**.
+   Any existing resources that aren't compliant with the new assignment displays as **Non-compliant** under **Compliance state**.
 
 When a condition is evaluated against your existing resources and found true, those resources are marked as noncompliant with the policy. The following table shows how different policy effects work with the condition evaluation for the resulting compliance state. Although you don't see the evaluation logic in the Azure portal, the compliance state results are shown. The compliance state result is either **Compliant** or **Non-compliant**.
 
@@ -176,21 +177,22 @@ To remove the assignment that you created, follow these steps.
 1. If you know the assignment name and scope, run the following command:
 
    ```azurecli-interactive
-   az policy assignment delete \ --name "myPolicyAssignment" \ --scope
-   "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
+   az policy assignment delete \
+       --name "myPolicyAssignment" \
+       --scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
    ```
 
 1. If you don’t know the assignment name, run the following command to find it first:
 
    ```azurecli-interactive
-   az policy assignment list \ --query
-   "[?displayName=='Azure Defender for servers should be enabled']"
+   az policy assignment list \
+       --query "[?displayName=='Azure Defender for servers should be enabled']"
    ```
 
    Once you discover the assignment name, remove it with the following command:
 
    ```azurecli-interactive
-   az policy assignment delete --name "<assignmentName>"
+   az policy assignment delete --name "<myPolicyAssignment>"
    ```
 
 ---
