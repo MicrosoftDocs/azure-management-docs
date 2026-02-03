@@ -209,13 +209,6 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
     configurationSettings: {
       'redis-ha.enabled': 'true'
       'azure.workloadIdentity.enabled': 'true'
-      'workloadIdentity.clientId': workloadIdentityClientId
-      'workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
-      'config-maps.argocd-cm.data.oidc\\.config': oidcConfig
-      'config-maps.argocd-cm.data.url': url
-      'config-maps.argocd-rbac-cm.data.policy\\.default': defaultPolicy
-      'config-maps.argocd-rbac-cm.data.policy\\.csv': policy
-      'config-maps.argocd-cmd-params-cm.data.application\\.namespaces': 'default, argocd'
       'azure.workloadIdentity.clientId': workloadIdentityClientId
       'azure.workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
       'configs.cm.oidc\\.config': oidcConfig
