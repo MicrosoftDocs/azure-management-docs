@@ -498,8 +498,8 @@ Once access prerequisites are met, you can refresh the guard webhook certificate
 ```
 kubectl rollout restart deployment/guard -n azure-arc
 ```
-1.	For a [Generic cluster where no reconciler is running on the apiserver specification](#Generic-cluster-where-no-reconciler-is-running-on-the-apiserver-specification), you should perform step 1a and then restart the kube-apiserver pod. 
-1. For a [Cluster created by using Cluster API](#Cluster-created-by-using-Cluster-API), you should perform steps 1-3. After steps 1-3 are completed, you need to trigger a re-reconcile of the KubeadmControlPlane object to apply the new webhook configs to the workload cluster. Step #4 (edit the CR) may trigger a re-reconcile of the KubeadmControlPlane object.
+1.	For a [Generic cluster where no reconciler is running on the apiserver specification](#generic-cluster-where-no-reconciler-is-running-on-the-apiserver-specification), you should perform step 1a and then restart the kube-apiserver pod. 
+1. For a [Cluster created by using Cluster API](#cluster-created-by-using-cluster-api), you should perform steps 1-3. After steps 1-3 are completed, you need to trigger a re-reconcile of the KubeadmControlPlane object to apply the new webhook configs to the workload cluster. Step #4 (edit the CR) may trigger a re-reconcile of the KubeadmControlPlane object.
 
 
 ## Next steps
