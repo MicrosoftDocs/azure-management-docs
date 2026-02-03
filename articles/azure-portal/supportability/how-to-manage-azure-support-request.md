@@ -50,7 +50,7 @@ Follow these steps if you need to change the severity level of an existing suppo
 
       :::image type="content" source="media/how-to-manage-azure-support-request/unassigned-can-change-severity.png" alt-text="Select a new severity level":::
 
-    - If a support engineer is assigned, you see a screen like the following. Select **OK**, and then [send a message](#send-a-message) requesting the severity level change.
+    - If a support engineer is assigned, you see a screen like the following. Select **OK**, and then [send a message](#send-a-message-about-a-support-request) requesting the severity level change.
 
       :::image type="content" source="media/how-to-manage-azure-support-request/assigned-cant-change-severity.png" alt-text="Can't select a new severity level":::
 
