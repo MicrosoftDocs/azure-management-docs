@@ -183,7 +183,7 @@ sections:
         answer: |
           Yes, you can use trusted images in Azure Container Registry with [Docker Content Trust](https://docs.docker.com/notary/getting_started/). For details, see [Manage signed images by using Docker Content Trust in Azure Container Registry](container-registry-content-trust.md).
               
-          The file for the thumbprint is located under `~/.docker/trust/private/tuf/myregistry.azurecr.io/myrepository/keys`:         Under `~/.docker/trust/tuf/myregistry.azurecr.io/myrepository/metadata`:
+          The file for the thumbprint is located under `~/.docker/trust/private/tuf/myregistry.azurecr.io/myrepository/metadata`:
           
           * Public keys and certificates of all roles (except delegation roles) are stored in the `root.json`.
           * Public keys and certificates of the delegation role are stored in the JSON file of its parent role (for example `targets.json` for the `targets/releases` role).
@@ -327,7 +327,7 @@ sections:
               Now you have access to all the files of the VM running `dockerd`. The log is at `/var/log/docker.log`.
           
       - question:  |
-          Whey aren't new user permissions effective immediately after they're granted?
+          Why aren't new user permissions effective immediately after they're granted?
         answer: |
           Microsoft Entra role assignments usually happen quickly, but there can be occasional delays. You might also experience a permission delay of up to 10 minutes on the ACR token server. To mitigate, run `docker logout`, wait one minute, and then authenticate again with the same user credentials:
           
