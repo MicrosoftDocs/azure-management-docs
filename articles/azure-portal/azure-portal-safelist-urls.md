@@ -55,6 +55,7 @@ login.live.com
 ```
 *.portal.azure.com
 *.hosting.portal.azure.net
+*.hosting-ms.portal.azure.net
 *.reactblade.portal.azure.net
 management.azure.com
 *.ext.azure.com
