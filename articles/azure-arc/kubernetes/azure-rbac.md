@@ -71,7 +71,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 
 Next, follow the steps in the appropriate section, depending on whether you're using a generic cluster where no reconciler is running on the `apiserver` specification, or a cluster created by using Cluster API.
 
-### Generic cluster where no reconciler is running on the `apiserver` specification
+### Generic cluster where no reconciler is running on the apiserver specification
 
 1. SSH into every master node of the cluster, then complete the following steps:
 
@@ -350,7 +350,17 @@ After the proxy process is running, you can open another tab in your console to 
      sudo chmod +x /usr/local/bin/kubelogin 
      ```
 
-1. Kubelogin can be used to authenticate with Azure Arc-enabled clusters by requesting a proof-of-possession (PoP) token. [Convert](https://azure.github.io/kubelogin/concepts/azure-arc.html) the kubeconfig using kubelogin to use the appropriate [login mode](https://azure.github.io/kubelogin/concepts/login-modes.html). For example, for [device code login](https://azure.github.io/kubelogin/concepts/login-modes/devicecode.html) with a Microsoft Entra user, the commands would be as follows:
+1. Kubelogin can be used to authenticate with Azure Arc-enabled clusters by requesting a proof-of-possession (PoP) token. [Convert](https://azure.github.io/kubelogin/concepts/azure-arc.html) the kubeconfig using kubelogin to use the appropriate [login mode](https://azure.github.io/kubelogin/concepts/login-modes.html). Below are the commands for interactive login or device code login with an Entra user account:
+
+For [interactive login with a Microsoft Entra user](https://azure.github.io/kubelogin/concepts/login-modes/interactive.html), the command would be as follows:
+
+   ```bash
+   export KUBECONFIG=/path/to/kubeconfig
+
+   kubelogin convert-kubeconfig -l interactive --pop-enabled --pop-claims "u=/ARM/ID/OF/CLUSTER"
+   ```
+
+For [device code login](https://azure.github.io/kubelogin/concepts/login-modes/devicecode.html) with a Microsoft Entra user, the commands would be as follows:
 
    ```bash
    export KUBECONFIG=/path/to/kubeconfig
@@ -457,6 +467,40 @@ node-1    Ready    agent    6m36s    v1.18.14
 node-2    Ready    agent    6m42s    v1.18.14
 node-3    Ready    agent    6m33s    v1.18.14
 ```
+
+## Maintain Azure RBAC certificate
+
+Azure RBAC on Azure Arc–enabled Kubernetes clusters uses the Azure Arc Guard authorization webhook. On unmanaged Kubernetes clusters (such as k3s), the guard webhook certificates are stored on disk and require manual rotation. The guard webhook certificate expires in one year from the date of creation or last refresh and should be updated annually before the expiration. The expiry date can be checked via the guard-authz-webhook certificate file or the Guard authentication file on disk.
+
+Manual maintenance is required if Guard webhook client certificates stored on disk expire. When this occurs, API server authorization requests fail even though the cluster and workloads remain healthy. If the guard webhook certificate expires, you may see the following:
+-	kubectl commands failing with TLS errors such as tls: bad certificate. 
+
+Example: 
+```
+Error from server (InternalError): an error on the server ("Internal Server Error: \"/api/v1/nodes?limit=500\": Post \"https://192.168.X.X:443/subjectaccessreviews?timeout=30s\": remote error: tls: bad certificate") has prevented the request from succeeding (get nodes)
+```
+
+- Azure CLI operations against the cluster failing
+-	API server or Guard logs showing TLS handshake or certificate expiration errors, such as x509: certificate has expired. Example:
+
+```
+http: TLS handshake error from 192.168.0.0:65062: tls: failed to verify certificate: x509: certificate has expired or is not yet valid:
+```
+To fix the issue, you should refresh the Azure RBAC guard webhook certificate. You’ll need the following access to perform the fix: 
+
+Prerequisites
+-	Read access to secrets in the kube-system namespace in the affected cluster.
+-	For non-Cluster API clusters, SSH access to the system/master nodes of the cluster.
+-	For Cluster API clusters, access to the management cluster where the workload clusters are created.
+
+Once access prerequisites are met, you can refresh the guard webhook certificate by performing the following steps:
+1.	Refresh the guard webhook certificate by running the following command: 
+```
+kubectl rollout restart deployment/guard -n azure-arc
+```
+1.	For a [Generic cluster where no reconciler is running on the apiserver specification](#generic-cluster-where-no-reconciler-is-running-on-the-apiserver-specification), you should perform step 1a and then restart the kube-apiserver pod. 
+1. For a [Cluster created by using Cluster API](#cluster-created-by-using-cluster-api), you should perform steps 1-3. After steps 1-3 are completed, you need to trigger a re-reconcile of the KubeadmControlPlane object to apply the new webhook configs to the workload cluster. Step #4 (edit the CR) may trigger a re-reconcile of the KubeadmControlPlane object.
+
 
 ## Next steps
 
