@@ -88,12 +88,12 @@ Set up your variables for the policy you want to assign. The following command r
 ```azurecli-interactive
 # Variables
 assignmentName="myPolicyAssignment" \
-policyDefinitionName="Azure Defender for servers should be
-enabled" \
+policyDefinitionName="Azure Defender for servers should be enabled" \
 scope="/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
 
 # Get the policy definition ID (filter by displayName)
-policyDefinitionId=$(az policy definition list --query "[?displayName=='$policyDefinitionName'].id | [0]" -o tsv)
+policyDefinitionId=$(az policy definition list \
+    --query "[?displayName=='$policyDefinitionName'].id | [0]" -o tsv)
 
 # Assign the policy
 az policy assignment create \
