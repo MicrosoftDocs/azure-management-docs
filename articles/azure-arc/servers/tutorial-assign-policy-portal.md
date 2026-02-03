@@ -23,8 +23,7 @@ This tutorial teaches you how to:
 
 * If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) account before you begin.
 
-* The Azure PowerShell module must be installed on your device if you choose to use this command-line method. To learn more, see [How to install Azure PowerShell
-](/powershell/azure/install-azure-powershell).
+* The Azure PowerShell module must be installed on your device if you choose to use this command-line method. To learn more, see [How to install Azure PowerShell](/powershell/azure/install-azure-powershell).
 
 ## Create a policy assignment
 
@@ -152,8 +151,9 @@ To remove the assignment that you created, follow these steps.
 1. If you know the assignment name and scope, run the following command:
 
    ```azurepowershell
-   Remove-AzPolicyAssignment -Name "myPolicyAssignment" -Scope
-   "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
+   Remove-AzPolicyAssignment `
+     -Name "myPolicyAssignment" `
+     -Scope "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>"
    ```
 
 1. If you don’t know the assignment name, run the following command to find it first:
