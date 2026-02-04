@@ -209,7 +209,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
     ```azurecli
     az deployment group create \
       --resource-group <resource-group-name> \
-      --template-file registryZone.bicep \
+      --template-file replicaZone.bicep \
       --parameters containerRegistryName=<registry-name> replicaLocation=<replica-location>
     ```
 
