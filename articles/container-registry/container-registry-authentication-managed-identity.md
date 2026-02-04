@@ -36,7 +36,7 @@ You can use either Azure CLI or Azure PowerShell to complete the steps in this a
 
 To set up a container registry and push a container image to it, you must also have Docker installed locally. Docker provides packages that easily configure Docker on any [macOS][docker-mac], [Windows][docker-windows], or [Linux][docker-linux] system.
 
-If you don't already have an Azure container registry, create a registry and push a sample container image to it. For steps, see [Quickstart: Create a private container registry using the Azure CLI](container-registry-get-started-azure-cli.md) or [Quickstart: Create a private container registry using Azure PowerShell](container-registry-get-started-powershell.md).
+If you don't already have an Azure container registry, create a registry and push a sample container image to it. Follow the steps to create a registry by using [the Azure CLI](container-registry-get-started-azure-cli.md), [Azure PowerShell](container-registry-get-started-powershell.md), or the [Azure portal](container-registry-get-started-portal.md).
 
 This article assumes you have the `aci-helloworld:v1` container image stored in your registry. The examples use a registry name of *myContainerRegistry*. You can replace these with your own registry and image names.
 
@@ -122,16 +122,17 @@ This message shows that your installation appears to be working correctly.
 
 Follow the steps in [Install Azure CLI with apt](/cli/azure/install-azure-cli-linux?pivots=apt) to install the Azure CLI on your Ubuntu virtual machine. For this article, be sure to install the most recent version.
 
+After installing the Azure CLI, exit the SSH session.
+
 ### [Azure PowerShell](#tab/azure-powershell)
 
 Follow the steps in [Installing PowerShell on Ubuntu][powershell-install] and [Install the Azure Az PowerShell module][azure-powershell-install] to install PowerShell and Azure PowerShell on your Ubuntu virtual machine. For this article, be sure to install Azure PowerShell version 7.5.0 or later.
 
-> [!TIP]
-> Depending on your VM's setup, you might need to run Azure PowerShell commands and docker commands with `sudo`.
+Depending on your VM's setup, you might need to use `sudo` to run the Azure PowerShell commands and docker commands in this article.
+
+After installing Azure PowerShell, exit the SSH session.
 
 ---
-
-Exit the SSH session.
 
 ## Configure the VM with a user-assigned managed identity
 
@@ -285,7 +286,7 @@ az acr login --name myContainerRegistry
 
 You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [`docker pull`][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
 
-```
+```bash
 docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 ```
 
