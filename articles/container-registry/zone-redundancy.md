@@ -56,7 +56,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 1. Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
 
-1. Create a zone-enabled registry in the Premium service tier by running the [az acr create](/cli/azure/acr#az-acr-create) command (replace `<resource-group-name>`, `<container-registry-name>`, and `<region-name>` with your values):
+1. Create a zone-enabled registry in the Premium service tier by running [az acr create](/cli/azure/acr#az-acr-create), replacing  `<resource-group-name>`, `<container-registry-name>`, and `<region-name>` with your own values:
 
     ```azurecli
     az acr create \
@@ -84,9 +84,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     az group create --name <resource-group-name> --location <location>
     ```
 
-1. To create a zone-redundant registry, copy the following Bicep file to a new file and save it using a filename such as `registryZone.bicep`. 
-
-    By default, the Bicep file enables zone redundancy in the registry.
+1. To create a zone-redundant registry, copy the following Bicep file to a new file and save it using a filename such as `registryZone.bicep`. By default, the Bicep file enables zone redundancy in the registry.
 
     ```bicep
     @description('Globally unique name of your Azure Container Registry')
@@ -125,7 +123,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     output containerRegistryLoginServer string = containerRegistry.properties.loginServer
     ```
 
-1. Run the following [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) command to create the registry using the preceding template file (replace `<resource-group-name>` and `<registry-name>` with your values). 
+1. Run [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) create the registry using the template file you saved, replacing `<resource-group-name>` and `<registry-name>` with your values.
 
      >[!NOTE]
      > If you deploy the template without parameters, it creates a unique name for you.
@@ -141,7 +139,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 ## Create a zone-redundant geo-replica
 
-You can set up a zone-redundant replica in an Azure region separate to your registry's home region.
+You can set up a zone-redundant replica in an Azure region separate from your registry's home region.
 
 [Geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) in the [Premium tier of Azure Container Registry](container-registry-skus.md) replicates your container registry's contents to multiple Azure regions. If your Premium registry uses geo-replication, your replicas will also be zone redundant when the replica is provisioned in a region that supports availability zones.
 
@@ -169,7 +167,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
 1. Make sure that you have the latest version of Azure CLI. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
-1. Create zone-redundant replication by running [az acr replication create](/cli/azure/acr/replication#az-acr-replication-create) (replace `<resource-group-name>`, `<container-registry-name>`, and `<replica-region>` with your values):
+1. Create zone-redundant replication by running [az acr replication create](/cli/azure/acr/replication#az-acr-replication-create), replacing  `<resource-group-name>`, `<container-registry-name>`, and `<replica-region>` with your own values:
 
     ```azurecli
     az acr replication create \
@@ -190,9 +188,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
 ### [Bicep](#tab/bicep)
 
-1. To create a geo-replica for your existing registry, copy the following Bicep template to a new file and save it using a filename such as `replicaZone.bicep`. 
-
-    By default, the template enables zone redundancy the regional replica.
+1. To create a geo-replica for your existing registry, copy the following Bicep template to a new file and save it using a filename such as `replicaZone.bicep`. By default, the template enables zone redundancy for the regional replica.
 
     ```bicep
     @description('Globally unique name of your Azure Container Registry')
@@ -221,8 +217,8 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
       }
     }
     ```
-    
-1. Run the following [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) command to create the registry using the preceding template file (replace `<resource-group-name>`, `<registry-name>`, and `<replica-location>` with your values). 
+
+1. Run [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) to create the registry using the template file you saved, replacing `<resource-group-name>`, `<registry-name>`, and `<replica-location>` with your values.
 
     ```azurecli
     az deployment group create \
