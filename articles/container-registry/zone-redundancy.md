@@ -1,34 +1,28 @@
 ---
-title: Create a zone-redundant registry in Azure Container Registry
+title: Zone redundancy in Azure Container Registry
 description: Learn how to create a zone-redundant registry in Azure Container Registry
 ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
-ms.date: 07/24/2025
+ms.date: 02/04/2026
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry
 
 # Customer intent: As a cloud architect, I want to configure zone redundancy for Azure Container Registry, so that I can ensure high availability and resiliency for container images within a specific region.
 ---
 
-# Create a zone-redundant registry in Azure Container Registry
+# Zone redundancy in Azure Container Registry
 
-This article describes how to set up a zone-redundant container registry.
-
-Zone redundancy is enabled by default for all Azure Container Registries in regions that support availability zones, making your resources more resilient automatically and at no additional cost. This enhancement applies to all SKUs including Basic and Standard and has been rolled out to both new and existing registries in supported regions.
-
->[!IMPORTANT]
->The Azure portal and CLI may not yet reflect the zone redundancy update accurately. The `zoneRedundancy` property in your registry’s configuration might still show as false even though zone redundancy is active for all registries in supported regions. We’re actively updating the portal and API surfaces to reflect this default behavior more transparently. All previously enabled features will continue to function as expected.
+Zone redundancy is enabled by default for all Azure Container Registries in regions that support availability zones, making your resources more resilient automatically and at no additional cost. This enhancement applies to all SKUs, including Basic and Standard, and has been rolled out to both new and existing registries in supported regions. For Premium registries that use geo-replication, all replicas in supported regions are also zone redundant by default.
 
 For more information about availability zone support requirements and features, as well as multi-region deployment options, see [Reliability in Azure Container Registry](/azure/reliability/reliability-container-registry).
 
-## Prerequisites
+> [!IMPORTANT]
+> The Azure portal and other tooling might not yet reflect the zone redundancy update accurately. The `zoneRedundancy` property in your registry’s configuration might still show as false, but zone redundancy is active for all registries in supported regions. We're actively updating the portal and API surfaces to reflect this default behavior more transparently. All previously enabled features continue to function as expected.
 
-- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+This article describes how to create zone-redundant registries and geo-replicas in Azure Container Registry.
 
-- Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
-
-## Create a zone-redundant registry
+## Create a zone-redundant registry in Azure Container Registry
 
 To create a zone-redundant registry in the Premium service tier, use Azure portal, Azure CLI, or a Bicep file.
 
@@ -44,18 +38,15 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 1. In **SKU**, select **Premium**.
 
-1. In **Availability zones**, select **Enabled**.
+1. In **Use availability zones**, ensure that **Enabled** is selected.
 
 1. Optionally, configure more registry settings, and then select **Review + create**.
 
 1. Select **Create** to deploy the registry instance.
 
-    :::image type="content" source="media/zone-redundancy/enable-availability-zones-portal.png" alt-text="Enable zone redundancy in Azure portal.":::
-
-
 ### [Azure CLI](#tab/cli)
 
-1. Make sure that you have Azure CLI version 2.17.0 or later, or Azure Cloud Shell. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+1. Make sure that you have the latest version of Azure CLI. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
 1. If you don't have a resource group in a region that supports availability zones, run [az group create](/cli/azure/group#az-group-create) to create a resource group (replace `<resource-group-name>` and `<location>` with your values):
 
@@ -65,7 +56,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 1. Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
 
-1. Create a zone-enabled registry in the Premium service tier by running the [az acr create](/cli/azure/acr#az-acr-create) command (replace `<resource-group-name>`, `<container-registry-name>`, and `<region-name>` with your values):
+1. Create a zone-enabled registry in the Premium service tier by running [az acr create](/cli/azure/acr#az-acr-create), replacing  `<resource-group-name>`, `<container-registry-name>`, and `<region-name>` with your own values:
 
     ```azurecli
     az acr create \
@@ -76,16 +67,9 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
       --sku Premium
     ```
 
-1. In the command output, note the `zoneRedundancy` property for the registry. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant:
-    
-    ```JSON
-    {
-      [...]
-      "zoneRedundancy": "Enabled"
-    }
-    ```
+1. In the command output, note the `zoneRedundancy` property for the registry. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant.
 
-### [Bicep](#tab/biep)
+### [Bicep](#tab/bicep)
 
 1. If you don't have a resource group in a region that supports availability zones, run [az group create](/cli/azure/group#az-group-create) to create a resource group (replace `<resource-group-name>` and `<location>` with your values):
 
@@ -93,9 +77,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     az group create --name <resource-group-name> --location <location>
     ```
 
-1. To create a zone-redundant registry, copy the following Bicep file to a new file and save it using a filename such as `registryZone.bicep`. 
-
-    By default, the Bicep file enables zone redundancy in the registry.
+1. To create a zone-redundant registry, copy the following Bicep file to a new file and save it using a filename such as `registryZone.bicep`. By default, the Bicep file enables zone redundancy in the registry.
 
     ```bicep
     @description('Globally unique name of your Azure Container Registry')
@@ -133,18 +115,102 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
     output containerRegistryLoginServer string = containerRegistry.properties.loginServer
     ```
-    
-1. Run the following [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) command to create the registry using the preceding template file (replace `<resource-group-name>` and `<registry-name>` with your values). 
+
+1. Run [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) create the registry using the template file you saved, replacing `<resource-group-name>` and `<registry-name>` with your values.
 
      >[!NOTE]
      > If you deploy the template without parameters, it creates a unique name for you.
 
-    
     ```azurecli
     az deployment group create \
       --resource-group <resource-group-name> \
-      --template-file registryZone.json \
+      --template-file registryZone.bicep \
       --parameters containerRegistryName=<registry-name> 
+    ```
+
+---
+
+## Create a zone-redundant geo-replica
+
+You can set up a zone-redundant replica in an Azure region separate from your registry's home region.
+
+[Geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) in the [Premium tier of Azure Container Registry](container-registry-skus.md) replicates your container registry's contents to multiple Azure regions. If your Premium registry uses geo-replication, your replicas will also be zone redundant when the replica is provisioned in a region that supports availability zones.
+
+ Follow the steps below to create a zone-redundant replica for a container registry that uses the Premium service tier. If you don't have one already, follow the steps in [Create a zone-redundant registry in Azure Container Registry](./zone-redundancy.md).
+
+To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file.
+
+### [Azure portal](#tab/portal)
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. Go to your Premium tier container registry. In the service menu, under **Services**, select **Geo-replications**.
+
+1. On the map that appears, do one of the following:
+
+    - Select a green hexagon in a region that [supports availability zones](/azure/reliability/regions-list), such as **West US 2**.
+
+    - Select **+ Add**.
+
+1. In the **Create replication** window, confirm the **Location**.
+
+    In **Use availability zones**, select **Enabled**, and then select **Create**.
+
+### [Azure CLI](#tab/cli)
+
+1. Make sure that you have the latest version of Azure CLI. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+
+1. Create zone-redundant replication by running [az acr replication create](/cli/azure/acr/replication#az-acr-replication-create), replacing  `<resource-group-name>`, `<container-registry-name>`, and `<replica-region>` with your own values:
+
+    ```azurecli
+    az acr replication create \
+      --location <region-name> \
+      --resource-group <resource-group-name> \
+      --registry <container-registry-name> \
+      --zone-redundancy enabled
+    ```
+
+1. In the command output, note the `zoneRedundancy` property for the replica. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant.
+
+### [Bicep](#tab/bicep)
+
+1. To create a geo-replica for your existing registry, copy the following Bicep template to a new file and save it using a filename such as `replicaZone.bicep`. By default, the template enables zone redundancy for the regional replica.
+
+    ```bicep
+    @description('Globally unique name of your Azure Container Registry')
+    param containerRegistryName string
+
+    @description('Short name for registry replica location, such as australiaeast or westus.')
+    param replicaLocation string
+
+    @description('Enable zone redundancy of registry replica. Requires replica location to support availability zones.')
+    @allowed([
+      'Enabled'
+      'Disabled'
+    ])
+    param replicaZoneRedundancy string = 'Enabled'
+
+    resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
+      name: containerRegistryName
+    }
+
+    resource containerRegistryReplica 'Microsoft.ContainerRegistry/registries/replications@2025-04-01' = {
+      parent: containerRegistry
+      name: replicaLocation
+      location: replicaLocation
+      properties: {
+        zoneRedundancy: replicaZoneRedundancy
+      }
+    }
+    ```
+
+1. Run [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) to create the registry using the template file you saved, replacing `<resource-group-name>`, `<registry-name>`, and `<replica-location>` with your values.
+
+    ```azurecli
+    az deployment group create \
+      --resource-group <resource-group-name> \
+      --template-file replicaZone.bicep \
+      --parameters containerRegistryName=<registry-name> replicaLocation=<replica-location>
     ```
 
 ---
