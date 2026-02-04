@@ -70,10 +70,8 @@
       items:
       - name: Reliability in Azure Container Registry
         href: /azure/reliability/reliability-container-registry?toc=/azure/container-registry/TOC.json&bc=/azure/container-registry/breadcrumb/toc.json
-      - name: Create a zone-redundant registry
+      - name: Zone-redundant registries
         href: zone-redundancy.md
-      - name: Create a zone-redundant replica
-        href: zone-redundancy-replica.md
     - name: Container registry tiers and limits
       href: container-registry-skus.md
     - name: Registries, repositories, and images
