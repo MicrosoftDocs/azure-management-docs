@@ -67,14 +67,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
       --sku Premium
     ```
 
-1. In the command output, note the `zoneRedundancy` property for the registry. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant:
-
-    ```JSON
-    {
-      [...]
-      "zoneRedundancy": "Enabled"
-    }
-    ```
+1. In the command output, note the `zoneRedundancy` property for the registry. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant.
 
 ### [Bicep](#tab/bicep)
 
@@ -176,15 +169,8 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
       --registry <container-registry-name> \
       --zone-redundancy enabled
     ```
- 
-1. In the command output, note the `zoneRedundancy` property for the replica. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant:
 
-    ```JSON
-    {
-      [...]
-      "zoneRedundancy": "Enabled"
-    }
-    ```
+1. In the command output, note the `zoneRedundancy` property for the replica. When `zoneRedundancy` is set to `"Enabled"`, the registry is zone redundant.
 
 ### [Bicep](#tab/bicep)
 
