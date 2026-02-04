@@ -247,8 +247,10 @@
         href: container-registry-tutorial-verify-with-ratify-aks.md
       - name: Content trust
         href: container-registry-content-trust.md
-      - name: Transition from Docker Content Trust to the Notary Project
+        displayName: dct, docker content trust
+      - name: Transition from DCT to Notary Project
         href: container-registry-content-trust-deprecation.md
+        displayName: dpcker cntent trust, content, trust
     - name: Vulnerability management and patching
       items:
       - name: Continuous patching concepts
