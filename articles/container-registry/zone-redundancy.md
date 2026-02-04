@@ -78,7 +78,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     }
     ```
 
-### [Bicep](#tab/biep)
+### [Bicep](#tab/bicep)
 
 1. If you don't have a resource group in a region that supports availability zones, run [az group create](/cli/azure/group#az-group-create) to create a resource group (replace `<resource-group-name>` and `<location>` with your values):
 
