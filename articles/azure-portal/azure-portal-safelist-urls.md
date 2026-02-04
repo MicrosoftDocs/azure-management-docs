@@ -13,24 +13,24 @@ To optimize connectivity between your network and the Azure portal and its servi
 Network administrators often deploy proxy servers, firewalls, or other devices, which can help secure and give control over how users access the internet. Rules designed to protect users can sometimes block or slow down legitimate business-related internet traffic. This traffic includes communications between you and Azure over the URLs listed here.
 
 > [!TIP]
-> For help diagnosing issues with network connections to these domains, visit [Self-diagnostics](https://portal.azure.com/selfhelp).
+> For help with diagnosing issues with network connections to these domains, visit [Self-diagnostics](https://portal.azure.com/selfhelp).
 
 You can use [service tags](/azure/virtual-network/service-tags-overview) to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of fully qualified domain names (FQDNs) or specific IP addresses when you create security rules and routes.
 
 ## Azure portal URLs for proxy bypass
 
-The URL endpoints to allow for the Azure portal are specific to the Azure cloud where your organization is deployed. To allow network traffic to these endpoints to bypass restrictions, select your cloud, then add the list of URLs to your proxy server or firewall. We do not recommend adding any additional portal-related URLs aside from those listed here, although you may want to add URLs related to other Microsoft products and services. Depending on which services you use, you may not need to include all of these URLs in your allowlist.
+The URL endpoints to allow for the Azure portal are specific to the Azure cloud where your organization is deployed. To allow network traffic to these endpoints to bypass restrictions, select your cloud, then add the list of URLs to your proxy server or firewall. We don't recommend adding any other portal-related URLs aside from the endpoints listed here, although you may want to add URLs related to other Microsoft products and services. Depending on which services you use, you may not need to include all of these URLs in your allowlist.
 
 > [!IMPORTANT]
-> Including the wildcard symbol (\*) at the start of an endpoint will allow all subdomains. For endpoints with wildcards, we also advise you to add the URL without the wildcard. For example, you should add both `*.portal.azure.com` and `portal.azure.com` to ensure that access to the domain is allowed with or without a subdomain.
+> Including the wildcard symbol (\*) at the start of an endpoint allows all subdomains. For endpoints with wildcards, we also advise you to add the URL without the wildcard. For example, you should add both `*.portal.azure.com` and `portal.azure.com` to ensure that access to the domain is allowed with or without a subdomain.
 >
-> Avoid adding a wildcard symbol to endpoints listed here that don't already include one. Instead, if you identify additional subdomains of an endpoint that are needed for your particular scenario, we recommend that you allow only that particular subdomain.
+> Avoid adding a wildcard symbol to endpoints listed here that don't already include one. Instead, if you identify specific subdomains of an endpoint that are needed for your particular scenario, we recommend that you allow only that particular subdomain.
 
 ### [Public Cloud](#tab/public-cloud)
 
 > [!TIP]
-> The service tags required to access the Azure portal (including authentication and resource listing) are **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.Frontend**, and **AzureFrontDoor.FirstParty**. Access to other services may require additional permissions, as described below.  
-> However, there is a possibility that unnecessary communication other than communication to access the portal may also be allowed. If granular control is required, FQDN-based access control such as Azure Firewall is required.
+> The service tags required to access the Azure portal (including authentication and resource listing) are **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.Frontend**, and **AzureFrontDoor.FirstParty**. Access to other services may require additional permissions, as described here.  
+> However, it's possible that unnecessary communication, other than communication to access the portal, may also be allowed. If granular control is required, FQDN-based access control such as Azure Firewall is required.
 
 #### Azure portal authentication
 
@@ -48,13 +48,14 @@ login.live.com
 ```
 
 > [!IMPORTANT]
-> Depending on your environment, you may need to allow additional URLs related to authentication, such as those listed in sections 56, 59, and 97 of [Microsoft 365 URLs and IP address ranges](/microsoft-365/enterprise/urls-and-ip-address-ranges#microsoft-365-common-and-office-online).
+> Depending on your environment, you might need to allow additional URLs related to authentication, such as those listed in sections 56, 59, and 97 of [Microsoft 365 URLs and IP address ranges](/microsoft-365/enterprise/urls-and-ip-address-ranges#microsoft-365-common-and-office-online).
 
 #### Azure portal framework
 
 ```
 *.portal.azure.com
 *.hosting.portal.azure.net
+*.hosting-ms.portal.azure.net
 *.reactblade.portal.azure.net
 management.azure.com
 *.ext.azure.com

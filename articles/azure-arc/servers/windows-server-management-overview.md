@@ -20,6 +20,7 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 |Network HUD  |Windows Server 2025 only  |A host networking diagnostics and operational tool. Runs spot checks, health checks, and cluster wide checks to make sure your host networking set-up is healthy and set up in an optimal and expected way.  |
 |Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
 |Azure Site Recovery Configuration  |Windows Server 2016 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
+|Azure File Sync | Windows Server 2016 and above  | Arc-enabled Windows servers will receive discounted per-server pricing for Azure File Sync. This benefit applies when running agents V22 or later, providing customers with a cost advantage. |
 
 Together, these capabilities afford robust governance, configuration, and remote management capabilities for Azure Arc-enabled server customers.  
 
@@ -39,6 +40,7 @@ Upon attestation, customers receive access to the following at no additional cos
 - Network HUD
 - Best Practices Assessment
 - Azure Site Recovery Configuration
+- Azure File Sync
 
 Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
 

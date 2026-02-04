@@ -26,7 +26,7 @@ To capture your portal session ID and related diagnostic data:
 1. In your active Azure portal session, press **Ctrl + Alt + A**. This action automatically generates a file named PortalDiagnostics.json.
 1. Save the PortalDiagnostics.json file to your local machine.
 
-You can then [include the PortalDiagnostics.json file in your support request](supportability/how-to-manage-azure-support-request.md#upload-files), along with your browser trace and any other relevant diagnostic files.
+You can then [include the PortalDiagnostics.json file in your support request](supportability/how-to-manage-azure-support-request.md#upload-files-to-a-support-request), along with your browser trace and any other relevant diagnostic files.
 
 ## Capture an Azure portal browser trace in Microsoft Edge
 
@@ -68,7 +68,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
-1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
+1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files-to-a-support-request).
 
 ## Capture an Azure portal browser trace in Google Chrome
 
@@ -110,7 +110,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
-1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
+1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files-to-a-support-request).
 
 ## Capture an Azure portal browser trace in Safari
 
@@ -160,7 +160,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
-1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
+1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files-to-a-support-request).
 
 ## Capture an Azure portal browser trace in Firefox
 

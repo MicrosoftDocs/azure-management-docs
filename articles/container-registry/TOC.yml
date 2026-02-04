@@ -70,10 +70,8 @@
       items:
       - name: Reliability in Azure Container Registry
         href: /azure/reliability/reliability-container-registry?toc=/azure/container-registry/TOC.json&bc=/azure/container-registry/breadcrumb/toc.json
-      - name: Create a zone-redundant registry
+      - name: Zone-redundant registries
         href: zone-redundancy.md
-      - name: Create a zone-redundant replica
-        href: zone-redundancy-replica.md
     - name: Container registry tiers and limits
       href: container-registry-skus.md
     - name: Registries, repositories, and images
@@ -372,8 +370,12 @@
 - name: Troubleshoot
   expanded: false
   items:
-  - name: Troubleshoot login, authentication, and authorization issues
+  - name: FAQ
+    href: container-registry-faq.yml
+    displayName: frequently asked questions, issues, problems
+  - name: Troubleshoot authentication issues
     href: container-registry-troubleshoot-login-authn-authz.md
+    displayName: authentication, authorization, login, log in, signin, entra
   - name: Troubleshoot network issues
     href: container-registry-troubleshoot-access.md
   - name: Troubleshoot performance issues
@@ -381,18 +383,16 @@
   - name: Detect common issues
     href: container-registry-check-health.md
     displayName: check, health
-  - name: Technical Support policies
-    href: container-registry-support-policies.md
-  - name: FAQ
-    href: container-registry-faq.yml
-  - name: API Deprecation
-    href: container-registry-api-deprecation.md
-  - name: Troubleshoot Artifact streaming
+  - name: Troubleshoot artifact streaming
     href: troubleshoot-artifact-streaming.md
-  - name: Troubleshoot Artifact cache
+  - name: Troubleshoot artifact cache
     href: troubleshoot-artifact-cache.md
-  - name: Troubleshoot Continuous Patching
+  - name: Troubleshoot continuous patching
     href: troubleshoot-continuous-patching.md
+  - name: Technical support policies
+    href: container-registry-support-policies.md
+  - name: API deprecation
+    href: container-registry-api-deprecation.md
 - name: Resources
   expanded: false
   items:
