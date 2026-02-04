@@ -6,7 +6,7 @@ metadata:
   ms.topic: faq
   ms.custom: devx-track-azurecli
   ms.service: azure-container-registry
-  ms.date: 02/03/2026
+  ms.date: 02/04/2026
   ms.author: rayoflores
 title: Frequently asked questions - Azure Container Registry
 summary: |
@@ -181,7 +181,11 @@ sections:
       - question:  |
           Does Azure Container Registry support Content Trust?
         answer: |
-          Yes, you can use trusted images in Azure Container Registry with [Docker Content Trust](https://docs.docker.com/notary/getting_started/). For details, see [Manage signed images by using Docker Content Trust in Azure Container Registry](container-registry-content-trust.md).
+          Currently, you can use trusted images in Azure Container Registry with [Docker Content Trust (DCT)](https://docs.docker.com/notary/getting_started/). However, Azure Container Registry will retire DCT on March 31, 2028. 
+          
+          As an alternative to DCT, Microsoft offers signing and verification solutions based on [Notary Project](https://notaryproject.dev/). We encourage you to [transition from DCT to Notary Project](/azure/container-registry/container-registry-content-trust-deprecation) as soon as possible.
+
+          Until May 31, 2026, Docker Content Trust can be enabled on new container registries or registries that haven't enabled it previously. For details, see [Manage signed images by using Docker Content Trust in Azure Container Registry](container-registry-content-trust.md).
               
           The file for the thumbprint is located under `~/.docker/trust/private/tuf/myregistry.azurecr.io/myrepository/metadata`:
           
