@@ -19,7 +19,7 @@ For example, set up a [user-assigned or system-assigned managed identity](/entra
 
 For an overview of managed identities in Azure, see [What is managed identities for Azure resources?](/azure/active-directory/managed-identities-azure-resources/overview)
 
-You can assign a managed identity a role with pull, push and pull, or other permissions to one or more private registries in Azure. For a complete list of registry roles, see [Azure Container Registry permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
+You can assign a managed identity a role with pull only, push and pull, or other permissions to one or more private registries in Azure. For a complete list of registry roles, see [Azure Container Registry permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 Then, use the identity to authenticate to any [service that supports managed identities](/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities), without requiring any credentials in your code.
 
