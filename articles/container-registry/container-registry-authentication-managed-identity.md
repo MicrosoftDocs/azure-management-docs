@@ -17,7 +17,7 @@ You can use a [managed identity for Azure resources](/azure/active-directory/man
 
 For example, set up a [user-assigned or system-assigned managed identity](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types) on a Linux VM to access container images from your container registry, as easily as you use a public registry. Or, set up an Azure Kubernetes Service cluster to use its [managed identity](/azure/aks/cluster-container-registry-integration) to pull container images from Azure Container Registry for pod deployments.
 
-For an overview of managed identities in Azure, see [What is managed identities for Azure resources?](/azure/active-directory/managed-identities-azure-resources/overview).
+For an overview of managed identities in Azure, see [What is managed identities for Azure resources?](/azure/active-directory/managed-identities-azure-resources/overview)
 
 You can assign a managed identity a role with pull, push and pull, or other permissions to one or more private registries in Azure. For a complete list of registry roles, see [Azure Container Registry permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
@@ -32,17 +32,17 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-You can use either Azure CLI or Azure PowerShell to complete the steps in this article. We recommend using the most recent version of either tool. If you don't have either tool installed, see [Install the Azure CLI][azure-cli-install] or [Install Azure PowerShell][azure-powershell-install].
+You can use either Azure CLI or Azure PowerShell to complete the steps in this article. Use the most recent version of either tool. If you don't have either tool installed, see [Install the Azure CLI][azure-cli-install] or [Install Azure PowerShell][azure-powershell-install].
 
 To set up a container registry and push a container image to it, you must also have Docker installed locally. Docker provides packages that easily configure Docker on any [macOS][docker-mac], [Windows][docker-windows], or [Linux][docker-linux] system.
 
 If you don't already have an Azure container registry, create a registry and push a sample container image to it. Follow the steps to create a registry by using [the Azure CLI](container-registry-get-started-azure-cli.md), [Azure PowerShell](container-registry-get-started-powershell.md), or the [Azure portal](container-registry-get-started-portal.md).
 
-This article assumes you have the `aci-helloworld:v1` container image stored in your registry. The examples use a registry name of *myContainerRegistry*. You can replace these with your own registry and image names.
+This article assumes you have the `aci-helloworld:v1` container image stored in your registry. The examples use a registry name of *myContainerRegistry*. You can replace these values with your own registry and image names.
 
 ## Create and configure a Docker-enabled VM
 
-Create a Docker-enabled Ubuntu VM to use with your managed identity. You'll also need to install either the Azure CLI or Azure PowerShell on the virtual machine, depending on which tool you want to use.
+Create a Docker-enabled Ubuntu VM to use with your managed identity. You also need to install either the Azure CLI or Azure PowerShell on the virtual machine, depending on which tool you want to use.
 
 If you already have an Azure VM with Azure CLI or Azure PowerShell installed, you can move to the next section.
 
@@ -50,7 +50,7 @@ If you already have an Azure VM with Azure CLI or Azure PowerShell installed, yo
 
 ### [Azure CLI](#tab/azure-cli)
 
-Deploy a default Ubuntu Azure virtual machine with [`az vm create`][az-vm-create]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*:
+Deploy a default Ubuntu Azure virtual machine by using [`az vm create`][az-vm-create]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*:
 
 ```azurecli-interactive
 az vm create \
@@ -61,11 +61,11 @@ az vm create \
     --generate-ssh-keys
 ```
 
-It takes a few minutes for the VM to be created. When the command completes, take note of the `publicIpAddress` displayed by the Azure CLI. Use this address to make SSH connections to the VM in the next step.
+It takes a few minutes to create the VM. When the command finishes, note the `publicIpAddress` displayed by the Azure CLI. Use this address to make SSH connections to the VM in the next step.
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Deploy a default Ubuntu Azure virtual machine with [`New-AzVM`][new-azvm]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*. You're prompted for a user name that you use when you connect to the VM. Specify *azureuser* as the user name. You're also asked for a password, which you can leave blank. Password authentication for the VM is disabled when using an SSH key.
+Deploy a default Ubuntu Azure virtual machine by using [`New-AzVM`][new-azvm]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*. You're prompted for a user name that you use when you connect to the VM. Specify *azureuser* as the user name. You're also asked for a password, which you can leave blank. Password authentication for the VM is disabled when using an SSH key.
 
 ```azurepowershell-interactive
 $vmParams = @{
@@ -79,7 +79,7 @@ $vmParams = @{
 New-AzVM @vmParams
 ```
 
-It takes a few minutes for the VM to be created. When the command completes, run the following command to get the public IP address. Use this address to make SSH connections to the VM in the next step.
+It takes a few minutes to create the VM. When the command finishes, run the following command to get the public IP address. Use this address to make SSH connections to the VM in the next step.
 
 ```azurepowershell-interactive
 Get-AzPublicIpAddress -Name myPublicIP -ResourceGroupName myResourceGroup | Select-Object -ExpandProperty IpAddress
@@ -89,9 +89,9 @@ Get-AzPublicIpAddress -Name myPublicIP -ResourceGroupName myResourceGroup | Sele
 
 ### Install Docker on the VM
 
-Next, install Docker on your VM, ensuring that your VM is ready to pull and run container images from your Azure Container Registry.
+Next, install Docker on your VM so that it can pull and run container images from your Azure Container Registry.
 
-After the VM is running, make an SSH connection to the VM. Replace *publicIpAddress* with the public IP address of your VM.
+Once the VM is running, make an SSH connection to the VM. Replace *publicIpAddress* with the public IP address of your VM.
 
 ```bash
 ssh azureuser@publicIpAddress
@@ -136,7 +136,7 @@ After installing Azure PowerShell, exit the SSH session.
 
 ## Configure the VM with a user-assigned managed identity
 
-A [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types) is a standalone Azure resource that you manage separately from the resources that use it. User-assigned managed identities can be associated with multiple Azure resources.
+A [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types) is a standalone Azure resource that you manage separately from the resources that use it. You can associate a user-assigned managed identity with multiple Azure resources.
 
 This section explains how to configure your VM with a user-assigned identity to securely access your Azure Container Registry.
 
@@ -243,7 +243,7 @@ Use [`az acr show`][az-acr-show] to get the resource ID of the registry:
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, which grants pull permissions only, on an ABAC-enabled registry:
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -258,7 +258,7 @@ Use [`Get-AzContainerRegistry`][get-azcontainerregistry] to get the resource ID 
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, which grants pull permissions only, on an ABAC-enabled registry:
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader"
@@ -268,7 +268,7 @@ New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Con
 
 ### Use the user-assigned managed identity to access the registry
 
-SSH into the Docker virtual machine that the identity configures, then run the following commands to enable the identity to access your container registry.
+SSH into the Docker virtual machine that the identity configures, and then run the following commands to enable the identity to access your container registry.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -292,7 +292,7 @@ docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-On the VM, authenticate to the Azure PowerShell by using [`Connect-AzAccount`][connect-azaccount], using the ID you retrieved earlier. For `-AccountId`, specify a client ID of the identity.
+On the VM, authenticate to Azure PowerShell by using [`Connect-AzAccount`][connect-azaccount], using the ID you retrieved earlier. For `-AccountId`, specify a client ID of the identity.
 
 ```azurepowershell-interactive
 $clientId = (Get-AzUserAssignedIdentity -ResourceGroupName myResourceGroup -Name myACRId).ClientId
@@ -360,13 +360,13 @@ To provide both pull and push permissions, assign either the `Container Registry
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use [`az acr show`][az-acr-show] command to get the resource ID of the registry:
+Use [`az acr show`][az-acr-show] to get the resource ID of the registry:
 
 ```azurecli-interactive
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, which grants pull permissions only, on an ABAC-enabled registry:
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -381,7 +381,7 @@ Use [`Get-AzContainerRegistry`][get-azcontainerregistry] to get the resource ID 
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the correct role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the correct role to the identity. This example assigns the `Container Registry Repository Reader` role, which grants pull permissions only, on an ABAC-enabled registry:
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader"
@@ -391,7 +391,7 @@ New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Con
 
 ### Use the system-assigned managed identity to access the registry
 
-SSH into the Docker virtual machine that the identity configures, then run the following commands to enable the identity to access your container registry.
+SSH into the Docker virtual machine that the identity configures, and then run the following commands to enable the identity to access your container registry.
 
 ### [Azure CLI](#tab/azure-cli)
 
