@@ -389,10 +389,6 @@
     href: troubleshoot-artifact-cache.md
   - name: Troubleshoot continuous patching
     href: troubleshoot-continuous-patching.md
-  - name: Technical support policies
-    href: container-registry-support-policies.md
-  - name: API deprecation
-    href: container-registry-api-deprecation.md
 - name: Resources
   expanded: false
   items:

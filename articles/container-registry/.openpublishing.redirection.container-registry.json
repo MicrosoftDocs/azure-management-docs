@@ -260,6 +260,11 @@
       "redirect_url": "/azure/container-registry/container-registry-tutorial-sign-verify-notation-artifact-signing",
       "redirect_document_id": false
     },
+    {
+      "source_path_from_root": "/articles/container-registry/container-registry-support-policies.md",
+      "redirect_url": "/azure/container-registry/container-registry-faq",
+      "redirect_document_id": false
+    },
    {
       "source_path_from_root": "/articles/container-registry/zone-redundancy-replica.md",
       "redirect_url": "/azure/container-registry/zone-redundancy",

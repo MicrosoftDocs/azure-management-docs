@@ -19,7 +19,7 @@ summary: |
   
 
 sections:
-  - name: Resource management
+  - name: Resource management and general questions
     questions:
       - question: |
           Can I create an Azure Container Registry (ACR) using an Azure Resource Manager (ARM) template?
@@ -93,7 +93,24 @@ sections:
           Why aren't firewall rules in effect after being updated?
         answer: |
           It might take some time to propagate firewall rule changes. After you change firewall settings, wait for a few minutes before verifying the change.
+
+      - question:  |
+          How do I avoid errors due to using a deprecated API?
+        answer: |
+          Move to a newer version of the ACR API. You can find a list of [supported versions here](/azure/templates/microsoft.containerregistry/allversions).
+
+          You may be consuming an API via one or more SDKs. Use a newer API version by updating to a newer version of the SDK. You can find a [list of SDKs and their latest versions here.](https://azure.github.io/azure-sdk/releases/latest/index.html?search=containerregistry)
           
+          The following API versions have been deprecated and are supported as of the "Support end date" listed below:       
+
+          | API version        | Deprecation first announcement | Support end date |
+          | ------------------ | ------------------------------ | ------------------- |
+          | 2016-06-27-preview | July 2023                      | October 2023    |
+          | 2017-06-01-preview | July 2023                      | October 2023    |
+          | 2018-02-01-preview | July 2023                      | October 2023    |
+          | 2017-03-01-GA	     | September   2023	              | September   2026    |
+
+
   - name: Registry operations
     questions:
       - question: |
