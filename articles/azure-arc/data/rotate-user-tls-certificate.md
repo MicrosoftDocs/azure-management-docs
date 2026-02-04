@@ -203,5 +203,4 @@ You can use the following kubectl command to apply this setting:
 ```
 
 ## Related content
-- [View the SQL managed instance dashboards](azure-data-studio-dashboards.md#view-the-sql-managed-instance-dashboards)
 - [View SQL Managed Instance in the Azure portal](view-arc-data-services-inventory-in-azure-portal.md)

@@ -1,4 +1,14 @@
 {
   "redirections": [
+    {
+      "source_path": "articles/azure-arc/data/azure-data-studio-dashboards.md",
+      "redirect_url": "/azure/azure-arc/data/view-arc-data-services-inventory-in-azure-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/data/create-sql-managed-instance-azure-data-studio.md", 
+      "redirect_url": "/azure/azure-arc/data/create-sql-managed-instance",
+      "redirect_document_id": false
+    }
   ]
 }

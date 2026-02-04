@@ -186,7 +186,6 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.20 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.35.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 976 |
 
 ## October 8, 2024
@@ -212,7 +211,6 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.19 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.34.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 974 |
 
 
