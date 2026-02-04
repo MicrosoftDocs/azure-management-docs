@@ -38,13 +38,11 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 1. In **SKU**, select **Premium**.
 
-1. In **Availability zones**, select **Enabled**.
+1. In **Use availability zones**, ensure that **Enabled** is selected.
 
 1. Optionally, configure more registry settings, and then select **Review + create**.
 
 1. Select **Create** to deploy the registry instance.
-
-    :::image type="content" source="media/zone-redundancy/enable-availability-zones-portal.png" alt-text="Enable zone redundancy in Azure portal.":::
 
 ### [Azure CLI](#tab/cli)
 
@@ -157,9 +155,9 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Go to your Premium tier container registry, and select **Geo-replications**.
+1. Go to your Premium tier container registry. In the service menu, under **Services**, select **Geo-replications**.
 
-1. On the map that appears, you do one of the following:
+1. On the map that appears, do one of the following:
 
     - Select a green hexagon in a region that [supports availability zones](/azure/reliability/regions-list), such as **West US 2**.
 
@@ -167,9 +165,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
 1. In the **Create replication** window, confirm the **Location**.
 
-    In **Availability zones**, select **Enabled**, and then select **Create**.
-
-    :::image type="content" source="media/zone-redundancy-replica/enable-availability-zones-replication-portal.png" alt-text="Enable zone-redundant replication in Azure portal":::
+    In **Use availability zones**, select **Enabled**, and then select **Create**.
 
 ### [Azure CLI](#tab/cli)
 
