@@ -250,7 +250,7 @@
         displayName: dct, docker content trust
       - name: Transition from DCT to Notary Project
         href: container-registry-content-trust-deprecation.md
-        displayName: dpcker cntent trust, content, trust
+        displayName: docker content trust, content, trust
     - name: Vulnerability management and patching
       items:
       - name: Continuous patching concepts
