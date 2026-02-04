@@ -24,11 +24,11 @@ For illustration purposes, the example commands in this article use [az acr task
 
 ## Why use a managed identity?
 
-A managed identity for Azure resources provides selected Azure services with an automatically managed identity in Microsoft Entra ID. You can configure an ACR task with a managed identity so that the task can access other secured Azure resources, without passing credentials in the task steps.
+A [managed identity for Azure resources](/entra/identity/managed-identities-azure-resources/overview) provides selected Azure services with an automatically managed identity in Microsoft Entra ID. You can configure an ACR task with a managed identity so that the task can access other secured Azure resources, without passing credentials in the task steps.
 
 Managed identities are of two types:
 
-* *User-assigned identities*, which you can assign to multiple resources and persist for as long as you want. User-assigned identities are currently in preview.
+* *User-assigned identities*, which you can assign to multiple resources and persist for as long as you want.
 
 * A *system-assigned identity*, which is unique to a specific resource such as an ACR task and lasts for the lifetime of that resource.
 
