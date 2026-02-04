@@ -99,7 +99,7 @@ sections:
         answer: |
           Move to a newer version of the ACR API. You can find a list of [supported versions here](/azure/templates/microsoft.containerregistry/allversions).
 
-          You may be consuming an API via one or more SDKs. Use a newer API version by updating to a newer version of the SDK. You can find a [list of SDKs and their latest versions here.](https://azure.github.io/azure-sdk/releases/latest/index.html?search=containerregistry)
+          If you consume an API via SDKs, move to a newer API version by updating to a newer version of the SDK. You can find a [list of SDKs and their latest versions here.](https://azure.github.io/azure-sdk/releases/latest/index.html?search=containerregistry)
           
           The following API versions have been deprecated and are supported as of the "Support end date" listed below:       
 
