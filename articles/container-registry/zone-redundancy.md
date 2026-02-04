@@ -131,7 +131,7 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     ```azurecli
     az deployment group create \
       --resource-group <resource-group-name> \
-      --template-file registryZone.json \
+      --template-file registryZone.bicep \
       --parameters containerRegistryName=<registry-name> 
     ```
 
@@ -223,7 +223,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
     ```azurecli
     az deployment group create \
       --resource-group <resource-group-name> \
-      --template-file registryZone.json \
+      --template-file registryZone.bicep \
       --parameters containerRegistryName=<registry-name> replicaLocation=<replica-location>
     ```
 
