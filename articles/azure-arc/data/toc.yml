@@ -54,8 +54,6 @@ items:
         href: resource-sync.md
     - name: Common experiences across Azure Arc-enabled data services
       items:
-        - name: Monitor with dashboards (Azure Data Studio)
-          href: azure-data-studio-dashboards.md
         - name: View billing data (Azure)
           href: view-billing-data-in-azure.md
         - name: View data controller (portal)
@@ -125,8 +123,6 @@ items:
           items:
             - name: Create with CLI
               href: create-sql-managed-instance.md
-            - name: Create with Azure Data Studio
-              href: create-sql-managed-instance-azure-data-studio.md
             - name: Create using Kubernetes tools
               href: create-sql-managed-instance-using-kubernetes-native-tools.md
             - name: Connect

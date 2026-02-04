@@ -23,15 +23,14 @@ When you complete the steps in this article, you will have:
 - An Arc-enabled Azure Kubernetes cluster.
 - A data controller in directly connected mode.
 - An instance of SQL Managed Instance enabled by Azure Arc.
-- A connection to the instance with Azure Data Studio.
+- A connection to the instance with Visual Studio Code.
 
 Azure Arc allows you to run Azure data services on-premises, at the edge, and in public clouds via Kubernetes. Deploy SQL Managed Instance with Azure Arc. The benefits of using Azure Arc include staying current with constant service patches, elastic scale, self-service provisioning, unified management, and support for disconnected mode.  
 
 ## Install client tools
 
 First, install the [client tools](install-client-tools.md) needed on your machine. To complete the steps in this article, you will use the following tools:
-* Azure Data Studio
-* The Azure Arc extension for Azure Data Studio
+* MSSQL extension for Visual Studio Code
 * Kubernetes CLI
 * Azure CLI 
 * `arcdata` extension for Azure CLI.
@@ -176,7 +175,7 @@ NAME          STATE
 <namespace>   DeployingMonitoring
 ```
 
-Once the state of the data controller is ‘READY’, then this step is completed. For example:
+Once the state of the data controller is 'READY', then this step is completed. For example:
 
 ```output
 NAME          STATE
@@ -204,7 +203,7 @@ To know when the instance has been created, run:
 kubectl get sqlmi -n <namespace>
 ```
 
-Once the state of the managed instance namespace is ‘READY’, then this step is completed. For example:
+Once the state of the managed instance namespace is 'READY', then this step is completed. For example:
 
 ```output
 NAME          STATE
@@ -212,6 +211,6 @@ NAME          STATE
 ```
 
 
-## Connect with Azure Data Studio
+## Connect with Visual Studio Code
 
-To connect with Azure Data Studio, see [Connect to SQL Managed Instance enabled by Azure Arc](connect-managed-instance.md).
+To connect with Visual Studio Code, see [Connect to SQL Managed Instance enabled by Azure Arc](connect-managed-instance.md).

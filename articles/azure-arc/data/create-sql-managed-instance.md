@@ -62,10 +62,7 @@ az sql mi-arc list --k8s-namespace <namespace> --use-k8s
 
 Copy the external IP and port number from the result. Use the external IP address to connect to the instance.
 
-[!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
-
 ## Related content
 - [Connect to SQL Managed Instance enabled by Azure Arc](connect-managed-instance.md)
 - [Register your instance with Azure and upload metrics and logs about your instance](upload-metrics-and-logs-to-azure-monitor.md)
-- [Create SQL Managed Instance enabled by Azure Arc using Azure Data Studio](create-sql-managed-instance-azure-data-studio.md)
 

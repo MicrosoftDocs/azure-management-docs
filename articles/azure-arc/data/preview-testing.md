@@ -41,7 +41,6 @@ Pre-release versions simultaneously release with artifacts, which are designed t
     > `mcr.microsoft.com/arcdata/` will continue to be the repository that hosts the final release builds.
     
   - Azure CLI extension hosted on Azure Blob Storage
-  - Azure Data Studio extension hosted on Azure Blob Storage
 
 In addition to the above installable artifacts, the following are updated in Azure as needed:
 
@@ -61,12 +60,6 @@ If you use the Azure CLI extension:
 1. Uninstall the Azure CLI extension (`az extension remove -n arcdata`).
 1. Download the latest pre-release Azure CLI extension `.whl` file from the link in the [Current preview release information](#current-preview-release-information).
 1. Install the latest pre-release Azure CLI extension (`az extension add -s <location of downloaded .whl file>`).
-
-If you use the Azure Data Studio extension to install:
-
-1. Uninstall the Azure Data Studio extension. Select the Extensions panel and select on the **Azure Arc** extension, select **Uninstall**.
-1. Download the latest pre-release Azure Data Studio extension .vsix files from the links in the [Current preview release information](#current-preview-release-information).
-1. Install the extensions. Choose **File** > **Install Extension from VSIX package**. Locate the download location of the .vsix files. Install the `azcli` extension first and then `arc`.
 
 ### Install using Azure CLI
 
@@ -155,25 +148,6 @@ If you install using the Azure CLI:
    - Create data controller
 
    For details see, [create a custom configuration profile](create-custom-configuration-template.md).
-
-### Install using Azure Data Studio
-
-> [!NOTE]
-> Deploying pre-release builds using direct connectivity mode from Azure Data Studio is not supported.
-
-You can install with Azure Data Studio (ADS) in indirect connectivity mode. To use Azure Data Studio to install:
-
-1. Complete the data controller deployment wizard as normal except click on **Script to notebook** at the end instead of **Deploy**. 
-1. Update the following script. Replace `{ test | preview }` with the appropriate label. 
-1. In the generated notebook, edit the `Set variables` cell to *add* the following lines:
-
-   ```python
-   # choose between arcdata/test or arcdata/preview as appropriate
-   os.environ["AZDATA_DOCKER_REPOSITORY"] = "{ test | preview }"
-   os.environ["AZDATA_DOCKER_TAG"] = "{ Current preview tag }
-   ```
-
-1. Run the notebook, click **Run All**.
 
 ### Install using Azure portal
 

@@ -46,7 +46,7 @@ In order to experience Azure Arc-enabled data services, you'll need to complete 
 
    For example, [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md).
 
-1. Connect with Azure Data Studio.
+1. Connect with Visual Studio Code.
 
 As you begin planning to deploy Azure Arc-enabled data services, it's important to properly understand your database workloads and your business requirements for those workloads. For example, you need to consider availability, business continuity, and capacity requirements for memory, CPU, and storage for the workloads. And you need to carefully prepare the infrastructure to support the database workloads, based on your business requirements.
 
@@ -152,6 +152,4 @@ You have several additional options for creating the Azure Arc data controller:
 
 - [Create a data controller in direct connectivity mode with the Azure portal](create-data-controller-direct-prerequisites.md)
 - [Create a data controller in indirect connectivity mode with CLI](create-data-controller-indirect-cli.md)
-- [Create a data controller in indirect connectivity mode with Azure Data Studio](create-data-controller-indirect-azure-data-studio.md)
-- [Create a data controller in indirect connectivity mode from the Azure portal via a Jupyter notebook in Azure Data Studio](create-data-controller-indirect-azure-portal.md)
 - [Create a data controller in indirect connectivity mode with Kubernetes tools](create-data-controller-using-kubernetes-native-tools.md)
