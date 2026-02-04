@@ -10,7 +10,7 @@ metadata:
   ms.topic: landing-page
   author: rayoef
   ms.author: rayoflores
-  ms.date: 01/28/2025
+  ms.date: 02/04/2026
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new 
 
 landingContent:
@@ -23,6 +23,11 @@ landingContent:
         links:
           - text: What is Azure Container Registry?
             url: container-registry-intro.md
+          - text: Registries, repositories, and images
+            url: container-registry-concepts.md
+          - text: Azure Container Registry service tiers
+            url: container-registry-skus.md
+            
   # Card (optional)
   - title: Get started
     linkLists:
@@ -30,14 +35,14 @@ landingContent:
       links:
         - text: Create container registry - CLI
           url: container-registry-get-started-azure-cli.md
+        - text: Create container registry - PowerShell
+          url: container-registry-get-started-powershell.md
         - text: Create container registry - Portal
           url: container-registry-get-started-portal.md
         - text: Create container registry - ARM template
           url: container-registry-get-started-geo-replication-template.md
         - text: Push and pull image with Docker
           url: container-registry-get-started-docker-cli.md
-        - text: Azure Container Registry service tiers
-          url: container-registry-skus.md
     - linkListType: learn
       links:
         - text: Module - Build and store container images with Azure Container Registry
@@ -62,8 +67,6 @@ landingContent:
             url: container-registry-delete.md
       - linkListType: concept
         links:
-          - text: Registries, repositories, and images
-            url: container-registry-concepts.md
           - text: Geo-replication
             url: container-registry-geo-replication.md
           - text: Authentication
@@ -151,42 +154,18 @@ landingContent:
             url: container-registry-troubleshoot-performance.md
           - text: Detect common issues
             url: container-registry-check-health.md
-  # Card
-  - title: Reference
-    linkLists:
-      - linkListType: reference
-        links:
-          - text: ACR Technical Support policies
-            url: container-registry-check-health.md
-          - text: FAQ
-            url: container-registry-faq.yml
-          - text: Azure Policy built-in
-            url: policy-reference.md
-          - text: Deprecated APIs
-            url: container-registry-api-deprecation.md
-          - text: Service Tags
-            url: container-registry-service-tag.md
-  # Card (optional)    
+  # Card  
   - title: Security
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Overview of ensuring integrity and authenticity for container images and OCI artifacts
+          - text: Overview of signing and verifying OCI artifacts
             url: overview-sign-verify-artifacts.md
-          - text: Push and pull supply chain artifacts (Preview)
+          - text: Manage artifacts with ORAS
             url: container-registry-manage-artifact.md
           - text: Sign container images with Notation and Artifact Signing
             url: container-registry-tutorial-sign-verify-notation-artifact-signing.md
           - text: Sign container images with Notation and AKV using a CA issued certificate
             url: container-registry-tutorial-sign-trusted-ca.md
-          - text: Continuous patching concepts
+          - text: Continuous patching
             url: key-concept-continuous-patching.md
-          - text: Set up continuous patching
-            url: how-to-continuous-patching.md
-  # Card
-  - title: Networking
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Connect to ACR with Azure Private Link
-            url: container-registry-private-link.md
