@@ -50,7 +50,7 @@ If you already have an Azure VM with Azure CLI or Azure PowerShell installed, yo
 
 ### [Azure CLI](#tab/azure-cli)
 
-Deploy a default Ubuntu Azure virtual machine with [az vm create][az-vm-create]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*:
+Deploy a default Ubuntu Azure virtual machine with [`az vm create`][az-vm-create]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*:
 
 ```azurecli-interactive
 az vm create \
@@ -65,7 +65,7 @@ It takes a few minutes for the VM to be created. When the command completes, tak
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Deploy a default Ubuntu Azure virtual machine with [New-AzVM][new-azvm]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*. You're prompted for a user name that you use when you connect to the VM. Specify *azureuser* as the user name. You're also asked for a password, which you can leave blank. Password authentication for the VM is disabled when using an SSH key.
+Deploy a default Ubuntu Azure virtual machine with [`New-AzVM`][new-azvm]. The following example creates a VM named *myDockerVM* in an existing resource group named *myResourceGroup*. You're prompted for a user name that you use when you connect to the VM. Specify *azureuser* as the user name. You're also asked for a password, which you can leave blank. Password authentication for the VM is disabled when using an SSH key.
 
 ```azurepowershell-interactive
 $vmParams = @{
@@ -209,7 +209,7 @@ Next, configure your Docker VM to use the user-assigned identity you created in 
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use [az vm identity assign][az-vm-identity-assign] to configure the VM, using the ID you retrieved in the previous step:
+Use [`az vm identity assign`][az-vm-identity-assign] to configure the VM, using the ID you retrieved in the previous step:
 
 ```azurecli-interactive
 az vm identity assign --resource-group myResourceGroup --name myDockerVM --identities $userID
@@ -217,7 +217,7 @@ az vm identity assign --resource-group myResourceGroup --name myDockerVM --ident
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Use [Update-AzVM][update-azvm] to configure the VM, using the ID you retrieved in the previous step:
+Use [`Update-AzVM`][update-azvm] to configure the VM, using the ID you retrieved in the previous step:
 
 ```azurepowershell-interactive
 $vm = Get-AzVM -ResourceGroupName myResourceGroup -Name myDockerVM
@@ -236,13 +236,13 @@ To provide both pull and push permissions, assign either the `Container Registry
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use [az acr show][az-acr-show] to get the resource ID of the registry:
+Use [`az acr show`][az-acr-show] to get the resource ID of the registry:
 
 ```azurecli-interactive
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use [az role assignment create][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -251,13 +251,13 @@ az role assignment create --assignee $spID --scope $resourceID \
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Use [Get-AzContainerRegistry][get-azcontainerregistry] to get the resource ID of the registry:
+Use [`Get-AzContainerRegistry`][get-azcontainerregistry] to get the resource ID of the registry:
 
 ```azurepowershell-interactive
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use [New-AzRoleAssignment][new-azroleassignment] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader"
@@ -283,7 +283,7 @@ Next, authenticate to the registry by using [az acr login][az-acr-login]. When y
 az acr login --name myContainerRegistry
 ```
 
-You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [docker pull][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
+You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [`docker pull`][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
 
 ```
 docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
@@ -291,20 +291,20 @@ docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-On the VM, authenticate to the Azure PowerShell by using [Connect-AzAccount][connect-azaccount], using the ID you retrieved earlier. For `-AccountId`, specify a client ID of the identity.
+On the VM, authenticate to the Azure PowerShell by using [`Connect-AzAccount`][connect-azaccount], using the ID you retrieved earlier. For `-AccountId`, specify a client ID of the identity.
 
 ```azurepowershell-interactive
 $clientId = (Get-AzUserAssignedIdentity -ResourceGroupName myResourceGroup -Name myACRId).ClientId
 Connect-AzAccount -Identity -AccountId $clientId
 ```
 
-Next, authenticate to the registry by using [Connect-AzContainerRegistry][connect-azcontainerregistry]. When you use this command, Azure PowerShell uses the Active Directory token created when you ran `Connect-AzAccount` to seamlessly authenticate your session with the container registry.
+Next, authenticate to the registry by using [`Connect-AzContainerRegistry`][connect-azcontainerregistry]. When you use this command, Azure PowerShell uses the Active Directory token created when you ran `Connect-AzAccount` to seamlessly authenticate your session with the container registry.
 
 ```azurepowershell-interactive
 Connect-AzContainerRegistry -Name myContainerRegistry
 ```
 
-You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [docker pull][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
+You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [`docker pull`][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
 
 ```bash
 docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
@@ -320,13 +320,13 @@ A [system-assigned managed identity](/entra/identity/managed-identities-azure-re
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use [az vm identity assign][az-vm-identity-assign] to configure your Docker VM with a system-assigned identity:
+Use [`az vm identity assign`][az-vm-identity-assign] to configure your Docker VM with a system-assigned identity:
 
 ```azurecli-interactive
 az vm identity assign --resource-group myResourceGroup --name myDockerVM
 ```
 
-Use [az vm show][az-vm-show] to set a variable to the value of `principalId` (the service principal ID) of the VM's identity, to use in later steps:
+Use [`az vm show`][az-vm-show] to set a variable to the value of `principalId` (the service principal ID) of the VM's identity, to use in later steps:
 
 ```azurecli-interactive
 spID=$(az vm show --resource-group myResourceGroup --name myDockerVM --query identity.principalId --out tsv)
@@ -334,14 +334,14 @@ spID=$(az vm show --resource-group myResourceGroup --name myDockerVM --query ide
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Use [Update-AzVM][update-azvm] to configure your Docker VM with a system-assigned identity:
+Use [`Update-AzVM`][update-azvm] to configure your Docker VM with a system-assigned identity:
 
 ```azurepowershell-interactive
 $vm = Get-AzVM -ResourceGroupName myResourceGroup -Name myDockerVM
 Update-AzVM -ResourceGroupName myResourceGroup -VM $vm -IdentityType SystemAssigned
 ```
 
-Use [Get-AzVM][get-azvm] to set a variable to the value of `principalId` (the service principal ID) of the VM's identity, to use in later steps:
+Use [`Get-AzVM`][get-azvm] to set a variable to the value of `principalId` (the service principal ID) of the VM's identity, to use in later steps:
 
 ```azurepowershell-interactive
 $spID = (Get-AzVM -ResourceGroupName myResourceGroup -Name myDockerVM).Identity.PrincipalId
@@ -359,13 +359,13 @@ To provide both pull and push permissions, assign either the `Container Registry
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use [az acr show][az-acr-show] command to get the resource ID of the registry:
+Use [`az acr show`][az-acr-show] command to get the resource ID of the registry:
 
 ```azurecli-interactive
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use [az role assignment create][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`az role assignment create`][az-role-assignment-create] to assign the desired role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -374,13 +374,13 @@ az role assignment create --assignee $spID --scope $resourceID \
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Use [[Get-AzContainerRegistry][get-azcontainerregistry] to get the resource ID of the registry:
+Use [`Get-AzContainerRegistry`][get-azcontainerregistry] to get the resource ID of the registry:
 
 ```azurepowershell-interactive
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use [New-AzRoleAssignment][new-azroleassignment] to assign the correct role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
+Use [`New-AzRoleAssignment`][new-azroleassignment] to assign the correct role to the identity. This example assigns the `Container Registry Repository Reader` role, allowing pull permissions only, on an ABAC-enabled registry:
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader"
@@ -394,19 +394,19 @@ SSH into the Docker virtual machine that the identity configures, then run the f
 
 ### [Azure CLI](#tab/azure-cli)
 
-On the VM, authenticate the Azure CLI by using [az login][az-login], using the system-assigned identity.
+On the VM, authenticate the Azure CLI by using [`az login`][az-login], using the system-assigned identity.
 
 ```azurecli-interactive
 az login --identity
 ```
 
-Next, authenticate to the registry by using [az acr login][az-acr-login]. When you use this command, the CLI uses the Active Directory token created when you ran `az login` to seamlessly authenticate your session with the container registry.
+Next, authenticate to the registry by using [`az acr login`][az-acr-login]. When you use this command, the CLI uses the Active Directory token created when you ran `az login` to seamlessly authenticate your session with the container registry.
 
 ```azurecli-interactive
 az acr login --name myContainerRegistry
 ```
 
-You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [docker pull][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
+You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [`docker pull`][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
 
 ```bash
 docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
@@ -414,19 +414,19 @@ docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-On the VM, authenticate the Azure PowerShell by using [Connect-AzAccount][connect-azaccount], using the system-assigned identity.
+On the VM, authenticate the Azure PowerShell by using [`Connect-AzAccount`][connect-azaccount], using the system-assigned identity.
 
 ```azurepowershell-interactive
 Connect-AzAccount -Identity
 ```
 
-Next, authenticate to the registry by using [Connect-AzContainerRegistry][connect-azcontainerregistry]. When you use this command, the PowerShell uses the Active Directory token created when you ran `Connect-AzAccount` to seamlessly authenticate your session with the container registry.
+Next, authenticate to the registry by using [`Connect-AzContainerRegistry`][connect-azcontainerregistry]. When you use this command, the PowerShell uses the Active Directory token created when you ran `Connect-AzAccount` to seamlessly authenticate your session with the container registry.
 
 ```azurepowershell-interactive
 Connect-AzContainerRegistry -Name myContainerRegistry
 ```
 
-You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [docker pull][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
+You should see a `Login succeeded` message. You can then run `docker` commands without providing credentials. For example, run [`docker pull`][docker-pull] to pull the `aci-helloworld:v1` image, specifying the login server name of your registry:
 
 ```bash
 docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
