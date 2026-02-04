@@ -385,11 +385,11 @@
   - name: Detect common issues
     href: container-registry-check-health.md
     displayName: check, health
-  - name: Troubleshoot Artifact streaming
+  - name: Troubleshoot artifact streaming
     href: troubleshoot-artifact-streaming.md
-  - name: Troubleshoot Artifact cache
+  - name: Troubleshoot artifact cache
     href: troubleshoot-artifact-cache.md
-  - name: Troubleshoot Continuous Patching
+  - name: Troubleshoot continuous patching
     href: troubleshoot-continuous-patching.md
   - name: Technical support policies
     href: container-registry-support-policies.md
