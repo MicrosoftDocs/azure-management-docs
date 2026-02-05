@@ -48,6 +48,8 @@ landingContent:
             url: supportability/how-to-create-azure-support-request.md
           - text: Manage an Azure support request
             url: supportability/how-to-manage-azure-support-request.md
+          - text: Priority Community Support (PCS)
+            url: supportability/priority-community-support.md
 
   # Card
   - title: Reference
