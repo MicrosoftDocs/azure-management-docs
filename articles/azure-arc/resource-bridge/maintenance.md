@@ -80,6 +80,16 @@ Use this command when:
 
 If an upgrade fails due to incorrect network proxy settings, you can run a proxy update to fix the values. If a proxy update operation fails, you must retry and have it succeed before performing any other operation, including retrying upgrade.
 
+## Recovery procedure
+
+Each Arc private cloud has its own recovery procedure that should be followed to ensure a successful redeployment of the Arc resource bridge and re-connection to the existing custom location and Arc private cloud extension.
+
+For Arc-enabled VMware, you can follow the [Arc-enabled VMware recovery procedure](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion).
+
+For Arc-enabled SCVMM, you can follow the [Arc-enabled SCVMM recovery procedure](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery).
+
+For Azure Local, you must contact support and only attempt to recover the Arc resource bridge with guidance by Microsoft. Arc resource bridge is a critical component to Azure Local and attempting a major operation without guidance may cause irrecoverable damage to your Azure Local environment.
+
 
 ## Delete Arc resource bridge
 
