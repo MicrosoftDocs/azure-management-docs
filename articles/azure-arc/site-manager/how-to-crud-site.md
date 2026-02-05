@@ -21,13 +21,11 @@ This article guides you through how to create, modify, and delete a site by usin
 * An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Azure portal access.
 * Internet connectivity.
-* A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
+* A resource group or subscription or service group in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
 
 ## Open the Azure Arc site manager
 
-In the [Azure portal](https://portal.azure.com), search for and select **Azure Arc**. On the Azure Arc service menu, select **Site manager (preview)**.
-
-:::image type="content" source="media/how-to-crud-site/screenshot-azure-arc-portal-view.jpg" alt-text="Screenshot that shows the Azure Arc portal view.":::
+In the [Azure portal](https://portal.azure.com/), search for and select **Azure Arc**. On the Azure Arc service menu, select **Site manager (preview)**.
 
 Alternatively, you can search for the Azure Arc site manager directly in the Azure portal. Use terms like **site**, **Arc Site**, and **site manager**.
 
@@ -37,7 +35,7 @@ Create a site to manage geographically related resources.
 
 1. In Azure Arc, on the **Site manager** page, select **Create a site**.
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-site-manager-get-started-tab.jpg" alt-text="Screenshot that shows the site manager Get started tab.":::
+   :::image type="content" source="media/how-to-crud-site/createasite.png" alt-text="Screenshot that shows how to create a site.":::
 
 1. Provide the following information about your site:
 
@@ -46,21 +44,37 @@ Create a site to manage geographically related resources.
    | Site name | Custom name for a site. |
    | Display name | Custom display name for a site. |
    | Site address| Physical address for a site. Providing the country/region name is mandatory. The street address, city, state/province, and postal code are optional.|
-   | Site scope | Select either **Subscription** or **Resource group**. You can define the scope only when you create a site. You can't modify it later. Use the site manager to view and manage all the resources in the scope. |
-   | Subscription/Resource group | Select the subscription/resource group according to the site scope. |
-   | Parent site| Subscription scope sites don't have a parent site. Resource group scope sites can only be a child of the parent subscription scope site.|
+   | Site scope | Select **Subscription**, **Resource group**, or **Service group**. You can define the scope only when you create a site. You can't modify it later. Use the site manager to view and manage all the resources in the scope. |
+   | Subscription, resource group, or service group| Select the subscription, resource group, or service group according to the site scope. |
 
-1. After you enter all these details, select **Review + Create**.
+    You can create a hierarchical representation of sites in two ways:
+    
+    - You can create a two-level hierarchy by mapping the scopes to a subscription as the parent and the resource groups within as child sites.
+    - You can create a multilevel hierarchy by using a service group. A site based on a service group scope provides flexibility in resource selection across subscriptions and resource groups. You can define the hierarchy by associating a service group-scoped site with the required service group-scoped parent site.
+    
+1. To create a service group and associate it with a parent, follow these steps:
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-create-site-basics-page.jpg" alt-text="Screenshot that shows the Basics tab on the Create a Site page.":::
+   :::image type="content" source="media/how-to-crud-site/createaservicegroup.png" alt-text="Screenshot that shows how to create a service group.":::
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-create-site-scope-page.jpg" alt-text="Screenshot that shows the Site scope tab on the Create a Site page.":::
+1. To select the resources within a service group, select **Add members** and then select the required resources.
 
-1. On the summary page, review and confirm the site details, and then select **Create** to create your site.
+   :::image type="content" source="media/how-to-crud-site/selectsiteresources.png" alt-text="Screenshot that shows how to select site resources.":::
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-create-site-review-page.jpg" alt-text="Screenshot that shows the Create a Site review page.":::
-  
-If a site is created from a resource group or subscription that contains resources that the site supports, these resources are automatically visible within the created site.
+1. You can associate a site scope with a created (or preexisting) service group to define the site to reflect the service group.
+
+   In the following example, service group ca001 was created as a parent service group. The site California associated with the service group ca001 became the root of the hierarchy. Service groups la001, sc001, sd001, and sf001 were created with the parent service group as ca001. When the sites Los Angeles, Sacramento, San Diego, and San Francisco were associated with the scopes la001, sc001, sd001, and sf001, respectively, they became child sites under the parent site California.
+
+   For the next hierarchy level, service groups cf001 and nw001 were created under the parent service group la001. The service group ff001 was created under the parent service group sf001. The sites Contoso Factory and NorthWind Factory associated with service groups cf001 and nw001, respectively, became child sites under the parent site Los Angeles. The site Fabrikam Factory was associated with service group ff001 because it's a child site under the parent site San Francisco.
+
+   :::image type="content" source="media/how-to-crud-site/sitelist.png" alt-text="Screenshot that shows a site list.":::
+
+   Currently, the site manager supports hierarchy up to 10 levels.
+
+1. After all these details are provided, select **Review + create**.
+
+1. On the summary page, review and confirm the site details and then select **Create** to create your site.
+
+If a site is created from a resource group or subscription that contains resources that the site supports, the resources are automatically visible in the created site.
 
 ## View and modify a site
 
@@ -68,15 +82,12 @@ After you create a site, you can access it and its managed resources through the
 
 1. In Azure Arc, on the **Site manager** page, select **Sites** to view all existing sites.
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-site-manager-sites-tab.jpg" alt-text="Screenshot that shows the Sites tab on the Site manager page.":::
-
-1. On the **Sites** page, you can view all existing sites. Select the name of the site that you want to delete.
-
-   :::image type="content" source="media/how-to-crud-site/screenshot-site-manager-sites-view.jpg" alt-text="Screenshot that shows the Sites view on the Site manager page.":::
+1. On the **Sites** page, you can view all existing sites. Select the name of the site that you want to modify.
 
 1. On a specific site's resource page, you can:
 
    * View resources.
+   * Modify the display name and address.
    * Modify resources (modifications also affect the resources elsewhere).
    * View connectivity status.
    * View update status.
@@ -88,11 +99,12 @@ Currently, you can modify only some aspects of a site:
 | Site attribute | Available modifications |
 |--|--|
 | Display name | Update the display name of a site to a new unique name. |
+| Display name| Update the display name of a site to a new unique name.|
 | Site address | Update the address of a site. |
 
 ## Delete a site
 
-Deleting a site doesn't affect the resources, resource group, or subscription in its scope. After a site is deleted, the resources of that site still exist, but you can't view or manage them from the site manager. You can create a new site for the resource group or the subscription after the original site is deleted.
+Deleting a site doesn't affect the resources, resource group, subscription, or service group in its scope. After a site is deleted, the resources of that site still exist, but you can't view or manage them from the site manager. You can create a new site for the resource group or the subscription after the original site is deleted.
 
 1. In Azure Arc, on the **Site manager** page, select **Sites** to view all existing sites.
 
@@ -100,4 +112,4 @@ Deleting a site doesn't affect the resources, resource group, or subscription in
 
 1. On the site's resource page, select **Delete**.
 
-   :::image type="content" source="media/how-to-crud-site/screenshot-site-manager-site-details.jpg" alt-text="Screenshot that shows the site details view on the Site manager page.":::
+   :::image type="content" source="media/how-to-crud-site/deleteasiteconfirmation.png" alt-text="Screenshot that shows how to delete a site confirmation.":::
