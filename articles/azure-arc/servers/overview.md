@@ -20,8 +20,6 @@ To connect hybrid machines to Azure, you install the [Azure Connected Machine ag
 
 You can install the Connected Machine agent manually, or on multiple machines at scale, using the [deployment method](deployment-options.md) that works best for your scenario.
 
-[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
-
 > [!NOTE]
 > For additional guidance regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
 
@@ -47,6 +45,8 @@ Log data collected and stored in a Log Analytics workspace from the hybrid machi
 Watch this video to learn more about Azure monitoring, security, and update services across hybrid and multicloud environments.
 
 > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
+
+[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
 
 ## Supported regions
 
