@@ -111,7 +111,7 @@ Control plane IP requirements:
 
 ## DNS server
 
-DNS servers must have internal and external endpoint resolution. The appliance VM and control plane need to resolve the management machine and vice versa. All three IPs must be able to reach the required URLs for deployment.
+DNS servers must have internal and external endpoint resolution. The appliance VM and control plane need to resolve the management machine and vice versa. All three IPs must be able to reach the required URLs for deployment. Updating the DNS configuration post-deployment is currently unsupported and requires [performing a recovery operation](maintenance.md#recovery-procedure).
 
 ## Gateway
 
@@ -168,7 +168,7 @@ The az arcappliance CLI commands that rely on the YAML configuration files are '
 The appliance VM hosts a management Kubernetes cluster. The kubeconfig is a low-privilege Kubernetes configuration file that is used to maintain the appliance VM. By default, it's generated in the current CLI directory when the `deploy` command completes. The kubeconfig should be saved in a secure location on the management machine, because it's required for maintaining the appliance VM. If the kubeconfig is lost, it can be retrieved by running the `az arcappliance get-credentials` command.
 
 > [!IMPORTANT]
-> Once the Arc resource bridge VM is created, the configuration settings can't be modified or updated. Currently, the appliance VM must stay in the location where it was initially deployed. The Arc resource bridge VM name is a unique GUID that can't be renamed, because it's an identifier used for cloud-managed upgrade.
+> Once the Arc resource bridge VM is created, only the proxy settings can be updated. Other configuration settings, such as DNS and the resource bridge VM location path, can only be updated by [performing a recovery](maintenance.md#recovery-procedure). The Arc resource bridge VM name is a unique GUID that can't be renamed post-deployment.
 
 ## Next steps
 
