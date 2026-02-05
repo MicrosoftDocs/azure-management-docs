@@ -11,10 +11,10 @@ items:
         href: quickstart-install.md
   - name: Install the Extension
     items:
-      - name: Install extension
-        href: howto-install-edge-volumes.md
       - name: Prepare Linux
         href: howto-prepare-linux-edge-volumes.md
+      - name: Install extension
+        href: howto-install-edge-volumes.md
   - name: Configure Edge Volumes
     items:
       - name: Volumes and subvolumes overview
