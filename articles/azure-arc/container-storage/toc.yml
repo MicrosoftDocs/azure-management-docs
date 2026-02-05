@@ -11,10 +11,6 @@ items:
         href: quickstart-install.md
   - name: Install the Extension
     items:
-      - name: Prepare Linux
-        items:
-          - name: Multi-node cluster
-            href: howto-multi-node-cluster-edge-volumes.md
       - name: Install extension
         href: howto-install-edge-volumes.md
       - name: Prepare Linux
