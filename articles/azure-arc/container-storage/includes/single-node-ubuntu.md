@@ -8,7 +8,7 @@ ms.author: sethm
 # Customer intent: "As a system administrator, I want to configure Linux with Ubuntu for a cluster setup, so that I can ensure adequate file monitoring capabilities are in place."
 ---
 
-## Prepare Linux with Ubuntu
+### Prepare Linux with Ubuntu
 
 This section describes how to prepare Linux with Ubuntu if you run a single-node or two-node cluster.
 
