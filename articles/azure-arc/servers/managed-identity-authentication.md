@@ -12,7 +12,7 @@ Applications or processes running directly on an Azure Arc-enabled server can us
 
 For a detailed description of managed identities and the distinction between system-assigned and user-assigned identities, see the [managed identity overview](/azure/active-directory/managed-identities-azure-resources/overview).
 
-In this article, you learn how a server can use a system-assigned managed identity to access [Azure Key Vault](/azure/key-vault/general/overview). Azure Key Vault allows your client application to use a secret to access resources that aren't secured by Microsoft Entra ID. For example, Azure Key Vault can sotre TLS/SSL certificates used by your IIS web servers and securely deploy the certificates to Windows or Linux servers outside of Azure.
+In this article, you learn how a server can use a system-assigned managed identity to access [Azure Key Vault](/azure/key-vault/general/overview). Azure Key Vault allows your client application to use a secret to access resources that aren't secured by Microsoft Entra ID. For example, Azure Key Vault can store TLS/SSL certificates used by your IIS web servers and securely deploy the certificates to Windows or Linux servers outside of Azure.
 
 ## Security overview
 
@@ -41,7 +41,7 @@ Before you begin, ensure that you have the following prerequisites in place:
 - An understanding of [managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 - A server connected to Azure Arc-enabled servers.
 - On Windows, you must be a member of the local **Administrators** group or the **Hybrid Agent Extension Applications** group. On Linux, you must be a member of the **himds** group.
-- You must have the [Owner role](/azure/role-based-access-control/built-in-roles#owner) in the Azure subscription or resource group that contains the Arc-enabled serversin order to perform the required resource creation and role management steps.
+- You must have the [Owner role](/azure/role-based-access-control/built-in-roles#owner) in the Azure subscription or resource group that contains the Arc-enabled servers in order to perform the required resource creation and role management steps.
 - An Azure Key Vault to store and retrieve your credentials, and assign the Azure Arc identity access to the KeyVault.
 
   - To configure access by the managed identity used by the server, see [Grant access for Linux](/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad#grant-access) or [Grant access for Windows](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#grant-access). When you enter the name of your VM, use the name of the Azure Arc-enabled server.
