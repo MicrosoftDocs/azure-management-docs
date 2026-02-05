@@ -127,18 +127,6 @@ az sql midb-arc restore --managed-instance sqlmi1 --name Testdb1 --dest-name myn
 
 Restore task status will be updated about every 10 seconds based on the PITR progress. The status progresses from `Waiting` to `Restoring` to `Completed` or `Failed`.
 
-## Create a database from a point-in-time using Azure Data Studio
-
-You can also restore a database to a point-in-time from Azure Data Studio as follows:
-1. Launch Azure Data studio
-2. Ensure you have the required Arc extensions as described in [Tools](install-client-tools.md).
-3. Connect to the Azure Arc data controller
-4. Expand the data controller node,  right-click on the instance and select **Manage**. Azure Data Studio launches the SQL managed instance dashboard.
-5. Click on the **Backups** tab in the dashboard
-6. You should see a list of databases on the SQL managed instance and their Earliest and Latest restore time windows, and an icon to initiate the **Restore**
-7. Click on the icon for the database you want to restore from. Azure Data Studio launches a blade towards the right side
-8. Provide the required input in the blade and click on **Restore**
-
 ### Monitor progress
 
 When a restore is initiated, a task is created in the Kubernetes cluster that executes the actual restore operations of full, differential, and log backups. The progress of this activity can be monitored from your Kubernetes cluster as follows:

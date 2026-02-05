@@ -11,7 +11,7 @@ ms.date: 04/18/2022
 |**Service**|**Port**|**URL**|**Direction**|**Notes**|
 |--|--|--|--|--|
 | Helm chart (direct connected mode only) | 443 | `arcdataservicesrow1.azurecr.io`<br/>`arcdataservicesrow2.azurecr.io`<br/>`*.blob.core.windows.net`<br/> | Outbound |Provisions the Azure Arc data controller bootstrapper and cluster level objects, such as custom resource definitions, cluster roles, and cluster role bindings, is pulled from an Azure Container Registry. | 
-| Azure monitor APIs <sup>1</sup> | 443 |`*.ods.opinsights.azure.com`<br/>`*.oms.opinsights.azure.com`<br/>`*.monitoring.azure.com` | Outbound | Azure Data Studio and Azure CLI connect to the Azure Resource Manager APIs to send and retrieve data to and from Azure for some features. See [Azure Monitor APIs](#azure-monitor-apis). |
+| Azure monitor APIs <sup>1</sup> | 443 |`*.ods.opinsights.azure.com`<br/>`*.oms.opinsights.azure.com`<br/>`*.monitoring.azure.com` | Outbound | Azure CLI connects to the Azure Resource Manager APIs to send and retrieve data to and from Azure for some features. See [Azure Monitor APIs](#azure-monitor-apis). |
 | Azure Arc data processing service <sup>1</sup>| 443 |`*.<region>.arcdataservices.com` <sup>2</sup> | Outbound | |
 
 <sup>1</sup> Requirement depends on deployment mode:
@@ -23,4 +23,4 @@ ms.date: 04/18/2022
 
 ### Azure Monitor APIs
 
-Connectivity from Azure Data Studio to the Kubernetes API server uses the Kubernetes authentication and encryption that you have established.  Each user that's using Azure Data Studio or CLI must have an authenticated connection to the Kubernetes API to perform many of the actions related to Azure Arc-enabled data services.
+Connectivity to the Kubernetes API server uses the Kubernetes authentication and encryption that you have established.  Each user that's using Azure CLI must have an authenticated connection to the Kubernetes API to perform many of the actions related to Azure Arc-enabled data services.

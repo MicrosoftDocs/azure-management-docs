@@ -25,10 +25,7 @@ This method uses Azure Blob Storage as a temporary storage location that you can
 
 ### Prerequisites
 
-- [Install Azure Data Studio](install-client-tools.md)
-
-   [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
-
+- [Install the MSSQL extension for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code)
 - [Install Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
 - Azure subscription
 
@@ -57,7 +54,7 @@ This method uses Azure Blob Storage as a temporary storage location that you can
 
 In this step, we will connect to the source SQL Server and create the backup file of the database that we want to migrate to SQL Managed Instance - Azure Arc.
 
-1. Launch Azure Data Studio
+1. Launch Visual Studio Code
 1. Connect to the SQL Server instance that has the database you want to migrate to SQL Managed Instance - Azure Arc
 1. Right-click on the database and select **New Query**
 1. Prepare your query in the following format replacing the placeholders indicated by the `<...>` using the information from the shared access signature in earlier steps.  Once you have substituted the values, run the query.
@@ -90,7 +87,7 @@ Learn more about backup to URL here:
 
 ### Step 4: Restore the database from Azure blob storage to SQL Managed Instance - Azure Arc
 
-1. From Azure Data Studio, login and connect to the SQL Managed Instance - Azure Arc.
+1. From Visual Studio Code, login and connect to the SQL Managed Instance - Azure Arc.
 1. Expand the **System Databases**, right-click on **master** database and select **New Query**.
 1. In the query editor window, prepare and run the same query from previous step to create the credentials.
 
@@ -128,7 +125,7 @@ This method shows you how to take a backup file that you create via any method a
 ### Prerequisites
 
 - Install and configure kubectl to point to your Kubernetes cluster where Azure Arc data services is deployed
-- Have a tool like Azure Data Studio or SQL Server Management Server installed and connected to the SQL Server where you want to create the backup file OR have an existing .bak file already created on your local file system.
+- Have a tool like SQL Server Management Studio (SSMS) installed and connected to the SQL Server where you want to create the backup file OR have an existing .bak file already created on your local file system.
 
 ### Step 1: Backup the database if you haven't already
 

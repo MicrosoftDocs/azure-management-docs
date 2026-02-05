@@ -6,7 +6,7 @@ metadata:
   ms.topic: faq
   ms.custom: devx-track-azurecli
   ms.service: azure-container-registry
-  ms.date: 02/03/2026
+  ms.date: 02/04/2026
   ms.author: rayoflores
 title: Frequently asked questions - Azure Container Registry
 summary: |
@@ -19,7 +19,7 @@ summary: |
   
 
 sections:
-  - name: Resource management
+  - name: Resource management and general questions
     questions:
       - question: |
           Can I create an Azure Container Registry (ACR) using an Azure Resource Manager (ARM) template?
@@ -93,7 +93,24 @@ sections:
           Why aren't firewall rules in effect after being updated?
         answer: |
           It might take some time to propagate firewall rule changes. After you change firewall settings, wait for a few minutes before verifying the change.
+
+      - question:  |
+          How do I avoid errors due to using a deprecated API?
+        answer: |
+          Move to a newer version of the ACR API. You can find a list of [supported versions here](/azure/templates/microsoft.containerregistry/allversions).
+
+          If you consume an API via SDKs, move to a newer API version by updating to a newer version of the SDK. You can find a [list of SDKs and their latest versions here.](https://azure.github.io/azure-sdk/releases/latest/index.html?search=containerregistry)
           
+          The following API versions have been deprecated and are supported as of the "Support end date" listed below:       
+
+          | API version        | Deprecation first announcement | Support end date |
+          | ------------------ | ------------------------------ | ------------------- |
+          | 2016-06-27-preview | July 2023                      | October 2023    |
+          | 2017-06-01-preview | July 2023                      | October 2023    |
+          | 2018-02-01-preview | July 2023                      | October 2023    |
+          | 2017-03-01-GA	     | September   2023	              | September   2026    |
+
+
   - name: Registry operations
     questions:
       - question: |
@@ -181,7 +198,11 @@ sections:
       - question:  |
           Does Azure Container Registry support Content Trust?
         answer: |
-          Yes, you can use trusted images in Azure Container Registry with [Docker Content Trust](https://docs.docker.com/notary/getting_started/). For details, see [Manage signed images by using Docker Content Trust in Azure Container Registry](container-registry-content-trust.md).
+          Currently, you can use trusted images in Azure Container Registry with [Docker Content Trust (DCT)](https://docs.docker.com/notary/getting_started/). However, Azure Container Registry will retire DCT on March 31, 2028. 
+          
+          As an alternative to DCT, Microsoft offers signing and verification solutions based on [Notary Project](https://notaryproject.dev/). We encourage you to [transition from DCT to Notary Project](/azure/container-registry/container-registry-content-trust-deprecation) as soon as possible.
+
+          Until May 31, 2026, Docker Content Trust can be enabled on new container registries or registries that haven't enabled it previously. For details, see [Manage signed images by using Docker Content Trust in Azure Container Registry](container-registry-content-trust.md).
               
           The file for the thumbprint is located under `~/.docker/trust/private/tuf/myregistry.azurecr.io/myrepository/metadata`:
           

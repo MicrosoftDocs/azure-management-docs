@@ -39,7 +39,7 @@ kubectl exec sqltest1-0 -n arc -c arc-sqlmi -- wget https://github.com/Microsoft
 
 ## Restore the AdventureWorks database
 
-Similarly, you can run a `kubectl` exec command to use the `sqlcmd` CLI tool that is included in the SQL Managed Instance container to execute the T-SQL command to RESTORE DATABASE.
+Similarly, you can run a `kubectl` exec command to use the **sqlcmd** CLI tool that is included in the SQL Managed Instance container to execute the T-SQL command to RESTORE DATABASE.
 
 Run a command like this to restore the database. Replace the value of the pod name, the password, and the namespace name before you run it.
 
