@@ -73,7 +73,7 @@ When you use Azure Local for fault tolerance, Azure Local offers a *ReadWriteOnc
 
 ## Prepare Linux for Edge Volumes using a single-node or two-node cluster
 
-This section describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](#prerequisites).
+This section describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](#prerequisites). Select the appropriate tab for your Linux distribution and Kubernetes platform.
 
 # [AKS enabled by Azure Arc](#tab/aks)
 
