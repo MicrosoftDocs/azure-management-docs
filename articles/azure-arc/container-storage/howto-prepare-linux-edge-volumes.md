@@ -9,7 +9,6 @@ ms.custom:
   - references_regions
   - build-2025
 ms.date: 02/05/2026
-zone_pivot_groups: platform-select-with-other
 
 # Customer intent: As a cloud developer, I want to prepare my Linux environment for Edge Volumes in Azure Container Storage, so that I can effectively manage and deploy workloads using Azure Kubernetes Service (AKS) enabled by Azure Arc.
 ---
@@ -76,22 +75,20 @@ When you use Azure Local for fault tolerance, Azure Local offers a *ReadWriteOnc
 
 This section describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](#prerequisites).
 
-::: zone pivot="aks-other"
+# [AKS enabled by Azure Arc](#tab/aks)
+
 ### Prepare Linux with AKS enabled by Azure Arc
 
 If you run a single-node or two-node cluster on Linux with AKS enabled by Azure Arc, you don't need to perform any additional steps.
 
-::: zone-end
-
-::: zone pivot="aks-ee-other"
+# [AKS enabled by Azure Arc](#tab/aks)
 [!INCLUDE [single-node-edge-essentials](includes/single-node-edge-essentials.md)]
-::: zone-end
 
-::: zone pivot="ubuntu-other"
+# [Ubuntu](#tab/ubuntu)
 [!INCLUDE [single-node-ubuntu](includes/single-node-ubuntu.md)]
-::: zone-end
 
-::: zone pivot="other"
+# [Other](#tab/other)
+
 ### Prepare Linux with other platforms
 
 The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
@@ -116,7 +113,8 @@ The available platform options are production-like environments that Microsoft v
    ```bash
    kubectl apply -f https://raw.githubusercontent.com/Azure/AKS-Edge/main/samples/storage/local-path-provisioner/local-path-storage.yaml
    ```
-::: zone-end
+
+---
 
 ## Next steps
 
