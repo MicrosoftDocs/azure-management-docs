@@ -13,14 +13,12 @@ items:
     items:
       - name: Prepare Linux
         items:
-          - name: Linux prerequisites
-            href: howto-prepare-linux-edge-volumes.md
-          - name: Single-node cluster
-            href: howto-single-node-cluster-edge-volumes.md
           - name: Multi-node cluster
             href: howto-multi-node-cluster-edge-volumes.md
       - name: Install extension
         href: howto-install-edge-volumes.md
+      - name: Prepare Linux
+        href: howto-prepare-linux-edge-volumes.md
   - name: Configure Edge Volumes
     items:
       - name: Volumes and subvolumes overview
