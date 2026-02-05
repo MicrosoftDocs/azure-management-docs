@@ -12,7 +12,7 @@ You can onboard Windows Server machines directly to [Azure Arc](agent-overview.m
 
 If the Windows Server machine is already running in Azure, there's no need to onboard to Azure Arc.
 
-For Windows Server 2022, Azure Arc Setup is an optional component that you can remove by using the **Remove Roles and Features Wizard**. For Windows Server 2025 and later, Azure Arc Setup is a [Feature On Demand](/windows-hardware/manufacture/desktop/features-on-demand-v2--capabilities?view=windows-11). The procedures for removal and enablement differ between OS versions.
+For Windows Server 2022, Azure Arc Setup is an optional component that you can remove by using the **Remove Roles and Features Wizard**. For Windows Server 2025 and later, Azure Arc Setup is a [Feature On Demand](/windows-hardware/manufacture/desktop/features-on-demand-v2--capabilities). The procedures for removal and enablement differ between OS versions.
 
 > [!NOTE]
 > The Azure Arc Setup feature only applies to Windows Server 2022 and later. It was released in the [Cumulative Update of 10/10/2023](https://support.microsoft.com/en-us/topic/october-10-2023-kb5031364-os-build-20348-2031-7f1d69e7-c468-4566-887a-1902af791bbc).
