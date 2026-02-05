@@ -81,7 +81,7 @@ This section describes how to prepare Linux using a single-node or two-node clus
 
 If you run a single-node or two-node cluster on Linux with AKS enabled by Azure Arc, you don't need to perform any additional steps.
 
-# [AKS enabled by Azure Arc](#tab/aks)
+# [AKS Edge Essentials](#tab/aks-ee)
 [!INCLUDE [single-node-edge-essentials](includes/single-node-edge-essentials.md)]
 
 # [Ubuntu](#tab/ubuntu)
