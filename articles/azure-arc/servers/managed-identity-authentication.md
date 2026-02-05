@@ -28,7 +28,7 @@ The environment of a managed-identity-enabled server is configured with the foll
 
 - **IMDS_ENDPOINT**: The IMDS endpoint IP address `http://localhost:40342` for Azure Arc-enabled servers.
 
-- **IDENTITY_ENDPOINT**: The localhost endpoint `http://localhost:40342/metadata/identity/oauth2/token` corresponding to the service's managed identity .
+- **IDENTITY_ENDPOINT**: The localhost endpoint `http://localhost:40342/metadata/identity/oauth2/token` corresponding to the service's managed identity.
 
 Your code that's running on the server can request a token from the Azure Instance Metadata service endpoint, accessible only from within the server.
 
@@ -40,7 +40,7 @@ Before you begin, ensure that you have the following prerequisites in place:
 
 - An understanding of [managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 - A server connected to Azure Arc-enabled servers.
-- On Windows, you must be a member of the local **Administrators** group or the **Hybrid Agent Extension Applications** group. On Linux, you must be a member of the **himds** group.
+- On Windows, you must be a member of the local `Administrators` group or the `Hybrid Agent Extension Applications` group. On Linux, you must be a member of the `himds` group.
 - You must have the [Owner role](/azure/role-based-access-control/built-in-roles#owner) in the Azure subscription or resource group that contains the Arc-enabled servers in order to perform the required resource creation and role management steps.
 - An Azure Key Vault to store and retrieve your credentials, and assign the Azure Arc identity access to the KeyVault.
 
@@ -100,7 +100,7 @@ The response is similar to the following example:
 :::image type="content" source="media/managed-identity-authentication/bash-token-output-example.png" alt-text="A successful retrieval of the access token using Bash.":::
 
 > [!NOTE]
-> The preceding example requests an access token for use with ARM REST APIs when the resource variable is set to `https://management.azure.com`. If you need an access token for a different Azure service, replace the resource variable in the script with the correct resource value. To authenticate with Azure Storage, see [Using OAuth Token with Azure Storage](/azure/storage/blobs/authorize-access-azure-active-directory#microsoft-authentication-library-msal). To complete the configuration to authenticate to Azure Key Vault, see [Access Key Vault with Windows](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#access-data) or [Access Key Vault with Linux](/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad#access-data).
+> The preceding example requests an access token for use with ARM REST APIs when the resource variable is set to `https://management.azure.com`. If you need an access token for a different Azure service, replace the resource variable in the script with the correct resource value. To authenticate with Azure Storage, see [Microsoft Authentication Library (MSAL)](/azure/storage/blobs/authorize-access-azure-active-directory#microsoft-authentication-library-msal). To complete the configuration to authenticate to Azure Key Vault, see [Access Key Vault with Windows](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#access-data) or [Access Key Vault with Linux](/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad#access-data).
 
 ## Related content
 
