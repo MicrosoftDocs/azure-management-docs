@@ -4,8 +4,8 @@ description: Learn how to set up the environment for workload orchestration. Thi
 ms.custom:
   - references_regions
   - build-2025
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: install-set-up-deploy
 ms.date: 11/04/2025
 # Customer intent: "As an IT admin, I want to prepare the environment for workload orchestration, so that I can ensure the appropriate Azure resources and configurations are in place for managing workloads effectively."

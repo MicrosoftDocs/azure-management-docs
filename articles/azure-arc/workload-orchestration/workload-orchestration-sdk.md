@@ -1,8 +1,8 @@
 ---
 title: Workload Orchestration SDK Overview
 description: Learn about the Azure Workload Orchestration SDK and its capabilities.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: overview
 ms.date: 10/06/2025
 ---

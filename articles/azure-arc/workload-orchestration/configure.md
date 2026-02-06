@@ -1,8 +1,8 @@
 ---
 title: Configure your Solutions with Workload Orchestration Portal
 description: Learn how to use the workload orchestration portal to configure your solutions and publish values for deployment.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 10/27/2025
 ms.custom:

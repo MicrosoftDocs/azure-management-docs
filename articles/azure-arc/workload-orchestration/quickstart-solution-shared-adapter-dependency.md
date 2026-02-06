@@ -1,8 +1,8 @@
 ---
 title: Create a Solution with Shared Adapter Dependency with Workload Orchestration
 description: Learn how to create a solution with shared adapter dependency using workload orchestration via CLI.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 05/07/2025
 ms.custom:

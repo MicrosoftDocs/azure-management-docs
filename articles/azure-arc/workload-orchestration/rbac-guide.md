@@ -1,8 +1,8 @@
 ---
 title: Role Based Access Control (RBAC) Guide for Workload Orchestration
 description: Learn how to set up Role-Based Access Control (RBAC) when using workload orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: overview
 ms.date: 09/05/2025
 ms.custom:

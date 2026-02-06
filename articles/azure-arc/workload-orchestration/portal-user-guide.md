@@ -1,8 +1,8 @@
 ---
 title: User Guide for the Workload Orchestration Portal
 description: Learn how to navigate the workload orchestration portal to monitor, configure, and deploy solutions without writing code.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 10/27/2025
 ---

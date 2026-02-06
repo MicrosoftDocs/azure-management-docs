@@ -4,8 +4,8 @@ description: Learn how to configure resources, author solutions, and manage depl
 ms.custom:
   - references_regions
   - build-2025
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: install-set-up-deploy
 ms.date: 09/05/2025
 # Customer intent: As an IT admin, I want to configure and manage workload orchestration resources so that I can effectively deploy applications across my Kubernetes clusters while ensuring streamlined processes and compliance with organizational requirements.

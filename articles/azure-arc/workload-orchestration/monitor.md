@@ -1,8 +1,8 @@
 ---
 title: Monitor your Solutions with Workload Orchestration Portal
 description: Learn how to navigate the workload orchestration portal to monitor your solutions, including their status, capabilities, and deployment details.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 10/27/2025
 ms.custom:

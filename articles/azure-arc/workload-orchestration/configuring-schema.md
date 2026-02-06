@@ -1,8 +1,8 @@
 ---
 title: Configuration Schemas for Workload Orchestration
 description: Learn the rules on how to create configuration schemas for workload orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: concept-article
 ms.date: 06/24/2025
 ms.custom:
