@@ -1,8 +1,8 @@
 ---
 title: Deploy your Solutions with Workload Orchestration Portal
 description: Learn to use workload orchestration portal to deploy your applications, and also to delete, stop, roll back, and retry solutions.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 10/27/2025
 ms.custom:

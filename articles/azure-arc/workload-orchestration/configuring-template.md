@@ -1,8 +1,8 @@
 ---
 title: Configuration Templates for workload orchestration
 description: Learn how to create configuration templates for workload orchestration using the templating language.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: concept-article
 ms.date: 04/17/2025
 ms.custom:

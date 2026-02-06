@@ -1,8 +1,8 @@
 ---
 title: What Is Workload Orchestration?
 description: Workload orchestration is a cross-platform orchestrator for managing edge workloads using an Azure control plane.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: overview
 ms.date: 06/22/2025
 ms.custom:

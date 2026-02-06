@@ -1,8 +1,8 @@
 ---
 title: Known Issues for Workload Orchestration
 description: This article provides a list of known issues for workload orchestration in Azure Arc, including workarounds.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: troubleshooting-known-issue
 ms.date: 06/08/2025
 ---

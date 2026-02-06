@@ -181,8 +181,8 @@
         ]
       },
       "manager": {
-        "articles/azure-arc/**/*.md": "rayoflores",
-        "articles/azure-arc/**/*.yml": "rayoflores",
+        "articles/azure-arc/**/*.md": "lizross",
+        "articles/azure-arc/**/*.yml": "lizross",
         "articles/azure-linux/**/*.md": "rayoflores",
         "articles/azure-linux/**/*.yml": "rayoflores",
         "articles/copilot/**/*.md": "rayoflores",

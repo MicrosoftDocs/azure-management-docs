@@ -1,8 +1,8 @@
 ---
 title: Workflows and Features in Workload Orchestration
 description: Learn about the workflow in workload orchestration and the features available for authoring, deploying, and managing solutions.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: concept-article
 ms.date: 06/24/2025
 ---

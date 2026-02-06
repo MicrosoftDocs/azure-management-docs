@@ -1,8 +1,8 @@
 ---
 title: Create a Solution with Multiple Dependencies with Workload Orchestration
 description: Learn how to create a solution with multiple shared adapter dependencies using workload orchestration via CLI.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 05/07/2025
 ms.custom:
