@@ -64,11 +64,7 @@ Keep in mind the following considerations and recommendations when using geo-rep
 * To serve blobs representing content layers, Azure Container Registry uses data endpoints. You can enable [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for your registry in each of your registry's geo-replicated regions. These endpoints allow configuration of tightly scoped firewall access rules. For troubleshooting purposes, you can optionally [disable routing to a replication](#temporarily-disable-routing-to-replication) while maintaining replicated data.
 * If you configure a [private link](container-registry-private-link.md) for your registry using private endpoints in a virtual network, dedicated data endpoints in each of the geo-replicated regions are enabled by default. 
 
-## Geo-replication considerations for high availability
-
-For high availability and resiliency, create a registry in a region that supports [zone redundancy](zone-redundancy.md), and enable zone redundancy in each replica region.
-
-If an outage occurs in the registry's home region (the region where you created it) or one of its replica regions, a geo-replicated registry remains available for data plane operations such as pushing or pulling container images. If the registry's home region becomes unavailable, you might be unable to carry out registry management operations, including configuring network rules, enabling availability zones, and managing replicas.
+For high availability and resiliency, create a registry in a region that supports [zone redundancy](zone-redundancy.md), and enable zone redundancy in each replica region. If an outage occurs in the registry's home region (the region where you created it) or one of its replica regions, a geo-replicated registry remains available for data plane operations such as pushing or pulling container images. If the registry's home region becomes unavailable, you might be unable to carry out registry management operations, including configuring network rules, enabling availability zones, and managing replicas.
 
 To plan for high availability of a geo-replicated registry encrypted with a [customer-managed key](tutorial-enable-customer-managed-keys.md) stored in an Azure key vault, review the guidance for key vault [failover and redundancy](/azure/key-vault/general/disaster-recovery-guidance).
 
