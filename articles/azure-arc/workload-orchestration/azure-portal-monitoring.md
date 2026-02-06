@@ -1,8 +1,8 @@
 ---
 title: Monitor your solutions with Azure portal as an IT Developer
 description: Learn how to monitor your solutions with workload orchestration using the Azure portal as an IT Developer.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 05/01/2025
 ms.custom:

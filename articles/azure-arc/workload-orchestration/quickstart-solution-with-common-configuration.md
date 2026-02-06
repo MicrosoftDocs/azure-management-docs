@@ -1,8 +1,8 @@
 ---
 title: Create a Basic Solution with Common Configurations with Workload Orchestration
 description: Learn how to create a basic solution with common configurations using the workload orchestration via CLI. 
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: quickstart
 ms.date: 05/03/2025
 ms.custom:

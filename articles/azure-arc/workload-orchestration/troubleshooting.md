@@ -1,8 +1,8 @@
 ---
 title: Troubleshooting for Workload Orchestration
 description: Learn how to troubleshoot issues with Workload Orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: troubleshooting-general
 ms.date: 06/01/2025
 ---

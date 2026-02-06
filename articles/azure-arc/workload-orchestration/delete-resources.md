@@ -1,8 +1,8 @@
 ---
 title: Delete Resources in Workload Orchestration
 description: Learn how to delete the resources created with workload orchestration
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 06/24/2025
 ms.custom:

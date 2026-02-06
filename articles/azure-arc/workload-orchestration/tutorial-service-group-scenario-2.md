@@ -1,8 +1,8 @@
 ---
 title: Solution with a Non-Leaf Target
 description: Learn how to create and configure a solution with a non-leaf target in a four-level service group hierarchy.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 06/01/2025
 ---

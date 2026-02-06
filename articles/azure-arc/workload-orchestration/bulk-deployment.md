@@ -1,8 +1,8 @@
 ---
 title: Bulk Review, Publish, and Deploy with Workload Orchestration
 description: Learn how to perform bulk review, publish, and deployment of workloads using workload orchestration in Azure Arc.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/30/2025
 ---

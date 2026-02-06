@@ -1,8 +1,8 @@
 ---
 title: Onboarding Scripts for Workload Orchestration
 description: The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: install-set-up-deploy
 ms.date: 06/10/2025
 ms.custom:

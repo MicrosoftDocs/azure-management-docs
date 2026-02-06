@@ -1,8 +1,8 @@
 ---
 title: Diagnostics of Edge-Related Logs and Errors in Workload Orchestration
 description: Learn how to diagnose workload orchestration logs and errors, audit and diagnostic logs, and collect container logs or Kubernetes events.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 06/08/2025
 ---
