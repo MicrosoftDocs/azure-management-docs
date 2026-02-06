@@ -5,7 +5,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
 ms.topic: tutorial  #Don't change.
-ms.date: 10/31/2023
+ms.date: 02/06/2026
 # Customer intent: As a DevOps engineer, I want to configure my Azure Container Registry to control which Microsoft Entra authentication scopes are accepted, so that I can enhance security by restricting to ACR-scoped Microsoft Entra authentication only.
 ---
 
