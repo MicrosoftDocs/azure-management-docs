@@ -150,11 +150,11 @@ If you completed the previous tutorial (and didn't delete the registry), you sho
 ```output
 RUN ID    TASK            PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  --------------  ----------  ---------  ---------  --------------------  ----------
-cax       baseexample1    linux       Succeeded  Manual     2020-11-20T23:33:12Z  00:00:30
-caw       taskhelloworld  linux       Succeeded  Commit     2020-11-20T23:16:07Z  00:00:29
-cav       example2        linux       Succeeded  Commit     2020-11-20T23:16:07Z  00:00:55
-cau       example1        linux       Succeeded  Commit     2020-11-20T23:16:07Z  00:00:40
-cat       taskhelloworld  linux       Succeeded  Manual     2020-11-20T23:07:29Z  00:00:27
+cax       baseexample1    linux       Succeeded  Manual     2023-11-20T23:33:12Z  00:00:30
+caw       taskhelloworld  linux       Succeeded  Commit     2023-11-20T23:16:07Z  00:00:29
+cav       example2        linux       Succeeded  Commit     2023-11-20T23:16:07Z  00:00:55
+cau       example1        linux       Succeeded  Commit     2023-11-20T23:16:07Z  00:00:40
+cat       taskhelloworld  linux       Succeeded  Manual     2023-11-20T23:07:29Z  00:00:27
 ```
 
 ## Update the base image
@@ -186,14 +186,14 @@ Output is similar to the following. The TRIGGER for the last-executed build shou
 ```output
 Run ID    TASK            PLATFORM    STATUS     TRIGGER       STARTED               DURATION
 --------  --------------  ----------  ---------  ------------  --------------------  ----------
-ca11      baseexample1    linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:34
-ca10      taskhelloworld  linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:24
-cay                       linux       Succeeded  Manual        2020-11-20T23:38:08Z  00:00:22
-cax       baseexample1    linux       Succeeded  Manual        2020-11-20T23:33:12Z  00:00:30
-caw       taskhelloworld  linux       Succeeded  Commit        2020-11-20T23:16:07Z  00:00:29
-cav       example2        linux       Succeeded  Commit        2020-11-20T23:16:07Z  00:00:55
-cau       example1        linux       Succeeded  Commit        2020-11-20T23:16:07Z  00:00:40
-cat       taskhelloworld  linux       Succeeded  Manual        2020-11-20T23:07:29Z  00:00:27
+ca11      baseexample1    linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:34
+ca10      taskhelloworld  linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:24
+cay                       linux       Succeeded  Manual        2023-11-20T23:38:08Z  00:00:22
+cax       baseexample1    linux       Succeeded  Manual        2023-11-20T23:33:12Z  00:00:30
+caw       taskhelloworld  linux       Succeeded  Commit        2023-11-20T23:16:07Z  00:00:29
+cav       example2        linux       Succeeded  Commit        2023-11-20T23:16:07Z  00:00:55
+cau       example1        linux       Succeeded  Commit        2023-11-20T23:16:07Z  00:00:40
+cat       taskhelloworld  linux       Succeeded  Manual        2023-11-20T23:07:29Z  00:00:27
 ```
 
 If you'd like to perform the following optional step of running the newly built container to see the updated version number, take note of the **RUN ID** value for the Image Update-triggered build (in the preceding output, it's "ca11").

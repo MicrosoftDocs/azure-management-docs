@@ -384,7 +384,7 @@ You should eventually see STATUS `Succeeded` based on a TRIGGER of `Commit`:
 ```azurecli-interactive
 RUN ID    TASK      PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  --------  ----------  ---------  ---------  --------------------  ----------
-ca4       hub-node  linux       Succeeded  Commit     2020-10-24T05:02:29Z  00:00:22
+ca4       hub-node  linux       Succeeded  Commit     2023-10-24T05:02:29Z  00:00:22
 ```
 
 Type **Ctrl+C** to exit the watch command, then view the logs for the most recent run:
@@ -404,7 +404,7 @@ You should eventually see STATUS `Succeeded` based on a TRIGGER of `Image Update
 ```azurecli-interactive
 RUN ID    TASK         PLATFORM    STATUS     TRIGGER       STARTED               DURATION
 --------  -----------  ----------  ---------  ------------  --------------------  ----------
-dau       hello-world  linux       Succeeded  Image Update  2020-10-24T05:08:45Z  00:00:31
+dau       hello-world  linux       Succeeded  Image Update  2023-10-24T05:08:45Z  00:00:31
 ```
 
 Type **Ctrl+C** to exit the watch command, then view the logs for the most recent run:
@@ -713,12 +713,12 @@ At this point, you should see the **base-import-node** task fail validation and 
 
 ```console
 [...]
-2020/10/30 03:57:39 Launching container with name: validate-base-image
+2023/10/30 03:57:39 Launching container with name: validate-base-image
 Validating Image
 NODE_VERSION: 15-alpine
 BACKGROUND_COLOR: Red
 ERROR: Invalid Color: Red
-2020/10/30 03:57:40 Container failed during run: validate-base-image. No retries remaining.
+2023/10/30 03:57:40 Container failed during run: validate-base-image. No retries remaining.
 failed to run step ID: validate-base-image: exit status 1
 ```
 

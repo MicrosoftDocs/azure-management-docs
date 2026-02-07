@@ -16,14 +16,12 @@ ms.custom:
 
 Limit access to a registry by assigning virtual network private IP addresses to the registry endpoints and using [Azure Private Link](/azure/private-link/private-link-overview). Network traffic between the clients on the virtual network and the registry's private endpoints traverses the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet. Private Link also enables private registry access from on-premises through [Azure ExpressRoute](/azure/expressroute/expressroute-introduction), private peering, or a [VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways).
 
-You can [configure DNS settings](/azure/private-link/private-endpoint-overview#dns-configuration) for the registry's private endpoints, so that the settings resolve to the registry's allocated private IP address. With DNS configuration, clients and services in the network can continue to access the registry at the registry's fully qualified domain name, such as *myregistry.azurecr.io*. 
+You can [configure DNS settings](/azure/private-link/private-endpoint-overview#dns-configuration) for the registry's private endpoints, so that the settings resolve to the registry's allocated private IP address. With DNS configuration, clients and services in the network can continue to access the registry at the registry's fully qualified domain name, such as *myregistry.azurecr.io*.
 
-This article shows how to configure a private endpoint for your registry using the Azure portal (recommended) or the Azure CLI. This feature is available in the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md).
+This article shows how to configure a private endpoint for your registry using the Azure portal (recommended) or the Azure CLI. This feature is available in the **Premium** container registry service tier, with a maximum of 200 private endpoints. For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md).
 
 [!INCLUDE [container-registry-scanning-limitation](./includes/container-registry-scanning-limitation.md)]
 
-> [!NOTE]
-> Starting from October 2021, new container registries allow a maximum of 200 private endpoints. Registries created earlier allow a maximum of 10 private endpoints. Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command to see the limit for your registry. Please open a support ticket to increase the limit to 200 private endpoints.
 
 ## Prerequisites
 

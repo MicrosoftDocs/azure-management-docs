@@ -190,19 +190,19 @@ As mentioned in the [Manifest digest](container-registry-concepts.md#manifest-di
     "changeableAttributes": {
       "deleteEnabled": true,
       "listEnabled": true,
-      "quarantineDetails": "{\"state\":\"Scan Passed\",\"link\":\"https://aka.ms/test\",\"scanner\":\"Azure Security Monitoring-Qualys Scanner\",\"result\":{\"version\":\"2020-05-13T00:23:31.954Z\",\"summary\":[{\"severity\":\"High\",\"count\":2},{\"severity\":\"Medium\",\"count\":0},{\"severity\":\"Low\",\"count\":0}]}}",
+      "quarantineDetails": "{\"state\":\"Scan Passed\",\"link\":\"https://aka.ms/test\",\"scanner\":\"Azure Security Monitoring-Qualys Scanner\",\"result\":{\"version\":\"2023-05-13T00:23:31.954Z\",\"summary\":[{\"severity\":\"High\",\"count\":2},{\"severity\":\"Medium\",\"count\":0},{\"severity\":\"Low\",\"count\":0}]}}",
       "quarantineState": "Passed",
       "readEnabled": true,
       "writeEnabled": true
     },
     "configMediaType": "application/vnd.docker.container.image.v1+json",
-    "createdTime": "2020-05-16T04:25:14.3112885Z",
+    "createdTime": "2023-05-16T04:25:14.3112885Z",
     "digest": "sha256:eef2ef471f9f9d01fd2ed81bd2492ddcbc0f281b0a6e4edb700fbf9025448388",
     "imageSize": 22906605,
-    "lastUpdateTime": "2020-05-16T04:25:14.3112885Z",
+    "lastUpdateTime": "2023-05-16T04:25:14.3112885Z",
     "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
     "os": "linux",
-    "timestamp": "2020-05-16T04:25:14.3112885Z"
+    "timestamp": "2023-05-16T04:25:14.3112885Z"
      }
    ]
    ```

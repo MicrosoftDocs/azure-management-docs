@@ -26,7 +26,7 @@ If you currently pull public images from Docker Hub as part of a build or deploy
 When you make frequent anonymous pull requests, you might see Docker errors similar to `ERROR: toomanyrequests: Too Many Requests.` or `You have reached your pull rate limit.` Authenticate to Docker Hub to prevent these errors.
 
 > [!NOTE]
-> Effective November 2, 2020, [download rate limits](https://docs.docker.com/docker-hub/download-rate-limit) apply to anonymous and authenticated requests to Docker Hub from Docker Free Plan accounts. These limits are enforced by IP address and Docker ID, respectively. 
+> Download rate limits apply to anonymous and authenticated requests to Docker Hub from Docker Free Plan accounts. These limits are enforced by IP address and Docker ID, respectively. 
 >
 > To estimate your number of pull requests, keep in mind that when using cloud provider services or working behind a corporate NAT, multiple users appear to Docker Hub as a subset of IP addresses. By adding Docker paid account authentication to requests made to Docker Hub, you can avoid potential service disruptions caused by rate-limit throttling.
 >

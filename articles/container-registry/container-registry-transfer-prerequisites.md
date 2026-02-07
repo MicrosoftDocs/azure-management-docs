@@ -92,7 +92,7 @@ In the following example, command output is assigned to the EXPORT_SAS environme
 EXPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $SOURCE_SA \
-  --expiry 2021-01-01 \
+  --expiry 2023-01-01 \
   --permissions alrw \
   --https-only \
   --output tsv)
@@ -121,7 +121,7 @@ In the following example, command output is assigned to the IMPORT_SAS environme
 IMPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $TARGET_SA \
-  --expiry 2021-01-01 \
+  --expiry 2023-01-01 \
   --permissions dlr \
   --https-only \
   --output tsv)
