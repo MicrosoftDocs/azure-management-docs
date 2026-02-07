@@ -153,7 +153,7 @@ If the `networkRuleBypassAllowedForTasks` setting isn't explicitly set, network 
 
 ### Scenario 4: Use [az acr purge](~/articles/container-registry/container-registry-auto-purge.md) locally for image cleanup
 
-If you prefer not to use the policy setting and aren't using network bypassk, you can manage ACR cleanup tasks locally using the `az acr purge` command. To do this, download the ACR CLI binary from [Azure ACR CLI GitHub](https://github.com/azure/acr-cli) and execute commands on your own machine. This lets you remove unneeded or stale images from your registry without relying on ACR tasks or altering your current configuration. Running the purge locally ensures all operations occur within your trusted environment (customer managed trust boundary), avoiding any dependency on network bypass.
+If you prefer not to use the policy setting and aren't using network bypass, you can manage ACR cleanup tasks locally using the `az acr purge` command. To do this, download the ACR CLI binary from [Azure ACR CLI GitHub](https://github.com/azure/acr-cli) and execute commands on your own machine. This lets you remove unneeded or stale images from your registry without relying on ACR tasks or altering your current configuration. Running the purge locally ensures all operations occur within your trusted environment (customer managed trust boundary), avoiding any dependency on network bypass.
 
 ### Scenario 5: Build and manage images on self-hosted environments
 
