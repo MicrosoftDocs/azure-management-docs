@@ -498,7 +498,7 @@ sections:
           How can I resolve agent pool creation failure due to time-out issues?
         answer: |
           Set up the correct [firewall rules](./tasks-agent-pools.md#add-firewall-rules) to the existing network security groups or user-defined routes. After the setup, wait a few minutes for the firewall rules to apply.
-          
+
 additionalContent: |
 
   ## Next steps

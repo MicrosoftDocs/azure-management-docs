@@ -115,10 +115,10 @@ If the container runs successfully, the output is similar to the following. The 
 ```output
 Queued a run with ID: cf2a
 Waiting for an agent...
-2020/11/20 21:03:36 Using acb_vol_2ca23c46-a9ac-4224-b0c6-9fde44eb42d2 as the home volume
-2020/11/20 21:03:36 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/11/20 21:03:36 Using acb_vol_2ca23c46-a9ac-4224-b0c6-9fde44eb42d2 as the home volume
+2023/11/20 21:03:36 Creating Docker network: acb_default_network, driver: 'bridge'
 [...]
-2020/11/20 21:03:38 Launching container with name: acb_step_0
+2023/11/20 21:03:38 Launching container with name: acb_step_0
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -136,8 +136,8 @@ When the timer is successful, output is similar to the following:
 ```output
 RUN ID    TASK       PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  ---------  ----------  ---------  ---------  --------------------  ----------
-ca15      timertask  linux       Succeeded  Timer      2020-11-20T21:00:23Z  00:00:06
-ca14      timertask  linux       Succeeded  Manual     2020-11-20T20:53:35Z  00:00:06
+ca15      timertask  linux       Succeeded  Timer      2023-11-20T21:00:23Z  00:00:06
+ca14      timertask  linux       Succeeded  Manual     2023-11-20T20:53:35Z  00:00:06
 ```
 
 ## Manage timer triggers

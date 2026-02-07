@@ -86,18 +86,18 @@ The output shows details about the token. By default, two passwords are generate
 
 ```console
 {
-  "creationDate": "2020-01-18T00:15:34.066221+00:00",
+  "creationDate": "2023-01-18T00:15:34.066221+00:00",
   "credentials": {
     "certificates": [],
     "passwords": [
       {
-        "creationTime": "2020-01-18T00:15:52.837651+00:00",
+        "creationTime": "2023-01-18T00:15:52.837651+00:00",
         "expiry": null,
         "name": "password1",
         "value": "uH54BxxxxK7KOxxxxRbr26dAs8JXxxxx"
       },
       {
-        "creationTime": "2020-01-18T00:15:52.837651+00:00",
+        "creationTime": "2023-01-18T00:15:52.837651+00:00",
         "expiry": null,
         "name": "password2",
         "value": "kPX6Or/xxxxLXpqowxxxxkA0idwLtmxxxx"
@@ -421,10 +421,10 @@ The output consists of the three system-defined scope maps and other scope maps 
 ```
 NAME                 TYPE           CREATION DATE         DESCRIPTION
 -------------------  -------------  --------------------  ------------------------------------------------------------
-_repositories_admin  SystemDefined  2020-01-20T09:44:24Z  Can perform all read, write and delete operations on the ...
-_repositories_pull   SystemDefined  2020-01-20T09:44:24Z  Can pull any repository of the registry
-_repositories_push   SystemDefined  2020-01-20T09:44:24Z  Can push to any repository of the registry
-MyScopeMap           UserDefined    2019-11-15T21:17:34Z  Sample scope map
+_repositories_admin  SystemDefined  2023-01-20T09:44:24Z  Can perform all read, write and delete operations on the ...
+_repositories_pull   SystemDefined  2023-01-20T09:44:24Z  Can pull any repository of the registry
+_repositories_push   SystemDefined  2023-01-20T09:44:24Z  Can push to any repository of the registry
+MyScopeMap           UserDefined    2022-11-15T21:17:34Z  Sample scope map
 ```
 
 ### Show token details

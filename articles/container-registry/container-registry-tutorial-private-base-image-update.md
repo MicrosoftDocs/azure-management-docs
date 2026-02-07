@@ -191,12 +191,12 @@ az acr task list-runs --registry $ACR_NAME --output table
 ```output
 UN ID    TASK            PLATFORM    STATUS     TRIGGER       STARTED               DURATION
 --------  --------------  ----------  ---------  ------------  --------------------  ----------
-ca12      baseexample2    linux       Succeeded  Manual        2020-11-21T00:00:56Z  00:00:36
-ca11      baseexample1    linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:34
-ca10      taskhelloworld  linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:24
-cay                       linux       Succeeded  Manual        2020-11-20T23:38:08Z  00:00:22
-cax       baseexample1    linux       Succeeded  Manual        2020-11-20T23:33:12Z  00:00:30
-caw       taskhelloworld  linux       Succeeded  Commit        2020-11-20T23:16:07Z  00:00:29
+ca12      baseexample2    linux       Succeeded  Manual        2023-11-21T00:00:56Z  00:00:36
+ca11      baseexample1    linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:34
+ca10      taskhelloworld  linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:24
+cay                       linux       Succeeded  Manual        2023-11-20T23:38:08Z  00:00:22
+cax       baseexample1    linux       Succeeded  Manual        2023-11-20T23:33:12Z  00:00:30
+caw       taskhelloworld  linux       Succeeded  Commit        2023-11-20T23:16:07Z  00:00:29
 ```
 
 ## Update the base image
@@ -232,13 +232,13 @@ az acr task list-runs --registry $ACR_NAME --output table
 ```output
          PLATFORM    STATUS     TRIGGER       STARTED               DURATION
 --------  --------------  ----------  ---------  ------------  --------------------  ----------
-ca13      baseexample2    linux       Succeeded  Image Update  2020-11-21T00:06:00Z  00:00:43
-ca12      baseexample2    linux       Succeeded  Manual        2020-11-21T00:00:56Z  00:00:36
-ca11      baseexample1    linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:34
-ca10      taskhelloworld  linux       Succeeded  Image Update  2020-11-20T23:38:24Z  00:00:24
-cay                       linux       Succeeded  Manual        2020-11-20T23:38:08Z  00:00:22
-cax       baseexample1    linux       Succeeded  Manual        2020-11-20T23:33:12Z  00:00:30
-caw       taskhelloworld  linux       Succeeded  Commit        2020-11-20T23:16:07Z  00:00:29
+ca13      baseexample2    linux       Succeeded  Image Update  2023-11-21T00:06:00Z  00:00:43
+ca12      baseexample2    linux       Succeeded  Manual        2023-11-21T00:00:56Z  00:00:36
+ca11      baseexample1    linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:34
+ca10      taskhelloworld  linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:24
+cay                       linux       Succeeded  Manual        2023-11-20T23:38:08Z  00:00:22
+cax       baseexample1    linux       Succeeded  Manual        2023-11-20T23:33:12Z  00:00:30
+caw       taskhelloworld  linux       Succeeded  Commit        2023-11-20T23:16:07Z  00:00:29
 ```
 
 If you'd like to perform the following optional step of running the newly built container to see the updated version number, take note of the **RUN ID** value for the Image Update-triggered build (in the preceding output, it's "ca13").
