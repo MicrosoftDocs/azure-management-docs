@@ -19,10 +19,10 @@ To quickly manage and deploy applications for Kubernetes, you can use the [open-
 This article shows you how to host Helm charts repositories in an Azure container registry, using Helm 3 commands and storing charts as [OCI artifacts](container-registry-image-formats.md#oci-artifacts). In many scenarios, you would build and upload your own charts for the applications you develop. For more information on how to build your own Helm charts, see the [Chart Template Developer's Guide][develop-helm-charts]. You can also store an existing Helm chart from another Helm repo.
 
 > [!NOTE]
-> This article has been updated with Helm 3 commands. Helm 3.7 includes changes to Helm CLI commands and OCI support introduced in earlier versions of Helm 3. By design `helm` advances with version updates. We recommend using **3.7.2** or later.
+> This article uses Helm 3 commands. Helm 3.7 includes changes to Helm CLI commands and OCI support introduced in earlier versions of Helm 3. By design `helm` advances with version updates. We recommend using version **3.7.2** or later.
 
 > [!IMPORTANT]
-> * In November 2020, Helm 2 reached end-of-support. As of **September 15, 2025**, the Azure CLI command group [az acr helm][az-acr-helm] has been retired., ending legacy Helm repository capabilities in Azure Container Registry.
+> In November 2020, Helm 2 reached end-of-support. As of September 15, 2025, the Azure CLI command group [az acr helm][az-acr-helm] has been retired., ending legacy Helm repository capabilities in Azure Container Registry.
 
 To store, manage, and install Helm charts, you use commands in the Helm CLI. Major Helm releases include Helm 3 and Helm 2. For details on the version differences, see the [version FAQ](https://helm.sh/docs/faq/).
 
@@ -211,9 +211,9 @@ Output is similar to:
     "readEnabled": true,
     "writeEnabled": true
   },
-  "createdTime": "2021-10-05T12:11:37.6701689Z",
+  "createdTime": "2023-10-05T12:11:37.6701689Z",
   "imageName": "helm/hello-world",
-  "lastUpdateTime": "2021-10-05T12:11:37.7637082Z",
+  "lastUpdateTime": "2023-10-05T12:11:37.7637082Z",
   "manifestCount": 1,
   "registry": "mycontainerregistry.azurecr.io",
   "tagCount": 1
@@ -235,10 +235,10 @@ Output, abbreviated in this example, shows a `configMediaType` of `application/v
   {
     [...]
     "configMediaType": "application/vnd.cncf.helm.config.v1+json",
-    "createdTime": "2021-10-05T12:11:37.7167893Z",
+    "createdTime": "2023-10-05T12:11:37.7167893Z",
     "digest": "sha256:0c03b71c225c3ddff53660258ea16ca7412b53b1f6811bf769d8c85a1f0663ee",
     "imageSize": 3301,
-    "lastUpdateTime": "2021-10-05T12:11:37.7167893Z",
+    "lastUpdateTime": "2023-10-05T12:11:37.7167893Z",
     "mediaType": "application/vnd.oci.image.manifest.v1+json",
     "tags": [
       "0.1.0"
@@ -257,7 +257,7 @@ Output after successful chart installation is similar to:
 
 ```console
 NAME: myhelmtest
-LAST DEPLOYED: Tue Oct  4 16:59:51 2021
+LAST DEPLOYED: Tue Oct  4 16:59:51 2023
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
