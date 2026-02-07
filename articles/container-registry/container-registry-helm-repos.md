@@ -18,48 +18,18 @@ To quickly manage and deploy applications for Kubernetes, you can use the [open-
 
 This article shows you how to host Helm charts repositories in an Azure container registry, using Helm 3 commands and storing charts as [OCI artifacts](container-registry-image-formats.md#oci-artifacts). In many scenarios, you would build and upload your own charts for the applications you develop. For more information on how to build your own Helm charts, see the [Chart Template Developer's Guide][develop-helm-charts]. You can also store an existing Helm chart from another Helm repo.
 
-> [!NOTE]
-> This article uses Helm 3 commands. Helm 3.7 includes changes to Helm CLI commands and OCI support introduced in earlier versions of Helm 3. By design `helm` advances with version updates. We recommend using version **3.7.2** or later.
-
 > [!IMPORTANT]
 > In November 2020, Helm 2 reached end-of-support. As of September 15, 2025, the Azure CLI command group [az acr helm][az-acr-helm] has been retired., ending legacy Helm repository capabilities in Azure Container Registry.
 
-To store, manage, and install Helm charts, you use commands in the Helm CLI. Major Helm releases include Helm 3 and Helm 2. For details on the version differences, see the [version FAQ](https://helm.sh/docs/faq/).
+To store, manage, and install Helm charts, you use commands in the Helm CLI. This article uses Helm 3 commands. Helm 3.7 includes changes to Helm CLI commands and OCI support introduced in earlier versions of Helm 3. By design `helm` advances with version updates. We recommend using Helm **3.7.2** or later.
 
-## Migrate from Helm 2 to Helm 3
+With Helm 3, you:
 
-If you've previously stored and deployed charts using Helm 2 and Azure Container Registry, we recommend migrating to Helm 3. See:
-
-* [Migrating Helm 2 to 3](https://helm.sh/docs/topics/v2_v3_migration/) in the Helm documentation.
-* [Migrate your registry to store Helm OCI artifacts](#migrate-your-registry-to-store-helm-oci-artifacts), later in this article
-
-Helm 3 should be used to host Helm charts in Azure Container Registry. With Helm 3, you:
-
-* Can store and manage Helm charts in repositories in an Azure container registry
+* Store and manage Helm charts in repositories in an Azure container registry
 * Store Helm charts in your registry as [OCI artifacts](container-registry-image-formats.md#oci-artifacts). Azure Container Registry provides GA support for OCI artifacts, including Helm charts.
 * Authenticate with your registry using the `helm registry login` or `az acr login` command.
 * Use `helm` commands to push, pull, and manage Helm charts in a registry
 * Use `helm install` to install charts to a Kubernetes cluster from the registry.
-
-### Feature support
-
-Azure Container Registry supports specific Helm chart management features depending on whether you are using Helm 3 (current) or Helm 2 (deprecated).
-
-| Feature | Helm 2 | Helm 3 |
-| ---- | ---- | ---- |
-| Manage charts using `az acr helm` commands | :heavy_check_mark: | |
-| Store charts as OCI artifacts | | :heavy_check_mark:  |
-| Manage charts using `az acr repository` commands and the **Repositories** blade in Azure portal| | :heavy_check_mark:  |
-
-### Chart version compatibility
-
-The following Helm [chart versions](https://helm.sh/docs/topics/charts/#the-apiversion-field) can be stored in Azure Container Registry and are installable by the Helm 2 and Helm 3 clients. 
-
-| Version | Helm 2 | Helm 3 |
-| ---- | ---- | ---- |
-| apiVersion v1 | :heavy_check_mark: | :heavy_check_mark: |
-| apiVersion v2 | | :heavy_check_mark: |
-
 
 ## Prerequisites
 
@@ -296,7 +266,9 @@ az acr repository delete --name $ACR_NAME --image helm/hello-world:0.1.0
 
 ## Migrate your registry to store Helm OCI artifacts
 
-If you previously set up your Azure container registry as a chart repository using Helm 2 and the `az acr helm` commands, we recommend that you [upgrade][helm-install] to the Helm 3 client. Then, follow these steps to store the charts as OCI artifacts in your registry. 
+If you previously set up your Azure container registry as a chart repository using Helm 2 and the `az acr helm` commands, [upgrade][helm-install] to the Helm 3 client. For more information, see [Migrating Helm 2 to 3](https://helm.sh/docs/topics/v2_v3_migration/) in the Helm documentation.
+
+Then, follow these steps to store the charts as OCI artifacts in your registry.
 
 > [!IMPORTANT]
 > * After you complete migration from a Helm 2-style (index.yaml-based) chart repository to OCI artifact repositories, use the Helm CLI and `az acr repository` commands to manage the charts. See previous sections in this article. 
@@ -389,5 +361,4 @@ helm repo remove $ACR_NAME
 [az-acr-repository-delete]: /cli/azure/acr/repository#az-acr-repository-delete
 [az-acr-manifest-list-metadata]: /cli/azure/acr/manifest#az-acr-manifest-list-metadata
 [acr-tasks]: container-registry-tasks-overview.md
-[az-acr-helm-push]:/cli/azure/acr/helm/#az-acr-helm-push
-[az-acr-helm-list]:/cli/azure/acr/helm/#az-acr-helm-list
+
