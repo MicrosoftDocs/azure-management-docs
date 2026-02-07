@@ -131,14 +131,14 @@ az acr task run --registry $ACR_NAME --name taskhelloworld
 By default, the `az acr task run` command streams the log output to your console when you execute the command. The output is condensed to show key steps.
 
 ```output
-2020/11/19 22:51:00 Using acb_vol_9ee1f28c-4fd4-43c8-a651-f0ed027bbf0e as the home volume
-2020/11/19 22:51:00 Setting up Docker configuration...
-2020/11/19 22:51:02 Successfully set up Docker configuration
-2020/11/19 22:51:02 Logging in to registry: myregistry.azurecr.io
-2020/11/19 22:51:03 Successfully logged in
-2020/11/19 22:51:03 Executing step: build
-2020/11/19 22:51:03 Obtaining source code and scanning for dependencies...
-2020/11/19 22:51:05 Successfully obtained source code and scanned for dependencies
+2023/11/19 22:51:00 Using acb_vol_9ee1f28c-4fd4-43c8-a651-f0ed027bbf0e as the home volume
+2023/11/19 22:51:00 Setting up Docker configuration...
+2023/11/19 22:51:02 Successfully set up Docker configuration
+2023/11/19 22:51:02 Logging in to registry: myregistry.azurecr.io
+2023/11/19 22:51:03 Successfully logged in
+2023/11/19 22:51:03 Executing step: build
+2023/11/19 22:51:03 Obtaining source code and scanning for dependencies...
+2023/11/19 22:51:05 Successfully obtained source code and scanned for dependencies
 Sending build context to Docker daemon  23.04kB
 Step 1/5 : FROM node:15-alpine
 [...]
@@ -148,19 +148,19 @@ Removing intermediate container 7382eea2a56a
  ---> e33cd684027b
 Successfully built e33cd684027b
 Successfully tagged myregistry.azurecr.io/helloworld:da2
-2020/11/19 22:51:11 Executing step: push
-2020/11/19 22:51:11 Pushing image: myregistry.azurecr.io/helloworld:da2, attempt 1
+2023/11/19 22:51:11 Executing step: push
+2023/11/19 22:51:11 Pushing image: myregistry.azurecr.io/helloworld:da2, attempt 1
 The push refers to repository [myregistry.azurecr.io/helloworld]
 4a853682c993: Preparing
 [...]
 4a853682c993: Pushed
 [...]
 da2: digest: sha256:c24e62fd848544a5a87f06ea60109dbef9624d03b1124bfe03e1d2c11fd62419 size: 1366
-2020/11/19 22:51:21 Successfully pushed image: myregistry.azurecr.io/helloworld:da2
-2020/11/19 22:51:21 Step id: build marked as successful (elapsed time in seconds: 7.198937)
-2020/11/19 22:51:21 Populating digests for step id: build...
-2020/11/19 22:51:22 Successfully populated digests for step id: build
-2020/11/19 22:51:22 Step id: push marked as successful (elapsed time in seconds: 10.180456)
+2023/11/19 22:51:21 Successfully pushed image: myregistry.azurecr.io/helloworld:da2
+2023/11/19 22:51:21 Step id: build marked as successful (elapsed time in seconds: 7.198937)
+2023/11/19 22:51:21 Populating digests for step id: build...
+2023/11/19 22:51:22 Successfully populated digests for step id: build
+2023/11/19 22:51:22 Step id: push marked as successful (elapsed time in seconds: 10.180456)
 The following dependencies were found:
 - image:
     registry: myregistry.azurecr.io
@@ -235,9 +235,9 @@ Output from the command should appear similar to the following. The runs that AC
 ```output
 RUN ID    TASK            PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  --------------  ----------  ---------  ---------  --------------------  ----------
-ca7       taskhelloworld  linux       Succeeded  Commit     2020-11-19T22:54:34Z  00:00:29
-ca6       taskhelloworld  linux       Succeeded  Manual     2020-11-19T22:51:47Z  00:00:24
-ca5                       linux       Succeeded  Manual     2020-11-19T22:23:42Z  00:00:23
+ca7       taskhelloworld  linux       Succeeded  Commit     2023-11-19T22:54:34Z  00:00:29
+ca6       taskhelloworld  linux       Succeeded  Manual     2023-11-19T22:51:47Z  00:00:24
+ca5                       linux       Succeeded  Manual     2023-11-19T22:23:42Z  00:00:23
 ```
 
 ## Next steps

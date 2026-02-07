@@ -87,7 +87,7 @@ Only the users or systems to which you grant permission can push trusted images 
 > - The [admin account](container-registry-authentication.md#admin-account) of an Azure container registry
 > - A user account in Microsoft Entra ID with the [classic system administrator role](/azure/role-based-access-control/rbac-and-directory-admin-roles#classic-subscription-administrator-roles)
 
-As of July 2021, the `AcrImageSigner` role includes both the `Microsoft.ContainerRegistry/registries/sign/write` action and the `Microsoft.ContainerRegistry/registries/trustedCollections/write` data action.
+The `AcrImageSigner` role includes both the `Microsoft.ContainerRegistry/registries/sign/write` action and the `Microsoft.ContainerRegistry/registries/trustedCollections/write` data action.
 
 ### Azure portal
 

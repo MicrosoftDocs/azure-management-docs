@@ -155,7 +155,7 @@ When using Docker or other client tools to pull or push artifacts to an Azure co
 
 Examples: 
 
-   `docker push myregistry.azurecr.io/samples/myimage:20210106`
+   `docker push myregistry.azurecr.io/samples/myimage:20230106`
 
    `docker push myregistry.azurecr.io/marketing/email-sender`
 
