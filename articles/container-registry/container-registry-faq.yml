@@ -6,7 +6,7 @@ metadata:
   ms.topic: faq
   ms.custom: devx-track-azurecli
   ms.service: azure-container-registry
-  ms.date: 02/04/2026
+  ms.date: 02/06/2026
   ms.author: rayoflores
 title: Frequently asked questions - Azure Container Registry
 summary: |
@@ -498,7 +498,27 @@ sections:
           How can I resolve agent pool creation failure due to time-out issues?
         answer: |
           Set up the correct [firewall rules](./tasks-agent-pools.md#add-firewall-rules) to the existing network security groups or user-defined routes. After the setup, wait a few minutes for the firewall rules to apply.
+
+      - question:  |
+          Why do I see a `403 Forbidden` error when pulling a base image in a task?
+        answer: |
+          As of June 1, 2025, the registry policy setting `networkRuleBypassAllowedForTasks` is the default, and newly configured task workflows are required to use this policy. For previous configurations, you must set this policy explicitly  by running the following command:
+
+          ```azurecli
+          registry="myregistry"
+          resourceGroup="myresourcegroup"
           
+          az resource update \
+          --namespace Microsoft.ContainerRegistry \
+          --resource-type registries \
+          --name $registry \
+          --resource-group $resourceGroup \
+          --api-version 2025-06-01-preview \
+          --set properties.networkRuleBypassAllowedForTasks=true
+          ```
+
+          Alternatively, you can use the [container registry agent pool feature](/azure/container-registry/tasks-agent-pools) to restrict access.
+
 additionalContent: |
 
   ## Next steps

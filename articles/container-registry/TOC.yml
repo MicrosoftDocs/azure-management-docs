@@ -333,8 +333,6 @@
         href: /azure/operational-excellence/relocation-container-registry?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json
       - name: View task logs
         href: container-registry-tasks-logs.md
-      - name: Manage network bypass policy for tasks
-        href: manage-network-bypass-policy-for-tasks.md
 - name: Reference
   expanded: false
   items:

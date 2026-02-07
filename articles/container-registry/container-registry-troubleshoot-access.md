@@ -118,7 +118,7 @@ Currently, access to a container registry with network restrictions isn't allowe
 
 If access or integration of these Azure services with your container registry is required, remove the network restriction. For example, remove the registry's private endpoints, or remove or modify the registry's public access rules.
 
-Starting January 2021, you can configure a network-restricted registry to [allow access](allow-access-trusted-services.md) from select trusted services.
+You can configure a network-restricted registry to [allow access](allow-access-trusted-services.md) from select trusted services.
 
 Related links:
 
