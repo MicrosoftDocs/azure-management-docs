@@ -257,11 +257,13 @@
         href: key-concept-continuous-patching.md
       - name: Set up continuous patching
         href: how-to-continuous-patching.md
-    - name: Monitor
+    - name: Monitor and Service Health
       expanded: false
       items:
         - name: Monitor Container Registry
           href: monitor-container-registry.md
+        - name: Configure Service Health alerts for Azure Container Registry
+          href: set-container-registry-service-health-alerts.md
         - name: Audit compliance using Azure Policy
           href: container-registry-azure-policy.md
         - name: Scan container images
