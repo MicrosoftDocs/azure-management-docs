@@ -1,12 +1,13 @@
 ---
 title: Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
-description: Learn how to troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors. 
+description: Learn how to troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors.
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.topic: how-to 
-ms.date: 07/10/2025
+ms.topic: how-to
+ms.date: 02/09/2026
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom:
   - build-2025
@@ -15,7 +16,7 @@ ms.custom:
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
 
-This article provides troubleshooting steps that help you resolve the errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
+This article provides troubleshooting steps to help you resolve errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
 
 ## CreateConfigKvaCustomerError
 

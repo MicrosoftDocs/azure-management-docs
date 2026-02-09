@@ -7,7 +7,8 @@ ms.topic: generated-reference
 author: Jeronika-MS
 manager: akashdubey
 ms.author: v-gajeronika
-ms.date: 05/08/2025
+ms.reviewer: v-gajeronika
+ms.date: 02/09/2026
 ms.custom:
   - generated
   - build-2025
@@ -24,7 +25,7 @@ Azure Arc-enabled SCVMM has four built-in roles:
 - [Azure Arc SCVMM Private Clouds Onboarding](#azure-arc-scvmm-private-clouds-onboarding)
 - [Azure Arc SCVMM VM Contributor](#azure-arc-scvmm-vm-contributor)
 
-If the built-in Azure roles doesn’t match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
+If the built-in Azure roles don't match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
 
 ## Azure Arc SCVMM Administrator role
 
@@ -35,7 +36,7 @@ Arc SCVMM VM Administrator has permission to perform all SCVMM actions.
 > | Actions | Description |
 > | --- | --- |
 > |Microsoft.Authorization/classicAdministrators/read|Reads the administrators for the subscription.|
-> |Microsoft.Authorization/classicAdministrators/operationstatuses/read|Gets the administrator opreation statuses of the subscription.|
+> |Microsoft.Authorization/classicAdministrators/operationstatuses/read|Gets the administrator operation statuses of the subscription.|
 > |Microsoft.Authorization/denyAssignments/read|Get information about a deny assignment.|
 > |Microsoft.Authorization/diagnosticSettingsCategories/read|Get the information about diagnostic settings categories.|
 > |Microsoft.Authorization/diagnosticSettings/read|Read the information about diagnostics settings.|
@@ -86,54 +87,54 @@ Arc SCVMM VM Administrator has permission to perform all SCVMM actions.
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/write|Creates or updates an deployment.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read|Gets or lists deployment operations.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
-> |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
+> |Microsoft.Resources/subscriptions/operationresults/read|Gets the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
-> |Microsoft.HybridCompute/operations/read|Read all Operations for Azure Arc for Servers.|
-> |Microsoft.HybridCompute/osType/agentVersions/read|Read all Azure Connected Machine Agent versions available.|
-> |Microsoft.HybridCompute/osType/agentVersions/latest/read|Read the latest Azure Connected Machine Agent version.|
+> |Microsoft.HybridCompute/operations/read|Reads all operations for Azure Arc for Servers.|
+> |Microsoft.HybridCompute/osType/agentVersions/read|Reads all Azure Connected Machine Agent versions available.|
+> |Microsoft.HybridCompute/osType/agentVersions/latest/read|Reads the latest Azure Connected Machine Agent version.|
 > |Microsoft.HybridCompute/licenses/read|Reads any Azure Arc licenses.|
-> |Microsoft.HybridCompute/licenses/write|Installs or Updates an Azure Arc licenses.|
+> |Microsoft.HybridCompute/licenses/write|Installs or updates an Azure Arc licenses.|
 > |Microsoft.HybridCompute/licenses/delete|Deletes an Azure Arc licenses.|
 > |Microsoft.HybridCompute/locations/operationresults/read|Reads the status of an operation on Microsoft.HybridCompute Resource Provider.|
 > |Microsoft.HybridCompute/locations/operationstatus/read|Reads the status of an operation on Microsoft.HybridCompute Resource Provider.|
 > |Microsoft.HybridCompute/locations/updateCenterOperationResults/read|Reads the status of an update center operation on machines.|
-> |Microsoft.HybridCompute/machines/read|Read any Azure Arc machines.|
+> |Microsoft.HybridCompute/machines/read|Reads any Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/write|Writes an Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/delete|Deletes an Azure Arc machines.|
-> |Microsoft.HybridCompute/machines/UpgradeExtensions/action|Upgrades Extensions on Azure Arc machines.|
+> |Microsoft.HybridCompute/machines/UpgradeExtensions/action|Upgrades extensions on Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/assessPatches/action|Assesses any Azure Arc machines to get missing software patches.|
 > |Microsoft.HybridCompute/machines/installPatches/action|Installs patches on any Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/patchInstallationResults/read|Reads any Azure Arc patchInstallationResults.|
 > |Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read|Reads any Azure Arc patchInstallationResults/softwarePatches.|
-> |Microsoft.HybridCompute/machines/extensions/read|Reads any Azure Arc extensions|
-> |Microsoft.HybridCompute/machines/extensions/write|Installs or Updates an Azure Arc extensions|
+> |Microsoft.HybridCompute/machines/extensions/read|Reads any Azure Arc extensions.|
+> |Microsoft.HybridCompute/machines/extensions/write|Installs or updates an Azure Arc extensions.|
 > |Microsoft.HybridCompute/machines/extensions/delete|Deletes an Azure Arc extensions.|
 > |Microsoft.HybridCompute/machines/licenseProfiles/read|Reads any Azure Arc licenseProfiles.|
-> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or Updates an Azure Arc licenseProfiles.|
+> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or updates an Azure Arc licenseProfiles.|
 > |Microsoft.HybridCompute/machines/licenseProfiles/delete|Deletes an Azure Arc licenseProfiles.|
-> |Microsoft.HybridCompute/machines/hybridIdentityMetadata/read|Read any Azure Arc machines's Hybrid Identity Metadata|
+> |Microsoft.HybridCompute/machines/hybridIdentityMetadata/read|Reads any Azure Arc machines's Hybrid Identity Metadata.|
 > |Microsoft.HybridCompute/machines/patchAssessmentResults/read|Reads any Azure Arc patchAssessmentResults.|
 > |Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read|Reads any Azure Arc patchAssessmentResults/softwarePatches.|
 > |Microsoft.HybridCompute/machines/runcommands/read|Reads any Azure Arc runcommands.|
-> |Microsoft.HybridCompute/machines/runcommands/write|Installs or Updates an Azure Arc runcommands.|
+> |Microsoft.HybridCompute/machines/runcommands/write|Installs or updates an Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/delete|Deletes an Azure Arc runcommands.|
-> |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
+> |Microsoft.ExtendedLocation/customLocations/read|Gets a Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
-> |Microsoft.SCVMM/unregister/action|unregister RP.|
-> |Microsoft.SCVMM/register/action|register RP.|
-> |Microsoft.SCVMM/availabilitySets/Read|Read availabilitySets.|
+> |Microsoft.SCVMM/unregister/action|Unregister RP.|
+> |Microsoft.SCVMM/register/action|Register RP.|
+> |Microsoft.SCVMM/availabilitySets/Read|Reads availabilitySets.|
 > |Microsoft.SCVMM/availabilitySets/Write|Writes availabilitySets.|
 > |Microsoft.SCVMM/availabilitySets/Delete|Deletes availabilitySets.|
-> |Microsoft.SCVMM/clouds/Read|Read clouds.|
+> |Microsoft.SCVMM/clouds/Read|Reads clouds.|
 > |Microsoft.SCVMM/clouds/Write|Writes clouds.|
 > |Microsoft.SCVMM/clouds/Delete|Deletes clouds.|
 > |Microsoft.SCVMM/clouds/deploy/action|Deploy on resource pool.|
-> |Microsoft.SCVMM/locations/operationstatuses/read|Read operationstatus.|
-> |Microsoft.SCVMM/locations/operationstatuses/write|Write operationstatus.|
-> |Microsoft.SCVMM/operations/read|Read operations.|
-> |Microsoft.SCVMM/skus/read|Get skus.|
+> |Microsoft.SCVMM/locations/operationstatuses/read|Reads operationstatus.|
+> |Microsoft.SCVMM/locations/operationstatuses/write|Writes operationstatus.|
+> |Microsoft.SCVMM/operations/read|Reads operations.|
+> |Microsoft.SCVMM/skus/read|Gets skus.|
 > |Microsoft.SCVMM/virtualMachineInstances/read|Retrieves information about a virtual machine instance.|
-> |Microsoft.SCVMM/virtualMachineInstances/write|The operation to create or update a virtual machine instance. Please note some properties can be set only during virtual machine instance creation.|
+> |Microsoft.SCVMM/virtualMachineInstances/write|The operation to create or update a virtual machine instance. Some properties can be set only during virtual machine instance creation.|
 > |Microsoft.SCVMM/virtualMachineInstances/delete|The operation to delete a virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/stop/action|The operation to power off (stop) a virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/start/action|The operation to start a virtual machine instance.|
@@ -142,15 +143,15 @@ Arc SCVMM VM Administrator has permission to perform all SCVMM actions.
 > |Microsoft.SCVMM/virtualMachineInstances/deleteCheckpoint/action|Deletes a checkpoint in virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/restoreCheckpoint/action|Restores to a checkpoint in virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/guestAgents/read|Implements GuestAgent GET method.|
-> |Microsoft.SCVMM/virtualMachineInstances/guestAgents/write|Create Or Update GuestAgent.|
+> |Microsoft.SCVMM/virtualMachineInstances/guestAgents/write|Create or update GuestAgent.|
 > |Microsoft.SCVMM/virtualMachineInstances/guestAgents/delete|Implements GuestAgent DELETE method.|
 > |Microsoft.SCVMM/virtualMachineInstances/hybridIdentityMetadata/read|Implements HybridIdentityMetadata GET method.|
 > |Microsoft.SCVMM/virtualmachines/Delete|Deletes virtualmachines.|
-> |Microsoft.SCVMM/virtualmachinetemplates/Read|Read virtualmachinetemplates.|
+> |Microsoft.SCVMM/virtualmachinetemplates/Read|Read virtual machine templates.|
 > |Microsoft.SCVMM/virtualmachinetemplates/Write|Writes virtualmachinetemplates.|
 > |Microsoft.SCVMM/virtualmachinetemplates/Delete|Deletes virtualmachinetemplates.|
-> |Microsoft.SCVMM/virtualmachinetemplates/clone/action|Clones virtualmachinetemplates.|
-> |Microsoft.SCVMM/virtualnetworks/Read|Read virtualnetworks.|
+> |Microsoft.SCVMM/virtualmachinetemplates/clone/action|Clones virtual machine templates.|
+> |Microsoft.SCVMM/virtualnetworks/Read|Read virtual networks.|
 > |Microsoft.SCVMM/virtualnetworks/Write|Writes virtualnetworks.|
 > |Microsoft.SCVMM/virtualnetworks/Delete|Deletes virtualnetworks.|
 > |Microsoft.SCVMM/virtualnetworks/join/action|Join virtual network.|
@@ -307,16 +308,16 @@ Azure Arc SCVMM Private Cloud User has permissions to use the SCVMM resources to
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/write|Creates or updates an deployment.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read|Gets or lists deployment operations.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
-> |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
+> |Microsoft.Resources/subscriptions/operationresults/read|Gets the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
-> |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
+> |Microsoft.ExtendedLocation/customLocations/read|Gets a Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/enabledresourcetypes/read|Gets EnabledResourceTypes for a Custom Location resource.|
-> |Microsoft.SCVMM/clouds/Read|Read clouds.|
+> |Microsoft.SCVMM/clouds/Read|Reads clouds.|
 > |Microsoft.SCVMM/clouds/deploy/action|Deploy on resource pool.|
-> |Microsoft.SCVMM/virtualmachinetemplates/Read|Read virtualmachinetemplates.|
-> |Microsoft.SCVMM/virtualmachinetemplates/clone/action|Clones virtualmachinetemplates.|
-> |Microsoft.SCVMM/virtualnetworks/Read|Read virtualnetworks.|
+> |Microsoft.SCVMM/virtualmachinetemplates/Read|Read virtual machine templates.|
+> |Microsoft.SCVMM/virtualmachinetemplates/clone/action|Clones virtual machine templates.|
+> |Microsoft.SCVMM/virtualnetworks/Read|Read virtual networks.|
 > |Microsoft.SCVMM/virtualnetworks/join/action|Join virtual network.|
 > | **NotActions** |  |
 > | *none* |  |
@@ -384,7 +385,7 @@ Azure Arc SCVMM Private Cloud User has permissions to use the SCVMM resources to
 
 ## Azure Arc SCVMM Private Clouds Onboarding
 
-Azure Arc SCVMM Private Clouds Onboarding role has permissions to provision all the required resources for onboard and  deboard VMM server instances to Azure.
+The Azure Arc SCVMM Private Clouds Onboarding role has permissions to provision all the required resources to onboard and deboard VMM server instances to Azure.
 
 
 > [!div class="mx-tableFixed"]
@@ -442,9 +443,9 @@ Azure Arc SCVMM Private Clouds Onboarding role has permissions to provision all 
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/write|Creates or updates an deployment.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read|Gets or lists deployment operations.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
-> |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
+> |Microsoft.Resources/subscriptions/operationresults/read|Gets the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
-> |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
+> |Microsoft.ExtendedLocation/customLocations/read|Gets a Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
 > |Microsoft.SCVMM/vmmservers/Read|Read vmmservers.|
 > |Microsoft.SCVMM/vmmservers/Write|Writes vmmservers.|
@@ -568,21 +569,21 @@ Arc SCVMM VM Contributor has permissions to perform all VM actions.
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/write|Creates or updates an deployment.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read|Gets or lists deployment operations.|
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
-> |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
+> |Microsoft.Resources/subscriptions/operationresults/read|Gets the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
-> |Microsoft.HybridCompute/operations/read|Read all Operations for Azure Arc for Servers.|
-> |Microsoft.HybridCompute/osType/agentVersions/read|Read all Azure Connected Machine Agent versions available.|
-> |Microsoft.HybridCompute/osType/agentVersions/latest/read|Read the latest Azure Connected Machine Agent version.|
+> |Microsoft.HybridCompute/operations/read|Reads all operations for Azure Arc for Servers.|
+> |Microsoft.HybridCompute/osType/agentVersions/read|Reads all Azure Connected Machine Agent versions available.|
+> |Microsoft.HybridCompute/osType/agentVersions/latest/read|Reads the latest Azure Connected Machine Agent version.|
 > |Microsoft.HybridCompute/licenses/read|Reads any Azure Arc licenses.|
-> |Microsoft.HybridCompute/licenses/write|Installs or Updates an Azure Arc licenses.|
+> |Microsoft.HybridCompute/licenses/write|Installs or updates an Azure Arc licenses.|
 > |Microsoft.HybridCompute/licenses/delete|Deletes an Azure Arc licenses.|
 > |Microsoft.HybridCompute/locations/operationresults/read|Reads the status of an operation on Microsoft.HybridCompute Resource Provider.|
 > |Microsoft.HybridCompute/locations/operationstatus/read|Reads the status of an operation on Microsoft.HybridCompute Resource Provider.|
 > |Microsoft.HybridCompute/locations/updateCenterOperationResults/read|Reads the status of an update center operation on machines.|
-> |Microsoft.HybridCompute/machines/read|Read any Azure Arc machines.|
+> |Microsoft.HybridCompute/machines/read|Reads any Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/write|Writes an Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/delete|Deletes an Azure Arc machines.|
-> |Microsoft.HybridCompute/machines/UpgradeExtensions/action|Upgrades Extensions on Azure Arc machines.|
+> |Microsoft.HybridCompute/machines/UpgradeExtensions/action|Upgrades extensions on Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/assessPatches/action|Assesses any Azure Arc machines to get missing software patches.|
 > |Microsoft.HybridCompute/machines/installPatches/action|Installs patches on any Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/patchInstallationResults/read|Reads any Azure Arc patchInstallationResults.|
@@ -591,18 +592,18 @@ Arc SCVMM VM Contributor has permissions to perform all VM actions.
 > |Microsoft.HybridCompute/machines/extensions/write|Installs or Updates an Azure Arc extensions.|
 > |Microsoft.HybridCompute/machines/extensions/delete|Deletes an Azure Arc extensions.|
 > |Microsoft.HybridCompute/machines/licenseProfiles/read|Reads any Azure Arc licenseProfiles.|
-> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or Updates an Azure Arc licenseProfiles.|
+> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or updates an Azure Arc licenseProfiles.|
 > |Microsoft.HybridCompute/machines/licenseProfiles/delete|Deletes an Azure Arc licenseProfiles.|
 > |Microsoft.HybridCompute/machines/hybridIdentityMetadata/read|Read any Azure Arc machines's Hybrid Identity Metadata.|
 > |Microsoft.HybridCompute/machines/patchAssessmentResults/read|Reads any Azure Arc patchAssessmentResults.|
 > |Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read|Reads any Azure Arc patchAssessmentResults/softwarePatches.|
 > |Microsoft.HybridCompute/machines/runcommands/read|Reads any Azure Arc runcommands.|
-> |Microsoft.HybridCompute/machines/runcommands/write|Installs or Updates an Azure Arc runcommands.|
+> |Microsoft.HybridCompute/machines/runcommands/write|Installs or updates an Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/delete|Deletes an Azure Arc runcommands.|
-> |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
+> |Microsoft.ExtendedLocation/customLocations/read|Gets a Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
 > |Microsoft.SCVMM/virtualMachineInstances/read|Retrieves information about a virtual machine instance.|
-> |Microsoft.SCVMM/virtualMachineInstances/write|The operation to create or update a virtual machine instance. Please note some properties can be set only during virtual machine instance creation.|
+> |Microsoft.SCVMM/virtualMachineInstances/write|The operation to create or update a virtual machine instance. Some properties can be set only during virtual machine instance creation.|
 > |Microsoft.SCVMM/virtualMachineInstances/delete|The operation to delete a virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/stop/action|The operation to power off (stop) a virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/start/action|The operation to start a virtual machine instance.|
@@ -611,7 +612,7 @@ Arc SCVMM VM Contributor has permissions to perform all VM actions.
 > |Microsoft.SCVMM/virtualMachineInstances/deleteCheckpoint/action|Deletes a checkpoint in virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/restoreCheckpoint/action|Restores to a checkpoint in virtual machine instance.|
 > |Microsoft.SCVMM/virtualMachineInstances/guestAgents/read|Implements GuestAgent GET method.|
-> |Microsoft.SCVMM/virtualMachineInstances/guestAgents/write|Create Or Update GuestAgent.|
+> |Microsoft.SCVMM/virtualMachineInstances/guestAgents/write|Create or update GuestAgent.|
 > |Microsoft.SCVMM/virtualMachineInstances/guestAgents/delete|Implements GuestAgent DELETE method.|
 > |Microsoft.SCVMM/virtualMachineInstances/hybridIdentityMetadata/read|Implements HybridIdentityMetadata GET method.|
 > |Microsoft.SCVMM/virtualmachines/Delete|Deletes virtualmachines.|
