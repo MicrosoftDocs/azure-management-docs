@@ -93,14 +93,9 @@ When running Azure Connected Machine Agent (azcmagent) commands, the process may
 | **73** | Unable to obtain partner configuration. | Validate partner integration settings. |
 | **74** | Error adding extension. | Ensure extension package is valid and retry. |
 | **75** | Unable to obtain cloud configuration. | Check connectivity to Azure endpoints. |
-| **76** | Failed to open TPM device. | Verify TPM availability and permissions. |
-| **77** | Failed to process TPM keys. | Check TPM health and retry. |
-| **78** | Failed to connect using TPM-based authentication. | Validate TPM configuration and retry. |
 | **81** | Failed to get MSI certificate from HIS. | Ensure HIS service is running and retry. |
-| **82** | Failed to get MSI certificate from HIS using TPM. | Validate TPM configuration and HIS connectivity. |
 | **101** | Command execution error. | Validate command syntax and check logs for details. |
 | **102** | Unable to generate resource name. | Ensure hostname meets Azure naming requirements. |
-| **103** | Failed to process RSA keys. | Check TPM availability and permissions. |
 | **104** | Failed to retrieve private key. | Validate key storage and retry. |
 | **105** | Failed to get signed message. | Check connectivity and retry. |
 | **106** | Failed to save parameters file. | Verify disk space and permissions. |
