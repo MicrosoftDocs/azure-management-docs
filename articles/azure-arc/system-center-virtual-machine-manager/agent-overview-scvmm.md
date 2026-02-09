@@ -76,7 +76,7 @@ When you install the Connected Machine agent for Windows, it makes the following
     | NT SERVICE\\himds | Unprivileged account used to run the Hybrid Instance Metadata Service. |
 
     > [!TIP]
-        > This account requires the "Log on as a service" right. During the agent installation automatically grants this right, but if your organization configures user rights assignments by using Group Policy, you might need to adjust your Group Policy Object to grant the right to  "NT SERVICE\\himds" or "NT SERVICE\\ALL SERVICES" to allow the agent to function.
+    > This account requires the "Log on as a service" right. During the agent installation automatically grants this right, but if your organization configures user rights assignments by using Group Policy, you might need to adjust your Group Policy Object to grant the right to  "NT SERVICE\\himds" or "NT SERVICE\\ALL SERVICES" to allow the agent to function.
 
 * Agent installation creates the following local security group.
 
