@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 02/02/2026
+ms.date: 02/09/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Edge RAG release so that I can plan updates for my organization.
