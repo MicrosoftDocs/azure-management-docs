@@ -19,6 +19,7 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 
 |**Service**|**Port**|**URL**|**Direction**|**Notes**|
 |--|--|--|--|--|
+|DNS | 53 | All required URLs listed here. | As specified per service & URL | Required for deployment and upgrade of the resource bridge |
 |SFS API endpoint | 443 | `msk8s.api.cdp.microsoft.com` | Management machine & Appliance VM IPs need outbound connection. | Download product catalog, product bits, and OS images from SFS. |
 |Resource bridge (appliance) image download| 443 | `msk8s.sb.tlu.dl.delivery.mp.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. |  Download the Arc Resource Bridge OS images.|
 |Microsoft Container Registry| 443 | `mcr.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. | Discover container images for Arc Resource Bridge.|
