@@ -19,7 +19,7 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 
 |**Service**|**Port**|**URL**|**Direction**|**Notes**|
 |--|--|--|--|--|
-|DNS | 53 | DNS server IP | Management machine & Appliance VM IPs can reach the DNS server | Resolve required endpoints |
+|DNS servers | 53 | DNS server IP(s) | Management machine & Appliance VM IPs can reach your DNS server(s) | Arc resource bridge must have network connectivity to your DNS servers specified during deployment. This allows the resource bridge to resolve required endpoints. |
 |SFS API endpoint | 443 | `msk8s.api.cdp.microsoft.com` | Management machine & Appliance VM IPs need outbound connection. | Download product catalog, product bits, and OS images from SFS. |
 |Resource bridge (appliance) image download| 443 | `msk8s.sb.tlu.dl.delivery.mp.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. |  Download the Arc Resource Bridge OS images.|
 |Microsoft Container Registry| 443 | `mcr.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. | Discover container images for Arc Resource Bridge.|
