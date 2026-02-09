@@ -1,10 +1,11 @@
 ---
 ms.assetid:
-title: What's new in Azure Arc-enabled SCVMM
+title: "Whats new in Azure Arc-enabled SCVMM"
 description: This article describes the new features and enhancements supported in Azure Arc-enabled System Center Virtual Machine Manager.
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.date: 06/10/2025
+ms.date: 02/09/2026
 ms.topic: whats-new
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -19,7 +20,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## June 2025
 
-- Ability to install Arc agents at-scale on SCVMM VMs using [out-of band methods](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale?tabs=Out-of-band) such as:
+- Ability to install Arc agents at scale on SCVMM VMs using [out-of band methods](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale?tabs=Out-of-band) such as:
    - Service principal
    - System Center Configuration Manager script
    - System Center Configuration Manager custom task sequence
@@ -32,7 +33,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## January 2025
 
-- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for SCVMM VMs with active Windows Server Software Assurance licenses, giving you cost-benefits on Azure Update Manager, Azure Change Tracking and Inventory billing and exclusive capabilities.
+- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for SCVMM VMs with active Windows Server Software Assurance licenses, giving you cost-benefits on Azure Update Manager, Azure Change Tracking and Inventory billing, and exclusive capabilities.
 
 ## December 2024
 
@@ -46,10 +47,10 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## October 2024
 
-- [Python SDK](/python/api/overview/azure/mgmt-scvmm-readme) based VM management 
-- [Java SDK](/java/api/overview/azure/resourcemanager-scvmm-readme) based VM management 
-- [JavaScript SDK](/javascript/api/overview/azure/arm-scvmm-readme) based VM management 
-- [Go SDK](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation) based VM management 
+- [Python SDK](/python/api/overview/azure/mgmt-scvmm-readme) based VM management. 
+- [Java SDK](/java/api/overview/azure/resourcemanager-scvmm-readme) based VM management. 
+- [JavaScript SDK](/javascript/api/overview/azure/arm-scvmm-readme) based VM management. 
+- [Go SDK](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation) based VM management. 
 
 ## August 2024
 
@@ -57,8 +58,8 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## July 2024
 
-- [Azure-CLI](/cli/azure/scvmm) based VM management 
-- [Azure REST APIs](/rest/api/azure-arc-scvmm/operation-groups) based VM management 
+- [Azure-CLI](/cli/azure/scvmm) based VM management. 
+- [Azure REST APIs](/rest/api/azure-arc-scvmm/operation-groups) based VM management. 
 
 ## February 2024
 
@@ -72,7 +73,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## November 2023 (General Availability)
 
-- Ability to [link VMs](/azure/azure-arc/system-center-virtual-machine-manager/enable-virtual-hardware-scvmm) with Azure Connected Machine agent installed with Arc-enabled SCVMM servers to leverage self-service lifecycle management.
+- You can [link VMs](/azure/azure-arc/system-center-virtual-machine-manager/enable-virtual-hardware-scvmm) with the Azure Connected Machine agent installed to Arc-enabled SCVMM servers to use self-service lifecycle management.
 - Procurement and delivery of [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for WS 2012 and 2012 R2 Arc-enabled SCVMM VMs.
 
 ## October 2023
