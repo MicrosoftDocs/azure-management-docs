@@ -1,12 +1,13 @@
 ---
 title: Support matrix for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn about the support matrix for Arc-enabled System Center Virtual Machine Manager.
-ms.topic: how-to 
+ms.topic: how-to
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.date: 04/10/2025
+ms.date: 02/09/2026
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
@@ -18,29 +19,29 @@ ms.custom:
 
 This article documents the prerequisites and support requirements for using [Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)](overview.md) to manage your SCVMM managed on-premises VMs through Azure Arc.
 
-To use Arc-enabled SCVMM, you must deploy an Azure Arc Resource Bridge in your SCVMM managed environment. The Resource Bridge provides an ongoing connection between your SCVMM management server and Azure. Once you've connected your SCVMM management server to Azure, components on the Resource Bridge discover your SCVMM management server inventory. You can [enable them in Azure](enable-scvmm-inventory-resources.md) and start performing virtual hardware and guest OS operations on them using Azure Arc.
+To use Arc-enabled SCVMM, you must deploy an Azure Arc Resource Bridge in your SCVMM managed environment. The Resource Bridge provides an ongoing connection between your SCVMM management server and Azure. Once you connect your SCVMM management server to Azure, components on the Resource Bridge discover your SCVMM management server inventory. You can [enable them in Azure](enable-scvmm-inventory-resources.md) and start performing virtual hardware and guest OS operations on them using Azure Arc.
 
 ## System Center Virtual Machine Manager requirements
 
-The following requirements must be met in order to use Arc-enabled SCVMM.
+The following requirements must be met to use Arc-enabled SCVMM.
 
 ### Supported SCVMM versions
 
-Azure Arc-enabled SCVMM works with VMM 2025, 2022, and 2019 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
+Azure Arc-enabled SCVMM works with VMM 2025, 2022, and 2019 versions. It supports SCVMM management servers with a maximum of 15,000 VMs.
 
 ### Azure Arc resource bridge prerequisites
 
 > [!NOTE]
-> If VMM server is running on Windows Server 2016 machine, ensure that [Open SSH package](https://github.com/PowerShell/Win32-OpenSSH/releases) is installed.
+> If the VMM server runs on a Windows Server 2016 machine, ensure that the [Open SSH package](https://github.com/PowerShell/Win32-OpenSSH/releases) is installed.
 > If you deploy an older version of appliance (version lesser than 0.2.25), Arc operation fails with the error *Appliance cluster is not deployed with AAD authentication*. To fix this issue, download the latest version of the onboarding script and deploy the Resource Bridge again.
-> Azure Arc Resource Bridge deployment using private link is currently not supported.
+> Azure Arc Resource Bridge deployment by using private link isn't currently supported.
 
 | **Requirement** | **Details** |
 | --- | --- |
 | **Azure** | An Azure subscription  <br/><br/> A resource group in the above subscription where you have the *Owner/Contributor* role. |
-| **SCVMM** | You need an SCVMM management server running version 2019 or later.<br/><br/> A private cloud or a host group with a minimum free capacity of 32 GB of RAM, 4 vCPUs with 100 GB of free disk space. The supported storage configurations are hybrid storage (flash and HDD) and all-flash storage (SSDs or NVMe). <br/><br/> A VM network with internet access, directly or through proxy. Appliance VM will be deployed using this VM network.<br/><br/> Only Static IP allocation is supported; Dynamic IP allocation using DHCP isn't supported. Static IP allocation can be performed by one of the following approaches:<br><br> 1. **VMM IP Pool**: Follow [these steps](/system-center/vmm/network-pool?view=sc-vmm-2022&preserve-view=true) to create a VMM Static IP Pool and ensure that the Static IP Pool has at least three IP addresses. If your SCVMM server is behind a firewall, all the IPs in this IP Pool and the Control Plane IP should be allowed to communicate through WinRM ports. The default WinRM ports are 5985 and 5986. <br> <br> 2. **Custom IP range**: Ensure that your VM network has three continuous free IP addresses. If your SCVMM server is behind a firewall, all the IPs in this IP range and the Control Plane IP should be allowed to communicate through WinRM ports. The default WinRM ports are 5985 and 5986. If the VM network is configured with a VLAN, the VLAN ID is required as an input. Azure Arc Resource Bridge requires internal and external DNS resolution to the required sites and the on-premises management machine for the Static gateway IP and the IP address(es) of your DNS server(s) are needed. <br/><br/> A library share with write permission for the SCVMM admin account through which Resource Bridge deployment is going to be performed. |
-| **SCVMM accounts** | An SCVMM admin account that can perform all administrative actions on all objects that VMM manages. <br/><br/> The user should be part of local administrator account in the SCVMM server. If the SCVMM server is installed in a High Availability configuration, the user should be a part of the local administrator accounts in all the SCVMM cluster nodes. <br/><br/>This will be used for the ongoing operation of Azure Arc-enabled SCVMM and the deployment of the Arc Resource Bridge VM. |
-| **Workstation** | The workstation will be used to run the helper script. Ensure you have [64-bit Azure CLI installed](/cli/azure/install-azure-cli) on the workstation.<br/><br/> When you execute the script from a Linux machine, the deployment takes a bit longer and you might experience performance issues. |
+| **SCVMM** | You need an SCVMM management server running version 2019 or later.<br/><br/> A private cloud or a host group with a minimum free capacity of 32 GB of RAM, 4 vCPUs with 100 GB of free disk space. The supported storage configurations are hybrid storage (flash and HDD) and all-flash storage (SSDs or NVMe). <br/><br/> A VM network with internet access, directly or through proxy. You deploy the appliance VM by using this VM network.<br/><br/> Only static IP allocation is supported; dynamic IP allocation by using DHCP isn't supported. You can perform static IP allocation by using one of the following approaches:<br><br> 1. **VMM IP Pool**: Follow [these steps](/system-center/vmm/network-pool?view=sc-vmm-2022&preserve-view=true) to create a VMM Static IP Pool and ensure that the Static IP Pool has at least three IP addresses. If your SCVMM server is behind a firewall, all the IPs in this IP Pool and the Control Plane IP need to communicate through WinRM ports. The default WinRM ports are 5985 and 5986. <br> <br> 2. **Custom IP range**: Ensure that your VM network has three continuous free IP addresses. If your SCVMM server is behind a firewall, all the IPs in this IP range and the Control Plane IP need to communicate through WinRM ports. The default WinRM ports are 5985 and 5986. If the VM network is configured with a VLAN, the VLAN ID is required as an input. Azure Arc Resource Bridge requires internal and external DNS resolution to the required sites and the on-premises management machine for the Static gateway IP and the IP addresses of your DNS servers are needed. <br/><br/> A library share with write permission for the SCVMM admin account through which Resource Bridge deployment is going to be performed. |
+| **SCVMM accounts** | An SCVMM admin account that can perform all administrative actions on all objects that VMM manages. <br/><br/> The user needs to be part of local administrator account in the SCVMM server. If the SCVMM server is installed in a High Availability configuration, the user needs to be a part of the local administrator accounts in all the SCVMM cluster nodes. <br/><br/>Use this account for the ongoing operation of Azure Arc-enabled SCVMM and the deployment of the Arc Resource Bridge VM. |
+| **Workstation** | Use the workstation to run the helper script. Ensure you have [64-bit Azure CLI installed](/cli/azure/install-azure-cli) on the workstation.<br/><br/> When you execute the script from a Linux machine, the deployment takes a bit longer and you might experience performance issues. |
 
 ### Resource Bridge networking requirements
 
@@ -62,31 +63,31 @@ In addition, SCVMM requires the following exception:
 
 For a complete list of network requirements for Azure Arc features and Azure Arc-enabled services, see [Azure Arc network requirements (Consolidated)](../network-requirements-consolidated.md).
 
-### Azure role/permission requirements
+### Azure role and permission requirements
 
-The minimum Azure roles required for operations related to Arc-enabled SCVMM are as follows: 
+The minimum Azure roles required for operations related to Arc-enabled SCVMM are: 
 
 | **Operation** | **Minimum role required** | **Scope** |
 | --- | --- | --- |
-| Onboarding your SCVMM Management Server to Arc | Azure Arc SCVMM Private Clouds Onboarding  | On the subscription or resource group into which you want to onboard |
-| Administering Arc-enabled SCVMM | Azure Arc SCVMM Administrator | On the subscription or resource group where SCVMM management server resource is created  |
-| VM Provisioning | Azure Arc SCVMM Private Cloud User  | On the subscription or resource group that contains the SCVMM cloud, datastore, and virtual network resources, or on the resources themselves |
-| VM Provisioning | Azure Arc SCVMM VM Contributor | On the subscription or resource group where you want to provision VMs |
-| VM Operations | Azure Arc SCVMM VM Contributor | On the subscription or resource group that contains the VM, or on the VM itself |
+| Onboard your SCVMM Management Server to Arc | Azure Arc SCVMM Private Clouds Onboarding  | On the subscription or resource group into which you want to onboard |
+| Administer Arc-enabled SCVMM | Azure Arc SCVMM Administrator | On the subscription or resource group where you create the SCVMM management server resource  |
+| VM provisioning | Azure Arc SCVMM Private Cloud User  | On the subscription or resource group that contains the SCVMM cloud, datastore, and virtual network resources, or on the resources themselves |
+| VM provisioning | Azure Arc SCVMM VM Contributor | On the subscription or resource group where you want to provision VMs |
+| VM operations | Azure Arc SCVMM VM Contributor | On the subscription or resource group that contains the VM, or on the VM itself |
 
-Any roles with higher permissions on the same scope, such as Owner or Contributor, will also allow you to perform the operations listed above. 
+If you have roles with higher permissions on the same scope, such as Owner or Contributor, you can also perform the operations listed earlier. 
 
 ### Azure connected machine agent (Guest Management) requirements
 
-Ensure the following before you install Arc agents at scale for SCVMM VMs:
+Before you install Arc agents at scale for SCVMM VMs, ensure the following conditions are met:
 
 - The Resource Bridge must be in a running state.
 - The SCVMM management server must be in a connected state.
-- The user account must have permissions listed in Azure Arc-enabled SCVMM Administrator role.
+- The user account has the permissions listed in the Azure Arc-enabled SCVMM Administrator role.
 - All the target machines are:
-     - Powered on and the resource bridge has network connectivity to the host running the VM.
+     - Powered on, and the resource bridge has network connectivity to the host running the VM.
      - Running a [supported operating system](/azure/azure-arc/servers/prerequisites#supported-operating-systems).
-     - Able to connect through the firewall to communicate over the Internet and [these URLs](/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls) aren't blocked.
+     - Able to connect through the firewall to communicate over the Internet, and [these URLs](/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls) aren't blocked.
 
 ### Supported SCVMM versions
 
@@ -99,7 +100,7 @@ Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs manage
 For VMs managed by other SCVMM versions, [install Arc agents through the script](install-arc-agents-using-script.md).
 
 >[!Important]
->We recommend maintaining the SCVMM management server and the SCVMM console in the same Long-Term Servicing Channel (LTSC) and Update Rollup (UR) version.
+>Maintain the SCVMM management server and the SCVMM console in the same Long-Term Servicing Channel (LTSC) and Update Rollup (UR) version.
 
 ### Supported operating systems
 
@@ -109,7 +110,7 @@ Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs runnin
 
 Windows operating systems:
 
-* Microsoft recommends running the latest version, [Windows Management Framework 5.1](https://www.microsoft.com/download/details.aspx?id=54616).
+* Use the latest version, [Windows Management Framework 5.1](https://www.microsoft.com/download/details.aspx?id=54616).
 
 Linux operating systems:
 
@@ -120,7 +121,7 @@ Linux operating systems:
 
 ### Networking requirements
 
-The following firewall URL exceptions are required for the Azure Arc agents:
+The Azure Arc agents require the following firewall URL exceptions:
 
 | **URL** | **Description** |
 | --- | --- |
@@ -141,16 +142,16 @@ The following firewall URL exceptions are required for the Azure Arc agents:
 
 ### Instance metadata 
 
-The following metadata is collected during the deployment of Azure Arc resource bridge: 
+The deployment process collects the following metadata for Azure Arc resource bridge: 
 
 - **SCVMM server credentials**
   - Username 
-  - Password (Password is stored as Kubernetes secret inside the Azure Arc resource bridge VM which resides in your datacenter and isn't propagated to Azure.) 
+  - Password (The deployment process stores the password as a Kubernetes secret inside the Azure Arc resource bridge VM, which resides in your datacenter and isn't propagated to Azure.) 
 - **SCVMM server version**
 - **SCVMM server FQDN/IP**
-- Other parameters specific to the deployment target of Azure Arc resource bridge VM such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. Only the parameters specific to the Azure Arc resource bridge VM are collected and not the entire information of your environment. 
+- Other parameters specific to the deployment target of Azure Arc resource bridge VM, such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. The deployment process collects only the parameters specific to the Azure Arc resource bridge VM and not the entire information of your environment. 
 
-After the successful deployment of Azure Arc resource bridge, the metadata of the resources associated with the VMM server is collected: 
+After you successfully deploy Azure Arc resource bridge, the deployment process collects metadata for the resources associated with the VMM server: 
 - VMM Cloud 
   - Name  
   - UUID
@@ -193,7 +194,7 @@ After the successful deployment of Azure Arc resource bridge, the metadata of th
   - Operating System 
   - Host type 
 
-After the installation of Azure Connected Machine agent in the individual VMs, the agent collects the metadata listed [here](/azure/azure-arc/servers/agent-overview#instance-metadata). 
+After you install the Azure Connected Machine agent in the individual VMs, the agent collects the metadata listed [here](/azure/azure-arc/servers/agent-overview#instance-metadata). 
 
 ## Next steps
 

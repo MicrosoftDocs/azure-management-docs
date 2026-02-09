@@ -1,12 +1,13 @@
 ---
 title: Install Arc agent on SCVMM VMs
-description: Learn how to enable guest management at scale for Arc-enabled SCVMM VMs. 
+description: Learn how to enable guest management at scale for Arc-enabled SCVMM VMs.
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.topic: how-to 
-ms.date: 10/09/2025
+ms.topic: how-to
+ms.date: 02/09/2026
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
@@ -16,22 +17,22 @@ ms.custom:
 
 # Install Arc agents on SCVMM VMs
 
-In this article, you learn how to install Azure connected machine agents for SCVMM VMs which is a prerequisite  to use Azure services for securing, patching, monitoring your VMs and leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits.
+In this article, you learn how to install Azure connected machine agents for SCVMM VMs. This installation is a prerequisite for using Azure services to secure, patch, and monitor your VMs. By installing these agents, you can also leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits.
 
-There are multiple avenues available to install Arc agents on SCVMM VMs which you can leverage based on your deployment preferences: 
+You can install Arc agents on SCVMM VMs through various methods. Choose the method that best fits your deployment preferences: 
 
 - Azure portal
 - Script-based manual installation
-- Programmatic methods such as Azure CLI, Azure PowerShell, Azure REST APIs, Azure SDKs, Terraform, Bicep and ARM templates. The reference section of this documentation repository has information on the exact syntax. 
-- Out-of-band methods such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy and Ansible playbook.  
+- Programmatic methods such as Azure CLI, Azure PowerShell, Azure REST APIs, Azure SDKs, Terraform, Bicep, and ARM templates. The reference section of this documentation repository has information on the exact syntax. 
+- Out-of-band methods such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy, and Ansible playbook.  
 
 ## Prerequisites
 
-Ensure the following before you install Arc agents at scale for SCVMM VMs:
+Before you install Arc agents at scale for SCVMM VMs, ensure the following conditions are met:
 
-- The SCVMM management server and the SCVMM console must be in the same Long-Term Servicing Channel (LTSC) and Update Rollup (UR) version.
-- The SCVMM management server must be in a *Connected* state and its associated Azure Arc resource bridge in a *Running* state. 
-- *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to install Arc agents on the target machines.
+- The SCVMM management server and the SCVMM console are in the same Long-Term Servicing Channel (LTSC) and Update Rollup (UR) version.
+- The SCVMM management server is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state. 
+- You have the *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to install Arc agents on the target machines.
 - All the target machines are:
     - Powered on.
     - Running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
@@ -41,42 +42,42 @@ Ensure the following before you install Arc agents at scale for SCVMM VMs:
 
 # [Azure portal](#tab/azure-portal)
 
-This method is applicable only if you are running: 
+This method works only if you're running: 
 
 - SCVMM 2025, 2022 UR1 or later, and 2019 UR5 or later versions of SCVMM server or console.
 - VMs running Windows Server 2012 R2, 2016, 2019, 2022, 2025, Windows 10, and Windows 11.
-- For other SCVMM versions, Linux VMs or Windows VMs running WS 2012 or earlier, install Arc agents through the script or out-of-band methods. 
+- For other SCVMM versions, Linux VMs, or Windows VMs running WS 2012 or earlier versions, install Arc agents through the script or out-of-band methods. 
 
 An administrator can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
 
 1. Navigate to the **SCVMM management servers** blade on [Azure Arc Center](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/overview), and select the SCVMM management server resource.
-2. Select the machines you want to onboard to Arc at-scale and choose the **Enable in Azure** option.
-3. Select **Enable guest management** checkbox to install Arc agents on the selected machines. This allows you to use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, etc. to secure, govern, patch and monitor your virtual machines.
+1. Select the machines you want to onboard to Arc at-scale and choose the **Enable in Azure** option.
+1. Select the **Enable guest management** checkbox to install Arc agents on the selected machines. By enabling this option, you can use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, and more to secure, govern, patch, and monitor your virtual machines.
 
      :::image type="content" source="media/enable-guest-management-at-scale/virtual-machines.png" alt-text="Screenshot of virtual machines screen." lightbox="media/enable-guest-management-at-scale/virtual-machines.png":::
 
-4. If you enable guest management on any of your machines, based on your organization's network policies, choose the connectivity method for the Arc agents that runs in your SCVMM VMs to connect to Azure. The available options are Public endpoint, Proxy server and Private endpoint.   
-     - If you want to connect the Arc agent via proxy, provide the proxy server details.
-     - If you want to connect Arc agent via private endpoint, follow these [steps](../servers/private-link-security.md) to set up Azure private link and provide the same details. 
+1. If you enable guest management on any of your machines, based on your organization's network policies, choose the connectivity method for the Arc agents that runs in your SCVMM VMs to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint.   
+     - To connect the Arc agent through a proxy, provide the proxy server details.
+     - To connect the Arc agent through a private endpoint, follow these [steps](../servers/private-link-security.md) to set up Azure private link and provide the same details. 
 
       >[!Note]
       > Private endpoint connectivity is only available for Arc agent to Azure communications. For Arc resource bridge to Azure connectivity, Azure Private link isn't supported.
 
-5. Provide the administrator username and password for the machine. For Windows VMs, the account must be part of the local administrator group; and for Linux VM, it must be a root account. 
+1. Enter the administrator username and password for the machine. For Windows VMs, the account must be part of the local administrator group. For Linux VMs, it must be a root account. 
 
-6. Select **Enable** to start the installation of the Arc agent in the specified machines. Once installation is complete, the Guest management column will switch to Enabled for the machines with Arc agent running. You can start using Azure services for these machines. These credentials won't be persisted in Azure. They're used to install the Azure Arc agent and then discarded.
+1. Select **Enable** to start the installation of the Arc agent on the specified machines. When the installation finishes, the **Guest management** column changes to **Enabled** for the machines with the Arc agent running. You can start using Azure services for these machines. These credentials aren't saved in Azure. They're used to install the Azure Arc agent and then discarded.
 
 # [Manual installation script](#tab/installation-script)
 
 >[!NOTE]
->- If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and `add <username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`.
->- If your VM template has these changes incorporated, you won't need to do this for the VM created from that template.
+>- If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and add `<username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`.
+>- If your VM template has these changes incorporated, you don't need to make this change for the VM created from that template.
 
 1. If the target VM is a Windows machine, download the [Windows manual installation script](https://download.microsoft.com/download/7/1/6/7164490e-6d8c-450c-8511-f8191f6ec110/arcscvmm-enable-guest-management.ps1). If the target VM is a Linux machine, download the [Linux manual installation script](https://download.microsoft.com/download/0/9/b/09bd9ef4-a7af-49e5-ad5f-9e8f85fae75b/arcscvmm-enable-guest-management.sh). 
-2. Sign in to the target VM as an administrator.
-3. Install and run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
-4. Sign in to your Azure account in Azure CLI using `az login --use-device-code`
-5. Run the downloaded script *arcscvmm-enable-guest-management.ps1* or *arcscvmm-enable-guest-management.sh*, as applicable, using the following commands. The `vmmServerId` parameter should denote your VMM Server’s ARM ID.
+1. Sign in to the target VM as an administrator.
+1. Install and run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
+1. Sign in to your Azure account in Azure CLI by using `az login --use-device-code`.
+1. Run the downloaded script *arcscvmm-enable-guest-management.ps1* or *arcscvmm-enable-guest-management.sh*, as applicable, by using the following commands. The `vmmServerId` parameter should denote your VMM Server’s ARM ID.
 
     **For a Windows VM:**
 
@@ -92,16 +93,16 @@ An administrator can install agents for multiple machines from the Azure portal 
 
 # [Out-of-band methods](#tab/Out-of-band)
 
-The out-of-band methods first onboard the machines as Arc-enabled Server resources with Resource type as *Microsoft.HybridCompute/machines*. Then, perform **Link to SCVMM** operation to update the machine's Kind property as **SCVMM** which enables VM lifecycle and powercycle operations. 
+The out-of-band methods first onboard the machines as Azure Arc-enabled Server resources with the resource type *Microsoft.HybridCompute/machines*. Then, perform the **Link to SCVMM** operation to update the machine's Kind property as **SCVMM** which enables VM lifecycle and powercycle operations. 
 
-1. **Connect the machines as Arc-enabled Server resources** using any one of the following automation approaches: 
+1. **Connect the machines as Azure Arc-enabled Server resources** by using any one of the following automation approaches: 
     - [Service Principal](/azure/azure-arc/servers/onboard-service-principal). 
     - [Configuration Manager script](/azure/azure-arc/servers/onboard-configuration-manager-powershell). 
     - [Configuration Manager custom task sequence](/azure/azure-arc/servers/onboard-configuration-manager-custom-task). 
     - [Group policy](/azure/azure-arc/servers/onboard-group-policy-powershell). 
     - [Ansible playbook](/azure/azure-arc/servers/onboard-ansible-playbooks). 
 
-2. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands update the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
+1. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands update the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
 
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified subscription and links the machines with that SCVMM. 
 
@@ -115,7 +116,7 @@ The out-of-band methods first onboard the machines as Arc-enabled Server resourc
       az scvmm vm create-from-machines –resource group contoso-rg --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
       ```
 
-   - The following command can be used to link an individual Azure Arc-enabled Server resource to SCVMM. 
+   - The following command links an individual Azure Arc-enabled Server resource to SCVMM. 
 
       ```azurecli-interactive
       az scvmm vm create-from-machines –resource group contoso-rg --name contoso-vm --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
