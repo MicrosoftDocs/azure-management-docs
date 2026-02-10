@@ -102,32 +102,32 @@ az acr run --registry myregistry -f build-push-hello-world.yaml https://github.c
 Sending context to registry: myregistry...
 Queued a run with ID: yd14
 Waiting for an agent...
-2018/09/12 20:08:44 Using acb_vol_0467fe58-f6ab-4dbd-a022-1bb487366941 as the home volume
-2018/09/12 20:08:44 Creating Docker network: acb_default_network
-2018/09/12 20:08:44 Successfully set up Docker network: acb_default_network
-2018/09/12 20:08:44 Setting up Docker configuration...
-2018/09/12 20:08:45 Successfully set up Docker configuration
-2018/09/12 20:08:45 Logging in to registry: myregistry.azurecr-test.io
-2018/09/12 20:08:46 Successfully logged in
-2018/09/12 20:08:46 Executing step: acb_step_0
-2018/09/12 20:08:46 Obtaining source code and scanning for dependencies...
-2018/09/12 20:08:47 Successfully obtained source code and scanned for dependencies
+2023/09/12 20:08:44 Using acb_vol_0467fe58-f6ab-4dbd-a022-1bb487366941 as the home volume
+2023/09/12 20:08:44 Creating Docker network: acb_default_network
+2023/09/12 20:08:44 Successfully set up Docker network: acb_default_network
+2023/09/12 20:08:44 Setting up Docker configuration...
+2023/09/12 20:08:45 Successfully set up Docker configuration
+2023/09/12 20:08:45 Logging in to registry: myregistry.azurecr-test.io
+2023/09/12 20:08:46 Successfully logged in
+2023/09/12 20:08:46 Executing step: acb_step_0
+2023/09/12 20:08:46 Obtaining source code and scanning for dependencies...
+2023/09/12 20:08:47 Successfully obtained source code and scanned for dependencies
 Sending build context to Docker daemon  109.6kB
 Step 1/1 : FROM hello-world
  ---> 4ab4c602aa5e
 Successfully built 4ab4c602aa5e
 Successfully tagged myregistry.azurecr-test.io/hello-world:yd14
-2018/09/12 20:08:48 Executing step: acb_step_1
-2018/09/12 20:08:48 Pushing image: myregistry.azurecr-test.io/hello-world:yd14, attempt 1
+2023/09/12 20:08:48 Executing step: acb_step_1
+2023/09/12 20:08:48 Pushing image: myregistry.azurecr-test.io/hello-world:yd14, attempt 1
 The push refers to repository [myregistry.azurecr-test.io/hello-world]
 428c97da766c: Preparing
 428c97da766c: Layer already exists
 yd14: digest: sha256:1a6fd470b9ce10849be79e99529a88371dff60c60aab424c077007f6979b4812 size: 524
-2018/09/12 20:08:55 Successfully pushed image: myregistry.azurecr-test.io/hello-world:yd14
-2018/09/12 20:08:55 Step id: acb_step_0 marked as successful (elapsed time in seconds: 2.035049)
-2018/09/12 20:08:55 Populating digests for step id: acb_step_0...
-2018/09/12 20:08:57 Successfully populated digests for step id: acb_step_0
-2018/09/12 20:08:57 Step id: acb_step_1 marked as successful (elapsed time in seconds: 6.832391)
+2023/09/12 20:08:55 Successfully pushed image: myregistry.azurecr-test.io/hello-world:yd14
+2023/09/12 20:08:55 Step id: acb_step_0 marked as successful (elapsed time in seconds: 2.035049)
+2023/09/12 20:08:55 Populating digests for step id: acb_step_0...
+2023/09/12 20:08:57 Successfully populated digests for step id: acb_step_0
+2023/09/12 20:08:57 Step id: acb_step_1 marked as successful (elapsed time in seconds: 6.832391)
 The following dependencies were found:
 - image:
     registry: myregistry.azurecr-test.io

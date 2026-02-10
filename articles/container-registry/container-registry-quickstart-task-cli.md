@@ -72,35 +72,35 @@ Uploading archived source code from '/tmp/build_archive_b0bc1e5d361b44f0833xxxx4
 Sending context (1.856 KiB) to registry: mycontainerregistry008...
 Queued a build with ID: ca8
 Waiting for agent...
-2019/03/18 21:56:57 Using acb_vol_4c7ffa31-c862-4be3-xxxx-ab8e615c55c4 as the home volume
-2019/03/18 21:56:57 Setting up Docker configuration...
-2019/03/18 21:56:58 Successfully set up Docker configuration
-2019/03/18 21:56:58 Logging in to registry: mycontainerregistry008.azurecr.io
-2019/03/18 21:56:59 Successfully logged into mycontainerregistry008.azurecr.io
-2019/03/18 21:56:59 Executing step ID: build. Working directory: '', Network: ''
-2019/03/18 21:56:59 Obtaining source code and scanning for dependencies...
-2019/03/18 21:57:00 Successfully obtained source code and scanned for dependencies
-2019/03/18 21:57:00 Launching container with name: build
+2023/03/18 21:56:57 Using acb_vol_4c7ffa31-c862-4be3-xxxx-ab8e615c55c4 as the home volume
+2023/03/18 21:56:57 Setting up Docker configuration...
+2023/03/18 21:56:58 Successfully set up Docker configuration
+2023/03/18 21:56:58 Logging in to registry: mycontainerregistry008.azurecr.io
+2023/03/18 21:56:59 Successfully logged into mycontainerregistry008.azurecr.io
+2023/03/18 21:56:59 Executing step ID: build. Working directory: '', Network: ''
+2023/03/18 21:56:59 Obtaining source code and scanning for dependencies...
+2023/03/18 21:57:00 Successfully obtained source code and scanned for dependencies
+2023/03/18 21:57:00 Launching container with name: build
 Sending build context to Docker daemon  13.82kB
 Step 1/1 : FROM mcr.microsoft.com/hello-world
 latest: Pulling from hello-world
 Digest: sha256:2557e3c07ed1e38f26e389462d03ed943586fxxxx21577a99efb77324b0fe535
 Successfully built fce289e99eb9
 Successfully tagged mycontainerregistry008.azurecr.io/sample/hello-world:v1
-2019/03/18 21:57:01 Successfully executed container: build
-2019/03/18 21:57:01 Executing step ID: push. Working directory: '', Network: ''
-2019/03/18 21:57:01 Pushing image: mycontainerregistry008.azurecr.io/sample/hello-world:v1, attempt 1
+2023/03/18 21:57:01 Successfully executed container: build
+2023/03/18 21:57:01 Executing step ID: push. Working directory: '', Network: ''
+2023/03/18 21:57:01 Pushing image: mycontainerregistry008.azurecr.io/sample/hello-world:v1, attempt 1
 The push refers to repository [mycontainerregistry008.azurecr.io/sample/hello-world]
 af0b15c8625b: Preparing
 af0b15c8625b: Layer already exists
 v1: digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a size: 524
-2019/03/18 21:57:03 Successfully pushed image: mycontainerregistry008.azurecr.io/sample/hello-world:v1
-2019/03/18 21:57:03 Step ID: build marked as successful (elapsed time in seconds: 2.543040)
-2019/03/18 21:57:03 Populating digests for step ID: build...
-2019/03/18 21:57:05 Successfully populated digests for step ID: build
-2019/03/18 21:57:05 Step ID: push marked as successful (elapsed time in seconds: 1.473581)
-2019/03/18 21:57:05 The following dependencies were found:
-2019/03/18 21:57:05
+2023/03/18 21:57:03 Successfully pushed image: mycontainerregistry008.azurecr.io/sample/hello-world:v1
+2023/03/18 21:57:03 Step ID: build marked as successful (elapsed time in seconds: 2.543040)
+2023/03/18 21:57:03 Populating digests for step ID: build...
+2023/03/18 21:57:05 Successfully populated digests for step ID: build
+2023/03/18 21:57:05 Step ID: push marked as successful (elapsed time in seconds: 1.473581)
+2023/03/18 21:57:05 The following dependencies were found:
+2023/03/18 21:57:05
 - image:
     registry: mycontainerregistry008.azurecr.io
     repository: sample/hello-world
@@ -142,15 +142,15 @@ Uploading archived source code from '/tmp/run_archive_ebf74da7fcb04683867b129e2c
 Sending context (1.855 KiB) to registry: mycontainerre...
 Queued a run with ID: cab
 Waiting for an agent...
-2019/03/19 19:01:53 Using acb_vol_60e9a538-b466-475f-9565-80c5b93eaa15 as the home volume
-2019/03/19 19:01:53 Creating Docker network: acb_default_network, driver: 'bridge'
-2019/03/19 19:01:53 Successfully set up Docker network: acb_default_network
-2019/03/19 19:01:53 Setting up Docker configuration...
-2019/03/19 19:01:54 Successfully set up Docker configuration
-2019/03/19 19:01:54 Logging in to registry: mycontainerregistry008.azurecr.io
-2019/03/19 19:01:55 Successfully logged into mycontainerregistry008.azurecr.io
-2019/03/19 19:01:55 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
-2019/03/19 19:01:55 Launching container with name: acb_step_0
+2023/03/19 19:01:53 Using acb_vol_60e9a538-b466-475f-9565-80c5b93eaa15 as the home volume
+2023/03/19 19:01:53 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/03/19 19:01:53 Successfully set up Docker network: acb_default_network
+2023/03/19 19:01:53 Setting up Docker configuration...
+2023/03/19 19:01:54 Successfully set up Docker configuration
+2023/03/19 19:01:54 Logging in to registry: mycontainerregistry008.azurecr.io
+2023/03/19 19:01:55 Successfully logged into mycontainerregistry008.azurecr.io
+2023/03/19 19:01:55 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
+2023/03/19 19:01:55 Launching container with name: acb_step_0
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -173,8 +173,8 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 
-2019/03/19 19:01:56 Successfully executed container: acb_step_0
-2019/03/19 19:01:56 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 0.843801)
+2023/03/19 19:01:56 Successfully executed container: acb_step_0
+2023/03/19 19:01:56 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 0.843801)
 
 Run ID: cab was successful after 6s
 ```
