@@ -27,7 +27,7 @@ Similarly, if you enabled **Bring your own storage**, then later update your con
 If you disable **Bring your own storage**, Microsoft resumes conversation storage for your organization, and users can only access their new conversations that are stored by Microsoft. Users in your tenant lose access to any conversations previously stored in your organization's Cosmos DB instance, unless they have permissions to access the database directly.
 
 > [!IMPORTANT]
-> Enabling **Bring your own storage** prevents users in your tenant from using the [migration agent capabilities in Agents (preview) in Azure Copilot](migration-agent.md) capabilities. Other capabilities of [Agents (preview) in Azure Copilot](agents-preview.md) are still available, but intelligent agent capabilities won't be available for migration-related queries. If you want to use agent capabilities to help with migration tasks, consider the implications of enabling **Bring your own storage** before making this change.
+> Enabling **Bring your own storage** currently prevents users in your tenant from using the [migration agent capabilities in Agents (preview) in Azure Copilot](migration-agent.md) capabilities. Other capabilities of [Agents (preview) in Azure Copilot](agents-preview.md) are still available, but intelligent agent capabilities aren't available for migration tasks.
 
 ## Permissions
 
