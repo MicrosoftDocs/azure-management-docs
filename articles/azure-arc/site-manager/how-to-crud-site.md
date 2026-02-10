@@ -35,7 +35,7 @@ Create a site to manage geographically related resources.
 
 1. In Azure Arc, on the **Site manager** page, select **Create a site**.
 
-   :::image type="content" source="media/how-to-crud-site/createasite.png" alt-text="Screenshot that shows how to create a site.":::
+   :::image type="content" source="media/how-to-crud-site/create-a-site.png" alt-text="Screenshot that shows how to create a site.":::
 
 1. Provide the following information about your site:
 
@@ -54,11 +54,11 @@ Create a site to manage geographically related resources.
     
 1. To create a service group and associate it with a parent, follow these steps:
 
-   :::image type="content" source="media/how-to-crud-site/createaservicegroup.png" alt-text="Screenshot that shows how to create a service group.":::
+   :::image type="content" source="media/how-to-crud-site/create-a-service-group.png" alt-text="Screenshot that shows how to create a service group.":::
 
 1. To select the resources within a service group, select **Add members** and then select the required resources.
 
-   :::image type="content" source="media/how-to-crud-site/selectsiteresources.png" alt-text="Screenshot that shows how to select site resources.":::
+   :::image type="content" source="media/how-to-crud-site/select-site-resources.png" alt-text="Screenshot that shows how to select site resources.":::
 
 1. You can associate a site scope with a created (or preexisting) service group to define the site to reflect the service group.
 
@@ -66,7 +66,7 @@ Create a site to manage geographically related resources.
 
    For the next hierarchy level, service groups cf001 and nw001 were created under the parent service group la001. The service group ff001 was created under the parent service group sf001. The sites Contoso Factory and NorthWind Factory associated with service groups cf001 and nw001, respectively, became child sites under the parent site Los Angeles. The site Fabrikam Factory was associated with service group ff001 because it's a child site under the parent site San Francisco.
 
-   :::image type="content" source="media/how-to-crud-site/sitelist.png" alt-text="Screenshot that shows a site list.":::
+   :::image type="content" source="media/how-to-crud-site/site-list.png" alt-text="Screenshot that shows a site list.":::
 
    Currently, the site manager supports hierarchy up to 10 levels.
 
@@ -112,4 +112,4 @@ Deleting a site doesn't affect the resources, resource group, subscription, or s
 
 1. On the site's resource page, select **Delete**.
 
-   :::image type="content" source="media/how-to-crud-site/deleteasiteconfirmation.png" alt-text="Screenshot that shows how to delete a site confirmation.":::
+   :::image type="content" source="media/how-to-crud-site/delete-a-site-confirmation.png" alt-text="Screenshot that shows how to delete a site confirmation.":::
