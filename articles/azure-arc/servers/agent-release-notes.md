@@ -25,6 +25,10 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
+> 
+## Version 1.61 - February 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.60/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
 ## Version 1.60 - January 2026
 
