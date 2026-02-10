@@ -48,7 +48,7 @@ For example, consider the following container image tags. Images that are used c
 - *contoso.azurecr.io/aspnetcore:2.0*
 - *contoso.azurecr.io/products/widget/web:1*
 - *contoso.azurecr.io/products/bettermousetrap/refundapi:12.3*
-- *contoso.azurecr.io/marketing/2017-fall/concertpromotions/campaign:218.42*
+- *contoso.azurecr.io/marketing/2023-fall/concertpromotions/campaign:218.42*
 
 ## Dedicated resource group
 

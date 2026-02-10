@@ -56,8 +56,6 @@ As a best practice, we recommend that you [lock](container-registry-image-lock.m
 
 Locking a deployed image still allows you to remove other, undeployed images from your registry using Azure Container Registry features to maintain your registry. For example, [auto-purge](container-registry-auto-purge.md) untagged manifests or unlocked images older than a specified duration, or set a [retention policy](container-registry-retention-policy.md) for untagged manifests.
 
-## Next steps
-
-For a more detailed discussion of the concepts in this article, see the blog post [Docker Tagging: Best practices for tagging and versioning docker images](https://stevelasker.blog/2018/03/01/docker-tagging-best-practices-for-tagging-and-versioning-docker-images/).
+## Related content
 
 To help maximize the performance and cost-effective use of your Azure container registry, see [Best practices for Azure Container Registry](container-registry-best-practices.md).

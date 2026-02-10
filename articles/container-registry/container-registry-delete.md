@@ -73,14 +73,14 @@ az acr manifest list-metadata --name acr-helloworld --registry myregistry
       "latest",
       "v3"
     ],
-    "timestamp": "2018-07-12T15:52:00.2075864Z"
+    "timestamp": "2023-07-12T15:52:00.2075864Z"
   },
   {
     "digest": "sha256:3168a21b98836dda7eb7a846b3d735286e09a32b0aa2401773da518e7eba3b57",
     "tags": [
       "v2"
     ],
-    "timestamp": "2018-07-12T15:50:53.5372468Z"
+    "timestamp": "2023-07-12T15:50:53.5372468Z"
   }
 ]
 ```
@@ -112,7 +112,7 @@ The following Azure CLI command lists all manifest digests in a repository older
 
 ```azurecli
 az acr manifest list-metadata --name <repositoryName> --registry <acrName> \
-    --orderby time_asc -o tsv --query "[?lastUpdateTime < '2019-04-05'].[digest, lastUpdateTime]"
+    --orderby time_asc -o tsv --query "[?lastUpdateTime < '2023-04-05'].[digest, lastUpdateTime]"
 ```
 
 After identifying stale manifest digests, you can run the following Bash script to delete manifest digests older than a specified timestamp. It requires the Azure CLI and **xargs**. By default, the script performs no deletion. Change the `ENABLE_DELETE` value to `true` to enable image deletion.
@@ -131,10 +131,10 @@ After identifying stale manifest digests, you can run the following Bash script 
 ENABLE_DELETE=false
 
 # Modify for your environment
-# TIMESTAMP can be a date-time string such as 2019-03-15T17:55:00.
+# TIMESTAMP can be a date-time string such as 2023-03-15T17:55:00.
 REGISTRY=myregistry
 REPOSITORY=myrepository
-TIMESTAMP=2019-04-05  
+TIMESTAMP=2023-04-05  
 
 # Delete all images older than specified timestamp.
 
@@ -170,7 +170,7 @@ As mentioned in the [Manifest digest](container-registry-concepts.md#manifest-di
        "tags": [
          "latest"
        ],
-       "timestamp": "2018-07-11T21:32:21.1400513Z"
+       "timestamp": "2023-07-11T21:32:21.1400513Z"
      }
    ]
    ```

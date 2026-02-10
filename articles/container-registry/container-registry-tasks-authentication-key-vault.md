@@ -174,32 +174,32 @@ When the task runs successfully, output shows successful authentication to Docke
 ```console
 Queued a run with ID: cf24
 Waiting for an agent...
-2019/06/20 18:05:55 Using acb_vol_b1edae11-30de-4f2b-a9c7-7d743e811101 as the home volume
-2019/06/20 18:05:58 Creating Docker network: acb_default_network, driver: 'bridge'
-2019/06/20 18:05:58 Successfully set up Docker network: acb_default_network
-2019/06/20 18:05:58 Setting up Docker configuration...
-2019/06/20 18:05:59 Successfully set up Docker configuration
-2019/06/20 18:05:59 Logging in to registry: myregistry.azurecr.io
-2019/06/20 18:06:00 Successfully logged into myregistry.azurecr.io
-2019/06/20 18:06:00 Executing step ID: acb_step_0. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
-2019/06/20 18:06:00 Launching container with name: acb_step_0
+2023/06/20 18:05:55 Using acb_vol_b1edae11-30de-4f2b-a9c7-7d743e811101 as the home volume
+2023/06/20 18:05:58 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/06/20 18:05:58 Successfully set up Docker network: acb_default_network
+2023/06/20 18:05:58 Setting up Docker configuration...
+2023/06/20 18:05:59 Successfully set up Docker configuration
+2023/06/20 18:05:59 Logging in to registry: myregistry.azurecr.io
+2023/06/20 18:06:00 Successfully logged into myregistry.azurecr.io
+2023/06/20 18:06:00 Executing step ID: acb_step_0. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
+2023/06/20 18:06:00 Launching container with name: acb_step_0
 [...]
 Login Succeeded
-2019/06/20 18:06:02 Successfully executed container: acb_step_0
-2019/06/20 18:06:02 Executing step ID: acb_step_1. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
-2019/06/20 18:06:02 Scanning for dependencies...
-2019/06/20 18:06:04 Successfully scanned dependencies
-2019/06/20 18:06:04 Launching container with name: acb_step_1
+2023/06/20 18:06:02 Successfully executed container: acb_step_0
+2023/06/20 18:06:02 Executing step ID: acb_step_1. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
+2023/06/20 18:06:02 Scanning for dependencies...
+2023/06/20 18:06:04 Successfully scanned dependencies
+2023/06/20 18:06:04 Launching container with name: acb_step_1
 Sending build context to Docker daemon    129kB
 [...]
-2019/06/20 18:06:07 Successfully pushed image: hubuser/hubrepo:cf24
-2019/06/20 18:06:07 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 2.064353)
-2019/06/20 18:06:07 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.594061)
-2019/06/20 18:06:07 Populating digests for step ID: acb_step_1...
-2019/06/20 18:06:09 Successfully populated digests for step ID: acb_step_1
-2019/06/20 18:06:09 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 2.743923)
-2019/06/20 18:06:09 The following dependencies were found:
-2019/06/20 18:06:09
+2023/06/20 18:06:07 Successfully pushed image: hubuser/hubrepo:cf24
+2023/06/20 18:06:07 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 2.064353)
+2023/06/20 18:06:07 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.594061)
+2023/06/20 18:06:07 Populating digests for step ID: acb_step_1...
+2023/06/20 18:06:09 Successfully populated digests for step ID: acb_step_1
+2023/06/20 18:06:09 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 2.743923)
+2023/06/20 18:06:09 The following dependencies were found:
+2023/06/20 18:06:09
 - image:
     registry: registry.hub.docker.com
     repository: hubuser/hubrepo

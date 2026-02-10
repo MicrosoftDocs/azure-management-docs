@@ -181,19 +181,19 @@ If the task runs successfully, output is similar to:
 ```
 Queued a run with ID: cf10
 Waiting for an agent...
-2019/06/14 22:47:32 Using acb_vol_dbfbe232-fd76-4ca3-bd4a-687e84cb4ce2 as the home volume
-2019/06/14 22:47:39 Creating Docker network: acb_default_network, driver: 'bridge'
-2019/06/14 22:47:40 Successfully set up Docker network: acb_default_network
-2019/06/14 22:47:40 Setting up Docker configuration...
-2019/06/14 22:47:41 Successfully set up Docker configuration
-2019/06/14 22:47:41 Logging in to registry: myregistry.azurecr.io
-2019/06/14 22:47:42 Successfully logged into myregistry.azurecr.io
-2019/06/14 22:47:42 Logging in to registry: mybaseregistry.azurecr.io
-2019/06/14 22:47:43 Successfully logged into mybaseregistry.azurecr.io
-2019/06/14 22:47:43 Executing step ID: acb_step_0. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
-2019/06/14 22:47:43 Scanning for dependencies...
-2019/06/14 22:47:45 Successfully scanned dependencies
-2019/06/14 22:47:45 Launching container with name: acb_step_0
+2023/06/14 22:47:32 Using acb_vol_dbfbe232-fd76-4ca3-bd4a-687e84cb4ce2 as the home volume
+2023/06/14 22:47:39 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/06/14 22:47:40 Successfully set up Docker network: acb_default_network
+2023/06/14 22:47:40 Setting up Docker configuration...
+2023/06/14 22:47:41 Successfully set up Docker configuration
+2023/06/14 22:47:41 Logging in to registry: myregistry.azurecr.io
+2023/06/14 22:47:42 Successfully logged into myregistry.azurecr.io
+2023/06/14 22:47:42 Logging in to registry: mybaseregistry.azurecr.io
+2023/06/14 22:47:43 Successfully logged into mybaseregistry.azurecr.io
+2023/06/14 22:47:43 Executing step ID: acb_step_0. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
+2023/06/14 22:47:43 Scanning for dependencies...
+2023/06/14 22:47:45 Successfully scanned dependencies
+2023/06/14 22:47:45 Launching container with name: acb_step_0
 Sending build context to Docker daemon   25.6kB
 Step 1/6 : ARG REGISTRY_NAME
 Step 2/6 : FROM ${REGISTRY_NAME}/baseimages/node:15-alpine
@@ -201,14 +201,14 @@ Step 2/6 : FROM ${REGISTRY_NAME}/baseimages/node:15-alpine
 [...]
 Successfully built 41b49a112663
 Successfully tagged myregistry.azurecr.io/hello-world:cf10
-2019/06/14 22:47:56 Successfully executed container: acb_step_0
-2019/06/14 22:47:56 Executing step ID: acb_step_1. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
-2019/06/14 22:47:56 Pushing image: myregistry.azurecr.io/hello-world:cf10, attempt 1
+2023/06/14 22:47:56 Successfully executed container: acb_step_0
+2023/06/14 22:47:56 Executing step ID: acb_step_1. Timeout(sec): 600, Working directory: '', Network: 'acb_default_network'
+2023/06/14 22:47:56 Pushing image: myregistry.azurecr.io/hello-world:cf10, attempt 1
 The push refers to repository [myregistry.azurecr.io/hello-world]
 [...]
-2019/06/14 22:48:00 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.517011)
-2019/06/14 22:48:00 The following dependencies were found:
-2019/06/14 22:48:00
+2023/06/14 22:48:00 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.517011)
+2023/06/14 22:48:00 The following dependencies were found:
+2023/06/14 22:48:00
 - image:
     registry: myregistry.azurecr.io
     repository: hello-world
