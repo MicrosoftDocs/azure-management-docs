@@ -56,7 +56,7 @@ The following factors affect API concurrency and bandwidth throughput during ima
 The following client environment factors affect performance:
 
 * Docker daemon or Podman configuration for concurrent operations
-* Container runtime configuration, such as containerd or CRI-O concurrency settings
+* Container runtime configuration, such as `containerd` or CRI-O concurrency settings
 * Cluster configuration or cluster data plane settings
 
 The following network factors affect performance:
