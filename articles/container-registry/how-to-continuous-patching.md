@@ -116,7 +116,7 @@ Run the following command to install the CLI extension:
 
 1. Once the workflow succeeds, go to the Azure portal to view your running tasks. In the service menu, under **Services**, select **Repositories. You should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
 
-1. Next, under **Services**, select select **Tasks**. You should see three new tasks:
+1. Next, under **Services**, select **Tasks**. You should see three new tasks:
 
    - `cssc-trigger-workflow` - this task scans the configuration file and calls the scan task on each respective image.    
    - `cssc-scan-image` - this task scans the image for operating system vulnerabilities. This task triggers the patching task only if operating system vulnerabilities were found.
@@ -199,13 +199,13 @@ To cancel running tasks, use the following CLI command:
 az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --type <continuouspatchv1>
 ```
 
-This command cancels all continuous patching tasks with a status of `Running`, `Queued`, or `Started` for the current schedule. For example, if you cancel tasks on a daily schedule (`--schedule 1d`), tasks in those states are canceled for that day but are requeued the next day. If your schedule is weekly, canceled tasks appear again the following week.
+This command cancels all continuous patching tasks with a status of `Running`, `Queued`, or `Started` for the current schedule. For example, if you cancel tasks on a daily schedule (`--schedule 1d`), tasks in those states are canceled for that day, then scheduled again for the next day. If your schedule is weekly, canceled tasks appear again the following week.
 
 ### Find failed tasks
 
 Use the task list command to output all failed tasks. Specifying the `cssc-patch` command is best for failure.
 
-TFor example, this command returnes the top 10 failed patch tasks:
+For example, this command returns the top 10 failed patch tasks:
 
 ```azurecli
 az acr task list-runs -r <registryname> -n cssc-patch-image --run-status Failed --top 10
