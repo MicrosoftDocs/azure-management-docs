@@ -45,7 +45,7 @@ For this tutorial, you need an Azure container registry in the Premium service t
 * Because Azure container registries are typically long-lived resources that are used across multiple container hosts, we recommend that you create your registry in its own resource group. As you configure geo-replicated registries and webhooks, these additional resources are placed in the same resource group.
 
 > [!TIP]
-> If you previously created a registry and need to upgrade, see [Changing SKUs](container-registry-skus.md#changing-skus).
+> If you previously created a registry and need to upgrade, see [Changing SKUs](container-registry-skus.md#change-registry-sku).
 
 Throughout the rest of this tutorial, we use `<acrName>` as a placeholder for your container's **Registry name**.
 
