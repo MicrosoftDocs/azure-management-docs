@@ -14,6 +14,16 @@
       "source_path": "articles/azure-arc/container-storage/alternate-onelake.md",
       "redirect_url": "/azure/azure-arc/container-storage/release-notes",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/howto-single-node-cluster-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-prepare-linux-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/howto-multi-node-cluster-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-prepare-linux-edge-volumes",
+      "redirect_document_id": false
     }
   ]
 }

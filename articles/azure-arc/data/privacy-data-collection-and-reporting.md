@@ -25,10 +25,6 @@ Neither Azure Arc-enabled data services nor any of the applicable data services 
 Azure Arc-enabled data services may use some or all of the following products:
 
 - SQL Managed Instance enabled by Azure Arc 
-- Azure Data Studio
-
-   [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
-
 - Azure CLI (az)
 
 ### Directly connected

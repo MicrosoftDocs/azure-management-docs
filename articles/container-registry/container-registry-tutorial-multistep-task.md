@@ -92,7 +92,7 @@ Output from a successful [az acr task create][az-acr-task-create] command is sim
   "agentConfiguration": {
     "cpu": 2
   },
-  "creationDate": "2020-11-20T03:14:31.763887+00:00",
+  "creationDate": "2023-11-20T03:14:31.763887+00:00",
   "credentials": null,
   "id": "/subscriptions/<Subscription ID>/resourceGroups/myregistry/providers/Microsoft.ContainerRegistry/registries/myregistry/tasks/taskmulti",
   "location": "westus",
@@ -155,39 +155,39 @@ By default, the `az acr task run` command streams the log output to your console
 ```output
 Queued a run with ID: cab
 Waiting for an agent...
-2020/11/20 00:03:31 Downloading source code...
-2020/11/20 00:03:33 Finished downloading source code
-2020/11/20 00:03:33 Using acb_vol_cfe6bd55-3076-4215-8091-6a81aec3d1b1 as the home volume
-2020/11/20 00:03:33 Creating Docker network: acb_default_network, driver: 'bridge'
-2020/11/20 00:03:34 Successfully set up Docker network: acb_default_network
-2020/11/20 00:03:34 Setting up Docker configuration...
-2020/11/20 00:03:34 Successfully set up Docker configuration
-2020/11/20 00:03:34 Logging in to registry: myregistry.azurecr.io
-2020/11/20 00:03:35 Successfully logged into myregistry.azurecr.io
-2020/11/20 00:03:35 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
-2020/11/20 00:03:35 Scanning for dependencies...
-2020/11/20 00:03:36 Successfully scanned dependencies
-2020/11/20 00:03:36 Launching container with name: acb_step_0
+2023/11/20 00:03:31 Downloading source code...
+2023/11/20 00:03:33 Finished downloading source code
+2023/11/20 00:03:33 Using acb_vol_cfe6bd55-3076-4215-8091-6a81aec3d1b1 as the home volume
+2023/11/20 00:03:33 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/11/20 00:03:34 Successfully set up Docker network: acb_default_network
+2023/11/20 00:03:34 Setting up Docker configuration...
+2023/11/20 00:03:34 Successfully set up Docker configuration
+2023/11/20 00:03:34 Logging in to registry: myregistry.azurecr.io
+2023/11/20 00:03:35 Successfully logged into myregistry.azurecr.io
+2023/11/20 00:03:35 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
+2023/11/20 00:03:35 Scanning for dependencies...
+2023/11/20 00:03:36 Successfully scanned dependencies
+2023/11/20 00:03:36 Launching container with name: acb_step_0
 Sending build context to Docker daemon  24.06kB
 [...]
 Successfully built f669bfd170af
 Successfully tagged myregistry.azurecr.io/hello-world:cf19
-2020/11/20 00:03:43 Successfully executed container: acb_step_0
-2020/11/20 00:03:43 Executing step ID: acb_step_1. Working directory: '', Network: 'acb_default_network'
-2020/11/20 00:03:43 Launching container with name: acb_step_1
+2023/11/20 00:03:43 Successfully executed container: acb_step_0
+2023/11/20 00:03:43 Executing step ID: acb_step_1. Working directory: '', Network: 'acb_default_network'
+2023/11/20 00:03:43 Launching container with name: acb_step_1
 279b1cb6e092b64c8517c5506fcb45494cd5a0bd10a6beca3ba97f25c5d940cd
-2020/11/20 00:03:44 Successfully executed container: acb_step_1
-2020/11/20 00:03:44 Executing step ID: acb_step_2. Working directory: '', Network: 'acb_default_network'
-2020/11/20 00:03:44 Pushing image: myregistry.azurecr.io/hello-world:cf19, attempt 1
+2023/11/20 00:03:44 Successfully executed container: acb_step_1
+2023/11/20 00:03:44 Executing step ID: acb_step_2. Working directory: '', Network: 'acb_default_network'
+2023/11/20 00:03:44 Pushing image: myregistry.azurecr.io/hello-world:cf19, attempt 1
 [...]
-2020/11/20 00:03:46 Successfully pushed image: myregistry.azurecr.io/hello-world:cf19
-2020/11/20 00:03:46 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 7.425169)
-2020/11/20 00:03:46 Populating digests for step ID: acb_step_0...
-2020/11/20 00:03:47 Successfully populated digests for step ID: acb_step_0
-2020/11/20 00:03:47 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 0.827129)
-2020/11/20 00:03:47 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 2.112113)
-2020/11/20 00:03:47 The following dependencies were found:
-2020/11/20 00:03:47
+2023/11/20 00:03:46 Successfully pushed image: myregistry.azurecr.io/hello-world:cf19
+2023/11/20 00:03:46 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 7.425169)
+2023/11/20 00:03:46 Populating digests for step ID: acb_step_0...
+2023/11/20 00:03:47 Successfully populated digests for step ID: acb_step_0
+2023/11/20 00:03:47 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 0.827129)
+2023/11/20 00:03:47 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 2.112113)
+2023/11/20 00:03:47 The following dependencies were found:
+2023/11/20 00:03:47
 - image:
     registry: myregistry.azurecr.io
     repository: hello-world
@@ -260,9 +260,9 @@ Output from the command should appear similar to the following. The runs that AC
 ```output
 RUN ID    TASK            PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  --------------  ----------  ---------  ---------  --------------------  ----------
-cad       example1        linux       Succeeded  Commit     2020-11-20T00:22:15Z  00:00:35
-cac       taskhelloworld  linux       Succeeded  Commit     2020-11-20T00:22:15Z  00:00:22
-cab       example1        linux       Succeeded  Manual     2020-11-20T00:18:36Z  00:00:47
+cad       example1        linux       Succeeded  Commit     2023-11-20T00:22:15Z  00:00:35
+cac       taskhelloworld  linux       Succeeded  Commit     2023-11-20T00:22:15Z  00:00:22
+cab       example1        linux       Succeeded  Manual     2023-11-20T00:18:36Z  00:00:47
 ```
 
 ## Create a multi-registry multi-step task
@@ -354,61 +354,61 @@ Output:
 ```output
 Queued a run with ID: cf1g
 Waiting for an agent...
-2020/11/20 04:33:39 Downloading source code...
-2020/11/20 04:33:41 Finished downloading source code
-2020/11/20 04:33:42 Using acb_vol_4569b017-29fe-42bd-83b2-25c45a8ac807 as the home volume
-2020/11/20 04:33:42 Creating Docker network: acb_default_network, driver: 'bridge'
-2020/11/20 04:33:43 Successfully set up Docker network: acb_default_network
-2020/11/20 04:33:43 Setting up Docker configuration...
-2020/11/20 04:33:44 Successfully set up Docker configuration
-2020/11/20 04:33:44 Logging in to registry: mycontainerregistry.azurecr.io
-2020/11/20 04:33:45 Successfully logged into mycontainerregistry.azurecr.io
-2020/11/20 04:33:45 Logging in to registry: mycontainerregistrydate.azurecr.io
-2020/11/20 04:33:47 Successfully logged into mycontainerregistrydate.azurecr.io
-2020/11/20 04:33:47 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
-2020/11/20 04:33:47 Scanning for dependencies...
-2020/11/20 04:33:47 Successfully scanned dependencies
-2020/11/20 04:33:47 Launching container with name: acb_step_0
+2023/11/20 04:33:39 Downloading source code...
+2023/11/20 04:33:41 Finished downloading source code
+2023/11/20 04:33:42 Using acb_vol_4569b017-29fe-42bd-83b2-25c45a8ac807 as the home volume
+2023/11/20 04:33:42 Creating Docker network: acb_default_network, driver: 'bridge'
+2023/11/20 04:33:43 Successfully set up Docker network: acb_default_network
+2023/11/20 04:33:43 Setting up Docker configuration...
+2023/11/20 04:33:44 Successfully set up Docker configuration
+2023/11/20 04:33:44 Logging in to registry: mycontainerregistry.azurecr.io
+2023/11/20 04:33:45 Successfully logged into mycontainerregistry.azurecr.io
+2023/11/20 04:33:45 Logging in to registry: mycontainerregistrydate.azurecr.io
+2023/11/20 04:33:47 Successfully logged into mycontainerregistrydate.azurecr.io
+2023/11/20 04:33:47 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
+2023/11/20 04:33:47 Scanning for dependencies...
+2023/11/20 04:33:47 Successfully scanned dependencies
+2023/11/20 04:33:47 Launching container with name: acb_step_0
 Sending build context to Docker daemon  25.09kB
 [...]
 Successfully tagged mycontainerregistry.azurecr.io/hello-world:cf1g
-2020/11/20 04:33:55 Successfully executed container: acb_step_0
-2020/11/20 04:33:55 Executing step ID: acb_step_1. Working directory: '', Network: 'acb_default_network'
-2020/11/20 04:33:55 Scanning for dependencies...
-2020/11/20 04:33:56 Successfully scanned dependencies
-2020/11/20 04:33:56 Launching container with name: acb_step_1
+2023/11/20 04:33:55 Successfully executed container: acb_step_0
+2023/11/20 04:33:55 Executing step ID: acb_step_1. Working directory: '', Network: 'acb_default_network'
+2023/11/20 04:33:55 Scanning for dependencies...
+2023/11/20 04:33:56 Successfully scanned dependencies
+2023/11/20 04:33:56 Launching container with name: acb_step_1
 Sending build context to Docker daemon  25.09kB
 [...]
-Successfully tagged mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z
-2020/11/20 04:33:57 Successfully executed container: acb_step_1
-2020/11/20 04:33:57 Executing step ID: acb_step_2. Working directory: '', Network: 'acb_default_network'
-2020/11/20 04:33:57 Launching container with name: acb_step_2
+Successfully tagged mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z
+2023/11/20 04:33:57 Successfully executed container: acb_step_1
+2023/11/20 04:33:57 Executing step ID: acb_step_2. Working directory: '', Network: 'acb_default_network'
+2023/11/20 04:33:57 Launching container with name: acb_step_2
 721437ff674051b6be63cbcd2fa8eb085eacbf38d7d632f1a079320133182101
-2020/11/20 04:33:58 Successfully executed container: acb_step_2
-2020/11/20 04:33:58 Executing step ID: acb_step_3. Working directory: '', Network: 'acb_default_network'
-2020/11/20 04:33:58 Launching container with name: acb_step_3
+2023/11/20 04:33:58 Successfully executed container: acb_step_2
+2023/11/20 04:33:58 Executing step ID: acb_step_3. Working directory: '', Network: 'acb_default_network'
+2023/11/20 04:33:58 Launching container with name: acb_step_3
 test
-2020/11/20 04:34:09 Successfully executed container: acb_step_3
-2020/11/20 04:34:09 Executing step ID: acb_step_4. Working directory: '', Network: 'acb_default_network'
-2020/11/20 04:34:09 Pushing image: mycontainerregistry.azurecr.io/hello-world:cf1g, attempt 1
+2023/11/20 04:34:09 Successfully executed container: acb_step_3
+2023/11/20 04:34:09 Executing step ID: acb_step_4. Working directory: '', Network: 'acb_default_network'
+2023/11/20 04:34:09 Pushing image: mycontainerregistry.azurecr.io/hello-world:cf1g, attempt 1
 The push refers to repository [mycontainerregistry.azurecr.io/hello-world]
 [...]
-2020/11/20 04:34:12 Successfully pushed image: mycontainerregistry.azurecr.io/hello-world:cf1g
-2020/11/20 04:34:12 Pushing image: mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z, attempt 1
+2023/11/20 04:34:12 Successfully pushed image: mycontainerregistry.azurecr.io/hello-world:cf1g
+2023/11/20 04:34:12 Pushing image: mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z, attempt 1
 The push refers to repository [mycontainerregistrydate.azurecr.io/hello-world]
 [...]
-2020/11/20 04:34:19 Successfully pushed image: mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z
-2020/11/20 04:34:19 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 8.125744)
-2020/11/20 04:34:19 Populating digests for step ID: acb_step_0...
-2020/11/20 04:34:21 Successfully populated digests for step ID: acb_step_0
-2020/11/20 04:34:21 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.009281)
-2020/11/20 04:34:21 Populating digests for step ID: acb_step_1...
-2020/11/20 04:34:23 Successfully populated digests for step ID: acb_step_1
-2020/11/20 04:34:23 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 0.795440)
-2020/11/20 04:34:23 Step ID: acb_step_3 marked as successful (elapsed time in seconds: 11.446775)
-2020/11/20 04:34:23 Step ID: acb_step_4 marked as successful (elapsed time in seconds: 9.734973)
-2020/11/20 04:34:23 The following dependencies were found:
-2020/11/20 04:34:23
+2023/11/20 04:34:19 Successfully pushed image: mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z
+2023/11/20 04:34:19 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 8.125744)
+2023/11/20 04:34:19 Populating digests for step ID: acb_step_0...
+2023/11/20 04:34:21 Successfully populated digests for step ID: acb_step_0
+2023/11/20 04:34:21 Step ID: acb_step_1 marked as successful (elapsed time in seconds: 2.009281)
+2023/11/20 04:34:21 Populating digests for step ID: acb_step_1...
+2023/11/20 04:34:23 Successfully populated digests for step ID: acb_step_1
+2023/11/20 04:34:23 Step ID: acb_step_2 marked as successful (elapsed time in seconds: 0.795440)
+2023/11/20 04:34:23 Step ID: acb_step_3 marked as successful (elapsed time in seconds: 11.446775)
+2023/11/20 04:34:23 Step ID: acb_step_4 marked as successful (elapsed time in seconds: 9.734973)
+2023/11/20 04:34:23 The following dependencies were found:
+2023/11/20 04:34:23
 - image:
     registry: mycontainerregistry.azurecr.io
     repository: hello-world
@@ -424,7 +424,7 @@ The push refers to repository [mycontainerregistrydate.azurecr.io/hello-world]
 - image:
     registry: mycontainerregistrydate.azurecr.io
     repository: hello-world
-    tag: 20190503-043342z
+    tag: 20230503-043342z
     digest: sha256:75354e9edb995e8661438bad9913deed87a185fddd0193811f916d684b71a5d2
   runtime-dependency:
     registry: registry.hub.docker.com

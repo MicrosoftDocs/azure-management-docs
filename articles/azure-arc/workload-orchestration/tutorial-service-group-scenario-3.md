@@ -1,8 +1,8 @@
 ---
 title: Solution with Multiple Shared Dependencies at Different Hierarchy Levels
 description: Learn how to create a solution with multiple shared dependencies at different hierarchy levels in Azure Arc-enabled Kubernetes.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 06/01/2025
 ---

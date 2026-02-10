@@ -187,6 +187,4 @@ You have several additional options for creating the Azure Arc data controller:
 
 - [Create a data controller in direct connectivity mode with the Azure portal](create-data-controller-direct-prerequisites.md)
 - [Create a data controller in indirect connectivity mode with CLI](create-data-controller-indirect-cli.md)
-- [Create a data controller in indirect connectivity mode with Azure Data Studio](create-data-controller-indirect-azure-data-studio.md)
-- [Create a data controller in indirect connectivity mode from the Azure portal via a Jupyter notebook in Azure Data Studio](create-data-controller-indirect-azure-portal.md)
 - [Create a data controller in indirect connectivity mode with Kubernetes tools such as `kubectl` or `oc`](create-data-controller-using-kubernetes-native-tools.md)

@@ -11,8 +11,6 @@ ms.author: mikeray
 
 Before you can proceed with the tasks in this article, you need to have the necessary tools. All deployments require the following tools:
 
-- Azure Data Studio
-- Azure Arc extension for Azure Data Studio
 - Azure CLI (`az`)
 - `arcdata` extension for Azure CLI
 - `kubectl`

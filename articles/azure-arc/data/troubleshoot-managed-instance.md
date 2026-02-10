@@ -185,7 +185,7 @@ kubectl -n $nameSpace expose pod $sqlmiName-2 --port=1533  --name=ha-$sqlmiName-
 
 You should be able to connect to exposed external port (which has been confirmed from internal at step 3). If you can't connect to external port, refer to [Kubernetes documentation - Create an external load balancer](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/) and get service provider help on the issues.
 
-You can use any client like `SqlCmd`, SQL Server Management Studio (SSMS), or Azure Data Studio (ADS) to test this out.
+You can use any client like **sqlcmd** or SQL Server Management Studio (SSMS) to test this out.
 
 ## Connection between failover groups is lost
 

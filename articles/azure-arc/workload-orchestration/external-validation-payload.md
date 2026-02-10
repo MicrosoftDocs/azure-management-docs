@@ -1,8 +1,8 @@
 ---
 title: External Validation Payload
 description: This document provides details on the Event Grid payload for external validation of solution versions in workload orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.date: 05/10/2025
 ms.custom:

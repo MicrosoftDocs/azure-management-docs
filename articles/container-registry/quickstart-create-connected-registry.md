@@ -52,7 +52,28 @@ az acr update --name $REGISTRY_NAME \
 
 ---
 
-[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
+## Import images to your cloud registry
+
+Next, import the following container images to your cloud registry. Skip this step if you already imported these images.
+
+Use the [`az acr import`](/cli/azure/acr#az-acr-import) command to import the connected registry image into your private registry:
+
+```azurecli
+# Use the REGISTRY_NAME variable in the following Azure CLI commands to identify the registry
+REGISTRY_NAME=<container-registry-name>
+
+az acr import \
+  --name $REGISTRY_NAME \
+  --source mcr.microsoft.com/acr/connected-registry:1.0.0
+```
+
+For testing the connected registry, import the `hello-world` image. This repository will be synchronized to the connected registry and pulled by the connected registry clients.
+
+```azurecli
+az acr import \
+  --name $REGISTRY_NAME \
+  --source mcr.microsoft.com/hello-world:1.1.2
+```
 
 ## Create a connected registry resource for read and write functionality
 

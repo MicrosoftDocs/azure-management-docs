@@ -1,8 +1,8 @@
 ---
 title: Solution with a Leaf Target 
 description: Learn how to create and configure a solution with a leaf target in a four-level service group hierarchy using workload orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 06/02/2025
 ---

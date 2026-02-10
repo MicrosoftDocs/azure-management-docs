@@ -50,9 +50,7 @@ To import container images, this article requires that you run Azure PowerShell 
 [!INCLUDE [container-registry-geo-replication-include](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-geo-replication-include.md)]
 
 > [!IMPORTANT]
-> Changes to image import between two Azure container registries have been introduced as of January 2021:
-> * Import to or from a network-restricted Azure container registry requires the restricted registry to [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network. By default, the setting is enabled, allowing import. If the setting isn't enabled in a newly created registry with a private endpoint or with registry firewall rules, import will fail.
-> * In an existing network-restricted Azure container registry that is used as an import source or target, enabling this network security feature is optional but recommended.
+> Import to or from a network-restricted Azure container registry requires the restricted registry to [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network. By default, the setting is enabled, allowing import. If the setting isn't enabled in a newly created registry with a private endpoint or with registry firewall rules, import will fail.
 
 ## Prerequisites
 
@@ -138,21 +136,21 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ### Import from Microsoft Container Registry
 
-For example, import the `ltsc2019` Windows Server Core image from the `windows` repository in Microsoft Container Registry.
+For example, import the `ltsc2022` Windows Server Core image from the `windows` repository in Microsoft Container Registry.
 
 ### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
 az acr import \
 --name myregistry \
---source mcr.microsoft.com/windows/servercore:ltsc2019 \
---image servercore:ltsc2019
+--source mcr.microsoft.com/windows/servercore:ltsc2022\
+--image servercore:ltsc2022
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mcr.microsoft.com -SourceImage windows/servercore:ltsc2019
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mcr.microsoft.com -SourceImage windows/servercore:ltsc2022
 ```
 
 ---

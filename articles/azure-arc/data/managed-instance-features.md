@@ -134,7 +134,7 @@ SQL Managed Instance enabled by Azure Arc supports various data tools that can h
 | --- | --- | --- |
 | Azure portal | Yes |
 | Azure CLI | Yes |
-| [Azure Data Studio](/azure-data-studio/what-is-azure-data-studio) | Yes |
+| [MSSQL extension for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code) | Yes |
 | Azure PowerShell | No |
 | [BACPAC file (export)](/sql/relational-databases/data-tier-applications/export-a-data-tier-application) | Yes |
 | [BACPAC file (import)](/sql/relational-databases/data-tier-applications/import-a-bacpac-file-to-create-a-new-user-database) | Yes |
@@ -142,8 +142,6 @@ SQL Managed Instance enabled by Azure Arc supports various data tools that can h
 | [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) | Yes |
 | [SQL Server PowerShell](/sql/relational-databases/scripting/sql-server-powershell) | Yes |
 | [SQL Server Profiler](/sql/tools/sql-server-profiler/sql-server-profiler) | Yes |
-
-   [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
 
 ### <a name="Unsupported"></a> Unsupported Features & Services
 

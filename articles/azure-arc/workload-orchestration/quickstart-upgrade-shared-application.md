@@ -1,8 +1,8 @@
 ---
 title: Upgrade a Shared Application with Workload Orchestration
 description: Learn how to upgrade a shared application using workload orchestration via CLI.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 05/10/2025
 ms.custom:

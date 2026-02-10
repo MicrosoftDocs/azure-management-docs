@@ -98,7 +98,7 @@ Output is similar to:
 ```console
 RUN ID    TASK    PLATFORM    STATUS     TRIGGER    STARTED               DURATION
 --------  ------  ----------  ---------  ---------  --------------------  ----------
-ca1               linux       Succeeded  Manual     2020-03-23T17:54:28Z  00:00:48
+ca1               linux       Succeeded  Manual     2023-03-23T17:54:28Z  00:00:48
 ```
 
 Run [az acr task logs][az-acr-task-logs] to view task run logs for the run ID, in this case *ca1*:

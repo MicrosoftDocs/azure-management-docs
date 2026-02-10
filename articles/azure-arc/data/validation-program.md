@@ -28,7 +28,7 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 
 |Solution and version | Kubernetes version | Azure Arc-enabled data services version | SQL engine version |
 |-----|-----|-----|-----|
-|[DataON AZS-6224](https://www.dataonstorage.com/products-solutions/integrated-systems-for-azure-stack-hci/dataon-integrated-system-azs-6224-for-azure-stack-hci/)|1.24.11|	1.20.0_2023-06-13|16.0.5100.7242|
+|[DataON AZS-6224](https://www.dataonstorage.com/products-solutions/integrated-systems-for-azure-stack-hci/dataon-integrated-system-azs-6224-for-azure-stack-hci/)|1.24.11|    1.20.0_2023-06-13|16.0.5100.7242|
 
 ### Dell
 
@@ -81,9 +81,9 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 
 |Solution and version | Kubernetes version | Azure Arc-enabled data services version | SQL engine version |
 |-----|-----|-----|-----|
-|[Portworx Enterprise 3.3.1.1](https://www.purestorage.com/products/cloud-native-applications/portworx.html)<br /> [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/purestoragemarketplaceadmin.portworx-enterprise?tab=overview) |1.31.9	| 1.39.0_2025-05-13	| 16.0.5564.41214 |
+|[Portworx Enterprise 3.3.1.1](https://www.purestorage.com/products/cloud-native-applications/portworx.html)<br /> [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/purestoragemarketplaceadmin.portworx-enterprise?tab=overview) |1.31.9    | 1.39.0_2025-05-13    | 16.0.5564.41214 |
 |[Portworx Enterprise 3.1](https://www.purestorage.com/products/cloud-native-applications/portworx.html)|1.28.7|1.30.0_2024-06-11|16.0.5349.20214|
-|Portworx Enterprise 2.7	1.22.5 |1.20.7 |1.1.0_2021-11-02 |15.0.2148.140 |
+|Portworx Enterprise 2.7    1.22.5 |1.20.7 |1.1.0_2021-11-02 |15.0.2148.140 |
 |Portworx Enterprise 2.9 |1.22.5 |1.1.0_2021-11-02 |15.0.2195.191 |
 
 ### Red Hat
@@ -122,7 +122,6 @@ v1.22.5+vmware.1
 
 - [Azure Data CLI (`azdata`)](/sql/azdata/install/deploy-install-azdata)
 - [kubectl](https://kubernetes.io/docs/home/)
-- [Azure Data Studio - Insider build](https://github.com/microsoft/azuredatastudio)
 
 Create a Kubernetes config file configured to access the target Kubernetes cluster and set as the current context. How this file is generated and brought local to your computer is different from platform to platform. See [Kubernetes.io](https://kubernetes.io/docs/home/).
 

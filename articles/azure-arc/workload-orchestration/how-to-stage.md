@@ -1,8 +1,8 @@
 ---
 title: Staging Resources Before Deployment
 description: Learn how to stage resources before deployment in Azure Arc Workload Orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 07/10/2025
 ---

@@ -1,8 +1,8 @@
 ---
 title: Multiple Solutions with a Single Shared Dependency at Different Levels
 description: Learn how to create multiple solutions that share a single dependency at different levels of the hierarchy in Azure Arc-enabled Kubernetes.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: tutorial
 ms.date: 06/01/2025
 ---

@@ -256,4 +256,4 @@ Follow these steps to restore the controller database from a backup with new sto
 
 ## Related content
 
-[Azure Data Studio dashboards](azure-data-studio-dashboards.md)
+- [Create Azure Arc data controller in direct connectivity mode using CLI](create-data-controller-direct-cli.md)

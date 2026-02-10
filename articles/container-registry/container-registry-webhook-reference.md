@@ -68,7 +68,7 @@ Webhook triggered when a container image is pushed to a repository.
 ```JSON
 {
   "id": "cb8c3971-9adc-488b-xxxx-43cbb4974ff5",
-  "timestamp": "2017-11-17T16:52:01.343145347Z",
+  "timestamp": "2023-11-17T16:52:01.343145347Z",
   "action": "push",
   "target": {
     "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
@@ -123,7 +123,7 @@ Webhook triggered when a Helm chart is pushed to a repository.
 ```JSON
 {
   "id": "6356e9e0-627f-4fed-xxxx-d9059b5143ac",
-  "timestamp": "2019-03-05T23:45:31.2614267Z",
+  "timestamp": "2023-03-05T23:45:31.2614267Z",
   "action": "chart_push",
   "target": {
     "mediaType": "application/vnd.acr.helm.chart",
@@ -179,7 +179,7 @@ Webhook triggered when an image repository or manifest is deleted. Not triggered
 ```JSON
 {
     "id": "afc359ce-df7f-4e32-xxxx-1ff8aa80927b",
-    "timestamp": "2017-11-17T16:54:53.657764628Z",
+    "timestamp": "2023-11-17T16:54:53.657764628Z",
     "action": "delete",
     "target": {
       "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
@@ -235,7 +235,7 @@ Webhook triggered when a Helm chart or repository is deleted.
 ```JSON
 {
   "id": "338a3ef7-ad68-4128-xxxx-fdd3af8e8f67",
-  "timestamp": "2019-03-06T00:10:48.1270754Z",
+  "timestamp": "2023-03-06T00:10:48.1270754Z",
   "action": "chart_delete",
   "target": {
     "mediaType": "application/vnd.acr.helm.chart",

@@ -34,8 +34,8 @@ Repository names can also include [namespaces](container-registry-best-practices
 - *marketing/campaign10-18/web:v2*
 - *marketing/campaign10-18/api:v3*
 - *marketing/campaign10-18/email-sender:v2*
-- *product-returns/web-submission:20180604*
-- *product-returns/legacy-integrator:20180715*
+- *product-returns/web-submission:20230604*
+- *product-returns/legacy-integrator:20230715*
 
 Repository names can only include lowercase alphanumeric characters, periods, dashes, underscores, and forward slashes. 
 
@@ -108,21 +108,21 @@ az acr manifest list-metadata --name acr-helloworld --registry myregistry
       "latest",
       "v3"
     ],
-    "timestamp": "2018-07-12T15:52:00.2075864Z"
+    "timestamp": "2023-07-12T15:52:00.2075864Z"
   },
   {
     "digest": "sha256:3168a21b98836dda7eb7a846b3d735286e09a32b0aa2401773da518e7eba3b57",
     "tags": [
       "v2"
     ],
-    "timestamp": "2018-07-12T15:50:53.5372468Z"
+    "timestamp": "2023-07-12T15:50:53.5372468Z"
   },
   {
     "digest": "sha256:7ca0e0ae50c95155dbb0e380f37d7471e98d2232ed9e31eece9f9fb9078f2728",
     "tags": [
       "v1"
     ],
-    "timestamp": "2018-07-11T21:38:35.9170967Z"
+    "timestamp": "2023-07-11T21:38:35.9170967Z"
   }
 ]
 ```
@@ -155,7 +155,7 @@ When using Docker or other client tools to pull or push artifacts to an Azure co
 
 Examples: 
 
-   `docker push myregistry.azurecr.io/samples/myimage:20210106`
+   `docker push myregistry.azurecr.io/samples/myimage:20230106`
 
    `docker push myregistry.azurecr.io/marketing/email-sender`
 

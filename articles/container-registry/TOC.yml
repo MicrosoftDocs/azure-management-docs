@@ -247,8 +247,10 @@
         href: container-registry-tutorial-verify-with-ratify-aks.md
       - name: Content trust
         href: container-registry-content-trust.md
-      - name: Transition from Docker Content Trust to the Notary Project
+        displayName: dct, docker content trust
+      - name: Transition from DCT to Notary Project
         href: container-registry-content-trust-deprecation.md
+        displayName: docker content trust, content, trust
     - name: Vulnerability management and patching
       items:
       - name: Continuous patching concepts
@@ -387,12 +389,6 @@
     href: troubleshoot-artifact-streaming.md
   - name: Troubleshoot artifact cache
     href: troubleshoot-artifact-cache.md
-  - name: Troubleshoot continuous patching
-    href: troubleshoot-continuous-patching.md
-  - name: Technical support policies
-    href: container-registry-support-policies.md
-  - name: API deprecation
-    href: container-registry-api-deprecation.md
 - name: Resources
   expanded: false
   items:

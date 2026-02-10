@@ -1,8 +1,8 @@
 ---
 title: Migrate Existing Target Resources to General Availability
 description: Learn how to migrate existing target resources in Azure Arc workload orchestration to the general availability (GA) version.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.date: 06/24/2025
 ---

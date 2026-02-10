@@ -1,8 +1,8 @@
 ---
 title: External Validation for Workload Orchestration
 description: Learn how to use Event Grid for workload orchestration external validation and how to create a solution template with external validation enabled.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 05/10/2025
 ms.custom:

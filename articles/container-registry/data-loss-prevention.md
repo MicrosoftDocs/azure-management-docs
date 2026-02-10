@@ -104,7 +104,7 @@ The output shows that the export policy status is disabled.
       },
       "retentionPolicy": {
         "days": 7,
-        "lastUpdatedTime": "2021-07-20T23:20:30.9985256+00:00",
+        "lastUpdatedTime": "2023-07-20T23:20:30.9985256+00:00",
         "status": "disabled"
       },
       "trustPolicy": {

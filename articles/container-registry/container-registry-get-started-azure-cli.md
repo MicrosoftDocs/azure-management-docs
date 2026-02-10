@@ -82,7 +82,7 @@ When the registry is created, the output is similar to the following:
 ```json
 {
   "adminUserEnabled": false,
-  "creationDate": "2019-01-08T22:32:13.175925+00:00",
+  "creationDate": "2023-01-08T22:32:13.175925+00:00",
   "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/mycontainerregistry",
   "location": "eastus",
   "loginServer": "mycontainerregistry-e7ggejfuhzhgedc8.azurecr.io",

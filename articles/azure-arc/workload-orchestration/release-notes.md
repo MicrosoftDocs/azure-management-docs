@@ -1,8 +1,8 @@
 ---
 title: Release Notes for Workload Orchestration
 description: Release notes for Workload Orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: sethmanheim
+ms.author: sethm
 ms.topic: release-notes
 ms.date: 11/04/2025
 ---

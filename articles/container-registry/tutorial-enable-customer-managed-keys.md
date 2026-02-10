@@ -334,7 +334,7 @@ You can use a Resource Manager template to create a container registry and enabl
            "encryption": {
              "status": "enabled",
              "keyVaultProperties": {
-               "identity": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2018-11-30').clientId]",
+               "identity": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2023-07-01').clientId]",
                "KeyIdentifier": "[parameters('kek_id')]"
              }
            },
@@ -360,7 +360,7 @@ You can use a Resource Manager template to create a container registry and enabl
        },
        {
          "type": "Microsoft.KeyVault/vaults/accessPolicies",
-         "apiVersion": "2018-02-14",
+         "apiVersion": "2023-07-01",
          "name": "[concat(parameters('vault_name'), '/add')]",
          "dependsOn": [
            "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name'))]"
@@ -369,7 +369,7 @@ You can use a Resource Manager template to create a container registry and enabl
            "accessPolicies": [
              {
                "tenantId": "[subscription().tenantId]",
-               "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2018-11-30').principalId]",
+               "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2023-07-01').principalId]",
                "permissions": {
                  "keys": [
                    "get",
@@ -383,7 +383,7 @@ You can use a Resource Manager template to create a container registry and enabl
        },
        {
          "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
-         "apiVersion": "2018-11-30",
+         "apiVersion": "2023-07-01",
          "name": "[parameters('identity_name')]",
          "location": "[resourceGroup().location]"
        }

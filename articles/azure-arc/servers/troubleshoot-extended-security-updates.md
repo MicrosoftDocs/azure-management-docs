@@ -2,8 +2,8 @@
 title: How to troubleshoot delivery of Extended Security Updates for Windows Server 2012 through Azure Arc
 description: Learn how to troubleshoot delivery of Extended Security Updates (ESU) for Windows Server 2012 through Azure Arc.
 ms.topic: troubleshooting
-author: xelu86
-ms.author: alalve
+author: JnHs
+ms.author: jenhayes
 ms.date: 01/15/2026
 # Customer intent: As an IT administrator managing Windows Server workloads, I want to troubleshoot Extended Security Updates delivery through Azure Arc, so that I can ensure compliance and maintain security for my servers on extended support.
 ---

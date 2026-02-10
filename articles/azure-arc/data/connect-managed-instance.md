@@ -1,19 +1,20 @@
 ---
 title: Connect to SQL Managed Instance enabled by Azure Arc
-description: Connect to SQL Managed Instance enabled by Azure Arc
+description: Learn how to connect to SQL Managed Instance enabled by Azure Arc using SQL Server Management Studio (SSMS) or **sqlcmd**.
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
-ms.date: 07/30/2021
+ms.date: 01/21/2025
 ms.topic: how-to
+ai-usage: ai-assisted
 # Customer intent: As a database administrator, I want to connect to a SQL Managed Instance enabled by Azure Arc, so that I can manage my SQL databases effectively from my preferred SQL client tool.
 ---
 # Connect to SQL Managed Instance enabled by Azure Arc
 
-This article explains how you can connect to your SQL Managed Instance enabled by Azure Arc. 
+This article explains how to connect to your SQL Managed Instance enabled by Azure Arc using standard SQL Server client tools. 
 
 
 ## View SQL Managed Instance enabled by Azure Arc
@@ -32,16 +33,16 @@ Name       PrimaryEndpoint      Replicas    State
 sqldemo    10.240.0.107,1433    1/1         Ready
 ```
 
-If you are using AKS or kubeadm or OpenShift etc., you can copy the external IP and port number from here and connect to it using your favorite tool for connecting to a SQL Sever/Azure SQL instance such as Azure Data Studio or SQL Server Management Studio.  However, if you are using the quick start VM, see below for special information about how to connect to that VM from outside of Azure. 
+If you are using AKS or kubeadm or OpenShift etc., you can copy the external IP and port number from here and connect to it using your favorite tool for connecting to a SQL Server/Azure SQL instance such as SQL Server Management Studio (SSMS) or **sqlcmd**.  However, if you are using the quick start VM, see below for special information about how to connect to that VM from outside of Azure. 
 
 > [!NOTE]
 > Your corporate policies may block access to the IP and port, especially if this is created in the public cloud.
 
 ## Connect 
 
-Connect with Azure Data Studio, SQL Server Management Studio, or SQLCMD
+Connect with SQL Server Management Studio or **sqlcmd**
 
-Open Azure Data Studio and connect to your instance with the external endpoint IP address and port number above. If you are using an Azure VM you will need the _public_ IP address, which is identifiable using the [Special note about Azure virtual machine deployments](#special-note-about-azure-virtual-machine-deployments).
+Use SQL Server Management Studio (SSMS) or **sqlcmd** to connect to your instance with the external endpoint IP address and port number above. If you are using an Azure VM you will need the _public_ IP address, which is identifiable using the [Special note about Azure virtual machine deployments](#special-note-about-azure-virtual-machine-deployments).
 
 For example:
 
@@ -50,12 +51,9 @@ For example:
 - Password: your specified SQL password at provisioning time
 
 > [!NOTE]
-> You can use Azure Data Studio [view the SQL managed instance dashboards](azure-data-studio-dashboards.md#view-the-sql-managed-instance-dashboards).
+> In order to connect to a managed instance that was created using a Kubernetes manifest, the username and password need to be provided to **sqlcmd** in base64 encoded form.
 
-> [!NOTE]
-> In order to connect to a managed instance that was created using a Kubernetes manifest, the username and password need to be provided to sqlcmd in base64 encoded form.
-
-To connect using SQLCMD or Linux or Windows you can use a command like this. Enter the SQL password when prompted:
+To connect using **sqlcmd** on Linux or Windows you can use a command like this. Enter the SQL password when prompted:
 
 ```bash
 sqlcmd -S 52.229.9.30,30913 -U sa
@@ -89,5 +87,4 @@ az network nsg rule create -n db_port --destination-port-ranges 30913 --source-a
 
 ## Related content
 
-- [View the SQL managed instance dashboards](azure-data-studio-dashboards.md#view-the-sql-managed-instance-dashboards)
 - [View SQL Managed Instance in the Azure portal](view-arc-data-services-inventory-in-azure-portal.md)
