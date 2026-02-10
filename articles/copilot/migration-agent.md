@@ -3,7 +3,7 @@ title: Migration agent capabilities in Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot lets you get help with migration tasks help using intelligent agent capabilities.
 author: JnHs
 ms.author: jenhayes
-ms.date:  01/26/2026
+ms.date:  02/10/2026
 ms.service: copilot-for-azure
 ms.topic: concept-article
 
@@ -17,7 +17,7 @@ ms.topic: concept-article
 Azure Copilot works to understand your migration goals, such as faster migration, modernization to PaaS, and regional targets, then creates artifacts such as [business cases](/azure/migrate/concepts-business-case-calculation) and [assessments](/azure/migrate/concepts-overview) using your existing context. You can also get help setting up [landing zones](/azure/cloud-adoption-framework/ready/landing-zone/), comparing alternative options, and resolving blocking issues.
 
 > [!IMPORTANT]
-> The functionality described in this article is only available for tenants that have access to [Agents (preview) in Azure Copilot](agents-preview.md).
+> The functionality described in this article is only available for tenants that have access to [Agents (preview) in Azure Copilot](agents-preview.md) and don't use the [**Bring your own storage** option for conversation history in Azure Copilot](bring-your-own-storage.md). If your tenant uses **Bring your own storage**, you can still ask Azure Copilot for help with migration tasks, but agent capabilities won't be available.
 
 ## Supported resource types
 
