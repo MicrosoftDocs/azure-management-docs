@@ -49,14 +49,14 @@ At a minimum, specify the following when you run `acr purge`:
 * `--concurrency` - Specifies a number of purge tasks to process concurrently. A default value is used if this parameter is not provided.
 
 > [!NOTE]
->  The `--untagged` filter doesn't respond to the `--ago` filter.
+>  The --untagged parameter honors the --ago duration filter beginning with mcr.microsoft.com/acr/acr-cli:0.17.
 For additional parameters, run `acr purge --help`. 
 
 `acr purge` supports other features of ACR Tasks commands including [run variables](container-registry-tasks-reference-yaml.md#run-variables) and [task run logs](container-registry-tasks-logs.md) that are streamed and also saved for later retrieval.
 
 ### Run in an on-demand task
 
-The following example uses the [az acr run][az-acr-run] command to run the `acr purge` command on-demand. This example deletes all image tags and manifests in the `hello-world` repository in *myregistry* that were modified more than 1 day ago and all untagged manifests. The container command is passed using an environment variable. The task runs without a source context.
+The following example uses the [az acr run][az-acr-run] command to run the `acr purge` command on-demand. This example deletes all image tags and any associated manifests in the hello-world repository in myregistry that were modified more than 1 day ago. It also removes untagged manifests, which now honor the same --ago duration filter as tagged images. The container command is passed using an environment variable, and the task runs without a source context.
 
 ```azurecli
 # Environment variable for container command line
@@ -169,6 +169,24 @@ az acr task create --name weeklyPurgeTask \
 ```
 
 Run the [az acr task show][az-acr-task-show] command to see that the timer trigger is configured.
+
+### Example Purge Only Untagged Manifests
+
+Sometimes you may want to remove only untagged manifests without touching any tagged images. You can achieve this by using a repository filter that matches no tag names, such as ^$.
+This causes acr purge to skip all tags and only evaluate untagged manifests.
+
+```azurecli
+# Environment variable for container command line
+PURGE_CMD="acr purge \
+  --filter 'samples/devimage1:^$' --filter 'samples/devimage2:^$' \
+  --ago 0d --untagged"
+
+az acr task create --name weeklyPurgeTask \
+  --cmd "$PURGE_CMD" \
+  --schedule "0 1 * * Sun" \
+  --registry myregistry \
+  --context /dev/null
+```
 
 ## Next steps
 
