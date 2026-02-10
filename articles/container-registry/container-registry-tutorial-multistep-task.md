@@ -379,7 +379,7 @@ Successfully tagged mycontainerregistry.azurecr.io/hello-world:cf1g
 2023/11/20 04:33:56 Launching container with name: acb_step_1
 Sending build context to Docker daemon  25.09kB
 [...]
-Successfully tagged mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z
+Successfully tagged mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z
 2023/11/20 04:33:57 Successfully executed container: acb_step_1
 2023/11/20 04:33:57 Executing step ID: acb_step_2. Working directory: '', Network: 'acb_default_network'
 2023/11/20 04:33:57 Launching container with name: acb_step_2
@@ -394,10 +394,10 @@ test
 The push refers to repository [mycontainerregistry.azurecr.io/hello-world]
 [...]
 2023/11/20 04:34:12 Successfully pushed image: mycontainerregistry.azurecr.io/hello-world:cf1g
-2023/11/20 04:34:12 Pushing image: mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z, attempt 1
+2023/11/20 04:34:12 Pushing image: mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z, attempt 1
 The push refers to repository [mycontainerregistrydate.azurecr.io/hello-world]
 [...]
-2023/11/20 04:34:19 Successfully pushed image: mycontainerregistrydate.azurecr.io/hello-world:20190503-043342z
+2023/11/20 04:34:19 Successfully pushed image: mycontainerregistrydate.azurecr.io/hello-world:20230503-043342z
 2023/11/20 04:34:19 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 8.125744)
 2023/11/20 04:34:19 Populating digests for step ID: acb_step_0...
 2023/11/20 04:34:21 Successfully populated digests for step ID: acb_step_0
@@ -424,7 +424,7 @@ The push refers to repository [mycontainerregistrydate.azurecr.io/hello-world]
 - image:
     registry: mycontainerregistrydate.azurecr.io
     repository: hello-world
-    tag: 20190503-043342z
+    tag: 20230503-043342z
     digest: sha256:75354e9edb995e8661438bad9913deed87a185fddd0193811f916d684b71a5d2
   runtime-dependency:
     registry: registry.hub.docker.com

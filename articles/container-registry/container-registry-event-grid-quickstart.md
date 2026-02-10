@@ -49,7 +49,7 @@ Once the registry has been created, the Azure CLI returns output similar to the 
 ```json
 {
   "adminUserEnabled": false,
-  "creationDate": "2018-08-16T20:02:46.569509+00:00",
+  "creationDate": "2023-08-16T20:02:46.569509+00:00",
   "id": "/subscriptions/<Subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/myregistry",
   "location": "eastus",
   "loginServer": "myregistry.azurecr.io",
@@ -168,11 +168,11 @@ You should see output similar to the following while ACR Tasks build and then pu
 Sending build context to ACR...
 Queued a build with build ID: aa2
 Waiting for build agent...
-2018/08/16 22:19:38 Using acb_vol_27a2afa6-27dc-4ae4-9e52-6d6c8b7455b2 as the home volume
-2018/08/16 22:19:38 Setting up Docker configuration...
-2018/08/16 22:19:39 Successfully set up Docker configuration
-2018/08/16 22:19:39 Logging in to registry: myregistry.azurecr.io
-2018/08/16 22:19:55 Successfully logged in
+2023/08/16 22:19:38 Using acb_vol_27a2afa6-27dc-4ae4-9e52-6d6c8b7455b2 as the home volume
+2023/08/16 22:19:38 Setting up Docker configuration...
+2023/08/16 22:19:39 Successfully set up Docker configuration
+2023/08/16 22:19:39 Logging in to registry: myregistry.azurecr.io
+2023/08/16 22:19:55 Successfully logged in
 Sending build context to Docker daemon  94.72kB
 Step 1/5 : FROM node:9-alpine
 ...

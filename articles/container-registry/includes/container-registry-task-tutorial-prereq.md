@@ -2,7 +2,7 @@
 author: rayoef
 ms.service: azure-container-registry
 ms.topic: include
-ms.date: 05/02/2019
+ms.date: 02/09/2026
 ms.author: rayoflores
 # Customer intent: "As a developer, I want to create a personal access token for GitHub so that I can enable ACR Tasks to automatically trigger workflows on commits to my repository."
 ---
@@ -18,9 +18,9 @@ You must have an Azure container registry in your Azure subscription to complete
 
 ### Create a GitHub personal access token
 
-To trigger a task on a commit to a Git repository, ACR Tasks need a [personal access token (PAT)](../container-registry-tasks-overview.md#personal-access-token) to access the repository. If you do not already have a PAT, follow these steps to generate one in GitHub:
+To trigger a task on a commit to a Git repository, ACR Tasks need a [personal access token (PAT)](../container-registry-tasks-overview.md#personal-access-token) to access the repository. If you don't already have a PAT, follow these steps to generate one in GitHub:
 
-1. Navigate to the PAT creation page on GitHub at https://github.com/settings/tokens/new
+1. Go to the [personal access token creation page on GitHub](https://github.com/settings/tokens/new).
 1. Enter a short **description** for the token, for example, "ACR Tasks Demo"
 1. Select scopes for ACR to access the repo. To access a public repo as in this tutorial, under **repo**, enable **repo:status** and **public_repo**
 

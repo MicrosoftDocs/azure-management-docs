@@ -389,8 +389,6 @@
     href: troubleshoot-artifact-streaming.md
   - name: Troubleshoot artifact cache
     href: troubleshoot-artifact-cache.md
-  - name: Troubleshoot continuous patching
-    href: troubleshoot-continuous-patching.md
 - name: Resources
   expanded: false
   items:

@@ -136,21 +136,21 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ### Import from Microsoft Container Registry
 
-For example, import the `ltsc2019` Windows Server Core image from the `windows` repository in Microsoft Container Registry.
+For example, import the `ltsc2022` Windows Server Core image from the `windows` repository in Microsoft Container Registry.
 
 ### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
 az acr import \
 --name myregistry \
---source mcr.microsoft.com/windows/servercore:ltsc2019 \
---image servercore:ltsc2019
+--source mcr.microsoft.com/windows/servercore:ltsc2022\
+--image servercore:ltsc2022
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mcr.microsoft.com -SourceImage windows/servercore:ltsc2019
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mcr.microsoft.com -SourceImage windows/servercore:ltsc2022
 ```
 
 ---

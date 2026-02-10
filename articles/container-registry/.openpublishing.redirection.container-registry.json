@@ -265,9 +265,14 @@
       "redirect_url": "/azure/container-registry/container-registry-faq",
       "redirect_document_id": false
     },
-        {
+    {
       "source_path_from_root": "/articles/container-registry/container-registry-api-deprecation.md",
       "redirect_url": "/azure/container-registry/container-registry-faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/troubleshoot-continuous-patching.md",
+      "redirect_url": "/azure/container-registry/how-to-continuous-patching",
       "redirect_document_id": false
     },
    {
