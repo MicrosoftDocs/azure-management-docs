@@ -25,6 +25,24 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
+> 
+## Version 1.61 - February 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature|Windows| Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**  |**1.29.105.0**| **1.26.105.0**   ||
+|Fixed support for security baseline customization on localized operating systems.|✓|✓|Bug Fix|
+|Resolved an issue where upgrading the Run Command extension caused previously executed commands to re-run.|✓|✓|Bug Fix|
+|Fixed a bug that caused extension enable operations to time out prematurely.|✓|✓|Bug Fix|
+|Improved reliability of GPG signature validation of extensions on Linux distributions.||✓|Improvement|
+|**Azcmagent**|**1.61.03310.2719**|**1.61.03310848**||
+|Added support for ARM64 Oracle 8, x86_64 Oracle 10, and Debian 13.||✓|Feature|
+|Auto upgrade script now respects proxy configuration on Linux.||✓|Improvement|
+|Added option to disable automatic upgrades locally.|✓|✓|Feature|
+|Added MSI signature verification to the Windows installation script for enhanced security.|✓||Improvement|
+|Fixed a bug in the Linux install script where the wrong package manager was invoked on some distributions.||✓|Bug Fix|
 
 ## Version 1.60 - January 2026
 
