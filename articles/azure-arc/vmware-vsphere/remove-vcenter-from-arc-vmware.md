@@ -2,9 +2,10 @@
 title: Remove your VMware vCenter environment from Azure Arc
 description: This article explains the steps to cleanly remove your VMware vCenter environment from Azure Arc-enabled VMware vSphere and delete related Azure Arc resources from Azure.
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 09/27/2024
+ms.date: 02/10/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 # Customer intent: As an infrastructure admin, I want to cleanly remove my VMware vCenter environment from Azure Arc-enabled VMware vSphere.
@@ -14,44 +15,44 @@ ms.custom:
 
 # Remove your VMware vCenter  environment from Azure Arc
 
-In this article, you learn how to cleanly remove your VMware vCenter environment from Azure Arc-enabled VMware vSphere. For VMware vSphere environments that you no longer want to manage with Azure Arc-enabled VMware vSphere, follow the steps in the article to:
+In this article, you learn how to cleanly remove your VMware vCenter environment from Azure Arc-enabled VMware vSphere. For VMware vSphere environments that you no longer want to manage by using Azure Arc-enabled VMware vSphere, follow the steps in this article to:
 
 1. Remove guest management from VMware virtual machines
-2. Remove your VMware vCenter environment from Azure Arc
-3. Remove Arc resource bridge related items in your vCenter
+1. Remove your VMware vCenter environment from Azure Arc
+1. Remove Arc resource bridge related items in your vCenter
 
 ## 1. Remove guest management from VMware virtual machines
 
-To prevent continued billing of Azure management services after you remove the vSphere environment from Azure Arc, you must first cleanly remove guest management from all Arc-enabled VMware vSphere virtual machines where it was enabled.
-When you enable guest management on Arc-enabled VMware vSphere virtual machines, the Arc connected machine agent is installed on them.
+To prevent continued billing of Azure management services after you remove the vSphere environment from Azure Arc, first cleanly remove guest management from all Arc-enabled VMware vSphere virtual machines where it was enabled.
+When you enable guest management on Arc-enabled VMware vSphere virtual machines, you install the Arc connected machine agent on them.
 
-Once guest management is enabled, you can install VM extensions on them and use Azure management services like the Log Analytics on them.
-To cleanly remove guest management, you must follow the steps below to remove any VM extensions from the virtual machine, disconnect the agent, and uninstall the software from your virtual machine. It's important to complete each of the three steps to fully remove all related software components from your virtual machines.
+Once you enable guest management, you can install VM extensions on the virtual machines and use Azure management services like the Log Analytics on them.
+To cleanly remove guest management, follow the steps in this section to remove any VM extensions from the virtual machine, disconnect the agent, and uninstall the software from your virtual machine. It's important to complete each of the three steps to fully remove all related software components from your virtual machines.
 
 ### Step 1: Remove VM extensions
 
-If you have deployed Azure VM extensions to an Azure Arc-enabled VMware vSphere VM, you must uninstall the extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and they won't be recognized if you later connect the VM to Azure Arc again.
-Uninstall extensions using the following steps:
+If you deployed Azure VM extensions to an Azure Arc-enabled VMware vSphere VM, uninstall the extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and they aren't recognized if you later connect the VM to Azure Arc again.
+Use the following steps to uninstall extensions:
 
 1. Go to [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview)
 
-2. Select **VMware vCenters**.
+1. Select **VMware vCenters**.
 
-3. Search and select the vCenter you want to remove from Azure Arc.
+1. Search and select the vCenter you want to remove from Azure Arc.
 
     :::image type="content" source="media/remove-vcenter-from-arc-vmware/browse-vmware-inventory.png" alt-text="Screenshot of where to browse your VMware Inventory from Azure portal." lightbox="media/remove-vcenter-from-arc-vmware/browse-vmware-inventory.png":::
 
-4. Select **Virtual machines** under **vCenter inventory**.
+1. Select **Virtual machines** under **vCenter inventory**.
 
-5. Search and select the virtual machine where you have Guest Management enabled.
+1. Search and select the virtual machine where you enabled Guest Management.
 
-6. Select **Extensions**.
+1. Select **Extensions**.
 
-7. Select the extensions and select **Uninstall**
+1. Select the extensions and select **Uninstall**.
 
 ### Step 2: Disconnect the agent from Azure Arc
 
-Disconnecting the agent clears the local state of the agent and removes agent information from our systems. To disconnect the agent, sign-in and run the following command as an administrator/root account on the virtual machine.
+When you disconnect the agent, it clears the local state of the agent and removes agent information from Azure systems. To disconnect the agent, sign in and run the following command as an administrator or root account on the virtual machine.
 
 ```powershell
     azcmagent disconnect --force-local-only
@@ -61,16 +62,16 @@ Disconnecting the agent clears the local state of the agent and removes agent in
 
 #### For Windows virtual machines
 
-To uninstall the Windows agent from the machine, do the following:
+To uninstall the Windows agent from the machine, complete the following steps:
 
-1. Sign in to the computer with an account that has administrator permissions.
-2. In Control Panel, select Programs and Features.
-3. In Programs and Features, select Azure Connected Machine Agent, select Uninstall, and then select Yes.
-4. Delete the `C:\Program Files\AzureConnectedMachineAgent` folder
+1. Sign in to the computer by using an account that has administrator permissions.
+1. In Control Panel, select **Programs and Features**.
+1. In **Programs and Features**, select **Azure Connected Machine Agent**, select **Uninstall**, and then select **Yes**.
+1. Delete the `C:\Program Files\AzureConnectedMachineAgent` folder.
 
 #### For Linux virtual machines
 
-To uninstall the Linux agent, the command to use depends on the Linux operating system. You must have `root` access permissions or your account must have elevated rights using sudo.
+To uninstall the Linux agent, use a command that depends on the Linux operating system. You must have `root` access permissions or your account must have elevated rights by using sudo.
 
 - For Ubuntu, run the following command:
 
@@ -92,27 +93,27 @@ To uninstall the Linux agent, the command to use depends on the Linux operating 
 
 ## 2. Remove your VMware vCenter environment from Azure Arc
 
-You can remove your VMware vSphere resources from Azure Arc using either the deboarding script or manually.
+You can remove your VMware vSphere resources from Azure Arc by using either the deboarding script or manual steps.
 
-### Remove VMware vSphere resources from Azure Arc using deboarding script
+### Remove VMware vSphere resources from Azure Arc by using deboarding script
 
-Download the [deboarding script](https://aka.ms/arcvmwaredeboard) to do a full cleanup of all the Arc-enabled VMware resources. The script removes all the Azure resources, including vCenter, custom location, virtual machines, virtual templates, hosts, clusters, resource pools, datastores, virtual networks, Azure Resource Manager (ARM) resource of Appliance, and the appliance VM running on vCenter.
+Download the [deboarding script](https://aka.ms/arcvmwaredeboard) to clean up all the Arc-enabled VMware resources. The script removes all the Azure resources, including vCenter, custom location, virtual machines, virtual templates, hosts, clusters, resource pools, datastores, virtual networks, Azure Resource Manager (ARM) resource of Appliance, and the appliance VM running on vCenter.
 
 #### Run the script
 To run the deboarding script, follow these steps:
 
 ##### Windows
-1. Open a PowerShell window as an Administrator and go to the folder where you've downloaded the PowerShell script.
+1. Open a PowerShell window as an Administrator and go to the folder where you downloaded the PowerShell script.
 
    >[!Note]
-   >On Windows workstations, the script must be run in PowerShell window and not in PowerShell Integrated Script Editor (ISE), as PowerShell ISE doesn't display the input prompts from Azure CLI commands. If the script is run on PowerShell ISE, it can appear as though the script is stuck while it's waiting for input.
+   >On Windows workstations, you must run the script in a PowerShell window and not in PowerShell Integrated Script Editor (ISE). PowerShell ISE doesn't display the input prompts from Azure CLI commands. If you run the script on PowerShell ISE, it can appear as though the script is stuck while it's waiting for input.
 
-2. Run the following command to allow the script to run because it's an unsigned script. (If you close the session before you complete all the steps, run this command again for the new session.)
+1. Run the following command to allow the script to run because it's an unsigned script. (If you close the session before you complete all the steps, run this command again for the new session.)
 
     ```powershell-interactive
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
     ```
-3. Run the script.
+1. Run the script.
 
     ```powershell-interactive
     ./arcvmware-deboard.ps1
@@ -122,7 +123,7 @@ To run the deboarding script, follow these steps:
 
 - **vCenterId**: The Azure resource ID of the VMware vCenter resource. </br> For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ConnectedVMwarevSphere/VCenters/vcenterresource*
 
-- **AVSId**: The Azure resource ID of the AVS instance. Specifying vCenterId or AVSId is mandatory.
+- **AVSId**: The Azure resource ID of the AVS instance. You must specify either vCenterId or AVSId.
 
 - **ApplianceConfigFilePath (optional)**: Path to kubeconfig, output from deploy command. Providing applianceconfigfilepath also deletes the appliance VM running on the vCenter.
 
@@ -133,41 +134,41 @@ To run the deboarding script, follow these steps:
 If you aren't using the deboarding script, follow these steps to remove the VMware vSphere resources manually:
 
 >[!NOTE]
->When you enable VMware vSphere resources in Azure, an Azure resource representing them is created. Before you can delete the vCenter resource in Azure, you must delete all the Azure resources that represent your related vSphere resources.
+>When you enable VMware vSphere resources in Azure, you create an Azure resource that represents them. Before you can delete the vCenter resource in Azure, you must delete all the Azure resources that represent your related vSphere resources.
 
 1. Go to [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview)
 
-2. Select **VMware vCenters**.
+1. Select **VMware vCenters**.
 
-3. Search and select the vCenter you remove from Azure Arc.
+1. Search and select the vCenter you want to remove from Azure Arc.
 
-4. Select **Virtual machines** under **vCenter inventory**.
+1. Select **Virtual machines** under **vCenter inventory**.
 
-5. Select all the VMs that have **Virtual hardware management** value as **Enabled**.
+1. Select all the VMs that have **Virtual hardware management** value as **Enabled**.
 
-6. Select **Remove from Azure**.
+1. Select **Remove from Azure**.
 
     This action only removes these resource representations from Azure. The resources continue to remain in your vCenter.
 
-7. Do the steps 4, 5, and 6 for **Clouds**, **VM networks**, and **VM templates** by performing **Remove from Azure** operation for resources with **Azure Enabled** value as **Yes**.
+1. Repeat steps 4, 5, and 6 for **Clouds**, **VM networks**, and **VM templates** by performing **Remove from Azure** operation for resources with **Azure Enabled** value as **Yes**.
 
-8. Once the deletion is complete, select **Overview**.
+1. Once the deletion is complete, select **Overview**.
 
-9. Note the **Custom location** and the **Azure Arc Resource bridge** resource in the **Essentials** section.
+1. Note the **Custom location** and the **Azure Arc Resource bridge** resource in the **Essentials** section.
 
-10. Select **Remove from Azure** to remove the vCenter resource from Azure.
+1. Select **Remove from Azure** to remove the vCenter resource from Azure.
 
-11. Go to the **Custom location** resource and select **Delete**.
+1. Go to the **Custom location** resource and select **Delete**.
 
-12. Go to the **Azure Arc Resource bridge** resource and select **Delete**.
+1. Go to the **Azure Arc Resource bridge** resource and select **Delete**.
 
-At this point, all your Arc-enabled VMware vSphere resources are removed from Azure.
+At this point, you remove all your Arc-enabled VMware vSphere resources from Azure.
 
 ## 3. Remove Arc resource bridge related items in your vCenter
 
-During onboarding, to create a connection between your VMware vCenter and Azure, an Azure Arc resource bridge is deployed in your VMware vSphere environment. As the last step, you must delete the resource bridge VM and the VM template created during the onboarding.
+During onboarding, to create a connection between your VMware vCenter and Azure, you deploy an Azure Arc resource bridge in your VMware vSphere environment. As the last step, you must delete the resource bridge VM and the VM template that you created during the onboarding process.
 
-You can find both the virtual machine and the template on the resource pool/cluster/host that you provided during [Azure Arc-enabled VMware vSphere onboarding](quick-start-connect-vcenter-to-arc-using-script.md).
+You can find both the virtual machine and the template on the resource pool, cluster, or host that you provided during [Azure Arc-enabled VMware vSphere onboarding](quick-start-connect-vcenter-to-arc-using-script.md).
 
 ## Next steps
 

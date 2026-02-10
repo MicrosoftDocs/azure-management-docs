@@ -1,10 +1,11 @@
 ---
 ms.assetid:
-title: What's new in Azure Arc-enabled VMware vSphere
+title: "Whats new in Azure Arc-enabled VMware vSphere"
 description: This article describes the new features and enhancements supported in Azure Arc-enabled VMware vSphere.
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.date: 09/17/2025
+ms.date: 02/10/2026
 ms.topic: whats-new
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
@@ -37,7 +38,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## October 2024
 
-- Ability to install Arc agents at-scale on VMware VMs using out-of-band methods such as:
+- Ability to install Arc agents at scale on VMware VMs using out-of-band methods such as:
    - Service principal
    - System Center Configuration Manager script
    - System Center Configuration Manager custom task sequence
@@ -100,4 +101,4 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 ## Next steps 
 
 - Plan your resource bridge deployment by reviewing the [support matrix for Arc-enabled VMware vSphere](support-matrix-for-arc-enabled-vmware-vsphere.md). 
-- Once ready, [connect VMware vCenter Server to Azure Arc by using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
+- When ready, [connect VMware vCenter Server to Azure Arc by using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
