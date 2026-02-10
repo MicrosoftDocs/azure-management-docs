@@ -1,6 +1,6 @@
 ---
 title: Create and Manage an Azure Arc Site
-description: Describes how to create, view, delete, or modify an Azure Arc site in the Azure portal by using the site manager.
+description: The article describes how to create, view, delete, or modify an Azure Arc site in the Azure portal by using the site manager.
 author: torreymicrosoft
 ms.author: torreyt
 ms.service: azure-arc
@@ -9,12 +9,12 @@ ms.topic: how-to
 ms.date: 04/18/2024
 ms.custom: sfi-image-nochange
 
-#customer intent: "As a site admin, I want to know how to create, modify, and delete sites by using a site manager so that I can efficiently manage and organize geographically related resources within my Azure environment."
+#customer intent: "As a site admin, I want to know how to create, modify, and delete sites by using the site manager so that I can efficiently manage and organize geographically related resources within my Azure environment."
 ---
 
 # Create and manage sites
 
-This article guides you through how to create, modify, and delete a site by using the Azure Arc site manager (preview).
+This article shows you how to create, modify, and delete a site by using the Azure Arc site manager (preview).
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ Alternatively, you can search for the Azure Arc site manager directly in the Azu
 
 Create a site to manage geographically related resources.
 
-1. In Azure Arc, on the **Site manager** page, select **Create a site**.
+1. In Azure Arc, on the **Site manager** page, select **Create a site** to open the **Create a Site** page.
 
    :::image type="content" source="media/how-to-crud-site/create-a-site.png" alt-text="Screenshot that shows how to create a site.":::
 
@@ -52,7 +52,7 @@ Create a site to manage geographically related resources.
     - You can create a two-level hierarchy by mapping the scopes to a subscription as the parent and the resource groups within as child sites.
     - You can create a multilevel hierarchy by using a service group. A site based on a service group scope provides flexibility in resource selection across subscriptions and resource groups. You can define the hierarchy by associating a service group-scoped site with the required service group-scoped parent site.
     
-1. To create a service group and associate it with a parent, follow these steps:
+1. Create a service group and associate it with a parent.
 
    :::image type="content" source="media/how-to-crud-site/create-a-service-group.png" alt-text="Screenshot that shows how to create a service group.":::
 
@@ -62,17 +62,17 @@ Create a site to manage geographically related resources.
 
 1. You can associate a site scope with a created (or preexisting) service group to define the site to reflect the service group.
 
-   In the following example, service group ca001 was created as a parent service group. The site California associated with the service group ca001 became the root of the hierarchy. Service groups la001, sc001, sd001, and sf001 were created with the parent service group as ca001. When the sites Los Angeles, Sacramento, San Diego, and San Francisco were associated with the scopes la001, sc001, sd001, and sf001, respectively, they became child sites under the parent site California.
+   In the following example, service group ca001 was created as a parent service group. The site named California was associated with the service group ca001 and became the root of the hierarchy. Service groups la001, sc001, sd001, and sf001 were created with the parent service group as ca001. The sites named Los Angeles, Sacramento, San Diego, and San Francisco were associated with the scopes la001, sc001, sd001, and sf001, respectively. They became child sites under the parent site named California.
 
-   For the next hierarchy level, service groups cf001 and nw001 were created under the parent service group la001. The service group ff001 was created under the parent service group sf001. The sites Contoso Factory and NorthWind Factory associated with service groups cf001 and nw001, respectively, became child sites under the parent site Los Angeles. The site Fabrikam Factory was associated with service group ff001 because it's a child site under the parent site San Francisco.
+   For the next hierarchy level, service groups cf001 and nw001 were created under the parent service group la001. The service group ff001 was created under the parent service group sf001. The sites named Contoso Factory and NorthWind Factory were associated with service groups cf001 and nw001, respectively. They became child sites under the parent site named Los Angeles. The site named Fabrikam Factory was associated with service group ff001. It became a child site under the parent site named San Francisco.
 
    :::image type="content" source="media/how-to-crud-site/site-list.png" alt-text="Screenshot that shows a site list.":::
 
-   Currently, the site manager supports hierarchy up to 10 levels.
+   Currently, the site manager supports a hierarchy of up to 10 levels.
 
 1. After all these details are provided, select **Review + create**.
 
-1. On the summary page, review and confirm the site details and then select **Create** to create your site.
+1. On the summary page, review and confirm the site details, and then select **Create** to create your site.
 
 If a site is created from a resource group or subscription that contains resources that the site supports, the resources are automatically visible in the created site.
 
@@ -94,12 +94,11 @@ After you create a site, you can access it and its managed resources through the
    * View alerts.
    * Add new resources.
 
-Currently, you can modify only some aspects of a site:
+Currently, you can modify only some aspects of a site.
 
 | Site attribute | Available modifications |
 |--|--|
 | Display name | Update the display name of a site to a new unique name. |
-| Display name| Update the display name of a site to a new unique name.|
 | Site address | Update the address of a site. |
 
 ## Delete a site
