@@ -18,7 +18,6 @@ ms.custom: references_regions, ignite-2023
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
 
-
 ## October 2025
 
 **Image tag**: `v1.42.0_2025-10-14`
