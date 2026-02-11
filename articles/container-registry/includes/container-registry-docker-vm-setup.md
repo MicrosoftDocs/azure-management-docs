@@ -2,7 +2,7 @@
 author: rayoef
 ms.service: azure-container-registry
 ms.topic: include
-ms.date: 05/07/2020
+ms.date: 02/11/2026
 ms.author: rayoflores
 # Customer intent: As a cloud developer, I want to create a Docker-enabled Ubuntu virtual machine with Azure CLI, so that I can easily access my Azure container registry for testing and development purposes.
 ---
@@ -10,13 +10,13 @@ ms.author: rayoflores
 
 For test purposes, use a Docker-enabled Ubuntu VM to access an Azure container registry. To use Microsoft Entra authentication to the registry, also install the [Azure CLI][azure-cli] on the VM. If you already have an Azure virtual machine, skip this creation step.
 
-You may use the same resource group for your virtual machine and your container registry. This setup simplifies clean-up at the end but isn't required. If you choose to create a separate resource group for the virtual machine and virtual network, run [az group create][az-group-create]. The following example assumes you've set environment variables for the resource group name and registry location:
+You can use the same resource group for your virtual machine and your container registry. This setup simplifies clean-up at the end, but isn't required. If you create a separate resource group for the virtual machine and virtual network, run [az group create][az-group-create]. The following example assumes you've set environment variables for the resource group name and registry location:
 
 ```azurecli
 az group create --name $RESOURCE_GROUP --location $REGISTRY_LOCATION
 ```
 
-Now deploy a default Ubuntu Azure virtual machine with [az vm create][az-vm-create]. The following example creates a VM named *myDockerVM*.
+Now deploy a default Ubuntu Azure virtual machine with [az vm create][az-vm-create]. The following example creates a VM named *myDockerVM*:
 
 ```azurecli
 VM_NAME=myDockerVM
@@ -29,7 +29,7 @@ az vm create \
   --generate-ssh-keys
 ```
 
-It takes a few minutes for the VM to be created. When the command completes, take note of the `publicIpAddress` displayed by the Azure CLI. Use this address to make SSH connections to the VM.
+It takes a few minutes for the VM to be created. After the command completes, take note of the `publicIpAddress` displayed by the Azure CLI. Use this address to make SSH connections to the VM.
 
 ### Install Docker on the VM
 
@@ -52,17 +52,11 @@ After installation, run the following command to verify that Docker is running p
 sudo docker run -it hello-world
 ```
 
-Output:
-
-```
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-[...]
-```
+You should see output confirming that your installation appears to be working correctly.
 
 ### Install the Azure CLI
 
-Follow the steps in [Install Azure CLI with apt](/cli/azure/install-azure-cli-apt) to install the Azure CLI on your Ubuntu virtual machine. For example:
+Follow the steps in [Install Azure CLI with apt](/cli/azure/install-azure-cli-linux?pivots=apt) to install the Azure CLI on your Ubuntu virtual machine. For example:
 
 ```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -72,4 +66,4 @@ Exit the SSH connection.
 
 [azure-cli]: /cli/azure/install-azure-cli
 [az-vm-create]: /cli/azure/vm#az-vm-create
-[az-group-create]: /cli/azure/group
+[az-group-create]: /cli/azure/group#az-group-create
