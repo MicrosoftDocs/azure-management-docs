@@ -8,6 +8,10 @@ ms.topic: release-notes
 # Release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## February 2026
+### 1.2.2
+ - HTTP proxy certificates provided via the --proxy-cert flag during cluster Arc enablement are now correctly handled.
+
 ## January 2026
 ### 1.2.1
  - Support for ARM64 architectures.
