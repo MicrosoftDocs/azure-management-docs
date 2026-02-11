@@ -19,7 +19,7 @@ ms.custom:
 In this article, you learn how to perform various ongoing maintenance and administrative operations related to Azure Arc-enabled VMware vSphere, such as:
 
 - [Maintain the Azure Arc resource bridge manually by following the best practices](#best-practices-to-maintain-the-azure-arc-enabled-vmware-vsphere-resources).
-- [Update the vSphere account credentials](#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding).
+- [Update the vSphere account credentials](/azure/azure-arc/vmware-vsphere/administer-arc-vmware?tabs=account-for-arc-resource-bridge#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding).
 - [Collect logs from the Arc resource bridge](#collect-logs-from-the-arc-resource-bridge).
 
 Each operation requires either an SSH key to the resource bridge VM or the kubeconfig that provides access to the Kubernetes cluster on the resource bridge VM.

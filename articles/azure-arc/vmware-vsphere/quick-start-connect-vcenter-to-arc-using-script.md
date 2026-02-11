@@ -57,7 +57,7 @@ You need a vSphere account that can:
 - Deploy and update VMs to all the resource pools or clusters, networks, and VM templates that you want to use with Azure Arc.
 
 > [!IMPORTANT]
-> The Azure Arc-enabled VMware onboarding script prompts you to provide a vSphere account to deploy the Azure Arc resource bridge VM on the ESXi host. The process stores this account locally within the Azure Arc resource bridge VM and encrypts it as a Kubernetes secret at rest. The vSphere account allows Azure Arc-enabled VMware to interact with VMware vSphere. If your organization practices routine credential rotation, you must [update the credentials in Azure Arc-enabled VMware](administer-arc-vmware.md#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding) to maintain the connection between Azure Arc-enabled VMware and VMware vSphere.
+> The Azure Arc-enabled VMware onboarding script prompts you to provide a vSphere account to deploy the Azure Arc resource bridge VM on the ESXi host. The process stores this account locally within the Azure Arc resource bridge VM and encrypts it as a Kubernetes secret at rest. The vSphere account allows Azure Arc-enabled VMware to interact with VMware vSphere. If your organization practices routine credential rotation, you must [update the credentials in Azure Arc-enabled VMware](/azure/azure-arc/vmware-vsphere/administer-arc-vmware?tabs=account-for-arc-resource-bridge#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding) to maintain the connection between Azure Arc-enabled VMware and VMware vSphere.
 
 
 ### Workstation
