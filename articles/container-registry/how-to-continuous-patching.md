@@ -114,7 +114,7 @@ Run the following command to install the CLI extension:
 
 ## Use Azure portal to view workflow tasks
 
-1. Once the workflow succeeds, go to the Azure portal to view your running tasks. In the service menu, under **Services**, select **Repositories. You should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
+1. Once the workflow succeeds, go to the Azure portal to view your running tasks. In the service menu, under **Services**, select **Repositories**. You should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
 
 1. Next, under **Services**, select **Tasks**. You should see three new tasks:
 
