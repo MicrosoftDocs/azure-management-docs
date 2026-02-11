@@ -2,13 +2,14 @@
 title: Troubleshoot Guest Management Issues
 description: Learn how to troubleshoot the guest management issues for Arc-enabled VMware vSphere.
 ms.topic: reference
-ms.date: 09/27/2024
+ms.date: 02/10/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.custom:
   - linux-related-content
   - build-2025
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
 # Customer intent: As a VI admin, I want to understand the troubleshooting process for guest management issues.
 ---
@@ -22,14 +23,14 @@ This article provides information on how to troubleshoot and resolve the issues 
 
 **Error message**: Enabling Guest Management on a domain-joined Linux VM fails with the error message **InvalidGuestLogin: Failed to authenticate to the system with the credentials**.
 
-**Resolution**: Before you enable Guest Management on a domain-joined Linux VM using active directory credentials, follow these steps to set the configuration on the VM:
+**Resolution**: Before you enable Guest Management on a domain-joined Linux VM by using active directory credentials, follow these steps to set the configuration on the VM:
 
-1. In the SSSD configuration file (typically, */etc/sssd/sssd.conf*), add the following under the section for the domain:
+1. In the SSSD configuration file (typically, */etc/sssd/sssd.conf*), add the following code under the section for the domain:
 
       [domain/contoso.com]
       ad_gpo_map_batch = +vmtoolsd
 
-2. After making the changes to SSSD configuration, restart the SSSD process. If SSSD is running as a system process, run `sudo systemctl restart sssd` to restart it.
+1. After making the changes to SSSD configuration, restart the SSSD process. If SSSD is running as a system process, run `sudo systemctl restart sssd` to restart it.
 
 ### Additional information
 
@@ -62,7 +63,7 @@ Default: The default set of PAM service names includes:
 
 Before you enable the guest agent, follow these steps on the VM:
 
-1. Create a file named `vmtools_unconfined_rpm_script_kcs5347781.te`, and add the following to it:
+1. Create a file named `vmtools_unconfined_rpm_script_kcs5347781.te`, and add the following code to it:
 
     ```
      policy_module(vmtools_unconfined_rpm_script_kcs5347781, 1.0)
@@ -74,15 +75,15 @@ Before you enable the guest agent, follow these steps on the VM:
      ')
      ```
 
-2. Install the package to build the policy module:
+1. Install the package to build the policy module:
 
      `sudo yum -y install selinux-policy-devel`
 
-3. Compile the module:
+1. Compile the module:
 
      `make -f /usr/share/selinux/devel/Makefile vmtools_unconfined_rpm_script_kcs5347781.pp`
 
-4. Install the module:
+1. Install the module:
 
      `sudo semodule -i vmtools_unconfined_rpm_script_kcs5347781.pp`
 
@@ -90,9 +91,9 @@ Before you enable the guest agent, follow these steps on the VM:
 
 Track the issue through [BZ 1872245 - [VMware][RHEL 8] vmtools is not able to install rpms](https://bugzilla.redhat.com/show_bug.cgi?id=1872245).
 
-Upon executing a command using `vmrun` command, the context of the `yum` or `rpm` command is `vmtools_unconfined_t`.
+When you run a command by using the `vmrun` command, the context of the `yum` or `rpm` command is `vmtools_unconfined_t`.
 
-Upon `yum` or `rpm` executing scriptlets, the context is changed to `rpm_script_t`, which is currently denied because of the missing rule in the SELinux policy.
+When `yum` or `rpm` executes scriptlets, the context changes to `rpm_script_t`. The SELinux policy currently denies this context because of a missing rule.
 
 #### References
 
