@@ -24,6 +24,11 @@
       "source_path": "articles/azure-arc/container-storage/howto-multi-node-cluster-edge-volumes.md",
       "redirect_url": "/azure/azure-arc/container-storage/howto-prepare-linux-edge-volumes",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/static-retain.md",
+      "redirect_url": "/azure/azure-arc/container-storage/",
+      "redirect_document_id": false
     }
   ]
 }
