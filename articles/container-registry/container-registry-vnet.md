@@ -181,7 +181,7 @@ az group delete --name myResourceGroup
 
 ## Related content
 
-* To restrict access to a registry by using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
+* To restrict access to a registry by using a private endpoint in a virtual network, see [Connect privately to an Azure container registry by using Azure Private Link](container-registry-private-link.md).
 * If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
 
 <!-- LINKS - Internal -->
