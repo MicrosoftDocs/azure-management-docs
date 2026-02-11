@@ -35,8 +35,6 @@ items:
             href: howto-blob-index-metadata-tags.md
           - name: Map paths on Edge Volumes
             href: howto-map-names.md
-          - name: Static retain workflow guide
-            href: static-retain.md
   - name: Set up authentication
     items:
       - name: Configure OneLake Identity
