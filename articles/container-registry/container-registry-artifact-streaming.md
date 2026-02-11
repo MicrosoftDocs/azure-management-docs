@@ -66,7 +66,7 @@ Start artifact streaming to enable pushing, importing, and generating streaming 
 
 ### [Azure CLI](#tab/azure-cli)
 
-To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-azure-cli.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#changing-skus).
+To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-azure-cli.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#change-registry-sku).
 
 These examples use the Azure CLI to work with a premium Azure Container Registry named `mystreamingtest` in the `my-streaming-test` resource group located in the West US region, along with an example Jupyter Notebook image. Replace these names with your own values.
 
@@ -132,7 +132,7 @@ az acr artifact-streaming update --repository jupyter/all-spark-notebook --enabl
 
 # [Azure portal](#tab/azure-portal)
 
-To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-portal.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#changing-skus).
+To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-portal.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#change-registry-sku).
 
 Follow the steps to enable artifact streaming for an Azure container repository in the [Azure portal](https://portal.azure.com).
 
