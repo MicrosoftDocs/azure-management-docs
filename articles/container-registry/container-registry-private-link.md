@@ -417,14 +417,6 @@ The FQDNs and private IP addresses that you need to create DNS records are assoc
 
 After creating DNS records, make sure that the registry FQDNs resolve properly to their respective private IP addresses.
 
-## Clean up resources
-
-If you created all the Azure resources in the same resource group and you no longer need them, you can delete the resource group in the Azure portal or by using a single [az group delete](/cli/azure/group) command:
-
-```azurecli
-az group delete --name $RESOURCE_GROUP
-```
-
 ## Pull from a registry with private link enabled
 
 To pull content from a registry with private link enabled, clients must allow access to the registry REST endpoint and all regional data endpoints. The client proxy or firewall must allow access to:
@@ -437,6 +429,14 @@ For a geo-replicated registry, you must configure access to the data endpoint fo
 Update the routing configuration for the client proxy and client firewall with the data endpoints to handle the pull requests successfully. A client proxy provides central traffic control to [outbound requests][outbound-connection]. To handle local traffic, a client proxy isn't required. You can add endpoints into the `noProxy` section to bypass the proxy. For more information, see [HTTP proxy support in AKS](/azure/aks/http-proxy).
 
 Requests to the token server over a private endpoint connection don't require data endpoint configuration.
+
+## Clean up resources
+
+If you created all the Azure resources in the same resource group and you no longer need them, you can delete the resource group in the Azure portal or by using a single [az group delete](/cli/azure/group) command:
+
+```azurecli
+az group delete --name $RESOURCE_GROUP
+```
 
 ## Related content
 
