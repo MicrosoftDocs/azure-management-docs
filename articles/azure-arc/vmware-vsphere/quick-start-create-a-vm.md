@@ -2,11 +2,12 @@
 title: Create a virtual machine on VMware vCenter using Infrastructure as Code methods
 description: In this quickstart, you learn how to create a virtual machine on VMware vCenter using Azure Arc
 ms.topic: tutorial
-ms.date: 07/22/2025
+ms.date: 02/10/2026
 ms.service: azure-arc
 zone_pivot_groups: vmware-bicep-terraform
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: v-gajeronika
+ms.reviewer: v-gajeronika
 author: Jeronika-MS
 # Customer intent: As a self-service user, I want to provision a VM using vCenter resources through Azure so that I can deploy my code
 ms.custom:
@@ -21,7 +22,7 @@ This article describes how to provision a VM using vCenter resources using a Bic
 
 ## Create an Arc VMware machine using Bicep template
 
-The following bicep template can be used to create an Arc VMware machine. [Here](/azure/templates/microsoft.connectedvmwarevsphere/2023-12-01/virtualmachineinstances?pivots=deployment-language-arm-template) is the list of available Azure Resource Manager (ARM), Bicep, and Terraform templates for Arc-enabled VMware resources. To trigger any other Arc operation, convert the corresponding [ARM template to Bicep template](/azure/azure-resource-manager/bicep/decompile#decompile-from-json-to-bicep).
+Use the following bicep template to create an Arc VMware machine. [Here](/azure/templates/microsoft.connectedvmwarevsphere/2023-12-01/virtualmachineinstances?pivots=deployment-language-arm-template) is the list of available Azure Resource Manager (ARM), Bicep, and Terraform templates for Arc-enabled VMware resources. To trigger any other Arc operation, convert the corresponding [ARM template to Bicep template](/azure/azure-resource-manager/bicep/decompile#decompile-from-json-to-bicep).
 
 ```bicep
 // Parameters
@@ -110,15 +111,15 @@ This article describes how to provision a VM using vCenter resources using a Ter
 Follow these steps to create an Arc VMware machine using Terraform. The following two scenarios are covered in this article:
 
 1.	For VMs discovered in vCenter inventory, perform enable in Azure operation and install Arc agents. 
-2.	Create a new Arc VMware VM using templates, Resource pool, Datastore and install Arc agents.
+1.	Create a new Arc VMware VM using templates, Resource pool, Datastore and install Arc agents.
 
 ### Scenario 1
 
-For VMs discovered in vCenter inventory, perform enable in Azure operation and install Arc agents.
+For VMs discovered in vCenter inventory, enable them in Azure and install Arc agents.
 
 #### Step 1: Define variables in a variables.tf file
 
-Create a file named variables.tf and define all the necessary variables.
+Create a file named `variables.tf` and define all the necessary variables.
 
 ```terraform
 variable "subscription_id" {
@@ -309,34 +310,34 @@ resource "azapi_resource" "guestAgent" {
 ```
 #### Step 4: Run Terraform commands
 
-Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
+Use the `-var-file` flag to pass the *.tfvars* file during Terraform commands.
 
-1.	Initialize Terraform (if not already initialized):
+1. Initialize Terraform (if not already initialized):
 `terraform init`
-2.	Validate the configuration:
+1. Validate the configuration:
 `terraform validate -var-file="CreateVMwareVM.tfvars"`
-3.	Plan the changes:
+1. Plan the changes:
 `terraform plan -var-file="CreateVMwareVM.tfvars"`
-4.	Apply the changes:
+1. Apply the changes:
 `terraform apply -var-file="CreateVMwareVM.tfvars"`
 
-Confirm the prompt by entering yes to apply the changes.
+Confirm the prompt by entering **yes** to apply the changes.
 
 ### Best practices
 
-- **Use version control**: Keep your Terraform configuration files under version control (for example, Git) to track changes over time.
-- **Review plans carefully**: Always review the output of terraform plan before applying changes to ensure that you understand what changes will be made.
+- **Use version control**: Keep your Terraform configuration files under version control, such as Git, to track changes over time.
+- **Review plans carefully**: Always review the output of `terraform plan` before applying changes to ensure that you understand what changes will be made.
 - **State management**: Regularly back up your Terraform state files to avoid data loss.
 
 By following these steps, you can effectively create and manage HCRP and Arc VMware VMs on Azure using Terraform and install guest agents on the created VMs.
 
 ### Scenario 2
 
-Create a new Arc VMware VM using templates, Resource pool, Datastore and install Arc agents.
+Create a new Arc VMware VM using templates, resource pool, datastore, and install Arc agents.
 
 #### Step 1: Define variables in a variables.tf file
 
-Create a file named variables.tf and define all the necessary variables.
+Create a file named `variables.tf` and define all the necessary variables.
 
 ```terraform
 variable "subscription_id" {
@@ -517,23 +518,23 @@ resource "azapi_resource" "guestAgent" {
 
 #### Step 4: Run Terraform commands
 
-Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
+Use the `-var-file` flag to pass the *.tfvars* file during Terraform commands.
 
-1.	Initialize Terraform (if not already initialized):
+1. Initialize Terraform (if not already initialized):
 `terraform init`
-2.	Validate the configuration:
+1. Validate the configuration:
 `terraform validate -var-file="CreateVMwareVM.tfvars"`
-3.	Plan the changes:
+1. Plan the changes:
 `terraform plan -var-file="CreateVMwareVM.tfvars"`
-4.	Apply the changes:
+1. Apply the changes:
 `terraform apply -var-file="CreateVMwareVM.tfvars"`
 
-Confirm the prompt by entering yes to apply the changes.
+Confirm the prompt by entering **yes** to apply the changes.
 
 ### Best practices
 
-- **Use version control**: Keep your Terraform configuration files under version control (for example, Git) to track changes over time.
-- **Review plans carefully**: Always review the output of terraform plan before applying changes to ensure that you understand what changes will be made.
+- **Use version control**: Keep your Terraform configuration files under version control, such as Git, to track changes over time.
+- **Review plans carefully**: Always review the output of `terraform plan` before applying changes to ensure that you understand what changes will be made.
 - **State management**: Regularly back up your Terraform state files to avoid data loss.
 
 ::: zone-end
