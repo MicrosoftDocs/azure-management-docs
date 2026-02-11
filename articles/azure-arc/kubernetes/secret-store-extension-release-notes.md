@@ -10,7 +10,7 @@ Important updates and improvements to the Azure Key Vault Secret Store extension
 
 ## February 2026
 ### 1.2.2
- - Proxy certificates provided via the --proxy-cert flag during cluster Arc enablement are now correctly passed into the provider container image and loaded.
+ - HTTP proxy certificates provided via the --proxy-cert flag during cluster Arc enablement are now correctly handled.
 
 ## January 2026
 ### 1.2.1
