@@ -18,7 +18,7 @@ Azure Arc is the overarching brand for a suite of Azure hybrid products that ext
 
 The best way to understand the distinction is as follows:
 
-- [Azure Arc-enabled servers](cloud-native/overview.md) interacts on the guest operating system level, with no awareness of the underlying infrastructure fabric and the virtualization platform that it runs on. Since Arc-enabled servers also support bare-metal machines, a host hypervisor might not exist in some cases.
+- [Azure Arc-enabled servers](cloud-native/overview.md) interact on the guest operating system level, with no awareness of the underlying infrastructure fabric and the virtualization platform that it runs on. Since Arc-enabled servers also support bare-metal machines, a host hypervisor might not exist in some cases.
 
 - [Azure Arc-enabled VMware vSphere](../vmware-vsphere/overview.md) is a superset of Arc-enabled servers that extends management capabilities beyond the guest operating system to the VM itself. Azure Arc-enabled VMware vSphere provides lifecycle management and CRUD (Create, Read, Update, and Delete) operations on a VMware vSphere VM. You can perform these lifecycle management capabilities in the Azure portal or through APIs, just as you would with a native Azure VM. For more information, see [What is Azure Arc-enabled VMware vSphere?](../vmware-vsphere/overview.md)
 
@@ -27,7 +27,7 @@ The best way to understand the distinction is as follows:
 
 ## Can I use Azure Arc-enabled servers on VMs running in VMware environments?
 
-Yes. Azure Arc-enabled servers work with VMs running in an on-premises VMware vSphere environment, as well as Azure VMware Solution (AVS). Arc-enabled servers supports the full breadth of guest management capabilities across security, monitoring, and governance.
+Yes. Azure Arc-enabled servers work with VMs running in an on-premises VMware vSphere environment, as well as Azure VMware Solution (AVS). Arc-enabled servers support the full breadth of guest management capabilities across security, monitoring, and governance.
 
 ## Which operating systems does Azure Arc-enabled servers work with?
 
