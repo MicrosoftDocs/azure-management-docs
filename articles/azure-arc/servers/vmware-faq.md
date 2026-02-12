@@ -8,7 +8,7 @@ ms.topic: faq
 
 # Azure Arc-enabled servers and VMware vSphere FAQ
 
-This article addresses frequently asked questions about Arc-enabled servers on virtual machines running in VMware vSphere environments. It helps you understand how Arc-enabled servers and Arc-enabled VMware vSphere can be used together or separately.
+This article helps you understand how [Azure Arc-enabled servers](cloud-native/overview.md) and [Azure Arc-enabled VMware vSphere](../vmware-vsphere/overview.md) can be used together or separately.
 
 ## What is Azure Arc?
 
