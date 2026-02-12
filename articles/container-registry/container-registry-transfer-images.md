@@ -4,7 +4,7 @@ description: Learn how to use Azure CLI with ARM templates for ACR Transfer. Thi
 ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
-ms.date: 10/31/2023
+ms.date: 02/11/2026
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 # Customer intent: As a cloud developer, I want to create and manage export and import pipelines using ARM templates and Azure CLI, so that I can efficiently transfer container images between Azure Container Registries.
@@ -14,11 +14,12 @@ ms.service: azure-container-registry
 
 ## Complete Prerequisites
 
-Please complete the prerequisites outlined [here](./container-registry-transfer-prerequisites.md) prior to attempting the actions in this article. This means that:
+Please complete the prerequisites outlined in [ACR Transfer prerequisites](./container-registry-transfer-prerequisites.md) prior to attempting the actions in this article. This means that:
 
 - You have an existing Premium SKU Registry in both clouds.
 - You have an existing Storage Account Container in both clouds.
-- You have an existing Keyvault with a secret containing a valid SAS token with the necessary permissions in both clouds.
+- You have an existing Keyvault with a secret containing a valid SAS token with the necessary permissions in both clouds (required for **SAS Token** storage access mode only).
+- If using **Managed Identity** storage access mode, ensure the pipeline's managed identity has the appropriate RBAC role (such as `Storage Blob Data Contributor`) on the storage account. This requires API version `2025-06-01-preview` or later.
 - You have a recent version of Az CLI installed in both clouds.
 
 > [!IMPORTANT]
@@ -41,8 +42,12 @@ Enter the following parameter values in the file `azuredeploy.parameters.json`:
 |registryName     | Name of your source container registry      |
 |exportPipelineName     |  Name you choose for the export pipeline       |
 |targetUri     |  URI of the storage container in your source environment (the target of the export pipeline).<br/>Example: `https://sourcestorage.blob.core.windows.net/transfer`       |
-|keyVaultName     |  Name of the source key vault  |
-|sasTokenSecretName  | Name of the SAS token secret in the source key vault <br/>Example: acrexportsas
+|keyVaultName     |  Name of the source key vault (required for SAS Token mode only)  |
+|sasTokenSecretName  | Name of the SAS token secret in the source key vault (required for SAS Token mode only) <br/>Example: acrexportsas |
+|storageAccessMode | Storage access mode: `SasToken` (default) or `ManagedIdentity`. When using `ManagedIdentity`, the `keyVaultName` and `sasTokenSecretName` parameters can be omitted. |
+
+> [!NOTE]
+> The `storageAccessMode` parameter is available starting with API version `2025-06-01-preview`. When using ARM templates with earlier API versions, only SAS Token mode is available. To use Managed Identity mode, update your ARM template to use API version `2025-06-01-preview` or later and include the `storageAccessMode` property in the pipeline resource definition.
 
 ### Export options
 
@@ -58,7 +63,7 @@ Run [az deployment group create][az-deployment-group-create] to create a resourc
 
 With the second option, you can provide the resource with a user-assigned identity. (Creation of the user-assigned identity not shown.)
 
-With either option, the template configures the identity to access the SAS token in the export key vault.
+With either option, the template configures the identity to access the SAS token in the export key vault (when using SAS Token mode) or to directly access the storage account (when using Managed Identity mode).
 
 #### Option 1: Create resource and enable system-assigned identity
 
@@ -106,8 +111,12 @@ Parameter  |Value  |
 |registryName     | Name of your target container registry      |
 |importPipelineName     |  Name you choose for the import pipeline       |
 |sourceUri     |  URI of the storage container in your target environment (the source for the import pipeline).<br/>Example: `https://targetstorage.blob.core.windows.net/transfer`|
-|keyVaultName     |  Name of the target key vault |
-|sasTokenSecretName     |  Name of the SAS token secret in the target key vault<br/>Example: acr importsas |
+|keyVaultName     |  Name of the target key vault (required for SAS Token mode only) |
+|sasTokenSecretName     |  Name of the SAS token secret in the target key vault (required for SAS Token mode only)<br/>Example: acr importsas |
+|storageAccessMode | Storage access mode: `SasToken` (default) or `ManagedIdentity`. When using `ManagedIdentity`, the `keyVaultName` and `sasTokenSecretName` parameters can be omitted. |
+
+> [!NOTE]
+> The `storageAccessMode` parameter is available starting with API version `2025-06-01-preview`. When using ARM templates with earlier API versions, only SAS Token mode is available. To use Managed Identity mode, update your ARM template to use API version `2025-06-01-preview` or later and include the `storageAccessMode` property in the pipeline resource definition.
 
 ### Import options
 
@@ -123,7 +132,7 @@ Run [az deployment group create][az-deployment-group-create] to create a resourc
 
 With the second option, you can provide the resource with a user-assigned identity. (Creation of the user-assigned identity not shown.)
 
-With either option, the template configures the identity to access the SAS token in the import key vault.
+With either option, the template configures the identity to access the SAS token in the import key vault (when using SAS Token mode) or to directly access the storage account (when using Managed Identity mode).
 
 #### Option 1: Create resource and enable system-assigned identity
 
@@ -300,13 +309,13 @@ The following example commands use [az resource delete][az-resource-delete] to d
 az resource delete \
 --resource-group $SOURCE_RG \
 --ids $EXPORT_RES_ID $EXPORT_RUN_RES_ID \
---api-version 2019-12-01-preview
+--api-version 2025-06-01-preview
 
 # Delete import resources
 az resource delete \
 --resource-group $TARGET_RG \
 --ids $IMPORT_RES_ID $IMPORT_RUN_RES_ID \
---api-version 2019-12-01-preview
+--api-version 2025-06-01-preview
 ```
 
 ## ACR Transfer troubleshooting
