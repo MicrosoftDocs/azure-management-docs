@@ -4,8 +4,6 @@
   items:
   - name: About Azure Arc-enabled servers
     href: overview.md
-  - name: VMware FAQ
-    href: vmware-faq.md
   - name: What's new with Connected Machine agent?
     displayName: version
     href: agent-release-notes.md
@@ -37,6 +35,8 @@
       href: prerequisites.md
     - name: Deployment options for Azure Monitor Agent
       href: azure-monitor-agent-deployment.md
+    - name: Arc-enabled servers and VMware vSphere
+      href: vmware-faq.md
 - name: How-to guides
   items:
   - name: Deploy
