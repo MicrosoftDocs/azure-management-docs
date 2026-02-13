@@ -24,6 +24,9 @@ Please complete the prerequisites outlined in [ACR Transfer prerequisites](./con
 - If using **Managed Identity** storage access mode, ensure the pipeline's managed identity has the appropriate RBAC role (such as `Storage Blob Data Contributor`) on the storage account.
 - You have a recent version of Az CLI installed in both clouds.
 
+> [!NOTE]
+> The `--storage-access-mode` parameter requires Azure CLI extension `acrtransfer` version 2.0.0 or later. If you're using an older version, upgrade with `az extension update --name acrtransfer`.
+
 ## Install the Az CLI extension
 
 In AzureCloud, you can install the extension with the following command:
@@ -36,9 +39,9 @@ az extension add --name acrtransfer
 
 Create an ExportPipeline resource for your AzureCloud container registry using the acrtransfer Az CLI extension.
 
-### SAS Token mode (default)
+### SAS Token mode
 
-Create an export pipeline with SAS Token storage access mode (default), no options, and a system-assigned identity:
+Create an export pipeline with SAS Token storage access mode, no options, and a system-assigned identity:
 
 ```azurecli
 az acr export-pipeline create \
@@ -49,9 +52,6 @@ az acr export-pipeline create \
 --storage-container-uri https://$MyStorage.blob.core.windows.net/$MyContainer \
 --storage-access-mode SasToken
 ```
-
-> [!NOTE]
-> The `--storage-access-mode SasToken` (`-m SasToken`) parameter is optional and is the default behavior when `--storage-access-mode` is not specified.
 
 Create an export pipeline with SAS Token mode, all possible options, and a user-assigned identity:
 
@@ -98,16 +98,13 @@ az acr export-pipeline create \
 > [!IMPORTANT]
 > When using Managed Identity mode, do **not** provide the `--secret-uri` parameter. The `--secret-uri` parameter is only used with SAS Token mode.
 
-> [!IMPORTANT]
-> **Breaking change notice (May 2026):** The `--storage-access-mode` (`-m`) parameter will become a required field for `az acr export-pipeline create` and `az acr import-pipeline create` commands. If not specified, the default behavior is `SasToken`. CLI versions prior to the May 2026 breaking change release will display a deprecation warning.
-
 ### Export options
 
 The `options` property for the export pipelines supports optional boolean values. The following values are recommended:
 
 |Parameter  |Value  |
 |---------|---------|
-|options | OverwriteBlobs - Overwrite existing target blobs<br/>ContinueOnErrors - Continue export of remaining artifacts in the source registry if one artifact export fails.
+|options | OverwriteBlobs - Overwrite existing target blobs<br/>ContinueOnErrors - Continue export of remaining artifacts in the source registry if one artifact export fails. |
 
 ### Give the ExportPipeline identity keyvault policy access
 
@@ -136,9 +133,9 @@ az keyvault set-policy --name $MyKeyvault --secret-permissions get --object-id $
 
 Create an ImportPipeline resource in your target container registry using the acrtransfer Az CLI extension. By default, the pipeline is enabled to create an Import PipelineRun automatically when the attached storage account container receives a new artifact blob.
 
-### SAS Token mode (default)
+### SAS Token mode
 
-Create an import pipeline with SAS Token storage access mode (default), no options, and a system-assigned identity:
+Create an import pipeline with SAS Token storage access mode, no options, and a system-assigned identity:
 
 ```azurecli
 az acr import-pipeline create \
@@ -149,9 +146,6 @@ az acr import-pipeline create \
 --storage-container-uri https://$MyStorage.blob.core.windows.net/$MyContainer \
 --storage-access-mode SasToken
 ```
-
-> [!NOTE]
-> The `--storage-access-mode SasToken` (`-m SasToken`) parameter is optional and is the default behavior when `--storage-access-mode` is not specified.
 
 Create an import pipeline with SAS Token mode, all possible options, source-trigger disabled, and a user-assigned identity:
 
@@ -206,7 +200,7 @@ The `options` property for the import pipeline supports optional boolean values.
 
 |Parameter  |Value  |
 |---------|---------|
-|options | OverwriteTags - Overwrite existing target tags<br/>DeleteSourceBlobOnSuccess - Delete the source storage blob after successful import to the target registry<br/>ContinueOnErrors - Continue import of remaining artifacts in the target registry if one artifact import fails.
+|options | OverwriteTags - Overwrite existing target tags<br/>DeleteSourceBlobOnSuccess - Delete the source storage blob after successful import to the target registry<br/>ContinueOnErrors - Continue import of remaining artifacts in the target registry if one artifact import fails. |
 
 ### Give the ImportPipeline identity keyvault policy access
 
@@ -268,7 +262,7 @@ Authenticating to Storage Account using Storage SAS Token.
 It can take several minutes for artifacts to export. When deployment completes successfully, verify artifact export by listing the exported blob in the container of the source storage account. For example, run the [az storage blob list][az-storage-blob-list] command:
 
 ```azurecli
-az storage blob list --account-name $MyStorageAccount --container $MyContainer --output table
+az storage blob list --account-name $MyStorageAccount --container-name $MyContainer --output table
 ```
 
 ## Transfer blob across domain
@@ -283,8 +277,8 @@ If you didn't use the `--source-trigger-enabled False` parameter when creating y
 az acr repository show-tags --name $MyRegistry --repository $MyRepository
 ```
 
-> [!Note]
-> Source Trigger will only import blobs that have a Last Modified time within the last 60 days. If you intend to use Source Trigger to import blobs older than that, please refresh the Last Modified time of the blobs by add blob metadata to them or else import them with manually created pipeline runs.
+> [!NOTE]
+> Source Trigger will only import blobs that have a Last Modified time within the last 60 days. If you intend to use Source Trigger to import blobs older than that, please refresh the Last Modified time of the blobs by adding blob metadata to them or else import them with manually created pipeline runs.
 
 If you did use the `--source-trigger-enabled False` parameter when creating your ImportPipeline, you'll need to create a PipelineRun manually, as shown in the following section.
 
@@ -343,5 +337,5 @@ View [ACR Transfer Troubleshooting](container-registry-transfer-troubleshooting.
 
 <!-- LINKS - Internal -->
 [az-storage-blob-list]: /cli/azure/storage/blob#az-storage-blob-list
-[az-acr-repository-show-tags]: /cli/azure/acr/repository##az-acr-repository-show-tags
+[az-acr-repository-show-tags]: /cli/azure/acr/repository#az-acr-repository-show-tags
 

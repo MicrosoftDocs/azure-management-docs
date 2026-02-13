@@ -23,11 +23,88 @@ Please complete the prerequisites outlined in [ACR Transfer prerequisites](./con
 - You have a recent version of Az CLI installed in both clouds.
 
 > [!IMPORTANT]
-> The ACR Transfer supports artifacts with the layer size limits to 8 GB due to the technical limitations.
+> ACR Transfer supports artifacts with layer sizes up to 8 GB due to technical limitations.
 
 ## Consider using the Az CLI extension
 
 For most nonautomated use-cases, we recommend using the Az CLI Extension if possible. You can view documentation for the Az CLI Extension [here](./container-registry-transfer-cli.md).
+
+## Update the ARM template for storage access mode
+
+The sample ARM templates in the [Azure/acr](https://github.com/Azure/acr/tree/main/docs/image-transfer) repository do not yet include the `storageAccessMode` parameter. Before deploying, update your local copy of the template (`azuredeploy.json`) with the following changes.
+
+### Step 1: Update the API version
+
+Change the API version of the pipeline resource from `2019-12-01-preview` to `2025-06-01-preview`:
+
+```json
+"apiVersion": "2025-06-01-preview"
+```
+
+### Step 2: Add the storageAccessMode parameter
+
+Add the following parameter to the `parameters` section of `azuredeploy.json`:
+
+```json
+"storageAccessMode": {
+    "type": "string",
+    "defaultValue": "SasToken",
+    "allowedValues": [
+        "SasToken",
+        "ManagedIdentity"
+    ],
+    "metadata": {
+        "description": "Storage access mode: SasToken or ManagedIdentity"
+    }
+}
+```
+
+### Step 3: Add storageAccessMode to the resource properties
+
+In the pipeline resource `properties` section, add the `storageAccessMode` property. For an ExportPipeline, add it inside the `target` object. For an ImportPipeline, add it inside the `source` object:
+
+**ExportPipeline** — add inside `target`:
+
+```json
+"target": {
+    "type": "[variables('targetType')]",
+    "uri": "[parameters('targetUri')]",
+    "keyVaultUri": "[concat(reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), '2023-07-01').vaultUri, 'secrets/', parameters('sasTokenSecretName'))]",
+    "storageAccessMode": "[parameters('storageAccessMode')]"
+}
+```
+
+**ImportPipeline** — add inside `source`:
+
+```json
+"source": {
+    "type": "[variables('sourceType')]",
+    "uri": "[parameters('sourceUri')]",
+    "keyVaultUri": "[concat(reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), '2023-07-01').vaultUri, 'secrets/', parameters('sasTokenSecretName'))]",
+    "storageAccessMode": "[parameters('storageAccessMode')]"
+}
+```
+
+> [!NOTE]
+> The `keyVaultUri` expression shown above uses the `reference()` function to support sovereign clouds (Azure Government, Azure China). This matches the upstream template design. When using **Managed Identity** mode, the `keyVaultUri` value is ignored by the service, but you must still provide valid `keyVaultName` and `sasTokenSecretName` parameter values (the template requires them). You can use dummy values pointing to any existing Key Vault in your resource group.
+
+### Step 4: Set the value in azuredeploy.parameters.json
+
+Add the `storageAccessMode` parameter to your `azuredeploy.parameters.json` file:
+
+```json
+"storageAccessMode": {
+    "value": "SasToken"
+}
+```
+
+Or for Managed Identity mode:
+
+```json
+"storageAccessMode": {
+    "value": "ManagedIdentity"
+}
+```
 
 ## Create ExportPipeline with Resource Manager
 
@@ -44,10 +121,10 @@ Enter the following parameter values in the file `azuredeploy.parameters.json`:
 |targetUri     |  URI of the storage container in your source environment (the target of the export pipeline).<br/>Example: `https://sourcestorage.blob.core.windows.net/transfer`       |
 |keyVaultName     |  Name of the source key vault (required for SAS Token mode only)  |
 |sasTokenSecretName  | Name of the SAS token secret in the source key vault (required for SAS Token mode only) <br/>Example: acrexportsas |
-|storageAccessMode | Storage access mode: `SasToken` (default) or `ManagedIdentity`. When using `ManagedIdentity`, the `keyVaultName` and `sasTokenSecretName` parameters can be omitted. |
+|storageAccessMode | Storage access mode for the pipeline. Specify `SasToken` or `ManagedIdentity`. When using `ManagedIdentity`, you must still provide `keyVaultName` and `sasTokenSecretName` parameters as the ARM template requires them (you can use dummy values pointing to any existing Key Vault). |
 
-> [!NOTE]
-> The `storageAccessMode` parameter is available starting with API version `2025-06-01-preview`. When using ARM templates with earlier API versions, only SAS Token mode is available. To use Managed Identity mode, update your ARM template to use API version `2025-06-01-preview` or later and include the `storageAccessMode` property in the pipeline resource definition.
+> [!IMPORTANT]
+> The sample ARM templates in the [Azure/acr](https://github.com/Azure/acr/tree/main/docs/image-transfer/ExportPipelines) repository do not yet include the `storageAccessMode` parameter. Before deploying, you must update your local copy of the ARM template as described in [Update the ARM template for storage access mode](#update-the-arm-template-for-storage-access-mode).
 
 ### Export options
 
@@ -55,17 +132,15 @@ The `options` property for the export pipelines supports optional boolean values
 
 |Parameter  |Value  |
 |---------|---------|
-|options | OverwriteBlobs - Overwrite existing target blobs<br/>ContinueOnErrors - Continue export of remaining artifacts in the source registry if one artifact export fails.
+|options | OverwriteBlobs - Overwrite existing target blobs<br/>ContinueOnErrors - Continue export of remaining artifacts in the source registry if one artifact export fails. |
 
 ### Create the resource
 
-Run [az deployment group create][az-deployment-group-create] to create a resource named *exportPipeline* as shown in the following examples. By default, with the first option, the example template enables a system-assigned identity in the ExportPipeline resource.
+Run [az deployment group create][az-deployment-group-create] to create a resource named *exportPipeline* as shown in the following examples. Ensure you have [updated the ARM template](#update-the-arm-template-for-storage-access-mode) with the `storageAccessMode` parameter and set the value in `azuredeploy.parameters.json` before deploying.
 
-With the second option, you can provide the resource with a user-assigned identity. (Creation of the user-assigned identity not shown.)
+By default, the example template enables a system-assigned identity in the ExportPipeline resource. You can also provide a user-assigned identity (see Option 2).
 
-With either option, the template configures the identity to access the SAS token in the export key vault (when using SAS Token mode) or to directly access the storage account (when using Managed Identity mode).
-
-#### Option 1: Create resource and enable system-assigned identity
+#### Option 1: Create resource with system-assigned identity
 
 ```azurecli
 az deployment group create \
@@ -75,7 +150,7 @@ az deployment group create \
   --parameters azuredeploy.parameters.json
 ```
 
-#### Option 2: Create resource and provide user-assigned identity
+#### Option 2: Create resource with user-assigned identity
 
 In this command, provide the resource ID of the user-assigned identity as an additional parameter.
 
@@ -106,17 +181,17 @@ Copy ImportPipeline Resource Manager [template files](https://github.com/Azure/a
 
 Enter the following parameter values in the file `azuredeploy.parameters.json`:
 
-Parameter  |Value  |
+|Parameter  |Value  |
 |---------|---------|
 |registryName     | Name of your target container registry      |
 |importPipelineName     |  Name you choose for the import pipeline       |
 |sourceUri     |  URI of the storage container in your target environment (the source for the import pipeline).<br/>Example: `https://targetstorage.blob.core.windows.net/transfer`|
 |keyVaultName     |  Name of the target key vault (required for SAS Token mode only) |
 |sasTokenSecretName     |  Name of the SAS token secret in the target key vault (required for SAS Token mode only)<br/>Example: acr importsas |
-|storageAccessMode | Storage access mode: `SasToken` (default) or `ManagedIdentity`. When using `ManagedIdentity`, the `keyVaultName` and `sasTokenSecretName` parameters can be omitted. |
+|storageAccessMode | Storage access mode for the pipeline. Specify `SasToken` or `ManagedIdentity`. When using `ManagedIdentity`, you must still provide `keyVaultName` and `sasTokenSecretName` parameters as the ARM template requires them (you can use dummy values pointing to any existing Key Vault). |
 
-> [!NOTE]
-> The `storageAccessMode` parameter is available starting with API version `2025-06-01-preview`. When using ARM templates with earlier API versions, only SAS Token mode is available. To use Managed Identity mode, update your ARM template to use API version `2025-06-01-preview` or later and include the `storageAccessMode` property in the pipeline resource definition.
+> [!IMPORTANT]
+> The sample ARM templates in the [Azure/acr](https://github.com/Azure/acr/tree/main/docs/image-transfer/ImportPipelines) repository do not yet include the `storageAccessMode` parameter. Before deploying, you must update your local copy of the ARM template as described in [Update the ARM template for storage access mode](#update-the-arm-template-for-storage-access-mode).
 
 ### Import options
 
@@ -124,17 +199,15 @@ The `options` property for the import pipeline supports optional boolean values.
 
 |Parameter  |Value  |
 |---------|---------|
-|options | OverwriteTags - Overwrite existing target tags<br/>DeleteSourceBlobOnSuccess - Delete the source storage blob after successful import to the target registry<br/>ContinueOnErrors - Continue import of remaining artifacts in the target registry if one artifact import fails.
+|options | OverwriteTags - Overwrite existing target tags<br/>DeleteSourceBlobOnSuccess - Delete the source storage blob after successful import to the target registry<br/>ContinueOnErrors - Continue import of remaining artifacts in the target registry if one artifact import fails. |
 
 ### Create the resource
 
-Run [az deployment group create][az-deployment-group-create] to create a resource named *importPipeline* as shown in the following examples. By default, with the first option, the example template enables a system-assigned identity in the ImportPipeline resource.
+Run [az deployment group create][az-deployment-group-create] to create a resource named *importPipeline* as shown in the following examples. Ensure you have [updated the ARM template](#update-the-arm-template-for-storage-access-mode) with the `storageAccessMode` parameter and set the value in `azuredeploy.parameters.json` before deploying.
 
-With the second option, you can provide the resource with a user-assigned identity. (Creation of the user-assigned identity not shown.)
+By default, the example template enables a system-assigned identity in the ImportPipeline resource. You can also provide a user-assigned identity (see Option 2).
 
-With either option, the template configures the identity to access the SAS token in the import key vault (when using SAS Token mode) or to directly access the storage account (when using Managed Identity mode).
-
-#### Option 1: Create resource and enable system-assigned identity
+#### Option 1: Create resource with system-assigned identity
 
 ```azurecli
 az deployment group create \
@@ -144,7 +217,7 @@ az deployment group create \
   --parameters azuredeploy.parameters.json
 ```
 
-#### Option 2: Create resource and provide user-assigned identity
+#### Option 2: Create resource with user-assigned identity
 
 In this command, provide the resource ID of the user-assigned identity as an additional parameter.
 
@@ -180,8 +253,8 @@ Enter the following parameter values in the file `azuredeploy.parameters.json`:
 |registryName     | Name of your source container registry      |
 |pipelineRunName     |  Name you choose for the run       |
 |pipelineResourceId     |  Resource ID of the export pipeline.<br/>Example: `/subscriptions/<subscriptionID>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerRegistry/registries/<sourceRegistryName>/exportPipelines/myExportPipeline`|
-|targetName     |  Name you choose for the artifacts blob exported to your source storage account, such as *myblob*
-|artifacts | Array of source artifacts to transfer, as tags or manifest digests<br/>Example: `[samples/hello-world:v1", "samples/nginx:v1" , "myrepository@sha256:0a2e01852872..."]` |
+|targetName     |  Name you choose for the artifacts blob exported to your source storage account, such as *myblob* |
+|artifacts | Array of source artifacts to transfer, as tags or manifest digests<br/>Example: `["samples/hello-world:v1", "samples/nginx:v1", "myrepository@sha256:0a2e01852872..."]` |
 
 If redeploying a PipelineRun resource with identical properties, you must also use the [forceUpdateTag](#redeploy-pipelinerun-resource) property.
 
@@ -218,7 +291,7 @@ az storage blob list \
 
 Use the AzCopy tool or other methods to [transfer blob data](/azure/storage/common/storage-use-azcopy-v10#transfer-data) from the source storage account to the target storage account.
 
-For example, the following [`azcopy copy`](/azure/storage/common/storage-ref-azcopy-copy) command copies myblob from the *transfer* container in the source account to the *transfer* container in the target account. If the blob exists in the target account, it's overwritten. Authentication uses SAS tokens with appropriate permissions for the source and target containers. (Steps to create tokens aren't shown.)
+For example, the following [`azcopy copy`](/azure/storage/common/storage-ref-azcopy-copy) command copies myblob from the *transfer* container in the source account to the *transfer* container in the target account. If the blob exists in the target account, it's overwritten. Authentication for this cross-domain copy uses SAS tokens with appropriate permissions for the source and target containers, regardless of which storage access mode your pipelines use. (Steps to create tokens aren't shown.)
 
 ```console
 azcopy copy \
@@ -253,7 +326,7 @@ Enter the following parameter values in the file `azuredeploy.parameters.json`:
 |registryName     | Name of your target container registry      |
 |pipelineRunName     |  Name you choose for the run       |
 |pipelineResourceId     |  Resource ID of the import pipeline.<br/>Example: `/subscriptions/<subscriptionID>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerRegistry/registries/<sourceRegistryName>/importPipelines/myImportPipeline`       |
-|sourceName     |  Name of the existing blob for exported artifacts in your storage account, such as *myblob*
+|sourceName     |  Name of the existing blob for exported artifacts in your storage account, such as *myblob* |
 
 If redeploying a PipelineRun resource with identical properties, you must also use the [forceUpdateTag](#redeploy-pipelinerun-resource) property.
 
@@ -304,7 +377,7 @@ az deployment group create \
 
 The following example commands use [az resource delete][az-resource-delete] to delete the pipeline resources created in this article. The resource IDs were previously stored in environment variables.
 
-```
+```azurecli
 # Delete export resources
 az resource delete \
 --resource-group $SOURCE_RG \

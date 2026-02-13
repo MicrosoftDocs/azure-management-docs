@@ -14,7 +14,7 @@ ms.service: azure-container-registry
 ## Template deployment failures or errors
 
   * If a pipeline run fails, look at the `pipelineRunErrorMessage` property of the run resource.
-  * For common template deployment errors, see [Troubleshoot ARM template deployments](/azure/azure-resource-manager/templates/template-tutorial-troubleshoot)
+  * For common template deployment errors, see [Troubleshoot ARM template deployments](/azure/azure-resource-manager/templates/template-tutorial-troubleshoot).
 
 ## Problems accessing Key Vault
 
@@ -40,15 +40,15 @@ ms.service: azure-container-registry
   * If using a **system-assigned** managed identity, ensure that the identity is enabled on the pipeline resource and that the RBAC role assignment was created for the pipeline's system-assigned identity principal ID.
   * If using a **user-assigned** managed identity, ensure the correct identity resource ID was provided during pipeline creation, and that the RBAC role assignment was created for the user-assigned identity.
   * Verify that you are using API version `2025-06-01-preview` or later. The Managed Identity storage access mode is not available in earlier API versions.
-  * When using Managed Identity mode, the `keyVaultUri` field in the pipeline response may appear as `null` or an empty string — this is expected behavior and not an error.
+  * When using Managed Identity mode, the `keyVaultUri` field in the pipeline response may appear as `null` or an empty string - this is expected behavior and not an error.
   * When using a user-assigned managed identity, the top-level `principalId` and `tenantId` in the pipeline identity response may appear as `null`. The actual identity details are found inside the `userAssignedIdentities` section. This is expected behavior.
 
 ## Problems with export or import of storage blobs
 
   * SAS token may be invalid, or may have insufficient permissions for the specified export or import run. See [Problems accessing storage](#problems-accessing-storage).
   * If using **Managed Identity** storage access mode, verify the managed identity has sufficient RBAC permissions on the storage account (such as `Storage Blob Data Contributor`).
-  * Existing storage blob in source storage account might not be overwritten during multiple export runs. Confirm that the OverwriteBlob option is set in the export run and the SAS token (or managed identity) has sufficient permissions.
-  * Storage blob in target storage account might not be deleted after successful import run. Confirm that the DeleteBlobOnSuccess option is set in the import run and the SAS token (or managed identity) has sufficient permissions.
+  * Existing storage blob in source storage account might not be overwritten during multiple export runs. Confirm that the OverwriteBlobs option is set in the export run and the SAS token (or managed identity) has sufficient permissions.
+  * Storage blob in target storage account might not be deleted after successful import run. Confirm that the DeleteSourceBlobOnSuccess option is set in the import run and the SAS token (or managed identity) has sufficient permissions.
   * Storage blob not created or deleted. Confirm that container specified in export or import run exists, or specified storage blob exists for manual import run.
 
 ## Problems with Source Trigger Imports
@@ -67,15 +67,14 @@ ms.service: azure-container-registry
   * Not all artifacts, or none, are transferred. Confirm spelling of artifacts in export run, and name of blob in export and import runs. Confirm you're transferring a maximum of 50 artifacts.
   * Pipeline run might not have completed. An export or import run can take some time.
   * For other pipeline issues, provide the deployment [correlation ID](/azure/azure-resource-manager/templates/deployment-history) of the export run or import run to the Azure Container Registry team.
-  * To create ACR Transfer resources such as `exportPipelines`,` importPipelines`, and `pipelineRuns`, the user must have at least `Container Registry Transfer Pipeline Contributor` access on the ACR subscription. Otherwise, they'll see authorization to perform the transfer denied or scope is invalid errors.
+  * To create ACR Transfer resources such as `exportPipelines`, `importPipelines`, and `pipelineRuns`, the user must have at least `Container Registry Transfer Pipeline Contributor` access on the ACR subscription. Otherwise, they'll see authorization to perform the transfer denied or scope is invalid errors.
 
 ## Problems pulling the image in a physically isolated environment
 
-  * If you see errors regarding foreign layers or attempts to resolve mcr.microsoft.com when attempting to pull an image in a physically isolated environment, your image manifest likely has non-distributable layers. Due to the nature of a physically isolated environment, these images will often fail to pull. You can confirm that this is the case by checking the image manifest for any references to external registries. If so, you'll need to push the non-distributable layers to your public cloud ACR prior to deploying an export pipeline-run for that image. For guidance on how to do this, see [How do I push non-distributable layers to a registry in the ACR FAQ](./container-registry-faq.yml)
+  * If you see errors regarding foreign layers or attempts to resolve mcr.microsoft.com when attempting to pull an image in a physically isolated environment, your image manifest likely has nondistributable layers. Due to the nature of a physically isolated environment, these images will often fail to pull. You can confirm that this is the case by checking the image manifest for any references to external registries. If so, you'll need to push the nondistributable layers to your public cloud ACR prior to deploying an export pipeline-run for that image. For guidance on how to do this, see [How do I push nondistributable layers to a registry?](./container-registry-faq.yml#how-do-i-push-nondistributable-layers-to-a-registry-).
 
-## Storage access mode deprecation warnings
+## Storage access mode warnings
 
-  * If you see a CLI warning message about the `--storage-access-mode` (`-m`) parameter becoming required, this is expected behavior. Starting with the **May 2026** breaking change release, the `--storage-access-mode` parameter will be a required field for `az acr export-pipeline create` and `az acr import-pipeline create` commands.
-  * To resolve the warning, explicitly specify `--storage-access-mode SasToken` (or `-m SasToken`) to continue using the current SAS Token behavior, or `--storage-access-mode ManagedIdentity` (or `-m ManagedIdentity`) to switch to Managed Identity authentication for storage access.
+  * If you see a CLI warning message about the `--storage-access-mode` (`-m`) parameter, explicitly specify `--storage-access-mode SasToken` (or `-m SasToken`) to use SAS Token authentication, or `--storage-access-mode ManagedIdentity` (or `-m ManagedIdentity`) to use Managed Identity authentication for storage access. Always specify this parameter when creating pipelines.
   * Breaking changes to the CLI extension follow the **May and November** schedule. Extensions can technically introduce breaking changes outside of this schedule, but the ACR Transfer team follows the May/November schedule.
 

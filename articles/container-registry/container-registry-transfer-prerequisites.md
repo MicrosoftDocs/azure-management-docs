@@ -6,9 +6,9 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 02/11/2026
 ms.service: azure-container-registry
+---
 
 # Customer intent: As a DevOps engineer, I want to learn how to configure the transfer of container images between Azure container registries so that I can efficiently manage and migrate artifacts across different environments and clouds.
----
 
 # Transfer artifacts to another registry
 
@@ -42,7 +42,7 @@ Transfer is ideal for copying content between two Azure container registries in 
 
   Create a blob container for artifact transfer in each account. For example, create a container named *transfer*.
 
-* **Key vaults** - Key vaults are needed to store SAS token secrets when using the default **SAS Token** storage access mode. Key vaults are used to store SAS token secrets that are used to access source and target storage accounts. Create the source and target key vaults in the same Azure subscription or subscriptions as your source and target registries. For demonstration purposes, the templates and commands used in this article also assume that the source and target key vaults are located in the same resource groups as the source and target registries, respectively. This use of common resource groups isn't required, but it simplifies the templates and commands used in this article.
+* **Key vaults** - Key vaults are needed to store SAS token secrets when using **SAS Token** storage access mode. Create the source and target key vaults in the same Azure subscription or subscriptions as your source and target registries. For demonstration purposes, the templates and commands used in this article also assume that the source and target key vaults are located in the same resource groups as the source and target registries, respectively. This use of common resource groups isn't required, but it simplifies the templates and commands used in this article.
 
    > [!NOTE]
    > If you plan to use **Managed Identity** storage access mode (`--storage-access-mode ManagedIdentity` or `-m ManagedIdentity`), key vaults and SAS token secrets are **not required** for storage account access. Instead, ensure the pipeline's managed identity has the appropriate RBAC role (such as `Storage Blob Data Contributor`) on the storage account.
@@ -63,13 +63,13 @@ Transfer is ideal for copying content between two Azure container registries in 
 
 You create the following three pipeline resources for image transfer between registries. All are created using PUT operations. These resources operate on your *source* and *target* registries and storage accounts.
 
-Storage authentication can use one of the following methods, configured via the `--storage-access-mode` (`-m`) parameter:
+Storage authentication uses one of the following methods, configured via the `--storage-access-mode` (`-m`) parameter. Always specify this parameter when creating pipelines.
 
-* **SAS Token (default)** — The pipeline authenticates to the storage account using a shared access signature (SAS) token stored as a secret in Azure Key Vault. The pipeline's managed identity reads the SAS token secret from the key vault. This is the current default behavior.
-* **Managed Identity** — The pipeline authenticates to the storage account directly using an Entra managed identity (system-assigned or user-assigned). When using this mode, a Key Vault and SAS token secret are **not required** for storage account access. The `--secret-uri` parameter should be omitted.
+* **SAS Token** — The pipeline authenticates to the storage account using a shared access signature (SAS) token stored as a secret in Azure Key Vault. The pipeline's managed identity reads the SAS token secret from the key vault.
+* **Managed Identity** — The pipeline authenticates to the storage account directly using an Entra managed identity (system-assigned or user-assigned). When using this mode, a Key Vault and SAS token secret are **not required** for storage account access. The `--secret-uri` parameter must be omitted.
 
 > [!NOTE]
-> The `--storage-access-mode` parameter is available starting with API version `2025-06-01-preview`. The default value is `SasToken`, which preserves backward compatibility.
+> The `--storage-access-mode` parameter requires API version `2025-06-01-preview` or later.
 
 * **[ExportPipeline](./container-registry-transfer-cli.md#create-exportpipeline-with-the-acrtransfer-az-cli-extension)** - Long-lasting resource that contains high-level information about the *source* registry and storage account. This information includes the source storage blob container URI and, when using SAS token mode, the key vault managing the source SAS token.
 * **[ImportPipeline](./container-registry-transfer-cli.md#create-importpipeline-with-the-acrtransfer-az-cli-extension)** - Long-lasting resource that contains high-level information about the *target* registry and storage account. This information includes the target storage blob container URI and, when using SAS token mode, the key vault managing the target SAS token. An import trigger is enabled by default, so the pipeline runs automatically when an artifact blob lands in the target storage container.
@@ -80,16 +80,16 @@ Storage authentication can use one of the following methods, configured via the 
 
 ### Things to know
 * The ExportPipeline and ImportPipeline will typically be in different Active Directory tenants associated with the source and destination clouds. This scenario requires separate managed identities and key vaults for the export and import resources. For testing purposes, these resources can be placed in the same cloud, sharing identities.
-* By default, the ExportPipeline and ImportPipeline templates each enable a system-assigned managed identity to access key vault secrets. The ExportPipeline and ImportPipeline templates also support a user-assigned identity that you provide.
-* ACR Transfer supports two storage access modes: **SAS Token** (default) and **Managed Identity**. When using Managed Identity mode, the pipeline authenticates directly to the storage account using an Entra managed identity, eliminating the need for key vaults and SAS token secrets for storage access. See [Storage access modes](#storage-access-modes) below for more details.
+* By default, the ExportPipeline and ImportPipeline templates each enable a system-assigned managed identity. When using SAS Token mode, this identity reads SAS token secrets from the key vault. When using Managed Identity mode, this identity authenticates directly to the storage account. The ExportPipeline and ImportPipeline templates also support a user-assigned identity that you provide.
+* ACR Transfer supports two storage access modes: **SAS Token** and **Managed Identity**. When using Managed Identity mode, the pipeline authenticates directly to the storage account using an Entra managed identity, eliminating the need for key vaults and SAS token secrets for storage access. See [Storage access modes](#storage-access-modes) below for more details.
 
 ## Storage access modes
 
-ACR Transfer supports two storage access modes for authenticating to storage accounts. The mode is configured using the `--storage-access-mode` (`-m`) parameter when creating export and import pipelines.
+ACR Transfer supports two storage access modes for authenticating to storage accounts. Specify the mode using the `--storage-access-mode` (`-m`) parameter when creating export and import pipelines.
 
-### SAS Token mode (default)
+### SAS Token mode
 
-In **SAS Token** mode, the pipeline uses a shared access signature (SAS) token, stored as a secret in Azure Key Vault, to authenticate to the storage account. This is the default behavior and the original authentication method for ACR Transfer.
+In **SAS Token** mode, the pipeline uses a shared access signature (SAS) token, stored as a secret in Azure Key Vault, to authenticate to the storage account.
 
 **Requirements for SAS Token mode:**
 - An Azure Key Vault with a secret containing a valid SAS token
@@ -102,20 +102,17 @@ In **Managed Identity** mode, the pipeline authenticates directly to the storage
 
 **Requirements for Managed Identity mode:**
 - The pipeline's managed identity (system-assigned or user-assigned) must have the appropriate RBAC role on the storage account (for example, `Storage Blob Data Contributor`)
-- The `--secret-uri` parameter should be omitted when creating the pipeline
+- The `--secret-uri` parameter must be omitted when creating the pipeline
 - Requires API version `2025-06-01-preview` or later
 
-> [!IMPORTANT]
-> **Breaking change notice (May 2026):** The `--storage-access-mode` (`-m`) parameter will become a required field for `az acr export-pipeline create` and `az acr import-pipeline create` commands. Until then, if not specified, the default behavior is `SasToken`. CLI versions prior to the May 2026 breaking change release will display a deprecation warning.
-
-## Create and store SAS keys
+## Create and store SAS tokens
 
 > [!NOTE]
-> The following SAS key setup is only required when using **SAS Token** storage access mode (the default). If you plan to use **Managed Identity** storage access mode, skip this section and proceed to [Next steps](#next-steps).
+> The following SAS token setup is only required when using **SAS Token** storage access mode. If you plan to use **Managed Identity** storage access mode, skip this section and proceed to [Next steps](#next-steps).
 
 Transfer uses shared access signature (SAS) tokens to access the storage accounts in the source and target environments. Generate and store tokens as described in the following sections.
 > [!IMPORTANT]
-> While ACR Transfer will work with a manually generated SAS token stored in a Keyvault Secret, for production workloads we *strongly* recommend using [Keyvault Managed Storage SAS Definition Secrets][kv-managed-sas] instead.
+> While ACR Transfer will work with a manually generated SAS token stored in a Key Vault Secret, for production workloads we *strongly* recommend using [Key Vault Managed Storage SAS Definition Secrets][kv-managed-sas] instead.
 
 
 ### Generate SAS token for export
@@ -130,7 +127,7 @@ In the following example, command output is assigned to the EXPORT_SAS environme
 EXPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $SOURCE_SA \
-  --expiry 2023-01-01 \
+  --expiry 2027-01-01 \
   --permissions alrw \
   --https-only \
   --output tsv)
@@ -159,7 +156,7 @@ In the following example, command output is assigned to the IMPORT_SAS environme
 IMPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $TARGET_SA \
-  --expiry 2023-01-01 \
+  --expiry 2027-01-01 \
   --permissions dlr \
   --https-only \
   --output tsv)
