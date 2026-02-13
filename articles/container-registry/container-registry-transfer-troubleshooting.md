@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting Common Issues and Solutions ACR Transfer
+title: ACR Transfer Troubleshooting
 description: Find solutions to common issues with Azure Container Registry (ACR) Transfer, including deployment failures, Key Vault access, and storage access.
 author: rayoef
 ms.author: rayoflores
@@ -11,6 +11,11 @@ ms.service: azure-container-registry
 
 # ACR Transfer troubleshooting
 
+This article provides troubleshooting guidance for common issues with ACR Transfer. If you haven't completed the prerequisites, see [ACR Transfer prerequisites](./container-registry-transfer-prerequisites.md).
+
+> [!IMPORTANT]
+> ACR Transfer supports artifacts with layer sizes up to 8 GB due to technical limitations. If your transfer fails, verify that all artifact layers are within this size limit.
+
 ## Template deployment failures or errors
 
   * If a pipeline run fails, look at the `pipelineRunErrorMessage` property of the run resource.
@@ -21,8 +26,8 @@ ms.service: azure-container-registry
 > [!NOTE]
 > Key Vault access issues only apply when using **SAS Token** storage access mode. If you are using **Managed Identity** storage access mode, Key Vault is not required for storage account access.
 
-  * If your pipelineRun deployment fails with a `403 Forbidden` error when accessing Azure Key Vault, verify that your pipeline managed identity has adequate permissions.
-  * A pipelineRun uses the exportPipeline or importPipeline managed identity to fetch the SAS token secret from your Key Vault. ExportPipelines and importPipelines are provisioned with either a system-assigned or user-assigned managed identity. This managed identity is required to have `secret get` permissions on the Key Vault in order to read the SAS token secret. Ensure that an access policy for the managed identity was added to the Key Vault. For more information, reference [Give the ExportPipeline identity keyvault policy access](./container-registry-transfer-cli.md#give-the-exportpipeline-identity-keyvault-policy-access) and [Give the ImportPipeline identity keyvault policy access](./container-registry-transfer-cli.md#give-the-importpipeline-identity-keyvault-policy-access).
+  * If your PipelineRun deployment fails with a `403 Forbidden` error when accessing Azure Key Vault, verify that your pipeline managed identity has adequate permissions.
+  * A PipelineRun uses the ExportPipeline or ImportPipeline managed identity to fetch the SAS token secret from your Key Vault. ExportPipelines and ImportPipelines are provisioned with either a system-assigned or user-assigned managed identity. This managed identity is required to have `secret get` permissions on the Key Vault in order to read the SAS token secret. Ensure that an access policy for the managed identity was added to the Key Vault. For more information, reference [Give the ExportPipeline identity Key Vault policy access](./container-registry-transfer-cli.md#give-the-exportpipeline-identity-keyvault-policy-access) and [Give the ImportPipeline identity Key Vault policy access](./container-registry-transfer-cli.md#give-the-importpipeline-identity-keyvault-policy-access).
 
 ## Problems accessing storage
 
@@ -67,7 +72,7 @@ ms.service: azure-container-registry
   * Not all artifacts, or none, are transferred. Confirm spelling of artifacts in export run, and name of blob in export and import runs. Confirm you're transferring a maximum of 50 artifacts.
   * Pipeline run might not have completed. An export or import run can take some time.
   * For other pipeline issues, provide the deployment [correlation ID](/azure/azure-resource-manager/templates/deployment-history) of the export run or import run to the Azure Container Registry team.
-  * To create ACR Transfer resources such as `exportPipelines`, `importPipelines`, and `pipelineRuns`, the user must have at least `Container Registry Transfer Pipeline Contributor` access on the ACR subscription. Otherwise, they'll see authorization to perform the transfer denied or scope is invalid errors.
+  * To create ACR Transfer resources such as ExportPipelines, ImportPipelines, and PipelineRuns, the user must have at least `Container Registry Transfer Pipeline Contributor` access on the ACR subscription. Otherwise, they'll see authorization to perform the transfer denied or scope is invalid errors.
 
 ## Problems pulling the image in a physically isolated environment
 
@@ -75,6 +80,6 @@ ms.service: azure-container-registry
 
 ## Storage access mode warnings
 
-  * If you see a CLI warning message about the `--storage-access-mode` (`-m`) parameter, explicitly specify `--storage-access-mode SasToken` (or `-m SasToken`) to use SAS Token authentication, or `--storage-access-mode ManagedIdentity` (or `-m ManagedIdentity`) to use Managed Identity authentication for storage access. Always specify this parameter when creating pipelines.
+  * If you see a CLI warning message about the `--storage-access-mode` parameter, explicitly specify `--storage-access-mode SasToken` to use SAS Token authentication, or `--storage-access-mode ManagedIdentity` to use Managed Identity authentication for storage access. Always specify this parameter when creating pipelines.
   * Breaking changes to the CLI extension follow the **May and November** schedule. Extensions can technically introduce breaking changes outside of this schedule, but the ACR Transfer team follows the May/November schedule.
 

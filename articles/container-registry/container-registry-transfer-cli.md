@@ -1,5 +1,5 @@
 ---
-title: A Comprehensive Guide on ACR Transfer with Azure CLI 
+title: ACR Transfer with Azure CLI
 description: Learn how to use ACR Transfer with Azure CLI to efficiently manage and transfer container images in Azure Container Registry.
 ms.topic: how-to
 author: rayoef
@@ -12,6 +12,8 @@ ms.service: azure-container-registry
 
 # ACR Transfer with Az CLI
 
+ACR Transfer enables you to transfer container images and OCI artifacts between Azure container registries using an intermediary storage account, making it ideal for air-gapped and cross-cloud scenarios. For an overview of the feature, see [Transfer artifacts to another registry](./container-registry-transfer-prerequisites.md).
+
 This article shows how to use the ACR Transfer feature with the acrtransfer Az CLI extension.
 
 ## Complete prerequisites
@@ -20,12 +22,17 @@ Please complete the prerequisites outlined in [ACR Transfer prerequisites](./con
 
 - You have an existing Premium SKU Registry in both clouds.
 - You have an existing Storage Account Container in both clouds.
-- You have an existing Keyvault with a secret containing a valid SAS token with the necessary permissions in both clouds (required for **SAS Token** storage access mode only).
+- If using **SAS Token** storage access mode, ensure you have an existing Key Vault with a secret containing a valid SAS token with the necessary permissions in both clouds.
 - If using **Managed Identity** storage access mode, ensure the pipeline's managed identity has the appropriate RBAC role (such as `Storage Blob Data Contributor`) on the storage account.
 - You have a recent version of Az CLI installed in both clouds.
 
+ACR Transfer supports two storage access modes: **SAS Token** and **Managed Identity**. You must specify which mode to use via the `--storage-access-mode` parameter when creating pipelines. For a detailed comparison, see [Storage access modes](./container-registry-transfer-prerequisites.md#storage-access-modes).
+
 > [!NOTE]
 > The `--storage-access-mode` parameter requires Azure CLI extension `acrtransfer` version 2.0.0 or later. If you're using an older version, upgrade with `az extension update --name acrtransfer`.
+
+> [!IMPORTANT]
+> ACR Transfer supports artifacts with layer sizes up to 8 GB due to technical limitations.
 
 ## Install the Az CLI extension
 
