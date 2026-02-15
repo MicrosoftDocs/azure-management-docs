@@ -1,83 +1,206 @@
 ---
-title: Overview and Prerequisites for Transfer artifacts
+title: ACR Transfer Overview and Prerequisites
 description: Get an in-depth overview of ACR Transfer, including essential prerequisites and key features for managing and transferring container images in Azure Container Registry.
 ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
-ms.date: 10/31/2023
+ms.date: 02/11/2026
 ms.service: azure-container-registry
-
-# Customer intent: As a DevOps engineer, I want to learn how to configure the transfer of container images between Azure container registries so that I can efficiently manage and migrate artifacts across different environments and clouds.
+# Customer intent: As a DevOps engineer, I want to learn how to configure the transfer of container images between Azure container registries through intermediary storage accounts so that I can efficiently manage and migrate artifacts across different environments and clouds.
 ---
 
 # Transfer artifacts to another registry
 
-This article shows how to transfer collections of images or other registry artifacts from one Azure container registry to another registry. The source and target registries can be in the same or different subscriptions, Active Directory tenants, Azure clouds, or physically disconnected clouds.
+## What is ACR Transfer?
 
-To transfer artifacts, you create a *transfer pipeline* that replicates artifacts between two registries by using [blob storage](/azure/storage/blobs/storage-blobs-introduction):
+ACR Transfer is an Azure Container Registry feature for transferring container images and other OCI artifacts between registries that may reside in different clouds or physically disconnected environments. The transfer works by using an intermediary storage account:
 
 * Artifacts from a source registry are exported to a blob in a source storage account
-* The blob is copied from the source storage account to a target storage account
-* The blob in the target storage account gets imported as artifacts in the target registry. You can set up the import pipeline to trigger whenever the artifact blob updates in the target storage.
+* The blob is copied from the source storage account to a target storage account (across network boundaries if needed)
+* The blob in the target storage account is imported as artifacts in the target registry
 
-In this article, you create the prerequisite resources to create and run the transfer pipeline. The Azure CLI is used to provision the associated resources such as storage secrets. Azure CLI version 2.2.0 or later is recommended. If you need to install or upgrade the CLI, see [Install Azure CLI][azure-cli].
+You can set up the import pipeline to trigger automatically whenever an artifact blob arrives in the target storage. This makes ACR Transfer ideal for air-gapped or cross-cloud scenarios where direct registry-to-registry connectivity is not available.
 
-This feature is available in the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md).
+## How it works - pipelines and pipeline runs
+
+ACR Transfer is built around three resource types that work together to replicate artifacts between registries:
+
+* **ExportPipeline** - A long-lived resource associated with a source registry and a storage account. It defines where exported artifacts are written (the storage blob container) and how the pipeline authenticates to storage.
+
+* **ImportPipeline** - A long-lived resource associated with a target registry and a storage account. It defines where to read artifact blobs from and how the pipeline authenticates to storage. By default, an ImportPipeline includes a source trigger that automatically imports new blobs as they arrive.
+
+* **PipelineRun** - A one-time execution resource that triggers either an ExportPipeline or an ImportPipeline. For exports, you specify which artifacts (by tag or digest) to export. For imports, you specify which blob to import. Currently a maximum of **50 artifacts** can be transferred with each PipelineRun.
+
+Think of pipelines as the configuration and pipeline runs as the execution.
 
 > [!IMPORTANT]
-> This feature is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use][terms-of-use]. Some aspects of this feature may change prior to general availability (GA).
+> ACR Transfer supports artifacts with layer sizes up to 8 GB due to technical limitations.
+
+## Storage access modes
+
+ACR Transfer supports two storage access modes for authenticating pipelines to storage accounts:
+
+* **SAS Token** - The pipeline authenticates to the storage account using a shared access signature (SAS) token stored as a secret in Azure Key Vault. The pipeline's managed identity reads the SAS token secret from the key vault.
+
+* **Managed Identity** - The pipeline authenticates directly to the storage account using a Microsoft Entra managed identity (system-assigned or user-assigned). No Key Vault or SAS token is required for storage access.
+
+You specify the mode using the `--storage-access-mode` parameter (CLI) or `storageAccessMode` property (ARM templates) when creating pipelines. The mode you choose determines which prerequisites you need to complete below.
+
+### Architecture diagrams
+
+The following diagrams illustrate the architecture for an export/import pipeline setup. This example demonstrates transferring images through an intermediary storage account for cross-cloud or cross-tenant image transfer scenarios without direct ACR-to-ACR access.
+
+**Managed Identity mode:**
+
+```
+Source Cloud                                                                     Target Cloud
++-------------------------------------------------+                              +-------------------------------------------------+
+|                                                 |                              |                                                 |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|  | Source ACR                        |          |                              |          | Target ACR                        |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|                   |                             |                              |                       ^                         |
+|                   v                             |                              |                       |                         |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|  | ExportPipeline                    |          |                              |          | ImportPipeline                    |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|                   |                             |                              |                       ^                         |
+|                   |                             |                              |                       |                         |
+|                   |                             |                              |                       |                         |
+|                   | Pipeline accesses           |                              |                       | Pipeline accesses       |
+|                   | storage account directly    |                              |                       | storage account         |
+|                   | (using Pipeline's Managed   |                              |                       | directly (using         |
+|                   | Identity) to export image   |                              |                       | Pipeline's Managed      |
+|                   |                             |                              |                       | Identity) to import     |
+|                   | RBAC: Storage Blob Data     |                              |                       | image                   |
+|                   | Contributor                 |                              |                       |                         |
+|                   |                             |                              |                       | RBAC: Storage Blob Data |
+|                   |                             |                              |                       | Contributor             |
+|                   |                             |                              |                       |                         |
+|                   v                             |                              |                       |                         |
+|  +-----------------------------------+          |      Cross-Cloud or          |          +-----------------------------------+  |
+|  | Storage Account                   |----------|----- Cross-Tenant -----------|--------->| Storage Account                   |  |
+|  | (Blob Container)                  |          |      Syndication Process     |          | (Blob Container)                  |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|                                                 |                              |                                                 |
++-------------------------------------------------+                              +-------------------------------------------------+
+```
+
+**SAS Token mode:**
+
+```
+Source Cloud                                                                     Target Cloud
++-------------------------------------------------+                              +-------------------------------------------------+
+|                                                 |                              |                                                 |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|  | Source ACR                        |          |                              |          | Target ACR                        |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|                   |                             |                              |                       ^                         |
+|                   v                             |                              |                       |                         |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|  | ExportPipeline                    |          |                              |          | ImportPipeline                    |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|               |           |                     |                              |                   ^           |                 |
+|               |           |                     |                              |                   |           |                 |
+|               |           | Access Key Vault    |                              |                   |           | Access Key      |
+|               |           | (using Pipeline's   |                              |                   |           | Vault (using    |
+|               |           | Managed Identity)   |                              |                   |           | Pipeline's      |
+|               |           | to fetch Storage    |                              |                   |           | Managed         |
+|               |           | SAS Secret          |                              |                   |           | Identity) to    |
+|               |           v                     |                              |                   |           | fetch Storage   |
+|               |  +------------------------+     |                              |                   |           | SAS Secret      |
+|               |  | Source Key Vault       |     |                              |                   |           v                 |
+|               |  | (SAS Token Secret)     |     |                              |                   |  +------------------------+ |
+|               |  +------------------------+     |                              |                   |  | Target Key Vault       | |
+|               |                                 |                              |                   |  | (SAS Token Secret)     | |
+|               | Pipeline accesses storage       |                              |                   |  +------------------------+ |
+|               | account using SAS Secret to     |                              |                   |                             |
+|               | export image                    |                              |                   | Pipeline accesses storage   |
+|               |                                 |                              |                   | account using SAS Secret    |
+|               |                                 |                              |                   | to import image             |
+|               |                                 |                              |                   |                             |
+|               v                                 |                              |                   |                             |
+|  +-----------------------------------+          |      Cross-Cloud or          |          +-----------------------------------+  |
+|  | Storage Account                   |----------|----- Cross-Tenant -----------|--------->| Storage Account                   |  |
+|  | (Blob Container)                  |          |      Syndication Process     |          | (Blob Container)                  |  |
+|  +-----------------------------------+          |                              |          +-----------------------------------+  |
+|                                                 |                              |                                                 |
++-------------------------------------------------+                              +-------------------------------------------------+
+```
 
 ## Consider your use-case
 
-Transfer is ideal for copying content between two Azure container registries in physically disconnected clouds, mediated by storage accounts in each cloud. If instead you want to copy images from container registries in connected clouds including Docker Hub and other cloud vendors, [image import](container-registry-import-images.md) is recommended.
+Transfer is ideal for copying content between two Azure container registries in physically disconnected clouds, mediated by storage accounts in each cloud.
+
+For other scenarios, consider these alternatives:
+* If you want to copy images from container registries in connected clouds including Docker Hub and other cloud vendors, [image import](container-registry-import-images.md) is recommended.
+* If you want to cache images from public registries to improve pull performance, see [Artifact cache](artifact-cache-overview.md).
 
 ## Prerequisites
 
-* **Container registries** - You need an existing source registry with artifacts to transfer, and a target registry. ACR transfer is intended for movement across physically disconnected clouds. For testing, the source and target registries can be in the same or a different Azure subscription, Active Directory tenant, or cloud.
+### Common prerequisites (both storage access modes)
 
-   If you need to create a registry, see [Quickstart: Create a private container registry using the Azure CLI](container-registry-get-started-azure-cli.md).
+The following resources are required regardless of which storage access mode you choose:
+
+* **Container registries** - You need an existing source registry with artifacts to transfer, and a target registry. Both registries must be in the **Premium** service tier. ACR transfer is intended for movement across physically disconnected clouds. For testing, the source and target registries can be in the same or a different Azure subscription, Microsoft Entra tenant, or cloud.
+
+   For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md). If you need to create a registry, see [Quickstart: Create a private container registry using the Azure CLI](container-registry-get-started-azure-cli.md).
+
 * **Storage accounts** - Create source and target storage accounts in a subscription and location of your choice. For testing purposes, you can use the same subscription or subscriptions as your source and target registries. For cross-cloud scenarios, typically you create a separate storage account in each cloud.
 
-  If needed, create the storage accounts with the [Azure CLI](/azure/storage/common/storage-account-create?tabs=azure-cli) or other tools.
+  If needed, create the storage accounts with the [Azure CLI](/azure/storage/common/storage-account-create?tabs=azure-cli) or other tools. Create a blob container for artifact transfer in each account. For example, create a container named *transfer*.
 
-  Create a blob container for artifact transfer in each account. For example, create a container named *transfer*.
+### Additional prerequisites for SAS Token mode
 
-* **Key vaults** - Key vaults are needed to store SAS token secrets used to access source and target storage accounts. Create the source and target key vaults in the same Azure subscription or subscriptions as your source and target registries. For demonstration purposes, the templates and commands used in this article also assume that the source and target key vaults are located in the same resource groups as the source and target registries, respectively. This use of common resource groups isn't required, but it simplifies the templates and commands used in this article.
+If you plan to use **SAS Token** storage access mode, you also need:
+
+* **Key vaults** - Create source and target key vaults to store SAS token secrets. Create them in the same Azure subscription or subscriptions as your source and target registries. For demonstration purposes, the templates and commands used in this article also assume that the source and target key vaults are located in the same resource groups as the source and target registries, respectively. This use of common resource groups isn't required, but it simplifies the templates and commands used in this article.
 
    If needed, create key vaults with the [Azure CLI](/azure/key-vault/secrets/quick-create-cli) or other tools.
 
-* **Environment variables** - For example commands in this article, set the following environment variables for the source and target environments. All examples are formatted for the Bash shell.
-  ```console
-  SOURCE_RG="<source-resource-group>"
-  TARGET_RG="<target-resource-group>"
-  SOURCE_KV="<source-key-vault>"
-  TARGET_KV="<target-key-vault>"
-  SOURCE_SA="<source-storage-account>"
-  TARGET_SA="<target-storage-account>"
-  ```
+* **SAS tokens** - You'll need to generate SAS tokens for the storage account containers and store them in the key vaults. See [Create and store SAS tokens](#create-and-store-sas-tokens) below for detailed steps.
 
-## Scenario overview
+* **Key Vault access** - The pipeline's managed identity must have `secret get` access policy permissions on the Key Vault to read the SAS token secret.
 
-You create the following three pipeline resources for image transfer between registries. All are created using PUT operations. These resources operate on your *source* and *target* registries and storage accounts.
+### Additional prerequisites for Managed Identity mode
 
-Storage authentication uses SAS tokens, managed as secrets in key vaults. The pipelines use managed identities to read the secrets in the vaults.
+If you plan to use **Managed Identity** storage access mode, you also need:
 
-* **[ExportPipeline](./container-registry-transfer-cli.md#create-exportpipeline-with-the-acrtransfer-az-cli-extension)** - Long-lasting resource that contains high-level information about the *source* registry and storage account. This information includes the source storage blob container URI and the key vault managing the source SAS token.
-* **[ImportPipeline](./container-registry-transfer-cli.md#create-importpipeline-with-the-acrtransfer-az-cli-extension)** - Long-lasting resource that contains high-level information about the *target* registry and storage account. This information includes the target storage blob container URI and the key vault managing the target SAS token. An import trigger is enabled by default, so the pipeline runs automatically when an artifact blob lands in the target storage container.
-* **[PipelineRun](./container-registry-transfer-cli.md#create-pipelinerun-for-export-with-the-acrtransfer-az-cli-extension)** - Resource used to invoke either an ExportPipeline or ImportPipeline resource.
-  * You run the ExportPipeline manually by creating a PipelineRun resource and specify the artifacts to export.
-  * If an import trigger is enabled, the ImportPipeline runs automatically. It can also be run manually using a PipelineRun.
-  * Currently a maximum of **50 artifacts** can be transferred with each PipelineRun.
+* **RBAC role assignment** - The pipeline's managed identity (system-assigned or user-assigned) must have the appropriate RBAC role on the storage account. For example, assign the `Storage Blob Data Contributor` role to allow the pipeline to read and write blobs.
 
-### Things to know
-* The ExportPipeline and ImportPipeline will typically be in different Active Directory tenants associated with the source and destination clouds. This scenario requires separate managed identities and key vaults for the export and import resources. For testing purposes, these resources can be placed in the same cloud, sharing identities.
-* By default, the ExportPipeline and ImportPipeline templates each enable a system-assigned managed identity to access key vault secrets. The ExportPipeline and ImportPipeline templates also support a user-assigned identity that you provide.
+* **API version requirement** - Managed Identity mode requires API version `2025-06-01-preview` or later (for ARM templates) or Azure CLI extension `acrtransfer` version 2.0.0 or later (for CLI).
 
-## Create and store SAS keys
+> [!NOTE]
+> When using Managed Identity mode, Key Vaults and SAS token secrets are **not required** for storage account access. The pipeline authenticates directly to the storage account using its managed identity.
+
+### Environment variables
+
+For example commands in this article, set the following environment variables for the source and target environments. All examples are formatted for the Bash shell.
+
+```console
+SOURCE_RG="<source-resource-group>"
+TARGET_RG="<target-resource-group>"
+SOURCE_KV="<source-key-vault>"  # Only needed for SAS Token mode
+TARGET_KV="<target-key-vault>"  # Only needed for SAS Token mode
+SOURCE_SA="<source-storage-account>"
+TARGET_SA="<target-storage-account>"
+```
+
+## Things to know
+
+* The ExportPipeline and ImportPipeline will typically be in different Microsoft Entra tenants associated with the source and destination clouds. This scenario requires separate managed identities and key vaults (when using SAS Token mode) for the export and import resources. For testing purposes, these resources can be placed in the same cloud, sharing identities.
+* By default, the ExportPipeline and ImportPipeline templates each enable a system-assigned managed identity. The templates also support a user-assigned identity that you provide.
+  * When using **SAS Token mode**, the identity reads SAS token secrets from the key vault
+  * When using **Managed Identity mode**, the identity authenticates directly to the storage account
+
+## Create and store SAS tokens
+
+> [!NOTE]
+> The following SAS token setup is only required when using **SAS Token** storage access mode. If you plan to use **Managed Identity** storage access mode, skip this section and proceed to [Next steps](#next-steps).
 
 Transfer uses shared access signature (SAS) tokens to access the storage accounts in the source and target environments. Generate and store tokens as described in the following sections.
 > [!IMPORTANT]
-> While ACR Transfer will work with a manually generated SAS token stored in a Keyvault Secret, for production workloads we *strongly* recommend using [Keyvault Managed Storage SAS Definition Secrets][kv-managed-sas] instead.
+> While ACR Transfer will work with a manually generated SAS token stored in a Key Vault Secret, for production workloads we *strongly* recommend using [Key Vault Managed Storage SAS Definition Secrets][kv-managed-sas] instead.
 
 
 ### Generate SAS token for export
@@ -92,7 +215,7 @@ In the following example, command output is assigned to the EXPORT_SAS environme
 EXPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $SOURCE_SA \
-  --expiry 2023-01-01 \
+  --expiry 2027-01-01 \
   --permissions alrw \
   --https-only \
   --output tsv)
@@ -121,7 +244,7 @@ In the following example, command output is assigned to the IMPORT_SAS environme
 IMPORT_SAS=?$(az storage container generate-sas \
   --name transfer \
   --account-name $TARGET_SA \
-  --expiry 2023-01-01 \
+  --expiry 2027-01-01 \
   --permissions dlr \
   --https-only \
   --output tsv)
@@ -140,16 +263,14 @@ az keyvault secret set \
 
 ## Next steps
 
-* Follow one of the below tutorials to create your ACR Transfer resources. For most non-automated use-cases, we recommend using the Az CLI Extension.
+Now that you've completed the prerequisites, follow one of the tutorials below to create your ACR Transfer pipelines and pipeline runs:
 
-  * [ACR Transfer with Az CLI](./container-registry-transfer-cli.md)
-  * [ACR Transfer with ARM templates](./container-registry-transfer-images.md)
+* [ACR Transfer with Az CLI](./container-registry-transfer-cli.md) - Recommended for most use cases
+* [ACR Transfer with ARM templates](./container-registry-transfer-arm-template.md) - For automation and infrastructure-as-code scenarios
 
-<!-- LINKS - External -->
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
+If you encounter issues, see [ACR Transfer Troubleshooting](./container-registry-transfer-troubleshooting.md) for guidance.
 
 <!-- LINKS - Internal -->
-[azure-cli]: /cli/azure/install-azure-cli
 [az-keyvault-secret-set]: /cli/azure/keyvault/secret#az-keyvault-secret-set
 [az-storage-container-generate-sas]: /cli/azure/storage/container#az-storage-container-generate-sas
 [kv-managed-sas]: /azure/key-vault/secrets/overview-storage-keys
