@@ -12,7 +12,7 @@ ms.custom: references-regions
 This topic describes the networking requirements for connecting a Kubernetes cluster to Azure Arc and supporting various Arc-enabled Kubernetes scenarios.
 
 > [!TIP]
-> For the Azure public cloud, you can reduce the number of required endpoints by using the [Azure Arc gateway (preview)](arc-gateway-simplify-networking.md).
+> For the Azure public cloud, you can reduce the number of required endpoints by using the [Azure Arc gateway](arc-gateway-simplify-networking.md).
 
 ## Details
 

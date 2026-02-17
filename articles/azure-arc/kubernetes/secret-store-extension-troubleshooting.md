@@ -47,8 +47,8 @@ If you see a ```ProviderError``` status reason with a message indicating a timeo
 ### Azure Key Vault firewall configuration
 By default Azure Key Vault has a permissive firewall configuration and can be accessed via the public internet, but it is good practice to limit network access to Azure Key Vault. Double check that your key vault firewall configuration permits access for your cluster. See [Network security for Azure Key Vault](/azure/key-vault/general/network-security)
 
-### Azure Arc Gateway (preview)
-Azure Arc gateway (preview) does not provide network connectivity to Azure Key Vault. You must independently allow network access to ```<vault_name>.vault.azure.net``` so that SSE can synchronize secrets. See related [Arc gateway](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking) and [Azure Key Vault](/azure/key-vault/general/access-behind-firewall) documentation.
+### Azure Arc Gateway
+Azure Arc gateway does not provide network connectivity to Azure Key Vault. You must independently allow network access to ```<vault_name>.vault.azure.net``` so that SSE can synchronize secrets. See related [Arc gateway](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking) and [Azure Key Vault](/azure/key-vault/general/access-behind-firewall) documentation.
 
 
 ### Azure Private Link
