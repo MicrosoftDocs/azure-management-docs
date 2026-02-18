@@ -33,7 +33,7 @@ For a conceptual look at connecting clusters to Azure Arc, see [Azure Arc-enable
 
 * A running Kubernetes cluster. If you don't have one, you can create a cluster by using one of these options:
   * [Kubernetes in Docker (KIND)](https://kind.sigs.k8s.io/)
-  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/) or [Windows](hhttps://docs.docker.com/desktop/setup/install/windows-install/)
+  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/) or [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
   * Self-managed Kubernetes cluster using [Cluster API](https://cluster-api.sigs.k8s.io/user/quick-start.html)
 
     > [!NOTE]
