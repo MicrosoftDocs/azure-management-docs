@@ -218,7 +218,7 @@ eastus   AzureArcTest1 microsoft.kubernetes/connectedclusters
 > [!IMPORTANT]
 > If deployment fails due to a timeout error, see the [troubleshooting guide](troubleshooting.md#helm-timeout-error) for help with resolving the issue.
 
-## Connect by using an outbound proxy server
+## Connect using an outbound proxy server
 
 If your cluster is behind an outbound proxy server protects your cluster, route requests through the outbound proxy server.
 
