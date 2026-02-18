@@ -12,7 +12,7 @@ ms.date: 04/18/2023
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using an ARM template
 
-This quickstart shows you how to use an Azure Resource Manager (ARM) template to deploy an Azure Linux Container Host cluster. You'll create an SSH key pair, review the template, deploy the template, validate it, and then deploy an application.
+Get started with the Azure Linux Container Host by using an Azure Resource Manager (ARM) template to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you'll create an SSH key pair, review the template, deploy the template and validate it, and then deploy an application.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -32,14 +32,14 @@ This quickstart shows you how to use an Azure Resource Manager (ARM) template to
 
   - Run [az version](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index?#az-upgrade).
 
-- If you don't already have kubectl installed, you can install it through the Azure CLI using `az aks install-cli` or follow the [upstream instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
-- To create an AKS cluster using a Resource Manager template, you need to provide an SSH public key. If you need this resource, see the following section. Otherwise, skip to the [Review the template](#review-the-template) section.
-- The identity you're using to create your cluster must have the appropriate minimum permissions. For more information about access and identity for AKS, see [Access and identity options for Azure Kubernetes Service (AKS)](/azure/aks/concepts-identity).
-- To deploy a Bicep file or ARM template, you need write access to the resources you're deploying and access to all operations on the Microsoft.Resources/deployments resource type. For example, to deploy a virtual machine, you need Microsoft.Compute/virtualMachines/write and Microsoft.Resources/deployments/* permissions. For a list of roles and permissions, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
+- If you don't already have kubectl installed, install it through Azure CLI using `az aks install-cli` or follow the [upstream instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
+- To create an AKS cluster using a Resource Manager template, you provide an SSH public key. If you need this resource, see the following section; otherwise skip to the [Review the template](#review-the-template) section.
+- The identity you're using to create your cluster has the appropriate minimum permissions. For more information on access and identity for AKS, see [Access and identity options for Azure Kubernetes Service (AKS)](/azure/aks/concepts-identity).
+- To deploy a Bicep file or ARM template, you need write access on the resources you're deploying and access to all operations on the Microsoft.Resources/deployments resource type. For example, to deploy a virtual machine, you need Microsoft.Compute/virtualMachines/write and Microsoft.Resources/deployments/* permissions. For a list of roles and permissions, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 
 ### Create an SSH key pair 
 
-To access AKS nodes, you connect using an SSH key pair (public and private). You generate these keys using the `ssh-keygen` command. By default, the command creates these files in the *~/.ssh* directory. Running the `ssh-keygen` command will overwrite any existing SSH key pair with the same name in the specified location.
+To access AKS nodes, you connect using an SSH key pair (public and private), which you generate using the `ssh-keygen` command. By default, these files are created in the *~/.ssh* directory. Running the `ssh-keygen` command overwrites any SSH key pair with the same name already existing in the given location.
 
 1. Go to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in your browser.
 

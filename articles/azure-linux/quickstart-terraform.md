@@ -13,9 +13,9 @@ ms.date: 06/27/2023
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster using Terraform
 
-This quickstart shows you how to use Terraform to deploy an Azure Linux Container Host cluster. You'll implement the Terraform code, initialize Terraform, and create and apply a Terraform execution plan.
+Get started with the Azure Linux Container Host using Terraform to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you implement the Terraform code, initialize Terraform, and create and apply a Terraform execution plan.
 
-[Terraform](https://www.terraform.io/) enables the definition, preview, and deployment of cloud infrastructure. With Terraform, you create configuration files using [HCL syntax](https://developer.hashicorp.com/terraform/language/syntax/configuration). The HCL syntax specifies the cloud provider and the elements that make up your cloud infrastructure. After you create your configuration files, you create an execution plan to preview your infrastructure changes before deployment. Once you verify the changes, you apply the execution plan to deploy the infrastructure.
+[Terraform](https://www.terraform.io/) enables the definition, preview, and deployment of cloud infrastructure. With Terraform, you create configuration files using [HCL syntax](https://developer.hashicorp.com/terraform/language/syntax/configuration). The HCL syntax allows you to specify the cloud provider and elements that make up your cloud infrastructure. After you create your configuration files, you create an execution plan that allows you to preview your infrastructure changes before they're deployed. Once you verify the changes, you apply the execution plan to deploy the infrastructure.
 
 > [!NOTE]
 > The example code in this article is located in the [Microsoft Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/201-k8s-cluster-with-tf-and-aks).
@@ -36,7 +36,7 @@ This quickstart shows you how to use Terraform to deploy an Azure Linux Containe
 
 ### Create an SSH key pair
 
-To access AKS nodes, you connect using an SSH key pair (public and private). You generate these keys using the `ssh-keygen` command. By default, the command creates these files in the *~/.ssh* directory. Running the `ssh-keygen` command will overwrite any existing SSH key pair with the same name in the specified location.
+To access AKS nodes, you connect using an SSH key pair (public and private), which you generate using the `ssh-keygen` command. By default, these files are created in the *~/.ssh* directory. Running the `ssh-keygen` command overwrites any SSH key pair with the same name already existing in the given location.
 
 1. Go to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in your browser.
 2. Run the `ssh-keygen` command. The following example creates an SSH key pair using RSA encryption and a bit length of 4096:

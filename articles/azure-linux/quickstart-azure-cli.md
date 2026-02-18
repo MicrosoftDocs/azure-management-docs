@@ -14,7 +14,7 @@ ms.date: 04/18/2023
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303214)
 
-This quickstart shows you how to use the Azure CLI to deploy an Azure Linux Container Host for an AKS cluster. You'll create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application.
+Get started with the Azure Linux Container Host by using the Azure CLI to deploy an Azure Linux Container Host for AKS cluster. After installing the prerequisites, you will create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
@@ -33,7 +33,10 @@ This quickstart shows you how to use the Azure CLI to deploy an Azure Linux Cont
 
 ## Create a resource group
 
-An Azure resource group is a logical group in which Azure resources are deployed and managed. When you create a resource group, you must specify a location. This location determines where the resource group metadata is stored and where your resources run in Azure if you don't specify another region when creating a resource.
+An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it is required to specify a location. This location is:
+
+- The storage location of your resource group metadata.
+- Where your resources will run in Azure if you don't specify another region when creating a resource.
 
 Create a resource group using the `az group create` command.
 
@@ -91,7 +94,7 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, `kubectl
 
 ## Deploy the application
 
-A Kubernetes manifest file defines a cluster's desired state, such as which container images to run. In this quickstart, you use a manifest to create all objects needed to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). The manifest includes the following Kubernetes deployments and services:
+To deploy the application, you use a manifest file to create all the objects required to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). A Kubernetes manifest file defines a cluster's desired state, such as which container images to run. The manifest includes the following Kubernetes deployments and services:
 
 :::image type="content" source="media/aks-store-architecture.png" alt-text="Screenshot of Azure Store sample architecture." lightbox="media/aks-store-architecture.png":::
 
@@ -101,7 +104,7 @@ A Kubernetes manifest file defines a cluster's desired state, such as which cont
 - **Rabbit MQ**: Message queue for an order queue.
 
 > [!NOTE]
-> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production environments. These simplified examples use stateful containers for demonstration purposes. For production workloads, we recommend using managed services, such as Azure Cosmos DB or Azure Service Bus.
+> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure CosmosDB or Azure Service Bus.
 
 1. Create a file named `aks-store-quickstart.yaml` and copy in the following manifest:
 
@@ -457,11 +460,11 @@ echo "You can now visit your web server at $IP_ADDRESS"
 
 ## Delete the cluster
 
-If you no longer need the cluster resources, you can use the `az group delete` command to remove the resource group, container service, and all related resources to avoid Azure charges.
+If you no longer need them, you can clean up unnecessary resources to avoid Azure charges. You can remove the resource group, container service, and all related resources using the `az group delete` command.
 
 ## Next steps
 
-This quickstart demonstrated how to deploy an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host and work through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial.
+In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host, and walk through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial.
 
 > [!div class="nextstepaction"]
 > [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)

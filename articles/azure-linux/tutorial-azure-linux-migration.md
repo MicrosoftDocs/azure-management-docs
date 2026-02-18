@@ -16,21 +16,21 @@ ms.date: 04/06/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321934)
 
-This tutorial is part three of a five-part series. You'll migrate your existing nodes to Azure Linux using one of the following methods:
+In this tutorial, part three of five, you migrate your existing nodes to Azure Linux. You can migrate your existing nodes to Azure Linux using one of the following methods:
 
 * Remove existing node pools and add new Azure Linux node pools.
 * In-place OS SKU migration.
 
-If you don't have any existing nodes to migrate to Azure Linux, skip to the [next tutorial](./tutorial-azure-linux-telemetry-monitor.md). Later tutorials in this series cover enabling telemetry and monitoring in your clusters and upgrading Azure Linux nodes.
+If you don't have any existing nodes to migrate to Azure Linux, skip to the [next tutorial](./tutorial-azure-linux-telemetry-monitor.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade Azure Linux nodes.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
 ## Prerequisites
 
-* In previous tutorials, you created and deployed an Azure Linux Container Host for AKS cluster. To complete this tutorial, you need to add an Azure Linux node pool to your existing cluster. If you haven't completed this step and would like to follow along, start with [Tutorial 2: Add an Azure Linux node pool to your existing AKS cluster](./tutorial-azure-linux-add-nodepool.md).
+* In previous tutorials, you created and deployed an Azure Linux Container Host for AKS cluster. To complete this tutorial, you need to add an Azure Linux node pool to your existing cluster. If you haven't done this step and would like to follow along, start with [Tutorial 2: Add an Azure Linux node pool to your existing AKS cluster](./tutorial-azure-linux-add-nodepool.md).
 
     > [!NOTE]
-    > When adding a new Azure Linux node pool, you must add at least one with `--mode System`. Otherwise, AKS won't allow you to delete your existing node pool.
+    > When adding a new Azure Linux node pool, you need to add at least one as `--mode System`. Otherwise, AKS won't allow you to delete your existing node pool.
 
 * You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
@@ -61,22 +61,22 @@ Results:
 
 ## In-place OS SKU migration
 
-You can now migrate your existing Ubuntu node pools to Azure Linux by changing the operating system SKU of the node pool. This change triggers the standard node image upgrade process to roll through the cluster. This feature doesn't require creating new node pools.
+You can now migrate your existing Ubuntu node pools to Azure Linux by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools.
 
 ### Limitations
 
-Several settings can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
+There are several settings that can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
 
 * The OS SKU migration feature isn't available through PowerShell or the Azure portal.
 * The OS SKU migration feature isn't able to rename existing node pools.
 * Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
-* Trusted Launch is required by default for Azure Linux with OS Guard. Customers need to have Trusted Launch enabled to migrate to Azure Linux with OS Guard. Since you can't enable Trusted Launch on existing node pools, this may require creating new node pools.
-* Customers using Gen 1-only VM sizes can't migrate to Azure Linux with OS Guard because no supported Gen 1 image exists. They need to create new node pools with a VM size that supports Gen 2.
+* Trusted launch is required by default for Azure Linux with OS Guard, customers need to have trusted launch enabled to be able to migrate to Azure Linux with OS Guard. Since Trusted Launch cannot be enabled on existing node pools, this may require new node pool creation. 
+* Customers using Gen 1 only vm sizes will not be able to migrate to Azure Linux with OS Guard since there is no supported Gen 1 image. They will need to create new node pools with a vm size that supports gen 2.
 * An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
 * An Ubuntu OS SKU with CVM 20.04 enabled can't perform an OS SKU migration.
 * Node pools with Kata enabled can't perform an OS SKU migration.
 * Windows OS SKU migration isn't supported.
-* OS SKU migration from Mariner to Azure Linux is supported, but you can't roll back to Mariner after migration.
+* OS SKU migration from Mariner to Azure Linux is supported, but rolling back to Mariner is not supported.
 
 ### Prerequisites
 

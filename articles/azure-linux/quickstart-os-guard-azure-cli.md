@@ -14,7 +14,7 @@ ms.date: 09/23/2025
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303214)
 
-This quickstart shows you how to use the Azure CLI to deploy an Azure Linux with OS Guard Container Host for an AKS cluster. You'll install the aks-preview Azure CLI extension, register the AzureLinuxOSGuardPreview feature flag, create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application.
+Get started with Azure Linux with OS Guard by using the Azure CLI to deploy an Azure Linux with OS Guard Container Host for AKS cluster. After installing the prerequisites, you will install the aks-preview Azure CLI extension, register the AzureLinuxOSGuardPreview feature flag, create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
 
 ## Considerations and limitations
 	
@@ -53,7 +53,7 @@ To install the aks-preview extension, run the following command:
 az extension add --name aks-preview
 ```
 
-Run the following command to update the extension to the latest released version:
+Run the following command to update to the latest version of the extension released:
 
 ```azurecli-interactive
 az extension update --name aks-preview
