@@ -12,7 +12,7 @@ ms.date: 12/12/2023
 
 # What is the Azure Linux Container Host for AKS?
 
-The Azure Linux Container Host is an operating system image that's optimized for running container workloads on [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes). Microsoft maintains the Azure Linux Container Host, which is based on [CBL-Mariner][cbl-mariner], an open-source Linux distribution created by Microsoft.
+The Azure Linux Container Host is an operating system image that's optimized for running container workloads on [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes).
 
 The Azure Linux Container Host is lightweight, containing only the packages needed to run container workloads. Microsoft has hardened the container host through extensive validation tests and internal usage. The container host is compatible with Azure agents and provides reliability and consistency from cloud to edge across AKS, AKS for Azure Stack HCI (Hyper Converged Infrastructure), and Azure Arc. 
 
