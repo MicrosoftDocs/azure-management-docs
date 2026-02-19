@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 09/29/2025
+ms.date: 02/13/2026
 # Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
@@ -61,7 +61,6 @@ This table lists the URLs that must be available to install and use the Connecte
 |`azgn*.servicebus.windows.net` or `*.servicebus.windows.net`|Notification service for extension and connectivity scenarios.|Always.| Public. |
 |`*.servicebus.windows.net`|For Windows Admin Center and Secure Shell (SSH) scenarios.|If you use SSH or Windows Admin Center from Azure.|Public.|
 |`*.waconazure.com`|For Windows Admin Center connectivity.|If you use Windows Admin Center.|Public.|
-|`*.blob.core.windows.net`|Download source for Azure Arc-enabled server extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
 |`dc.services.visualstudio.com`|Agent telemetry.|Optional. Not used in agent versions 1.24+.| Public. |
 | `*.<region>.arcdataservices.com`<sup>2</sup> | For Azure Arc-enabled SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows Transport Layer Security (TLS) 1.2 or 1.3 only. | If you use Azure Arc-enabled SQL Server. | Public. |
 | `https://<azure-keyvault-name>.vault.azure.net/`, `https://graph.microsoft.com/`<sup>2</sup>| For Microsoft Entra authentication with Azure Arc-enabled SQL Server. | If you use Azure Arc-enabled SQL Server. | Public. |

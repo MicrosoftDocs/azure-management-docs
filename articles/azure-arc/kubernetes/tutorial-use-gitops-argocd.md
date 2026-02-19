@@ -146,7 +146,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --extension-type Microsoft.ArgoCD \
 --release-train preview \
 --config "redis-ha\.enabled=false" \
---config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
+--config "configs.params.application\.namespaces=namespace1,namespace2"
 ```
 
 This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`.  ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.

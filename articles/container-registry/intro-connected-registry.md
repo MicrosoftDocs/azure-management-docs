@@ -13,7 +13,7 @@ ms.custom: references_regions
 
 The connected registry feature of [Azure Container Registry](container-registry-intro.md) enables an on-premises or remote replica that synchronizes container images with your cloud-based Azure container registry. Use a connected registry to help speed up access to registry artifacts hosted on-premises or remotely.
 
-A cloud-based Azure container registry provides [features](container-registry-intro.md#key-features) including geo-replication, integrated security, Azure-managed storage, and integration with Azure development and deployment pipelines. However, you might want to extend your cloud investments to your on-premises and field solutions, requiring options outside of the standard cloud-based Azure container registry, or you might have intermittent or limited connectivity to the cloud.
+A cloud-based Azure container registry provides features including geo-replication, integrated security, Azure-managed storage, and integration with Azure development and deployment pipelines. However, you might want to extend your cloud investments to your on-premises and field solutions, requiring options outside of the standard cloud-based Azure container registry, or you might have intermittent or limited connectivity to the cloud.
 
 In on-premises or remote environments, container workloads need container images and related artifacts to be available nearby in order to maintain performance and reliability. Connected registries provide a performant, on-premises registry solution that regularly synchronizes content with a cloud-based Azure container registry.
 

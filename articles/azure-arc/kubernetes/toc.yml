@@ -208,6 +208,8 @@
     href: /cli/azure/connectedk8s
   - name: Azure PowerShell
     href: /powershell/module/az.connectedkubernetes#connected-kubernetes
+  - name: Arc gateway endpoints
+    href: ../servers/arc-gateway-endpoints.md?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
 - name: Resources
   items:
   - name: Azure Arc Jumpstart
