@@ -12,17 +12,17 @@ ms.date: 03/28/2024
 
 # Support and help for the Azure Linux Container Host for AKS
 
-This article covers where you can get help when developing your solutions with the Azure Linux Container Host.
+This article shows you where to get help when developing solutions with the Azure Linux Container Host.
 
 [!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
-## Self help troubleshooting
+## Self-help troubleshooting
 
 :::image type="icon" source="./media/logos/doc-logo.png":::
 
-We have supporting documentation explaining how to determine, diagnose, and fix issues that you might encounter when using the Azure Linux Container Host. Use this article to troubleshoot deployment failures, security-related problems, connection issues and more.
+Microsoft provides supporting documentation that explains how to determine, diagnose, and fix issues you might encounter when using the Azure Linux Container Host. Use this article to troubleshoot deployment failures, security-related problems, connection issues, and more.
 
-For a full list of self help troubleshooting content, see the Azure Linux Container Host troubleshooting documentation:
+For a complete list of self-help troubleshooting content, see the Azure Linux Container Host troubleshooting documentation:
 
 - [Package upgrade](./troubleshoot-packages.md)
 - [Kernel versioning](./troubleshoot-kernel.md)
@@ -32,7 +32,7 @@ For a full list of self help troubleshooting content, see the Azure Linux Contai
 
 :::image type="icon" source="./media/logos/azure-logo.png":::
 
-Explore the range of [Azure support options and choose the plan](https://azure.microsoft.com/support/plans) that best fits, whether you're a developer just starting your cloud journey or a large organization deploying business-critical, strategic applications. Azure customers can create and manage support requests in the Azure portal.
+Explore the range of [Azure support options and choose the plan](https://azure.microsoft.com/support/plans) that best fits your needs, whether you're a developer just starting your cloud journey or a large organization deploying business-critical, strategic applications. Azure customers can create and manage support requests in the Azure portal.
 
 - If you already have an Azure Support Plan, [open a support request here](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest).
 
@@ -42,15 +42,15 @@ Explore the range of [Azure support options and choose the plan](https://azure.m
 
 :::image type="icon" source="./media/logos/github-logo.png":::
 
-Submit a [GitHub issue](https://github.com/microsoft/CBL-Mariner/issues/new/choose) to ask a question, provide feedback, or submit a feature request. Create an [Azure support request](#create-an-azure-support-request) for any issues or bugs.
+Submit a [GitHub issue](https://github.com/microsoft/CBL-Mariner/issues/new/choose) to ask a question, provide feedback, or request a feature. For technical issues or bugs, create an [Azure support request](#create-an-azure-support-request).
 
 ## Stay connected with Azure Linux
 
-We're hosting public community calls for Azure Linux users to get together and discuss new features, provide feedback, and learn more about how others use Azure Linux. In each session, we will feature a new demo.
+Microsoft hosts public community calls for Azure Linux users to discuss new features, provide feedback, and learn how others use Azure Linux. Each session features a new demo.
 
-Azure Linux published a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for GA and public preview. This feature roadmap will be reviewed in each community call. We welcome you to leave feedback or ask questions on feature items.
+Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features in development and available for general availability (GA) and public preview. Each community call reviews this feature roadmap. We welcome your feedback and questions about feature items.
 
-The schedule for the upcoming community calls is as follows:
+The schedule for upcoming community calls is as follows:
 
 | Date | Time | Meeting link |
 | --- | --- | --- |
