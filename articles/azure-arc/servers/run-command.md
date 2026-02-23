@@ -83,7 +83,7 @@ Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachi
 This command retrieves current execution progress for a Run command, including latest output, start and end time, exit code, and terminal state of the execution.
 
 ```powershell-interactive
-Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" - MachineName "myMachine" -RunCommandName "RunCommandName"
+Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -RunCommandName "RunCommandName"
 ```
 
 #### Get status information for a Run command through Instance View
@@ -104,7 +104,7 @@ Along with other information, the response returns these fields:
 This command creates or updates a Run command on a machine and streams standard output and standard error messages to output and error AppendBlobs.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" - MachineName "MyMachine" -RunCommandName "MyRunCommand3" -Location "eastus" -SourceScript "id; echo HelloWorld" -OutputBlobUri <OutPutBlobUrI> -ErrorBlobUri <ErrorBlobUri>
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand3" -Location "eastus" -SourceScript "id; echo HelloWorld" -OutputBlobUri <OutPutBlobUrI> -ErrorBlobUri <ErrorBlobUri>
 ```
 
 > [!NOTE]
@@ -121,7 +121,7 @@ Before using this command:
 - On a Windows machine, make sure 'Secondary Logon' is running.
 
 ```powershell-interactive
-New-AzMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -SourceScript "id; echo HelloWorld" -RunAsUser myusername -RunAsPassword mypassword
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -SourceScript "id; echo HelloWorld" -RunAsUser myusername -RunAsPassword mypassword
 ```
 
 #### Create or update Run command on a machine with a local script file
@@ -129,7 +129,7 @@ New-AzMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -Run
 This command creates or updates a Run command on a machine by using a local script file on the client machine where `cmdlet` runs.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -VMName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -ScriptLocalPath "C:\MyScriptsDir\MyScript.ps1"
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -ScriptLocalPath "C:\MyScriptsDir\MyScript.ps1"
 ```
 
 #### Create or update Run command on a machine while passing sensitive inputs to the script
@@ -246,7 +246,7 @@ PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
       },
       {
         "name": "port",
-        "value": 433
+      "value": 443
       },
       {
         "name": "protocol",
@@ -255,7 +255,7 @@ PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
     ],
     "asyncExecution": false,
     "runAsUser": "contoso-user1",
-    "runAsPassword": "Contoso123!"
+    "runAsPassword": "Contoso123!",
     "timeoutInSeconds": 3600,
     "outputBlobUri": "https://mystorageaccount.blob.core.windows.net/myscriptoutputcontainer/MyScriptoutput.txt",
     "errorBlobUri": "https://mystorageaccount.blob.core.windows.net/mycontainer/MyScriptError.txt"
@@ -287,7 +287,7 @@ PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
       },
       {
         "name": "port",
-        "value": 433
+        "value": 443
       },
       {
         "name": "protocol",
@@ -296,7 +296,7 @@ PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
     ],
     "asyncExecution": false,
     "runAsUser": "contoso-user1",
-    "runAsPassword": "Contoso123!"
+    "runAsPassword": "Contoso123!",
     "timeoutInSeconds": 3600,
     "outputBlobUri": "https://mystorageaccount.blob.core.windows.net/myscriptoutputcontainer/MyScriptoutput.txt",
     "errorBlobUri": "https://mystorageaccount.blob.core.windows.net/mycontainer/MyScriptError.txt"
@@ -344,7 +344,7 @@ PATCH https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4
       },
       {
         "name": "port",
-        "value": 433
+        "value": 443
       },
       {
         "name": "protocol",
@@ -410,7 +410,7 @@ azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandle
 This example adds the Run command extensions to an allowlist on a Linux VM:
 
 ```azurecli
-azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
+azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"
 ```
 
 ## Next steps
