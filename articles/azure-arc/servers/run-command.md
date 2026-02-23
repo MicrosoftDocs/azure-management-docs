@@ -7,7 +7,7 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 # Customer intent: "As a system administrator managing hybrid infrastructure, I want to remotely execute scripts on Arc-enabled servers, so that I can efficiently perform administrative tasks and enhance security without needing to log into each VM directly."
 ---
 
-# What is Run command on Azure Arc-enabled servers (preview)?
+# Run command on Azure Arc-enabled servers (preview)
 
 The Run command on Azure Arc-enabled servers (preview) lets you remotely and securely execute scripts or commands on virtual machines (VMs) connected to Azure Arc, without requiring a direct connection through Remote Desktop Protocol or SSH.
 
