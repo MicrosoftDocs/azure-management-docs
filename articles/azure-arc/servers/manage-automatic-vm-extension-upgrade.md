@@ -68,6 +68,7 @@ Many VM extensions support automatic extension upgrade, including the following 
 - Boot Integrity Monitoring - Guest Attestation
 - Microsoft Antimalware extension (Windows only)
 - Defender for SQL Servers Advanced Threat Protection (Windows only)
+- Azure Extension for SQL Server
 
 Extensions that don't currently support automatic extension upgrade are still configured to enable automatic upgrades by default once the feature is available for those extensions. This setting has no effect until the extension publisher chooses to support automatic upgrades. For a list of extensions that support automatic extension upgrade, including extensions that aren't currently supported for Azure Arc-enabled servers, see [Automatic Extension Upgrade for virtual machines and scale sets in Azure](/azure/virtual-machines/automatic-extension-upgrade#supported-extensions).
 
