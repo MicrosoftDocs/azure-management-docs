@@ -56,6 +56,26 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/azure-arc/servers/run-command-security.md",
+            "redirect_url": "/azure/azure-arc/servers/run-command",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/run-command-rest.md",
+            "redirect_url": "/azure/azure-arc/servers/run-command",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/run-command-cli.md",
+            "redirect_url": "/azure/azure-arc/servers/run-command",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/run-command-powershell.md",
+            "redirect_url": "/azure/azure-arc/servers/run-command",
+            "redirect_document_id": false
+        },        
+        {
             "source_path_from_root": "/articles/azure-arc/servers/learn/tutorial-assign-policy-portal.md",
             "redirect_url": "/azure/azure-arc/servers/tutorial-assign-policy-portal",
             "redirect_document_id": true
