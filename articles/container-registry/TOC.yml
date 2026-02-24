@@ -212,14 +212,15 @@
         href: container-registry-private-link.md
       - name: Configure public registry access
         href: container-registry-access-selected-networks.md
+      - name: Access behind a firewall
+        displayName: rules, firewall rules, dedicated data endpoint
+        href: container-registry-firewall-access-rules.md
       - name: Mitigate data exfiltration with dedicated data endpoints
         href: container-registry-dedicated-data-endpoints.md
       - name: Restrict access using service endpoint (preview)
         href: container-registry-vnet.md
       - name: Allow access by trusted services
         href: allow-access-trusted-services.md
-      - name: Access behind a firewall
-        href: container-registry-firewall-access-rules.md
     - name: Registries and other Azure services
       expanded: false
       items:
