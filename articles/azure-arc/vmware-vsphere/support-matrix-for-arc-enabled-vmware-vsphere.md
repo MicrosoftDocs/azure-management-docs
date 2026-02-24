@@ -74,7 +74,7 @@ The minimum Azure roles required for operations related to Arc-enabled VMware vS
 | VM Provisioning | Azure Arc VMware VM Contributor | On the subscription or resource group where you want to provision VMs |
 | VM Operations | Azure Arc VMware VM Contributor | On the subscription or resource group that contains the VM, or on the VM itself |
 
-If you have roles with higher permissions on the same scope, such as Owner or Contributor, you can also perform the operations listed earlier.
+If you have roles with higher permissions on the same scope, such as Owner, you can also perform the operations listed earlier.
 
 ## Guest management (Arc agent) requirements
 
@@ -130,3 +130,4 @@ The Azure Arc agents need the following firewall URL exceptions:
 ## Next steps
 
 - [Connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md)
+
