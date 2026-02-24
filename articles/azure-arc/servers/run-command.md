@@ -395,17 +395,17 @@ To control access to the Run command functionality, use one of the [built-in rol
 
 ### Block run commands locally
 
-You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive).
+You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allow list (inclusive) or a block list (exclusive).
 
-For more information, see [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists).
+For more information, see [Extension allow lists and block lists](security-extensions.md#allowlists-and-blocklists).
 
-The following example adds the Run command extension to a blocklist on a Windows VM:
+The following example adds the Run command extension to a block list on a Windows VM:
 
 ```azurecli
 azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"
 ```
 
-This example adds the Run command extensions to an allowlist on a Linux VM:
+This example adds the Run command extensions to an allow list on a Linux VM:
 
 ```azurecli
 azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"
