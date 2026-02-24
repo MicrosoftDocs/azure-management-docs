@@ -12,7 +12,7 @@ ms.date: 02/24/2026
 
 Dedicated data endpoints in Azure Container Registry enable tightly scoped client firewall rules to specific registries, minimizing data exfiltration concerns.
 
-Dedicated data endpoints feature is available for registries in the **Premium** [service tier](includes/container-registry-quickstart-sku.md). For pricing information, see [container-registry-pricing.](https://azure.microsoft.com/pricing/details/container-registry/)
+The dedicated data endpoints feature is available for registries in the **Premium** [service tier](container-registry-skus.md).
 
 Pulling content from a registry involves two endpoints:
 
