@@ -1,7 +1,7 @@
 ---
 title: Run command on Azure Arc-enabled servers (preview)
 description: The Run command lets you remotely and securely execute scripts or commands on Azure Arc-enabled servers.
-ms.date: 02/23/2026
+ms.date: 02/24/2026
 ms.topic: overview
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 # Customer intent: "As a system administrator managing hybrid infrastructure, I want to remotely execute scripts on Arc-enabled servers, so that I can efficiently perform administrative tasks and enhance security without needing to log into each VM directly."
@@ -204,9 +204,7 @@ az connectedmachine run-command delete --name "myRunCommand" --machine-name "myM
 
 ### [REST API](#tab/rest-api)
 
-The example commands in this section walk you through using the Run command to remotely configure a firewall rule that allows access to the endpoint `www.microsoft.com/pkiops/certs`. The example scenario uses each of the available REST operations.
-
-These examples use the following values:
+The example commands in this section show how to use the [REST API](/rest/api/hybridcompute/machine-run-commands) to remotely configure a firewall rule that allows access to the endpoint `www.microsoft.com/pkiops/certs`. The example scenario uses each of the available REST operations and the following values:
 
 - **Subscription ID** - `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`
 - **Arc-enabled server name** -  `2012DatacenterServer1`
