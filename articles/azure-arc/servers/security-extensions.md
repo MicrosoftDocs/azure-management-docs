@@ -25,7 +25,7 @@ All extension operations originate from Azure through an API call, CLI, PowerShe
 
 ## Script execution
 
-The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allowlist or blocklist](#allowlists-and-blocklists). For instance, unless you plan to use the Custom Script extension for remote code execution, you should disable its use, as it can be used by attackers to remotely execute commands that deploy malicious code.
+The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allow list or block list](#allow-lists-and-block-lists). For instance, unless you plan to use the Custom Script extension for remote code execution, you should disable its use, as it can be used by attackers to remotely execute commands that deploy malicious code.
 
 ## Local agent security controls
 
@@ -33,17 +33,17 @@ You can optionally limit the extensions that can be installed on your server and
 
 These security controls can only be configured by running a command on the server itself, and they can't be modified from Azure. This approach preserves the server admin's intent when enabling remote management scenarios with Azure Arc, but also means that it's more difficult to change these options later. These controls are intended for sensitive servers such as Active Directory domain controllers, servers that handle payment data, and servers subject to strict change control measures). In most other cases, it's not necessary to modify these settings.
 
-## Allowlists and blocklists
+## Allow lists and block lists
 
-The Azure Connected Machine agent supports an allowlist and blocklist to restrict which extensions can be installed on your machine. Allowlists are exclusive, meaning that only the specific extensions you include in the list can be installed. Blocklists are exclusive, meaning anything except those extensions can be installed. Allowlists are preferable to blocklists because they inherently block any new extensions that become available in the future.
+The Azure Connected Machine agent supports an allow list and block list to restrict which extensions can be installed on your machine. Allow lists are exclusive, meaning that only the specific extensions you include in the list can be installed. Block lists are exclusive, meaning anything except those extensions can be installed. Allow lists are preferable to block lists because they inherently block any new extensions that become available in the future.
 
-Allowlists and blocklists are configured locally on a per-server basis. This ensures that nobody, not even a user with Owner or Global Administrator permissions in Azure, can override your security rules by trying to install an unauthorized extension. If someone tries to install an unauthorized extension, the extension manager refuses to install it and marks the extension installation report as a failure to Azure.
+Allow lists and block lists are configured locally on a per-server basis. This ensures that nobody, not even a user with Owner or Global Administrator permissions in Azure, can override your security rules by trying to install an unauthorized extension. If someone tries to install an unauthorized extension, the extension manager refuses to install it and marks the extension installation report as a failure to Azure.
 
-Allowlists and blocklists can be configured anytime after the agent is installed, including before the agent is connected to Azure.
+Allow lists and block lists can be configured anytime after the agent is installed, including before the agent is connected to Azure.
 
-If no allowlist or blocklist is configured on the agent, all extensions are allowed.
+If no allow list or block list is configured on the agent, all extensions are allowed.
 
-The most secure option is to explicitly allow the extensions you expect to be installed. Any extension not in the allowlist is automatically blocked. For example, to configure the Azure Connected Machine agent to allow only the Azure Monitor Agent for Linux, run the following command on each server:
+The most secure option is to explicitly allow the extensions you expect to be installed. Any extension not in the allow list is automatically blocked. For example, to configure the Azure Connected Machine agent to allow only the Azure Monitor Agent for Linux, run the following command on each server:
 
 ```bash
 azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorLinuxAgent"
@@ -59,19 +59,19 @@ Specify extensions with their publisher and type, separated by a forward slash `
 
 You can list the VM extensions that are already installed on your server in the [portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed), or [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed).
 
-The table describes the behavior for extension operations against an agent that has the allowlist or blocklist configured.
+The table describes the behavior for extension operations against an agent that has the allow list or block list configured.
 
-| Operation | In the allowlist | In the blocklist | In both the allowlist and blocklist | Not in any list, but an allowlist is configured |
-|--|--|--|--|
+| Operation | In the allow list | In the block list | In both the allow list and block list | Not in any list, but an allow list is configured |
+|--|--|--|--|--|
 | Install extension | Allowed | Blocked | Blocked | Blocked |
 | Update (reconfigure) extension | Allowed | Blocked | Blocked | Blocked |
 | Upgrade extension | Allowed | Blocked | Blocked | Blocked |
 | Delete extension | Allowed | Allowed | Allowed | Allowed |
 
 > [!IMPORTANT]
-> If an extension is already installed on your server before you configure an allowlist or blocklist, it isn't removed. It's your responsibility to delete the extension from Azure to fully remove it from the machine. Delete requests are always accepted to accommodate this scenario. Once deleted, the allowlist and blocklist determine whether or not to allow future install attempts.
+> If an extension is already installed on your server before you configure an allow list or block list, it isn't removed. It's your responsibility to delete the extension from Azure to fully remove it from the machine. Delete requests are always accepted to accommodate this scenario. Once deleted, the allow list and block list determine whether or not to allow future install attempts.
 
-The allowlist value `Allow/None` instructs the extension manager to run, but not allow any extensions to be installed. This value is recommended when using Azure Arc to deliver Windows Server 2012 Extended Security Updates (ESU) without intending to use any other extensions.
+The allow list value `Allow/None` instructs the extension manager to run, but not allow any extensions to be installed. This value is recommended when using Azure Arc to deliver Windows Server 2012 Extended Security Updates (ESU) without intending to use any other extensions.
 
 ```bash
 azcmagent config set extensions.allowlist "Allow/None"
@@ -83,11 +83,11 @@ Another option to restrict which extensions can be installed is to use [Azure Po
 
 ## Agent monitor mode
 
-By default, the Connected Machine agent runs in *full mode*, which allows all extensions to be installed and used (unless restricted by allowlists, blocklists, or Azure Policy). A simple way to configure local security controls for monitoring and security scenarios is to enable *monitor mode* for the Connected Machine agent.
+By default, the Connected Machine agent runs in *full mode*, which allows all extensions to be installed and used (unless restricted by allow lists, block lists, or Azure Policy). A simple way to configure local security controls for monitoring and security scenarios is to enable *monitor mode* for the Connected Machine agent.
 
 When the agent is in monitor mode, only extensions that are related to monitoring and security, such as the Azure Monitor Agent and Microsoft Defender for Cloud, can be deployed. The agent blocks any extensions that could change the system configuration or run arbitrary scripts, and disables the guest configuration policy agent.
 
-As new extensions become available, Microsoft updates the monitor mode allowlist. You can review the current list of allowed extensions by running [`azcmagent config list`](azcmagent-config.md#azcmagent-config-list).
+As new extensions become available, Microsoft updates the monitor mode allow list. You can review the current list of allowed extensions by running [`azcmagent config list`](azcmagent-config.md#azcmagent-config-list).
 
 To enable monitor mode, run the following command:
 
@@ -101,7 +101,7 @@ You can check the current mode of the agent and allowed extensions with the foll
 azcmagent config list
 ```
 
-While in monitor mode, you can't modify the extension allowlist or blocklist. If you need to change either list, change the agent back to full mode and specify your own allowlist and blocklist instead of using monitor mode.
+While in monitor mode, you can't modify the extension allow list or block list. If you need to change either list, change the agent back to full mode and specify your own allow list and block list instead of using monitor mode.
 
 To change the agent back to full mode, run the following command:
 
@@ -113,7 +113,7 @@ azcmagent config set config.mode full
 
 When configuring the Azure Connected Machine agent with a reduced set of capabilities, it's important to consider the mechanisms that someone could use to remove those restrictions and implement appropriate controls. Anybody capable of running commands as an administrator or root user on the server can change the Azure Connected Machine agent configuration. Extensions and guest configuration policies execute in privileged contexts on your server, and as such might be able to change the agent configuration. If you apply local agent security controls to lock down the agent, Microsoft recommends the following best practices to ensure only local server admins can update the agent configuration:
 
-* Use allowlists for extensions instead of blocklists whenever possible.
+* Use allow lists for extensions instead of block lists whenever possible.
 * Don't allow the Custom Script Extension unless you need it for a specific purpose.
 * Disable Guest Configuration to prevent the use of custom Guest Configuration policies that could change the agent configuration.
 
