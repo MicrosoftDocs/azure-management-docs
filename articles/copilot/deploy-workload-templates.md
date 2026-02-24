@@ -23,7 +23,7 @@ Here are a few examples of the kinds of prompts you can use to discover and depl
 - "Deploy a computer vision model to scan aerial imagery for changes to buildings and land releases"
 - "Deploy nodejs web app with Postgres DB"
 - "I want to build a RAG using an LLM on Azure"
-- "Do you have a template to help me deploy Azure AI Services?"
+- "Do you have a template to help me deploy Foundry Tools?"
 - "Move a .NET application I have to Azure"
 - "Deploy python function app running on docker"
 - "I want to take advantage of OpenAI or other advanced models in a protected environment that is subject to Enterprise Data Protection (EDP) policies so I can use company data in the process."

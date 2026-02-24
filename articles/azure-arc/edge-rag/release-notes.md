@@ -71,7 +71,7 @@ For more information, see [What's new in Edge RAG](whats-new.md).
 
 **Extension version**: `0.1.5` [Preview]
 
-- Resolved authentication problems for endpoints that Azure AI Foundry created for bring your own model (BYOM) deployments.
+- Resolved authentication problems for endpoints that Microsoft Foundry created for bring your own model (BYOM) deployments.
 - Temporarily disabled chat history to improve performance. Each question is answered based only on retrieved content.
 - Improved security.
 
