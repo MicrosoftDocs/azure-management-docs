@@ -25,7 +25,7 @@ All extension operations originate from Azure through an API call, CLI, PowerShe
 
 ## Script execution
 
-The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allow list or block list](#allowlists-and-blocklists). For instance, unless you plan to use the Custom Script extension for remote code execution, you should disable its use, as it can be used by attackers to remotely execute commands that deploy malicious code.
+The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allow list or block list](#allow-lists-and-block-lists). For instance, unless you plan to use the Custom Script extension for remote code execution, you should disable its use, as it can be used by attackers to remotely execute commands that deploy malicious code.
 
 ## Local agent security controls
 
@@ -62,7 +62,7 @@ You can list the VM extensions that are already installed on your server in the 
 The table describes the behavior for extension operations against an agent that has the allow list or block list configured.
 
 | Operation | In the allow list | In the block list | In both the allow list and block list | Not in any list, but an allow list is configured |
-|--|--|--|--|
+|--|--|--|--|--|
 | Install extension | Allowed | Blocked | Blocked | Blocked |
 | Update (reconfigure) extension | Allowed | Blocked | Blocked | Blocked |
 | Upgrade extension | Allowed | Blocked | Blocked | Blocked |

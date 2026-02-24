@@ -397,7 +397,7 @@ To control access to the Run command functionality, use one of the [built-in rol
 
 You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allow list (inclusive) or a block list (exclusive).
 
-For more information, see [Extension allow lists and block lists](security-extensions.md#allowlists-and-blocklists).
+For more information, see [Extension allow lists and block lists](security-extensions.md#allow-lists-and-block-lists).
 
 The following example adds the Run command extension to a block list on a Windows VM:
 
