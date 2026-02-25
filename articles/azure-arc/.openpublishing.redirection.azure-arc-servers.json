@@ -74,6 +74,11 @@
             "source_path_from_root": "/articles/azure-arc/servers/run-command-powershell.md",
             "redirect_url": "/azure/azure-arc/servers/run-command",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/learn/onboard-update-management-machines.md",
+            "redirect_url": "/azure/azure-arc/servers/deployment-options",
+            "redirect_document_id": true
         },        
         {
             "source_path_from_root": "/articles/azure-arc/servers/learn/tutorial-assign-policy-portal.md",
