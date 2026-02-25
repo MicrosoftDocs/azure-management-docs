@@ -113,7 +113,7 @@ Security updates and bug fixes.
 
 ## Version 1.2.0-preview
 
-- Extension identity and OneLake support: Azure Container Storage enabled by Azure Arc now allows use of a system-assigned extension identity for access to blob storage or OneLake lake houses.
+- Extension identity and OneLake support: Azure Container Storage enabled by Azure Arc now allows use of a system-assigned extension identity for access to blob storage or OneLake lakehouses.
 - Security fixes: security maintenance (package/module version updates).
 
 ## Version 1.1.0-preview
