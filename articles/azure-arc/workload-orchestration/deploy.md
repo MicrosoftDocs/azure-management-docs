@@ -118,11 +118,13 @@ If a deployment fails, you can retry the deployment by following these steps:
 
 You can stop a deployed solution. This action is useful if you want to stop the solution without deleting it. To stop a solution, follow these steps:
 
-1. Choose the solution version to be un-deployed and click **Stop**.
+1. Choose the solution version to be uninstalled and click **Stop**.
 
     :::image type="content" source="./media/deploy-stop.png" alt-text="Screenshot of the Deploy tab showing how to stop a deployed solution." lightbox="./media/deploy-stop.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
+1. You can click on the solution status to track the uninstallation progress. You will see the following status on completion.
+    :::image type="content" source="./media/deploy-stop-1.png" alt-text="Screenshot of the Deploy tab showing how to stop a deployed solution." lightbox="./media/deploy-stop-1.png":::
 
 ## Delete a solution
 

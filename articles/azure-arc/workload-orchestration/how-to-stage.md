@@ -654,20 +654,34 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
 
 You can view staging details in the **Published solutions** tab of the [workload orchestration portal](configure.md#view-the-published-solutions). 
 
-1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) and go to the **Configure** tab on the left side of the page.
+1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) and go to the **Configure Solutions** tab on the left side of the screen.
 1. Select the **Published solutions** tab.
-1. Choose a solution with status **Publishing in progress** and click on the alert icon to view the details of the staging process.
+1. Choose a solution with status **Publish in progress** and click on the status to view the details of the staging process.
 
     :::image type="content" source="./media/staging-published-solutions.png" alt-text="Screenshot of the Published solutions tab in the workload orchestration portal." lightbox="./media/staging-published-solutions.png":::
 
-1. The status of the staging process is displayed. If the staging is successful, you see a message indicating that images are downloaded to the edge cluster. 
+1. You can see the details of all the steps performed, including staging, shown as **Staging in progress**. If the staging is successful, the step name changes to **Staging completed**, along with completion timestamp. 
 
     :::image type="content" source="./media/staging-downloading.png" alt-text="Screenshot of the successful staging status in the workload orchestration portal." lightbox="./media/staging-downloading.png":::
 
-1. If the staging fails, you see an error message indicating the failure. For more information, contact your IT administrator.
+1. If the staging fails, the step name changes to **Staging failed** and you see an error message indicating the reason for failure.
 
     :::image type="content" source="./media/staging-failure.png" alt-text="Screenshot of the failed staging status in the workload orchestration portal." lightbox="./media/staging-failure.png":::
 
+## Un-stage a solution
+
+You can undo the staging process for a solution revision applied to a target by running the following command.
+
+#### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration target unstage --name "$targetName" --resource-group "$rg" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0
+```
+#### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration target unstage --name $targetName --resource-group $rg --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0
+```
 
 ## Related content
 

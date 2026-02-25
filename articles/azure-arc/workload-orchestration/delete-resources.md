@@ -64,27 +64,27 @@ Delete a target and all its child resources using the following command:
 ### [Bash](#tab/bash)
 
 ```bash
-# Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription "$subId" --resource-group "$rg" --target-name "$childName" --force-delete false
+az workload-orchestration target delete --resource-group "$rg" --target-name "$childName"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-# Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName --force-delete false
+az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName
 ```
+
+Target deletion automatically uninstalls all running workloads (instances, solutions, namespaces, and the target itself) from the cluster. The corresponding cloud resources (Target, TargetSolution, TargetSolutionVersion and Instances) are also deleted successfully.
 
 ***
 
 ## Delete a solution template version
 
-Delete solution template version across all targets if it's not deployed using the following command:
+Delete solution template version across all targets even if it's deployed, using the following command:
 
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template remove-version --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
+az workload-orchestration solution-template remove-version --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -93,17 +93,21 @@ az workload-orchestration solution-template remove-version --subscription "$subI
 az workload-orchestration solution-template remove-version --subscription $subId --resource-group $rg --solution-template-name $appName1 --version $appVersion
 ```
 
+The deletion succeeds even if the solution template version is being reference by a target solution version, which remains unaffected.
+
 ***
 
 ## Delete a solution template
 
-Delete a solution template across all targets if it has no versions using the following command:
+Delete a solution template across all targets using the following command:
 
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template delete --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1"
+az workload-orchestration solution-template delete --resource-group "$rg" --solution-template-name "$appName1"
 ```
+
+Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically.
 
 ### [PowerShell](#tab/powershell)
 
@@ -148,6 +152,24 @@ az workload-orchestration config-template delete --subscription $subId --resourc
 ```
 
 ***
+
+### Delete a Context
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration context delete --resource-group "$rg" -n "$contextName"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration context delete --resource-group $rg -n $contextName
+```
+Context deletion succeeds even if targets are created within it. All associated site references are deleted, while the cluster and targets are unaffected.
+
+***
+
 
 ## Delete existing resources in a resource group 
 

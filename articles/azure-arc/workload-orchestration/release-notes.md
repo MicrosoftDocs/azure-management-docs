@@ -11,6 +11,32 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
+## February 2026 release
+
+### New features
+
+- **Granular monitoring of operations**: The ability to view detailed real‑time progress in the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) has been extended to **Publish** (including staging and un-staging) and **Uninstall** operations on solutions. This enables viewing completion status of intermediate steps along with timestamps, and the user who initiated the operation. In case of a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
+
+- **Support for un-staging solutions**: Users can now un-stage a staged solution (excluding shared applications) from a target through Azure CLI, and the progress of the same can be monitored from the workload orchestration portal.
+
+### Improvements in CLI
+
+- **Azure CLI Workload Orchestration Extension 5.1.0** is now available with the new capabilities and improvements. To install it, run:
+
+  ```bash
+  az extension add --name workload-orchestration
+  ```
+
+  To update your existing installation to the latest version, run:
+
+  ```bash
+  az extension update --name workload-orchestration
+  ```
+
+### Improvements in Portal
+- **Bulk target validation**: While deploying a solution to multiple targets on portal, users can choose to configure common parameter values for all targets or set custom values for each, and are able to validate the configurations for all targets in a single screen.
+
+
 ## December 2025 release
 
 ### New features
@@ -79,9 +105,9 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### New features
 
-- *Granular visibility of deployment operations*: Users can now view detailed real‑time progress in the workload orchestration portal while deploying solutions. This includes intermediate steps along with timestamps, and the user who initiated the deployment. In case of a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
+- **Granular visibility of deployment operations**: Users can now view detailed real‑time progress in the workload orchestration portal while deploying solutions. This includes intermediate steps along with timestamps, and the user who initiated the deployment. In case of a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
 
-- *Event Log for improved monitoring*: A new **Event Log** tab under the **Monitor** pane in the portal provides a chronological view of all user‑initiated actions across solutions and targets. Users can filter or group the view based on relevant fields, and further drill down into details of individual executions within an operation. This feature acts as an audit trail and improves transparency in shared environments.
+- **Event Log for improved monitoring**: A new **Event Log** tab under the **Monitor** pane in the portal provides a chronological view of all user‑initiated actions across solutions and targets. Users can filter or group the view based on relevant fields, and further drill down into details of individual executions within an operation. This feature acts as an audit trail and improves transparency in shared environments.
 
 ### Improvements in workload orchestration portal
 
