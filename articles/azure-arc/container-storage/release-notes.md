@@ -4,7 +4,7 @@ description: Learn about new features in Azure Container Storage enabled by Azur
 author: sethmanheim
 ms.author: sethm
 ms.topic: release-notes
-ms.date: 05/13/2025
+ms.date: 02/25/2026
 
 # Customer intent: "As a cloud administrator, I want to review the latest release notes for Azure Container Storage enabled by Azure Arc, so that I can understand the new features and improvements to manage container data effectively."
 ms.custom:
@@ -19,13 +19,33 @@ This article provides information about new features in Azure Container Storage 
 > Azure Container Storage enabled by Azure Arc is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
+## Version 2.11.2
+
+- Security updates and bug fixes​.
+- Added **southcentralus** as a supported region​.
+- Static retain storage class fixes​.
+
+## Version 2.10.0
+
+Security updates and bug fixes​.
+
+## Version 2.9.1
+
+- Security updates and bug fixes​.
+- Added back​ static retain storage classes.
+
+## Version 2.9.0
+
+- Security updates and bug fixes​.
+- Removed static retain storage classes​.
+
 ## Version 2.8.2
 
-- Public Preview of Mirror subvolumes
-- New CRD for Mirror subvolumes
-- New CRD for Ingest subvolumes
-- Performance improvements
-- Security updates and bug fixes
+- Public Preview of Mirror subvolumes.
+- New CRD for Mirror subvolumes.
+- New CRD for Ingest subvolumes.
+- Performance improvements.
+- Security updates and bug fixes.
 
 > [!NOTE]
 > In releases 2.7 and earlier, there was an **edgeSubvolume** CRD. To view the edgeSubvolume CRD documentation, see [Cloud Ingest Edge Volumes configuration](/previous-versions/azure/azure-arc/container-storage/cloud-ingest-edge-volume-configuration) on the previous versions site.
