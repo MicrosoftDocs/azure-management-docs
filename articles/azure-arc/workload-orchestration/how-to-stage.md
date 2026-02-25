@@ -677,11 +677,13 @@ You can undo the staging process for a solution revision applied to a target by 
 ```bash
 az workload-orchestration target unstage --name "$targetName" --resource-group "$rg" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0
 ```
+
 #### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration target unstage --name $targetName --resource-group $rg --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0
 ```
+***
 
 ## Related content
 

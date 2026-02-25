@@ -72,6 +72,7 @@ az workload-orchestration target delete --resource-group "$rg" --target-name "$c
 ```powershell
 az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName
 ```
+***
 
 Target deletion automatically uninstalls all running workloads (instances, solutions, namespaces, and the target itself) from the cluster. The corresponding cloud resources (Target, TargetSolution, TargetSolutionVersion and Instances) are also deleted successfully.
 
@@ -95,6 +96,7 @@ az workload-orchestration solution-template remove-version --resource-group "$rg
 ```powershell
 az workload-orchestration solution-template remove-version --subscription $subId --resource-group $rg --solution-template-name $appName1 --version $appVersion
 ```
+***
 
 The deletion succeeds even if the solution template version is being reference by a target solution version, which remains unaffected.
 You can verify the deletion of the solution template version by listing all revisions of a solution deployed on a target.
@@ -123,13 +125,15 @@ Delete a solution template across all targets using the following command:
 az workload-orchestration solution-template delete --resource-group "$rg" --solution-template-name "$appName1"
 ```
 
-Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically.
-
 ### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration solution-template delete --subscription $subId --resource-group $rg --solution-template-name $appName1
 ```
+
+***
+
+Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically.
 
 ***
 
@@ -182,6 +186,8 @@ az workload-orchestration context delete --resource-group "$rg" -n "$contextName
 ```powershell
 az workload-orchestration context delete --resource-group $rg -n $contextName
 ```
+***
+
 Context deletion succeeds even if targets are created within it. All associated site references are deleted, while the cluster and targets are unaffected. Any context related operation that is triggered while deletion or is already in progress will fail.
 
 
@@ -200,6 +206,8 @@ az customlocation delete --resource-group "$rg" -n "$customLocationName"
 ```powershell
 az customlocation delete --resource-group $rg -n $customLocationName
 ```
+***
+
 All targets associated to the custom location also get deleted, and no new targets can be created. Solution revisions in Review state can be published but not deployed. Deployed solutions remain unaffected but cannot be uninstalled as the cluster is no longer connected to workload orchestration.
 
 ***
