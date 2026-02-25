@@ -3,7 +3,7 @@ title: Built-in Policy Definitions for Azure Container Registry
 description: Discover Azure Policy built-in definitions for Azure Container Registry. This list provides common approaches to manage and secure your Azure resources.
 author: rayoef
 ms.author: rayoflores
-ms.date: 02/06/2024
+ms.date: 02/24/2026
 ms.topic: reference
 ms.service: azure-container-registry
 ms.custom: subject-policy-reference
