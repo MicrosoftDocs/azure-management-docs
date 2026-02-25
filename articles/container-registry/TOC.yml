@@ -216,7 +216,7 @@
         displayName: rules, firewall rules, dedicated data endpoint
         href: container-registry-firewall-access-rules.md
       - name: Mitigate data exfiltration
-        href: dedicated data endpoints, endpoint, data endpoint
+        displayName: dedicated data endpoints, endpoint, data endpoint
         href: container-registry-dedicated-data-endpoints.md
       - name: Restrict access using service endpoint (preview)
         href: container-registry-vnet.md
