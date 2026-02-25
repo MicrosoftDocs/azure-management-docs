@@ -27,7 +27,7 @@ This article provides information about new features in Azure Container Storage 
 
 ## Version 2.10.0
 
-Security updates and bug fixes​.
+- Security updates and bug fixes​.
 
 ## Version 2.9.1
 
