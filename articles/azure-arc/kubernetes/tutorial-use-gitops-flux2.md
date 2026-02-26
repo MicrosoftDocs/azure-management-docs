@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 08/25/2025
+ms.date: 02/25/2026
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
