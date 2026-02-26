@@ -60,11 +60,18 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry list --registry "$acrName" --output table # shows offline
     ```
 
-1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to grant the service principal EdgeConfigurationManagerApp, with object ID `cba491bc-48c0-44a6-a6c7-23362a7f54a9`.
+1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to the Microsoft workload-orchestration extension installed on your Arc-connected Kubernetes cluster.
 
     ```bash
-    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Contributor" --scope --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
-    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    clusterName="<cluster_name>"
+    extensionName="<workload-orchestration extension name>"
+
+    # Extract the principal ID of the extension
+    principalId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name "$clusterName" --resource-group "$rg" --name "$extensionName" --query identity.principalId -o tsv)
+    
+    # Assign the roles
+    az role assignment create --assignee "$principalId" --role "Contributor" --scope --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    az role assignment create --assignee "$principalId" --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
     ```
 
 1. Check available IP range on cluster to use for connected registry service.
@@ -196,11 +203,18 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry list --registry $acrName --output table # shows offline
     ```
 
-1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to grant the service principal EdgeConfigurationManagerApp, with object ID `cba491bc-48c0-44a6-a6c7-23362a7f54a9`.
+1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to the Microsoft workload-orchestration extension installed on your Arc-connected Kubernetes cluster.
 
     ```powershell
-    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Contributor" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
-    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    $clusterName="<cluster_name>"
+    $extensionName="<workload-orchestration extension name>"
+
+    # Extract the principal ID of the extension
+    $principalId = az k8s-extension show --cluster-type connectedClusters --cluster-name $clusterName --resource-group $rg --name $extensionName --query identity.principalId -o tsv
+
+    # Assign the roles
+    az role assignment create --assignee $principalId --role "Contributor" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    az role assignment create --assignee $principalId --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
     ```
 
 1. Check available IP range on cluster to use for connected registry service.
