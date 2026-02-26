@@ -39,6 +39,11 @@ az workload-orchestration target uninstall --resource-group $rg --target-name $t
 
 ***
 
+> [!NOTE]
+> In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
+
+***
+
 ## Delete a solution revision
 
 Delete a solution revision for a target if it's not installed using the following command:
@@ -104,14 +109,19 @@ You can verify the deletion of the solution template version by listing all revi
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target solution-revision-list --target-name "$childName" --resource-group "$rg" --solution-template-name "$appName1"
+az workload-orchestration target solution-revision-list --target-name "$childName" --resource-group "$rg" --solution-template-name "<solution-version-id>"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target solution-revision-list --target-name $childName --resource-group $rg --solution-template-name $appName1
+az workload-orchestration target solution-revision-list --target-name $childName --resource-group $rg --solution-template-name "<solution-version-id>"
 ```
+
+***
+
+> [!NOTE]
+> The argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value. This will be updated in subsequent release.
 
 ***
 

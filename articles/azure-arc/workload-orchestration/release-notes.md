@@ -36,6 +36,10 @@ This article provides the latest and past release notes for workload orchestrati
 ### Improvements in Portal
 - **Bulk target validation**: While deploying a solution to multiple targets on portal, users can choose to configure common parameter values for all targets or set custom values for each, and are able to validate the configurations for all targets in a single screen.
 
+### Known issues
+- In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
+- In the Azure CLI command `az workload-orchestration target solution-revision-list`, the argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value.
+
 
 ## December 2025 release
 
