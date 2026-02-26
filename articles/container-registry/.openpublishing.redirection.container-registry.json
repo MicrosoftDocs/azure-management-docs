@@ -280,6 +280,21 @@
       "redirect_url": "/azure/container-registry/zone-redundancy",
       "redirect_document_id": false
     },
+   {
+      "source_path_from_root": "/articles/container-registry/container-registry-tutorial-prepare-registry.md",
+      "redirect_url": "/azure/container-registry/https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication",
+      "redirect_document_id": false
+    },    
+   {
+      "source_path_from_root": "/articles/container-registry/container-registry-tutorial-deploy-app.md",
+      "redirect_url": "/azure/container-registry/https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication",
+      "redirect_document_id": false
+    },    
+   {
+      "source_path_from_root": "/articles/container-registry/container-registry-tutorial-deploy-update.md",
+      "redirect_url": "/azure/container-registry/https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication",
+      "redirect_document_id": false
+    },    
     {
       "source_path_from_root": "/articles/container-registry/container-registry-transfer-images.md",
       "redirect_url": "/azure/container-registry/container-registry-transfer-arm-template",
