@@ -46,8 +46,7 @@ Connect-AzContainerRegistry -Name myregistry
 
 ---
 
-You can also sign in by using [docker login](https://docs.docker.com/reference/cli/docker/login/). For best practices to manage authentication credentials, see the [docker login](https://docs.docker.com/reference/cli/docker/login.) command reference
-.
+You can also sign in by using `docker login`. For best practices to manage authentication credentials, see the [docker login](https://docs.docker.com/reference/cli/docker/login) command reference.
 
 For example, you might have [assigned a service principal](container-registry-authentication.md#service-principal) to your registry for an automation scenario. When you run the following command, interactively provide the service principal appID (username) and password when prompted:
 
