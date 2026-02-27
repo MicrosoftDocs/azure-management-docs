@@ -42,6 +42,15 @@ ACR uses **eventual consistency**.
 - Replication time is a function of image size.
 - Until replication eventually completes in the background, a geo-replica may not have the latest pushed content or metadata. You can use [webhooks](container-registry-webhook.md) to receive notifications when replication for a specific pushed image completes in each geo-replica.
 
+## High availability considerations
+
+Geo-replication improves availability by keeping images in multiple regions. If one region has an outage, images remain accessible from other geo-replicas—pushing and pulling continue working through the remaining geo-replicas.
+
+For maximum resilience:
+
+- If the home region (where you created the registry) is unavailable, you can still push and pull images, but you can't modify registry properties until the home region recovers.
+- If your registry uses a [customer-managed key](tutorial-enable-customer-managed-keys.md), review the [key vault failover and redundancy guidance](/azure/key-vault/general/disaster-recovery-guidance).
+
 ### SLA and service tier considerations
 
 Azure Container Registry SLAs apply to each geo-replica independently.
@@ -150,15 +159,6 @@ Use regional endpoints when you need:
 > Regional endpoints are currently in private preview.
 > For enrollment and documentation, see [Regional endpoints for geo-replicated registries](https://github.com/Azure/acr/tree/main/docs/preview/regional-endpoints).
 
-## High availability
-
-Geo-replication improves availability by keeping images in multiple regions. If one region has an outage, images remain accessible from other replicas.
-
-For maximum resilience:
-
-- Understand that if the home region (where you created the registry) is unavailable, you can still push and pull images, but you can't modify registry properties until the home region recovers.
-- If your registry uses a [customer-managed key](tutorial-enable-customer-managed-keys.md), review the [key vault failover and redundancy guidance](/azure/key-vault/general/disaster-recovery-guidance).
-
 ## Troubleshooting
 
 ### Push fails with manifest errors
@@ -182,7 +182,7 @@ This usually arises when the identity creating a geo-replica for a private endpo
 
 ## Next steps
 
-****- [Regional endpoints](https://github.com/Azure/acr/tree/main/docs/preview/regional-endpoints)
+- [Regional endpoints](https://github.com/Azure/acr/tree/main/docs/preview/regional-endpoints)
 
 ## Related content
 
