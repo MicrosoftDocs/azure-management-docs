@@ -4,23 +4,19 @@ description: Configure Azure Container Registry to accept ARM-scoped Microsoft E
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
-ms.topic: tutorial  #Don't change.
+ms.topic: how-to
 ms.date: 02/06/2026
 # Customer intent: As a DevOps engineer, I want to configure my Azure Container Registry to control which Microsoft Entra authentication scopes are accepted, so that I can enhance security by restricting to ACR-scoped Microsoft Entra authentication only.
 ---
 
 # Configure registry acceptance of Microsoft Entra authentication scopes
 
-Microsoft Entra authentication with Azure Container Registry (ACR) follows a two-hop process. First, identities authenticate with Microsoft Entra ID to obtain an authentication token (for example, `az login`) with a specific authentication audience scope. Second, identities then authenticate with the registry using that Microsoft Entra authentication token (for example, `az acr login`). By default, in the second step during registry authentication, registries accept both ARM-scoped Microsoft Entra authentication (broad Azure Resource Manager access) and ACR-scoped Microsoft Entra authentication (narrow registry-specific access). This article explains how to configure your registry to accept only ACR-scoped Microsoft Entra authentication for enhanced security.
+Microsoft Entra authentication with Azure Container Registry (ACR) follows a two-hop process. First, users authenticate with Microsoft Entra ID to get an authentication token with a specific authentication audience scope (for example, `az login`). Next, users authenticate with the registry by using that Microsoft Entra authentication token (for example, `az acr login`). By default, in the second step during registry authentication, registries accept both ARM-scoped Microsoft Entra authentication (broad Azure Resource Manager access) and ACR-scoped Microsoft Entra authentication (narrow registry-specific access). For enhanced security, you can configure your registry to accept only ACR-scoped Microsoft Entra authentication.
 
 > [!NOTE]
 > Some Azure services and integrations might not work when your registry is configured to accept only ACR-scoped Microsoft Entra authentication. Test compatibility in nonproduction environments before enforcing this configuration in production.
 
-In this tutorial, you learn how to:
-
-> [!div class="checklist"]
-> * Configure the registry for ACR-scoped Microsoft Entra authentication using Azure CLI.
-> * Configure the registry for ACR-scoped Microsoft Entra authentication using the Azure portal.
+This article shows you how to configure a container registry for ACR-scoped Microsoft Entra authentication by using the Azure CLI or the Azure portal.
 
 ## Prerequisites
 
@@ -35,11 +31,11 @@ This section explains the two-hop authentication flow, the difference between au
 
 Authentication with ACR involves two distinct steps that apply to Azure CLI users, Azure services, and programmatic code using Software Development Kits (SDKs):
 
-1. **First hop - Authenticate with Microsoft Entra ID**: Run `az login` to authenticate with Microsoft Entra ID and obtain a Microsoft Entra authentication token. This token contains an audience scope that determines what Azure resources it can access:
-   - By default, `az login` obtains an ARM-scoped Microsoft Entra authentication token (broad Azure Resource Manager access).
-   - With `az login --scope https://containerregistry.azure.net/.default`, you obtain an ACR-scoped Microsoft Entra authentication token (narrow registry-specific access).
+1. **First hop - Authenticate with Microsoft Entra ID**: Run `az login` to authenticate with Microsoft Entra ID and get a Microsoft Entra authentication token. This token contains an audience scope that determines what Azure resources it can access:
+   - By default, `az login` gets an ARM-scoped Microsoft Entra authentication token (broad Azure Resource Manager access).
+   - By using `az login --scope https://containerregistry.azure.net/.default`, you get an ACR-scoped Microsoft Entra authentication token (narrow registry-specific access).
 
-1. **Second hop - Authenticate with the ACR service**: Run `az acr login` to authenticate with the ACR service using the Microsoft Entra authentication token from the first hop. At this point, the registry's configuration determines whether to accept or reject your registry authentication attempt based on the scope of your Microsoft Entra authentication token.
+1. **Second hop - Authenticate with the ACR service**: Run `az acr login` to authenticate with the ACR service by using the Microsoft Entra authentication token from the first hop. At this point, the registry's configuration determines whether to accept or reject your registry authentication attempt based on the scope of your Microsoft Entra authentication token.
 
 ### Microsoft Entra authentication scope types
 
@@ -57,7 +53,7 @@ Authentication with ACR involves two distinct steps that apply to Azure CLI user
 
 ### Registry configuration options
 
-Your registry configuration (controlled by the `azureADAuthenticationAsArmPolicy` property) determines what happens during the second authentication hop (`az acr login`):
+Your registry configuration, controlled by the `azureADAuthenticationAsArmPolicy` property, determines what happens during the second authentication hop (`az acr login`):
 
 - **When enabled** (default): The registry accepts both ARM-scoped and ACR-scoped Microsoft Entra authentication.
 - **When disabled** (recommended): The registry accepts only ACR-scoped Microsoft Entra authentication and rejects ARM-scoped authentication.
@@ -85,7 +81,7 @@ Run the following command to view your registry's current configuration:
 az acr config authentication-as-arm show -r <registry>
 ```
 
-The status value indicates the current configuration:
+The status value shows the current configuration:
 
 - **enabled** (default): Registry accepts both ARM-scoped and ACR-scoped Microsoft Entra authentication.
 - **disabled** (recommended): Registry accepts only ACR-scoped Microsoft Entra authentication.
@@ -106,48 +102,48 @@ az acr config authentication-as-arm update -r <registry> --status enabled
 
 ## Authenticate using ACR-scoped Microsoft Entra authentication
 
-This section demonstrates how to perform the two-hop authentication flow using ACR-scoped Microsoft Entra authentication. This authentication method works with both registry configurations, but is required when your registry is configured to accept only ACR-scoped Microsoft Entra authentication.
+This section shows how to perform the two-hop authentication flow by using ACR-scoped Microsoft Entra authentication. This authentication method works with both registry configurations, but is required when your registry is configured to accept only ACR-scoped Microsoft Entra authentication.
 
-### First hop: Obtain ACR-scoped Microsoft Entra authentication token
+### First hop: Get ACR-scoped Microsoft Entra authentication token
 
-To obtain an ACR-scoped Microsoft Entra authentication token, specify the `--scope` parameter when running `az login`:
+To get an ACR-scoped Microsoft Entra authentication token, specify the `--scope` parameter when running `az login`:
 
 ```azurecli
 az login --scope https://containerregistry.azure.net/.default
 ```
 
-This command authenticates you with Microsoft Entra ID and obtains a Microsoft Entra authentication token with ACR-specific scope. The authentication token is stored in your local cache.
+This command authenticates you by using Microsoft Entra ID and gets a Microsoft Entra authentication token with ACR-specific scope. The authentication token is stored in your local cache.
 
 > [!NOTE]
-> You must specify `https://containerregistry.azure.net/.default` to obtain a Microsoft Entra authentication token scoped for the ACR service.
+> To get a Microsoft Entra authentication token scoped for the ACR service, you must specify `https://containerregistry.azure.net/.default`.
 > You can't specify `https://registryname.azurecr.io/` as the scope, as Microsoft Entra ID and ACR don't support registry-specific Microsoft Entra authentication audiences.
 
 ### Second hop: Authenticate with the registry
 
-After obtaining the ACR-scoped Microsoft Entra authentication token in the first hop, authenticate with your registry:
+After getting the ACR-scoped Microsoft Entra authentication token in the first hop, authenticate with your registry:
 
 ```azurecli
 az acr login -n <registry>
 ```
 
-During this second hop, the registry validates your Microsoft Entra authentication token. If your registry is configured to accept only ACR-scoped authentication, it rejects ARM-scoped tokens and only accepts the ACR-scoped Microsoft Entra authentication token you obtained in the first hop.
+During this second hop, the registry validates your Microsoft Entra authentication token. If you configure your registry to accept only ACR-scoped authentication, it rejects ARM-scoped tokens and only accepts the ACR-scoped Microsoft Entra authentication token you got in the first hop.
 
-The ACR-scoped Microsoft Entra authentication token can be used to authenticate with all ACR registries that you have permissions to access.
+You can use the ACR-scoped Microsoft Entra authentication token to authenticate with all ACR registries that you have permissions to access.
 
 ## Configure registry for ACR-scoped Microsoft Entra authentication - Azure portal
 
-You can use Azure Policy to configure your registries to accept only ACR-scoped Microsoft Entra authentication. Assigning a built-in policy automatically configures the registry property for current and future registries within the policy scope. You can apply the policy at either the Resource Group level or the Subscription level.
+You can use Azure Policy to configure your registries to accept only ACR-scoped Microsoft Entra authentication. Assigning a built-in policy automatically configures the registry property for current and future registries within the policy scope. You can apply the policy at either the resource group level or the subscription level.
 
 Azure Container Registry provides two built-in policy definitions for configuring ACR-scoped Microsoft Entra authentication:
 
 - **`Container registries should have ARM audience token authentication disabled.`** - This policy reports and blocks noncompliant resources, and can automatically update noncompliant registries to the recommended configuration.
 - **`Configure container registries to disable ARM audience token authentication.`** - This policy offers remediation capabilities and updates noncompliant registries to accept only ACR-scoped authentication.
 
-For more information about ACR's built-in policy definitions, see [azure-container-registry-built-in-policy definitions](policy-reference.md).
+For more policy definitions, see [Azure Container Registry built-in policy definitions](policy-reference.md).
 
 ### Assign a built-in policy definition
 
-To configure your registries to accept only ACR-scoped Microsoft Entra authentication using Azure Policy:
+To configure your registries to accept only ACR-scoped Microsoft Entra authentication by using Azure Policy:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -161,9 +157,7 @@ To configure your registries to accept only ACR-scoped Microsoft Entra authentic
 
    :::image type="content" source="media/container-registry-enable-conditional-policy/03-Assign-policy-tab.png" alt-text="Screenshot of the Assign policy tab.":::
 
-1. Select **Scope** to filter and search for the **Subscription** and **ResourceGroup** and choose **Select**.
-
-   :::image type="content" source="media/container-registry-enable-conditional-policy/04-select-scope.png" alt-text="Screenshot of the Scope tab.":::
+1. Select **Scope** to filter and search for the **Subscription** and **Resource Group** and choose **Select**.
 
 1. Select **Policy definition** to filter and search for the built-in policy definitions that configure ACR-scoped authentication.
 
@@ -176,8 +170,6 @@ To configure your registries to accept only ACR-scoped Microsoft Entra authentic
 1. Confirm your settings and set policy enforcement as **enabled**. This setting ensures the policy configures registries within the scope to accept only ACR-scoped Microsoft Entra authentication.
 
 1. Select **Review+Create**.
-
-   :::image type="content" source="media/container-registry-enable-conditional-policy/06-enable-policy.png" alt-text="Screenshot showing how to activate a Conditional Access policy.":::
 
 ## Next steps
 
