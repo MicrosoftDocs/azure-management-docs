@@ -91,8 +91,8 @@ A potential solution is to configure a closer DNS server.
 Related links:
 
 * [Geo-replication in Azure Container Registry](container-registry-geo-replication.md)
-* [Troubleshoot push operations with geo-replicated registries](container-registry-geo-replication.md#troubleshoot-push-operations-with-geo-replicated-registries)
-* [Temporarily disable routing to replication](container-registry-geo-replication.md#temporarily-disable-routing-to-replication)
+* [Troubleshooting geo-replicated registries](container-registry-geo-replication.md#troubleshooting)
+* [Temporarily exclude a geo-replica from global endpoint routing](container-registry-geo-replication.md#temporarily-exclude-a-geo-replica-from-global-endpoint-routing)
 * [Traffic Manager FAQs](/azure/traffic-manager/traffic-manager-faqs)
 
 ### Advanced troubleshooting
