@@ -58,13 +58,13 @@ In this example, Contoso consolidated two registries down to one, adding replica
 Keep in mind the following considerations and recommendations when using geo-replication:
 
 * Each region in a geo-replicated registry is independent once set up. Azure Container Registry SLAs apply to each geo-replicated region.
-* For every push or pull image operation on a geo-replicated registry, Azure Traffic Manager in the background sends a request to the registry's closest location in the region to maintain network latency.
+* For every push or pull image operation on a geo-replicated registry, Azure Traffic Manager in the background sends a request to the registry's closest location in the region to maintain network latency. This automatic routing works well for most scenarios, but if you require explicit control over which replica handles your requests, see [Regional endpoints for direct replica access (preview)](#regional-endpoints-for-direct-replica-access-preview).
 * After you push an image or tag update to the closest region, it takes some time for Azure Container Registry to replicate the manifests and layers to the remaining regions you opted into. Larger images take longer to replicate than smaller ones. Images and tags are synchronized across the replication regions with an eventual consistency model.
 * To manage workflows that depend on push updates to a geo-replicated registry, configure [webhooks](container-registry-webhook.md) to respond to the push events. You can set up regional webhooks within a geo-replicated registry to track push events as they complete across the geo-replicated regions.
 * To serve blobs representing content layers, Azure Container Registry uses data endpoints. You can enable [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for your registry in each of your registry's geo-replicated regions. These endpoints allow configuration of tightly scoped firewall access rules. For troubleshooting purposes, you can optionally [disable routing to a replication](#temporarily-disable-routing-to-replication) while maintaining replicated data.
 * If you configure a [private link](container-registry-private-link.md) for your registry using private endpoints in a virtual network, dedicated data endpoints in each of the geo-replicated regions are enabled by default. 
 
-For high availability and resiliency, create a registry in a region that supports [zone redundancy](zone-redundancy.md), and enable zone redundancy in each replica region. If an outage occurs in the registry's home region (the region where you created it) or one of its replica regions, a geo-replicated registry remains available for data plane operations such as pushing or pulling container images. If the registry's home region becomes unavailable, you might be unable to carry out registry management operations, including configuring network rules, enabling availability zones, and managing replicas.
+For high availability and resiliency, create a registry in a region that supports [zone redundancy](zone-redundancy.md), and enable zone redundancy in each replica region. If an outage occurs in the registry's home region (the region where you created it) or one of its replica regions, a geo-replicated registry remains available for data plane operations such as pushing or pulling container images. If the registry's home region becomes unavailable, you might be unable to carry out registry management operations, including configuring network rules, enabling availability zones, and managing replicas. For scenarios that require explicit control over failover behavior, consider using [regional endpoints](#regional-endpoints-for-direct-replica-access-preview) to implement client-side failover logic.
 
 To plan for high availability of a geo-replicated registry encrypted with a [customer-managed key](tutorial-enable-customer-managed-keys.md) stored in an Azure key vault, review the guidance for key vault [failover and redundancy](/azure/key-vault/general/disaster-recovery-guidance).
 
@@ -95,6 +95,45 @@ After you configure a replica for your registry, you can delete it at any time. 
 az acr replication delete --name eastus --registry myregistry
 ```
 
+## Regional endpoints for direct replica access (preview)
+
+By default, a geo-replicated registry uses a global endpoint (`myregistry.azurecr.io`) where Azure automatically routes requests to the most suitable replica based on network performance. While this automatic routing works well for most scenarios, some workloads require explicit control over which replica handles requests.
+
+Regional endpoints provide dedicated URLs for each geo-replica, enabling you to target a specific region directly. Each replica receives a URL in the format `myregistry.<region-name>.geo.azurecr.io`. For example, a registry with replicas in East US and West Europe would have the following regional endpoints:
+
+- `myregistry.eastus.geo.azurecr.io`
+- `myregistry.westeurope.geo.azurecr.io`
+
+Regional endpoints coexist with the global endpoint. You can continue using the global endpoint for Azure-managed routing while selectively using regional endpoints for specific workloads.
+
+### Scenarios for regional endpoints
+
+Regional endpoints address scenarios where automatic routing doesn't provide sufficient control:
+
+- **Client-side failover**: Implement your own failover logic that explicitly switches between regions based on health checks or application-specific criteria, rather than relying on Azure-managed routing decisions.
+- **Regional affinity**: Ensure that specific applications or environments always use a designated replica for compliance, data residency, or performance predictability requirements.
+- **Push and pull consistency**: Guarantee that images are pushed and pulled from the same replica, avoiding potential replication lag issues in time-sensitive workflows.
+- **Troubleshooting**: Isolate and test a specific regional replica to diagnose issues without Traffic Manager routing affecting the results.
+
+### Enable regional endpoints
+
+Regional endpoints are currently in private preview. For enrollment instructions and detailed documentation, see [Regional endpoints for geo-replicated Azure container registries](https://aka.ms/acr/regionalendpoints).
+
+To enable regional endpoints on an existing registry after enrollment:
+
+```azurecli
+az acr update --name myregistry --resource-group myresourcegroup --regional-endpoints enabled
+```
+
+To view the available endpoints for your registry:
+
+```azurecli
+az acr show-endpoints --name myregistry --resource-group myresourcegroup
+```
+
+> [!NOTE]
+> Regional endpoints require the Premium service tier. When you enable regional endpoints, dedicated URLs are created for all geo-replicas automatically.
+
 ## Troubleshoot push operations with geo-replicated registries
 
 A Docker client that pushes an image to a geo-replicated registry might not push all image layers and its manifest to a single replicated region. Azure Traffic Manager routes registry requests to the network-closest replicated registry. If the registry has two *nearby* replication regions, image layers and the manifest can be distributed to the two sites, and the push operation fails when the manifest is validated. This problem occurs because of the way the DNS name of the registry is resolved on some Linux hosts. 
@@ -106,6 +145,16 @@ To optimize DNS resolution to the closest replica when pushing images, configure
 ### Temporarily disable routing to replication
 
 To troubleshoot operations with a geo-replicated registry, you might want to temporarily disable Traffic Manager routing to one or more replications. Starting in Azure CLI version 2.8, you can configure a `--region-endpoint-enabled` option (preview) when you create or update a replicated region. When you set `--region-endpoint-enabled` to `false`, Traffic Manager no longer routes docker push or pull requests to that region. By default, routing to all replications is enabled, and data synchronization across all replications takes place whether routing is enabled or disabled.
+
+> [!IMPORTANT]
+> The `--region-endpoint-enabled` setting is distinct from the `--regional-endpoints` feature. These two settings have similar names but serve different purposes:
+>
+> | Setting | Scope | Purpose |
+> |---------|-------|---------|
+> | `--region-endpoint-enabled` | Per-replication | Controls whether the global endpoint (`myregistry.azurecr.io`) routes traffic to a specific replica through Traffic Manager. |
+> | `--regional-endpoints` | Registry-level | Enables dedicated regional URLs (for example, `myregistry.westus.geo.azurecr.io`) for direct access to each replica. See [Regional endpoints for direct replica access (preview)](#regional-endpoints-for-direct-replica-access-preview). |
+>
+> When you set `--region-endpoint-enabled` to `false` on a replication, Traffic Manager excludes that replica from routing decisions for the global endpoint. However, if you have enabled the regional endpoints feature on your registry, the dedicated regional URL for that replica remains accessible. For example, if you disable routing to the West US replica but have regional endpoints enabled, clients can still access `myregistry.westus.geo.azurecr.io` directly.
 
 To disable routing to an existing replication, first run [az acr replication list][az-acr-replication-list] to list the replications in the registry. Then, run [az acr replication update][az-acr-replication-update] and set `--region-endpoint-enabled false` for a specific replication. For example, to configure the setting for the *westus* replication in *myregistry*:
 
