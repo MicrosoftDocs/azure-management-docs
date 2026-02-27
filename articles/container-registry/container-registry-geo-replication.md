@@ -48,7 +48,7 @@ Geo-replication improves availability by keeping images in multiple regions. If 
 
 For maximum resilience:
 
-- [Zone redundancy](zone-redundancy.md) is enabled by default for geo-replicas in regions that support availability zones. To disable zone redundancy for a geo-replica, set `--zone-redundancy Disabled` when creating the geo-replica.
+- [Zone redundancy](zone-redundancy.md) is enabled for geo-replicas in regions where zone redundancy is enabled.
 - If the home region (where you created the registry) is unavailable, you can still push and pull images, but you can't modify registry properties until the home region recovers.
 - If your registry uses a [customer-managed key](tutorial-enable-customer-managed-keys.md), review the [key vault failover and redundancy guidance](/azure/key-vault/general/disaster-recovery-guidance).
 
