@@ -159,6 +159,7 @@ Remove-AzContainerRegistryManifest -RegistryName myregistry -RepositoryName samp
 Now that you know the basics, you're ready to start using your registry. For example, deploy container images from your registry to:
 
 * [Azure Kubernetes Service (AKS)](/azure/aks/tutorial-kubernetes-prepare-app)
+* [Azure Container Instances](/azure/container-instances/container-instances-tutorial-prepare-app)
 * [Service Fabric](/azure/service-fabric/service-fabric-tutorial-create-container-images)
 
 <!-- LINKS - external -->
