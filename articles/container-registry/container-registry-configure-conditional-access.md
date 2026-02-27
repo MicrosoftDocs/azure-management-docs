@@ -4,38 +4,32 @@ description: Learn how to configure conditional access to your Azure Container R
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
-ms.topic: tutorial  #Don't change.
-ms.date: 11/02/2023
+ms.topic: how-to
+ms.date: 02/27/2026
 # Customer intent: As a DevOps engineer, I want to configure a Conditional Access policy for Azure Container Registry so that I can enhance security and enforce strong user authentication and access controls for my Azure services.
 ---
 
 # Conditional Access policy for Azure Container Registry
 
-Azure Container Registry (ACR) gives you the option to create and configure the *Conditional Access policy*. Conditional Access policies, which are typically associated with Azure Active Directory (Azure AD), are used to enforce strong authentication and access controls for various Azure services, including ACR.
+Azure Container Registry (ACR) gives you the option to create and configure [Microsoft Entra Conditional Access policies](/entra/identity/conditional-access/overview) to enforce strong authentication and access controls.
 
-The Conditional Access policy applies after the first-factor authentication to the Azure Container Registry is complete. The purpose of Conditional Access for ACR is for user authentication only. The policy enables the user to choose the controls and further blocks or grants access based on the policy decisions.
+The Conditional Access policy is designed to enforce strong authentication. The policy helps your organization meet compliance requirements and keeps data and user accounts safe.
 
-The [Conditional Access policy](/azure/active-directory/conditional-access/overview) is designed to enforce strong authentication. The policy enables the security to meet the organizations compliance requirements and keep the data and user accounts safe.
+Conditional access policies apply after a user authenticates to the Azure Container Registry. You can configure options to block or grant access based on your [policy decisions](/azure/active-directory/conditional-access/overview#common-decisions).
 
 >[!IMPORTANT]
-> To configure Conditional Access policy for the registry, you must disable [`authentication-as-arm`](container-registry-disable-authentication-as-arm.md) for all the registries within the desired tenant. 
+> To configure Conditional Access policy for the registry, first configure all registries in your tenant to [accept only ACR-scoped Microsoft Entra authentication](container-registry-disable-authentication-as-arm.md) for all the registries within the desired tenant.
 
-Learn more about [Conditional Access policy](/azure/active-directory/conditional-access/overview), the [conditions](/azure/active-directory/conditional-access/overview#common-signals) you'll take it into consideration to make [policy decisions.](/azure/active-directory/conditional-access/overview#common-decisions)
-
-In this tutorial, you learn how to:
-
-> [!div class="checklist"]
-> * Create and configure Conditional Access policy for Azure Container Registry.
-> * Troubleshoot Conditional Access policy.
+This article shows you how to create and configure a Conditional Access policy for Azure Container Registry, and how to troubleshoot common issues.
 
 ## Prerequisites
 
-* [Install or upgrade Azure CLI](/cli/azure/install-azure-cli) version 2.40.0 or later. To find the version, run `az --version`.
-* Sign in to the [Azure portal](https://portal.azure.com).
+* An Azure account. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. Then, sign in to the [Azure portal](https://portal.azure.com).
+* One or more Azure Container Registries. If you don't have a registry, create one by following the [Quickstart: Create a container registry using the Azure portal](/azure/container-registry/container-registry-get-started-portal) tutorial.
 
 ## Create and configure a Conditional Access policy - Azure portal
 
-ACR supports Conditional Access policy for Active Directory users only. It currently doesn't support Conditional Access policy for Service Principal. To configure Conditional Access policy for the registry, you must disable `authentication-as-arm` for all the registries within the desired tenant. In this tutorial, we'll create a basic Conditional Access policy for the Azure Container Registry from the Azure portal.
+ACR supports Conditional Access policy for Active Directory users only. It currently doesn't support Conditional Access policy for Service Principal. To configure Conditional Access policy for the registry, you must disable `authentication-as-arm` for all the registries within the desired tenant. In this tutorial, you create a basic Conditional Access policy for the Azure Container Registry from the Azure portal.
 
 Create a Conditional Access policy and assign your test group of users as follows:
 
@@ -86,7 +80,7 @@ Create a Conditional Access policy and assign your test group of users as follow
 
       :::image type="content" alt-text="A screenshot showing how to activate the Conditional Access policy." source="media/container-registry-enable-conditional-policy/06-enable-conditional-access-policy.png":::
 
-   We have now completed creating the Conditional Access policy for the Azure Container Registry.
+   You have now completed creating the Conditional Access policy for the Azure Container Registry.
 
 ## Troubleshoot Conditional Access policy
 
@@ -98,5 +92,5 @@ Create a Conditional Access policy and assign your test group of users as follow
 
 > [!div class="nextstepaction"]
 > [Azure Policy definitions](/azure/governance/policy/concepts/definition-structure) and [effects](/azure/governance/policy/concepts/effects).
->[Common access concerns that Conditional Access policies can help with](/azure/active-directory/conditional-access/concept-conditional-access-policy-common).
+> [Common access concerns that Conditional Access policies can help with](/azure/active-directory/conditional-access/concept-conditional-access-policy-common).
 > [Conditional Access policy components](/azure/active-directory/conditional-access/concept-conditional-access-policies).
