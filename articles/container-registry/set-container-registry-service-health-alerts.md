@@ -1,5 +1,5 @@
 ---
-title: Configure Service Health alerts for Azure Container Registry
+title: Configure Service Health alerts and notification for Azure Container Registry
 description: Start here to learn how you can use the features of Azure Service Health to monitor and alert service issues in Azure Container Registry.
 ms.date: 02/06/2026
 ms.topic: concept-article
@@ -22,10 +22,9 @@ quickly to any ACR availability issues or outages affecting your workloads.
 
 ## Why configure Service Health alerts for ACR?
 
-For organizations with strict availability requirements—such as banking,
-financial services, and healthcare—container registry availability directly
-impacts CI/CD pipelines and production deployments. Service Health alerts
-notify you when:
+For organizations with strict availability requirements, container registry
+availability directly impacts CI/CD pipelines and production deployments.
+Service Health alerts notify you when:
 
 - **Service issues** affect ACR in your regions (outages, degraded performance)
 - **Planned maintenance** may impact registry operations
@@ -108,6 +107,11 @@ Configure an alert rule to receive notifications when ACR service issues occur.
    (e.g., `environment: production`, `team: platform`).
 9. Select **Review + create**, then **Create**.
 
+:::image type="content" source="media/monitor-service/acr-service-health-alert-creation.png" alt-text="Screenshot of the Azure Service Health alert creation page showing configuration options for Azure Container Registry.":::
+
+> [!TIP]
+> You can also create Service Health alerts programmatically using Azure Resource Manager (ARM) templates or Bicep. For more information, see [Create activity log alerts on service notifications using an ARM template](/azure/service-health/alerts-activity-log-service-notifications-arm) and [Create activity log alerts on service notifications using Bicep](/azure/service-health/alerts-activity-log-service-notifications-bicep).
+
 ## Configure alerts for specific ACR scenarios
 
 Depending on your availability requirements, consider creating multiple alert
@@ -159,6 +163,22 @@ Confirm that your Service Health alert is active and correctly configured.
    - **Condition** shows **Service Issues**
    - **Actions** shows your configured action group
 
+## View service health notifications
+
+Once your Service Health alerts are configured, you can view notifications when service events occur.
+
+1. In the [Azure portal](https://portal.azure.com), search for and select
+   **Service Health**.
+2. Select **Health history** from the left menu to view past service events.
+3. Select any event to view detailed information including:
+   - Event summary and timeline
+   - Affected services and regions
+   - Recommended actions and updates
+
+:::image type="content" source="media/monitor-service/service-health-history.png" alt-text="Screenshot of the Azure Service Health history showing past service events for Azure Container Registry.":::
+
+For more information about viewing and managing service health notifications, see [View service health notifications in the Azure portal](/azure/service-health/service-notifications).
+
 ## Respond to Service Health alerts
 
 When you receive a Service Health alert for ACR:
@@ -172,6 +192,12 @@ When you receive a Service Health alert for ACR:
    actions in the alert.
 5. **Request a Post Incident Review (PIR)**: For significant outages, you can
    request a detailed review from the Service issues pane.
+
+## Integrate with enterprise alerting systems
+
+Service Health alerts can be integrated with enterprise on-call alerting systems through webhooks. This enables you to route Service Health notifications to your existing incident management platforms.
+
+To configure webhook integration, add a webhook action to your action group when creating Service Health alerts. For detailed information about webhook schemas and integration patterns, see [Configure health notifications for existing problem management systems using a webhook](/azure/service-health/service-health-alert-webhook-guide).
 
 ## Troubleshooting
 
