@@ -3,17 +3,16 @@ title: Arc gateway endpoint list
 description: Understand which endpoints are enabled through Azure Arc gateway.
 
 ms.topic: reference
-ms.date: 09/18/2025
+ms.date: 02/17/2026
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to see the endpoints enabled through Azure Arc gateway, so that I can understand the network requirements for Arc-enabled servers through minimal endpoint access."
 ---
 
 # Arc gateway endpoint list
 
-The following list of endpoints are enabled through [Azure Arc gateway for Arc-enabled servers](arc-gateway.md). When you configure Arc gateway, you don't need to manually unblock these endpoints in your environment.
+The following list of endpoints are enabled through [Azure Arc gateway for Arc-enabled servers](../servers/arc-gateway.md) and [Azure Arc gateway for Arc-enabled Kubernetes](../kubernetes/arc-gateway-simplify-networking.md). When you configure Arc gateway, you don't need to manually unblock these endpoints in your environment.
 
 > [!IMPORTANT]
 > This list may change over time. Refer to this page for the most up-to-date list of endpoints.
-
 
 ```
 *.arc.azure.net

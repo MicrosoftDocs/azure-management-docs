@@ -1,7 +1,7 @@
 ---
 title: Simplify Network Configuration Requirements with Azure Arc Gateway
 description: Learn how to simplify network configuration requirements with Azure Arc gateway.
-ms.date: 11/12/2025
+ms.date: 02/17/2026
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway so that I can efficiently onboard and control Azure Arc-enabled servers through minimal endpoint access."
 ---
@@ -13,9 +13,6 @@ If you use enterprise proxies to manage outbound traffic, Azure Arc gateway lets
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names.
 - View and audit all traffic that an Azure Connected Machine agent sends to Azure via Azure Arc gateway.
 
-> [!NOTE]
-> Arc gateway creation is currently impacted by temporary Azure Front Door changes. Resource creation may take up to two 2 hours and can time out, causing failures. If resource creation fails, please try Arc gateway resource creation again.
-
 ## How Azure Arc gateway works
 
 Azure Arc gateway consists of two main components:
@@ -26,8 +23,6 @@ Azure Arc gateway consists of two main components:
 When the gateway is in place, traffic flows via **Azure Arc agents** > **Azure Arc proxy** > **Enterprise proxy** > **Azure Arc gateway**  > **Target service**. For more information, see [Azure Arc gateway forwarding protocol](#azure-arc-gateway-forwarding-protocol).
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram that shows the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
-
-[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## Current limitations
 
@@ -396,7 +391,9 @@ Review the following information to understand more about the architecture of Az
 
 ### Azure Arc gateway forwarding protocol
 
-:::image type="content" source="media/arc-gateway/arc-gateway-architecture.png" lightbox="media/arc-gateway/arc-gateway-architecture.png" alt-text="Diagram that shows the architecture for Azure Arc gateway with Azure Arc-enabled servers.":::
+The following diagram illustrates the forwarding protocol used by Azure Arc gateway.
+
+:::image type="content" source="media/arc-gateway/arc-gateway-forwarding-protocol.png" lightbox="media/arc-gateway/arc-gateway-forwarding-protocol.png" alt-text="Diagram that shows the forwarding protocol architecture for Azure Arc gateway with Azure Arc-enabled servers.":::
 
 ### Azure Arc gateway and TLS inspection
 

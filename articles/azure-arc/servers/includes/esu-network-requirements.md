@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 01/13/2025
+ms.date: 02/13/2026
 # Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to understand the required endpoints for Extended Security Updates so that I can ensure proper connectivity and compliance during installation and updates."
 ---
 
@@ -25,7 +25,6 @@ You can enable the following subset of endpoints.
 |`*.guestconfiguration.azure.com`| Extension management and guest configuration services. |Always.| Private. |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | Always for automatic updates or temporarily if you download certificates manually. | Public. |
 |`*.<region>.arcdataservices.com`| Azure Arc data processing service and service telemetry.| SQL Server Extended Security Updates. | Public.|
-|`*.blob.core.windows.net` | Download SQL Server Extension package. | SQL Server Extended Security Updates. | Not required if you use Azure Private Link. |
 
 <sup>1</sup> Access to this URL is also needed when you perform updates automatically.
 

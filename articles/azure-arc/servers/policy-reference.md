@@ -1,7 +1,7 @@
 ---
 title: Built-in policy definitions for Azure Arc-enabled servers
 description: Lists Azure Policy built-in policy definitions for Azure Arc-enabled servers (preview). These built-in policy definitions provide common approaches to managing your Azure resources.
-ms.date: 02/06/2024
+ms.date: 02/12/2026
 ms.topic: reference
 ms.custom: subject-policy-reference
 # Customer intent: As an IT administrator managing hybrid environments, I want to access built-in policy definitions for Azure Arc-enabled servers, so that I can ensure compliance and effective governance of my Azure resources.
@@ -24,4 +24,4 @@ the link in the **Version** column to view the source on the
 
 - See the built-ins on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
 - Review the [Azure Policy definition structure](/azure/governance/policy/concepts/definition-structure).
-- Review [Understanding policy effects](/azure/governance/policy/concepts/effects).
+- Review [Azure Policy definition effects](/azure/governance/policy/concepts/effects).

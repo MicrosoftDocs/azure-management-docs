@@ -17,7 +17,7 @@ To prevent registry users in an organization from maliciously or accidentally le
 Export policy is a property introduced in API version **2021-06-01-preview** for Premium container registries. The `exportPolicy` property, when its status is set to `disabled`, blocks export of artifacts from a network-restricted registry when a user attempts to:
 
 * [Import](container-registry-import-images.md) the registry's artifacts to another Azure container registry
-* Create a registry [export pipeline](container-registry-transfer-images.md) to transfer artifacts to another container registry
+* Create a registry [export pipeline](container-registry-transfer-arm-template.md) to transfer artifacts to another container registry
 
 > [!NOTE]
 > Disabling export of artifacts does not prevent authorized users' access to the registry within the virtual network to pull artifacts or perform other data-plane operations. To audit this use, we recommend that you configure diagnostic settings to [monitor](monitor-service.md) registry operations. 

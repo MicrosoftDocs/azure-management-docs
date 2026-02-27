@@ -64,9 +64,7 @@ Azure Arc can be deployed interactively on a single server basis or programmatic
 
 - Windows Server machines can be connected through Windows Admin Center and the Windows Server Graphical Installer.  
 
-- At scale deployment options include Configuration Manager, Ansible, and Group Policy using the Azure service principal, a limited identity for Arc server onboarding.  
-
-- Azure Automation Update Manager customers can onboard from Azure portal with the Arc-enablement of all detected non-Azure servers connected to the Log Analytics workspace with the Azure Automation Update Management solution.  
+- At scale deployment options include Configuration Manager, Ansible, and Group Policy using the Azure service principal, a limited identity for Arc server onboarding.   
 
 See [Azure Connected Machine agent deployment options](/azure/azure-arc/servers/deployment-options) to learn more.
 

@@ -103,12 +103,6 @@ When you no longer need the resource, delete the resource group, and the registr
 
 ## Next steps
 
-In this quickstart, you created an Azure Container Registry with a Bicep file. Continue to the Azure Container Registry tutorials for a deeper look at ACR.
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry tutorials](container-registry-tutorial-prepare-registry.md)
-
-For a step-by-step tutorial that guides you through the process of creating a Bicep file, see:
-
-> [!div class="nextstepaction"]
-> [Quickstart: Create Bicep files with Visual Studio Code](/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code)
+* Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+* Learn how to [push and pull images to your container registry using the Docker CLI](container-registry-get-started-docker-cli.md).
+* Learn how to [create Bicep files with Visual Studio Code](/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code).

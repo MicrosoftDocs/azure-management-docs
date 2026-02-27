@@ -4,8 +4,6 @@
   items:
   - name: About Azure Arc-enabled servers
     href: overview.md
-  - name: VMware FAQ
-    href: vmware-faq.md
   - name: What's new with Connected Machine agent?
     displayName: version
     href: agent-release-notes.md
@@ -37,6 +35,8 @@
       href: prerequisites.md
     - name: Deployment options for Azure Monitor Agent
       href: azure-monitor-agent-deployment.md
+    - name: Arc-enabled servers and VMware vSphere
+      href: vmware-faq.md
 - name: How-to guides
   items:
   - name: Deploy
@@ -77,8 +77,6 @@
          href: onboard-group-policy-powershell.md
        - name: Connect machines using Ansible playbooks
          href: onboard-ansible-playbooks.md
-       - name: Connect machines from Automation Update Management
-         href: onboard-update-management-machines.md
        - name: Connect VMware vCenter managed machines
          href: ../vmware-vsphere/enable-guest-management-at-scale.md?toc=/azure/azure-arc/servers/toc.json
        - name: Connect SCVMM managed machines
@@ -114,21 +112,7 @@
     - name: Migrate machine across regions
       href: manage-howto-migrate.md
     - name: Run command
-      items:
-      - name: Overview
-        displayName: run, command, run command
-        href: run-command.md
-      - name: REST API
-        displayName: run, command, run command
-        href: run-command-rest.md
-      - name: Azure CLI
-        displayName: run, command, run command
-        href: run-command-cli.md
-      - name: PowerShell
-        displayName: run, command, run command
-        href: run-command-powershell.md
-      - name: Limit access to Run command
-        href: run-command-security.md
+      href: run-command.md
   - name: Scenarios
     items:
     - name: Test Arc-enabled servers using an Azure VM
