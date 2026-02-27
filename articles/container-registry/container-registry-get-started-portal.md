@@ -141,13 +141,8 @@ If the DNS name differs from the registry name, you need to update downstream fi
 
 ## Next steps
 
-In this quickstart, you created an Azure Container Registry with the Azure portal, pushed a container image, and pulled and ran the image from the registry. To continue working with Azure Container Registry, see the Azure Container Registry tutorials.
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry tutorials][container-registry-tutorial-prepare-registry]
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
+- Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+- Learn how to [push and pull images to your container registry using the Docker CLI](container-registry-get-started-docker-cli.md).
 
 <!-- LINKS - external -->
 [docker-linux]: https://docs.docker.com/engine/install
@@ -155,7 +150,6 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 [docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - internal -->
-[container-registry-tutorial-prepare-registry]: container-registry-tutorial-prepare-registry.md
 [container-registry-skus]: container-registry-skus.md
 [azure-cli-install]: /cli/azure/install-azure-cli
 [azure-powershell-install]: /powershell/azure/install-az-ps
@@ -163,4 +157,3 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 [get-started-with-azure-powershell]: /powershell/azure/get-started-azureps
 [az-acr-login]: /cli/azure/acr#az-acr-login
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry
-[container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md

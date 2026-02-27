@@ -139,12 +139,5 @@ If the operation gets stuck in the provisioning state while creating the registr
 
 This permission check is only applicable to the registries with Private Endpoint enabled.
 
-## Next steps
-
-Check out the three-part tutorial series, [Geo-replication in Azure Container Registry](container-registry-tutorial-prepare-registry.md). Walk through creating a geo-replicated registry, building a container, and then deploying it by using a single `docker push` command to multiple regional Web Apps for Containers instances.
-
-> [!div class="nextstepaction"]
-> [Geo-replication in Azure Container Registry](container-registry-tutorial-prepare-registry.md)
-
 [az-acr-replication-list]: /cli/azure/acr/replication#az-acr-replication-list
 [az-acr-replication-update]: /cli/azure/acr/replication#az-acr-replication-update
