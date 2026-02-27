@@ -51,7 +51,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnect
 
 On Windows, if a user downgrades the Azure Arc agent from version 1.61 to any earlier version, the agent may become disconnected.
 
-To restore connectivity, a change must be made to the agent configuration file. Please use one of the following methods to edit the agentconfig.json:
+To restore connectivity, a change must be made to the agent configuration file. Please use one of the following methods to edit permissions on the agentconfig.json:
 
 Run the following command from an elevated Command Prompt:
 
