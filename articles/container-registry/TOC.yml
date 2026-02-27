@@ -34,14 +34,6 @@
   - name: Tutorials
     expanded: false
     items:
-    - name: Geo-replicate a registry
-      items:
-      - name: 1 - Prepare container registry
-        href: container-registry-tutorial-prepare-registry.md
-      - name: 2 - Deploy web application
-        href: container-registry-tutorial-deploy-app.md
-      - name: 3 - Update web application
-        href: container-registry-tutorial-deploy-update.md
     - name: Encrypt a registry with customer managed key
       items:
       - name: Customer managed keys - Overview
