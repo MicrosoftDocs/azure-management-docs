@@ -82,13 +82,6 @@ landingContent:
             url: container-registry-artifact-streaming.md
           - text: Soft delete policy
             url: container-registry-soft-delete-policy.md
-  # Card (optional) 
-  - title: Tutorials
-    linkLists:
-      - linkListType: tutorial
-        links:
-          - text: Geo-replication
-            url: container-registry-tutorial-prepare-registry.md
           - text: Artifact Cache
             url: container-registry-artifact-cache.md
   # Card

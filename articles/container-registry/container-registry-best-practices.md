@@ -26,7 +26,7 @@ Additionally, all public clouds, Azure included, implement network egress fees. 
 
 Use Azure Container Registry's [geo-replication](container-registry-geo-replication.md) feature if you're deploying containers to multiple regions. Whether you're serving global customers from local data centers or your development team is in different locations, you can simplify registry management and minimize latency by geo-replicating your registry. You can also configure regional [webhooks](container-registry-webhook.md) to notify you of events in specific replicas such as when images are pushed.
 
-Geo-replication is available with [Premium](container-registry-skus.md) registries. To learn how to use geo-replication, see the three-part tutorial, [Geo-replication in Azure Container Registry](container-registry-tutorial-prepare-registry.md).
+Geo-replication is available with [Premium](container-registry-skus.md) registries.
 
 ## Maximize pull performance
 

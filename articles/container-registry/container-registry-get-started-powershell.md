@@ -79,13 +79,8 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## Next steps
 
-In this quickstart, you created an Azure Container Registry instance using the Azure PowerShell locally, pulled a hello-world container image, tagged the hello-world image to create a new container image, pushed the new container image into the container registry, deleted the local container image, and finally pulled and ran the image from your registry. Continue to the Azure Container Registry tutorials for a deeper look at ACR.
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry tutorials][container-registry-tutorial-prepare-registry]
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
+- Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+- Learn how to [push and pull images to your container registry using the Docker CLI](container-registry-get-started-docker-cli.md).
 
 <!-- LINKS - external -->
 [docker-linux]: https://docs.docker.com/engine/install
@@ -97,6 +92,4 @@ In this quickstart, you created an Azure Container Registry instance using the A
 [New-AzContainerRegistry]: /powershell/module/az.containerregistry/New-AzContainerRegistry
 [New-AzResourceGroup]: /powershell/module/az.resources/new-azresourcegroup
 [Remove-AzResourceGroup]: /powershell/module/az.resources/remove-azresourcegroup
-[container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
-[container-registry-tutorial-prepare-registry]: container-registry-tutorial-prepare-registry.md
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry
