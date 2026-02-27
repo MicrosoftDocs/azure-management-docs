@@ -59,7 +59,7 @@ Create a Conditional Access policy and assign your test group of users as follow
 
    1. Select *Azure Container Registry*, then choose **Select**.
 
-   1. Under **Conditions**, set the [conditions](/entra/identity/conditional-access/concept-conditional-access-conditions) you want to apply, such as *User risk level*, *Sign-in risk level*, *Sign-in risk detections (Preview)*, *Device platforms*, *Locations*, *Client apps*, *Time (Preview)*, *Filter for devices*.
+   1. Under **Conditions**, set the [conditions](/entra/identity/conditional-access/concept-conditional-access-conditions) that you want to apply.
 
    1. Under **Access controls**, select **Grant**. Select **Grant access** with **Require multifactor authentication**, then choose **Select**.
 
@@ -68,7 +68,7 @@ Create a Conditional Access policy and assign your test group of users as follow
 
    1. Under **Session**, optionally choose options to enable any control on session level experience of the cloud apps.
 
-   1. Set **Enable policy** to**On**, then select **Create**
+   1. Set **Enable policy** to **On**, then select **Create**
 
    You have now created a Conditional Access policy for your Azure Container Registry.
 
