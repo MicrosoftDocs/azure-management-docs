@@ -70,7 +70,7 @@ For more information about resource health alert rule options, see [Create or ed
 
 ## Update proxy settings (Preview)
 
-Starting with appliance version 1.7.0 and `az arcappliance` CLI version 1.7.0, you can update proxy settings on an appliance using the Azure CLI command: [`az arcappliance configuration proxy update`](/cli/azure/arcappliance/configuration/proxy/update). The [proxy update command](/cli/azure/arcappliance/configuration/proxy/update) is only supported for Azure Local and Arc-enabled VMware. 
+Starting with appliance version 1.7.0 and `az arcappliance` CLI version 1.7.0, you can update proxy settings on an appliance using the [`configuration proxy update Azure CLI command`](/cli/azure/arcappliance/configuration/proxy/update) : [`az arcappliance configuration proxy update`](/cli/azure/arcappliance/configuration/proxy/update). The [proxy update command](/cli/azure/arcappliance/configuration/proxy/update) is only supported for Azure Local and Arc-enabled VMware. 
 
 Use this command when:
 
@@ -79,6 +79,11 @@ Use this command when:
 - You want to rotate proxy credentials or certificates.
 
 If an upgrade fails due to incorrect network proxy settings, you can run a proxy update to fix the values. If a proxy update operation fails, you must retry and have it succeed before performing any other operation, including retrying upgrade.
+
+To check the on-premises Arc resource bridge configuration and confirm your proxy settings updated, you can run the [`configuration show Azure CLI command`](/cli/azure/arcappliance/configuration/show): [`az arcappliance configuration show`](/cli/azure/arcappliance/configuration/show). 
+
+To check if the on-premises configuration changes synced to the Azure resource of the Arc resource bridge, you can run [`the show Azure CLI command`](/cli/azure/arcappliance#az-arcappliance-show): [`az arcappliance show`](/cli/azure/arcappliance#az-arcappliance-show) 
+
 
 ## Recovery procedure
 
