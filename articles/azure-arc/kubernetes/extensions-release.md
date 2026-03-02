@@ -335,6 +335,12 @@ Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you t
 
 For more information, see [What is Edge RAG?](../edge-rag/overview.md)
 
+## Cert-manager for Arc-enabled Kubernetes (preview)
+
+The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
+
+For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md)
+
 ## Related content
 
 - Read more about [cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md).

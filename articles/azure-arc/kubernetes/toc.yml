@@ -173,6 +173,18 @@
       - name: Azure Arc-enabled Machine Learning
         displayName: ML, AzureML, compute
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
+  - name: Cert-manager for Arc-enabled Kubernetes (preview)
+    items:
+    - name: Overview
+      href: cert-manager-overview.md
+    - name: Deploy extension
+      href: cert-manager-deploy.md
+    - name: Ingress support
+      href: cert-manager-ingress.md
+    - name: Egress support
+      href: cert-manager-egress.md
+    - name: Monitor and troubleshoot
+      href: cert-manager-monitor-troubleshoot.md
   - name: Simplify network connectivity
     href: arc-gateway-simplify-networking.md
     displayName: gateway, arc gateway
