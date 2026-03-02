@@ -2,7 +2,7 @@
 title: Create custom roles with Azure Arc-enabled SCVMM
 description: This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM.
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 03/02/2026
 ms.service: azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
@@ -42,6 +42,8 @@ To create a custom role with Azure Arc-enabled SCVMM, follow these steps:
       :::image type="content" source="media/create-custom-roles/add-permissions.png" alt-text="Screenshot of Add permissions screen.":::
 1. On the **Microsoft.SCVMM permissions** page, select the desired permissions to add or exclude and then select **Add**. 
 1. Add permissions from other resource providers to this custom role, if needed, and select **Next**.
+  >[!Note]
+  > Ensure Microsoft.KubernetesConfiguration/extensions/read permission is added to the custom roles. This permission is required while creating custom roles from the scratch and also while creating from built-in roles. 
 1. On the **Assignable scopes** tab, you can optionally choose additional subscriptions and resource groups where this custom role can be available for assignment. Then select **Next**.
 1. On the **JSON** tab, you can optionally download the JSON format of the custom role to create more custom roles from a baseline permission set. Once done, select **Next**.
 1. On the **Review + create** tab, select **Create** to create your custom role for Azure Arc-enabled SCVMM.
