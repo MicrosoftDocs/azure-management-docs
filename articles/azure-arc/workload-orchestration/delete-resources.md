@@ -39,6 +39,11 @@ az workload-orchestration target uninstall --resource-group $rg --target-name $t
 
 ***
 
+> [!NOTE]
+> In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
+
+***
+
 ## Delete a solution revision
 
 Delete a solution revision for a target if it's not installed using the following command:
@@ -64,27 +69,31 @@ Delete a target and all its child resources using the following command:
 ### [Bash](#tab/bash)
 
 ```bash
-# Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription "$subId" --resource-group "$rg" --target-name "$childName" --force-delete false
+az workload-orchestration target delete --resource-group "$rg" --target-name "$childName"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-# Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName --force-delete false
+az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName
 ```
+***
+
+Target deletion automatically uninstalls all running workloads (instances, solutions, namespaces, and the target itself) from the cluster. The corresponding cloud resources (Target, TargetSolution, TargetSolutionVersion and Instances) are also deleted successfully.
+
+> [!NOTE]
+> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the arguement `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster will not be impacted.
 
 ***
 
 ## Delete a solution template version
 
-Delete solution template version across all targets if it's not deployed using the following command:
+Delete solution template version across all targets even if it's deployed, using the following command:
 
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template remove-version --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
+az workload-orchestration solution-template remove-version --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -92,17 +101,38 @@ az workload-orchestration solution-template remove-version --subscription "$subI
 ```powershell
 az workload-orchestration solution-template remove-version --subscription $subId --resource-group $rg --solution-template-name $appName1 --version $appVersion
 ```
+***
+
+The deletion succeeds even if the solution template version is being reference by a target solution version, which remains unaffected.
+You can verify the deletion of the solution template version by listing all revisions of a solution deployed on a target.
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration target solution-revision-list --target-name "$childName" --resource-group "$rg" --solution-template-name "<solution-version-id>"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration target solution-revision-list --target-name $childName --resource-group $rg --solution-template-name "<solution-version-id>"
+```
+
+***
+
+> [!NOTE]
+> The argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value. This will be updated in subsequent release.
 
 ***
 
 ## Delete a solution template
 
-Delete a solution template across all targets if it has no versions using the following command:
+Delete a solution template across all targets using the following command:
 
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template delete --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1"
+az workload-orchestration solution-template delete --resource-group "$rg" --solution-template-name "$appName1"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -110,6 +140,10 @@ az workload-orchestration solution-template delete --subscription "$subId" --res
 ```powershell
 az workload-orchestration solution-template delete --subscription $subId --resource-group $rg --solution-template-name $appName1
 ```
+
+***
+
+Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically.
 
 ***
 
@@ -146,6 +180,45 @@ az workload-orchestration config-template delete --subscription "$subId" --resou
 ```powershell
 az workload-orchestration config-template delete --subscription $subId --resource-group $rg --config-template-name $appConfig
 ```
+
+***
+
+### Delete a Context
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration context delete --resource-group "$rg" -n "$contextName"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration context delete --resource-group $rg -n $contextName
+```
+***
+
+Context deletion succeeds even if targets are created within it. All associated site references are deleted, while the cluster and targets are unaffected. Any context related operation that is triggered while deletion or is already in progress will fail.
+
+
+***
+
+### Delete a Custom Location
+
+### [Bash](#tab/bash)
+
+```bash
+az customlocation delete --resource-group "$rg" -n "$customLocationName"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az customlocation delete --resource-group $rg -n $customLocationName
+```
+***
+
+All targets associated to the custom location also get deleted, and no new targets can be created. Solution revisions in Review state can be published but not deployed. Deployed solutions remain unaffected but cannot be uninstalled as the cluster is no longer connected to workload orchestration.
 
 ***
 

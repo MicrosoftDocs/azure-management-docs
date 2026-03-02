@@ -90,12 +90,5 @@ When you no longer need them, delete the resource group, the registry, and the r
 
 ## Next steps
 
-In this quickstart, you created an Azure Container Registry with an ARM template, and configured a registry replica in another location. Continue to the Azure Container Registry tutorials for a deeper look at ACR.
-
-> [!div class="nextstepaction"]
-> [Azure Container Registry tutorials](container-registry-tutorial-prepare-registry.md)
-
-For a step-by-step tutorial that guides you through the process of creating a template, see:
-
-> [!div class="nextstepaction"]
-> [Tutorial: Create and deploy your first ARM template](/azure/azure-resource-manager/templates/template-tutorial-create-first-template)
+* Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+* Learn how to [push and pull images to your container registry using the Docker CLI](container-registry-get-started-docker-cli.md).

@@ -1,7 +1,7 @@
 ---
 title: Azure Arc-enabled servers Overview
 description: Learn how to use Azure Arc-enabled servers to manage servers hosted outside of Azure like an Azure resource.
-ms.date: 02/05/2026
+ms.date: 02/26/2026
 ms.topic: overview
 # Customer intent: As an IT administrator managing hybrid environments, I want to connect and manage physical and virtual servers outside of Azure using Azure Arc, so that I can apply consistent governance, security, and monitoring across all my resources.
 ---
@@ -29,6 +29,7 @@ When you connect your machine to Azure Arc-enabled servers, you can perform many
 * **Configure**:
   * Use [Azure Automation](/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows) for frequent and time-consuming management tasks by using PowerShell and Python [runbooks](/azure/automation/automation-runbook-execution). Assess configuration changes for installed software, Microsoft services, Windows registry and files, and Linux daemons by using the Azure Monitor agent for [change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm).
   * Use [Azure Update Manager](/azure/update-manager/overview) to manage operating system updates for your Windows and Linux servers.
+  * Use [machine enrollment (preview)](/azure/operations/configuration-enrollment?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json) to automatically configure Arc-enabled servers with a curated set of features for monitoring, security, and management.
   * Perform post-deployment configuration and automation tasks by using supported [Arc-enabled servers VM extensions](manage-vm-extensions.md) for your non-Azure Windows or Linux machine.
 * **Monitor**:
   * Monitor operating system performance and discover application components to monitor processes and dependencies with other resources by using [VM insights](/azure/azure-monitor/vm/vminsights-overview).

@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway"
 ms.custom: devx-track-azurecli
-ms.date: 02/17/2025
+ms.date: 02/26/2025
 ms.topic: how-to
 description: "The Azure Arc gateway lets you onboard Kubernetes clusters to Azure Arc with access to a reduced number of endpoints."
 # Customer intent: As a network administrator, I want to configure the Azure Arc gateway for my Kubernetes clusters, so that I can simplify network access requirements and manage outbound traffic through enterprise proxies efficiently.
@@ -226,12 +226,10 @@ When Arc gateway is in use, you must also allow all endpoints listed for any of 
   - `*.monitoring.azure.com`
 - [Azure Key Vault](/azure/key-vault/general/access-behind-firewall):
   - `<vault-name>.vault.azure.net`
-- [Azure Policy](/azure/governance/policy/concepts/policy-for-kubernetes):
-  - `data.policy.core.windows.net`
-  - `store.policy.core.windows.net`
 - [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-enable?pivots=defender-for-container-arc&toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=aks-deploy-portal%2Ck8s-deploy-asc%2Ck8s-verify-asc%2Ck8s-remove-arc%2Caks-removeprofile-api):
   - `*.ods.opinsights.azure.com`
   - `*.oms.opinsights.azure.com`
+  - `*.cloud.defender.microsoft.com`
 - [Azure Arc-enabled data services](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud)
   - `*.ods.opinsights.azure.com`
   - `*.oms.opinsights.azure.com`
