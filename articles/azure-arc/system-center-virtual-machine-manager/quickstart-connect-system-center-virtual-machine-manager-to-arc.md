@@ -7,7 +7,7 @@ author: Jeronika-MS
 ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.date: 02/09/2026
+ms.date: 03/02/2026
 ms.custom:
   - references_regions
   - build-2025
@@ -25,7 +25,8 @@ This quickstart shows you how to connect your SCVMM management server to Azure A
 
 >[!Note]
 > - If your VMM server runs on a Windows Server 2016 machine, ensure that the [Open SSH package](https://github.com/PowerShell/Win32-OpenSSH/releases) and tar are installed. To install tar, you can copy `tar.exe` and `archiveint.dll` from any Windows 11 or Windows Server 2019/2022 machine to the *C:\Windows\System32* path on your VMM server machine.
-> - Azure Arc resource bridge deployment by using private link (private endpoint) isn't currently supported.
+> - Azure Arc resource bridge deployment by using private link (private endpoint) isn't supported.
+> - VMM server and Azure Arc resource bridge have an 1:1 mapping. Each VMM server will need to use an unique Azure Arc resource bridge to be onboarded to Azure Arc.
 
 | **Requirement** | **Details** |
 | --- | --- |
