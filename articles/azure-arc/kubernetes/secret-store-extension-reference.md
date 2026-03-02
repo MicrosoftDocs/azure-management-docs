@@ -49,9 +49,9 @@ spec:
     - secretInAKV: "secret-B"
       kubernetesSecretName: "k8s-secret-b"
       labels:
-        - test-label-0: "label-value-0"
+        test-label-0: "label-value-0"
       annotations:
-        - test-annotation-0: "annotation-value-0"
+        test-annotation-0: "annotation-value-0"
       versionHistory: 3
     - kubernetesSecretName: "compound-secret"
       mapping:
@@ -77,8 +77,8 @@ Within .spec:
  - **objects** *(required)*: A list of items (**secretInAKV** or **kubernetesSecretName**). Items can be secrets to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
     - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV.
       - **kubernetesSecretName** *(optional)*: The name of the new Kubernetes secret.
-      - **labels** *(optional)*: A list of key-value pairs of additional labels to apply to the secret object.
-      - **annotations** *(optional)*: A list of key-value pairs of additional annotations to apply to the secret object.
+      - **labels** *(optional)*: A map of key-value pairs of additional labels to apply to the secret object.
+      - **annotations** *(optional)*: A map of key-value pairs of additional annotations to apply to the secret object.
       - **versionHistory** *(optional)*: Defaults to 1. SSE downloads this many versions of the secret from AKV. The versions are stored in the Kubernetes secret in keys named "v0", "v1", "v2" etc. "v0" is the latest version.
 
     - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **labels** and **annotations**.
@@ -107,14 +107,14 @@ spec:
   secretObject:
     type: Opaque
     data:
-    - sourcePath: aSecret/0
-      targetKey: aSecret-data-key0
-    - sourcePath: aSecret/1
-      targetKey: aSecret-data-key1
+      - sourcePath: aSecret/0
+        targetKey: aSecret-data-key0
+      - sourcePath: aSecret/1
+        targetKey: aSecret-data-key1
     labels:
-      - fromExample: absolutelyYes
+      fromExample: absolutelyYes
     annotations:
-      - exampleAnnotation: annotationValue 
+      exampleAnnotation: annotationValue 
   forceSynchronization: ArbitraryValue12354
 ```
 
@@ -131,8 +131,8 @@ Within .spec:
    -  **data** *(required)*: A list of data items within the secret resource. There must be at least one item. Each data item must contain these two fields:
        - **sourcePath** *(required)*: The path to an item fetched from AKV. When only one version of the named secret is fetched from AKV, the path is simply `<secret name>`.<br> If more than one version of the named secret is fetched from AKV, then the latest version's sourcePath is `<secret name>/0`, second latest is `<secret name>/1`, etc.<br> When a certificate is fetched from AKV, the sourcePaths depend on the value of `objectType` in the SecretProviderClass. When the `objectType` in the SPC is "secret" then both a certificate and private key are available at sourcePaths of `<secret name>/tls.crt` and `<secret name>/tls.key` respectively.
        - **targetKey** *(required)*: The key in the Kubernetes secret object to store the data into.
-   - **labels** *(optional)*: A list of key-value pairs of additional labels to apply to the secret object.
-   - **annotations** *(optional)*: A list of key-value pairs of additional annotations to apply to the secret object.
+   - **labels** *(optional)*: A map of key-value pairs of additional labels to apply to the secret object.
+   - **annotations** *(optional)*: A map of key-value pairs of additional annotations to apply to the secret object.
    - **forceSynchronization** *(optional)*: Changes to this field trigger SSE to recheck AKV for changes. Kubernetes is updated as usual if SSE finds updated data. The value of this field does not affect how the SSE behaves.
 
 ## SecretProviderClass resources
