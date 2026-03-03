@@ -60,29 +60,6 @@ You can export the resource information from a view. To export information in CS
 
 As you move around the portal, you may see other areas where you can export information, such as an individual resource group.
 
-## Summarize resources with visuals
-
-The views described so far are _list views_, which show resources in lists that you can customize. The **All resources** pane also provides _summary views_ that include visual representations. You can save and use these views just like you can with list views. Filters persist between the two types of views.
-
-There are different types of summary views. For example, the **Location** view shows resources across regions.
-
-:::image type="content" source="media/manage-filter-resource-views/summary-map.png" alt-text="Summary of resources in a map view":::
-
-To save and use a summary view:
-
-1. From the view menu, select **Summary view**.
-
-    :::image type="content" source="media/manage-filter-resource-views/menu-summary-view.png" alt-text="Summary view menu":::
-
-1. The summary view enables you to summarize by different attributes, including **Location** and **Type**. Select a **Summarize by** option and an appropriate visual. The following screenshot shows the **Type summary** with a **Bar chart** visual.
-
-    :::image type="content" source="media/manage-filter-resource-views/type-summary-bar-chart.png" alt-text="Type summary showing a bar chart":::
-
-1. Select **Manage view**, then select **Save view** to save this view, just like you did with the list view.
-
-In the summary view, you can select an item to view details filtered to that item. Using the previous example, you can select a bar in the chart under **Type summary** to view a list filtered down to one type of resource.
-
-:::image type="content" source="media/manage-filter-resource-views/all-resources-filtered-type.png" alt-text="Screenshot of all resources filtered by type":::
 
 ## Run queries in Azure Resource Graph
 
