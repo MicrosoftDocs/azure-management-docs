@@ -8,6 +8,14 @@ ms.topic: release-notes
 # Release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## March 2026
+### 1.3.0
+ - Added ownership checks to prevent AKVSync resources from overwriting existing SecretSync or SecretProviderClass resources.
+ - Security updates to internal components:
+   - Bumped Golang version to 1.25.7 which includes CVE patches.
+   - Bumped kubectl container image to v1.35.0-2 to address CVEs in base image.
+   - Bump AKV CSI Provider container image revision to v1.7.2-4 to address CVEs in base image.
+
 ## February 2026
 ### 1.2.2
  - HTTP proxy certificates provided via the --proxy-cert flag during cluster Arc enablement are now correctly handled.
