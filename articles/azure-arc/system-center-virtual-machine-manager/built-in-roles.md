@@ -25,7 +25,7 @@ Azure Arc-enabled SCVMM has four built-in roles:
 - [Azure Arc SCVMM Private Clouds Onboarding](#azure-arc-scvmm-private-clouds-onboarding)
 - [Azure Arc SCVMM VM Contributor](#azure-arc-scvmm-vm-contributor)
 
-If the built-in Azure roles don't match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
+If the built-in Azure roles don't match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. Ensure **Microsoft.KubernetesConfiguration/extensions/read** permission is added while creating custom roles from the scratch and also while creating from built-in roles. 
 
 ## Azure Arc SCVMM Administrator role
 

@@ -180,9 +180,10 @@
             href: container-registry-auth-kubernetes.md
         - name: Enable unauthenticated anonymous pull access
           href: anonymous-pull-access.md
-        - name: Configure conditional access to your Azure Container Registry.
+        - name: Configure conditional access
           href: container-registry-configure-conditional-access.md
-        - name: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
+        - name: Configure registry for ACR-scoped Microsoft Entra authentication
+          displayName: arm, disable, audience tokens
           href: container-registry-disable-authentication-as-arm.md
       - name: Role-based access control and authorization
         items:
@@ -251,11 +252,13 @@
         href: key-concept-continuous-patching.md
       - name: Set up continuous patching
         href: how-to-continuous-patching.md
-    - name: Monitor
+    - name: Monitor and Service Health
       expanded: false
       items:
         - name: Monitor Container Registry
           href: monitor-container-registry.md
+        - name: Configure Service Health alerts for Azure Container Registry
+          href: set-container-registry-service-health-alerts.md
         - name: Audit compliance using Azure Policy
           href: container-registry-azure-policy.md
         - name: Scan container images
