@@ -52,3 +52,7 @@ Supported values:
 * `AzureCloud`
 * `AzureUSGovernment`
 * `AzureChinaCloud`
+
+`--background`
+
+Allows the upgrade process to run without popups. This is useful for running the command in a script or on a schedule. If not provided, the upgrade process will display popups to show progress and any errors that occur.
