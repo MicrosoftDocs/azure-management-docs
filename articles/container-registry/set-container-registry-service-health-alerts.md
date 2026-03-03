@@ -13,7 +13,7 @@ ms.custom:
 # Customer intent: As a DevOps engineer, I want to set up monitoring and alerting for Azure Container Registry, so that I can ensure optimal usage and quickly respond to any resource-related issues or anomalies.
 ---
 
-# Configure Service Health alerts for Azure Container Registry
+# Configure service health alerts for Azure Container Registry
 
 Stay informed about Azure Container Registry (ACR) service issues, planned
 maintenance, and health advisories by configuring Service Health alerts. This
@@ -69,7 +69,7 @@ Registry in your regions.
 
 Configure an alert rule to receive notifications when ACR service issues occur.
 
-### Azure Portal
+### Azure portal
 
 1. In the [Azure portal](https://portal.azure.com), search for and select
    **Service Health**.
@@ -107,7 +107,7 @@ Configure an alert rule to receive notifications when ACR service issues occur.
    (e.g., `environment: production`, `team: platform`).
 9. Select **Review + create**, then **Create**.
 
-:::image type="content" source="media/monitor-service/acr-service-health-alert-creation.png" alt-text="Screenshot of the Azure Service Health alert creation page showing configuration options for Azure Container Registry.":::
+:::image type="content" source="media/monitor-service/azure-container-registry-service-health-alert-creation.png" alt-text="Screenshot of the Azure Service Health alert creation page showing configuration options for Azure Container Registry.":::
 
 > [!TIP]
 > You can also create Service Health alerts programmatically using Azure Resource Manager (ARM) templates or Bicep. For more information, see [Create activity log alerts on service notifications using an ARM template](/azure/service-health/alerts-activity-log-service-notifications-arm) and [Create activity log alerts on service notifications using Bicep](/azure/service-health/alerts-activity-log-service-notifications-bicep).
