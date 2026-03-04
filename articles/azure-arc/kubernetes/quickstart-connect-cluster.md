@@ -2,7 +2,7 @@
 title: "Quickstart: Connect an existing Kubernetes cluster to Azure Arc"
 description: In this quickstart, you learn how to connect an Azure Arc-enabled Kubernetes cluster.
 ms.topic: quickstart
-ms.date: 10/08/2024
+ms.date: 03/02/2026
 ms.custom: template-quickstart, mode-other, devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: azurecli
 # Customer intent: As a Kubernetes operator, I want to connect my existing Kubernetes cluster to Azure Arc, so that I can manage and monitor it using Azure's capabilities and tools.
@@ -33,7 +33,7 @@ For a conceptual look at connecting clusters to Azure Arc, see [Azure Arc-enable
 
 * A running Kubernetes cluster. If you don't have one, you can create a cluster by using one of these options:
   * [Kubernetes in Docker (KIND)](https://kind.sigs.k8s.io/)
-  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/) or [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/), or [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
   * Self-managed Kubernetes cluster using [Cluster API](https://cluster-api.sigs.k8s.io/user/quick-start.html)
 
     > [!NOTE]
@@ -56,7 +56,7 @@ For a conceptual look at connecting clusters to Azure Arc, see [Azure Arc-enable
 
 * A running Kubernetes cluster. If you don't have one, you can create a cluster by using one of these options:
   * [Kubernetes in Docker (KIND)](https://kind.sigs.k8s.io/)
-  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/) or [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+  * Use Docker for [Linux](https://docs.docker.com/engine/install), [Mac](https://docs.docker.com/desktop/setup/install/mac-install/), or [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
   * Self-managed Kubernetes cluster using [Cluster API](https://cluster-api.sigs.k8s.io/user/quick-start.html)
 
     > [!NOTE]
@@ -232,7 +232,7 @@ If your cluster is behind an outbound proxy server protects your cluster, route 
     export NO_PROXY=<cluster-apiserver-ip-address>:<port>
     ```
 
-1. On the Kubernetes cluster, run the connect command with the `proxy-https` and `proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
+1. On the Kubernetes cluster, run the connect command with the `--proxy-https` and `--proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
 
     ```azurecli
     az connectedk8s connect --name <cluster-name> --resource-group <resource-group> --proxy-https https://<proxy-server-ip-address>:<port> --proxy-http http://<proxy-server-ip-address>:<port> --proxy-skip-range <excludedIP>,<excludedCIDR> --proxy-cert <path-to-cert-file>
