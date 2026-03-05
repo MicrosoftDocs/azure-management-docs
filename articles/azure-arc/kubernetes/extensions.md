@@ -112,7 +112,7 @@ Use one or more of these optional parameters with the required parameters for yo
 | `--release-namespace` | When `scope` is set to `cluster`, this parameter specifies the namespace in which to create the release. |
 | `--target-namespace` | When `scope` is set to `namespace`, this parameter specifies the namespace in which to create the release. Permissions for the system account that's created for this extension instance are restricted to this namespace. |
 
-For information about other optional parameters, see the [`az k8s extension create`](/cli/azure/k8s-extension#az-k8s-extension-create) reference documentation.
+For information about other optional parameters, see the [`az k8s-extension create`](/cli/azure/k8s-extension#az-k8s-extension-create) reference documentation.
 
 ## Show extension details
 
@@ -257,7 +257,7 @@ az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubern
 | `--scope` | The [scope of installation](conceptual-extensions.md#extension-scope) for the extension (`cluster` or `namespace`). Most extensions are cluster-scoped, so this parameter is only required if the extension is namespace-scoped. |
 | `--release-train` | The release train, if the extension has published versions in different release trains such as `Stable` or `Preview`. If you don't set this parameter explicitly, `Stable` is the default. |
 
-For information about other optional parameters, see the [`az k8s extension update`](/cli/azure/k8s-extension#az-k8s-extension-update) reference documentation.
+For information about other optional parameters, see the [`az k8s-extension update`](/cli/azure/k8s-extension#az-k8s-extension-update) reference documentation.
 
 ## Upgrade an extension instance
 
