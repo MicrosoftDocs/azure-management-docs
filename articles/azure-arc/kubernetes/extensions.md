@@ -1,7 +1,7 @@
 ---
 title: "Deploy and manage an Azure Arc-enabled Kubernetes cluster extension"
 ms.custom: devx-track-azurecli
-ms.date: 02/08/2024
+ms.date: 03/04/2026
 ms.topic: how-to
 description: "Learn how to create and manage an extension instance on an Azure Arc-enabled Kubernetes cluster."
 # Customer intent: As a Kubernetes administrator, I want to deploy and manage extensions on my Azure Arc-enabled Kubernetes cluster, so that I can effectively access and utilize Azure services to enhance my cluster's capabilities.
@@ -9,34 +9,27 @@ description: "Learn how to create and manage an extension instance on an Azure A
 
 # Deploy and manage an Azure Arc-enabled Kubernetes cluster extension
 
-You can use an extension in an Azure Arc-enabled Kubernetes cluster to access Azure services and scenarios. This article describes how to create extension instances and set required and optional parameters, including options for updates and configurations. You also learn how to view, list, update, and delete extension instances.
+You can use extensions in an Azure Arc-enabled Kubernetes clusters to enable Azure services and scenarios. This article describes how to create extension instances and set required and optional parameters, including options for updates and configurations. You also learn how to view, list, update, and delete extension instances.
 
-Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
+Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md). The steps in this article work for any extension, but you should review the documentation for the specific extension you want to deploy to understand any specific configuration settings or guidance.
 
 ## Prerequisites
 
 * The latest version of the [Azure CLI](/cli/azure/install-azure-cli).
-* The latest versions of the `connectedk8s` and `k8s-extension` Azure CLI extensions. To install these extensions, run the following commands:
+* The latest versions of the [`connectedk8s`](/cli/azure/connectedk8s) and [`k8s-extension`](/cli/azure/k8s-extension) Azure CLI extensions. To install or update the latest version of these extensions, run the following commands:
   
     ```azurecli
-    az extension add --name connectedk8s
-    az extension add --name k8s-extension
+    az extension add --upgrade --name connectedk8s
+    az extension add --upgrade --name k8s-extension
     ```
 
-    If the `connectedk8s` and `k8s-extension` extensions are already installed, make sure that they're updated to the latest version by using these commands:
-
-    ```azurecli
-    az extension update --name connectedk8s
-    az extension update --name k8s-extension
-    ```
-
-* An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you deploy [Flux (GitOps)](extensions-release.md#flux-gitops), you can use an ARM64-based cluster without using a `linux/amd64` node.
+* An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you only deploy the [Flux (GitOps) extension](extensions-release.md#flux-gitops), you can use an ARM64-based cluster without using a `linux/amd64` node.
   * If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md) to connect one.
   * [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 
 ## Create an extension instance
 
-To create a new extension instance, use the `k8s-extension create` command. Use values from your scenario for the required parameter placeholders.
+To create a new extension instance, use the [`k8s-extension create`](/cli/azure/k8s-extension) command, using parameter values for your environment.
 
 This example creates a [Container insights in Azure Monitor](extensions-release.md#container-insights-in-azure-monitor) extension instance on an Azure Arc-enabled Kubernetes cluster:
 
@@ -81,13 +74,14 @@ Check for output that looks like this example:
 ```
 
 > [!NOTE]
-> The service doesn't retain sensitive information beyond 48 hours. If Azure Arc-enabled Kubernetes agents don't have network connectivity for more than 48 hours and can't determine whether to create an extension on the cluster, the extension transitions to a `Failed` state. In that scenario, you must run `k8s-extension create` again to create a fresh extension Azure resource.
->
+> 
+If Azure Arc-enabled Kubernetes agents don't have network connectivity for more than 48 hours, they won't be able to create the extension on the cluster, and the extension transitions to a `Failed` state. If this happens, run `k8s-extension create` again to create a the extension resource.
+> 
 > Only one Container insights in Azure Monitor extension is required per cluster. Before you install Container insights via an extension, you must delete any previous Helm chart installations of Container insights that don't use extensions. Before you run `az k8s-extension create`, complete the steps to [delete the Helm chart](/azure/azure-monitor/containers/kubernetes-monitoring-disable#remove-container-insights-with-helm).
 
 ### Required parameters
 
-The following table describes parameters that are required when you use `az k8s-extension create` to create an extension instance:
+The following table describes required parameters for using `az k8s-extension create` to create an extension instance:
 
 | Parameter name | Description |
 |----------------|------------|
@@ -103,9 +97,9 @@ The following table describes parameters that are required when you use `az k8s-
 You can use one or more of these optional parameters with the required parameters for your scenario.
 
 > [!NOTE]
-> You can choose to automatically upgrade your extension instance to the latest minor and patch versions by setting `auto-upgrade-minor-version` to `true`. You also can set the version of the extension instance manually using the `--version` parameter. We recommend enabling automatic upgrades for minor and patch versions so that you always have the latest security patches and capabilities.
+> To automatically upgrade your extension instance to the latest minor and patch versions, set `auto-upgrade-minor-version` to `true`. We recommend enabling automatic upgrades for minor and patch versions so that you always have the latest security patches and capabilities. You can also set the version of the extension instance manually using the `--version` parameter.
 >
-> Because major version upgrades may include breaking changes, automatic upgrades for new major versions of an extension instance aren't supported. You can choose when to [manually upgrade an extension instances](#upgrade-an-extension-instance) to a new major version.
+> Because major version upgrades can include breaking changes, there's no autoatic upgrade support for new major versions of an extension instance. You can choose when to [manually upgrade an extension instance](#upgrade-an-extension-instance) to a new major version.
 
 | Parameter name | Description |
 |--------------|------------|
