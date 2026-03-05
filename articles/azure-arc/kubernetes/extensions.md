@@ -34,7 +34,7 @@ To create a new extension instance, use the [`k8s-extension create`](/cli/azure/
 This example creates a [Container insights in Azure Monitor](extensions-release.md#container-insights-in-azure-monitor) extension instance on an Azure Arc-enabled Kubernetes cluster:
 
 ```azurecli
-az k8s-extension create --name azuremonitor-containers --extension-type Microsoft.AzureMonitor.Containers --scope cluster --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
+az k8s-extension create --name azuremonitor-containers --extension-type Microsoft.AzureMonitor.Containers --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
 ```
 
 Check for output that looks like this example:
@@ -86,7 +86,6 @@ The following table describes required parameters for using `az k8s-extension cr
 |----------------|------------|
 | `--name` | The name of the extension instance. |
 | `--extension-type` | The [type of extension](extensions-release.md) you want to install on the cluster. For example, `Microsoft.AzureMonitor.Containers` or `microsoft.azuredefender.kubernetes`. |
-| `--scope` | The [scope of installation](conceptual-extensions.md#extension-scope) for the extension. Use `cluster` or `namespace`. |
 | `--cluster-name` | The name of the Azure Arc-enabled Kubernetes resource on which to create the extension instance. |
 | `--resource-group` | The resource group that contains the Azure Arc-enabled Kubernetes resource. |
 | `--cluster-type` | The cluster type on which to create the extension instance. For most scenarios, use `connectedClusters`, the cluster type for an Azure Arc-enabled Kubernetes cluster. |
@@ -104,13 +103,16 @@ Use one or more of these optional parameters with the required parameters for yo
 |--------------|------------|
 | `--auto-upgrade-minor-version` | A Boolean property that sets whether the extension minor version upgrades automatically. The default setting is `true`. If you set this parameter to `true`, you can't set the `version` parameter, because the version is dynamically updated. If you set this parameter to `false`, the extension isn't automatically upgraded, even for patch versions. |
 | `--version` | The version of the extension to install (the specific version to pin the extension instance to). You can't set the `version` parameter if `auto-upgrade-minor-version` is set to `true`. |
-| `--configuration-settings` | Settings that you can pass into the extension to control its functionality. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't pass `--configuration-settings-file` in the same command. |
-| `--configuration-settings-file` | The path to a JSON file with `key=value` pairs to use for passing configuration settings into the extension. If you use this parameter in the command, you can't use `--configuration-settings` in the same command. |
-| `--configuration-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use `--configuration-protected-settings-file` in the same command. |
-| `--configuration-protected-settings-file` | The path to a JSON file with `key=value` pairs to use to pass sensitive settings into the extension. If you use this parameter in the command, you can't use `--configuration-protected-settings` in the same command. |
-| `--release-namespace` | When `scope` is set to `cluster`, this parameter specifies the namespace in which to create the release. |
+| `--configuration-settings` | Settings that you can pass into the extension to control its functionality. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't pass `--config-settings-file` in the same command. |
+| `--config-settings-file` | The path to a JSON file with `key=value` pairs to use for passing configuration settings into the extension. If you use this parameter in the command, you can't use `--configuration-settings` in the same command. |
+| `--config-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use `--config-protected-settings-file` in the same command. |
+| `--config-protected-settings-file` | The path to a JSON file with `key=value` pairs to use to pass sensitive settings into the extension. If you use this parameter in the command, you can't use `--config-protected-settings` in the same command. |
 | `--release-train` |  The release train, if the extension has published versions in different release trains such as `Stable` or `Preview`. If you don't set this parameter explicitly, `Stable` is the default. |
+| `--scope` | The [scope of installation](conceptual-extensions.md#extension-scope) for the extension (`cluster` or `namespace`). Most extensions are cluster-scoped, so this parameter is only required if the extension is namespace-scoped. |
+| `--release-namespace` | When `scope` is set to `cluster`, this parameter specifies the namespace in which to create the release. |
 | `--target-namespace` | When `scope` is set to `namespace`, this parameter specifies the namespace in which to create the release. Permissions for the system account that's created for this extension instance are restricted to this namespace. |
+
+For information about other optional parameters, see the [`az k8s extension create`](/cli/azure/k8s-extension#az-k8s-extension-create) reference documentation.
 
 ## Show extension details
 
@@ -223,14 +225,14 @@ You should see output similar to the following example:
 ## Update an extension instance
 
 > [!NOTE]
-> For information about specific settings in `--configuration-settings` and `--configuration-protected-settings` that you can update, see the documentation for the [specific extension](extensions-release.md). For `--configuration-protected-settings`, provide all settings, even if you update only one setting. If you omit any of these settings, the omitted settings are deleted.
+> For information about specific settings in `--configuration-settings` and `--config-protected-settings` that you can update, see the documentation for the [specific extension](extensions-release.md). For `--config-protected-settings`, provide all settings, even if you update only one setting. If you omit any of these settings, the omitted settings are deleted.
 
 To update an existing extension instance, use [`k8s-extension update`](/cli/azure/k8s-extension#az-k8s-extension-update). Pass in values for the mandatory and optional parameters. These parameters differ slightly from the parameters that you use to create an extension instance.
 
 This example updates the `auto-upgrade-minor-version` setting for an Azure Machine Learning extension instance to `true`:
 
 ```azurecli
-az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubernetes --scope cluster --cluster-name <clusterName> --resource-group <resourceGroupName> --auto-upgrade-minor-version true --cluster-type managedClusters
+az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubernetes --cluster-name <clusterName> --resource-group <resourceGroupName> --auto-upgrade-minor-version true --cluster-type managedClusters
 ```
 
 ### Required parameters for an extension update
@@ -246,15 +248,16 @@ az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubern
 
 | Parameter name | Description |
 |--------------|------------|
-| `--auto-upgrade-minor-version` | A Boolean property that specifies whether the extension minor version is automatically upgraded. The default setting is `true`. If this parameter is set to `true`, you can't set the `version` parameter because the version is dynamically updated. If the parameter is set to `false`, the extension isn't automatically upgraded, even for patch versions.
- |
+| `--auto-upgrade-minor-version` | A Boolean property that specifies whether the extension minor version is automatically upgraded. The default setting is `true`. If this parameter is set to `true`, you can't set the `version` parameter because the version is dynamically updated. If the parameter is set to `false`, the extension isn't automatically upgraded, even for patch versions. |
 | `--version` | The version of the extension to install (a specific version to pin the extension instance to). Must not be supplied if `auto-upgrade-minor-version` is set to `true`. |
-| `--configuration-settings` | Settings that you can pass into the extension to control its functionality. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use `--configuration-settings-file` in the same command. Only provide the settings that require an update. The provided settings are replaced with the specified values. |
-| `--configuration-settings-file` | The path to a JSON file that contains `key=value` pairs to use for passing in configuration settings to the extension. If you use this parameter in the command, you can't use `--configuration-settings` in the same command. |
-| `--configuration-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use the `--configuration-protected-settings-file` in the same command. When you update a protected setting, configure all protected settings. If you omit any of the settings, those settings are considered obsolete, and they're deleted.  |
-| `--configuration-protected-settings-file` | The path to a JSON file that contains `key=value` pairs to use for passing in sensitive settings to the extension. If you use this parameter in the command, you can't use `--configuration-protected-settings` in the same command. |
-| `--scope` | The scope of installation for the extension. Use either `cluster` or `namespace`. |
+| `--configuration-settings` | Settings that you can pass into the extension to control its functionality. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use `--config-settings-file` in the same command. Only provide the settings that require an update. The provided settings are replaced with the specified values. |
+| `--config-settings-file` | The path to a JSON file that contains `key=value` pairs to use for passing in configuration settings to the extension. If you use this parameter in the command, you can't use `--configuration-settings` in the same command. |
+| `--config-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. Pass in these settings as space-separated `key=value` pairs after the parameter name. If you use this parameter in the command, you can't use the `--config-protected-settings-file` in the same command. When you update a protected setting, configure all protected settings. If you omit any of the settings, those settings are considered obsolete, and they're deleted.  |
+| `--config-protected-settings-file` | The path to a JSON file that contains `key=value` pairs to use for passing in sensitive settings to the extension. If you use this parameter in the command, you can't use `--config-protected-settings` in the same command. |
+| `--scope` | The [scope of installation](conceptual-extensions.md#extension-scope) for the extension (`cluster` or `namespace`). Most extensions are cluster-scoped, so this parameter is only required if the extension is namespace-scoped. |
 | `--release-train` | The release train, if the extension has published versions in different release trains such as `Stable` or `Preview`. If you don't set this parameter explicitly, `Stable` is the default. |
+
+For information about other optional parameters, see the [`az k8s extension update`](/cli/azure/k8s-extension#az-k8s-extension-update) reference documentation.
 
 ## Upgrade an extension instance
 
