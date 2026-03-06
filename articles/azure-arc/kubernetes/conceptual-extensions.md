@@ -10,7 +10,7 @@ description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes clus
 
 This article describes how you can use Azure Arc-enabled Kubernetes cluster extensions via [Helm Charts](https://helm.sh/) to manage your Kubernetes applications. The cluster extensions feature in Azure Arc-enabled Kubernetes has all the building blocks you need to define, install, and upgrade even the most complex Kubernetes applications.
 
-The cluster extension feature builds on the packaging components of Helm. Extensions use an Azure Resource Manager-driven experience for installation and lifecycle management of different capabilities on top of your Kubernetes cluster.
+The cluster extension feature builds on the packaging components of Helm. With extensions, you use an Azure Resource Manager-driven experience for installation and lifecycle management of different capabilities on top of your Kubernetes cluster.
 
 A cluster operator or admin can [use the cluster extensions feature](extensions.md) to:
 
@@ -45,7 +45,7 @@ Each extension type defines the scope at which they operate on the cluster. Exte
 
 All [currently available extensions](extensions-release.md) are cluster-scoped, except for [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc), which is namespace-scoped.
 
-When you create an extension instance, you can specify the namespace where it's installed as [`--release-namespace`](extensions.md#optional-parameters-for-extension-creation). Typically, only one instance of a cluster-scoped extension and its components, including pods, operators, and custom resource definitions (CRDs), is installed in the release namespace on the cluster.
+When you create an extension instance, you can specify the namespace where it's installed as [`--release-namespace`](extensions.md#optional-parameters-for-extension-creation). Typically, only one instance of a cluster-scoped extension and its components, including pods, operators, and custom resource definitions (CRDs), are installed in the release namespace on the cluster.
 
 You can install a namespace-scoped extension in a specific namespace by using the [`--target-namespace` property](extensions.md#optional-parameters-for-extension-creation). Because extensions can be deployed at a namespace scope, multiple instances of a namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed.
 
