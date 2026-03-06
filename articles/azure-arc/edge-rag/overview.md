@@ -85,11 +85,11 @@ Review the following key concepts for Edge RAG:
 
 - **Vectorization** means transforming text into numerical representations, or embeddings, using an embedding model such as Sentence Transformers. These embeddings capture the semantic meaning of text, enabling efficient and accurate comparisons.
 
-## Compare with Foundry Tools
+## Compare with AI services in Azure
 
 Edge RAG runs on customer infrastructure outside the public cloud, allowing customers to search their on-premises data using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
-In contrast, Foundry Tools such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions, requiring customers to bring their data and applications to Azure infrastructure.
+In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions, requiring customers to bring their data and applications to Azure infrastructure.
 
 Edge RAG provides local developer UI experiences that are aligned to Foundry experiences.
 
