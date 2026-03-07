@@ -78,7 +78,7 @@ Check for output that looks like this example:
 > 
 > Only one Container insights in Azure Monitor extension is required per cluster. Before you install Container insights via an extension, you must delete any previous Helm chart installations of Container insights that don't use extensions. Before you run `az k8s-extension create`, complete the steps to [delete the Helm chart](/azure/azure-monitor/containers/kubernetes-monitoring-disable#remove-container-insights-with-helm).
 
-### Required parameters
+### Required parameters for extension creation
 
 The following table describes required parameters for using `az k8s-extension create` to create an extension instance:
 
@@ -90,7 +90,7 @@ The following table describes required parameters for using `az k8s-extension cr
 | `--resource-group` | The resource group that contains the Azure Arc-enabled Kubernetes resource. |
 | `--cluster-type` | The cluster type on which to create the extension instance. For most scenarios, use `connectedClusters`, the cluster type for an Azure Arc-enabled Kubernetes cluster. |
 
-### Optional parameters
+### Optional parameters for extension creation
 
 Use one or more of these optional parameters with the required parameters for your scenario. Some of these parameters can't be used together. Review the description for each parameter and use the ones that apply to your scenario.
 
@@ -235,7 +235,7 @@ This example updates the `auto-upgrade-minor-version` setting for an Azure Machi
 az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubernetes --cluster-name <clusterName> --resource-group <resourceGroupName> --auto-upgrade-minor-version true --cluster-type managedClusters
 ```
 
-### Required parameters for an extension update
+### Required parameters for extension update
 
 | Parameter name | Description |
 |----------------|------------|
@@ -244,7 +244,7 @@ az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubern
 | `--resource-group` | The resource group that contains the cluster. |
 | `--cluster-type` | The cluster type on which to create the extension instance. For Azure Arc-enabled Kubernetes clusters, use `connectedClusters`. For AKS clusters, use `managedClusters`.|
 
-### Optional parameters for an extension update
+### Optional parameters for extension update
 
 | Parameter name | Description |
 |--------------|------------|
