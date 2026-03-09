@@ -3,7 +3,7 @@ title: Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot provides an agentic, multi-modal cloud interface to help you migrate, operate, and optimize your workloads.
 author: JnHs
 ms.author: jenhayes
-ms.date: 11/18/2025
+ms.date: 03/10/2026
 ms.service: copilot-for-azure
 ms.topic: overview
 

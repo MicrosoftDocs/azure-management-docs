@@ -3,7 +3,7 @@ title: Bring your own storage for conversation history in Azure Copilot
 description: Azure Copilot gives tenant administrators the option to store conversation history in their own Cosmos DB instance.
 author: JnHs
 ms.author: jenhayes
-ms.date: 02/10/2026
+ms.date: 03/10/2026
 ms.service: copilot-for-azure
 ms.topic: concept-article
 
