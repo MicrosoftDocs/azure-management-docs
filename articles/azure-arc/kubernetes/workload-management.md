@@ -5,7 +5,7 @@ keywords: "GitOps, Flux, Kubernetes, K8s, Azure, Arc, AKS, ci/cd, devops"
 author: eedorenko
 ms.author: iefedore
 ms.topic: how-to
-ms.date: 03/29/2023
+ms.date: 03/06/2026
 ms.custom: sfi-image-nochange
 # Customer intent: "As a platform engineer, I want to manage and deploy applications across multiple Kubernetes clusters using GitOps practices, so that I can streamline workload management and ensure consistent configurations in different environments."
 ---
@@ -36,7 +36,7 @@ To deploy the sample, run the following script:
 mkdir kalypso && cd kalypso
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/microsoft/kalypso/main/deploy/deploy.sh
 chmod 700 deploy.sh
-./deploy.sh -c -p <prefix. e.g. kalypso> -o <GitHub org. e.g. eedorenko> -t <GitHub token> -l <azure-location. e.g. westus2> 
+./deploy.sh -c -p <prefix. e.g. kalypso> -o <GitHub org> -t <GitHub token> -l <azure-location. e.g. westus2> 
 ```
 
 This script may take 10-15 minutes to complete. After it's done, it reports the execution result in the output like this:
@@ -45,10 +45,10 @@ This script may take 10-15 minutes to complete. After it's done, it reports the 
 Deployment is complete!
 ---------------------------------
 Created repositories:
-  - https://github.com/eedorenko/kalypso-control-plane
-  - https://github.com/eedorenko/kalypso-gitops
-  - https://github.com/eedorenko/kalypso-app-src
-  - https://github.com/eedorenko/kalypso-app-gitops
+  - https://github.com/GitHubOrg/kalypso-control-plane
+  - https://github.com/GitHubOrg/kalypso-gitops
+  - https://github.com/GitHubOrg/kalypso-app-src
+  - https://github.com/GitHubOrg/kalypso-app-gitops
 ---------------------------------
 Created AKS clusters in kalypso-rg resource group:
   - control-plane
@@ -61,7 +61,7 @@ Created AKS clusters in kalypso-rg resource group:
 > If something goes wrong with the deployment, you can delete the created resources with the following command:
 > 
 > ```bash
-> ./deploy.sh -d -p <preix. e.g. kalypso> -o <GitHub org. e.g. eedorenko> -t <GitHub token> -l <azure-location. e.g. westus2> 
+> ./deploy.sh -d -p <preix. e.g. kalypso> -o <GitHub org> -t <GitHub token> -l <azure-location. e.g. westus2> 
 > ```
 
 ### Sample overview
@@ -204,7 +204,7 @@ With that in place, the application is onboarded in the control plane. But the c
 The Platform Team must define how the application deployment targets will be scheduled on cluster types in the `Dev` environment. To do this, submit scheduling policies for the `functional-test` and `performance-test` deployment targets with the following script:  
 
 ```bash
-# Switch to dev branch (representing Dev environemnt) in the control-plane folder
+# Switch to dev branch (representing Dev environment) in the control-plane folder
 git checkout dev
 mkdir -p scheduling/kaizen
 
@@ -254,7 +254,7 @@ git pull --no-edit
 git push
 ```
 
-The first policy states that all deployment targets from the `kaizen-app-team` workspace, marked with labels `purpose: functional-test` and `edge: "true"` should be scheduled on all environment cluster types that are marked with label `restricted: "true"`. You can treat a workspace as a group of applications produced by an application team.
+The first policy states that all deployment targets from the `kaizen-app-team` workspace, marked with labels `purpose: functional-test` and `edge: "true"` should be scheduled on all environment cluster types that are marked with labels `restricted: "true"` and `edge: "true"`. You can treat a workspace as a group of applications produced by an application team.
 
 The second policy states that all deployment targets from the `kaizen-app-team` workspace, marked with labels `purpose: performance-test` and `edge: "false"` should be scheduled on all environment cluster types that are marked with label `size: "large"`.
 
@@ -315,7 +315,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 15s
-  url: "https://github.com/eedorenko/kalypso-tut-test-app-gitops"
+  url: "https://github.com/GitHubOrg/kalypso-tut-test-app-gitops"
   ref:
     branch: "dev"
   secretRef:
@@ -359,7 +359,7 @@ Once the `checkpromote` is successful, it starts the `cd` workflow that promotes
 Next, configure a scheduling policy for the `uat-test` deployment target in the stage environment:  
 
 ```bash
-# Switch to stage branch (representing Stage environemnt) in the control-plane folder
+# Switch to stage branch (representing Stage environment) in the control-plane folder
 git checkout stage
 mkdir -p scheduling/kaizen
 
@@ -469,7 +469,7 @@ The application instance on the `large` cluster shows the following greeting pag
 Applications in the clusters grab the data from the very same database in both `Dev` and `Stage` environments. Let's change it and configure `west-us` clusters to provide a different database url for the applications working in the `Stage` environment:
 
 ```bash
-# Switch to stage branch (representing Stage environemnt) in the control-plane folder
+# Switch to stage branch (representing Stage environment) in the control-plane folder
 git checkout stage
 
 # Update a config map with the configurations for west-us clusters
@@ -518,7 +518,7 @@ You'll see the updated database url:
 Currently, only `drone` and `large` cluster types are included in the `Stage` environment. Let's include the `small` cluster type to `Stage` as well. Even though there's no physical cluster representing this cluster type, you can see how the scheduler reacts to this change.
 
 ```bash
-# Switch to stage branch (representing Stage environemnt) in the control-plane folder
+# Switch to stage branch (representing Stage environment) in the control-plane folder
 git checkout stage
 
 # Add "small" cluster type in west-us region
@@ -553,7 +553,7 @@ When no longer needed, delete the resources that you created. To do so, run the 
 
 ```bash
 # In kalypso folder
-./deploy.sh -d -p <preix. e.g. kalypso> -o <GitHub org. e.g. eedorenko> -t <GitHub token> -l <azure-location. e.g. westus2> 
+./deploy.sh -d -p <preix. e.g. kalypso> -o <GitHub org> -t <GitHub token> -l <azure-location. e.g. westus2> 
 ```
 
 ## Next steps
