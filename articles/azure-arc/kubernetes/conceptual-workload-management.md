@@ -90,7 +90,7 @@ Let's look at the high level solution architecture and understand its primary co
 
 ### Control plane
 
-The platform team models the multicluster environment in the control plane ,which is designed to be human-oriented and easy to understand, update, and review. The control plane operates with abstractions such as cluster types, environments, workloads, scheduling policies, configs, and templates. An automated process handles these abstractions by assigning deployment targets and configuration values to the cluster types, then saving the result to the platform GitOps repository. Although there might be thousands of physical clusters, the platform repository operates at a higher level, grouping the clusters into cluster types.
+The platform team models the multicluster environment in the control plane, which is designed to be human-oriented and easy to understand, update, and review. The control plane operates with abstractions such as cluster types, environments, workloads, scheduling policies, configs, and templates. An automated process handles these abstractions by assigning deployment targets and configuration values to the cluster types, then saving the result to the platform GitOps repository. Although there might be thousands of physical clusters, the platform repository operates at a higher level, grouping the clusters into cluster types.
 
 The main requirement for the control plane storage is to provide reliable and secure transaction processing functionality, rather than handling complex queries against a large amount of data. You can use various technologies to store the control plane data.
 
