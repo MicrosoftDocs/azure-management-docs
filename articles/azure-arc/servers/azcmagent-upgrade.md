@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent upgrade`
 description: Syntax for the `azcmagent upgrade` command line tool
 ms.topic: reference
-ms.date: 03/02/2026
+ms.date: 03/09/2026
 # Customer intent: "As a system administrator, I want to upgrade the Azure Connected Machine agent using the command line, so that I can keep my servers up-to-date with the latest features and security patches."
 ---
 
@@ -39,7 +39,7 @@ This command supports the flags described in [Common flags](azcmagent.md#common-
 
 `--version`
 
-Specifies a specific version to upgrade the agent to. If not provided, the agent will be upgraded to the latest available version. Supported format is `MAJOR.MINOR`, for example `1.63`.
+Specifies a specific version to upgrade the agent to. If not provided, the agent is upgraded to the latest available version. Supported format is `MAJOR.MINOR`, for example `1.63`.
 
 Supported values:
 
@@ -55,4 +55,4 @@ Supported values:
 
 `--background`
 
-Allows the upgrade process to run without popups. This is useful for running the command in a script. If not provided, the upgrade process will display popups to show progress.
+Allows the upgrade process to run without popups. This is useful for running the command in a script. If not provided, the upgrade process displays popups to show progress.
