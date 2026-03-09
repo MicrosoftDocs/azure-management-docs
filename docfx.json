@@ -244,7 +244,8 @@
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
         "articles/azure-arc/servers/**/*.md": "azure-arc-servers",
-        "articles/azure-arc/container-storage/**/*.md": "azure-arc-container-storage"
+        "articles/azure-arc/container-storage/**/*.md": "azure-arc-container-storage",
+        "articles/azure-arc/workload-orchestration/**/*.md": "azure-arc-workload-orchestration"        
       },
       "searchScope": {
         "articles/azure-arc/**/*.md": [
