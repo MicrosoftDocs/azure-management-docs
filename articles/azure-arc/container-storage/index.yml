@@ -62,9 +62,9 @@ landingContent:
         links:
           - text: FAQ
             url: faq.yml
-          - text: Filesystem Behavior
+          - text: Filesystem behavior
             url: reference-filesystem-behavior.md
-          - text: Filesystem Out of Space Behavior
+          - text: Filesystem out of space behavior
             url: reference-filesystem-outofspace.md
           - text: Release notes
             url: release-notes.md
