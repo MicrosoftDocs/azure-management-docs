@@ -4,7 +4,7 @@ description: Learn about the filesystem interface and behavior around what happe
 author: adamschwab
 ms.author: adschwab
 ms.reviewer: stevenpepin
-ms.date: 03/04/2026
+ms.date: 03/10/2026
 ms.topic: concept-article
 ms.custom:
   - linux-related-content
@@ -26,8 +26,8 @@ EdgeVolume filesystems store files in an internal filesystem. If this filesystem
 
 There are two different ways this underlying filesystem can run out of space:
 
-1. The available bytes allocated for the filesystem can run out.
-1. The available inodes allocated for the filesystem can run out.
+- The available bytes allocated for the filesystem can run out.
+- The available inodes allocated for the filesystem can run out.
 
 Which of these cases is more likely to happen depends on the workload. Generally running out of space is more likely. Running out of inodes would only happen if the average file size is small (typically less than 16 KiB).
 
@@ -35,8 +35,8 @@ Which of these cases is more likely to happen depends on the workload. Generally
 
 Even though ingest subvolumes remove (evict) local files after a successful upload to blob storage, it's possible for an ingest subvolume to cause its underlying filesystem to run out of space:
 
-1. If the rate of data creation outpaces the available network bandwidth to write the data out to Azure Blob.
-1. If the cluster becomes disconnected from Azure Blob for a long enough time for the local filesystem to fill up.
+- If the rate of data creation outpaces the available network bandwidth to write the data out to Azure Blob.
+- If the cluster becomes disconnected from Azure Blob for a long enough time for the local filesystem to fill up.
 
 If either case occurs, eventually an ingest subvolume can become full and application filesystem operations will fail with error ENOSPC.
 
@@ -56,8 +56,8 @@ Mirror subvolumes are a bit different because their folders are read-only. No fi
 
 Unfortunately, mirror subvolumes aren't exempt from running out of space.
 
-1. Mirror subvolumes and ingest subvolumes are subvolumes, which means they can share the same storage (represented by the EdgeVolume). They exist as top-level folders in this volume and share the space.
-1. Mirror subvolumes mirror blob containers based on the configuration of the MirrorSubvolume CRD. The backing blob container can have effectively infinite capacity, but local storage certainly doesn't.
+- Mirror subvolumes and ingest subvolumes are subvolumes, which means they can share the same storage (represented by the EdgeVolume). They exist as top-level folders in this volume and share the space.
+- Mirror subvolumes mirror blob containers based on the configuration of the MirrorSubvolume CRD. The backing blob container can have effectively infinite capacity, but local storage certainly doesn't.
 
 If an EdgeVolume filesystem runs out of space, some of the mirrored blobs won't be transferred into the local mirror folder location. The mirror sync might complete with file errors.
 
@@ -76,8 +76,8 @@ The overall mirror sync might complete but individual files that don't fit remai
 
 The following are some mitigation strategies when dealing with mirror subvolumes running out of space:
 
-1. Rework the backing container so that the blobs to be mirrored don't overrun the storage capacity of the EdgeVolume. This mitigation can be managed without changing the MirrorSubvolume configuration. Once the tweaks to the blob are complete, resync the mirror. If the configured Azure Storage container's blobs all fit in the available space, the file errors will disappear.
-1. Configure a prefix in the MirrorSubvolume custom resource to filter the blobs to be mirrored to just include blobs matching the prefix. In combination with the first strategy, this mitigation can allow for rearranging the blobs without having to remove any blobs from the Azure Storage container.
-1. Some storage providers allow for increasing the volume size. If you're using such a storage provider and you have extra space available, you might be able to increase your allocated storage to the EdgeVolume to make all the mirrored blobs fit in the EdgeVolume filesystem.
+- Rework the backing container so that the blobs to be mirrored don't overrun the storage capacity of the EdgeVolume. This mitigation can be managed without changing the MirrorSubvolume configuration. Once the tweaks to the blob are complete, resync the mirror. If the configured Azure Storage container's blobs all fit in the available space, the file errors will disappear.
+- Configure a prefix in the MirrorSubvolume custom resource to filter the blobs to be mirrored to just include blobs matching the prefix. In combination with the first strategy, this mitigation can allow for rearranging the blobs without having to remove any blobs from the Azure Storage container.
+- Some storage providers allow for increasing the volume size. If you're using such a storage provider and you have extra space available, you might be able to increase your allocated storage to the EdgeVolume to make all the mirrored blobs fit in the EdgeVolume filesystem.
 
 Note that blob deletions result in corresponding deletions on the edge. Additionally, blob changes result in new `fallocate` calls. If the `fallocate` succeeds, the full blob downloads to a temporary file and then gets renamed over the old file's location. Because of this temporary file, blob changes require the full space for that blob to be available on the edge to complete the change. Otherwise, the old file will remain in place and a file error will appear.

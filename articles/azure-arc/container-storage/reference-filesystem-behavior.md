@@ -4,7 +4,7 @@ description: Learn about the filesystem interface and behavior around shared fil
 author: adamschwab
 ms.author: adschwab
 ms.reviewer: stevenpepin
-ms.date: 03/04/2026
+ms.date: 03/10/2026
 ms.topic: concept-article
 ms.custom:
   - linux-related-content
@@ -34,10 +34,10 @@ When a mirror sync occurs, an internal application runs to detect and perform fi
 
 The operations that might be performed to complete a mirror sync fall into the following categories:
 
-1. Creating new files or folders to match newly created blobs.
-1. Removing existing files or folders to match removed blobs.
-1. Modifying existing files to match modified blobs, by downloading the new blob and renaming it over top of the old file.
-1. Modifying file or folder metadata: owner, group, permissions, and xattrs based on metadata changes in the blob.
+- Creating new files or folders to match newly created blobs.
+- Removing existing files or folders to match removed blobs.
+- Modifying existing files to match modified blobs, by downloading the new blob and renaming it over top of the old file.
+- Modifying file or folder metadata: owner, group, permissions, and xattrs based on metadata changes in the blob.
 
 When the internal application performs these operations, it does so directly on the underlying filesystem. The changes eventually make their way to customer pods reading the filesystem. Once a change is made in the internal filesystem, it can take up to 30 seconds for file changes or 60 seconds for created or removed files to propagate to customer pods.
 
