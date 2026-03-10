@@ -17,7 +17,7 @@ Additionally, Azure Container Storage contributed to Azure Arc Jumpstart Drops, 
 
 ## Azure Arc Jumpstart scenario using Azure Container Storage enabled by Azure Arc
 
-Azure Container Storagey collaborated with the [Azure Arc Jumpstart](https://azurearcjumpstart.com/) team to implement a scenario in which a computer vision AI model detects defects in bolts by analyzing video from a supply line video feed streamed over Real-Time Streaming Protocol (RTSP). The identified defects are then stored in a container within a storage account using Azure Container Storage.
+Azure Container Storage collaborated with the [Azure Arc Jumpstart](https://azurearcjumpstart.com/) team to implement a scenario in which a computer vision AI model detects defects in bolts by analyzing video from a supply line video feed streamed over Real-Time Streaming Protocol (RTSP). The identified defects are then stored in a container within a storage account using Azure Container Storage.
 
 In this automated setup, Azure Container Storage is deployed on an [AKS Edge Essentials](/azure/aks/hybrid/aks-edge-overview) single-node instance, running in an Azure virtual machine. An Azure Resource Manager template is provided to create the necessary Azure resources and configure the **LogonScript.ps1** custom script extension. This extension handles AKS Edge Essentials cluster creation, Azure Arc onboarding for the Azure VM and AKS Edge Essentials cluster, and Azure Container Storage deployment. Once AKS Edge Essentials is deployed, Azure Container Storage is installed as a Kubernetes service that exposes a CSI driven storage class for use by applications in the Edge Essentials Kubernetes cluster.
 

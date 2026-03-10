@@ -71,3 +71,7 @@ items:
         href: jumpstart.md
       - name: Support and feedback
         href: support-feedback.md
+      - name: Filesystem behavior
+        href: reference-filesystem-behavior.md
+      - name: Filesystem out of space behavior
+        href: reference-filesystem-out-of-space.md
