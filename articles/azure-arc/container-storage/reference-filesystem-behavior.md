@@ -16,11 +16,9 @@ Ultimately, Azure Container Storage enabled by Azure Arc provides a filesystem i
 
 ## What do we mean by a filesystem interface?
 
-In Kubernetes, pods request storage from persistent volume claims (PVCs). See [this guide](howto-configure-cloud-ingest-subvolumes.md), for example, to configure a PVC for a cloud-backed volume. When a pod starts up, Kubernetes creates mount points in a new filesystem (the base of the new filesystem is a copy of the pod's image). Once all configured mounts complete, the pod starts running.
+An application can access many filesystems in its folder structure via [mounts](https://man7.org/linux/man-pages/man8/mount.8.html). In Kubernetes, applications (pods) configure mounts using PVCs. When a pod mounts with an EdgeVolume PVC it gets access to a shared filesystem via a mounted folder.
 
-The resulting mount points provided by the Azure Container Storage Arc provider result in folders within the pod's filesystem like other folders. Unlike normal folders, filesystem operations in these mounted folders end up going over the network to a shared location represented by the EdgeVolume. The purpose of this documentation is to explain the behavior of file system operations on these shared folders.
-
-Stated another way: in Kubernetes, an application can see many filesystems represented in its folder structure. In Kubernetes, these filesystems are accessible as sub-folders via mounts configured by PVCs. When a pod mounts an EdgeVolume PVC it gets access to a shared folder. The pod has a local filesystem which uses the network to access a shared EdgeVolume filesystem.
+See [this guide](howto-configure-cloud-ingest-subvolumes.md), for example, to configure a PVC for out extension's cloud-backed volume. A filesystem mounted with an EdgeVolume PVC has a local and remote component. The local filesystem receives application filesystem operations. It forwards filesystem operations on to the remote component that has access to the underlying storage.
 
 ## Change propagation and local caching
 

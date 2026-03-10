@@ -12,15 +12,15 @@ ms.custom:
 
 # Filesystem out of space behavior
 
-Ultimately, Azure Container Storage enabled by Azure Arc provides a filesystem interface to applications. Filesystems have specific behaviors that applications must be designed to handle. This article explains what happens when the filesystem becomes full and how unbacked, ingest, and mirrored filesystems behave in this condition.
+Ultimately, Azure Container Storage enabled by Azure Arc provides a filesystem interface to applications. Filesystems have specific behaviors that applications must be designed to handle. This article explains what happens when the filesystem becomes full and how EdgeVolume filesystems behave in this condition.
 
 ## What happens when an EdgeVolume is full?
 
-There are several ways that an EdgeVolume can become full. EdgeVolumes request the storage they need based on the setting `defaultDiskStorageClasses` in the [EdgeStorageConfiguration CRD](howto-install-edge-volumes.md?#configuration-crd). The exact amount of space available depends on both the storage class configured for the EdgeVolume and the capacity requested for that EdgeVolume. But regardless of how the EdgeVolume was configured, it can run out of space.
+There are several ways that an EdgeVolume can become full. Upon creation, EdgeVolumes allocate storage with a Kubernetes storage provider. The storage provider is configured with the setting `defaultDiskStorageClasses` in the [EdgeStorageConfiguration CRD](howto-install-edge-volumes.md?#configuration-crd). The exact amount of space available depends on both the storage class configured for the EdgeVolume and the capacity requested for that EdgeVolume. But regardless of how the EdgeVolume was configured, it can run out of space.
 
-### Unbacked out of space
+### Out of space error
 
-Unbacked volumes store files in an internal filesystem. If this filesystem runs out of available space, attempts to write into the mounted folder result in IO errors such as ENOSPC. Most applications aren't equipped to gracefully handle such errors and on receiving an ENOSPC exit with an error message such as:
+EdgeVolume filesystems store files in an internal filesystem. If this filesystem runs out of available space, attempts to write into the mounted folder result in IO errors such as ENOSPC. Most applications aren't equipped to gracefully handle such errors and on receiving an ENOSPC exit with an error message such as:
 
 `<application error>: No Space Left on Device`
 
@@ -42,7 +42,7 @@ If either case occurs, eventually an ingest subvolume can become full and applic
 
 ### Out of space mitigation
 
-In all of the previously mentioned out of space conditions, for backed volumes and ingest subvolumes, deletion should be an option to clear up space. Some Kubernetes storage providers also allow for increasing the size of the backing storage volume.
+In all of the previously mentioned out of space conditions, deletion should be an option to clear up space. Some Kubernetes storage providers also allow for increasing the size of the backing storage volume.
 
 If the out of space condition is for an ingest subvolume and it's due to insufficient bandwidth, look into raising the EdgeVolume `ingestOperationConcurrency` setting to allow more bandwidth for ingest operations. It's also possible the local data write throughput is higher than the available bandwidth to Azure. If so, you might need to minimize what data is written into the shared ingest folder from applications or work to improve the available network bandwidth to Azure.
 
@@ -52,7 +52,7 @@ If you use the local-path provisioner, make sure the target folder configured is
 
 ### Mirror out of space
 
-Mirror subvolumes are a bit different from ingest and unbacked subvolumes because their folders are read-only. No file creates or writes can happen from application pods into these folders.
+Mirror subvolumes are a bit different because their folders are read-only. No file creates or writes can happen from application pods into these folders.
 
 Unfortunately, mirror subvolumes aren't exempt from running out of space.
 
