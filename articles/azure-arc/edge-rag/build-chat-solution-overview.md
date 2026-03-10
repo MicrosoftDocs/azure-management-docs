@@ -94,7 +94,7 @@ In Edge RAG, setting up a data query means you create a system prompt, adjust mo
 
 A critical part of prompt engineering is providing the right system prompt and model parameters according to your data and use case. 
 
-- To choose the right system prompt, see [AI Services - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
+- To choose the right system prompt, see [Foundry Tools - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
 - For information and guidance about choosing model and search parameters, see [Search type parameters](search-types.md#search-type-parameters).
 
 ### Chatting with Edge RAG
