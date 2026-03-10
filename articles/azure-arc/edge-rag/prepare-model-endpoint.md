@@ -1,6 +1,6 @@
 ---
 title: Create "BYOM" Endpoint for Your Model for Edge RAG Preview Enabled by Azure Arc
-description: "Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Azure AI Foundry, KAITO, Foundry Local, or Ollama."
+description: "Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
 ms.date: 10/29/2025
@@ -20,15 +20,15 @@ After you create your endpoint, use the endpoint when you [deploy the extension 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Azure AI Foundry
+## Microsoft Foundry
 
-To use your own model with Edge RAG, you can deploy a language model and create an endpoint by using Azure AI Foundry.
+To use your own model with Edge RAG, you can deploy a language model and create an endpoint by using Foundry.
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
+1. Go to [Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
 
-1. Create a new Azure AI Foundry resource or go to an existing resource.
+1. Create a new Foundry resource or go to an existing resource.
 
-1. On the Azure AI Foundry resource, select **Models + endpoints**.
+1. On the Foundry resource, select **Models + endpoints**.
 
 1. Select **Deploy model** > **Deploy base model**.
 1. Choose a chat completion model from the list like `gpt-4o`.
@@ -46,12 +46,12 @@ To use your own model with Edge RAG, you can deploy a language model and create 
 
 1. Get the endpoint and API Key by selecting on the deployed model. For example, the endpoint looks like the following URL.
 
-   `https://<Azure AI Foundry Resource Name>.openai.azure.com/openai/deployments/<Model Deployment Name>/chat/completions?api-version=<API Version>`
+   `https://<Foundry Resource Name>.openai.azure.com/openai/deployments/<Model Deployment Name>/chat/completions?api-version=<API Version>`
 
 For more information, see the following articles:
 
-- [Deployment types for Azure AI Foundry Models](/azure/ai-foundry/foundry-models/concepts/deployment-types)
-- [Quickstart: Create your first AI Foundry resource](/azure/ai-services/multi-service-resource?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azportal)
+- [Deployment types for Foundry Models](/azure/ai-foundry/foundry-models/concepts/deployment-types)
+- [Quickstart: Create your first Foundry resource](/azure/ai-services/multi-service-resource?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azportal)
 
 ## KAITO
 
