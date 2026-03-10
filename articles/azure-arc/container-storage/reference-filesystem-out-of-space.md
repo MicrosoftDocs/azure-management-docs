@@ -48,7 +48,7 @@ If the out of space condition is for an ingest subvolume and it's due to insuffi
 
 Note about `rancher.io/local-path` (the default storage provider for most k3s Kubernetes clusters): the underlying storage mechanism used here doesn't create a separate filesystem from the rest of the system. It simply mounts into a particular folder on the host (the default location is `/var/lib/rancher/k3s/storage`, though this location is configurable). This provider can be particularly dangerous when running out of space if the local-path folder is in the same filesystem as the host OS. If so, any local-path running out of space means the whole OS partition is out of space. Then the whole node could become unresponsive and difficult to recover.
 
-If you use the local-path provisioner, make sure the target folder configured is a separate filesystem from your host OS so that if it runs out of space the OS won't be compromised.
+If you use the local-path provisioner, make sure the target folder configured is a separate filesystem from your host OS so that if it runs out of space the OS won't be impacted.
 
 ### Mirror out of space
 
