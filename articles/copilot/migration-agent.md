@@ -25,7 +25,7 @@ Currently, Agents (preview) in Azure Copilot supports full end-to-end migration 
 
 ## Migration sample prompts
 
-Here are a few examples of the kinds of prompts you can use to get help with migratoin tasks. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries. When using these kinds of prompts, be sure to enable agent mode by selecting the icon in the chat window.
+Here are a few examples of the kinds of prompts you can use to get help with migration tasks. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries. When using these kinds of prompts, be sure to enable agent mode by selecting the icon in the chat window.
 
 :::image type="content" source="media/agent-preview/azure-copilot-agent-mode-active.png" alt-text="Screenshot showing agent mode (preview) enabled in Azure Copilot.":::
 
