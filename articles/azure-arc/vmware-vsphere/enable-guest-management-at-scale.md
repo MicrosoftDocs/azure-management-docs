@@ -2,7 +2,7 @@
 title: Install Arc agent at scale for your VMware VMs
 description: Learn how to enable guest management at scale for Arc enabled VMware vSphere VMs.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 03/05/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: v-gajeronika
@@ -16,7 +16,7 @@ ms.custom:
 
 # Install Arc agents at scale for your VMware VMs
 
-In this article, you learn how to install Azure connected machine agents for VMware VMs. Installing these agents is a prerequisite to use Azure services for securing, patching, and monitoring your VMs. By using these agents, you can leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits. 
+In this article, you learn how to install Azure connected machine agents in VMware VMs at-scale through Azure Arc enabled VMware vSphere experiences. Installing these agents is a prerequisite to use Azure services for securing, patching, and monitoring your VMs. By using these agents, you can leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits. 
 
 You can install Arc agents on VMware VMs through multiple methods. Choose the method that fits your deployment preferences: 
 
@@ -28,8 +28,7 @@ You can install Arc agents on VMware VMs through multiple methods. Choose the me
 
 Before you install Arc agents at scale for VMware VMs, ensure the following conditions are met:
 
-- The resource bridge is running.
-- The vCenter is in *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
+- You are onboarded to Azure Arc enabled VMware vSphere with the vCenter Azure resource in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
 - You have the *Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to install Arc agents on the target machines.
 - All the target machines are:
     - Powered on.

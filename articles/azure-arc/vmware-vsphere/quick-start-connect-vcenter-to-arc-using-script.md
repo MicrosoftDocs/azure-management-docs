@@ -5,7 +5,7 @@ ms.topic: quickstart
 ms.custom:
   - references_regions
   - build-2025
-ms.date: 02/10/2026
+ms.date: 03/10/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: v-gajeronika
@@ -37,7 +37,7 @@ First, the script deploys a virtual appliance called [Azure Arc resource bridge]
 
 ### vCenter Server
 
-- vCenter Server version 7 or 8.
+- vCenter Server version 8.
 
 - A virtual network that provides internet access, directly or through a proxy. VMs on this network must communicate with the vCenter server on TCP port (usually 443).
 

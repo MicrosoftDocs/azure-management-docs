@@ -3,7 +3,7 @@ title: Bring your own storage for conversation history in Azure Copilot
 description: Azure Copilot gives tenant administrators the option to store conversation history in their own Cosmos DB instance.
 author: JnHs
 ms.author: jenhayes
-ms.date: 11/18/2025
+ms.date: 03/10/2026
 ms.service: copilot-for-azure
 ms.topic: concept-article
 
@@ -25,6 +25,9 @@ When you set up conversation history storage in a Cosmos DB instance managed by 
 Similarly, if you enabled **Bring your own storage**, then later update your conversation storage to use new Cosmos DB instance, users in your tenant lose access to previous conversations stored in the original Cosmos DB instance. However, if a user has access to the previous Cosmos DB instance, they can access that data according to their permissions for that resource and your organization's data retention policies.
 
 If you disable **Bring your own storage**, Microsoft resumes conversation storage for your organization, and users can only access their new conversations that are stored by Microsoft. Users in your tenant lose access to any conversations previously stored in your organization's Cosmos DB instance, unless they have permissions to access the database directly.
+
+> [!IMPORTANT]
+> Enabling **Bring your own storage** currently prevents users in your tenant from using the [migration agent capabilities in Agents (preview) in Azure Copilot](migration-agent.md) capabilities. Other capabilities of [Agents (preview) in Azure Copilot](agents-preview.md) are still available, but intelligent agent capabilities aren't available for migration tasks.
 
 ## Permissions
 

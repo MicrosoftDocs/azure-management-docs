@@ -10,6 +10,8 @@
     items:
     - name: Deployment
       href: deployment-agent.md
+    - name: Migration
+      href: migration-agent.md
     - name: Observability
       href: observability-agent.md
     - name: Optimization

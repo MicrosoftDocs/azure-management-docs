@@ -269,7 +269,7 @@ bulk_deployment.ps1 "input.json"
 ```
 
 > [!NOTE]
-> Every deployment (bulk or single) creates a Workflow resource. The default limitation on the number of Workflows is 800. Once this quota is reached, you need to delete existing Workflows by running the script [workflow-delete.ps1](https://github.com/Azure/workload-orchestration/blob/main/workflow-delete.ps1), before performing additional deployments.
+> Every deployment (bulk or single) creates a Workflow resource. The default limitation on the number of Workflows is 800. Once this quota is reached, you need to delete existing Workflows by running `az workload-orchestration workflow delete --name <workflow-name> --resource-group <rg-name>`, before performing additional deployments.
 
 ## Related content
 

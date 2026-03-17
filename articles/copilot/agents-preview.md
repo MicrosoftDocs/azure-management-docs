@@ -3,7 +3,7 @@ title: Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot provides an agentic, multi-modal cloud interface to help you migrate, operate, and optimize your workloads.
 author: JnHs
 ms.author: jenhayes
-ms.date: 11/18/2025
+ms.date: 03/10/2026
 ms.service: copilot-for-azure
 ms.topic: overview
 
@@ -17,6 +17,7 @@ Agents (preview) in Azure Copilot extends the current capabilities of Azure Copi
 Azure agent orchestration intelligently surfaces the right agent at the right time to assist you with your request. Currently, the preview features agents that help you with:
 
 - [Deployments and infrastructure](deployment-agent.md)
+- [Migration](migration-agent.md)
 - [Observability](observability-agent.md)
 - [Optimization](optimization-agent.md)
 - [Resiliency](resiliency-agent.md)

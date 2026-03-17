@@ -2,7 +2,7 @@
 title: Plan for deployment
 description: Learn about the support matrix for Arc-enabled VMware vSphere including vCenter Server versions supported, network requirements, and more.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 03/10/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: v-gajeronika
@@ -25,7 +25,7 @@ Meet the following requirements to use Azure Arc-enabled VMware vSphere.
 
 ### Supported vCenter Server versions
 
-Azure Arc-enabled VMware vSphere works with vCenter Server versions 7 and 8.
+Azure Arc-enabled VMware vSphere works with vCenter Server version 8.
 
 > [!NOTE]
 > Azure Arc-enabled VMware vSphere currently supports vCenters with a maximum of 9,500 VMs. If your vCenter has more than 9,500 VMs, don't use Azure Arc-enabled VMware vSphere with it at this point.
@@ -56,7 +56,7 @@ The following firewall URL exceptions are needed for the Azure Arc resource brid
 
 [!INCLUDE [network-requirements](../resource-bridge/includes/network-requirements.md)]
 
-In addition, VMware VSphere requires the following:
+In addition, VMware vSphere requires the following:
 
 [!INCLUDE [netork-requirements](includes/network-requirements.md)]
 
@@ -130,3 +130,4 @@ The Azure Arc agents need the following firewall URL exceptions:
 ## Next steps
 
 - [Connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md)
+
