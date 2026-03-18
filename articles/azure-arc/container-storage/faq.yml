@@ -7,7 +7,7 @@ metadata:
   ms.topic: faq
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
-  ms.date: 02/25/2026
+  ms.date: 03/18/2026
   ms.custom: references-regions
 
 title: Azure Container Storage enabled by Azure Arc (preview) FAQ
@@ -103,12 +103,6 @@ sections:
           
           It's important to note that this limit only applies to files currently stored in the subvolume. Generally, files are uploaded then purged. Therefore, this limit is mainly of note during disconnected scenarios or for subvolumes with long retention policies. 
       
-      - question: What is ACStor triplication?
-        answer: ACStor triplication stores data across three different nodes, each with its own hard drive. This intended behavior ensures data redundancy and reliability.
-
-      - question: Can ACStor triplication occur on a single physical device?
-        answer: No, ACStor triplication isn't designed to operate on a single physical device with three attached hard drives.
-
       - question: Is there support for Azure Resource Manager (ARM) deployments? 
         answer: No, Azure Container Storage enabled by Azure Arc doesn't support ARM deployments. At this time, Arc itself does not support ARM, so neither does this Arc extension.
 
@@ -121,10 +115,19 @@ sections:
           - **On Disk Encryption**: Encryption at rest. Not currently supported by Azure Container Storage.
 
       - question: Is data encrypted in transit?
-        answer: Yes, data in transit is encrypted using standard HTTPS protocols. Data is decrypted once it reaches the cloud.
+        answer: |
+          Yes, data in transit is encrypted using standard HTTPS protocols. Data is decrypted once it reaches the cloud.
 
       - question: Is data encrypted at REST?
-        answer: Data persisted by the Azure Container Storage enabled by Azure Arc extension is encrypted at REST if the underlying platform provides encrypted disks.
+        answer: |
+          Data persisted by the Azure Container Storage enabled by Azure Arc extension is encrypted at REST if the underlying platform provides encrypted disks.
 
       - question: Why is the Storage Blob Data Owner role needed?
-        answer: When using an Extension Identity, permissions as a `StorageBlobDataOwner` role are needed to write data. The role must be an Owner instead of just a Contributor, because the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
+        answer: |
+          When using an Extension Identity, permissions as a `StorageBlobDataOwner` role are needed to write data. The role must be an Owner instead of just a Contributor, because the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
+
+      - question: How is this extension updated?
+        answer: |
+          This extension uses automatic upgrades to always keep you up to date on the latest features and security updates. However, if you want to disable the auto upgrade feature, you can pass the `--auto-upgrade=false` flag to `az k8s-extension create` during your installation. Or, if you're already installed and running, you can pass the `--auto-upgrade=false` flag to `az k8s-extension update`. Then, to do the upgrade, run `az k8s-extension update`. For all of these commands, you can also use the flags to signify this extension. For example, `--resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name azure-arc-containerstorage --extension-type microsoft.arc.containerstorage`.
+        
+          For more information about upgrades managed through Arc, see [Deploy and manage an Azure Arc-enabled Kubernetes cluster extension](/azure/azure-arc/kubernetes/extensions#optional-parameters-for-extension-creation).
