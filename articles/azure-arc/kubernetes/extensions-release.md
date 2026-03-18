@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 02/18/2026
+ms.date: 03/18/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -204,17 +204,17 @@ The most recent version of the Flux v2 extension and the two previous versions (
 
 ### Deprecation and removal notice: Upcoming changes to `microsoft.flux` extension
 
-Several upstream Flux APIs that have been retired by the Flux project will be removed in an upcoming release of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
+Several upstream Flux APIs that have been retired by the Flux project will be removed in upcoming releases of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
 
 The following Flux APIs are being deprecated and will be removed:
 
-- Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
-- Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
-- Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
-- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
-- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1` abd `helm.toolkit.fluxcd.io/v2beta2`
+- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1` and `notification.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1` and `image.toolkit.fluxcd.io/v1beta2`
 
-For a complete list of deprecated APIs and their replacements, see the PRs linked in <https://github.com/fluxcd/flux2/issues/5474>.
+For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
 **Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs. Use the supported API versions for all impacted resources. We strongly recommend completing these steps before January 2026 to avoid deployment failures or resource reconciliation issues.
 
