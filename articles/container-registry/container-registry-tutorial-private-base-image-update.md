@@ -184,12 +184,8 @@ az acr task list-runs --registry $ACR_NAME --output table
 
 If you completed the previous tutorial (and didn't delete the registry), you should see output similar to the following. Take note of the number of task runs, and the latest RUN ID, so you can compare the output after you update the base image in the next section.
 
-```azurecli
-az acr task list-runs --registry $ACR_NAME --output table
-```
-
 ```output
-UN ID    TASK            PLATFORM    STATUS     TRIGGER       STARTED               DURATION
+RUN ID    TASK            PLATFORM    STATUS     TRIGGER       STARTED               DURATION
 --------  --------------  ----------  ---------  ------------  --------------------  ----------
 ca12      baseexample2    linux       Succeeded  Manual        2023-11-21T00:00:56Z  00:00:36
 ca11      baseexample1    linux       Succeeded  Image Update  2023-11-20T23:38:24Z  00:00:34
@@ -273,8 +269,8 @@ In this tutorial, you learned how to use a task to automatically trigger contain
 <!-- LINKS - External -->
 [base-node]: https://hub.docker.com/_/node/
 [code-sample]: https://github.com/Azure-Samples/acr-build-helloworld-node
-[dockerfile-app]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/master/Dockerfile-app
-[dockerfile-base]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/master/Dockerfile-base
+[dockerfile-app]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/main/Dockerfile-app
+[dockerfile-base]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/main/Dockerfile-base
 
 <!-- LINKS - Internal -->
 [az-acr-build]: /cli/azure/acr#az-acr-build
