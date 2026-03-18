@@ -211,8 +211,8 @@ The following Flux APIs are being deprecated and will be removed:
 - Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
 - Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
 - Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1` abd `helm.toolkit.fluxcd.io/v2beta2`
-- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1` and `notification.toolkit.fluxcd.io/v1beta2`
-- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1` and `image.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
 For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
