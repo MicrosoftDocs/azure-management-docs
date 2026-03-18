@@ -88,7 +88,7 @@ az acr task create \
     --name baseexample1 \
     --image helloworld:{{.Run.ID}} \
     --arg REGISTRY_NAME=$ACR_NAME.azurecr.io \
-    --context https://github.com/$GIT_USER/acr-build-helloworld-node.git#master \
+    --context https://github.com/$GIT_USER/acr-build-helloworld-node.git#main \
     --file Dockerfile-app \
     --git-access-token $GIT_PAT
 ```
@@ -233,8 +233,8 @@ Now, move on to the next tutorial to learn how to trigger tasks on a defined sch
 <!-- LINKS - External -->
 [base-node]: https://hub.docker.com/_/node/
 [code-sample]: https://github.com/Azure-Samples/acr-build-helloworld-node
-[dockerfile-app]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/master/Dockerfile-app
-[dockerfile-base]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/master/Dockerfile-base
+[dockerfile-app]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/main/Dockerfile-app
+[dockerfile-base]: https://github.com/Azure-Samples/acr-build-helloworld-node/blob/main/Dockerfile-base
 
 <!-- LINKS - Internal -->
 [az-acr-build]: /cli/azure/acr#az-acr-build
