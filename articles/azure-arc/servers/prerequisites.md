@@ -52,9 +52,11 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Azure Local                         |             |        |       |                                                                                                  |
 | Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Debian                              | 12          | ✅    | ✅    |                                                                                                  |
+| Debian                              | 13          | ✅    | ✅    |                                                                                                  |
 | Oracle Linux                        | 7           | ✅    | ❌    |                                                                                                  |
-| Oracle Linux                        | 8           | ✅    | ❌    |                                                                                                  |
+| Oracle Linux                        | 8           | ✅    | ✅    |                                                                                                  |
 | Oracle Linux                        | 9           | ✅    | ❌    |                                                                                                  |
+| Oracle Linux                        | 10          | ✅    | ❌    |                                                                                                  |
 | Red Hat Enterprise Linux (RHEL)     | 7           | ✅    | ❌    |                                                                                                  |
 | Red Hat Enterprise Linux (RHEL)     | 8           | ✅    | ❌    |                                                                                                  |
 | Red Hat Enterprise Linux (RHEL)     | 9           | ✅    | ❌    |                                                                                                  |
