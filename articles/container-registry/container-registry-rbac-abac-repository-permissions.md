@@ -507,10 +507,15 @@ For example, if an identity or group currently has an `AcrPull` role assignment 
 ##### Assign the equivalent role using the Azure CLI
 
 ```azurecli
-# Example: Assign Container Registry Repository Reader to a group (equivalent to AcrPull)
+# Example: Assign the equivalent of AcrPull by assigning the roles as per the table
 az role assignment create \
   --assignee <principal-id-or-group-object-id> \
   --role "Container Registry Repository Reader" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
+
+az role assignment create \
+  --assignee <principal-id-or-group-object-id> \
+  --role "Container Registry Repository Catalog Lister" \
   --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
 ```
 
