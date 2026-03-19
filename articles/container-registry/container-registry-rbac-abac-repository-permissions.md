@@ -489,8 +489,8 @@ The following table maps legacy ACR roles to their ABAC-enabled equivalents:
 | Legacy role (RBAC-only) | Equivalent ABAC-enabled role(s) |
 |---|---|
 | `AcrPull` | `Container Registry Repository Reader` + `Container Registry Repository Catalog Lister` |
-| `AcrPush` | `Container Registry Repository Writer` + `Container Registry Repository Catalog Lister` |
-| `AcrDelete` | `Container Registry Repository Contributor` + `Container Registry Repository Catalog Lister` |
+| `AcrPush` | `Container Registry Repository Writer` |
+| `AcrDelete` | `Container Registry Repository Contributor` |
 
 The ABAC-enabled roles don't include catalog listing permissions to list repositories, so you must also assign the `Container Registry Repository Catalog Lister` role to maintain equivalent access.
 
