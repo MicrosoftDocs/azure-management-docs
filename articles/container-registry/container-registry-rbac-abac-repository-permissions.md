@@ -494,7 +494,7 @@ The following table maps legacy ACR roles to their ABAC-enabled equivalents:
 
 The ABAC-enabled roles don't include catalog listing permissions to list repositories, so you must also assign the `Container Registry Repository Catalog Lister` role to maintain equivalent access.
 
-For example, if an identity or group currently has an `AcrPull` role assignment, create additional role assignments with the `Container Registry Repository Reader` role (without any ABAC conditions) and the `Container Registry Repository Catalog Lister` role.
+For example, if an identity or group currently has an `AcrPull` role assignment (which allows pull and repository list permissions), create additional role assignments with the `Container Registry Repository Reader` role (without any ABAC conditions) and the `Container Registry Repository Catalog Lister` role.
 
 ##### Assign the equivalent role using the Azure portal
 
