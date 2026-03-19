@@ -492,7 +492,9 @@ The following table maps legacy ACR roles to their ABAC-enabled equivalents:
 | `AcrPush` | `Container Registry Repository Writer` |
 | `AcrDelete` | `Container Registry Repository Contributor` |
 
-For example, if an identity or group currently has an `AcrPull` role assignment, create an additional role assignment with the `Container Registry Repository Reader` role without any ABAC conditions.
+Additionally, the ABAC-enabled roles don't include catalog listing permissions to list repositories. If identities need to list repositories in the registry, also assign the `Container Registry Repository Catalog Lister` role.
+
+For example, if an identity or group currently has an `AcrPull` role assignment, create an additional role assignment with the `Container Registry Repository Reader` role (without any ABAC conditions) and the `Container Registry Repository Catalog Lister` role.
 
 ##### Assign the equivalent role using the Azure portal
 
