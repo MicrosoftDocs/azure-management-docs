@@ -77,8 +77,11 @@
         href: conceptual-custom-locations.md
   - name: Deploy applications to cluster
     items:
-      - name: Application deployment with GitOps
-        displayName: flux, deploy, configuration
+      - name: Application deployment with GitOps (ArgoCD)
+        displayName: argo, deploy, configuration
+        href: conceptual-gitops-argocd.md
+      - name: Application deployment with GitOps (Flux v2)
+        displayName: deploy, configuration
         href: conceptual-gitops-flux2.md
       - name: GitOps (Flux v2) parameters
         href: gitops-flux2-parameters.md
