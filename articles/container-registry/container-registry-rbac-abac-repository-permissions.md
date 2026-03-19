@@ -494,9 +494,6 @@ The following table maps legacy ACR roles to their ABAC-enabled equivalents:
 
 For example, if an identity or group currently has an `AcrPull` role assignment, create an additional role assignment with the `Container Registry Repository Reader` role without any ABAC conditions.
 
-> [!TIP]
-> If you use a Microsoft Entra security group for managing access (for example, a group containing all Kubernetes cluster user-assigned managed identities that need image pull access), you only need to assign the new ABAC-enabled role to the group. You don't need to update each individual identity.
-
 ##### Assign the equivalent role using the Azure portal
 
 1. Go to the registry in the Azure portal. In the service menu, select **Access control (IAM)**.
@@ -531,7 +528,17 @@ az acr update --name <registry-name> --resource-group <resource-group> --role-as
 
 ---
 
-#### Step 4: Remove the legacy role assignments
+#### Step 4: Confirm uninterrupted access
+
+Before removing any legacy role assignments, verify that all identities continue to have the expected access with the new ABAC-enabled roles. For example:
+
+- Verify that Kubernetes clusters can still pull images from the registry.
+- Verify that CI/CD pipelines can still push images to the registry.
+- Verify that any other automated processes that interact with the registry continue to work.
+
+If any identity loses access, check the role assignments and verify that the correct ABAC-enabled role is assigned before proceeding.
+
+#### Step 5: Remove the legacy role assignments
 
 After you've confirmed the ABAC-enabled roles are correctly assigned and the registry is in ABAC-enabled mode, remove the legacy role assignments (for example, `AcrPull`, `AcrPush`, `AcrDelete`) to clean up.
 
@@ -545,15 +552,9 @@ az role assignment delete \
   --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
 ```
 
-#### Step 5: Validate that identities have uninterrupted access
+#### Step 6: Validate that identities have uninterrupted access
 
-After the transition, validate that all identities continue to have the expected access. For example:
-
-- Verify that Kubernetes clusters can still pull images from the registry.
-- Verify that CI/CD pipelines can still push images to the registry.
-- Verify that any other automated processes that interact with the registry continue to work.
-
-If any identity loses access, check the role assignments and verify that the correct ABAC-enabled role is assigned.
+After removing the legacy role assignments, perform a final validation to confirm that all identities still have the expected access using only the ABAC-enabled roles.
 
 ## Related content
 
