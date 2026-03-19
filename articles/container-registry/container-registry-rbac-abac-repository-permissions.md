@@ -17,6 +17,99 @@ Azure ABAC builds upon Azure role-based access control (Azure RBAC) by introduci
 
 This article describes how to enable Azure ABAC for repository permissions in your container registry, the effects of changing the role assignment permissions mode, and how to configure role assignments with ABAC conditions.
 
+> [!IMPORTANT]
+> **ABAC-enabled mode (`rbac-abac`) will become the default role assignment permissions mode for Azure Container Registry in the future.** We recommend that all customers migrate their existing registries from the current RBAC-only mode (`rbac`) to the ABAC-enabled mode (`rbac-abac`) as soon as possible. You don't need to use ABAC conditions to benefit from this mode—assigning ABAC-enabled roles without conditions grants registry-wide permissions, similar to legacy roles. See [Migrate from RBAC-only to ABAC-enabled mode](#migrate-from-rbac-only-to-abac-enabled-mode) for a step-by-step migration guide.
+
+## Migrate from RBAC-only to ABAC-enabled mode
+
+If you have an existing registry using RBAC-only mode (**RBAC Registry Permissions**), you should migrate to ABAC-enabled mode (**RBAC Registry + ABAC Repository Permissions**). Enabling ABAC doesn't require you to use ABAC conditions—you can assign ABAC-enabled roles without conditions to grant registry-wide permissions equivalent to the legacy roles.
+
+> [!CAUTION]
+> **Switching an existing registry to ABAC-enabled mode without first assigning equivalent ABAC-enabled roles risks cutting off access for existing identities.** Legacy ACR roles such as `AcrPull`, `AcrPush`, and `AcrDelete` are not honored in ABAC-enabled registries. You must follow the recommended transition plan below to avoid access disruptions.
+
+### Recommended transition plan
+
+Follow these steps to safely migrate an existing registry from RBAC-only mode to ABAC-enabled mode without interrupting access for existing identities:
+
+#### Step 1: Keep the registry in RBAC-only mode
+
+Don't change the role assignment permissions mode yet. Leave the registry in **RBAC Registry Permissions** mode while you prepare the new role assignments.
+
+#### Step 2: Assign the equivalent ABAC-enabled roles
+
+For each identity (user, group, service principal, or managed identity) that currently has a legacy role assignment, create an additional role assignment using the equivalent ABAC-enabled role **without ABAC conditions**. Assigning the role without conditions grants registry-wide access, which is equivalent to the legacy role.
+
+The following table maps legacy ACR roles to their ABAC-enabled equivalents:
+
+| Legacy role (RBAC-only) | Equivalent ABAC-enabled role |
+|---|---|
+| `AcrPull` | `Container Registry Repository Reader` |
+| `AcrPush` | `Container Registry Repository Writer` |
+| `AcrDelete` | `Container Registry Repository Contributor` |
+
+For example, if an identity or group currently has an `AcrPull` role assignment, create an additional role assignment with the `Container Registry Repository Reader` role without any ABAC conditions.
+
+> [!TIP]
+> If you use a Microsoft Entra security group for managing access (for example, a group containing all Kubernetes cluster user-assigned managed identities that need image pull access), you only need to assign the new ABAC-enabled role to the group. You don't need to update each individual identity.
+
+##### Assign the equivalent role using the Azure portal
+
+1. Go to the registry in the Azure portal. In the service menu, select **Access control (IAM)**.
+1. Select **Add**, and then select **Add role assignment**.
+1. Search for the equivalent ABAC-enabled role (for example, `Container Registry Repository Reader`). Select that role, and then select **Next**.
+1. Select the identity (user, group, service principal, or managed identity) that currently has the legacy role. Select **Next**.
+1. On the **Conditions** tab, don't add any conditions. Select **Next**, then select **Review + assign**.
+
+##### Assign the equivalent role using the Azure CLI
+
+```azurecli
+# Example: Assign Container Registry Repository Reader to a group (equivalent to AcrPull)
+az role assignment create \
+  --assignee <principal-id-or-group-object-id> \
+  --role "Container Registry Repository Reader" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
+```
+
+#### Step 3: Switch the registry to ABAC-enabled mode
+
+After you've assigned the equivalent ABAC-enabled roles to all existing identities, transition the registry to ABAC-enabled mode.
+
+##### [Azure portal](#tab/azure-portal)
+
+In the Azure portal, go to the registry. In the service menu, under **Settings**, select **Properties**. Change the **Role assignment permissions mode** to **RBAC Registry + ABAC Repository Permissions**, and then select **Save**.
+
+##### [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az acr update --name <registry-name> --resource-group <resource-group> --role-assignment-mode 'rbac-abac'
+```
+
+---
+
+#### Step 4: Remove the legacy role assignments
+
+After you've confirmed the ABAC-enabled roles are correctly assigned and the registry is in ABAC-enabled mode, remove the legacy role assignments (for example, `AcrPull`, `AcrPush`, `AcrDelete`) to clean up.
+
+##### Remove the legacy role using the Azure CLI
+
+```azurecli
+# Example: Remove the legacy AcrPull role assignment
+az role assignment delete \
+  --assignee <principal-id-or-group-object-id> \
+  --role "AcrPull" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
+```
+
+#### Step 5: Validate that identities have uninterrupted access
+
+After the transition, validate that all identities continue to have the expected access. For example:
+
+- Verify that Kubernetes clusters can still pull images from the registry.
+- Verify that CI/CD pipelines can still push images to the registry.
+- Verify that any other automated processes that interact with the registry continue to work.
+
+If any identity loses access, check the role assignments and verify that the correct ABAC-enabled role is assigned.
+
 ## Configure role assignment permissions mode setting
 
 To use Azure ABAC to manage repository permissions, set the **Role assignment permissions mode** for your registry to **RBAC Registry + ABAC Repository Permissions**. This mode allows you to use optional ABAC conditions to scope role assignments to specific repositories, in addition to RBAC role assignments by using [ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
