@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Deploy applications using GitOps"
-description: "This tutorial shows how to use GitOps with ArgoCD in Azure Arc and AKS clusters."
+description: "This tutorial shows how to use GitOps with Argo CD in Azure Arc and AKS clusters."
 ms.date: 02/25/2026
 ms.topic: tutorial
 ms.custom:
@@ -8,18 +8,18 @@ ms.custom:
   - devx-track-azurecli
   - references_regions
   - build-2025
-# Customer intent: As a DevOps engineer, I want to deploy applications using GitOps with ArgoCD on Azure Arc or AKS clusters, so that I can manage configurations and automate application deployments efficiently.
+# Customer intent: As a DevOps engineer, I want to deploy applications using GitOps with Argo CD on Azure Arc or AKS clusters, so that I can manage configurations and automate application deployments efficiently.
 ---
 
-# Tutorial: Deploy applications using GitOps with ArgoCD
+# Tutorial: Deploy applications using GitOps with Argo CD
 
-This tutorial describes how to use [GitOps with ArgoCD](conceptual-gitops-argocd.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) that lets you use your Git repository as the source of truth for cluster configuration and application deployment. ArgoCD also supports other common file sources, such as Helm and Open Container Initiative (OCI) repositories.
+This tutorial describes how to use [GitOps with Argo CD](conceptual-gitops-Argo CD.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. GitOps with Argo CD is enabled as a [cluster extension](conceptual-extensions.md) that lets you use your Git repository as the source of truth for cluster configuration and application deployment. Argo CD also supports other common file sources, such as Helm and Open Container Initiative (OCI) repositories.
 
 > [!NOTE]
-> Starting with version 1.0.0-preview, the ArgoCD extension uses the [community Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). **This change is a breaking change as the configuration keys have changed**. If you installed a previous version (0.0.x) of the extension, uninstall the extension and reinstall the latest with updated configuration keys.
+> Starting with version 1.0.0-preview, the Argo CD extension uses the [community Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). **This change is a breaking change as the configuration keys have changed**. If you installed a previous version (0.0.x) of the extension, uninstall the extension and reinstall the latest with updated configuration keys.
 
 > [!IMPORTANT]
-> GitOps with ArgoCD is currently in PREVIEW.
+> GitOps with Argo CD is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 > For production GitOps extension support, try the [GitOps extension using Flux](tutorial-use-gitops-flux2.md).
 
@@ -85,7 +85,7 @@ To deploy applications using GitOps, you need either an Azure Arc-enabled Kubern
   ```
 
 > [!TIP]
-> While the source in this tutorial is a Git repository, ArgoCD supports other common file sources such as Helm and Open Container Initiative (OCI) repositories.
+> While the source in this tutorial is a Git repository, Argo CD supports other common file sources such as Helm and Open Container Initiative (OCI) repositories.
 
 #### Version and region support
 
@@ -130,33 +130,33 @@ False          whl             k8s-configuration      C:\Users\somename\.azure\c
 False          whl             k8s-extension          C:\Users\somename\.azure\cliextensions\k8s-extension        False     1.6.4
 ```
 
-## Create GitOps (ArgoCD) extension (simple installation)
+## Create GitOps (Argo CD) extension (simple installation)
 
-The GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
+The GitOps [Argo CD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
 
 > [!IMPORTANT]
 > The HA mode is the default configuration and requires four nodes in the cluster to be able to install. The command below adds `--config "redis-ha.enabled=false` to install the extension on a single node.
 
- This command creates the simplest configuration installing the ArgoCD components to a new `argocd` namespace with cluster-wide access. Cluster-wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. For example: `namespace1,namespace2`
+ This command creates the simplest configuration installing the Argo CD components to a new `Argo CD` namespace with cluster-wide access. Cluster-wide access enables Argo CD app definitions to be detected in any namespace listed in the Argo CD configmap configuration in the cluster. For example: `namespace1,namespace2`
 
 ```azurecli
 az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> \
 --cluster-type managedClusters \
---name argocd \
---extension-type Microsoft.ArgoCD \
+--name Argo CD \
+--extension-type Microsoft.Argo CD \
 --release-train preview \
 --config "redis-ha.enabled=false" \
 --config "configs.params.application\.namespaces=namespace1,namespace2"
 ```
 
-This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`.  ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.
+This installation command creates a new `<namespace>` namespace and installs the Argo CD components in the `<namespace>`.  Argo CD application definitions in this configuration only function in the `<namespace>` namespace.
 
 > [!NOTE]
 > For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in your Azure CLI command when configuring the extension.
 
-## Create GitOps (ArgoCD) extension with workload identity
+## Create GitOps (Argo CD) extension with workload identity
 
-An alternative installation method recommended for production usage is [workload identity](/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
+An alternative installation method recommended for production usage is [workload identity](/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of Argo CD.
 
 > [!IMPORTANT]
 > The HA mode is the default configuration and requires four nodes in the cluster to be able to install. Use `'redis-ha.enabled': false` to install the extension on a single node.
@@ -169,7 +169,7 @@ var clusterName = '<aks-or-arc-cluster-name>'
 var workloadIdentityClientId = 'replace-me##-##-###-###'
 var ssoWorkloadIdentityClientId = 'replace-me##-##-###-###'
 
-var url = 'https://<public-ip-for-argocd-ui>/'
+var url = 'https://<public-ip-for-Argo CD-ui>/'
 var oidcConfig = '''
 name: Azure
 issuer: https://login.microsoftonline.com/<your-tenant-id>/v2.0
@@ -193,7 +193,7 @@ p, role:org-admin, repositories, get, *, allow
 p, role:org-admin, repositories, create, *, allow
 p, role:org-admin, repositories, update, *, allow
 p, role:org-admin, repositories, delete, *, allow
-g, replace-me##-argocd-ui-Microsoft Entra-group-admin-id, role:org-admin
+g, replace-me##-Argo CD-ui-Microsoft Entra-group-admin-id, role:org-admin
 '''
 
 resource cluster 'Microsoft.ContainerService/managedClusters@2024-10-01' existing = {
@@ -201,10 +201,10 @@ resource cluster 'Microsoft.ContainerService/managedClusters@2024-10-01' existin
 }
 
 resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
-  name: 'argocd'
+  name: 'Argo CD'
   scope: cluster
   properties: {
-    extensionType: 'Microsoft.ArgoCD'
+    extensionType: 'Microsoft.Argo CD'
     releaseTrain: 'preview'
     configurationSettings: {
       'redis-ha.enabled': 'true'
@@ -215,7 +215,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
       'configs.cm.url': url
       'configs.rbac.policy\\.default': defaultPolicy
       'configs.rbac.policy\\.csv': policy
-      'configs.params.application\\.namespaces': 'default, argocd'
+      'configs.params.application\\.namespaces': 'default, Argo CD'
    }
   }
 }
@@ -232,13 +232,13 @@ The Bicep template can be created using this command:
 
 `clusterName` is the name of the AKS or Arc-enabled Kubernetes cluster.
 
-`workloadIdentityClientId` and `ssoWorkloadIdentityClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoWorkloadIdentityClientId` is used for the authentication for the ArgoCD UI and the `workloadIdentityClientId` is used for the workload identity for the ArgoCD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoWorkloadIdentityClientId.
+`workloadIdentityClientId` and `ssoWorkloadIdentityClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoWorkloadIdentityClientId` is used for the authentication for the Argo CD UI and the `workloadIdentityClientId` is used for the workload identity for the Argo CD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoWorkloadIdentityClientId.
 
-`url` is the public IP of the ArgoCD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the ArgoCD UI after deployment.
+`url` is the public IP of the Argo CD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the Argo CD UI after deployment.
 
 `oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoWorkloadIdentityClientId-above>` with the same value as `ssoWorkloadIdentityClientId`.
 
-`policy` variable is the `argocd-rbac-cm configmap` settings of ArgoCD. `g, replace-me##-argocd-ui-entra-group-admin-id` is the Microsoft Entra group ID that gives admin access to the ArgoCD UI. The Microsoft Entra group ID can be found in the Azure portal under **Microsoft Entra ID > Groups > _your-group-name_ > Properties**. You can use the Microsoft Entra user ID instead of a Microsoft Entra group ID. The Microsoft Entra user ID can be found in the Azure portal under **Microsoft Entra ID > Users > _your-user-name_ > Properties.**
+`policy` variable is the `Argo CD-rbac-cm configmap` settings of Argo CD. `g, replace-me##-Argo CD-ui-entra-group-admin-id` is the Microsoft Entra group ID that gives admin access to the Argo CD UI. The Microsoft Entra group ID can be found in the Azure portal under **Microsoft Entra ID > Groups > _your-group-name_ > Properties**. You can use the Microsoft Entra user ID instead of a Microsoft Entra group ID. The Microsoft Entra user ID can be found in the Azure portal under **Microsoft Entra ID > Users > _your-user-name_ > Properties.**
 
 ### Create workload identity credentials
 
@@ -250,26 +250,26 @@ To set up new workload identity credentials, follow these steps:
 
    ```azurecli
    # For source-controller
-   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"argocd":"source-controller" --audience api://AzureADTokenExchange
+   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"Argo CD":"source-controller" --audience api://AzureADTokenExchange
    ```
 
 1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ## Connect to private ACR registries or ACR repositories using workload identity
 
-To utilize the private ACR registry or ACR repositories, follow the instructions in the official ArgoCD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity). The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in that guide were completed by the extension with the Bicep deployment and can be skipped.
+To utilize the private ACR registry or ACR repositories, follow the instructions in the official Argo CD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity). The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in that guide were completed by the extension with the Bicep deployment and can be skipped.
 
-## Access the ArgoCD UI
+## Access the Argo CD UI
 
-If there's no existing ingress controller for the AKS cluster, then the ArgoCD UI can be exposed directly using a LoadBalancer service. The following command will expose the ArgoCD UI on port 80 and 443.
+If there's no existing ingress controller for the AKS cluster, then the Argo CD UI can be exposed directly using a LoadBalancer service. The following command will expose the Argo CD UI on port 80 and 443.
 
 ```bash
-kubectl -n argocd expose service argocd-server --type LoadBalancer --name argocd-server-lb --port 80 --target-port 8080
+kubectl -n Argo CD expose service Argo CD-server --type LoadBalancer --name Argo CD-server-lb --port 80 --target-port 8080
 ```
 
-## Deploy ArgoCD application
+## Deploy Argo CD application
 
-Now that the ArgoCD extension is installed, you can deploy an application using the ArgoCD UI or CLI. The following example simply uses `kubectl apply` to deploy AKS store inside an ArgoCD application to the default ArgoCD project in the `argocd` namespace.
+Now that the Argo CD extension is installed, you can deploy an application using the Argo CD UI or CLI. The following example simply uses `kubectl apply` to deploy AKS store inside an Argo CD application to the default Argo CD project in the `Argo CD` namespace.
 
 ```bash
 kubectl apply -f - <<EOF
@@ -277,7 +277,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: aks-store-demo
-  namespace: argocd
+  namespace: Argo CD
 spec:
   project: default
   source:    
@@ -287,7 +287,7 @@ spec:
   syncPolicy:
       automated: {}
   destination:
-      namespace: argocd
+      namespace: Argo CD
       server: https://kubernetes.default.svc
 EOF
 ```
@@ -296,25 +296,25 @@ The AKS store demo application was installed into the `pets` namespace. See the 
 
 ## Update extension configuration
 
-ArgoCD configmaps can be updated after installation and other extension configuration settings using the following command:
+Argo CD configmaps can be updated after installation and other extension configuration settings using the following command:
 
 ```azurecli
-az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.ArgoCD –-config "configs.cm.url='https://<public-ip-for-argocd-ui>/auth/callback'"
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.Argo CD –-config "configs.cm.url='https://<public-ip-for-Argo CD-ui>/auth/callback'"
 ```
 
-Update the ArgoCD configmap through the extension, so the settings don't get overwritten.  [Applying the Bicep template](#create-gitops-argocd-extension-with-workload-identity) is an alternate method to using Azure CLI to update the configuration.
+Update the Argo CD configmap through the extension, so the settings don't get overwritten.  [Applying the Bicep template](#create-gitops-Argo CD-extension-with-workload-identity) is an alternate method to using Azure CLI to update the configuration.
 
 ## Delete the extension
 
 Use the following commands to delete the extension.
 
 ```azurecli
-az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t managedClusters --yes
+az k8s-extension delete -g <resource-group> -c <cluster-name> -n Argo CD -t managedClusters --yes
 ```
 
 ---
 
 ## Next steps
 
-* File issues and feature requests on the [Azure/AKS repository](https://github.com/Azure/AKS/labels/extension%2Fargocd) and be sure to include the word "ArgoCD" in the description or title.
-* Explore [AKS-Platform engineering code sample](https://github.com/Azure-Samples/aks-platform-engineering) which deploys OSS ArgoCD with Backstage and Cluster API Provider for Azure (CAPZ) or Crossplane.
+* File issues and feature requests on the [Azure/AKS repository](https://github.com/Azure/AKS/labels/extension%2FArgo CD) and be sure to include the word "Argo CD" in the description or title.
+* Explore [AKS-Platform engineering code sample](https://github.com/Azure-Samples/aks-platform-engineering) which deploys OSS Argo CD with Backstage and Cluster API Provider for Azure (CAPZ) or Crossplane.

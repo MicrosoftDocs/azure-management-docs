@@ -20,9 +20,9 @@
   - name: Deploy applications using Azure Kubernetes Fleet Manager
     displayName: Azure Kubernetes Fleet Manager, tutorial
     href: /azure/kubernetes-fleet/quickstart-resource-propagation
-  - name: Deploy applications using GitOps (ArgoCD)
-    displayName: argocd, tutorial
-    href: tutorial-use-gitops-argocd.md
+  - name: Deploy applications using GitOps (Argo CD)
+    displayName: Argo CD, tutorial
+    href: tutorial-use-gitops-Argo CD.md
   - name: Deploy applications using GitOps (Flux v2)
     displayName: flux, tutorial, configuration
     href: tutorial-use-gitops-flux2.md
@@ -77,9 +77,9 @@
         href: conceptual-custom-locations.md
   - name: Deploy applications to cluster
     items:
-      - name: Application deployment with GitOps (ArgoCD)
+      - name: Application deployment with GitOps (Argo CD)
         displayName: argo, deploy, configuration
-        href: conceptual-gitops-argocd.md
+        href: conceptual-gitops-Argo CD.md
       - name: Application deployment with GitOps (Flux v2)
         displayName: deploy, configuration
         href: conceptual-gitops-flux2.md
