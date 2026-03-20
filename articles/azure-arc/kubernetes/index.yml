@@ -46,7 +46,7 @@ landingContent:
           - text: Deploy using GitOps (Flux v2)
             url: tutorial-use-gitops-flux2.md
           - text: Deploy using GitOps (Argo CD)
-            url: tutorial-use-gitops-Argo CD.md
+            url: tutorial-use-gitops-argocd.md
           - text: Implement CI/CD with GitOps (Flux v2)
             url: tutorial-gitops-flux2-ci-cd.md
 

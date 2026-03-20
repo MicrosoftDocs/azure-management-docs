@@ -22,7 +22,7 @@
     href: /azure/kubernetes-fleet/quickstart-resource-propagation
   - name: Deploy applications using GitOps (Argo CD)
     displayName: Argo CD, tutorial
-    href: tutorial-use-gitops-Argo CD.md
+    href: tutorial-use-gitops-argocd.md
   - name: Deploy applications using GitOps (Flux v2)
     displayName: flux, tutorial, configuration
     href: tutorial-use-gitops-flux2.md
@@ -79,7 +79,7 @@
     items:
       - name: Application deployment with GitOps (Argo CD)
         displayName: argo, deploy, configuration
-        href: conceptual-gitops-Argo CD.md
+        href: conceptual-gitops-argocd.md
       - name: Application deployment with GitOps (Flux v2)
         displayName: deploy, configuration
         href: conceptual-gitops-flux2.md
