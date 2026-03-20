@@ -486,13 +486,15 @@ For each identity (user, group, service principal, or managed identity) that cur
 
 The following table maps legacy ACR roles to their ABAC-enabled equivalents:
 
-| Legacy role (RBAC-only) | Equivalent ABAC-enabled role |
+| Legacy role (RBAC-only) | Equivalent ABAC-enabled role(s) |
 |---|---|
-| `AcrPull` | `Container Registry Repository Reader` |
+| `AcrPull` | `Container Registry Repository Reader` + `Container Registry Repository Catalog Lister` |
 | `AcrPush` | `Container Registry Repository Writer` |
 | `AcrDelete` | `Container Registry Repository Contributor` |
 
-For example, if an identity or group currently has an `AcrPull` role assignment, create an additional role assignment with the `Container Registry Repository Reader` role without any ABAC conditions.
+The ABAC-enabled roles don't include catalog listing permissions to list repositories, so you must also assign the `Container Registry Repository Catalog Lister` role to maintain equivalent access.
+
+For example, if an identity or group currently has an `AcrPull` role assignment (which allows pull and repository list permissions), create additional role assignments with the `Container Registry Repository Reader` role (without any ABAC conditions) and the `Container Registry Repository Catalog Lister` role.
 
 ##### Assign the equivalent role using the Azure portal
 
@@ -505,10 +507,15 @@ For example, if an identity or group currently has an `AcrPull` role assignment,
 ##### Assign the equivalent role using the Azure CLI
 
 ```azurecli
-# Example: Assign Container Registry Repository Reader to a group (equivalent to AcrPull)
+# Example: Assign the equivalent of AcrPull by assigning the roles as per the table
 az role assignment create \
   --assignee <principal-id-or-group-object-id> \
   --role "Container Registry Repository Reader" \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
+
+az role assignment create \
+  --assignee <principal-id-or-group-object-id> \
+  --role "Container Registry Repository Catalog Lister" \
   --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
 ```
 

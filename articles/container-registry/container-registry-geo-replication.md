@@ -49,8 +49,22 @@ Geo-replication improves availability by keeping images in multiple regions. If 
 For maximum resilience:
 
 - [Zone redundancy](zone-redundancy.md) is enabled for geo-replicas in regions where zone redundancy is enabled.
-- If the home region (where you created the registry) is unavailable, you can still push and pull images, but you can't modify registry properties until the home region recovers.
 - If your registry uses a [customer-managed key](tutorial-enable-customer-managed-keys.md), review the [key vault failover and redundancy guidance](/azure/key-vault/general/disaster-recovery-guidance).
+
+### Home region outage behavior
+
+The home region is the region where you originally created the registry. It hosts the registry's control plane, which manages registry configuration. If the home region becomes unavailable, the impact is limited to control plane (management) operations. All data plane operations continue to work through the remaining geo-replicas.
+
+**What continues to work during a home region outage:**
+
+- **Image push and pull** — Clients can push and pull images from any available geo-replica using the same registry URL (`myregistry.azurecr.io`). Azure Traffic Manager automatically routes requests to a healthy geo-replica.
+- **Authentication** — All authentication methods continue to function, including Microsoft Entra ID (formerly Azure Active Directory), service principals, managed identities, and repository-scoped tokens. Clients can authenticate to any available geo-replica without needing to change credentials, tokens, or registry URLs.
+- **Webhook delivery** — Webhooks configured for available geo-replicas continue to fire.
+
+**What is unavailable during a home region outage:**
+
+- **Registry configuration changes** — You can't modify registry properties such as network rules, replication settings, or availability zone configurations until the home region recovers.
+- **ACR Tasks** — [Tasks](/azure/container-registry/container-registry-tasks-overview) are bound to the home region and don't run while it's unavailable.
 
 ### SLA and service tier considerations
 
