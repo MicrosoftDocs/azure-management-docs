@@ -3,7 +3,7 @@ title: "Application deployments with GitOps (Argo CD)"
 description: "This article provides a conceptual overview of GitOps with Argo CD for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
 ms.date: 03/23/2026
 ms.topic: concept-article
-# Customer intent: "As a DevOps engineer, I want to implement GitOps with Flux for managing application deployments on Azure Kubernetes clusters, so that I can ensure consistent configurations, streamline operations, and enhance visibility into the status of applications across multiple environments."
+# Customer intent: "As a DevOps engineer, I want to implement GitOps with Argo CD for managing application deployments on AKS amd Arc-enabled clusters, so that I can ensure consistent configurations, streamline operations, and enhance visibility into the status of applications across multiple environments."
 ---
 
 # Application deployments with GitOps (Argo CD) for AKS and Azure Arc-enabled Kubernetes
@@ -28,7 +28,7 @@ The Argo CD extension packages and manages the core components required for 
 | API server | Serves as the central interface, facilitating communication between the web UI, CLI, and external third-party integrations. |
 | Repository server | Manages the caching of Git metadata and automatically generates Kubernetes manifests from source configurations. |
 | Redis | Provides a high-performance, in-memory data store to optimize caching of application states and authentication tokens. |
-| Dex and Notifications | Oversees identity management through Single Sign-On (SSO) and automates the delivery of status alerts to platforms such as Microsoft Teams and email. |
+| Dex and Notifications | Oversees identity management through single sign-on (SSO) and automates the delivery of status alerts to platforms such as Microsoft Teams and email. |
 
 ## Argo CD constructs
 

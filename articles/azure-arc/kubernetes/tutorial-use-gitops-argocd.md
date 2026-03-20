@@ -135,9 +135,9 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 The GitOps [Argo CD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
 
 > [!IMPORTANT]
-> The HA mode is the default configuration and requires four nodes in the cluster to be able to install. The command below adds `--config "redis-ha.enabled=false` to install the extension on a single node.
+> The HA mode is the default configuration and requires four nodes in the cluster to be able to install. The command below adds `--config "redis-ha.enabled=false"` to install the extension on a single node.
 
- This command creates the simplest configuration installing the Argo CD components to a new `Argo CD` namespace with cluster-wide access. Cluster-wide access enables Argo CD app definitions to be detected in any namespace listed in the Argo CD configmap configuration in the cluster. For example: `namespace1,namespace2`
+ This command creates the simplest configuration installing the Argo CD components to a new `argocd` namespace with cluster-wide access. Cluster-wide access enables Argo CD app definitions to be detected in any namespace listed in the Argo CD configmap configuration in the cluster. For example: `namespace1,namespace2`
 
 ```azurecli
 az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> \
@@ -152,7 +152,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 This installation command creates a new `<namespace>` namespace and installs the Argo CD components in the `<namespace>`. Argo CD application definitions in this configuration only function in the `<namespace>` namespace.
 
 > [!NOTE]
-> For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in your Azure CLI command when configuring the extension.
+> For additional configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in your Azure CLI command when configuring the extension.
 
 ## Create GitOps (Argo CD) extension with workload identity
 
@@ -193,7 +193,7 @@ p, role:org-admin, repositories, get, *, allow
 p, role:org-admin, repositories, create, *, allow
 p, role:org-admin, repositories, update, *, allow
 p, role:org-admin, repositories, delete, *, allow
-g, replace-me##-argocd-ui-Microsoft Entra-group-admin-id, role:org-admin
+g, replace-me##-argocd-ui-entra-group-admin-id, role:org-admin
 '''
 
 resource cluster 'Microsoft.ContainerService/managedClusters@2024-10-01' existing = {
@@ -226,7 +226,7 @@ The Bicep template can be created using this command:
 `az deployment group create --resource-group <resource-group> --template-file <bicep-file>`
 
 > [!NOTE]
-> For addition configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in the Bicep template when configuring the extension.
+> For additional configuration options, such as resource limits, see [values.yaml](https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml). Use these configurations in the Bicep template when configuring the extension.
 
 ### Parameters
 
@@ -238,7 +238,7 @@ The Bicep template can be created using this command:
 
 `oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoWorkloadIdentityClientId-above>` with the same value as `ssoWorkloadIdentityClientId`.
 
-`policy` variable is the `ArgoCD-rbac-cm configmap` settings of Argo CD. `g, replace-me##-ArgoCD-ui-entra-group-admin-id` is the Microsoft Entra group ID that gives admin access to the Argo CD UI. The Microsoft Entra group ID can be found in the Azure portal under **Microsoft Entra ID > Groups > _your-group-name_ > Properties**. You can use the Microsoft Entra user ID instead of a Microsoft Entra group ID. The Microsoft Entra user ID can be found in the Azure portal under **Microsoft Entra ID > Users > _your-user-name_ > Properties.**
+`policy` variable is the `argocd-rbac-cm configmap` settings of Argo CD. `g, replace-me##-argocd-ui-entra-group-admin-id` is the Microsoft Entra group ID that gives admin access to the Argo CD UI. The Microsoft Entra group ID can be found in the Azure portal under **Microsoft Entra ID > Groups > _your-group-name_ > Properties**. You can use the Microsoft Entra user ID instead of a Microsoft Entra group ID. The Microsoft Entra user ID can be found in the Azure portal under **Microsoft Entra ID > Users > _your-user-name_ > Properties.**
 
 ### Create workload identity credentials
 
@@ -250,7 +250,7 @@ To set up new workload identity credentials, follow these steps:
 
    ```azurecli
    # For source-controller
-   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"ArgoCD":"source-controller" --audience api://AzureADTokenExchange
+   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"argocd":"source-controller" --audience api://AzureADTokenExchange
    ```
 
 1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
@@ -264,7 +264,7 @@ To utilize the private ACR registry or ACR repositories, follow the instructions
 If there's no existing ingress controller for the AKS cluster, then the Argo CD UI can be exposed directly using a LoadBalancer service. The following command will expose the Argo CD UI on port 80 and 443.
 
 ```bash
-kubectl -n ArgoCD expose service ArgoCD-server --type LoadBalancer --name ArgoCD-server-lb --port 80 --target-port 8080
+kubectl -n argocd expose service argocd-server --type LoadBalancer --name argocd-server-lb --port 80 --target-port 8080
 ```
 
 ## Deploy Argo CD application
@@ -292,14 +292,14 @@ spec:
 EOF
 ```
 
-The AKS store demo application was installed into the `pets` namespace. See the application webpage by [following these instructions](/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application). Be sure to visit the IP address using http and not https.
+The AKS store demo application was installed into the `argocd` namespace. See the application webpage by [following these instructions](/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application). Be sure to visit the IP address using `http` and not `https`.
 
 ## Update extension configuration
 
 Argo CD configmaps can be updated after installation and other extension configuration settings using the following command:
 
 ```azurecli
-az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.ArgoCD –-config "configs.cm.url='https://<public-ip-for-ArgoCD-ui>/auth/callback'"
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name argocd --config "configs.cm.url='https://<public-ip-for-argocd-ui>/auth/callback'"
 ```
 
 Update the Argo CD configmap through the extension, so the settings don't get overwritten. [Applying the Bicep template](#create-gitops-argocd-extension-with-workload-identity) is an alternate method to using Azure CLI to update the configuration.
@@ -309,7 +309,7 @@ Update the Argo CD configmap through the extension, so the settings don't get ov
 Use the following commands to delete the extension.
 
 ```azurecli
-az k8s-extension delete -g <resource-group> -c <cluster-name> -n ArgoCD -t managedClusters --yes
+az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t managedClusters --yes
 ```
 
 ---
