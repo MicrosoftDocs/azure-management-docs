@@ -8,7 +8,7 @@ ms.topic: concept-article
 
 # Application deployments with GitOps (Argo CD) for AKS and Azure Arc-enabled Kubernetes
 
-When you use [Argo CD for GitOps on Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes clusters](tutorial-use-gitops-Argo CD.md), your Git repository becomes the source of truth for the desired state of your applications and cluster configurations. This approach offers several benefits:
+When you use [Argo CD for GitOps on Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes clusters](tutorial-use-gitops-argocd.md), your Git repository becomes the source of truth for the desired state of your applications and cluster configurations. This approach offers several benefits:
 
 - **Continuous synchronization**: Argo CD runs natively within your cluster, pulling manifests, Helm charts, or Kustomize configurations directly from Git.
 - **Drift detection and remediation**: The system constantly monitors the cluster's live state against the desired state in Git. It instantly detects any drift and reconciles it based on your specific automation policies.
@@ -16,7 +16,7 @@ When you use [Argo CD for GitOps on Azure Kubernetes Service (AKS) and Azure Arc
 
 ## Argo CD cluster extension
 
-To streamline management, Azure provides Argo CD as a managed [cluster extension](conceptual-extensions.md) (`Microsoft.KubernetesConfiguration/extensions/microsoft.Argo CD`). To manage applications via GitOps, [deploy the Argo CD extension](tutorial-use-gitops-Argo CD.md#create-gitops-Argo CD-extension-simple-installation) to your cluster.
+To streamline management, Azure provides Argo CD as a managed [cluster extension](conceptual-extensions.md) (`Microsoft.KubernetesConfiguration/extensions/microsoft.argocd`). To manage applications via GitOps, [deploy the Argo CD extension](tutorial-use-gitops-argocd.md#create-gitops-argo-cd-extension-simple-installation) to your cluster.
 
 ## Managed components and controllers
 
@@ -48,4 +48,4 @@ The extension supports workload identity federation, which enables Argo CD to se
 
 ## Next steps
 
-- Learn how to deploy the Argo CD extension and manage applications by using GitOps in the [Argo CD GitOps tutorial](tutorial-use-gitops-Argo CD.md).
+- Learn how to deploy the Argo CD extension and manage applications by using GitOps in the [Argo CD GitOps tutorial](tutorial-use-gitops-argocd.md).
