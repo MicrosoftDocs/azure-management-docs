@@ -28,7 +28,7 @@ The Argo CD extension packages and manages the core components required for 
 | API server | Serves as the central interface, facilitating communication between the web UI, CLI, and external third-party integrations. |
 | Repository server | Manages the caching of Git metadata and automatically generates Kubernetes manifests from source configurations. |
 | Redis | Provides a high-performance, in-memory data store to optimize caching of application states and authentication tokens. |
-| Dex and Notifications | Oversees identity management through single sign-on (SSO) and automates the delivery of status alerts to platforms such as Microsoft Teams and email. |
+| [Dex server](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#dex) and notifications | Oversees identity management through single sign-on (SSO) and automates the delivery of status alerts to platforms such as Microsoft Teams and email. |
 
 ## Argo CD constructs
 
