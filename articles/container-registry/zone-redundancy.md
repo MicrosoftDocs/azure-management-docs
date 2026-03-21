@@ -64,7 +64,7 @@ zone-redundant.
 
 The `zoneRedundancy` property on the ARM registry resource
 (`Microsoft.ContainerRegistry/registries`) will be deprecated in accordance with
-[Azure’s GA feature deprecation policy](/azure/reliability/overview-deprecation). Until then,
+[Azure’s GA feature deprecation policy](/lifecycle/definitions#deprecation). Until then,
 setting it to `Enabled` is harmless but unnecessary, and setting it to `Disabled` has no effect
 in supported regions.
 
