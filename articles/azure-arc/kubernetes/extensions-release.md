@@ -26,7 +26,7 @@ For more information, see [Container insights for Azure Arc-enabled Kubernetes c
 
 The following Kubernetes distributions **have been validated in conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
 
-- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat Openshift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
@@ -253,7 +253,7 @@ Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
 - Workload identity support for notification controller.
-- Ensure workload identity tenant ID and client ID settings are correctly reflected in Flux controller deployments when updated.
+- Ensure workload identity tenant ID and client ID settings areR correctly reflected in Flux controller deployments when updated.
 - Compliance with deployment safeguards for AKS automatic.
 - Object-level workload identity support for Flux controllers.
 
