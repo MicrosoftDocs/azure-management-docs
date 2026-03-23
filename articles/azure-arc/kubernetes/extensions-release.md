@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 03/18/2026
+ms.date: 03/23/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -220,23 +220,42 @@ For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
 Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
 
--	`Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
--	`HelmRelease` to `helm.toolkit.fluxcd.io/v2`
--	`Bucket` to `source.toolkit.fluxcd.io/v1`
--	`GitRepository` to `source.toolkit.fluxcd.io/v1`
--	`HelmChart` to `source.toolkit.fluxcd.io/v1`
--	`HelmRepository` to `source.toolkit.fluxcd.io/v1`
--	`OCIRepository` to `source.toolkit.fluxcd.io/v1`
--	`Receiver` to `notification.toolkit.fluxcd.io/v1`
--	`Alert` to `notification.toolkit.fluxcd.io/v1beta3`
--	`Provider` to `notification.toolkit.fluxcd.io/v1beta3`
--	`ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
--	`ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
--	`ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
+- `Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
+- `HelmRelease` to `helm.toolkit.fluxcd.io/v2`
+- `Bucket` to `source.toolkit.fluxcd.io/v1`
+- `GitRepository` to `source.toolkit.fluxcd.io/v1`
+- `HelmChart` to `source.toolkit.fluxcd.io/v1`
+- `HelmRepository` to `source.toolkit.fluxcd.io/v1`
+- `OCIRepository` to `source.toolkit.fluxcd.io/v1`
+- `Receiver` to `notification.toolkit.fluxcd.io/v1`
+- `Alert` to `notification.toolkit.fluxcd.io/v1beta3`
+- `Provider` to `notification.toolkit.fluxcd.io/v1beta3`
+- `ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
+- `ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
+- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
 
 Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
+
+### `microsoft.flux` version 1.20.4 (March 2026)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4-7
+- kustomize-controller: v1.6.1-10
+- helm-controller: v1.3.2-5
+- notification-controller: v1.6.0-9
+- image-automation-controller: v0.41.2-10
+- image-reflector-controller: v0.35.2-9
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
+- Workload identity support for notification controller.
+- Ensure workload identity tenant ID and client ID settings are correctly reflected in Flux controller deployments when updated.
+- Compliance with deployment safeguards for AKS automatic.
+- Object-level workload identity support for Flux controllers.
 
 ### `microsoft.flux` version 1.19.5 (February 2026)
 
@@ -267,21 +286,6 @@ Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6
 Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages and base images.
-
-### `microsoft.flux` version 1.18.4 (November 2025)
-
-Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
-
-- source-controller: v1.6.4-2
-- kustomize-controller: v1.6.1-5
-- helm-controller: v1.3.2-2
-- notification-controller: v1.6.0-5
-- image-automation-controller: v0.41.2-5
-- image-reflector-controller: v0.35.2-5
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `helm-controller`, `image-reflector-controller`, and `image-automation-controller` by updating the Go packages and base images.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
