@@ -25,12 +25,12 @@ The Argo CD extension packages and manages the core components required for 
 | **Component name** | **Kubernetes service name** | **Primary responsibility** |
 |-----------|-----------------|-----------------|
 | [Application controller](https://argo-cd.readthedocs.io/en/stable/operator-manual/server-commands/argocd-application-controller/) | `argocd-application-controller` |Continuously monitors running applications and compares the live state against the desired target state in Git. |
-| API server | `argocd-server` | Acts as the gRPC/REST server that exposes the API used by the Web UI, CLI, and external CI/CD systems. |
+| [API server](https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/) | `argocd-server` | Acts as the gRPC/REST server that exposes the API used by the Web UI, CLI, and external CI/CD systems. |
 | [Repository server](https://argo-cd.readthedocs.io/en/stable/operator-manual/server-commands/argocd-repo-server/) | `argocd-repo-server` | Maintains a local cache of Git repositories and is responsible for generating Kubernetes manifests from source (Helm, Kustomize, etc.). |
 | Redis | `argocd-redis` | Provides an ephemeral, in-memory data store used for caching manifest generation results and application state.|
 | [Dex](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#dex) and notifications | `argocd-dex-server` | An open-source OpenID Connect provider that brokers identity from external providers like [GitHub](https://github.com/), SAML, or LDAP.|
-| Notifications controller | `argocd-notifications-controller` | Monitors application state changes and triggers alerts to external services like Slack, Email, or Webhooks. |
-| ApplicationSet controller | `argocd-applicationset-controller` | Automates the creation of multiple applications across multiple clusters. |
+| [Notifications controller](https://argocd-operator.readthedocs.io/en/latest/usage/notifications/) | `argocd-notifications-controller` | Monitors application state changes and triggers alerts to external services like Slack, Email, or Webhooks. |
+| [ApplicationSet controller ](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/)| `argocd-applicationset-controller` | Automates the creation of multiple applications across multiple clusters. |
 
 ## Argo CD constructs
 
