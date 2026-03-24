@@ -43,7 +43,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnect
 |Fixed relay URL, which is used in SSH and WAC scenarios.|✓|✓|Bug Fix|
 |Fixed IPv6 detection when setting up SSL endpoint.|✓|✓|Bug Fix|
 |Added `azcmagent upgrade` CLI command for upgrading the Azure Connected Machine agent|✓|✓|Feature|
-|Added `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity|✓|✓|Feature|
+|New `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity|✓|✓|Feature|
 |Added `azcmagent check tpm` to verify TPM-backed Identity readiness|✓|✓|Feature|
 
 ## Version 1.61 - February 2026
