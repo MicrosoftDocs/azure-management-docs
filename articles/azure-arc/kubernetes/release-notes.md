@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 09/30/2025
+ms.date: 03/24/2026
 ms.topic: concept-article
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 # Customer intent: "As a Kubernetes administrator, I want to stay informed about the latest updates and enhancements to Azure Arc-enabled Kubernetes agents, so that I can ensure my cluster is secure and operates with the most reliable version."
@@ -14,6 +14,13 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.32.7 (February 2026)
+
+- General availability of [workload identity federation](workload-identity.md) for Arc‑enabled Kubernetes
+- General availability of [Azure Arc gateway for Kubernetes](arc-gateway-simplify-networking.md)
+- Preview support for Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
+- Security improvements, including vulnerability fixes and minor bug fixes to improve overall reliability
+
 ## Version 1.31.2 (November 2025)
 
 - Security enhancements
@@ -23,39 +30,39 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 - Security vulnerability fixes
 
-## Version 1.30.1 (September 2025)
+## Older agent releases
+
+### Version 1.30.1 (September 2025)
 
 - Security vulnerability fixes
 
-## Version 1.29.3 (August 2025)
+### Version 1.29.3 (August 2025)
 
 - Updated to Microsoft Go v1.24.6
 - Security vulnerability fixes
 
-## Version 1.28.0 (July 2025)
+### Version 1.28.0 (July 2025)
 
 - Security vulnerability fixes
 
-## Version 1.27.0 (June 2025)
+### Version 1.27.0 (June 2025)
 
 - Security vulnerability fixes
 
-## Older agent releases
-
-## Version 1.26.0 (May 2025)
+### Version 1.26.0 (May 2025)
 
 - Updated to Microsoft Go v1.24.2
 - Migrated from Mariner 2.0 to Azure Linux 3.0
 - Security vulnerability fixes
 
-## Version 1.25.0 (April 2025)
+### Version 1.25.0 (April 2025)
 
 - Fixes to MSI-Adapter response to improve retrieval of JWT tokens by extensions and upstream libraries
 - Make agent update state mutually exclusive to avoid conflicts
 - Upgrade connected proxy agent
 - Security vulnerability fixes
 
-## Version 1.24.4 (March 2025)
+### Version 1.24.4 (March 2025)
 
 - Security vulnerability fixes
 - Various bug fixes
