@@ -26,6 +26,21 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
 > 
+## Version 1.62 - March 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows|Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**|**1.29.106.0**|**1.26.105.0**||
+|Fixed extension installation behavior post cleanup. |✓|✓|Bug Fix|
+|**Azcmagent**|**1.62**|**1.62**||
+| Support for SLES 16 (x86_64), Alma 10 (x86_64 & Arm64), and Rocky 10 (x86_64 and Arm64). ||✓|Feature|
+|Added automatic backup and restore functionality for agentconfig.json to improve reliability.|✓|✓|Feature|
+|New `--enable-automatic-upgrade` flag for `azcmagent connect` to enable auto-upgrade during onboarding.|✓|✓|Feature|
+|Added `--use-aws-ec2-hostname` flag to use hostname instead of instance ID for AWS EC2 resource names.||✓|Feature|
+|Fixed configuration file updates to only write when there are actual changes, reducing unnecessary I/O.|✓|✓|Bug Fix|
+
 ## Version 1.61 - February 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
