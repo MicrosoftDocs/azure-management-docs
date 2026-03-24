@@ -9,7 +9,7 @@ description: "Learn how to discover Kubernetes applications in Microsoft Marketp
 
 # Deploy and manage applications from Microsoft Marketplace on Azure Arc-enabled Kubernetes clusters
 
-[Microsoft Marketplace](/marketplace/azure-marketplace-overview) is an online store that contains thousands of IT software applications and services built by industry-leading technology companies. In Microsoft Marketplace, you can find, try, buy, and deploy the software and services you need to build new solutions and manage your cloud infrastructure. The catalog includes solutions for different industries and technical areas, free trials, and consulting services from Microsoft partners.
+[Microsoft Marketplace](/marketplace/marketplace-overview) is an online store that contains thousands of IT software applications and services built by industry-leading technology companies. In Microsoft Marketplace, you can find, try, buy, and deploy the software and services you need to build new solutions and manage your cloud infrastructure. The catalog includes solutions for different industries and technical areas, free trials, and consulting services from Microsoft partners.
 
 Included among these solutions are Kubernetes application-based container offers. These offers contain applications that run on Azure Arc-enabled Kubernetes clusters, represented as [cluster extensions](conceptual-extensions.md). When you deploy an offer from Microsoft Marketplace, you create a new instance of the extension on your Arc-enabled Kubernetes cluster.
 
@@ -67,7 +67,7 @@ az k8s-extension extension-types list-by-cluster --cluster-type connectedCluster
 The command returns a list of extension types that you can deploy on the connected clusters, similar to the example shown here.
 
 ```json
-"id": "/subscriptions/{sub}/resourceGroups/{rg} /providers/Microsoft.Kubernetes/connectedClusters/{clustername} /providers/Microsoft.KubernetesConfiguration/extensiontypes/contoso",
+"id": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Kubernetes/connectedClusters/{clustername}/providers/Microsoft.KubernetesConfiguration/extensiontypes/contoso",
 "name": "contoso",
 "type": "Microsoft.KubernetesConfiguration/extensionTypes",
 "properties": {
@@ -121,13 +121,13 @@ After you identify an offer you want to deploy, select it and follow these steps
 
 Before you can deploy a Kubernetes application, you need to accept its terms and agreements. Be sure to read these terms carefully so that you understand costs and any other requirements.
 
-To view the details of the terms, run the following command, providing the values for `offerID`, `planID`,` and `publisherID`:
+To view the details of the terms, run the following command, providing the values for `offerID`, `planId`, and `publisherId`:
 
 ```azurecli-interactive
 az vm image terms show --offer <offerID> --plan <planId> --publisher <publisherId>
 ```
 
-To accept the terms, run the following command, using the same values for `offerID`, `planID`, and `publisherID`.
+To accept the terms, run the following command, using the same values for `offerID`, `planId`, and `publisherId`.
 
 ```azurecli-interactive
 az vm image terms accept --offer <offerID> --plan <planId> --publisher <publisherId>
