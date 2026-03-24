@@ -1,6 +1,6 @@
 ---
 title: "Overview of Azure Arc-enabled Kubernetes"
-ms.date: 10/08/2024
+ms.date: 03/24/2026
 ms.topic: overview
 description: "Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure."
 # Customer intent: As a DevOps engineer managing multiple Kubernetes clusters across environments, I want to connect and manage them through a unified control plane in Azure, so that I can streamline operations, enforcement of policies, and application deployment across diverse platforms.
@@ -8,7 +8,7 @@ description: "Azure Arc-enabled Kubernetes allows you to attach Kubernetes clust
 
 # What is Azure Arc-enabled Kubernetes?
 
-Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure. When you manage all your Kubernetes resources in a single control plane, you get a more consistent development and operation experience. This approach helps you run cloud-native apps anywhere and on any Kubernetes platform.
+Azure Arc-enabled Kubernetes lets you attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure. When you manage all your Kubernetes resources in a single control plane, you get a more consistent development and operation experience. This approach helps you run cloud-native apps anywhere and on any Kubernetes platform.
 
 When you [deploy Azure Arc agents to the cluster](quickstart-connect-cluster.md), the agents create a secure outbound connection to Azure.
 
@@ -16,7 +16,7 @@ Each Kubernetes cluster that you connect to Azure appears as its own resource in
 
 ## Supported Kubernetes distributions
 
-Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters. This support includes clusters running on other public cloud providers, such as GCP or AWS, and clusters running in your on-premises data center, such as VMware vSphere or Azure Local.
+Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters. This support includes clusters running on other public cloud providers, such as Google Cloud Platform (GCP) or Amazon Web Services (AWS), and clusters running in your on-premises data center, such as VMware vSphere or Azure Local.
 
 The Azure Arc team works with key industry partners to [validate conformance of Kubernetes distributions with Azure Arc-enabled Kubernetes](./validation-program.md).
 
@@ -26,9 +26,9 @@ After you connect your Kubernetes clusters to Azure, you can use a wide variety 
 
 * View all connected Kubernetes clusters for inventory, grouping, and tagging, along with your Azure Kubernetes Service (AKS) clusters.
 
-* Configure clusters and deploy applications using [GitOps-based configuration management](tutorial-use-gitops-flux2.md).
+* Configure clusters and deploy applications by using GitOps-based configuration management with [Argo CD](tutorial-use-gitops-argocd.md) or [Flux v2](tutorial-use-gitops-flux2.md).
 
-* View and monitor your clusters by using [Azure Monitor for containers](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json).
+* View and monitor your clusters by using [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json).
 
 * Enable threat protection by using [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json).
 
@@ -49,7 +49,7 @@ After you connect your Kubernetes clusters to Azure, you can use a wide variety 
 ## Next steps
 
 * Learn about best practices and design patterns through the [Cloud Adoption Framework for hybrid and multicloud](/azure/cloud-adoption-framework/scenarios/hybrid/arc-enabled-kubernetes/eslz-arc-kubernetes-identity-access-management).
-* Try out Arc-enabled Kubernetes without provisioning a full environment by using the [Azure Arc Jumpstart](https://jumpstart.azure.com/azure_arc_jumpstart/azure_arc_k8s).
+* Try out Azure Arc-enabled Kubernetes without provisioning a full environment by using the [Azure Arc Jumpstart](https://jumpstart.azure.com/azure_arc_jumpstart/azure_arc_k8s).
 * See [what's new with Azure Arc-enabled Kubernetes](release-notes.md).
 * [Connect an existing Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md).
 * Help protect your cluster by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
