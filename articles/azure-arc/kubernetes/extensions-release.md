@@ -176,16 +176,16 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-## ArgoCD (GitOps)
+## Argo CD (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-The ArgoCD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
+The Argo CD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
 
-For more information, see [Tutorial: Deploy applications using GitOps with ArgoCD](tutorial-use-gitops-argocd.md).
+For more information, see [Tutorial: Deploy applications using GitOps with Argo CD](tutorial-use-gitops-Argo CD.md).
 
 > [!IMPORTANT]
-> ArgoCD (GitOps) is currently in public preview.
+> Argo CD (GitOps) is currently in public preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
