@@ -1,7 +1,7 @@
 ---
 title:  Manage and maintain the Azure Connected Machine agent
 description: This article describes the different management tasks that you typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 11/25/2025
+ms.date: 03/24/2026
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to manage the lifecycle of the Azure Connected Machine agent, including installation, upgrades, and configurations, so that I can ensure optimal performance and reliability of my Azure-connected servers.
 ---
@@ -102,7 +102,15 @@ Starting with version 1.57 of the Azure Connected Machine agent, you can configu
 
 When you enable automatic upgrades, your agent is scheduled to be upgraded within one version of the latest release. To maintain stability across regions and minimize disruptions, upgrades are rolled out across batches, with all upgrades initiated during off-peak hours. If the upgrade doesn't complete successfully, the agent will reattempt the automatic upgrade periodically until it succeeds.
 
-To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true` by using Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) or Azure PowerShell.
+To enable automatic upgrades when connecting your machine to Azure Arc, use the `--enable-auto-upgrade` flag in the `azcmagent connect` command. For example:
+
+```bash
+azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --enable-auto-upgrade
+```
+
+You can also use [Azure Policy](/azure/governance/policy/overview) to assign the [Configure Azure Arc-enabled Servers to enable automatic upgrades](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff9dfba6f-7430-4214-a666-342b3d3d0d62) policy. This policy enables automatic agent upgrade to servers at scale across your environment.
+
+To enable automatic upgrades on an existing Arc-enabled server, set the `enableAutomaticUpgrade` property to `true` by using Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) or Azure PowerShell.
 
 The following example shows how to configure automatic agent upgrades with Azure CLI.
 
@@ -117,7 +125,6 @@ az rest
 --headers "Content-Type=application/json" 
 --body '{"properties":{"agentUpgrade":{"enableAutomaticUpgrade":true}}}'
 ```
-
 
 The following example shows how to configure automatic agent upgrades by using PowerShell.
 
