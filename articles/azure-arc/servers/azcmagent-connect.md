@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent connect`
 description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 01/26/2026
+ms.date: 03/24/2026
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
@@ -131,6 +131,10 @@ Supported values:
 `--correlation-id`
 
 Identifies the mechanism being used to connect the server to Azure Arc. For example, scripts generated in the Azure portal include a GUID that helps Microsoft track usage of that experience. This flag is optional and only used for telemetry purposes to improve your experience.
+
+`--enable-automatic-upgrade`
+
+Instructs the agent to automatically upgrade itself when a new version is available. If this flag isn't specified, automatic upgrades are disabled.
 
 `--ignore-network-check`
 
