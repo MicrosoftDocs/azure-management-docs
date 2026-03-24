@@ -251,6 +251,8 @@
       href: azcmagent-logs.md
     - name: azcmagent show
       href: azcmagent-show.md
+    - name: azcmagent upgrade
+      href: azcmagent-upgrade.md
     - name: azcmagent version
       href: azcmagent-version.md
   - name: Azure CLI
