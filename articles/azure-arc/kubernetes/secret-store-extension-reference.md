@@ -1,6 +1,6 @@
 ---
 title: Reference for Azure Key Vault Secret Store Extension
-ms.date: 08/01/2025
+ms.date: 03/24/2026
 ms.topic: reference
 description: A reference guide for the Azure Key Vault Secret Store Extension, documenting the possibilities allowed in each of SSE's configuration resources.
 ---
@@ -53,6 +53,11 @@ spec:
       annotations:
         test-annotation-0: "annotation-value-0"
       versionHistory: 3
+    - certInAKV: "cert-A"
+      kubernetesSecretType: "kubernetes.io/tls"
+    - certInAKV: "cert-B"
+      kubernetesSecretType: "Opaque"
+      versionHistory: 3
     - kubernetesSecretName: "compound-secret"
       mapping:
         - dataKey: "username"
@@ -60,6 +65,10 @@ spec:
         - dataKey: "password"
           secretInAKV: secret-B
           version: 1
+        - dataKey: "tls-cert"
+          certInAKV: cert-A
+    - secretInAKV: "ssh-private-key"
+      kubernetesSecretType: "kubernetes.io/ssh-auth"
 
 ```
 
@@ -74,20 +83,29 @@ Within .spec:
  - **tenantID** *(required)*: The ID of the Azure tenant containing the AKV instance.
  - **keyvaultName** *(required)*: The name of the key vault.
 
- - **objects** *(required)*: A list of items (**secretInAKV** or **kubernetesSecretName**). Items can be secrets to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
+ - **objects** *(required)*: A list of items (**secretInAKV**, **certInAKV**, or **kubernetesSecretName**). Items can be secrets or certificates to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
     - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV.
       - **kubernetesSecretName** *(optional)*: The name of the new Kubernetes secret.
+      - **kubernetesSecretType** *(optional)*: The [type of the Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types). Defaults to `Opaque`. Supported values include `Opaque`, `kubernetes.io/tls`, `kubernetes.io/ssh-auth`, `kubernetes.io/basic-auth`, `kubernetes.io/dockercfg`, and `kubernetes.io/dockerconfigjson`.
       - **labels** *(optional)*: A map of key-value pairs of additional labels to apply to the secret object.
       - **annotations** *(optional)*: A map of key-value pairs of additional annotations to apply to the secret object.
       - **versionHistory** *(optional)*: Defaults to 1. SSE downloads this many versions of the secret from AKV. The versions are stored in the Kubernetes secret in keys named "v0", "v1", "v2" etc. "v0" is the latest version.
 
-    - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **labels** and **annotations**.
+    - **certInAKV** *(optional)*: The name of a certificate that should be fetched from AKV. The certificate and its private key are both fetched. When used with `kubernetesSecretType` set to `kubernetes.io/tls`, the certificate and key are stored in the standard `tls.crt` and `tls.key` data keys.
+      - **kubernetesSecretName** *(optional)*: The name of the new Kubernetes secret.
+      - **kubernetesSecretType** *(optional)*: The [type of the Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types). Defaults to `Opaque`. Set to `kubernetes.io/tls` for TLS certificates.
+      - **labels** *(optional)*: A map of key-value pairs of additional labels to apply to the secret object.
+      - **annotations** *(optional)*: A map of key-value pairs of additional annotations to apply to the secret object.
+      - **versionHistory** *(optional)*: Defaults to 1. SSE downloads this many versions of the certificate from AKV. The behavior depends on `kubernetesSecretType`:<br>When `Opaque`, all versions are stored in a single Kubernetes secret with data keys "v0", "v1", "v2" etc.<br>When `kubernetes.io/tls`, each version creates a separate Kubernetes secret named `<cert-name>-v0`, `<cert-name>-v1`, etc., each containing `tls.crt` and `tls.key` data keys. In both cases, "v0" is the latest version.
+
+    - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **kubernetesSecretType**, **labels**, and **annotations**.
 
       - **mapping** *(required)*: A list of data keys and their AKV sources. There are no default keys.
         - **dataKey** *(required)*: The name of the data key within the Kubernetes secret that holds the secret fetched from AKV.
 
-        - **secretInAKV** *(required)*: The name of a secret that should be fetched from AKV and stored in the nominated data key.
-        - **version** *(optional)*: The version of the secret to fetch from AKV. 0 is the latest version, 1 is the second latest, etc.
+        - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV and stored in the nominated data key.
+        - **certInAKV** *(optional)*: The name of a certificate that should be fetched from AKV and stored in the nominated data key.
+        - **version** *(optional)*: The version of the secret or certificate to fetch from AKV. 0 is the latest version, 1 is the second latest, etc.
 
 ## SecretSync resources
 
