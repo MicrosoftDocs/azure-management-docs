@@ -123,11 +123,11 @@ In the platform GitOps repository, each workload assignment to a cluster type is
 * A dedicated namespace for this workload in this environment on a cluster of this type.
 * Platform policies restricting workload permissions.
 * Consolidated platform config maps with the values that the workload can use.
-* Reconciler resources, pointing to a Workload Manifests Storage where the actual workload manifests or Helm charts are stored. For example, Flux GitRepository and Flux Kustomization, ArgoCD Application, Zarf descriptors, and so on.
+* Reconciler resources, pointing to a Workload Manifests Storage where the actual workload manifests or Helm charts are stored. For example, Flux GitRepository and Flux Kustomization, Argo CD Application, Zarf descriptors, and so on.
 
 ### Cluster types and reconcilers
 
-Every cluster type can use a different reconciler (such as Flux, ArgoCD, Zarf, Rancher Fleet, and so on) to deliver manifests from the Workload Manifests Storages. Cluster type definition refers to a reconciler, which defines a collection of manifest templates. The scheduler uses these templates to produce reconciler resources, such as Flux GitRepository and Flux Kustomization, ArgoCD Application, Zarf descriptors, and so on. The same workload might be scheduled to cluster types managed by different reconcilers, such as Flux and ArgoCD. The scheduler generates Flux GitRepository and Flux Kustomization for one cluster and ArgoCD Application for another cluster, but both of them point to the same Workload Manifests Storage containing the workload manifests.
+Every cluster type can use a different reconciler (such as Flux, Argo CD, Zarf, Rancher Fleet, and so on) to deliver manifests from the Workload Manifests Storages. Cluster type definition refers to a reconciler, which defines a collection of manifest templates. The scheduler uses these templates to produce reconciler resources, such as Flux GitRepository and Flux Kustomization, Argo CD Application, Zarf descriptors, and so on. The same workload might be scheduled to cluster types managed by different reconcilers, such as Flux and Argo CD. The scheduler generates Flux GitRepository and Flux Kustomization for one cluster and Argo CD Application for another cluster, but both of them point to the same Workload Manifests Storage containing the workload manifests.
 
 ### Platform services
 
