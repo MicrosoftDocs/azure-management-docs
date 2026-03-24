@@ -35,11 +35,16 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnect
 | **Guest Config**|**1.29.106.0**|**1.26.105.0**||
 |Fixed extension installation behavior post cleanup. |✓|✓|Bug Fix|
 |**Azcmagent**|**1.62**|**1.62**||
-| Support for SLES 16 (x86_64), Alma 10 (x86_64 & Arm64), and Rocky 10 (x86_64 and Arm64). ||✓|Feature|
+|Support for SLES 16 (x86_64), Alma 10 (x86_64 & Arm64), and Rocky 10 (x86_64 and Arm64). ||✓|Feature|
 |Added automatic backup and restore functionality for agentconfig.json to improve reliability.|✓|✓|Feature|
 |New `--enable-automatic-upgrade` flag for `azcmagent connect` to enable auto-upgrade during onboarding.|✓|✓|Feature|
 |Added `--use-aws-ec2-hostname` flag to use hostname instead of instance ID for AWS EC2 resource names.||✓|Feature|
 |Fixed configuration file updates to only write when there are actual changes, reducing unnecessary I/O.|✓|✓|Bug Fix|
+|Fixed relay URL, which is used in SSH and WAC scenarios.|✓|✓|Bug Fix|
+|Fixed IPv6 detection when setting up SSL endpoint.|✓|✓|Bug Fix|
+|Added `azcmagent upgrade` CLI command for upgrading the Azure Connected Machine agent|✓|✓|Feature|
+|Added `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity|✓|✓|Feature|
+|Added `azcmagent check tpm` to verify TPM-backed Identity readiness|✓|✓|Feature|
 
 ## Version 1.61 - February 2026
 
