@@ -326,7 +326,7 @@ Store this playbook in your project repository. The Azure credential configured 
   roles:
     - role: azure.azcollection.azure_arc
 ```
-Note: When auth_source: env is set, the role uses the Azure credential configured in the AAP job template. The service principal values are injected automatically by AAP — you do not need to hardcode them in the playbook. 
+When auth_source: env is set, the role uses the Azure credential configured in the AAP job template. The service principal values are injected automatically by AAP — you do not need to hardcode them in the playbook. 
 
 **Step 5: Create and run a job template** 
 1. In AAP, go to Templates > Add > Job Template. 
