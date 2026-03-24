@@ -1,17 +1,17 @@
 ---
-title: "Deploy and manage applications from Azure Marketplace on Azure Arc-enabled Kubernetes clusters"
-ms.date: 12/02/2025
+title: "Deploy and manage applications from Microsoft Marketplace on Azure Arc-enabled Kubernetes clusters"
+ms.date: 03/24/2026
 ms.custom: references-regions, devx-track-azurecli
 ms.topic: how-to
-description: "Learn how to discover Kubernetes applications in Azure Marketplace and deploy them on your Arc-enabled Kubernetes clusters."
+description: "Learn how to discover Kubernetes applications in Microsoft Marketplace and deploy them on your Arc-enabled Kubernetes clusters."
 # Customer intent: As a cloud administrator, I want to discover and deploy Kubernetes applications from an online marketplace on my Azure Arc-enabled clusters so that I can enhance my deployment capabilities and manage applications more effectively.
 ---
 
-# Deploy and manage applications from Azure Marketplace on Azure Arc-enabled Kubernetes clusters
+# Deploy and manage applications from Microsoft Marketplace on Azure Arc-enabled Kubernetes clusters
 
-[Azure Marketplace](/marketplace/azure-marketplace-overview) is an online store that contains thousands of IT software applications and services built by industry-leading technology companies. In Azure Marketplace, you can find, try, buy, and deploy the software and services you need to build new solutions and manage your cloud infrastructure. The catalog includes solutions for different industries and technical areas, free trials, and consulting services from Microsoft partners.
+[Microsoft Marketplace](/marketplace/marketplace-overview) is an online store that contains thousands of IT software applications and services built by industry-leading technology companies. In Microsoft Marketplace, you can find, try, buy, and deploy the software and services you need to build new solutions and manage your cloud infrastructure. The catalog includes solutions for different industries and technical areas, free trials, and consulting services from Microsoft partners.
 
-Included among these solutions are Kubernetes application-based container offers. These offers contain applications that run on Azure Arc-enabled Kubernetes clusters, represented as [cluster extensions](conceptual-extensions.md). When you deploy an offer from Azure Marketplace, it creates a new instance of the extension on your Arc-enabled Kubernetes cluster.
+Included among these solutions are Kubernetes application-based container offers. These offers contain applications that run on Azure Arc-enabled Kubernetes clusters, represented as [cluster extensions](conceptual-extensions.md). When you deploy an offer from Microsoft Marketplace, you create a new instance of the extension on your Arc-enabled Kubernetes cluster.
 
 In this article, you learn how to:
 
@@ -27,7 +27,7 @@ You can use the Azure CLI or the Azure portal to perform these tasks.
 - An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`.
   - If you don't have a connected cluster yet, see our [quickstart](quickstart-connect-cluster.md).
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
-- If using Azure CLI to review, deploy, and manage Azure Marketplace applications:
+- If using Azure CLI to review, deploy, and manage Microsoft Marketplace applications:
   - The latest version of [Azure CLI](/cli/azure/install-azure-cli).
   - The latest version of the `k8s-extension` Azure CLI extension. Install the extension by running `az extension add --name k8s-extension`. If the `k8s-extension` extension is already installed, update it to the latest version by running `az extension update --name k8s-extension`.
 
@@ -40,25 +40,25 @@ You can use the Azure CLI or the Azure portal to perform these tasks.
 
 ### [Azure portal](#tab/azure-portal)
 
-To discover Kubernetes applications in Azure Marketplace from within the Azure portal:
+To discover Kubernetes applications in Microsoft Marketplace from within the Azure portal:
 
 1. In the Azure portal, search for **Marketplace**. In the results, under **Services**, select **Marketplace**.
 1. Search by name or keyword, or browse all offers. To find Kubernetes application offers, select **Infrastructure Services** from the **Categories** section in the left menu. Then scroll down until you see the **Containers & Kubernetes Apps** category.
 
    > [!IMPORTANT]
-   > The **Containers & Kubernetes Apps** category includes both Kubernetes apps and standalone container images. Select only **Kubernetes Apps** offers when following these steps. Container images have a different deployment process and generally can't be deployed on Arc-enabled Kubernetes clusters.
+   > The **Containers & Kubernetes Apps** category includes both Kubernetes apps and standalone container images. Select only **Kubernetes Apps** offers when following these steps. Container images have a different deployment process and generally can't be deployed on Azure Arc-enabled Kubernetes clusters.
 
 1. Several Kubernetes application offers appear on the page. To view all Kubernetes application offers, select **See more**.
 
-   :::image type="content" source="media/deploy-marketplace/marketplace-see-more.png" alt-text="Screenshot showing the See more link for the Containers category in Azure Marketplace.":::
+   :::image type="content" source="media/deploy-marketplace/marketplace-see-more.png" alt-text="Screenshot showing the See more link for the Containers category in Microsoft Marketplace.":::
 
-1. Alternatively, search for a specific `publisherId` to view that publisher's Kubernetes applications in Azure Marketplace. For details about how to find publisher IDs, see the Azure CLI tab for this article.
+1. Alternatively, search for a specific `publisherId` to view that publisher's Kubernetes applications in Microsoft Marketplace. For details about how to find publisher IDs, see the Azure CLI tab for this article.
 
 When you find an application that you want to deploy, move on to the next section.
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use Azure CLI to get a list of extensions, including Azure Marketplace applications, that you can deploy on Azure Arc-enabled connected clusters. Run this command, providing the name of your connected cluster and the resource group where the cluster is located.
+Use Azure CLI to get a list of extensions, including Microsoft Marketplace applications, that you can deploy on Azure Arc-enabled connected clusters. Run this command, providing the name of your connected cluster and the resource group where the cluster is located.
 
 ```azurecli-interactive
 az k8s-extension extension-types list-by-cluster --cluster-type connectedClusters --cluster-name <clusterName> --resource-group <resourceGroupName>
@@ -67,7 +67,7 @@ az k8s-extension extension-types list-by-cluster --cluster-type connectedCluster
 The command returns a list of extension types that you can deploy on the connected clusters, similar to the example shown here.
 
 ```json
-"id": "/subscriptions/{sub}/resourceGroups/{rg} /providers/Microsoft.Kubernetes/connectedClusters/{clustername} /providers/Microsoft.KubernetesConfiguration/extensiontypes/contoso",
+"id": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Kubernetes/connectedClusters/{clustername}/providers/Microsoft.KubernetesConfiguration/extensiontypes/contoso",
 "name": "contoso",
 "type": "Microsoft.KubernetesConfiguration/extensionTypes",
 "properties": {
@@ -107,7 +107,7 @@ After you identify an offer you want to deploy, select it and follow these steps
 
 1. In the **Plans + Pricing** tab, review the options. If there are multiple plans available, find the one that meets your needs. Review the terms on the page to make sure they're acceptable, then select one of the **Create** options.
 
-   :::image type="content" source="media/deploy-marketplace/marketplace-plans-pricing.png" alt-text="Screenshot of the Plans + Pricing page for a Kubernetes offer in Azure Marketplace.":::
+   :::image type="content" source="media/deploy-marketplace/marketplace-plans-pricing.png" alt-text="Screenshot of the Plans + Pricing page for a Kubernetes offer in Microsoft Marketplace.":::
 
 1. Select the subscription, resource group, and Arc-enabled cluster to which you want to deploy the application, along with any other required information.
 
@@ -121,13 +121,13 @@ After you identify an offer you want to deploy, select it and follow these steps
 
 Before you can deploy a Kubernetes application, you need to accept its terms and agreements. Be sure to read these terms carefully so that you understand costs and any other requirements.
 
-To view the details of the terms, run the following command, providing the values for `offerID`, `planID`, and `publisherID`:
+To view the details of the terms, run the following command, providing the values for `offerID`, `planId`, and `publisherId`:
 
 ```azurecli-interactive
 az vm image terms show --offer <offerID> --plan <planId> --publisher <publisherId>
 ```
 
-To accept the terms, run the following command, using the same values for `offerID`, `planID`, and `publisherID`.
+To accept the terms, run the following command, using the same values for `offerID`, `planId`, and `publisherId`.
 
 ```azurecli-interactive
 az vm image terms accept --offer <offerID> --plan <planId> --publisher <publisherId>
@@ -148,13 +148,13 @@ az k8s-extension create --name <offerID> --extension-type <extensionType> --clus
 
 ## Verify the deployment
 
-Deploying an offer from Azure Marketplace creates a new extension instance on your Arc-enabled Kubernetes cluster. You can verify that the deployment was successful by confirming that the extension is running successfully.
+Deploying an offer from Microsoft Marketplace creates a new extension instance on your Arc-enabled Kubernetes cluster. You can verify that the deployment was successful by confirming that the extension is running successfully.
 
 ### [Azure portal](#tab/azure-portal)
 
 Go to the cluster where you installed the extension. In the service menu, under **Settings**, select **Extensions**.
 
-Find the application you just deployed and check the value for **Status**. When the deployment completes successfully, the **Status** is **Succeeded**.
+Find the application you just deployed and check the value for **Status**. When the deployment finishes successfully, the **Status** is **Succeeded**.
 
 :::image type="content" source="media/deploy-marketplace/extension-status.png" alt-text="Screenshot showing the status of deployed extensions in the Azure portal.":::
 
@@ -170,7 +170,7 @@ Verify the deployment by using the following command to list the extensions that
 az k8s-extension list --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
 ```
 
-Find the application you just deployed and check the value for `provisioningState`. When the deployment completes successfully, `provisioningState` is `Succeeded`. If the deployment is still in progress, `provisioningState` is `Creating`; wait a few minutes and then check again.
+Find the application you just deployed and check the value for `provisioningState`. When the deployment finishes successfully, `provisioningState` is `Succeeded`. If the deployment is still in progress, `provisioningState` is `Creating`; wait a few minutes and then check again.
 
 If `provisioningState` is `Failed`, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
@@ -196,7 +196,7 @@ You can delete a purchased plan for a Kubernetes offer by deleting the extension
 
 ### [Azure portal](#tab/azure-portal)
 
-To delete the extension instance in the Azure portal, go to the cluster where you installed the extension. In the service menu, under **Settings**, select **Extensions**. Select the application you want to remove, then select **Uninstall**.
+To delete the extension instance in the Azure portal, go to the cluster where you installed the extension. In the service menu, under **Settings**, select **Extensions**. Select the application you want to remove, and then select **Uninstall**.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -210,9 +210,9 @@ az k8s-extension delete --name <extension-name> --cluster-name <clusterName> --r
 
 ## Troubleshooting
 
-For help with resolving issues, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
+For help resolving problems, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
 ## Next steps
 
 - Learn about [extensions for Arc-enabled Kubernetes](conceptual-extensions.md).
-- Use our quickstart to [connect a Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md).
+- Use the quickstart to [connect a Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md).

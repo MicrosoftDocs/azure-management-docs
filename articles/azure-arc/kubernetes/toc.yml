@@ -135,7 +135,7 @@
     items:
     - name: Deploy and manage cluster extensions
       href: extensions.md
-    - name: Deploy Azure Marketplace applications
+    - name: Deploy Marketplace applications
       href: deploy-marketplace.md
     - name: Monitor using Azure Monitor Container Insights
       href: /azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
