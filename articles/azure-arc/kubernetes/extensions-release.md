@@ -182,7 +182,7 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 
 The Argo CD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
 
-For more information, see [Tutorial: Deploy applications using GitOps with Argo CD](tutorial-use-gitops-Argo CD.md).
+For more information, see [Tutorial: Deploy applications using GitOps with Argo CD](tutorial-use-gitops-argocd.md).
 
 > [!IMPORTANT]
 > Argo CD (GitOps) is currently in public preview.
