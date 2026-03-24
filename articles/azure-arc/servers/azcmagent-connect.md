@@ -74,7 +74,7 @@ To authenticate with a service principal using a secret, provide the service pri
 
 ### Service principal with certificate
 
-Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PCKS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
+Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PKCS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
 
 To authenticate with a service principal using a certificate, provide the service principal's application ID, tenant ID, and path to the certificate file: `--service-principal-id [appId] --service-principal-cert [pathToPEMorPFXfile] --tenant-id [tenantid]`
 
@@ -146,7 +146,7 @@ Instructs the agent to continue onboarding even if the network check for require
 
 The Azure region to check connectivity with. If the machine is already connected to Azure Arc, the current region is selected as the default.
 
-Sample value: westeurope
+Sample value: `westeurope`
 
 `--private-link-scope`
 
@@ -184,7 +184,7 @@ Specifies the path to a service principal certificate file. Must be used with th
 
 `-p`, `--service-principal-secret`
 
-Specifies the service principal secret. Must be used with the `--service-principal-id` and `--tenant-id` flags. To avoid exposing the secret in console logs, Microsoft recommended providing the service principal secret in a configuration file. For more information, see [authentication options](#authentication-options).
+Specifies the service principal secret. Must be used with the `--service-principal-id` and `--tenant-id` flags. To avoid exposing the secret in console logs, Microsoft recommends providing the service principal secret in a configuration file. For more information, see [authentication options](#authentication-options).
 
 `-s`, `--subscription-id`
 
