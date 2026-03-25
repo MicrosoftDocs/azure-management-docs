@@ -165,7 +165,7 @@ Example of pulling by manifest digest:
 
 ## Next steps
 
-0 Learn more about [registry storage](container-registry-storage.md) and [supported content formats](container-registry-image-formats.md) in Azure Container Registry.
+- Learn more about [registry storage](container-registry-storage.md) and [supported content formats](container-registry-image-formats.md) in Azure Container Registry.
 
 - Learn how to [push and pull images](container-registry-get-started-docker-cli.md) from Azure Container Registry.
 
