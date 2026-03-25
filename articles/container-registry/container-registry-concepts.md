@@ -25,17 +25,17 @@ In addition to Docker-compatible container images, Azure Container Registry supp
 
 A *repository* is a collection of container images or other artifacts in a registry that have the same name, but different tags. For example, the following three images are in the `acr-helloworld` repository:
 
-- *acr-helloworld:latest*
-- *acr-helloworld:v1*
-- *acr-helloworld:v2*
+- `acr-helloworld:latest`
+- `acr-helloworld:v1`
+- `acr-helloworld:v2`
 
 Repository names can also include [namespaces](container-registry-best-practices.md#repository-namespaces). By using forward slash-delimited names, you can identify related repositories and artifact ownership in your organization. However, the registry manages all repositories independently, not as a hierarchy. For example:
 
-- *marketing/campaign10-18/web:v2*
-- *marketing/campaign10-18/api:v3*
-- *marketing/campaign10-18/email-sender:v2*
-- *product-returns/web-submission:20230604*
-- *product-returns/legacy-integrator:20230715*
+- `marketing/campaign10-18/web:v2`
+- `marketing/campaign10-18/api:v3`
+- `marketing/campaign10-18/email-sender:v2`
+- `product-returns/web-submission:20230604`
+- `product-returns/legacy-integrator:20230715`
 
 Repository names can only include lowercase alphanumeric characters, periods, dashes, underscores, and forward slashes.
 
