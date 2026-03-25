@@ -4,7 +4,7 @@ description: Learn about the features and limits in various SKUs of Azure Contai
 ms.topic: concept-article
 author: rayoef
 ms.author: rayoflores
-ms.date: 02/10/2026
+ms.date: 03/25/2026
 ms.service: azure-container-registry
 # Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."
 ---
@@ -25,7 +25,7 @@ Azure Container Registry offers three **Pricing Plan** options: Basic, Standard,
 
 Each SKU includes a specific amount of free storage, with additional storage available at a per-GB rate. Each SKU also has a different maximum storage limit.
 
-The Basic, Standard, and Premium SKUs all provide the same programmatic capabilities and data plane APIs. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure. However, the Premium SKU enables a wider range of features and has higher limits.
+The Basic, Standard, and Premium SKUs all provide the same programmatic capabilities and data plane APIs. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure, and all SKUs have [Zone redundancy in Azure Container Registry](zone-redundancy.md)zone redundancy enabled by default in supported regions. However, the Premium SKU enables a wider range of features and has higher limits.
 
 ## SKU features and limits
 
