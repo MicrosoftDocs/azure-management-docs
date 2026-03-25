@@ -86,11 +86,9 @@ following approaches:
 - [Create a transfer pipeline](/azure/container-registry/container-registry-transfer-prerequisites)
   for large-scale or offline migration.
 
-## Infrastructure as code (Bicep, ARM, Terraform)
+## Infrastructure as code
 
-The `zoneRedundancy` property still exists in the ARM API and Bicep resource definitions for
-backward compatibility, but it no longer controls behavior and will eventually be deprecated. Setting it explicitly is harmless but
-no longer required. Here is what you need to know:
+The `zoneRedundancy` property still exists in the ARM API and Bicep resource definitions for backward compatibility, but it no longer controls behavior and will eventually be deprecated. Setting it explicitly is harmless but no longer required.
 
 | Action | Effect |
 |--------|--------|
@@ -98,11 +96,9 @@ no longer required. Here is what you need to know:
 | Set `zoneRedundancy: 'Enabled'` | No change—matches the default. Safe to keep in existing templates |
 | Set `zoneRedundancy: 'Disabled'` | Has no effect in supported regions—zone redundancy cannot be disabled |
 
-### Azure CLI reference
-
-The `--zone-redundancy` flag in the [az acr create](/cli/azure/acr#az-acr-create) and
+For Azure CLI, the `--zone-redundancy` flag in the [az acr create](/cli/azure/acr#az-acr-create) and
 [az acr replication create](/cli/azure/acr/replication#az-acr-replication-create) commands still exists
-for backward compatibility. You do not need to use this flag, since zone redundancy is active by default.
+for backward compatibility. You don't need to use this flag, since zone redundancy is active by default.
 
 ## Frequently asked questions
 
