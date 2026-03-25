@@ -192,8 +192,10 @@ archost: "true"
 ```
 ### Write the playbook
 Choose the authentication option that matches your environment. 
+
 #### Option A: Azure CLI authentication (recommended for development)
-1. Use the signed-in Azure CLI identity on the Ansible control node.   
+Use the signed-in Azure CLI identity on the Ansible control node. Before running the playbook, you need to sign in to Azure CLI.
+
 Example: arc-onboard.yml 
 
 ```yaml
@@ -214,14 +216,8 @@ Example: arc-onboard.yml
         azure_arc_location: "{{ azure_arc_location }}"
         azure_arc_tags: "{{ azure_arc_tags }}"
 ```
-1. Before running, sign in to Azure CLI: 
-```bash
-az login
-``` 
-1. Run the playbook: 
-```bash
-ansible-playbook -i inventory.ini arc-onboard.yml
-``` 
+
+ 
 #### Option B: Managed Identity authentication (recommended for production)
 If your Ansible control node is an Azure VM or Arc-enabled server with a managed identity assigned, no additional login step is required. 
 Example: arc-onboard.yml 
@@ -303,6 +299,8 @@ source: https://galaxy.ansible.com
 Store this playbook in your project repository. The Azure credential configured earlier is injected automatically by AAP at runtime — you do not need to hardcode secrets in the playbook. 
 #### Option A: Managed Identity
 
+In the example below, the `auth_source` is set to managed identity.
+
 ```yaml
 - name: Connect machines to Azure Arc (AAP - Managed Identity)
 
@@ -325,6 +323,8 @@ Store this playbook in your project repository. The Azure credential configured 
 
 #### Option B: Service Principal
 
+When `auth_source: env` is set, the role uses the Azure credential configured in the AAP job template. The service principal values are injected automatically by AAP — you do not need to hardcode them in the playbook. 
+
 ```yaml
 - name: Connect machines to Azure Arc (AAP - Service Principal)
 
@@ -344,8 +344,6 @@ Store this playbook in your project repository. The Azure credential configured 
   roles:
     - role: azure.azcollection.azure_arc
 ```
-When auth_source: env is set, the role uses the Azure credential configured in the AAP job template. The service principal values are injected automatically by AAP — you do not need to hardcode them in the playbook. 
-
 ### Create and run a job template
 1. In AAP, go to **Templates > Add > Job Template**. 
 1. Configure the following fields: 
