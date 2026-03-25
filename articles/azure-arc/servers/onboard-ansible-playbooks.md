@@ -1,32 +1,37 @@
 ---
-title: Connect machines to Azure Arc at scale using Ansible Playbooks
-description: In this article, you learn how to connect machines to Azure using Azure Arc-enabled servers using Ansible playbooks.
+title: Connect machines to Azure Arc at scale using Ansible
+description: In this article, you learn how to onboard Azure Arc–enabled servers at scale using Ansible Core and Ansible Automation Platform (AAP), including recommended authentication options such as managed identity and service principal.
 ms.date: 12/30/2024
 ms.topic: how-to
 ms.custom: template-how-to, devx-track-ansible
-# Customer intent: "As a cloud administrator, I want to onboard multiple machines to Azure Arc using Ansible playbooks, so that I can efficiently manage and monitor my hybrid infrastructure at scale."
+# Customer intent: "As a cloud administrator, I want to onboard multiple machines to Azure Arc using Ansible, so that I can efficiently manage and monitor my hybrid infrastructure at scale."
 ---
 
 # Connect machines to Azure Arc at scale with Ansible
  
-This article shows how to connect Linux and Windows machines to Azure Arc at scale using the Azure Arc Ansible role included in the [azure.azcollection](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/). The Azure Arc Ansible role automates installation of the Azure Connected Machine agent and registers each target machine with Azure Arc. This enables consistent, repeatable onboarding across large environments without requiring interactive login or manual installation steps. Once connected, machines appear as Azure Arc–enabled servers in Azure and can be managed using services such as Azure Policy, Update Manager, and Azure Monitor.
+This article shows how to connect Linux and Windows machines to Azure Arc at scale using the Azure Arc Ansible role included in the [azure.azcollection](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/). The Azure Arc Ansible role automates installation of the Azure Connected Machine agent and registers each target machine with Azure Arc. This enables consistent, repeatable onboarding across large environments without requiring interactive login or manual installation steps. 
+
 The Azure Arc Ansible role can be used with Ansible Core or Ansible Automation Platform (AAP). This article covers both options and explains how to use each to onboard machines to Azure Arc at scale. 
+
 ## Overview 
-The **azure\_arc role** installs the Azure Connected Machine agent and registers each host with Azure Arc in the specified resource group and subscription. Once registered, the machine appears in Azure as an Arc-enabled server and can be managed using Azure services such as Azure Policy, Update Manager, and Monitor. The Azure Arc Ansible role is used to onboard machines to Azure Arc. It does not discover machines automatically or replace Azure Policy–based management after onboarding. 
+The **azure_arc role** installs the Azure Connected Machine agent and registers each host with Azure Arc in the specified resource group and subscription. Once registered, the machine appears in Azure as an Arc-enabled server and can be managed using Azure services such as Azure Policy, Update Manager, and Monitor. The Azure Arc Ansible role is used to onboard machines to Azure Arc. It does not discover machines automatically or replace Azure Policy–based management after onboarding. 
+
 ## Prerequisites 
-Before using the Azure Arc Ansible role, ensure the following requirements are met. 
+Before using the Azure Arc Ansible role, ensure the following requirements are met: 
+
 ### Azure permissions 
 The identity used by Ansible (Azure CLI user, service principal, or managed identity) must be assigned **the Azure Connected Machine Onboarding role** at the subscription or resource group scope.
 
 In addition, the subscription must have the following [resource providers registered](/azure/azure-resource-manager/management/resource-providers-and-types):
 - Microsoft.HybridCompute
 - Microsoft.GuestConfiguration 
+
 ### Ansible prerequisites 
 Before running the Azure Arc Ansible role, ensure:
-- Network connectivity from the machines you’d like to Arc-enable to the required Azure Arc URLs. Review [the Azure Arc/Connected machine agent network requirements](network-requirements.md) and perform any unmet network requirements. To reduce the number of Azure Arc URLs that must be allowlisted from ~20 URLs to ~7, you can [use the Arc gateway](arc-gateway.md). 
-- Required permissions to install software on target machines
+- Network connectivity from the machines you’d like to Arc-enable to the required Azure Arc URLs. Review and address applicable [network requirements](network-requirements.md). To reduce the number of Azure Arc URLs that must be allowlisted in your network or firewall from ~20 URLs to ~7 URLs, you can [use the Arc gateway](arc-gateway.md). 
+- The account that Ansible uses to connect to target machines must have administrator permissions to install software and manage system services (for example, root or sudo access on Linux).
+
 ## Role variables
- 
 The Azure Arc role supports the following variables:
 
 | Variable | Description |
@@ -37,20 +42,25 @@ The Azure Arc role supports the following variables:
 | `azure_arc_location` | Azure region for the Arc resource (defaults to the resource group location) |
 | `azure_arc_cloud` | Azure cloud to use (default: AzureCloud) |
 | `azure_arc_tags` | Tags applied to the Arc resource (default: `{ archost: "true" }`) |
-| `proxy` | Optional proxy configuration (hostname and port) |
+| `proxy` | Optional proxy configuration (hostname and port). Example: http://proxy.contoso.com:8080 |
 
 ## Authentication options
  
-The Azure Arc role supports multiple authentication methods. Below are the common examples used in an automation environment.
-### Azure CLI credentials
+The Azure Arc role supports multiple authentication methods for automation scenarios. This article covers the most common options, including Azure CLI–based authentication and managed identity.
+
+## Azure CLI credentials
  
 Use the currently signed-in Azure CLI identity on the Ansible control node. This option is recommended for interactive use and development environments. Set the following in your playbook:
-**auth**\_**source: cli**
+
+```yaml
+auth_source: cli
+```
+
 Before running your playbook, sign in to Azure with this Azure CLI command (this will open a new browser window for login):
 ```azure cli
 az login
 ``` 
-If you do not have a browser for login, use this Az CLI command to log into Azure:
+If you do not have a browser for login, use this Azure CLI command to log into Azure using your device:
 ```
 az login --use-device-code
 ```
@@ -64,13 +74,11 @@ az account set --subscription "<subscription-id-or-name>"
  
 If the Ansible control node runs on an Azure virtual machine or an Azure Arc–enabled server, you can authenticate using a system-assigned managed identity. Each Azure Arc–enabled server automatically receives its own system-assigned managed identity when it is connected to Azure Arc. This identity is machine-specific and represents that server when authenticating to Azure services. By default, managed identities have no Azure RBAC permissions. Before using managed identity authentication with the Azure Arc Ansible role, you must explicitly grant the managed identity permission to onboard machines. 
 Managed identity is the recommended authentication method for production automation as it removes the need to store credentials or secrets. 
-#### Required permissions 
-Assign the **Azure Connected Machine Onboarding role** to the managed identity at the subscription or resource group scope.
 
-### Assign the managed identity to the onboarding role
- 
-The Ansible control node’s Managed Identity must be assigned **the Azure Connected Machine Onboarding role** at the subscription or resource group scope before running the playbook. 
-#### Option 1: Azure portal 
+## Assign the managed identity to the onboarding role
+The Ansible control node’s Managed Identity must be assigned **the Azure Connected Machine Onboarding role** at the subscription or resource group scope before running the playbook.
+
+### Option 1: Azure portal 
 Use the Azure portal to assign the required role to the Ansible control node’s managed identity. This option applies to Azure VM Managed Identity _or_ Arc-enabled server Managed Identity. This flow is supported for Arc-enabled server identities because Arc creates a service principal in Microsoft Entra ID for the machine identity. 
 
 1. Go to [Azure portal](https://portal.azure.com/) 
@@ -90,11 +98,13 @@ Use the Azure portal to assign the required role to the Ansible control node’s
 
 1. Click Save.
 
-#### Option 2: Azure CLI 
+### Option 2: Azure CLI 
 Use Azure CLI commands to assign the required role to the Ansible control node’s managed identity. 
-**Step 1: Get the managed identity principal ID**
 
-If the Ansible control node is an Arc-enabled server, use this Az CLI command:
+#### Get the managed identity principal ID
+The managed identity principal ID is the Microsoft Entra object ID (principal ID) of the system‑assigned managed identity for the Ansible control node.
+
+If the Ansible control node is an Arc-enabled server, use this Azure CLI command:
 ```
 az connectedmachine show \
 --name \<arc-server-name\> \
@@ -103,7 +113,7 @@ az connectedmachine show \
 -o tsv
 ```
 
-If the Ansible control node is an Azure VM, use this Az CLI command:
+If the Ansible control node is an Azure VM, use this Azure CLI command:
 ```
 az vm show \
 --name \<vm-name\> \
@@ -112,30 +122,35 @@ az vm show \
 -o tsv
 ```
 
-**Step 2: Assign the role**
+#### Assign the role to the managed identity
 
-Based on the scope of your Arc onboarding experience, you will need to assign the role for either the subscription or resource group. Below are the corresponding Azure CLI commands based on the selected scope. 
+Based on the scope of your Arc onboarding experience, you need to assign the role for either the subscription or resource group. You need the managed identity principal ID from the previous step as the `--assignee` value. Below are the corresponding Azure CLI commands based on the selected scope.
+
 **Subscription scope** 
+This sets the Azure Connected Machine Onboarding role at the subscription level:
+
 ```
 az role assignment create \
---assignee \<principal-id\> \
+--assignee \<identity-principal-id> \
 --role "Azure Connected Machine Onboarding" \
---scope /subscriptions/\<subscription-id\> 
+--scope /subscriptions/<subscription-id> 
 ```
 **Resource group scope** 
+This sets the Azure Connected Machine Onboarding role at the resource group level:
+
 ```
 az role assignment create \
---assignee \<principal-id\> \
+--assignee \<identity-principal-id> \
 --role "Azure Connected Machine Onboarding" \
---scope /subscriptions/\<subscription-id\>/resourceGroups/\<rg-name\>
+--scope /subscriptions/<subscription-id>/resourceGroups/<rg-name>
 ```
 
-## Set the playbook to use managed identity
- 
+### Set the playbook to use managed identity
 Once the Ansible control node’s managed identity has the required role, you can use it as your authentication source in your playbook - no interactive login, secrets, or environment variables are required. To use managed identity authentication in your playbook, set: 
 
-**auth**\_**source: msi** 
-### How authentication works
+**auth_source: msi** 
+
+### How managed identity authentication works
 When the playbook runs, the Azure SDK authenticates by requesting a token from the local metadata service. Azure virtual machines use the Azure Instance Metadata Service. Azure Arc–enabled servers use the Azure Arc Hybrid Instance Metadata Service. The token represents the managed identity of the control node. Azure then evaluates whether that identity has permission to create and register Azure Arc resources.
 
 ## Deploy Azure Arc at scale using Ansible
@@ -146,9 +161,10 @@ The Azure Arc Ansible role can be used with Ansible Core or Ansible Automation P
  
 When using Ansible Core, at scale onboarding is achieved by defining groups of machines in inventory and running the same playbook across those groups. The Azure Arc Ansible role is executed once per host and can be safely run across large numbers of machines. 
 
-**Step 1: Choose an authentication method** 
+### Choose an authentication method
 Before running the playbook, decide which authentication method your control node will use. See the Authentication options section above for details. The examples in the following steps show both options. 
-**Step 2: Define your inventory** 
+
+### Define your inventory
 Group machines logically by environment or operating system. Inventory files can be static (INI or YAML) or dynamically generated using scripts or inventory plugins. We suggest grouping your machines to easily target them. 
 Example inventory file: 
 ```yaml
@@ -160,7 +176,7 @@ linux-03
 win-01 
 win-02 
 ```
-**Step 3: Configure role variables** 
+### Configure role variables
 Create a group variables file to define the Azure environment your machines will onboard into. This keeps your playbook clean and reusable across environments. 
 Example: group\_vars/arc\_linux.yml 
 ```yaml
@@ -172,10 +188,10 @@ azure_arc_tags:
 environment: "production" 
 archost: "true"
 ```
-**Step 4: Write the playbook** 
+### Write the playbook
 Choose the authentication option that matches your environment. 
-**Option A: Azure CLI authentication (recommended for development)** 
-Use the signed-in Azure CLI identity on the Ansible control node. 
+#### Option A: Azure CLI authentication (recommended for development)
+1. Use the signed-in Azure CLI identity on the Ansible control node. 
 Example: arc-onboard.yml 
 ```yaml
 - name: Connect Linux machines to Azure Arc (CLI auth)
@@ -195,18 +211,15 @@ Example: arc-onboard.yml
         azure_arc_location: "{{ azure_arc_location }}"
         azure_arc_tags: "{{ azure_arc_tags }}"
 ```
-Before running, sign in to Azure CLI: 
+1. Before running, sign in to Azure CLI: 
 ```bash
 az login
 ``` 
-
-**Step 5: Run the playbook**
-
-Run the playbook: 
+1. Run the playbook: 
 ```bash
 ansible-playbook -i inventory.ini arc-onboard.yml
 ``` 
-**Option B: Managed Identity authentication (recommended for production)** 
+#### Option B: Managed Identity authentication (recommended for production)
 If your Ansible control node is an Azure VM or Arc-enabled server with a managed identity assigned, no additional login step is required. 
 Example: arc-onboard.yml 
 ```yaml
@@ -234,24 +247,27 @@ ansible-playbook -i inventory.ini arc-onboard.yml
 ## Deploy Azure Arc at scale using Ansible Automation Platform
  
 When using **Ansible Automation Platform (AAP)**, inventories and host groups are managed centrally in the platform. Customers do not need to maintain local inventory files. AAP is recommended for large or dynamic environments. AAP supports inventories that automatically discover machines from external sources such as virtualization platforms, cloud providers, or CMDB systems. 
-**Step 1: Set up your AAP credential for Azure authentication** 
+
+### Set up your AAP credential for Azure authentication
 AAP manages credentials centrally. Create an Azure Resource Manager credential in AAP with one of the following authentication methods. See the Authentication options section above for details. 
+
 **AAP Authentication Methods**
+The following table summarizes supported AAP authentication methods.
+
 | Authentication Method | When to Use | Notes |
 | --- | --- | --- |
 | Managed Identity | Production; AAP execution environment runs on an Azure VM or Arc-enabled server | Recommended for production |
 | Service Principal | Production; general purpose or AAP outside Azure | Requires client ID and secret |
  
-Note: Azure CLI credentials are not applicable in AAP. Use Managed Identity or a Service Principal for AAP-based automation. 
-To create an Azure credential in AAP: 
-In the AAP web UI, go to Credentials and select Add. 
-Set Credential Type to Microsoft Azure Resource Manager. 
-For Managed Identity: enable Use the environment's managed identity. 
-For Service Principal: enter your Subscription ID, Client ID, Client Secret, and Tenant ID. 
-Select Save. 
-**Step 2: Configure your inventory** 
+Azure CLI credentials are not applicable in AAP. Use Managed Identity or a Service Principal for AAP-based automation. To create an Azure credential in AAP: 
+1. In the AAP web UI, go to Credentials and select Add. 
+1. Set Credential Type to Microsoft Azure Resource Manager. 
+1. For Managed Identity: enable Use the environment's managed identity. For Service Principal: enter your Subscription ID, Client ID, Client Secret, and Tenant ID. 
+1. Select Save.
+2. 
+### Configure your inventory
 AAP inventories can be static or dynamically sourced. For large or dynamic environments, use a constructed inventory to group machines automatically based on host metadata. 
-**Option A: Static inventory with host groups** 
+#### Option A: Static inventory with host groups
 1. In AAP, go to Inventories > Add > Inventory, then add hosts manually or import from a file. 
 1. Add your Linux hosts to a group named arc_linux: 
 ```yaml
@@ -259,8 +275,7 @@ linux-server-01
 linux-server-02 
 linux-server-03 
 ```
-
-**Option B: Dynamic inventory with constructed groups (recommended for scale)** 
+#### Option B: Dynamic inventory with constructed groups (recommended for scale) 
 Use an inventory source (for example, VMware vSphere, AWS, or Azure) and define constructed groups based on host variables. For example, to automatically group all Linux machines: 
 Example: constructed.yml 
 ```yaml
@@ -269,22 +284,22 @@ groups:
 arc_linux: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
 ```
 Newly added machines that match the group condition are automatically included in subsequent job runs. 
-**Step 3: Create a project** 
+### Create a project 
 In AAP, a Project links to a source control repository containing your playbook and role requirements file. 
-Go to Projects > Add. 
-Set SCM Type to Git. 
-Enter your repository URL. 
-Select Save. 
-Ensure your repository includes a requirements.yml file at the root to install the azure.azcollection: 
+1. Go to Projects > Add. 
+1. Set SCM Type to Git. 
+1. Enter your repository URL. 
+1. Select Save. 
+1. Ensure your repository includes a requirements.yml file at the root to install the azure.azcollection: 
 Example: requirements.yml 
 ```yaml
 collections: 
 - name: azure.azcollection 
 source: https://galaxy.ansible.com
 ```
-**Step 4: Write the Arc onboarding playbook** 
-Store this playbook in your project repository. The Azure credential configured in Step 1 is injected automatically by AAP at runtime — you do not need to hardcode secrets in the playbook. 
-**Option A: Managed Identity (recommended for production)**
+### Write the Arc onboarding playbook
+Store this playbook in your project repository. The Azure credential configured earlier is injected automatically by AAP at runtime — you do not need to hardcode secrets in the playbook. 
+#### Option A: Managed Identity (recommended for production)
 
 ```yaml
 - name: Connect machines to Azure Arc (AAP - Managed Identity)
@@ -306,7 +321,7 @@ Store this playbook in your project repository. The Azure credential configured 
     - role: azure.azcollection.azure_arc
 ```
 
-**Option B: Service Principal (production — general purpose)**
+#### Option B: Service Principal (production — general purpose)
 ```yaml
 - name: Connect machines to Azure Arc (AAP - Service Principal)
 
@@ -328,7 +343,7 @@ Store this playbook in your project repository. The Azure credential configured 
 ```
 When auth_source: env is set, the role uses the Azure credential configured in the AAP job template. The service principal values are injected automatically by AAP — you do not need to hardcode them in the playbook. 
 
-**Step 5: Create and run a job template** 
+### Create and run a job template
 1. In AAP, go to Templates > Add > Job Template. 
 1. Configure the following fields: 
 AAP Job Template Fields
@@ -344,7 +359,7 @@ AAP Job Template Fields
  
 1. Select Save, then Launch to run the job. 
 
-**Continuous and large-scale onboarding** 
+## Continuous and large-scale onboarding*
 Because AAP inventories are dynamically maintained: 
 - Newly discovered machines are automatically included in subsequent job runs. 
 - Machines already connected to Azure Arc are skipped (the role is idempotent). 
@@ -352,6 +367,7 @@ The same job template can be scheduled to run on a recurring basis to continuous
 
 ## Verify the connection with Azure Arc 
 After installing the agent and configuring it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the servers in your target hosts successfully connected. View your machines in the [Azure portal](https://portal.azure.com/). 
+
 ## Next steps 
 - Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring. 
 - Review connection troubleshooting information in the [Troubleshoot Connected Machine agent guide](troubleshoot-agent-onboard.md). 
