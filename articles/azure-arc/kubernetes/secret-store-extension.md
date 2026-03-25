@@ -160,6 +160,9 @@ To access and synchronize a given Azure Key Vault secret, the SSE requires acces
    az role assignment create --role "Key Vault Secrets Officer" --assignee ${CURRENT_USER} --scope /subscriptions/${SUBSCRIPTION}/resourcegroups/${RESOURCE_GROUP}/providers/Microsoft.KeyVault/vaults/${KEYVAULT_NAME}
    ```
 
+   > [!TIP]
+   > If this command fails due to conditional access policies, you can assign the 'Secrets Officer' role to your account [using the Azure portal](/azure/role-based-access-control/role-assignments-portal) instead.
+
 1. Create a secret and update it so you have two versions:
 
    ```azurecli
