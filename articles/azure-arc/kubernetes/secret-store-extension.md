@@ -38,7 +38,7 @@ export CLUSTER_NAME="AzureArcTest1"
 export LOCATION="EastUS"
 export SUBSCRIPTION="$(az account show --query id --output tsv)"
 export AZURE_TENANT_ID="$(az account show -s $SUBSCRIPTION --query tenantId --output tsv)"
-export CURRENT_USER="$(az ad signed-in-user show --query userPrincipalName --output tsv)"
+export CURRENT_USER="$(az account show --query user.name --output tsv)"
 export KEYVAULT_NAME="my-UNIQUE-kv-name"
 export KEYVAULT_SECRET_NAME="my-secret"
 export USER_ASSIGNED_IDENTITY_NAME="my-identity"
@@ -159,6 +159,9 @@ To access and synchronize a given Azure Key Vault secret, the SSE requires acces
    ```azurecli
    az role assignment create --role "Key Vault Secrets Officer" --assignee ${CURRENT_USER} --scope /subscriptions/${SUBSCRIPTION}/resourcegroups/${RESOURCE_GROUP}/providers/Microsoft.KeyVault/vaults/${KEYVAULT_NAME}
    ```
+
+   > [!TIP]
+   > If this command fails due to conditional access policies, you can assign the 'Secrets Officer' role to your account [using the Azure portal](/azure/role-based-access-control/role-assignments-portal) instead.
 
 1. Create a secret and update it so you have two versions:
 
