@@ -346,8 +346,10 @@ When `auth_source: env` is set, the role uses the Azure credential configured in
 ```
 ### Create and run a job template
 1. In AAP, go to **Templates > Add > Job Template**. 
-1. Configure the following fields: 
+1. Configure the following fields, then save and launch the job: 
+
 **AAP Job Template Fields**
+
 | Field | Value |
 | --- | --- |
 | Name | Connect machines to Azure Arc |
@@ -358,7 +360,7 @@ When `auth_source: env` is set, the role uses the Azure credential configured in
 | Credentials | Your Azure Resource Manager credential |
 | Limit | arc\_linux (or leave blank to target all hosts) |
  
-1. Select **Save**, then **Launch** to run the job. 
+
 
 ## Continuous and large-scale onboarding
 
