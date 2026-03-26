@@ -106,7 +106,7 @@ The following list describes common container registry scenarios and their recom
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
-      - high availability features ([geo-replications](container-registry-geo-replication.md), [availability zones, and zone redundancy](zone-redundancy.md)),
+      - configure ([geo-replications](container-registry-geo-replication.md)),
       - on-premises features ([connected registries](intro-connected-registry.md)),
       - registry endpoints ([dedicated data endpoints](container-registry-dedicated-data-endpoints.md))
       - network access ([private link and private endpoint settings](container-registry-private-link.md), [public network access](container-registry-private-link.md#disable-public-access-to-a-registry), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
@@ -184,7 +184,7 @@ The following list describes common container registry scenarios and their recom
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
-      - high availability features ([geo-replications](container-registry-geo-replication.md), [availability zones, and zone redundancy](zone-redundancy.md)),
+      - configure ([geo-replications](container-registry-geo-replication.md)),
       - on-premises features ([connected registries](intro-connected-registry.md)),
       - registry endpoints ([dedicated data endpoints](container-registry-dedicated-data-endpoints.md))
       - network access ([private link and private endpoint settings](container-registry-private-link.md), [public network access](container-registry-private-link.md#disable-public-access-to-a-registry), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
