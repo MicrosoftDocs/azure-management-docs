@@ -100,11 +100,11 @@ Within .spec:
 
     - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **kubernetesSecretType**, **labels**, and **annotations**.
 
-      - **mapping** *(required)*: A list of data keys and their AKV sources. There are no default keys.
+      - **mapping** *(required)*: A list of data keys and their AKV sources. There are no default keys. Each entry must specify exactly one of **secretInAKV** or **certInAKV**.
         - **dataKey** *(required)*: The name of the data key within the Kubernetes secret that holds the secret fetched from AKV.
 
         - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV and stored in the nominated data key.
-        - **certInAKV** *(optional)*: The name of a certificate that should be fetched from AKV and stored in the nominated data key.
+        - **certInAKV** *(optional)*: The name of a certificate that should be fetched from AKV. Both the certificate and its private key are fetched as a two-part PEM and stored in the nominated data key.
         - **version** *(optional)*: The version of the secret or certificate to fetch from AKV. 0 is the latest version, 1 is the second latest, etc.
 
 ## SecretSync resources
