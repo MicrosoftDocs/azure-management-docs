@@ -125,8 +125,7 @@ az vm show \
 
 Based on the scope of your Arc onboarding experience, you need to assign the role for either the subscription or resource group. You need the managed identity principal ID from the previous step as the `--assignee` value. Below are the corresponding Azure CLI commands based on the selected scope:
 
-**Subscription scope** 
-This sets the Azure Connected Machine Onboarding role at the subscription level:
+**Subscription scope**: This sets the Azure Connected Machine Onboarding role at the subscription level:
 
 ```
 az role assignment create \
@@ -134,8 +133,7 @@ az role assignment create \
 --role "Azure Connected Machine Onboarding" \
 --scope /subscriptions/<subscription-id> 
 ```
-**Resource group scope** 
-This sets the Azure Connected Machine Onboarding role at the resource group level:
+**Resource group scope**: This sets the Azure Connected Machine Onboarding role at the resource group level:
 
 ```
 az role assignment create \
@@ -239,19 +237,13 @@ Example: arc-onboard.yml
         azure_arc_location: "{{ azure_arc_location }}"
         azure_arc_tags: "{{ azure_arc_tags }}"
 ```
-Run the playbook: 
-```bash
-ansible-playbook -i inventory.ini arc-onboard.yml
-```
+
 ## Deploy Azure Arc at scale using Ansible Automation Platform
  
 When using **Ansible Automation Platform (AAP)**, inventories and host groups are managed centrally in the platform. With AAP, you do not need to maintain local inventory files. AAP is recommended for large or dynamic environments. AAP supports inventories that automatically discover machines from external sources such as virtualization platforms, cloud providers, or CMDB systems. 
 
 ### Set up your AAP credential for Azure authentication
 AAP manages credentials centrally. Create an Azure Resource Manager credential in AAP with one of the following authentication methods. 
-
-**AAP Authentication Methods**
-The following table summarizes supported AAP authentication methods:
 
 | Authentication Method | When to Use | Notes |
 | --- | --- | --- |
@@ -263,8 +255,10 @@ Azure CLI credentials are not applicable in AAP. Use Managed Identity or a Servi
 1. Set **Credential Type** to **Microsoft Azure Resource Manager**. 
 1. For **Managed Identity**: enable **Use the environment's managed identity**. For **Service Principal**: enter your Subscription ID, Client ID, Client Secret, and Tenant ID. 
 1. Select **Save**.
+   
 ### Configure your inventory
 AAP inventories can be static or dynamically sourced. For large or dynamic environments, use a constructed inventory to group machines automatically based on host metadata. 
+
 #### Option A: Static inventory with host groups
 1. In AAP, go to **Inventories > Add > Inventory**, then add hosts manually or import from a file. 
 1. Add your Linux hosts to a group named arc_linux: 
@@ -275,6 +269,7 @@ linux-server-03
 ```
 #### Option B: Dynamic inventory with constructed groups (recommended for scale) 
 Use an inventory source (for example, VMware vSphere, AWS, or Azure) and define constructed groups based on host variables. For example, to automatically group all Linux machines: 
+
 Example: constructed.yml 
 ```yaml
 plugin: constructed 
@@ -282,13 +277,17 @@ groups:
 arc_linux: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
 ```
 Newly added machines that match the group condition are automatically included in subsequent job runs. 
+
 ### Create a project 
+
 In AAP, a Project links to a source control repository containing your playbook and role requirements file. 
+
 1. Go to Projects > Add. 
 1. Set SCM Type to Git. 
 1. Enter your repository URL. 
 1. Select Save. 
 1. Ensure your repository includes a requirements.yml file at the root to install the azure.azcollection: 
+
 Example: requirements.yml 
 ```yaml
 collections: 
@@ -297,6 +296,7 @@ source: https://galaxy.ansible.com
 ```
 ### Write the Arc onboarding playbook
 Store this playbook in your project repository. The Azure credential configured earlier is injected automatically by AAP at runtime — you do not need to hardcode secrets in the playbook. 
+
 #### Option A: Managed Identity
 
 In the example below, the `auth_source` is set to managed identity.
@@ -346,7 +346,7 @@ When `auth_source: env` is set, the role uses the Azure credential configured in
 ```
 ### Create and run a job template
 1. In AAP, go to **Templates > Add > Job Template**. 
-1. Configure the following fields, then save and launch the job: 
+1. Configure the job template fields, then save and launch the job. 
 
 **AAP Job Template Fields**
 
@@ -360,8 +360,6 @@ When `auth_source: env` is set, the role uses the Azure credential configured in
 | Credentials | Your Azure Resource Manager credential |
 | Limit | arc\_linux (or leave blank to target all hosts) |
  
-
-
 ## Continuous and large-scale onboarding
 
 Because AAP inventories are dynamically maintained: 
