@@ -97,13 +97,13 @@ Complete the following steps to use PowerShell remoting to install the agent on 
     myMachineName  eastus   windows  Connected  Succeeded
     ```
 
-[!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
-
 ## Verify the connection with Azure Arc
 
 After you install and configure the agent to register with Azure Arc-enabled servers, go to the Azure portal to verify that the server connected successfully. View your machine in the [Azure portal](https://portal.azure.com).
 
 ![Screenshot of Servers dashboard, showing a successful server connection.](./media/onboard-portal/arc-for-servers-successful-onboard.png)
+
+[!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
 
 ## Next steps
 
