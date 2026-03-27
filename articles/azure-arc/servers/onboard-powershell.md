@@ -17,8 +17,6 @@ Before you start, review the [Azure Arc-enabled servers prerequisites](prerequis
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
-[!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
-
 ## Prerequisites
 
 - A Windows or Linux machine that you want to connect to Azure Arc.
@@ -98,6 +96,8 @@ Complete the following steps to use PowerShell remoting to install the agent on 
     ----           -------- ------   ------     -----------------
     myMachineName  eastus   windows  Connected  Succeeded
     ```
+
+[!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
 
 ## Verify the connection with Azure Arc
 
