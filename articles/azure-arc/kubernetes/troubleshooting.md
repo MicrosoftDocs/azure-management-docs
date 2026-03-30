@@ -77,7 +77,7 @@ All pods should show `STATUS` as `Running` with either `3/3` or `2/2` under the 
 
 ## Resource provisioning failed or service timeout error
 
-If you see these errors, check [Azure status](https://azure.status.microsoft/en-us/status) to see if any active events are impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event is resolved, and then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events and you continue to face issues while onboarding, [open a support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) so Microsoft can investigate the problem.
+If you see these errors, check [Azure status](https://azure.status.microsoft/status) to see if any active events are impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event is resolved, and then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events and you continue to face issues while onboarding, [open a support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) so Microsoft can investigate the problem.
 
 ## Overage claims error
 
