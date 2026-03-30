@@ -21,7 +21,6 @@ This tutorial describes how to use [GitOps with Argo CD](conceptual-gitops-argoc
 > [!IMPORTANT]
 > GitOps with Argo CD is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-> For production GitOps extension support, try the [GitOps extension using Flux](tutorial-use-gitops-flux2.md).
 
 ## Prerequisites
 
@@ -89,7 +88,7 @@ To deploy applications using GitOps, you need either an Azure Arc-enabled Kubern
 
 #### Version and region support
 
-GitOps is currently supported in [all regions that Azure Arc-enabled Kubernetes supports](https://azure.microsoft.com/global-infrastructure/services/?regions=all&products=kubernetes-service,azure-arc). GitOps is currently supported in a subset of the regions that AKS supports. The GitOps service is adding new supported regions on a regular cadence.
+GitOps is currently supported in public regions.
 
 #### Network requirements
 
@@ -144,7 +143,6 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --cluster-type managedClusters \
 --name argocd \
 --extension-type Microsoft.ArgoCD \
---release-train preview \
 --config "redis-ha.enabled=false" \
 --config "configs.params.application\.namespaces=namespace1,namespace2"
 ```
@@ -205,7 +203,6 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
   scope: cluster
   properties: {
     extensionType: 'Microsoft.ArgoCD'
-    releaseTrain: 'preview'
     configurationSettings: {
       'redis-ha.enabled': 'true'
       'azure.workloadIdentity.enabled': 'true'
@@ -250,10 +247,10 @@ To set up new workload identity credentials, follow these steps:
 
    ```azurecli
    # For source-controller
-   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"argocd":"source-controller" --audience api://AzureADTokenExchange
+   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject 
    ```
-
-1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+   
+1. Be sure to provide proper permissions for workload identity for the resource that you want argocd or image-reflector controller or argocd-repo-server to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ## Connect to private ACR registries or ACR repositories using workload identity
 
