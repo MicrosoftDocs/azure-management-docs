@@ -220,7 +220,7 @@ az connectedk8s enable-features --features cluster-connect -n $CLUSTER_NAME -g $
 
 For more information, see [Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters](cluster-connect.md).
 
-## Enable custom locations by using service principal
+## Enable custom locations using service principal
 
 When you connect your cluster to Azure Arc or enable custom locations on an existing cluster, you might see the following warning message:
 
