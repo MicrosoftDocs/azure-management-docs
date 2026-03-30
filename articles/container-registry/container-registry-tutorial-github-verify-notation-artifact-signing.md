@@ -76,14 +76,14 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    ```bash
    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpull"
    ```
 
    # [Windows](#tab/windows)
 
    ```powershell
    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpull"
    ```
 
     ---
@@ -94,14 +94,14 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    ```bash
    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader"
    ```
 
    # [Windows](#tab/windows)
 
    ```powershell
    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" 
    ```
 
    ---
