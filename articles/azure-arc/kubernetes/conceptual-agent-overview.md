@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc-enabled Kubernetes agent overview"
-ms.date: 10/02/2024
+ms.date: 03/30/2026
 ms.topic: concept-article
 description: "Learn about the Azure Arc agents deployed on the Kubernetes clusters when connecting them to Azure Arc."
 # Customer intent: "As a Kubernetes administrator, I want to deploy Azure Arc agents to my clusters, so that I can manage policy, governance, and security consistently across different environments without needing inbound firewall communication."
@@ -10,13 +10,13 @@ description: "Learn about the Azure Arc agents deployed on the Kubernetes cluste
 
 [Azure Arc-enabled Kubernetes](overview.md) provides a centralized, consistent control plane to manage policy, governance, and security across Kubernetes clusters in different environments.
 
-Azure Arc agents are deployed on Kubernetes clusters when you [connect them to Azure Arc](quickstart-connect-cluster.md). This article provides an overview of these agents.
+You deploy Azure Arc agents on Kubernetes clusters when you [connect them to Azure Arc](quickstart-connect-cluster.md). This article provides an overview of these agents, along with high-level steps for deploying them to your cluster and moving connected resources across Azure regions.
 
 ## Deploy agents to your cluster
 
 Most on-premises datacenters enforce strict network rules that prevent inbound communication on the network boundary firewall. Azure Arc-enabled Kubernetes works with these restrictions by not requiring inbound ports on the firewall. Azure Arc agents require outbound communication to a [set list of network endpoints](network-requirements.md).
 
-This diagram provides a high-level view of Azure Arc components. Kubernetes clusters in on-premises datacenters or different clouds are connected to Azure through the Azure Arc agents. This connection allows the clusters to be managed in Azure using management tools and Azure services. The clusters can also be accessed through offline management tools.
+This diagram provides a high-level view of Azure Arc components. Kubernetes clusters in on-premises datacenters or different clouds are connected to Azure through the Azure Arc agents. This connection allows you to manage the clusters in Azure by using management tools and Azure services. You can also access the clusters through offline management tools.
 
 :::image type="content" source="media/architectural-overview.png" alt-text="Diagram showing an architectural overview of the Azure Arc-enabled Kubernetes agents." lightbox="media/architectural-overview.png":::
 
@@ -24,7 +24,7 @@ The following high-level steps are involved in [connecting a Kubernetes cluster 
 
 1. Create a Kubernetes cluster on your choice of infrastructure (VMware vSphere, Amazon Web Services, Google Cloud Platform, or any Cloud Native Computing Foundation (CNCF) certified Kubernetes distribution). The cluster must already exist before you connect it to Azure Arc.
 
-1. Start the Azure Arc registration for your cluster. This process deploys the agent Helm chart on the cluster. After that, the cluster nodes initiate an outbound communication to the [Microsoft Container Registry](https://github.com/microsoft/containerregistry), pulling the images needed to create the following agents in the `azure-arc` namespace:
+1. Start the Azure Arc registration for your cluster. This process deploys the agent Helm chart on the cluster. After that, the cluster nodes initiate an outbound communication to the [Microsoft Artifact Registry](https://github.com/microsoft/containerregistry), pulling the images needed to create the following agents in the `azure-arc` namespace:
   
    | Agent | Description |
    | ----- | ----------- |
@@ -40,7 +40,7 @@ The following high-level steps are involved in [connecting a Kubernetes cluster 
    | `deployment.apps/clusterconnect-agent` | Reverse proxy agent that enables the cluster connect feature to provide access to `apiserver` of the cluster. Optional component deployed only if the [cluster connect](conceptual-cluster-connect.md) feature is enabled.  |
    | `deployment.apps/guard` | Authentication and authorization webhook server used for Microsoft Entra RBAC. Optional component deployed only if [Azure RBAC](conceptual-azure-rbac.md) is enabled on the cluster.   |
 
-1. Once all the Azure Arc-enabled Kubernetes agent pods are in `Running` state, verify that your cluster is connected to Azure Arc. You should see:
+1. When all the Azure Arc-enabled Kubernetes agent pods are in `Running` state, verify that your cluster is connected to Azure Arc. You should see:
 
    * An Azure Arc-enabled Kubernetes `connectedClusters` resource in [Azure Resource Manager](/azure/azure-resource-manager/management/overview). Azure tracks this resource as a projection of the customer-managed Kubernetes cluster, rather than tracking the actual Kubernetes cluster itself.
    * Cluster metadata (such as Kubernetes version, agent version, and number of nodes) appearing on the Azure Arc-enabled Kubernetes resource as metadata.
@@ -49,11 +49,11 @@ For more information on deploying the agents to a cluster, see [Quickstart: Conn
 
 ## Move Arc-enabled Kubernetes clusters across Azure regions
 
-In some circumstances, you may want to move your [Arc-enabled Kubernetes clusters](overview.md) to another region. For example, you might want to deploy features or services that are only available in specific regions, or you need to change regions due to internal governance requirements or capacity planning considerations.
+In some circumstances, you might want to move your Arc-enabled Kubernetes clusters to another Azure region. For example, you might want to deploy features or services that are only available in specific regions, or you might need to change regions due to internal governance requirements or capacity planning considerations.
 
 When you move a connected cluster to a new region, you delete the `connectedClusters` Azure Resource Manager resource in the source region, then deploy the agents to recreate the `connectedClusters` resource in the target region. For source control configurations, [Flux configurations](conceptual-gitops-flux2.md), and [extensions](conceptual-extensions.md) within the cluster, you'll need to save details about the resources, then recreate the child resources in the new cluster resource.
 
-Before you begin, ensure that Azure Arc-enabled Kubernetes resources (`Microsoft.Kubernetes/connectedClusters`) and any needed Azure Arc-enabled Kubernetes configuration resources (`Microsoft.KubernetesConfiguration/SourceControlConfigurations`, `Microsoft.KubernetesConfiguration/Extensions`, `Microsoft.KubernetesConfiguration/FluxConfigurations`) are [supported in the target region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-arc).
+Before you begin, ensure that Azure Arc-enabled Kubernetes resources (`Microsoft.Kubernetes/connectedClusters`) and any needed Azure Arc-enabled Kubernetes configuration resources (`Microsoft.KubernetesConfiguration/SourceControlConfigurations`, `Microsoft.KubernetesConfiguration/Extensions`, `Microsoft.KubernetesConfiguration/FluxConfigurations`) are [supported in the target region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 1. Do a LIST to get all configuration resources in the source cluster (the cluster to be moved) and save the response body:
 
@@ -75,7 +75,7 @@ Before you begin, ensure that Azure Arc-enabled Kubernetes resources (`Microsoft
 
 ## Next steps
 
-* Walk through our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
+* Walk through the quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
 * View release notes to see [details about the latest agent versions](release-notes.md).
 * Learn about [upgrading Azure Arc-enabled Kubernetes agents](agent-upgrade.md).
-* Learn more about the creating connections between your cluster and a Git repository as a [configuration resource with Azure Arc-enabled Kubernetes](./conceptual-gitops-flux2.md).
+* Learn more about creating connections between your cluster and a Git repository as a [configuration resource with Azure Arc-enabled Kubernetes](./conceptual-gitops-flux2.md).

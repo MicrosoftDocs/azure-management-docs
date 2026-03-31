@@ -5,8 +5,8 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
-author: mikhailalmeida
-ms.author: mialmei
+author: MikeRayMSFT
+ms.author: mikeray
 ms.reviewer: mikeray
 ms.date: 12/15/2021
 ms.topic: how-to
