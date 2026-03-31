@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent connect`
 description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 01/26/2026
+ms.date: 03/24/2026
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
@@ -74,7 +74,7 @@ To authenticate with a service principal using a secret, provide the service pri
 
 ### Service principal with certificate
 
-Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PCKS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
+Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PKCS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
 
 To authenticate with a service principal using a certificate, provide the service principal's application ID, tenant ID, and path to the certificate file: `--service-principal-id [appId] --service-principal-cert [pathToPEMorPFXfile] --tenant-id [tenantid]`
 
@@ -132,6 +132,12 @@ Supported values:
 
 Identifies the mechanism being used to connect the server to Azure Arc. For example, scripts generated in the Azure portal include a GUID that helps Microsoft track usage of that experience. This flag is optional and only used for telemetry purposes to improve your experience.
 
+`--enable-automatic-upgrade`
+
+Instructs the agent to automatically upgrade itself when a new version is available. If this flag isn't specified when the machine is connected, automatic upgrades are disabled unless another [automatic upgrade method](manage-agent.md#automatic-agent-upgrade-preview) is configured later.
+
+The `--enable-automatic-upgrade` flag is currently in public preview.
+
 `--ignore-network-check`
 
 Instructs the agent to continue onboarding even if the network check for required endpoints fails. You should only use this option if you're sure that the network check results are incorrect. In most cases, a failed network check indicates that the Azure Connected Machine agent won't function correctly on the server.
@@ -140,7 +146,7 @@ Instructs the agent to continue onboarding even if the network check for require
 
 The Azure region to check connectivity with. If the machine is already connected to Azure Arc, the current region is selected as the default.
 
-Sample value: westeurope
+Sample value: `westeurope`
 
 `--private-link-scope`
 
@@ -178,7 +184,7 @@ Specifies the path to a service principal certificate file. Must be used with th
 
 `-p`, `--service-principal-secret`
 
-Specifies the service principal secret. Must be used with the `--service-principal-id` and `--tenant-id` flags. To avoid exposing the secret in console logs, Microsoft recommended providing the service principal secret in a configuration file. For more information, see [authentication options](#authentication-options).
+Specifies the service principal secret. Must be used with the `--service-principal-id` and `--tenant-id` flags. To avoid exposing the secret in console logs, Microsoft recommends providing the service principal secret in a configuration file. For more information, see [authentication options](#authentication-options).
 
 `-s`, `--subscription-id`
 

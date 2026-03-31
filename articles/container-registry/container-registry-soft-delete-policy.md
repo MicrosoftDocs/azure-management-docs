@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to #Don't change
-ms.date: 12/10/2025
+ms.date: 03/25/2026
 ms.custom:
   - devx-track-azurecli
   - sfi-image-nochange
@@ -36,7 +36,7 @@ This preview feature is available in all [service tiers](container-registry-skus
 Keep in mind the following current limitations:
 
 * Azure Container Registry doesn't support manually purging soft-deleted artifacts.
-* The soft delete policy doesn't support registries configured for zone redundancy, geo-replication, or artifact cache.
+* The soft delete policy doesn't support registries configured for geo-replication or artifact cache.
 * Azure Container Registry doesn't allow enabling both the [retention policy](container-registry-retention-policy.md) and the soft delete policy.
 
 ## Prerequisites

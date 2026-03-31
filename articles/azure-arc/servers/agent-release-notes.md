@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 02/17/2026
+ms.date: 03/24/2026
 ms.custom: references_regions
 # Customer intent: As a system administrator, I want to access the release notes for the Azure Connected Machine agent, so that I can stay informed about updates, fixes, and new features to ensure optimal performance and compliance of my cloud-based infrastructure.
 ---
@@ -25,7 +25,27 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
-> 
+
+## Version 1.62 - March 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows|Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**|**1.29.106.0**|**1.26.105.0**||
+|Fixed extension installation behavior post cleanup. |✓|✓|Bug Fix|
+|**Azcmagent**|**1.62**|**1.62**||
+|Support for SLES 16 (x86_64), Alma 10 (x86_64 & Arm64), and Rocky 10 (x86_64 and Arm64). ||✓|Feature|
+|Added automatic backup and restore functionality for agentconfig.json to improve reliability.|✓|✓|Feature|
+|New `--enable-automatic-upgrade` flag for `azcmagent connect` to enable auto-upgrade during onboarding.|✓|✓|Feature|
+|Added `--use-aws-ec2-hostname` flag to use hostname instead of instance ID for AWS EC2 resource names.|✓|✓|Feature|
+|Fixed configuration file updates to only write when there are actual changes, reducing unnecessary I/O.|✓|✓|Bug Fix|
+|Fixed relay URL, which is used in SSH and WAC scenarios.|✓|✓|Bug Fix|
+|Fixed IPv6 detection when setting up SSL endpoint.|✓|✓|Bug Fix|
+|Added `azcmagent upgrade` CLI command for upgrading the Azure Connected Machine agent|✓|✓|Feature|
+|New `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in private preview.|✓|✓|Feature|
+|Added `azcmagent check tpm` to verify TPM-backed Identity readiness. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in private preview.|✓|✓|Feature|
+
 ## Version 1.61 - February 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
@@ -47,7 +67,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnect
 |Fix bug where serial number is not detected by `azcmagent connect` command, causing certificate-based authentication to fail.|✓||Bug Fix|
 |Fix bug causing installation to fail on machines with .NET < 4.5.1.|✓||Bug Fix|
 
-## Known Issues
+### Known issues
 
 On Windows, if a user downgrades the Azure Arc agent from version 1.61 to any earlier version, the agent may become disconnected.
 
@@ -55,13 +75,11 @@ To restore connectivity, a change must be made to the agent configuration file. 
 
 Run the following command from an elevated Command Prompt:
 
-
 ```
 attrib -r "C:\ProgramData\AzureConnectedMachineAgent\Config\agentconfig.json"
 ```
 
 Or run the following command from an elevated PowerShell session:
-
 
 ```powershell
 Set-ItemProperty -Path 

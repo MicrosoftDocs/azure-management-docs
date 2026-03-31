@@ -1,6 +1,6 @@
 ---
 title: "Diagnose connection issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 12/15/2023
+ms.date: 03/30/2026
 ms.topic: how-to
 description: "Learn how to resolve common issues when connecting Kubernetes clusters to Azure Arc."
 ms.custom:
@@ -11,14 +11,14 @@ ms.custom:
 
 # Diagnose connection issues for Azure Arc-enabled Kubernetes clusters
 
-If you are experiencing issues connecting a cluster to Azure Arc, it's probably due to one of the issues listed here. We provide two flowcharts with guided help: one if you're [not using a proxy server](#connections-without-a-proxy), and one that applies if your network connection [uses a proxy server](#connections-with-a-proxy-server).
+If you have trouble connecting a cluster to Azure Arc, the problem is likely one of the issues listed in this article. Two flowcharts provide guided help: one if you're [not using a proxy server](#connections-without-a-proxy), and one that applies if your network connection [uses a proxy server](#connections-with-a-proxy-server).
 
 > [!TIP]
-> The steps in this flowchart apply whether you're using Azure CLI or Azure PowerShell to [connect your cluster](quickstart-connect-cluster.md). However, some of the steps require the use of Azure CLI. If you haven't already [installed Azure CLI](/cli/azure/install-azure-cli), be sure to do so before you begin.
+> These flowcharts apply whether you're using Azure CLI or Azure PowerShell to [connect your cluster](quickstart-connect-cluster.md). However, some of the steps require the use of Azure CLI. If you didn't already [install Azure CLI](/cli/azure/install-azure-cli), be sure to do so before you begin.
 
 ## Connections without a proxy
 
-Review this flowchart in order to diagnose your issue when attempting to connect a cluster to Azure Arc without a proxy server. More details about each step are provided below.
+Review this flowchart to diagnose your problem when attempting to connect a cluster to Azure Arc without a proxy server. More details about each step are provided in the following sections.
 
 :::image type="content" source="media/diagnose-connection-issues/no-proxy-flowchart.png" alt-text="Flowchart showing a visual representation of checking for connection issues when not using a proxy." lightbox="media/diagnose-connection-issues/no-proxy-flowchart.png":::
 
@@ -30,7 +30,7 @@ Review the [prerequisites for connecting a cluster](quickstart-connect-cluster.m
 
 Make sure you [have the latest version installed](/cli/azure/install-azure-cli).
 
-If you connected your cluster by using Azure PowerShell, make sure you are [running the latest version](/powershell/azure/install-azure-powershell).
+If you connected your cluster by using Azure PowerShell, make sure you're [running the latest version](/powershell/azure/install-azure-powershell).
 
 ### Is the `connectedk8s` extension the latest version?
 
@@ -40,7 +40,7 @@ Update the Azure CLI `connectedk8s` extension to the latest version by running t
 az extension update --name connectedk8s
 ```
 
-If you haven't installed the extension yet, you can do so by running the following command:
+If you didn't install the extension yet, install it by running the following command:
 
 ```azurecli
 az extension add --name connectedk8s
@@ -52,19 +52,19 @@ Run `kubectl config get-contexts` to confirm the target context name. Then set t
 
 ### Are all required resource providers registered?
 
-Be sure that the Microsoft.Kubernetes, Microsoft.KubernetesConfiguration, and Microsoft.ExtendedLocation resource providers are [registered](quickstart-connect-cluster.md#register-providers-for-azure-arc-enabled-kubernetes).
+Make sure that the Microsoft.Kubernetes, Microsoft.KubernetesConfiguration, and Microsoft.ExtendedLocation resource providers are [registered](quickstart-connect-cluster.md#register-providers-for-azure-arc-enabled-kubernetes).
 
 ### Are all network requirements met?
 
-Review the [network requirements](network-requirements.md) and ensure that no required endpoints are blocked.
+Review the [network requirements](network-requirements.md) and make sure that no required endpoints are blocked.
 
 ### Are all pods in the `azure-arc` namespace running?
 
-If everything is working correctly, your pods should all be in the `Running` state. Run `kubectl get pods -n azure-arc` to confirm whether any pod's state is not `Running`.
+If everything is working correctly, your pods should all be in the `Running` state. Run `kubectl get pods -n azure-arc` to confirm whether any pod's state isn't `Running`.
 
 ### Still having problems?
 
-The steps above will resolve many common connection issues, but if you're still unable to connect successfully, generate a troubleshooting log file and then [open a support request](../../azure-portal/supportability/how-to-create-azure-support-request.md) so we can investigate the problem further.
+The preceding steps resolve many common connection problems. If you still can't connect successfully, generate a troubleshooting log file and then [open a support request](../../azure-portal/supportability/how-to-create-azure-support-request.md) so the support team can investigate the problem.
 
 To generate the troubleshooting log file, run the following command:
 
@@ -72,17 +72,17 @@ To generate the troubleshooting log file, run the following command:
 az connectedk8s troubleshoot -g <myResourceGroup> -n <myK8sCluster>
 ```
 
-When you [create your support request](../../azure-portal/supportability/how-to-create-azure-support-request.md), in the **Additional details** section, use the **File upload** option to upload the generated log file.
+When you [create your support request](../../azure-portal/supportability/how-to-create-azure-support-request.md), use the **File upload** option in the **Additional details** section to upload the generated log file.
 
 ## Connections with a proxy server
 
-If you are using a proxy server on at least one machine, complete the first five steps of the non-proxy flowchart (through resource provider registration) for basic troubleshooting steps. Then, if you are still encountering issues, review the next flowchart for additional troubleshooting steps. More details about each step are provided below.
+If you use a proxy server on at least one machine, complete the first five steps of the non-proxy flowchart (through resource provider registration) for basic troubleshooting steps. Then, if you're still encountering problems, review the next flowchart for additional troubleshooting steps. More details about each step are provided in the following sections.
 
 :::image type="content" source="media/diagnose-connection-issues/proxy-flowchart.png" alt-text="Flowchart showing a visual representation of checking for connection issues when using a proxy." lightbox="media/diagnose-connection-issues/proxy-flowchart.png":::
 
 ### Is the machine executing commands behind a proxy server?
 
-If the machine is executing commands behind a proxy server, you'll need to set all of the necessary environment variables. For more information, see [Connect using an outbound proxy server](quickstart-connect-cluster.md#connect-using-an-outbound-proxy-server).
+If the machine executes commands behind a proxy server, set all of the necessary environment variables. For more information, see [Connect using an outbound proxy server](quickstart-connect-cluster.md#connect-using-an-outbound-proxy-server).
 
 For example:
 
@@ -100,18 +100,18 @@ Be sure to include the certificate file path by including `--proxy-cert <path-to
 az connectedk8s connect --name <cluster-name> --resource-group <resource-group> --proxy-cert <path-to-cert-file>
 ```
 
-### Is the proxy server able to reach required network endpoints?
+### Can the proxy server reach required network endpoints?
 
-Review the [network requirements](network-requirements.md) and ensure that no required endpoints are blocked.
+Review the [network requirements](network-requirements.md) and make sure that no required endpoints are blocked.
 
 ### Is the proxy server only using HTTP?
 
-If your proxy server only uses HTTP, you can use `proxy-http` for both parameters.
+If your proxy server only uses HTTP, use `proxy-http` for both parameters.
 
-If your proxy server is set up with both HTTP and HTTPS, run the `az connectedk8s connect` command with the `--proxy-https` and `--proxy-http` parameters specified. Be sure you are using `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy.
+If your proxy server is set up with both HTTP and HTTPS, run the `az connectedk8s connect` command with the `--proxy-https` and `--proxy-http` parameters specified. Use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy.
 
 ```azurecli
-az connectedk8s connect --name <cluster-name> --resource-group <resource-group> --proxy-https https://<proxy-server-ip-address>:<port> --proxy-http http://<proxy-server-ip-address>:<port>  
+az connectedk8s connect --name <cluster-name> --resource-group <resource-group> --proxy-https https://<proxy-server-ip-address>:<port> --proxy-http http://<proxy-server-ip-address>:<port>
 ```
 
 ### Does the proxy server require skip ranges for service-to-service communication?
@@ -124,18 +124,17 @@ az connectedk8s connect --name <cluster-name> --resource-group <resource-group> 
 
 ### Are all pods in the `azure-arc` namespace running?
 
-If everything is working correctly, your pods should all be in the `Running` state. Run `kubectl get pods -n azure-arc` to confirm whether any pod's state is not `Running`.
-
+If everything is working correctly, your pods should all be in the `Running` state. Run `kubectl get pods -n azure-arc` to confirm whether any pod's state isn't `Running`.
 
 ### Check whether the DNS resolution is successful for the endpoint
 
-From within the pod, you can run a DNS lookup to the endpoint.
+From within the pod, run a DNS lookup to the endpoint.
 
-What if you can't run the [kubectl exec](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec) command to connect to the pod and install the DNS Utils package? In this situation, you can [start a test pod in the same namespace as the problematic pod](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/#create-a-simple-pod-to-use-as-a-test-environment), and then run the tests.
+If you can't run the [kubectl exec](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec) command to connect to the pod and install the DNS Utils package, [start a test pod in the same namespace as the problematic pod](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/#create-a-simple-pod-to-use-as-a-test-environment), and then run the tests.
 
 > [!NOTE]
 >
-> If the DNS resolution or egress traffic doesn't let you install the necessary network packages, you can use the `rishasi/ubuntu-netutil:1.0` docker image. In this image, the required packages are already installed.
+> If the DNS resolution or egress traffic doesn't let you install the necessary network packages, use the `rishasi/ubuntu-netutil:1.0` Docker image. In this image, the required packages are already installed.
 
 Here's an example procedure for checking DNS resolution:
 
@@ -145,7 +144,7 @@ Here's an example procedure for checking DNS resolution:
    kubectl run -it --rm test-pod --namespace <namespace> --image=debian:stable
    ```
 
-   After the test pod is running, you'll gain access to the pod.
+   After the test pod is running, you gain access to the pod.
 
 1. Run the following `apt-get` commands to install other tool packages:
 
@@ -251,13 +250,11 @@ Here's an example procedure for checking DNS resolution:
    IP4Address : 23.200.197.152
    ```
 
-If the DNS resolution is not successful, verify the DNS configuration for the cluster.
-
-
+If the DNS resolution isn't successful, verify the DNS configuration for the cluster.
 
 ### Still having problems?
 
-The steps above will resolve many common connection issues, but if you're still unable to connect successfully, generate a troubleshooting log file and then [open a support request](../../azure-portal/supportability/how-to-create-azure-support-request.md) so we can investigate the problem further.
+The preceding steps resolve many common connection problems. If you still can't connect successfully, generate a troubleshooting log file and then [open a support request](../../azure-portal/supportability/how-to-create-azure-support-request.md) so the support team can investigate the problem.
 
 To generate the troubleshooting log file, run the following command:
 
@@ -265,7 +262,7 @@ To generate the troubleshooting log file, run the following command:
 az connectedk8s troubleshoot -g <myResourceGroup> -n <myK8sCluster>
 ```
 
-When you [create your support request](../../azure-portal/supportability/how-to-create-azure-support-request.md), in the **Additional details** section, use the **File upload** option to upload the generated log file.
+When you [create your support request](../../azure-portal/supportability/how-to-create-azure-support-request.md), use the **File upload** option in the **Additional details** section to upload the generated log file.
 
 ## Next steps
 
