@@ -1,7 +1,7 @@
 ---
 title: Simplify Network Configuration Requirements with Azure Arc Gateway
 description: Learn how to simplify network configuration requirements with Azure Arc gateway.
-ms.date: 02/17/2026
+ms.date: 04/01/2026
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway so that I can efficiently onboard and control Azure Arc-enabled servers through minimal endpoint access."
 ---
@@ -349,8 +349,7 @@ Azure Arc gateway covers the endpoints that are required for onboarding a server
 
 ### Scenarios that don't require more endpoints
 
-- Windows Admin Center
-- Secure Shell
+- SSH Arc
 - Extended Security Updates
 - Azure Extension for SQL Server
 
