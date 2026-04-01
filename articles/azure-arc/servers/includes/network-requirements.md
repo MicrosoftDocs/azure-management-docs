@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 02/13/2026
+ms.date: 04/01/2026
 # Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
@@ -28,6 +28,7 @@ Be sure to allow access to the following service tags:
 * `AzureArcInfrastructure`
 * `Storage`
 * `WindowsAdminCenter` (if [you use Windows Admin Center to manage Azure Arc-enabled servers](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines))
+* `AzureFrontDoor.Frontend` (Required as of April 2026)
 
 For a list of IP addresses for each service tag/region, see the JSON file [Azure IP Ranges and Service Tags - Public Cloud](https://www.microsoft.com/download/details.aspx?id=56519). Microsoft publishes weekly updates that contain each Azure service and the IP ranges it uses. The information in the JSON file is the current point-in-time list of the IP ranges that correspond to each service tag. The IP addresses are subject to change. If IP address ranges are required for your firewall configuration, use the `AzureCloud` service tag to allow access to all Azure services. Don't disable security monitoring or inspection of these URLs. Allow them as you would other internet traffic.
 
