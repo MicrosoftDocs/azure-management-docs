@@ -76,13 +76,15 @@ You can enroll in Windows Server Management enabled by Azure Arc through the Azu
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/), then navigate to the **Azure Arc** page.
 
-1. In the service menu, under **Licensing**, select **Windows Server Azure benefits and licenses**.
+1. In the service menu, under **Licenses**, select **Azure Benefits - Windows Server**.
 
     :::image type="content" source="media/windows-server-management-overview/windows-server-benefits.png" alt-text="Screenshot of Azure portal showing Windows Server benefits and licenses with benefits pop up.":::
 
 1. Select the Azure Arc-enabled servers that are eligible for enrollment in benefits and select **Activate benefits**.
 
-1. Review the terms to make the attestation and select **Activate** for the Azure benefits for the selected Azure Arc-enabled servers. 
+1. Review the terms and tick the checkbox to make the attestation.
+
+1. Select **Activate** for the Azure benefits for the selected Azure Arc-enabled servers. 
 
 Upon activation of Azure benefits, the Azure Arc-enabled servers show as *Activated* within 10 minutes. 
 
