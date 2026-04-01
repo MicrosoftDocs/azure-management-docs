@@ -50,7 +50,7 @@ Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. T
 Example:
 
 ```bash
-az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version false --version <verison above 1.17.0> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
+az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version true --version <verison above 1.17.0> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
 ```
 
 ### Azure Policy Extension Release Notes
