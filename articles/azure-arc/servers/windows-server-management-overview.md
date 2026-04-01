@@ -66,7 +66,7 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 - Environments: Supported environments include Hyper-V, VMware, SCVMM, Stack HCI, AVS, and bare-metal where servers are connected to Azure Arc. 
 
-- Modes: Customers can use Monitor mode and extension allowlists or blocklists with their attestation to Azure Arc-enabled servers.  
+- Modes: Customers can use Monitor mode and extension allow lists or block lists with their attestation to Azure Arc-enabled servers.  
 
 ## Enrollment
 
