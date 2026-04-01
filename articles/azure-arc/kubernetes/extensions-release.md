@@ -41,7 +41,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ### Azure Red Hat OpenShift (ARO) Considerations
 
-Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.17.0, these guardrails can be uninstalled through configuration flag 
+Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.17.0, these guardrails can be uninstalled through configuration flag.
 
 ```bash
 azurepolicy.env.disableGuardrails=true
