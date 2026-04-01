@@ -26,13 +26,14 @@ For more information, see [Container insights for Azure Arc-enabled Kubernetes c
 
 The following Kubernetes distributions **have been validated in conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
 
-- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
-- **Supported distributions without conformance validation**: AKS Edge, EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), TKG (VMware Tanzu Kubernetes Grid)
+- **Supported distributions without conformance validation**: EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine)
 
 > kubeadm is currently not supported in Azure Policy extension.
+> RKE (Rancher Kubernetes Engine) is now deprecated. Please use Rancher Government (RKE2) instead.
 
 Azure Policy extends [Gatekeeper](https://github.com/open-policy-agent/gatekeeper), an admission controller webhook for [Open Policy Agent](https://www.openpolicyagent.org/) (OPA). Use Gatekeeper with OPA to consistently apply centralized, at-scale enforcements and safeguards on your clusters.
 
@@ -40,21 +41,27 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ### Azure Red Hat OpenShift (ARO) Considerations
 
-Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
-
-To disable ARO Guardrails, run the following commands **in order**:
+Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.17.0, these guardrails can be uninstalled through configuration flag below.
 
 ```bash
-oc patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "path": "/spec/operatorflags/aro.guardrails.deploy.managed", "value":"false" }]'
-
-oc get all -n openshift-azure-guardrails
-
-oc patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "path": "/spec/operatorflags/aro.guardrails.enabled", "value":"false" }]'
+--configuration-settings azurepolicy.env.disableGuardrails=true
 ```
 
-Once guardrails are disabled, you may proceed with installing the Azure Policy Extension.
+Example:
+
+```bash
+az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version true --version <verison above 1.17.0> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
+```
 
 ### Azure Policy Extension Release Notes
+
+#### 1.17.0
+
+Allow diabling guardrails on ARO clusters through configuration flag.
+Security improvements.
+ - Released Apr 2026
+ - Policy Image v1.15.5
+ - Gatekeeper v3.22.0-1
 
 #### 1.16.1
 
@@ -62,6 +69,7 @@ Fixed policy extension installation bug in AKS on Azure Local (AKS enabled by Az
 Added RKE2 support.
 Enabled mutation.
 Enabled external data.
+Security improvements.
  - Released Jan 2026
  - Policy Image v1.15.4
  - Gatekeeper v3.21.0-1
