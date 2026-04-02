@@ -177,7 +177,7 @@ Once your Service Health alerts are configured, you can view notifications when 
 
 :::image type="content" source="media/monitor-service/service-health-history.png" alt-text="Screenshot of the Azure Service Health history showing past service events for Azure Container Registry.":::
 
-For more information about viewing and managing service health notifications, see [View service health notifications in the Azure portal](/azure/service-health/service-notifications).
+For more information about viewing and managing service health notifications, see [View service health notifications in the Azure portal](/azure/service-health/service-health-notifications-properties).
 
 ## Respond to Service Health alerts
 
