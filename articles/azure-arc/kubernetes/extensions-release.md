@@ -55,13 +55,13 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 ### Azure Policy Extension Release Notes
 
-#### 1.17.0
+#### 1.17.1
 
 Allow diabling guardrails on ARO clusters through configuration flag.
 Security improvements.
- - Released Apr 2026
- - Policy Image v1.15.5
- - Gatekeeper v3.22.0-1
+ - Released: Apr 2026
+ - Policy Image: v1.15.5
+ - Gatekeeper Image: v3.22.0-1
 
 #### 1.16.1
 
@@ -70,9 +70,9 @@ Added RKE2 support.
 Enabled mutation.
 Enabled external data.
 Security improvements.
- - Released Jan 2026
- - Policy Image v1.15.4
- - Gatekeeper v3.21.0-1
+ - Released: Jan 2026
+ - Policy Image: v1.15.4
+ - Gatekeeper Image: v3.21.0-1
 
 ## Azure Key Vault Secrets Provider
 
