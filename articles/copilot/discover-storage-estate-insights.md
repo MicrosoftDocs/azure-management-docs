@@ -1,7 +1,7 @@
 ---
 title: Discover Insights About Your Azure Storage Estate with Azure Storage Discovery Using Azure Copilot
 description: Learn how Azure Copilot, in combination with Azure Storage Discovery, uncovers insights about your storage estate not available anywhere else.
-ms.date: 10/01/2025
+ms.date: 04/02/2026
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: fauhse
@@ -11,62 +11,62 @@ author: fauhse
 
 # Discover insights about your Azure Storage estate with Azure Storage Discovery using Azure Copilot
 
-[Azure Storage Discovery](/azure/storage-discovery/overview) is a managed service that gives you enterprise-wide visibility into your Azure Blob Storage data estate. It helps you track how your data is growing, uncover opportunities for cost optimization, and check if your storage configurations follow security best practices. With Azure Storage Discovery, you can analyze thousands of storage accounts across subscriptions and regions from one place, using prebuilt reports and interactive dashboards. 
+[Azure Storage Discovery](/azure/storage-discovery/overview) is a managed service that gives you enterprise-wide visibility into your Azure Blob Storage data estate. It helps you track how your data is growing, uncover opportunities for cost optimization, and check if your storage configurations follow security best practices. By using Azure Storage Discovery, you can analyze thousands of storage accounts across subscriptions and regions from one place, using prebuilt reports and interactive dashboards. 
 
 Azure Copilot integration takes Storage Discovery a step further by letting you ask questions about your storage resources and data in natural language. Get instant, visual answers. Instead of writing Kusto queries or combing through logs, you can chat with Azure Copilot to explore your storage insights. Azure Copilot understands your questions, retrieves the relevant aggregated data from Storage Discovery, and presents results as dynamic charts or tables directly in the Azure portal. This conversational approach makes it easier for anyone – from IT managers to storage admins – to gain insights and make data-driven decisions.
 
-## Interacting with Azure Copilot in Storage Discovery
+## Interact with Azure Copilot in Storage Discovery
 
 Retrieving storage insights with Azure Copilot requires a deployment of the [Storage Discovery service](/azure/storage-discovery/deployment-planning). Deploying the service means [creating a Discovery workspace resource](/azure/storage-discovery/create-workspace). Creating a workspace starts the data aggregation required for Azure Copilot to answer certain questions related to storage insights.
 
-To start using Azure Copilot, navigate to your Azure Storage Discovery workspace in the Azure portal. On the workspace overview or insights page, look for the Copilot icon, and select it to open the Copilot chat pane. You can also select the Copilot icon at the top of the portal.
+To start using Azure Copilot, go to your Azure Storage Discovery workspace in the Azure portal. On the workspace overview or insights page, look for the Copilot icon, and select it to open the Copilot chat pane. You can also select the Copilot icon at the top of the portal.
 
-Example: You might ask "Show me the trend of my storage usage over time." Azure Copilot interprets your question, queries the Storage Discovery data, and responds with the requested insight. You can request to receive the answer as a table or any of the common types of charts.
+For example, you might ask "**Show me the trend of my storage usage over time.**" Azure Copilot interprets your question, queries the Storage Discovery data, and responds with the requested insight. You can request to receive the answer as a table or any of the common types of charts.
 
 > [!TIP]
 > Asking Azure Copilot about your storage estate requires you to select a Storage Discovery workspace. You need to deploy this resource first before Copilot has the data to answer your questions.
 
 ## Identify cost optimization opportunities
 
-Cost optimization is often the first concern when managing a large storage estate. Azure Storage Discovery’s reports already show you metrics like total capacity and data growth trends. With Azure Copilot, you can dig deeper or customize these insights.
+Cost optimization is often the first concern when managing a large storage estate. Azure Storage Discovery's reports already show you metrics like total capacity and data growth trends. With Azure Copilot, you can dig deeper or customize these insights.
 
 **Analyze storage growth trends:** Ask Azure Copilot about how your stored data is trending over time. For example: "**How is the storage size trending over the past month by region?**" Azure Copilot returns a line chart plotting the total data size in your storage accounts over the last month, broken down by region. This visualization helps you see which regions are contributing most to growth or if any region’s usage is flattening or spiking.
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-trend.png" alt-text="Screenshot of Azure Copilot showing a storage trend chart.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-trend.png" alt-text="Screenshot of Azure Copilot displaying a line chart of storage size trends over time by region.":::
 <!-- Source document: Page 3 -->
 
-**Find under-utilized storage (cold data):** Storing much data in a hot tier that isn’t being accessed could waste money. You can have Copilot identify storage accounts with large capacity but low activity. For example: "**Provide a table of storage accounts that have the least transactions and are above 1 TiB in size.**" This prompt asks for a list of large storage accounts with minimal access. Copilot returns a table with storage accounts meeting those conditions. The result table includes columns like the account name, data size, and the number of transactions. You can immediately spot accounts that each hold over 1 TiB of data but handle few transactions. Such accounts might be good candidates to move to a cooler access tier (like Cool or Archive) to save costs.
+**Find under-utilized storage (cold data):** Storing a large amount of data in a hot tier that isn't being accessed could waste money. You can have Copilot identify storage accounts with large capacity but low activity. For example: "**Provide a table of storage accounts that have the least transactions and are above 1 TiB in size.**" This prompt asks for a list of large storage accounts with minimal access. Copilot returns a table with storage accounts meeting those conditions. The result table includes columns like the account name, data size, and the number of transactions. You can immediately spot accounts that each hold over 1 TiB of data but handle few transactions. Such accounts might be good candidates to move to a cooler access tier (like Cool or Archive) to save costs.
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-cold-table.png" alt-text="Screenshot of Azure Copilot showing a table of storage accounts and their transaction counts.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-cold-table.png" alt-text="Screenshot of Azure Copilot displaying a table listing storage accounts with size and transaction count columns.":::
 <!-- Source document: Page 4 -->
 
 **View data distribution by access tier:** To act on cold data, you might want to know how your data is currently distributed across access tiers (Hot, Cool, Cold, Archive). You can ask a question like: "**Show me a distribution of blob count by blob access tier.**" In response, Copilot can provide a bar chart (or pie chart) breaking down how many blobs are in each access tier across your estate. You might discover that a large number of blobs are in the Hot access tier even though they're rarely accessed. This insight is an opportunity to use [lifecycle management policies](/azure/storage/blobs/lifecycle-management-policy-configure) or [Azure Storage Actions](/azure/storage-actions/overview) to move data automatically to cheaper tiers over time.
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-tier-chart.png" alt-text="Screenshot of Azure Copilot showing a bar chart with blob counts per access tier.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-tier-chart.png" alt-text="Screenshot of Azure Copilot displaying a bar chart showing blob count distribution across Hot, Cool, Cold, and Archive access tiers.":::
 <!-- Source document: Page 5 -->
 
-Using Azure Copilot can quickly surface where your storage costs are coming from. It turns what could be a complex query (combining capacity and transaction data across many accounts) into an easy question and answer. The visual results make it straightforward to decide on next steps, such as enabling rules to tier down infrequently used data and reduce costs.
+Using Azure Copilot can quickly surface where your storage costs are coming from. Complex queries (combining capacity and transaction data across many accounts) are turned into easy questions and answers. Visual results make it straightforward to decide on next steps, such as enabling rules to reduce costs by tiering down infrequently used data.
 
-## Assess security configurations & compliance
+## Assess security configurations and compliance
 
-Another key value of Storage Discovery is surfacing potential security risks or misconfigurations in your storage accounts. For example, it can tell you which accounts allow anonymous access or still use access keys for authentication. With Azure Copilot, you can interactively query these security insights and even get summaries or breakdowns by region or other dimensions.
+Another key value of Storage Discovery is surfacing potential security risks or misconfigurations in your storage accounts. For example, you can see which accounts allow anonymous access or still use access keys for authentication. By using Azure Copilot, you can interactively query these security insights and even get summaries or breakdowns by region or other dimensions.
 
-**Detect usage of shared access keys:** Microsoft recommends using Microsoft Entra ID with managed identities for Azure Storage authentication whenever possible, rather than shared keys. To ensure compliance, you can ask Azure Copilot something like: "**How many of my storage accounts have `shared access keys` enabled?**" The response might include a count or a list. You can refine the question to get a regional breakdown: "**Show me a pie chart of my storage accounts with shared key enabled, by region.**" Azure Copilot produces a pie chart where each slice represents a region, showing what portion of accounts in that region still allows shared key authentication. 
+**Detect usage of shared access keys:** Microsoft recommends using Microsoft Entra ID with managed identities for Azure Storage authentication whenever possible, rather than shared keys. To ensure compliance, you can ask Azure Copilot something like: "**How many of my storage accounts have `shared access keys` enabled?**" The response might include a count or a list. You can refine the question to get a regional breakdown: "**Show me a pie chart of my storage accounts with shared key enabled, by region.**" Azure Copilot produces a pie chart where each slice represents a region, showing what portion of accounts in that region still allows shared key authentication.
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png" alt-text="Screenshot of Azure Copilot showing a pie chart with shared access key enabled storage account counts per region.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png" alt-text="Screenshot of Azure Copilot displaying a pie chart showing storage accounts with shared key authentication enabled, broken down by region.":::
 <!-- Source document: Page 6 -->
 
 This insight is useful when one region has a large slice, which means many accounts there still use shared keys. You might prioritize those regions for rolling out Entra ID authentication. The result helps focus your efforts on the biggest problem areas first.
 
-**Check other security settings:** You can query settings like `anonymous public access` or `minimum required TLS version`. For example: "**List storage accounts that allow anonymous public read access.**" Azure Copilot returns a list of any accounts with that setting enabled, so you can review if this setting is needed on those accounts. Or you might ask: "**Which storage accounts aren't enforcing encryption at rest?**" All Azure storage accounts have encryption at rest enabled by default, but if any account was misconfigured, Azure Copilot highlights that.
+**Check other security settings:** You can query settings like `anonymous public access` or `minimum required TLS version`. For example, say "**List storage accounts that allow anonymous public read access.**" Azure Copilot returns a list of any accounts with that setting enabled, so you can review if this setting is needed on those accounts. Or you might ask, "**Which storage accounts aren't enforcing encryption at rest?**" Azure storage accounts have encryption at rest enabled by default, but if any account was misconfigured, Azure Copilot highlights that.
 
 ## Manage data redundancy and resiliency
 
-Azure Storage offers several redundancy options (LRS, ZRS, GRS, etc.). Storage Discovery’s reports show the distribution of accounts across these redundancy settings. Azure Copilot can help you analyze redundancy configurations and even consider potential optimizations:
+Azure Storage offers several redundancy options (LRS, ZRS, GRS, and so on). Storage Discovery's reports show the distribution of accounts across these redundancy settings. Azure Copilot can help you analyze redundancy configurations and even consider potential optimizations:
 
 **View redundancy distribution:** You might ask: "**Show me a distribution of my storage account count by redundancy option.**" Azure Copilot returns a chart with each redundancy level on the X-axis and the number of storage accounts on the Y-axis. This representation quickly tells you how many accounts use Locally Redundant Storage (LRS), Zone Redundant (ZRS), Geo-Redundant (GRS), or other options.
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-redundancy-bar.png" alt-text="Screenshot of Azure Copilot showing a bar chart with storage account counts per redundancy type.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-redundancy-bar.png" alt-text="Screenshot of Azure Copilot displaying a bar chart showing storage account distribution across LRS, ZRS, GRS, and other redundancy options.":::
 <!-- Source document: Page 7 -->
 
 Suppose the chart reveals that 80% of accounts are LRS and only a few use ZRS. If these accounts support critical workloads, then they all benefit from ZRS redundancy. This insight lets you verify if those resources are configured correctly. Alternatively, if many accounts are using ZRS but don’t actually need that level of resiliency, you might consider downgrading some to LRS to save costs. Azure Copilot's visualization highlights potential misalignments between your redundancy choices and your resiliency needs.
@@ -75,13 +75,13 @@ Suppose the chart reveals that 80% of accounts are LRS and only a few use ZRS. I
 
 By querying redundancy information on-demand, you ensure your storage accounts’ configuration meets your disaster recovery and availability targets. Azure Copilot basically turns the raw configuration data into an actionable summary for you.
 
-## Tips for getting the best results with storage insight queries
+## Tips to get the best results with storage insight queries
 
-**Be specific in your prompts:** While Azure Copilot can handle natural language, phrasing your question clearly yields better answers. Include what insight you want and any filter (time range, region, tier, etc.) in your question. For example: "How is storage usage changing?" is okay, but "How is storage size trending over the past 30 days by region?" is more likely to produce the detailed chart you want. The [write effective prompts](write-effective-prompts.md) article has more tips and tricks.
+**Be specific in your prompts:** While Azure Copilot can handle natural language, phrasing your question clearly yields better answers. Include what insight you want and any filter (time range, region, tier, and so on) in your question. For example, "**How is storage usage changing?**" is okay, but "**How is storage size trending over the past 30 days by region?**" is more likely to produce the detailed chart you want. For tips and tricks, see [Write effective prompts for Azure Copilot](write-effective-prompts.md).
 
-**Request a visualization if helpful:** Azure Copilot decides the format of the answer, such as a table, chart, or just text. You can guide it by specifying a format. For instance, adding "**show me a pie chart of…**" or "**provide a table of…**" to your prompt usually influences Azure Copilot to return an answer in that format.
+**Request a visualization if helpful:** Azure Copilot decides the format of the answer, such as a table, chart, or just text. You can guide it by specifying a format. For instance, add "**show me a pie chart of ...**" or "**provide a table of ...**" to your prompt.
 
-**Use follow-up questions:** Azure Copilot remembers the context within the session. You can ask a broad question first, then follow up with a more specific one without restating everything. For example: "**How many storage accounts do we have?**" The response might be "200 accounts across five regions." Then you ask: "**How many are in North Europe?**" Azure Copilot knows you’re still talking about storage account count, and filters the response to answer in that context.
+**Use follow-up questions:** Azure Copilot remembers the context within the session. You can ask a broad question first, then follow up with a more specific one without restating everything. For example, "**How many storage accounts do we have?**" The response might be "200 accounts across five regions." Then you ask: "**How many are in North Europe?**" Azure Copilot knows you’re still talking about storage account count, and filters the response to answer in that context.
 
 **Understand limitations:** The Storage Discovery extension of the Azure Copilot focuses on analytics reporting, not operational tasks. You can't use Azure Copilot to create storage resources or change resource configuration.
 
@@ -99,7 +99,7 @@ In summary, Azure Copilot provides a powerful, user-friendly way to access Azure
 
 ## Next steps
 
-After understanding the opportunities provided by Storage Discovery and Azure Copilot, it's a good idea to get more familiar with the Storage Discovery service.
+After understanding the opportunities provided by Storage Discovery and Azure Copilot, get more familiar with the Storage Discovery service.
 
 - [Get an overview of the Discovery service](/azure/storage-discovery/overview)
 - [Plan your Storage Discovery deployment](/azure/storage-discovery/deployment-planning)

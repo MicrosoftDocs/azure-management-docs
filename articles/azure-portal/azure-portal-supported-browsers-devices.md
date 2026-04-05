@@ -2,8 +2,9 @@
 title: Supported browsers and devices for Azure portal
 description: You can use the Azure portal on all modern devices and with the latest browser versions.
 ms.topic: concept-article
-ms.date: 06/19/2025
+ms.date: 04/02/2026
 ms.custom: accessibility
+ms.update-cycle: 1095-days
 # Customer intent: As a cloud user, I want to access the Azure portal on my device using a supported browser, so that I can efficiently manage my resources without compatibility issues.
 ---
 
