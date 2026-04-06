@@ -50,7 +50,7 @@ For general troubleshooting, try the following steps. These steps apply to all V
 
 1. Review the system logs. Check for other operations that could interfere with the extension, such as a long-running installation of another application that requires exclusive package manager access.
 
-### Extension path has the 'noexec' flag set
+## Extension path has the 'noexec' flag set
 
 While deploying an extension to your Arc-enabled server, you may encounter the following error: 
 
@@ -59,14 +59,18 @@ Extension failed to install. Extension returned non-zero exit code for Install: 
 output: Extension path '<full_path>' has the 'noexec' flag set. Extension exit code: 64
 ```
 
-This error occurs when the Azure Arc agent attempts to install or run an extension from a filesystem path that is mounted with the noexec flag - in this case, the extension path indicated in the error message. The noexec mount option prevents binaries or scripts from being executed from that filesystem. Because extensions must execute installation scripts as part of setup, the installation fails when the extension working directory resides on a noexec mount. This is most commonly seen in hardened Linux environments where paths such as /var, /var/lib, /opt, or custom mount points are explicitly mounted with noexec for security reasons. To unblock extension installation, you should ensure that the filesystem used by Azure Arc for extension installation allows execution.
+This error occurs when the Azure Arc agent attempts to install or run an extension from a filesystem path that is mounted with the noexec flag - in this case, the extension path indicated in the error message. The noexec mount option prevents binaries or scripts from being executed from that filesystem. Extensions must execute installation scripts as part of setup, therefore the installation fails when the extension working directory resides on a noexec mount. 
 
-**Workaround: Remount the filesystem with exec (recommended when allowed)**
-To unblock extension installation, update the mount configuration so that the filesystem hosting the extension path allows execution. If permitted by your security policy, remount the affected filesystem without the noexec flag using the command below. If the mount is defined in /etc/fstab, update the entry to remove noexec and remount the filesystem to make the change persistent across reboots; otherwise, you may need to remount whenever an update is needed. Only apply this change to filesystems where executing binaries is acceptable under your organization’s security requirements.
+This is most commonly seen in hardened Linux environments where paths such as /var, /var/lib, /opt, or custom mount points are explicitly mounted with noexec for security reasons. To unblock extension installation, you should ensure that the filesystem used by Azure Arc for extension installation allows execution.
+
+**Remount the filesystem with exec**
+To unblock extension installation, update the mount configuration so that the filesystem hosting the extension path allows execution. If permitted by your security policy, remount the affected filesystem without the noexec flag using the command below. 
 
 ```bash
 sudo mount -o remount,exec <mount-point>
 ```
+
+If the mount is defined in /etc/fstab, update the entry to remove noexec and remount the filesystem to make the change persistent across reboots; otherwise, you may need to remount whenever an extension update is needed. Only apply this change to filesystems where executing binaries is acceptable under your organization’s security requirements.
 
 After updating the mount configuration, retry the extension installation.
 
