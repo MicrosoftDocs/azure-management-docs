@@ -3,13 +3,12 @@
 # For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
-title:       # Add a title for the browser tab
-description: # Add a meaningful description for search results
+title: Enable artifact cache to cache artifacts from another Azure Container Registry
+description: Learn how to use cache container images in one Azure Container Registry from another, improving performance and efficiency.
 author:      toddysm # GitHub alias
 ms.author:   memladen # Microsoft alias
-ms.service:  # Add the ms.service or ms.prod value
-# ms.prod:   # To use ms.prod, uncomment it and delete ms.service
-ms.topic:    # Add the ms.topic value
+ms.service: azure-container-registry
+ms.topic: how-to
 ms.date:     04/06/2026
 ---
 
