@@ -66,7 +66,7 @@ You might also see a filter named **Imported-filter**, which includes all subscr
 
 To change the filter that is currently in use, select **Activate** next to that filter.
 
-:::image type="content" source="media/set-preferences/settings-advanced-filters.png" lightbox="media/set-preferences/settings-advanced-filters.png" alt-text="Screenshot showing the Advanced filters screen.":::
+:::image type="content" source="media/set-preferences/settings-advanced-filters.png" alt-text="Screenshot showing the Advanced filters screen.":::
 
 ### Create a filter
 
@@ -93,7 +93,7 @@ To delete a filter, select the trash can icon in that filter's row. You can't de
 
 The **Appearance** pane has two sections. The **Appearance** section lets you choose menu behavior, default service menu behavior, and theme. The **Startup views** section lets you set options for what you see when you first sign in to the Azure portal.
 
-:::image type="content" source="media/set-preferences/azure-portal-settings-appearance.png" lightbox="media/set-preferences/azure-portal-settings-appearance.png" alt-text="Screenshot showing the Appearance section of Appearance + startup views.":::
+:::image type="content" source="media/set-preferences/azure-portal-settings-appearance.png" alt-text="Screenshot showing the Appearance section of Appearance + startup views.":::
 
 ### Portal menu behavior
 
@@ -166,7 +166,7 @@ You can also indicate whether you want to receive email about Microsoft Azure an
 
 Near the top of **My information**, you see options to export, restore, or delete settings.
 
-:::image type="content" source="media/set-preferences/settings-my-information.png" alt-text="Screenshot of My information settings." lightbox="media/set-preferences/settings-my-information.png":::
+:::image type="content" source="media/set-preferences/settings-my-information.png" alt-text="Screenshot of My information settings.":::
 
 #### Export settings
 
