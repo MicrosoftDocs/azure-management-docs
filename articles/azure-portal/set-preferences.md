@@ -1,7 +1,7 @@
 ---
 title: Manage Azure portal settings and preferences
 description: Change Azure portal settings such as default subscription/directory, timeouts, menu mode, contrast, theme, notifications, language/region and more.
-ms.date: 12/13/2024
+ms.date: 04/06/2026
 ms.topic: how-to
 ms.custom:
   - sfi-image-nochange
@@ -58,7 +58,7 @@ If you want to stop using advanced filters, select the toggle again to restore t
 
 ## Advanced filters
 
-After enabling **Advanced filters**, you can create, modify, or delete subscription filters by selecting **Modify advanced filters**.
+After enabling **Advanced filters**, you can create, modify, or delete subscription filters.
 
 The **Default** filter shows all subscriptions to which you have access. This filter is used if there are no other filters, or when the active filter fails to include any subscriptions.
 
@@ -89,10 +89,9 @@ You can modify or rename an existing filter by selecting the pencil icon in that
 
 To delete a filter, select the trash can icon in that filter's row. You can't delete the **Default** filter or a filter that is currently active.
 
-## Appearance + startup views
+## Appearance
 
-The **Appearance + startup views** pane has two sections. The **Appearance** section lets you choose menu behavior, your color theme, and whether to use a high-contrast theme. 
-The **Startup views** section lets you set options for what you see when you first sign in to the Azure portal.
+The **Appearance** pane has two sections. The **Appearance** section lets you choose menu behavior, default service menu behavior, and theme. The **Startup views** section lets you set options for what you see when you first sign in to the Azure portal.
 
 :::image type="content" source="media/set-preferences/azure-portal-settings-appearance.png" lightbox="media/set-preferences/azure-portal-settings-appearance.png" alt-text="Screenshot showing the Appearance section of Appearance + startup views.":::
 
@@ -110,13 +109,13 @@ The **Service menu behavior** section lets you choose how items in [service menu
 - **Collapsed**: Groups of commands in service menus will appear collapsed. You can still manually select any top-level item to display the commands within that menu group.
 - **Expanded**: Groups of commands in service menus will appear expanded. You can still manually select any top-level item to collapse that menu group.
 
-### Choose a theme
+### Theme
 
 The theme that you choose affects the background and font colors that appear in the Azure portal. In the **Theme** section, you can choose to use a **Light** or **Dark** theme. You can also select **Auto** to have the Azure portal theme follow your system settings.
 
 If you use a high-contrast mode on your device, the Azure portal respects that setting and will appear in high-contrast mode.
 
-### Choose a startup page
+### Startup page
 
 Choose one of the following options for **Startup page**. This setting determines which page you see when you first sign in to the Azure portal.
 
@@ -161,13 +160,7 @@ After making the desired changes to your language and regional format settings, 
 
 The email address you provide here is used when we need to contact you for updates on Azure services, billing, support, or security issues. You can change this address at any time.
 
-You can also indicate whether you'd like to receive additional emails about Microsoft Azure and other Microsoft products and services. If you select the checkbox to receive these emails, you'll be prompted to select the country/region in which you'll receive these emails. Note that certain countries/regions may not be available. You only need to specify a country/region if you want to receive these additional emails; selecting a country/region isn't required in order to receive emails about your Azure account at the address you provide in this section.
-
-### Portal personalization
-
-In this section, you can optionally share information about how you plan to use Azure. This information helps us provide tips, tools, and recommendations that are relevant to the tasks and services that you're interested in.
-
-To provide this information, select one or more items from the list. You can change your selections at any time.
+You can also indicate whether you'd like to receive additional emails about Microsoft Azure and other Microsoft products and services. If you select the checkbox to receive these emails, you'll be prompted to select the country/region in which you'll receive these emails. Note that certain countries/regions may not be available. You only need to specify a country/region if you want to receive these additional emails; selecting a country/region isn't required in order to receive standard emails about your Azure account at the email address you provide in this section.
 
 ### Export, restore, and delete user settings
 
@@ -175,25 +168,25 @@ Near the top of **My information**, you'll see options to export, restore, or de
 
 :::image type="content" source="media/set-preferences/settings-my-information.png" alt-text="Screenshot of My information settings." lightbox="media/set-preferences/settings-my-information.png":::
 
-#### Export user settings
+#### Export settings
 
-Information about your custom settings is stored in Azure. You can export the following user data:
+Azure stores information about your custom settings. You can export the following data:
 
 - Private dashboards in the Azure portal
 - User settings like favorite subscriptions or directories
 - Themes and other custom portal settings
 
-To export your portal settings, select **Export settings** from the top of the **My information** pane. This creates a JSON file that contains your user settings data.
+To export your portal setting data, select **Export settings** from the top of the **My information** pane. This creates a JSON file that contains your user setting data.
 
-Due to the dynamic nature of user settings and risk of data corruption, you can't import settings from the JSON file. However, you can use this file to review the settings you selected. It can be useful to have an exported backup of your selections if you choose to delete your settings and private dashboards.
+Due to the dynamic nature of user settings and risk of data corruption, you can't import settings from a JSON file. However, you can use this file to review the settings you selected. It can be useful to have an exported backup of your selections if you choose to delete your settings and private dashboards.
 
 #### Restore default settings
 
 If you've made changes to the Azure portal settings and want to discard them, select **Restore default settings** from the top of the **My information** pane. You'll be prompted to confirm this action. If you do so, any changes you've made to your Azure portal settings are lost. This option doesn't affect dashboard customizations.
 
-#### Delete user settings and dashboards
+#### Delete all settings and private dashboards
 
-Information about your custom settings is stored in Azure. You can delete the following user data:
+You can delete the following user setting data from Azure:
 
 - Private dashboards in the Azure portal
 - User settings, such as favorite subscriptions or directories
@@ -221,9 +214,9 @@ As an individual, you can change the timeout setting for yourself. If you're an 
 
 In the drop-down menu next to **Sign me out when inactive**, choose the duration after which your Azure portal session is signed out if you're idle.
 
-Select **Apply** to save your changes. After that, if you're inactive during the portal session, Azure portal will sign out after the duration you set.
+Select **Apply** to save your changes. After that, if you're inactive during the portal session, you're automatically signed out after the duration you set.
 
-If your admin has enabled an inactivity timeout policy, you can still choose your own timeout duration, but it must be shorter than the directory-level setting. To do so, select **Override the directory inactivity timeout policy**, then enter a time interval for the **Override value**.
+If your admin enabled an inactivity timeout policy, you can still choose your own timeout duration, as long as it's shorter than the directory-level setting. To do so, select **Override the directory inactivity timeout policy**, then enter a time interval for the **Override value**.
 
 :::image type="content" source="media/set-preferences/azure-portal-settings-sign-out-inactive-user.png" alt-text="Screenshot showing the directory inactivity timeout override setting.":::
 
@@ -231,17 +224,15 @@ If your admin has enabled an inactivity timeout policy, you can still choose you
 
 Users with the [Global Administrator role](/azure/active-directory/roles/permissions-reference#global-administrator) can enforce the maximum idle time before a session is signed out. This inactivity timeout setting applies to all users in the Azure tenant. Once it's set, all new sessions will comply with the new timeout settings. The change won't apply to signed-in users until their next sessions.
 
-Global Administrators can't specify different settings for individual users in the tenant. However, each user has the option to set a shorter timeout interval for themselves. Users can't change their individual timeout setting to a longer interval than the current option set by a Global Administrator.
+Global Administrators can't specify different settings for individual users in the tenant, but users can set a shorter timeout interval for themselves. Users can't change their individual timeout setting to a longer interval than the option set by a Global Administrator.
 
-To enforce an idle timeout setting for all users of the Azure portal, sign in with a Global Administrator account, then select **Enable directory level idle timeout** to turn on the setting. Next, enter the **Hours** and **Minutes** for the maximum time that a user can be inactive before their session is automatically signed out. After you select **Apply**, this setting will apply to all users in the directory.
+To enforce an idle timeout setting for all users in the tenant, sign in with a Global Administrator account, then select **Enable directory level idle timeout** to turn on the setting. Next, enter the **Hours** and **Minutes** for the maximum time that a user can be inactive before their session is automatically signed out. After you select **Apply**, this setting will apply to all users in the directory.
 
 :::image type="content" source="media/set-preferences/azure-portal-settings-sign-out-inactive-admin.png" alt-text="Screenshot showing the directory level idle timeout options.":::
 
-To confirm that the inactivity timeout policy is set correctly, select **Notifications** from the global page header and verify that a success notification is listed.
+To change a previously selected timeout, a Global Administrator can follow these steps again to apply a new timeout interval. If a Global Administrator unchecks the box for **Enable directory level idle timeout**, the previous setting becomes the default for all users; however, each user can change their individual setting to whatever they prefer.
 
-To change a previously selected timeout, any Global Administrator can follow these steps again to apply a new timeout interval. If a Global Administrator unchecks the box for **Enable directory level idle timeout**, the previous setting will remain in place by default for all users; however, each user can change their individual setting to whatever they prefer.
-
-### Enable or disable pop-up notifications
+### Show or hide pop-up notifications
 
 Notifications are system messages related to your current session. They provide information such as showing your current credit balance, confirming your last action, or letting you know when resources you created become available. When pop-up notifications are turned on, the messages briefly display in the top corner of your screen.
 
@@ -251,9 +242,15 @@ To read all notifications received during your current session, select the **Not
 
 :::image type="content" source="media/set-preferences/read-notifications.png" alt-text="Screenshot showing the Notifications icon in the global header.":::
 
-To view notifications from previous sessions, look for events in the Activity log. For more information, see [View the Activity log](/azure/azure-monitor/essentials/activity-log-insights#view-the-activity-log).
+To view notifications from previous sessions, look for events in the Activity log. For more information, see [View and retrieve the Activity log](/azure/azure-monitor/essentials/activity-log-insights#view-and-retrieve-the-activity-log).
 
-### Enable or disable teaching bubbles
+### Show or hide pop-up surveys
+
+We may occasionally ask for feedback in the form of pop-up surveys. These surveys help us understand your needs and improve the Azure portal experience.
+
+To enable or disable pop-up surveys, select or clear **Show pop-up surveys**.
+
+### Show or hide teaching bubbles
 
 Teaching bubbles may appear in the portal when new features are released. These bubbles contain information to help you understand how new features work.
 
