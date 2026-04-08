@@ -137,6 +137,9 @@ The following steps show how to configure the resources of workload orchestratio
     az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
+    > [!TIP]
+    > You can update the list of capability tags for an existing target by rerunning the `az workload-orchestration target create` command with the new set of values for `--capabilities` argument, while keeping the other parameters same.
+
 #### [PowerShell](#tab/powershell)
 
 1. Define workload orchestration variables. The following variables are used in the example. You can change the values as per your requirements.
@@ -188,7 +191,7 @@ The following steps show how to configure the resources of workload orchestratio
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
     
     ```powershell
-    az workload-orchestration context create --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
+    az workload-orchestration context create --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName --hierarchies "<hierarchies-list>" --capabilities "<capabilities-list>"
     ``` 
 
     You can set the current context to be used or view details about the same.
@@ -229,6 +232,9 @@ The following steps show how to configure the resources of workload orchestratio
     ```powershell
     az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
+
+    > [!TIP]
+    > You can update the list of capability tags for an existing target by rerunning the `az workload-orchestration target create` command with the new set of values for `--capabilities` argument, while keeping the other parameters same.
 
 ***
 

@@ -168,18 +168,7 @@ The following steps are required to set up the Azure resources for workload orch
 
 ### [Bash](#tab/bash)
 
-1. Run the following command to check the installed extensions and update them if necessary:
-
-    ```bash
-    az extension add --name connectedk8s
-    az extension add --name customlocation
-    az extension add --name k8s-extension
-    az extension update --name connectedk8s
-    az extension update --name customlocation
-    az extension update --name k8s-extension
-    ```
-
-1. Register the resource provider for the custom location. Run the following commands:
+1. Run the following commands to register the resource provider for the custom location.
 
     ```bash
     az provider register --namespace Microsoft.Edge
@@ -211,18 +200,7 @@ The following steps are required to set up the Azure resources for workload orch
 
 ### [PowerShell](#tab/powershell)
 
-1. Run the following command to check the installed extensions and update them if necessary:
-
-    ```powershell
-    az extension add --name connectedk8s
-    az extension add --name customlocation
-    az extension add --name k8s-extension
-    az extension update --name connectedk8s
-    az extension update --name customlocation
-    az extension update --name k8s-extension
-    ```
-
-1. Register the resource provider for the custom location. Run the following commands:
+1. Run the following commands to register the resource provider for the custom location.
 
     ```powershell
     az provider register --namespace Microsoft.Edge

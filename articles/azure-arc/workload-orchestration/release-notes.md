@@ -11,6 +11,37 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
+## March 2026 release
+
+### New features
+
+- **Cluster diagnostics and troubleshooting**: Users can now, using a single command, generate a comprehensive diagnostic [support bundle](troubleshooting.md) that captures cluster checks, resource snapshots, and container logs pertaining to a kubernetes cluster of any provider, all packaged into a readable zip file. This enables rapid root-cause analysis, empowering both customers and support teams to resolve installation and runtime issues efficiently.
+
+- **Capability mutation**: Users shall now be able to dynamically add and delete capability tags from existing targets and solution templates, making it easier to maintain alignment between deployed solutions and their intended targets.
+
+### Improvements in CLI
+
+- **Azure CLI Workload Orchestration Extension 5.2.0** is now available with the new capabilities and improvements. To install it, run:
+
+  ```bash
+  az extension add --name workload-orchestration
+  ```
+
+  To update your existing installation to the latest version, run:
+
+  ```bash
+  az extension update --name workload-orchestration
+  ```
+
+- The support for parallelized bulk operations for Publish and Deploy have been scaled from the previous limit of ~30 targets to up to 1000 targets distributed across clusters, along with minimizing failures under throttling conditions. The execution time per target for bulk operations has also been significantly reduced.
+
+### Bug fixes
+- In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency application is already uninstalled, the Workload Orchestration portal is now able to detect this and completes the deletion process without any errors.
+- The `az workload-orchestration target solution-revision-list` command to list solution revisions for a target now accepts the solution template name instead of solution version id for the argument `--solution-template-name`.
+
+### Known issues
+- The action of adding a new capability tag added to a target may occasionaly not get instantly synced to the cloud. This might throw a capability mismatch error while trying to review and deploy a solution having the new capability tag to the target. This issue can be fixed by rerunning the target capability addition command.
+
 ## February 2026 release
 
 ### New features
