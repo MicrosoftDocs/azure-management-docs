@@ -1,230 +1,240 @@
 ---
-# Required metadata
-# For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
-# For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
-
 title: Enable artifact cache to cache artifacts from another Azure Container Registry
-description: Learn how to use cache container images in one Azure Container Registry from another, improving performance and efficiency.
+description: Learn how to cache container images from one Azure Container Registry in another using managed identity authentication with Azure CLI and Bicep.
 author:      toddysm # GitHub alias
 ms.author:   memladen # Microsoft alias
 ms.service: azure-container-registry
 ms.topic: how-to
+ms.custom: devx-track-azurecli, devx-track-bicep
 ms.date:     04/06/2026
 ---
 
 # Enable artifact cache to cache artifacts from another Azure Container Registry
 
-In this article, you learn how to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry.
+In this article, you learn how to enable the [artifact cache feature](../artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry. The downstream registry authenticates to the upstream registry using a managed identity, so you don't need to store credentials in Azure Key Vault.
 
 In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. To use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
-* An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
-* An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
-* Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
+* An existing downstream ACR instance (referred to as `MyRegistry` in this article). If you don't already have one, [create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
+* An existing upstream ACR instance (referred to as `UpstreamRegistry` in this article) that contains the artifacts you want to cache.
+* Azure CLI version 2.85.0 or later. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation. To confirm your version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* [Bicep tools](/azure/azure-resource-manager/bicep/install) (for Bicep deployments).
 
-In this article, we use an example ACR instance named `MyRegistry`.
+## Configure artifact cache
 
-## Create the credentials
+### [Azure CLI](#tab/azure-cli)
 
-Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
+#### Create a user-assigned managed identity
 
-1. Run [`az acr credential set create`][az-acr-credential-set-create]:
+ACR-to-ACR caching authenticates to the upstream registry using a user-assigned managed identity instead of username and password credentials stored in Key Vault. You need to create a managed identity and grant it pull access to the upstream registry.
 
-   ```azurecli-interactive
-   az acr credential-set create 
-   -r MyRegistry \
-   -n MyDockerHubCredSet \
-   -l docker.io \ 
-   -u https://MyKeyvault.vault.azure.net/secrets/usernamesecret \
-   -p https://MyKeyvault.vault.azure.net/secrets/passwordsecret
-   ```
-
-1. Run [`az acr credential set update`][az-acr-credential-set-update] to update the username or password Key Vault secret ID on the credential set:
+1. Create a user-assigned managed identity:
 
    ```azurecli-interactive
-   az acr credential-set update -r MyRegistry -n MyDockerHubCredSet -p https://MyKeyvault.vault.azure.net/secrets/newsecretname
+   az identity create \
+     --name MyACRCacheIdentity \
+     --resource-group MyResourceGroup
    ```
 
-1. Run [az acr credential-set show][az-acr-credential-set-show] to show credentials:
+1. Get the principal ID and resource ID of the managed identity:
 
    ```azurecli-interactive
-   az acr credential-set show -r MyRegistry -n MyDockerHubCredSet
+   IDENTITY_PRINCIPAL_ID=$(az identity show \
+     --name MyACRCacheIdentity \
+     --resource-group MyResourceGroup \
+     --query 'principalId' \
+     -o tsv)
+
+   IDENTITY_RESOURCE_ID=$(az identity show \
+     --name MyACRCacheIdentity \
+     --resource-group MyResourceGroup \
+     --query 'id' \
+     -o tsv)
    ```
 
-## Create a cache rule
+#### Assign pull permissions on the upstream registry
 
-Next, create and configure the cache rule that pulls artifacts from the repository into your cache.
+The upstream registry must have [ABAC (Attribute-Based Access Control) enabled](../container-registry-rbac-abac-repository-permissions.md) so you can assign fine-grained repository permissions. The managed identity needs the **Container Registry Repository Reader** role on the upstream registry, scoped to the specific repository you want to cache.
 
-1. To create a new cache rule, run [`az acr cache create`][az-acr-cache-create]:
+> [!NOTE]
+> If the upstream registry doesn't have ABAC enabled yet, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac`.
+
+1. Get the resource ID of the upstream registry:
 
    ```azurecli-interactive
-   az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu -c MyDockerHubCredSet
+   UPSTREAM_ID=$(az acr show \
+     --name UpstreamRegistry \
+     --query 'id' \
+     -o tsv)
    ```
 
-1. To update credentials on the cache rule, run [`az acr cache update`][az-acr-cache-update]:
+1. Assign the **Container Registry Repository Reader** role to the managed identity on the upstream registry:
 
-    ```azurecli-interactive
-    az acr cache update -r MyRegistry -n MyRule -c NewCredSet
-    ```
-
-    If you need to remove the credentials, run `az acr cache update -r MyRegistry -n MyRule --remove-cred-set`.
-
-1. To show cache rules, run [`az acr cache show`][az-acr-cache-show]:
-
-    ```azurecli-interactive
-     az acr cache show -r MyRegistry -n MyRule
-    ```
-
-> [!TIP]
-> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create --registry Myregistry --name MyRule --source-repo MySourceRepository --target-repo MyTargetRepository`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
-
-## Assign permissions to Key Vault with Azure RBAC
-
-You can use Azure RBAC to assign the appropriate permissions to users so they can access the Azure Key Vault.
-
-The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required to access the Key Vault. The **Key Vault Secrets User** Azure built-in role is typically granted, as it's the least privileged role that includes this action. Alternately, you can create a custom role that includes that permission.
-
-The steps used vary depending on whether you're using Azure CLI or Bash.
-
-#### [Azure CLI](#tab/azure-cli)
-
-1. Get the principal ID of the system identity in use to access Key Vault:
-
-   ```azurecli
-   az acr credential-set show --name MyCredentialSet --registry MyRegistry 
+   ```azurecli-interactive
+   az role assignment create \
+     --role "Container Registry Repository Reader" \
+     --assignee "$IDENTITY_PRINCIPAL_ID" \
+     --scope "$UPSTREAM_ID"
    ```
 
-   Take note of the principal ID value, as you'll need it in step 3.
+#### Create a cache rule
 
-1. Display properties of the Key Vault to get its resource ID:
+Create a cache rule that pulls artifacts from the upstream registry into your downstream registry.
 
-   ```azurecli
-   az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
+1. Run [`az acr cache create`][az-acr-cache-create] to create a cache rule. Use the `--identity` parameter to specify the user-assigned managed identity for authentication with the upstream registry:
+
+   ```azurecli-interactive
+   az acr cache create \
+     -r MyRegistry \
+     -n MyRule \
+     -s upstreamregistry.azurecr.io/myapp \
+     -t myapp \
+     --identity "$IDENTITY_RESOURCE_ID"
    ```
 
-   You'll need this resource ID value for the next step.
+1. Run [`az acr cache show`][az-acr-cache-show] to verify the cache rule:
 
-1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
-
-   ```azurecli
-   az role assignment create --role "Key Vault Secrets User" --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
-
-#### [Bash](#tab/bash)
-
-1. Get the principal ID of the system identity in use to access Key Vault:
-
-   ```bash
-   CredentialSetPrincipalID=$(az acr credential-set show --name MyCredentialSet --registry MyRegistry  --query 'identity.principalId'  -o tsv
+   ```azurecli-interactive
+   az acr cache show -r MyRegistry -n MyRule
    ```
 
-1. Display properties of the Key Vault to get its resource ID:
+### [Bicep](#tab/bicep)
 
-   ```bash
-   KeyVaultResourceID=$(az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup --query 'id' -o tsv
+#### Define the Bicep template
+
+Create a Bicep file that defines a user-assigned managed identity and cache rule for ACR-to-ACR caching.
+
+```bicep
+@description('Name of the downstream (cache) registry.')
+param registryName string
+
+@description('Login server of the upstream registry (for example, upstreamregistry.azurecr.io).')
+param upstreamLoginServer string
+
+@description('Repository path on the upstream registry to cache (for example, myapp).')
+param sourceRepository string
+
+@description('Repository name in the downstream registry for cached artifacts.')
+param targetRepository string
+
+@description('Name of the user-assigned managed identity.')
+param identityName string = 'acrCacheIdentity'
+
+@description('Name of the cache rule.')
+param cacheRuleName string = 'cacheRule'
+
+@description('Location for resources.')
+param location string = resourceGroup().location
+
+resource registry 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' existing = {
+  name: registryName
+}
+
+resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+  name: identityName
+  location: location
+}
+
+resource cacheRule 'Microsoft.ContainerRegistry/registries/cacheRules@2023-11-01-preview' = {
+  name: cacheRuleName
+  parent: registry
+  properties: {
+    sourceRepository: '${upstreamLoginServer}/${sourceRepository}'
+    targetRepository: targetRepository
+  }
+}
+
+@description('Principal ID of the managed identity. Grant this identity AcrPull on the upstream registry.')
+output identityPrincipalId string = managedIdentity.properties.principalId
+
+@description('Resource ID of the managed identity. Use this when assigning the identity to the cache rule.')
+output identityResourceId string = managedIdentity.id
+```
+
+Save this file as `acr-cache.bicep`.
+
+#### Deploy the template
+
+1. Deploy the Bicep template to create the credential set and cache rule:
+
+   ```azurecli-interactive
+   az deployment group create \
+     --resource-group MyResourceGroup \
+     --template-file acr-cache.bicep \
+     --parameters \
+       registryName=MyRegistry \
+       upstreamLoginServer=upstreamregistry.azurecr.io \
+       sourceRepository=myapp \
+       targetRepository=myapp
    ```
 
-1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
+1. Note the `identityPrincipalId` and `identityResourceId` values from the deployment output.
 
-   ```bash
-   az role assignment create --role "Key Vault Secrets User" --assignee $CredentialSetPrincipalID --scope $KeyVaultResourceID
+1. Assign the **Container Registry Repository Reader** role to the managed identity on the upstream registry:
+
+   ```azurecli-interactive
+   UPSTREAM_ID=$(az acr show --name UpstreamRegistry --query 'id' -o tsv)
+
+   az role assignment create \
+     --role "Container Registry Repository Reader" \
+     --assignee "<identityPrincipalId>" \
+     --scope "$UPSTREAM_ID"
+   ```
+
+   > [!NOTE]
+   > The upstream registry must have [ABAC enabled](../container-registry-rbac-abac-repository-permissions.md). If it doesn't, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac` first.
+
+1. Update the cache rule to use the managed identity for authentication with the upstream registry:
+
+   ```azurecli-interactive
+   az acr cache update \
+     -r MyRegistry \
+     -n cacheRule \
+     --identity "<identityResourceId>"
    ```
 
 ---
 
-> [!TIP]
-> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. If you prefer, you can grant access only to the username and password secrets. To do so, instead of the command from step 2, run the following commands to retrieve only the username and password secrets:
->
-> ```azurecli
-> az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
-> az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
-> ```
->
-> Next, perform step 3 twice, first replacing `KeyVaultResourceID` with the  ID of the username secret, then with the ID of the password secret.
+## Verify the cache
 
-## Assign permissions to Key Vault with access policies
-
-Alternately, you can use access policies to assign permissions.
-
-#### [Azure CLI](#tab/azure-cli)
-
-1. Get the principal ID of the system identity in use to access Key Vault:
-
-   ```azurecli
-   az acr credential-set show --name CredentialSet --registry MyRegistry
-   ```
-
-   Take note of the principal ID value, as you'll need it in the next step.
-
-1. Run the `az keyvault set-policy` command to assign access to the Key Vault before pulling the image. For example, to assign permissions for the credentials to access the KeyVault secret:
-
-   ```azurecli
-   az keyvault set-policy --name MyKeyVault --object-id MyCredentialSetPrincipalID --secret-permissions get
-   ```
-
-#### [Bash](#tab/bash)
-
-1. Get the principal ID of the system identity in use to access Key Vault:
-
-   ```azurecli
-   PRINCIPAL_ID=$(az acr credential-set show 
-                   -name MyDockerHubCredSet \ 
-                   -registry MyRegistry  \
-                   --query 'identity.principalId' \ 
-                   -o tsv) 
-   ```
-
-1. Run the `az keyvault set-policy` command to assign access to the Key Vault before pulling the image. For example, to assign permissions for the credentials to access the KeyVault secret:
-
-   ```azurecli
-   az keyvault set-policy --name MyKeyVault \
-   --object-id $PRINCIPAL_ID \
-   --secret-permissions get
-   ```
-
----
-
-## Pull your image
-
-To pull an image from your cache, use the Docker command and provide the registry sign-in server name, repository name, and its desired tag. For example, to pull an image from the repository `hello-world` with desired tag `latest` for the registry sign-in server `myregistry.azurecr.io`, run:
+After you configure the cache rule and assign the required permissions, pull an image from your downstream registry to verify that caching works correctly.
 
 ```azurecli-interactive
- docker pull myregistry.azurecr.io/hello-world:latest
+docker pull myregistry.azurecr.io/myapp:latest
 ```
+
+The first pull retrieves the image from the upstream registry and caches it in your downstream registry. Subsequent pulls are served directly from the downstream registry cache.
 
 ## Clean up resources
 
-When no longer needed, delete the cache rule and credentials that you created.
+When the cache resources are no longer needed, delete the cache rule and managed identity.
 
-1. To delete the cache rule, run [`az acr cache delete`][az-acr-cache-delete]:
+1. Delete the cache rule by running [`az acr cache delete`][az-acr-cache-delete]:
 
    ```azurecli-interactive
    az acr cache delete -r MyRegistry -n MyRule
    ```
 
-1. To delete the credentials, run [`az acr credential-set delete`][az-acr-credential-set-delete]:
+1. Delete the user-assigned managed identity:
 
    ```azurecli-interactive
-   az acr credential-set delete -r MyRegistry -n MyDockerHubCredSet
+   az identity delete \
+     --name MyACRCacheIdentity \
+     --resource-group MyResourceGroup
    ```
 
 ## Next steps
 
-* Learn about [troubleshooting issues with artifact caching](troubleshoot-artifact-cache.md).
-* Learn how to [enable artifact cache using the Azure portal](artifact-cache-portal.md).
+* Learn about [troubleshooting issues with artifact caching](../troubleshoot-artifact-cache.md).
+* Learn about [artifact cache overview](../artifact-cache-overview.md).
+* Learn how to [enable artifact cache using the Azure portal](../artifact-cache-portal.md).
 
 <!-- LINKS - External -->
-[create-and-store-keyvault-credentials]: /azure/key-vault/secrets/quick-create-cli#add-a-secret-to-key-vault
-[set-and-retrieve-a-secret]: /azure/key-vault/secrets/quick-create-cli#retrieve-a-secret-from-key-vault
 [Install Azure CLI]: /cli/azure/install-azure-cli
 [Azure Cloud Shell]: /azure/cloud-shell/quickstart
 [az-acr-cache-create]:/cli/azure/acr/cache#az-acr-cache-create
 [az-acr-cache-show]:/cli/azure/acr/cache#az-acr-cache-show
 [az-acr-cache-delete]:/cli/azure/acr/cache#az-acr-cache-delete
 [az-acr-cache-update]:/cli/azure/acr/cache#az-acr-cache-update
-[az-acr-credential-set-create]:/cli/azure/acr/credential-set#az-acr-credential-set-create
-[az-acr-credential-set-update]:/cli/azure/acr/credential-set#az-acr-credential-set-update
-[az-acr-credential-set-show]: /cli/azure/acr/credential-set#az-acr-credential-set-show
-[az-acr-credential-set-delete]: /cli/azure/acr/credential-set#az-acr-credential-set-delete
