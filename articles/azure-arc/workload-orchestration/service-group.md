@@ -118,10 +118,6 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the configuration reference.
 
     ```bash
-    # For service group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-    
-    # For resource group-based sites
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
@@ -160,10 +156,6 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the configuration reference.
 
     ```powershell
-    # For service group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-    
-    # For resource group-based sites
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 

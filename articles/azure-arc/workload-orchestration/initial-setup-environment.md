@@ -467,11 +467,7 @@ To use a resource group, run the following commands:
 1. Create the configuration reference.
 
     ```bash
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
-
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -527,11 +523,7 @@ To use a resource group, run the following commands:
 1. Create the configuration reference.
 
     ```powershell
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
 ***
