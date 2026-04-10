@@ -11,7 +11,7 @@ ms.date:     04/06/2026
 
 # Enable artifact cache to cache artifacts from another Azure Container Registry
 
-In this article, you learn how to enable the [artifact cache feature](../artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry. The downstream registry authenticates to the upstream registry using a managed identity, so you don't need to store credentials in Azure Key Vault.
+In this article, you will learn how to enable the [artifact cache feature](../artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry. The downstream registry authenticates to the upstream registry using a managed identity, so you don't need to store credentials in Azure Key Vault.
 
 In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -128,7 +128,7 @@ param cacheRuleName string = 'cacheRule'
 @description('Location for resources.')
 param location string = resourceGroup().location
 
-resource registry 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' existing = {
+resource registry 'Microsoft.ContainerRegistry/registries@2025-11-01' existing = {
   name: registryName
 }
 
@@ -137,20 +137,22 @@ resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-
   location: location
 }
 
-resource cacheRule 'Microsoft.ContainerRegistry/registries/cacheRules@2023-11-01-preview' = {
-  name: cacheRuleName
-  parent: registry
+resource cacheRule 'Microsoft.ContainerRegistry/registries/cacheRules@2026-01-01-preview' = {
+name: '${registry.name}/${cacheRuleName}'
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${managedIdentity.id}': {}
+    }
+  }
   properties: {
     sourceRepository: '${upstreamLoginServer}/${sourceRepository}'
     targetRepository: targetRepository
   }
 }
 
-@description('Principal ID of the managed identity. Grant this identity AcrPull on the upstream registry.')
+@description('Principal ID of the managed identity. Grant this identity Container Registry Repository Reader on the upstream registry.')
 output identityPrincipalId string = managedIdentity.properties.principalId
-
-@description('Resource ID of the managed identity. Use this when assigning the identity to the cache rule.')
-output identityResourceId string = managedIdentity.id
 ```
 
 Save this file as `acr-cache.bicep`.
@@ -224,6 +226,8 @@ When the cache resources are no longer needed, delete the cache rule and managed
      --name MyACRCacheIdentity \
      --resource-group MyResourceGroup
    ```
+
+   > Note: Make sure the identity is not in use by any other resources before deleting it.
 
 ## Next steps
 
