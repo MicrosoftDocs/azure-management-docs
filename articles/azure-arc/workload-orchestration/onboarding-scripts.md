@@ -21,7 +21,7 @@ The onboarding scripts are designed to help you set up the necessary infrastruct
 
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
 - Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder.
-- Edit the `onboarding-data.json` file. You can find mock data in `mock-data.json`. Instructions about various properties are provided below.
+- Fill the `onboarding-data.json` file with your details, or directly edit the file `mock-data.json` containing the mock data. The files are identical and either of them can be used as input while running the scripts. Instructions about various properties are provided below.
 
 ### Additional prerequisites by platform
 
@@ -57,7 +57,7 @@ Open a terminal and run the following command.
 
 ### [Python](#tab/python)
 
-```bash
+```python
 python python/infra_onboarding.py mock-data.json
 ```
 
@@ -87,32 +87,10 @@ All of them are boolean arguments. PowerShell uses `$true`/`$false`, Python and 
 | `-enableWODiagnostics $true` | `--enable-wo-diagnostics` | `false` | Enable workload orchestration extension user-facing logs. |
 | `-enableContainerInsights $true` | `--enable-container-insights` | `false` | Enable Container.Insights on arc cluster to collect container logs and k8s events. |
 
-## Pre-requisite Context creation script (only if you are not using an existing context)
 
-Context creation is a one-time operation. If you have already created a context, you can skip this step. If you need to create a new context, use the following command:
+### Input properties
 
-```powershell
-# One context per tenant 
-az workload-orchestration context create `
- --resource-group <Context-ResourceGroup> `
- --location <Location> `
- --name <ContextName> `
- --capabilities [0].name="$resourcePrefix-soap2" [0].description="$resourcePrefix-Soap2" [1].name="$resourcePrefix-shampoo2" [1].description="$resourcePrefix-Shampoo2" `
- --hierarchies [0].name=factory [0].description=Factory [1].name=line [1].description=Line
-```
-
-Once you create the context, add the required data in *onboarding-data.json* file. The context creation script doesn't run again, so you need to add the context details in the onboarding data JSON file.
-
-```json
-        "contextResourceGroup": "",
-        "contextName": "",
-        "contextSubscriptionId": "",
-        "contextLocation": "",  
-```
-
-### Onboarding data JSON
-
-The infra-related properties fall under the `infraOnboarding` section in this file.
+The properties being used in this step fall under the `infraOnboarding` section in the `onboarding-data.json` file.
 
 - `subscriptionId [Optional]` : If you want to override the common section's sub.
 - `resourceGroup [Optional]` : If you want to override the common section's RG.
@@ -167,6 +145,28 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
             - `customLocationFile [Optional]`: Overrides the parent `deploymentTargets.customLocationFile`. File path string.
             - `targetSpecFile [Optional]`: Overrides the parent `deploymentTargets.targetSpecFile`. File path string. (Less common to override per target).
 
+## Pre-requisite for next step: Context creation (only if you are not using an existing context)
+
+Context creation is a one-time operation. If you have already created a context, you can skip this step. If you need to create a new context, use the following command:
+
+```powershell
+# One context per tenant 
+az workload-orchestration context create `
+ --resource-group <Context-ResourceGroup> `
+ --location <Location> `
+ --name <ContextName> `
+ --capabilities [0].name="$resourcePrefix-soap2" [0].description="$resourcePrefix-Soap2" [1].name="$resourcePrefix-shampoo2" [1].description="$resourcePrefix-Shampoo2" `
+ --hierarchies [0].name=factory [0].description=Factory [1].name=line [1].description=Line
+```
+
+Once you create the context, add the required data in `onboarding-data.json` file.
+
+```json
+        "contextResourceGroup": "",
+        "contextName": "",
+        "contextSubscriptionId": "",
+        "contextLocation": "",  
+```
 
 ## Step 2: Workload orchestration resources onboarding
 
@@ -182,7 +182,7 @@ Open a terminal and run the following command.
 
 ### [Python](#tab/python)
 
-```bash
+```python
 python python/cm_onboarding.py mock-data.json
 ```
 
@@ -199,9 +199,9 @@ bash shell/cm_onboarding.sh mock-data.json
 |-----------------|--------------------|---------|-------------|
 | `-skipResourceGroupCreation $true` | `--skip-resource-group-creation` | `false` | Skip creation of resource group |
 
-### Onboarding Data JSON
+### Input properties
 
-The workload orchestration related properties fall under the `cmOnboarding` section in this file.
+The properties being used in this step fall under the `cmOnboarding` section in the `onboarding-data.json` file.
 
 - `resourceGroup [Optional]`: Defines the resource group for creating CM resources. Overrides the common one.
 - `subscriptionId [Optional]`: Defines the subscription for creating CM resources. Overrides the common one.
@@ -260,7 +260,7 @@ After creating the custom location through the portal, run the script with `-ski
 
 #### Additional Script Parameters
 
-The infrastructure script supports skipping various components if they've already been created or if you're troubleshooting specific parts:
+The infrastructure script supports skipping various components if they have already been created or if you're troubleshooting specific parts:
 
 ### [PowerShell](#tab/powershell)
 ```powershell
@@ -272,8 +272,8 @@ The infrastructure script supports skipping various components if they've alread
     -skipCustomLocationCreation $true
 ```
 
-### [Python](#tab/bash)
-```bash
+### [Python](#tab/python)
+```python
 python python/infra_onboarding.py your-file.json \
     --skip-az-extensions \
     --skip-resource-group-creation \
@@ -292,7 +292,9 @@ bash shell/infra_onboarding.sh your-file.json \
     --skip-custom-location-creation
 ```
 
-Use these parameters as needed based on which components you've already created or want to skip.
+---
+
+Use these parameters as needed based on which components you have already created or want to skip.
 
 ## Contact support
 

@@ -100,7 +100,7 @@ az workload-orchestration solution-template remove-version --subscription $subId
 ```
 ***
 
-The deletion succeeds even if the solution template version is being reference by a target solution version, which remains unaffected.
+The deletion succeeds even if the solution template version is being referenced by a target solution version, which remains unaffected.
 You can verify the deletion of the solution template version by listing all revisions of a solution deployed on a target.
 
 ### [Bash](#tab/bash)
@@ -178,7 +178,7 @@ az workload-orchestration config-template delete --subscription "$subId" --resou
 az workload-orchestration config-template delete --subscription $subId --resource-group $rg --config-template-name $appConfig
 ```
 
-Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets again and re-configured. If the recreated configuration template references a different schema and a solution template inherits it, the `az workload-orchestration target review` command is expected to fail since the schema properties have changed.
+Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets and configured again. If the recreated configuration template references a different schema and a solution template inherits that schema, the `az workload-orchestration target review` command is expected to fail since the schema properties have changed.
 
 ***
 
@@ -229,4 +229,4 @@ Deleting a resource group results in deletion of all resources within the same.
 
 ### Delete existing resources in a resource group 
 
-To delete all resources created with workload orchestration in a resource group, see [Clean-up script](clean-up-script.md). This script allows you to clean up resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions.
+To delete all resources created as part of workload orchestration in a resource group, please refer to the [Clean-up script](clean-up-script.md). This script allows you to clean up resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions.
