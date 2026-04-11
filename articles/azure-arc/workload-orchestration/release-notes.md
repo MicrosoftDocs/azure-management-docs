@@ -35,7 +35,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 - The support for parallelized bulk operations for Publish and Deploy have been scaled from the previous limit of ~30 targets to up to 1000 targets distributed across clusters, along with minimizing failures under throttling conditions. The execution time per target for bulk operations has also been significantly reduced.
 
-- To help users onboard onto workload orchestration faster, bash scripts for setting up the environment and workload orchestration resources have been added to this [zip folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip), in addition to the existing PowerShell and Python scripts. The steps to use the scripts are detailed in this [guide](https://learn.microsoft.com/en-us/azure/azure-arc/workload-orchestration/onboarding-scripts).
+- To help users onboard onto workload orchestration faster, bash scripts for setting up the environment and workload orchestration resources have been added to this [zip folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip), in addition to the existing PowerShell and Python scripts. The steps to use the scripts are detailed in this [guide](onboarding-scripts.md).
 
 ### Bug fixes
 

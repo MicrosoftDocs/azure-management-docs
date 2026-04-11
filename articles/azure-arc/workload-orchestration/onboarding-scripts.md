@@ -12,7 +12,7 @@ ms.custom:
 
 # Onboarding scripts for workload orchestration
 
-The onboarding PowerShell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
+The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, installing the workload orchestration CLI extension and other resources necessary to deploy your 1st application. The scripts are available in 3 variants - PowerShell, Python and Bash, all of which are functionally equivalent.
 
 > [!TIP]
 > If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
@@ -30,8 +30,6 @@ The onboarding PowerShell scripts are designed to help you set up the necessary 
 | **PowerShell** | Azure CLI, kubectl (installed via winget above) |
 | **Python** | Python 3.8+, Azure CLI, kubectl. Install via `winget install -e --id Python.Python.3.12` |
 | **Bash (Shell)** | Git Bash (Windows) or native Bash (Linux/macOS), Azure CLI, kubectl, `jq`. On Windows, the shell scripts auto-detect `jq.exe` in the `tools/` directory — download it from [jq releases](https://github.com/jqlang/jq/releases) if not already present. |
-
-> **Note:** All three script variants (PowerShell `.ps1`, Python `.py`, Bash `.sh`) are functionally equivalent. You can choose whichever matches your environment.
 
 ## Common variables in input JSON
 
@@ -57,7 +55,7 @@ Open a terminal and run the following command.
 .\powershell\infra_onboarding.ps1 mock-data.json
 ```
 
-### [Python](#tab/bash)
+### [Python](#tab/python)
 
 ```bash
 python python/infra_onboarding.py mock-data.json
@@ -182,7 +180,7 @@ Open a terminal and run the following command.
 .\powershell\cm_onboarding.ps1 -onboardingFile mock-data.json
 ```
 
-### [Python](#tab/bash)
+### [Python](#tab/python)
 
 ```bash
 python python/cm_onboarding.py mock-data.json
@@ -193,6 +191,7 @@ python python/cm_onboarding.py mock-data.json
 ```bash
 bash shell/cm_onboarding.sh mock-data.json
 ```
+---
 
 ### Arguments
 
