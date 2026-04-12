@@ -248,6 +248,9 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json"
     ```
 
+    > [!NOTE]
+    > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName1" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
+
 #### [PowerShell](#tab/powershell)
 
 1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
@@ -272,6 +275,9 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```powershell
     az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
     ```
+
+    > [!NOTE]
+    > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName1" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
 ***
 
