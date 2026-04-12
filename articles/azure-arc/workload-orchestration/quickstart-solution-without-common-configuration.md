@@ -214,7 +214,10 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
     ```
 
-    The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
+    The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument.
+
+    > [!NOTE]
+    > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName1" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
 #### [PowerShell](#tab/powershell)
 
@@ -243,7 +246,10 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json"
     ```
 
-    The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
+    The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument.
+
+    > [!NOTE]
+    > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName1" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
 ***
 
@@ -306,6 +312,9 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```bash
     az workload-orchestration target review --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName1/versions/$appVersion"
     ```
+
+> [!NOTE]
+> The `az workload-orchestration target review` command throws a capability mismatch error 
 
 1. Run `target publish` to publish the solution. Enter `reviewId` from the previous command response.
 

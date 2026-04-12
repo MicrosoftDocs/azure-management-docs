@@ -118,10 +118,6 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the configuration reference.
 
     ```bash
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-    
-    # For resource group-based sites
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
@@ -160,11 +156,7 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the configuration reference.
 
     ```powershell
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
 ***
@@ -229,13 +221,16 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
       --name "$childName" \
       --display-name "$childName" \
       --hierarchy-level "$level2" \
-      --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" \
+      --capabilities "soap" "shampoo" \
       --description "$childDesc" \
       --solution-scope "new" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
       --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
+
+    > [!TIP]
+    > You can update the list of capability tags for an existing target by rerunning the `az workload-orchestration target create` command with the new set of values for `--capabilities` argument, while keeping the other parameters same.
 
 1. Get the ID for Target created in the previous step.
 

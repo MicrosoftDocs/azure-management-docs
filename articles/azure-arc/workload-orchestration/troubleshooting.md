@@ -11,6 +11,56 @@ ms.date: 06/01/2025
 
 This article provides troubleshooting guidance for common issues encountered when using workload orchestration in Azure Arc.
 
+## Troubleshoot Kubernetes cluster
+
+The section talks about troubleshooting common issues related to setting up an Arc-enabled Kubernetes cluster for workload orchestration. The Azure CLI extension of workload orchestration offers a troubleshooting command to create a support bundle that captures cluster checks, resource snapshots, and container logs pertaining to a kubernetes cluster of any provider, all packaged into a readable zip file. The same can be used for self-diagnosis or seamlessly shared with the support team for quick resolution. 
+Common error causes that are diagnosed as part of this process include:
+
+- Kubernetes cluster is not Arc enabled.
+- Error in installing workload orchestration extension.
+- Cluster nodes are not in healthy state or do not meet minimum processing and memory requirements.
+- No pods or resource quotas are available in the workload orchestration namespace.
+- Cert manager extension and other pre-requisites are not installed.
+- Unauthorized policy engines or proxy settings are enabled on the cluster.
+
+### Steps for troubleshooting
+
+You need to connect to the concerned cluster prior to running the troubleshooting command.
+
+```powershell
+# For AKS cluster
+az aks get-credentials --resource-group $rg --name $clusterName --overwrite-existing
+
+# For non-AKS cluster
+kubectl config get-contexts
+kubectl config use-context <your-cluster-context>
+
+# Verify connection
+kubectl cluster-info
+```
+
+Run the support bundle creation command
+
+```powershell
+az workload-orchestration support create-bundle
+```
+
+To generate the output in a custom directory with a custom name, run:
+```powershell
+az workload-orchestration support create-bundle --output-dir <directory path> --bundle-name <bundle name>
+```
+
+To run checks on specific cluster namespaces, you can use the `--namespaces` argument, followed by the list of desired namespaces. For example:
+```powershell
+az workload-orchestration support create-bundle --namespaces kube-system workloadorchestration
+```
+
+To only run cluster checks and skip generating logs, use:
+```powershell
+az workload-orchestration support create-bundle --skip-logs
+```
+
+
 ## Troubleshoot staging
 
 The section troubleshoots issues related to [staging resources before deployment](how-to-stage.md) in workload orchestration.

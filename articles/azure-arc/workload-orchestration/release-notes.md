@@ -11,6 +11,41 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
+## March 2026 release
+
+### New features
+
+- **Cluster diagnostics and troubleshooting**: Users can now, using a single command, generate a comprehensive diagnostic [support bundle](troubleshooting.md) that captures cluster checks, resource snapshots, and container logs pertaining to a kubernetes cluster of any provider, all packaged into a readable zip file. This enables rapid root-cause analysis, empowering both customers and support teams to resolve installation and runtime issues efficiently.
+
+- **Capability mutation**: Users shall now be able to dynamically add and delete capability tags from existing targets and solution templates, making it easier to maintain alignment between deployed solutions and their intended targets.
+
+### Improvements in CLI
+
+- **Azure CLI Workload Orchestration Extension 5.1.1** is now available with the new capabilities and improvements. To install it, run:
+
+  ```bash
+  az extension add --name workload-orchestration
+  ```
+
+  To update your existing installation to the latest version, run:
+
+  ```bash
+  az extension update --name workload-orchestration
+  ```
+
+- The support for parallelized bulk operations for Publish and Deploy have been scaled up to 1000 targets distributed across clusters, along with minimizing failures under throttling conditions. The execution time per target for bulk operations has also been significantly reduced.
+
+- To help users onboard onto workload orchestration faster, Bash scripts for setting up the environment and workload orchestration resources have been added to this [zip folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip), in addition to the existing PowerShell and Python scripts. The steps to use the scripts are detailed in this [guide](onboarding-scripts.md).
+
+### Bug fixes
+
+- In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency application is already uninstalled, the Workload Orchestration portal is now able to detect this and completes the deletion process without any errors.
+
+- The `az workload-orchestration target solution-revision-list` command to list solution revisions for a target now accepts the solution template name instead of solution version id for the argument `--solution-template-name`.
+
+### Known issues
+- The action of adding a new capability tag added to a target may occasionally not get instantly synced to the cloud. This might throw a capability mismatch error while trying to review and deploy a solution having the new capability tag to the target. This issue can be fixed by rerunning the target capability addition command.
+
 ## February 2026 release
 
 ### New features
@@ -38,6 +73,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### Known issues
 - In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
+
 - In the Azure CLI command `az workload-orchestration target solution-revision-list`, the argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value.
 
 
@@ -46,13 +82,17 @@ This article provides the latest and past release notes for workload orchestrati
 ### New features
 
 - **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multicloud environments.
+
 - **Support for Target/Site level configuration**: Users can now create and set common configurations at any hierarchy level or target without authoring solution templates, by explicitly linking a configuration template to the desired level. Solution templates will automatically map to the deployment target. Schemas will no longer support the **editableAt** property for application parameters that was earlier used for such mapping. This enforces clearer configuration boundaries and reduces unintended edits.
+
 - **Bulk deployment in portal**: Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
 
 ### Improvements in Portal
 
 - The **Configure** tab that enabled operations related to configuration and publishing of solutions and targets, has now been split into **Configure hierarchy** and **Configure solutions**, which offers clear segregation between hierarchy and targets, and solutions.
+
 - Users can now filter and group targets by their parent site, in addition to existing parameters, in the **Monitor**, **Configure hierarchy** and **Deploy** tabs of portal.
+
 - Acceleration in portal loading time for capability matching, configuration templates linkage, and few other scenarios.
 
 ### Improvements in CLI
@@ -69,7 +109,9 @@ This article provides the latest and past release notes for workload orchestrati
   az extension update --name workload-orchestration
   ```
 - The first-party application **EdgeConfigurationManagerApp** no longer requires RBAC read/write permission assignment.
+
 - The time taken for target and solution template creation has been significantly reduced, resulting in faster response time and enhanced CLI experience.
+
 - Users can now view the schema validation rules while configuring solution parameters for a target or a Site.
 
 ## October 2025 release
@@ -77,6 +119,7 @@ This article provides the latest and past release notes for workload orchestrati
 ### New features
 
 - The status of solutions and targets shown to users in the workload orchestration portal, related to completion of configuration, publishing and deployment, are standardized across all screens. The distinct number of statuses are reduced for simplification and enhanced readability. Users can click on the status of any item to open a context pane showing details of all operations performed on it so far, along with timestamp and name of user who performed the action.
+
 - The first party app **EdgeConfigurationManagerApp** access requirement is reduced from **Contributor** to **Reader** role.
 
 ## September 2025 release
@@ -84,6 +127,7 @@ This article provides the latest and past release notes for workload orchestrati
 ### New features
 
 - [Bulk configuration and review](bulk-deployment.md): You can set configurations for multiple targets and review all at once through CLI, with the flexibility of applying the same configuration to all or individual configurations per target. Upon command execution, the output lists the completion status for each target, along with detailed error logs for troubleshooting.
+
 - [Workload Orchestration SDK](workload-orchestration-sdk.md): The Azure Workload Orchestration SDK is now available in 4 languages - Python, Java, JavaScript and Golang, enabling developers to automate tasks programmatically. Key capabilities include:
     - Creation and management of context, targets, schema and solution templates
     - Configuration, publishing and deployment of solutions
@@ -103,6 +147,7 @@ This article provides the latest and past release notes for workload orchestrati
 ### Bug fixes
 
 - Updated the Workload Orchestration portal to appropriately mask site details from users having access to child targets but not the respective parent site.
+
 - Improved configuration status accuracy across portal views.
 
 ## August 2025 release
@@ -153,6 +198,7 @@ Resolved an issue related to the timestamp not being displayed correctly for few
 ### Bug fixes
 
 - Resolved an issue that enabled deletion of previously deployed versions of solutions.
+
 - Boosted reliability of solution template creation process by fixing race condition that was leading to occasional random failures.
 
 ## June 2025 GA release
@@ -164,6 +210,7 @@ To migrate your existing workload orchestration target resources to the GA versi
 ### New features
 
 - End-to-end support for Tanzu environment: Enable users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters.
+
 - [Bulk-publish to multiple targets via CLI:](bulk-deployment.md#perform-bulk-publishing) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) are automatically triggered as part of the process. 
 
 ### Improvements in workload orchestration portal
