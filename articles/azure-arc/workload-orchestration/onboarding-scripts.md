@@ -244,9 +244,9 @@ This issue specifically affects Azure CLI version 2.70.0 and occurs when using t
 
 ### Workaround
 
-####  Create the Custom Location via Azure Portal
+####  Create the Custom Location via Azure portal
 
-1. Navigate to the [Azure Portal](https://portal.azure.com)
+1. Navigate to the [Azure portal](https://portal.azure.com)
 2. Click "+ Create a resource" and search for "custom location"
 3. In the "Basics" tab:
    - Select your subscription and resource group

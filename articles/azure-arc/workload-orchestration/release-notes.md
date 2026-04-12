@@ -44,7 +44,7 @@ This article provides the latest and past release notes for workload orchestrati
 - The `az workload-orchestration target solution-revision-list` command to list solution revisions for a target now accepts the solution template name instead of solution version id for the argument `--solution-template-name`.
 
 ### Known issues
-- The action of adding a new capability tag added to a target may occasionaly not get instantly synced to the cloud. This might throw a capability mismatch error while trying to review and deploy a solution having the new capability tag to the target. This issue can be fixed by rerunning the target capability addition command.
+- The action of adding a new capability tag added to a target may occasionally not get instantly synced to the cloud. This might throw a capability mismatch error while trying to review and deploy a solution having the new capability tag to the target. This issue can be fixed by rerunning the target capability addition command.
 
 ## February 2026 release
 
