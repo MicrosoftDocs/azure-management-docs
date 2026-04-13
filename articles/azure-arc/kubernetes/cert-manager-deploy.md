@@ -92,7 +92,7 @@ After the cert-manager for Arc-enabled Kubernetes extension is deployed, configu
 1. Create an Issuer or ClusterIssuer resource to specify a Certificate Authority (CA) that will generate signed certificates. This could be a self-signed certificate authority (CA), an account registered with an Automated Certificate Management Environment (ACME) Certificate Authority server such as Let's Encrypt (or others), or a Certificate Authority whose certificate and private key are stored inside the cluster as a Kubernetes Secret.
 1. Create a Certificate resource that requests a TLS certificate request and includes the fields that are used to generate Certificate Signing Requests (CSRs), which are then fulfilled by the issuer type referenced on the resource for a specific domain or use.
 1. Let cert-manager fulfill the request, which results in a signed certificate and private key being stored in a Kubernetes secret that your application can use.
-1. Optionally, if your scenario requires custom trust roots across namespaces, use trust-manager to distribute the any custom CA certificates cluster-wide.
+1. Optionally, if your scenario requires custom trust roots across namespaces, use trust-manager to distribute the custom CA certificates cluster-wide.
 
 The following sections walk through an example scenario to issue a self-signed certificate for an in-cluster service.
 
@@ -122,7 +122,7 @@ cat <<EOF | kubectl apply -f -
 EOF
 ```
 
-This defines a ClusterIssuer named `selfsigned-cluster-ca` that issues self-signed certificates (meaning it effectively generates a root CA certificate for signing). After you define the ClusterIssuer, cert-manager automatically generates a root key and certificate for this issuer behind the scenes. It stores the generated CA certificate and key in a secret (by default named `selfsigned-cluster-ca-cert` in the same namespace as cert-manager, typicaly called `cert-manager`)
+This defines a ClusterIssuer named `selfsigned-cluster-ca` that issues self-signed certificates (meaning it effectively generates a root CA certificate for signing). After you define the ClusterIssuer, cert-manager automatically generates a root key and certificate for this issuer behind the scenes. It stores the generated CA certificate and key in a secret (by default named `selfsigned-cluster-ca-cert` in the same namespace as cert-manager, typically called `cert-manager`)
 
 #### Create a certificate signed by the ClusterIssuer
 
