@@ -76,7 +76,7 @@ The upstream registry must have [ABAC (Attribute-Based Access Control) enabled](
    az role assignment create \
      --role "Container Registry Repository Reader" \
      --assignee "$IDENTITY_PRINCIPAL_ID" \
-     --scope "$UPSTREAM_ID"
+     --scope "$UPSTREAM_ID/repositories/myapp"
    ```
 
 #### Create a cache rule
@@ -138,7 +138,7 @@ resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-
 }
 
 resource cacheRule 'Microsoft.ContainerRegistry/registries/cacheRules@2026-01-01-preview' = {
-name: '${registry.name}/${cacheRuleName}'
+  name: '${registry.name}/${cacheRuleName}'
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
@@ -159,7 +159,7 @@ Save this file as `acr-cache.bicep`.
 
 #### Deploy the template
 
-1. Deploy the Bicep template to create the credential set and cache rule:
+1. Deploy the Bicep template to create the managed identity and cache rule:
 
    ```azurecli-interactive
    az deployment group create \
@@ -172,9 +172,12 @@ Save this file as `acr-cache.bicep`.
        targetRepository=myapp
    ```
 
-1. Note the `identityPrincipalId` and `identityResourceId` values from the deployment output.
+1. Note the `identityPrincipalId` value from the deployment output.
 
 1. Assign the **Container Registry Repository Reader** role to the managed identity on the upstream registry:
+
+   > [!NOTE]
+   > The upstream registry must have [ABAC enabled](../container-registry-rbac-abac-repository-permissions.md). If it doesn't, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac` first.
 
    ```azurecli-interactive
    UPSTREAM_ID=$(az acr show --name UpstreamRegistry --query 'id' -o tsv)
@@ -182,19 +185,7 @@ Save this file as `acr-cache.bicep`.
    az role assignment create \
      --role "Container Registry Repository Reader" \
      --assignee "<identityPrincipalId>" \
-     --scope "$UPSTREAM_ID"
-   ```
-
-   > [!NOTE]
-   > The upstream registry must have [ABAC enabled](../container-registry-rbac-abac-repository-permissions.md). If it doesn't, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac` first.
-
-1. Update the cache rule to use the managed identity for authentication with the upstream registry:
-
-   ```azurecli-interactive
-   az acr cache update \
-     -r MyRegistry \
-     -n cacheRule \
-     --identity "<identityResourceId>"
+     --scope "$UPSTREAM_ID/repositories/myapp"
    ```
 
 ---
@@ -211,12 +202,31 @@ The first pull retrieves the image from the upstream registry and caches it in y
 
 ## Clean up resources
 
-When the cache resources are no longer needed, delete the cache rule and managed identity.
+When the cache resources are no longer needed, delete the cache rule, role assignment, and managed identity.
 
 1. Delete the cache rule by running [`az acr cache delete`][az-acr-cache-delete]:
 
    ```azurecli-interactive
-   az acr cache delete -r MyRegistry -n MyRule
+   az acr cache delete -r MyRegistry -n <cache-rule-name>
+   ```
+
+   Replace `<cache-rule-name>` with the name you used when creating the cache rule (for example, `MyRule` for the Azure CLI tab or `cacheRule` for the Bicep tab).
+
+1. Remove the role assignment on the upstream registry:
+
+   ```azurecli-interactive
+   UPSTREAM_ID=$(az acr show --name UpstreamRegistry --query 'id' -o tsv)
+
+   IDENTITY_PRINCIPAL_ID=$(az identity show \
+     --name MyACRCacheIdentity \
+     --resource-group MyResourceGroup \
+     --query 'principalId' \
+     -o tsv)
+
+   az role assignment delete \
+     --role "Container Registry Repository Reader" \
+     --assignee "$IDENTITY_PRINCIPAL_ID" \
+     --scope "$UPSTREAM_ID/repositories/myapp"
    ```
 
 1. Delete the user-assigned managed identity:
@@ -227,7 +237,8 @@ When the cache resources are no longer needed, delete the cache rule and managed
      --resource-group MyResourceGroup
    ```
 
-   > Note: Make sure the identity is not in use by any other resources before deleting it.
+   > [!NOTE]
+   > Make sure the identity is not in use by any other resources before deleting it.
 
 ## Next steps
 
