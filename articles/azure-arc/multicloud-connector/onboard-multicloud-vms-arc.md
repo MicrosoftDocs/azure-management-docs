@@ -2,7 +2,7 @@
 title: Onboard VMs to Azure Arc through the multicloud connector
 description: Learn how to enable the Arc onboarding solution with the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 04/13/2026
 # Customer intent: As a cloud administrator, I want to onboard EC2 instances and GCP VMs to Azure Arc using the multicloud connector, so that I can manage AWS, GCP, and Azure VMs centrally and leverage Azure management services.
 ---
 
@@ -60,7 +60,9 @@ You can also select an Arc gateway resource to handle the connection for your Ar
 
 ## Periodic sync options
 
-The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your source cloud is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance or GCP VM that meets the prerequisites is discovered, the Arc agent is automatically installed. The periodic sync option also helps clean up your resources in Azure. For instance, if the EC2 instance or GCP VM is removed from the source cloud, the corresponding Arc server created in the `<PublicCloud>_<AccountId>` resource group in Azure is also deleted.
+The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your source cloud is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance or GCP VM that meets the prerequisites is discovered, the Arc agent is automatically installed. If Arc onboarding fails for an eligible machine (for example, due to insufficient disk space or a transient installation error), the machine is automatically retried during the next periodic sync, provided it still meets the onboarding prerequisites. The connector doesn't permanently mark a failed machine as excluded, so on each subsequent periodic sync, the connector reevaluates eligible machines and reattempts Arc onboarding until the operation succeeds or the machine no longer meets the configured prerequisites.
+
+ The periodic sync option also helps clean up your resources in Azure. For instance, if the EC2 instance or GCP VM is removed from the source cloud, the corresponding Arc server created in the `<PublicCloud>_<AccountId>` resource group in Azure is also deleted.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances and GCP VMs aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
