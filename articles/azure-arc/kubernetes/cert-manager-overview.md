@@ -1,15 +1,15 @@
 ---
 title: "Cert-manager for Arc-enabled Kubernetes (preview)"
-ms.date: 03/03/2026
+ms.date: 04/13/2026
 ms.topic: overview
 ms.custom: references_regions
 description: "The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters."
-# Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how cert-manager can help me manage TLS certificates and trust bundles in my Arc-connected clusters, so that I can ensure secure communication and compliance across my hybrid and multi-cloud environments.
+# Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how cert-manager can help me manage TLS certificates and trust bundles in my Arc-connected clusters, so that I can ensure secure communication and compliance across my hybrid and multicloud environments.
 ---
 
 # What is cert-manager for Azure Arc-enabled Kubernetes (preview)?
 
-The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
+The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multicloud environments, providing secure communication and compliance with organizational policies.
 
 > [!IMPORTANT]
 > Cert-manager for Azure Arc-enabled Kubernetes clusters is currently in public preview.

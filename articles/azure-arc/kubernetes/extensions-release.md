@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 04/01/2026
+ms.date: 04/13/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -57,7 +57,7 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 #### 1.17.1
 
-Allow diabling guardrails on ARO clusters through configuration flag.
+Allow disabling guardrails on ARO clusters through configuration flag.
 Security improvements.
  - Released: Apr 2026
  - Policy Image: v1.15.5

@@ -1,6 +1,6 @@
 ---
 title: "Monitor and troubleshoot cert-manager for Arc-enabled Kubernetes (preview)"
-ms.date: 03/03/2026
+ms.date: 04/13/2026
 ms.topic: how-to
 description: "Learn how to monitor the health of the cert-manager for Azure Arc-enabled Kubernetes (preview) extension and troubleshoot problems."
 # Customer intent: As a customer using cert-manager for Azure Arc-enabled Kubernetes, I want to understand how to monitor the health of the extension and troubleshoot problems, so that my workloads remain secure and compliant.

@@ -1,6 +1,6 @@
 ---
 title: "Deploy cert-manager for Arc-enabled Kubernetes (preview)"
-ms.date: 03/03/2026
+ms.date: 4/13/2026
 ms.topic: how-to
 description: "Learn how to deploy the cert-manager for Azure Arc-enabled Kubernetes (preview) extension or upgrade from open source cert-manager and trust-manager."
 # Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how to deploy and configure the cert-manager for Arc-enabled Kubernetes extension, so that I can ensure secure communication and compliance across my hybrid Kubernetes environments.
@@ -72,7 +72,7 @@ The cert-manager for Azure Arc-enabled Kubernetes extension serves as a replacem
 > 
 > Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These resources remain accessible and usable after the cert-manager for Arc-enabled Kubernetes extension is installed.
 
-Specific steps for uninstallation depend on your installation method. For instructions, see the documentation for [uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling). If you used Helm for installation, use this comman to confirm which namespaces cert-manager and trust-manager are installed in:
+Specific steps for uninstallation depend on your installation method. For instructions, see the documentation for [uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling). If you used Helm for installation, use this command to confirm which namespaces cert-manager and trust-manager are installed in:
 
 ```bash
 helm list -A | grep -E 'trust-manager|cert-manager'
@@ -94,7 +94,7 @@ After the cert-manager for Arc-enabled Kubernetes extension is deployed, configu
 1. Let cert-manager fulfill the request, which results in a signed certificate and private key being stored in a Kubernetes secret that your application can use.
 1. Optionally, if your scenario requires custom trust roots across namespaces, use trust-manager to distribute the any custom CA certificates cluster-wide.
 
-The following sections walk through an example scenario to isuse a self-signed certificate for an in-cluster service.
+The following sections walk through an example scenario to issue a self-signed certificate for an in-cluster service.
 
 > [!IMPORTANT]
 > The following example is for demonstration purposes only. In production scenarios, use a secure CA such as an ACME provider or your enterprise PKI, rather than a self-signed issuer.

@@ -1,6 +1,6 @@
 ---
 title: "Ingress support for cert-manager for Azure Arc-enabled Kubernetes (preview)"
-ms.date: 03/03/2026
+ms.date: 04/13/2026
 ms.topic: how-to
 description: "Learn how to secure external ingress traffic when using cert-manager for Arc-enabled Kubernetes clusters."
 # Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how to use ingress support with cert-manager for Arc-enabled Kubernetes, so that I can secure external traffic to my Arc-enabled Kubernetes clusters.
@@ -132,7 +132,7 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
 
    Ensure that the Ingress resource [includes a `tls` section](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec) that provides the hosts that are included in the TLS certificate, and the secret name where cert-manager stores the certificate.
 
-  The following example ingress resource includes annotations that trigger cert-manager to create certificates for this ingress.
+   The following example ingress resource includes annotations that trigger cert-manager to create certificates for this ingress.
 
    ```yaml
    cat <<EOF | kubectl apply -f -

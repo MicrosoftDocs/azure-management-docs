@@ -1,6 +1,6 @@
 ---
 title: "Egress support for cert-manager for Azure Arc-enabled Kubernetes (preview)"
-ms.date: 03/26/2026
+ms.date: 04/13/2026
 ms.topic: how-to
 description: "Learn how to secure external egress traffic when using cert-manager for Arc-enabled Kubernetes clusters."
 # Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how to use egress support with cert-manager for Arc-enabled Kubernetes, so that I can secure external traffic to my Arc-enabled Kubernetes clusters.
