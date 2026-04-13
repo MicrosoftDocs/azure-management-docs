@@ -59,6 +59,8 @@ Artifact cache currently supports the following upstream registries.
 | Upstream registry                                       | Support                                                | Availability             |
 |---------------------------------------------------------|--------------------------------------------------------|--------------------------|
 | Docker Hub                                              | Supports authenticated pulls only.                     | Azure CLI, Azure portal  |
+| Docker Hardened Images (`dhi.io`)                       | Supports authenticated pulls only.                     | Azure CLI                |
+| Azure Container Registry (`azurecr.io`)                 | Supports authenticated pulls only.                     | Azure CLI                |
 | Microsoft Artifact Registry                             | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
 | AWS Elastic Container Registry (ECR) Public Gallery     | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
 | GitHub Container Registry                               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
@@ -67,8 +69,6 @@ Artifact cache currently supports the following upstream registries.
 | Google Artifact Registry (`*.pkg.dev`)                  | Supports authenticated pulls only.                     | Azure CLI                |
 | Legacy Google Container Registry (`gcr.io`)             | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
 | NVIDIA NGC Container Registry (`nvcr.io`)               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
-| Docker Hardened Images (`dhi.io`)                       | Supports authenticated pulls only.                     | Azure CLI                |
-| Azure Container Registry (`azurecr.io`)                 | Supports authenticated pulls only.                     | Azure CLI                |
 
 ### Authentication method for Google Artifact Registry
 
@@ -77,7 +77,7 @@ To set up Artifact Cache from your private Google Artifact Registry (GAR), we re
 Although you could use an access token (generated from gcloud CLI) to authenticate, it is not recommended for use with Artifact Cache, because the access token expires after 1 hour.
 
 For more information about how to create a Service Account Key, see [Authenticate with Google Artifact Registry](https://docs.cloud.google.com/artifact-registry/docs/docker/authentication#json-key). After you have the Service Account Key, save it as a secret in Azure Key Vault. Then point your credential set's password to this secret. The username should be set to:
-- `_json_key` if you are using the service account key in JSON format as it was provided when you created the file.
+  - `_json_key` if you are using the service account key in JSON format as it was provided when you created the file.
   - `_json_key_base64` if you base64-encoded all of the contents of the account key file.
 
 For more information about how to create a credential set, follow the links in the next section.
