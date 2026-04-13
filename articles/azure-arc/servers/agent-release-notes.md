@@ -39,8 +39,8 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.63/AzureConnect
 |Improved HIMDS token path handling for environments with symlinked directories.||✓|Improvement|
 |Stopped unnecessary error messages from heartbeat scripts appearing in /var/log/messages.||✓|Improvement|
 |Updated bundled PowerShell version from 7.4.13 to 7.4.14.|✓|✓|Improvement|
-||✓|✓|Improvement|
-|Addressed CVE-2026-2673||✓|Bug Fix|
+|Improved compliance reporting for security baseline policy assignments.|✓|✓|Improvement|
+|Addressed CVE-2026-2673 ||✓|Bug Fix|
 |**Azcmagent**|**1.63**|**1.63**||
 |Added TLS cipher suite validation to azcmagent check command.|✓|✓|Feature|
 |Arc proxy now uses SSL endpoint for communication with HIMDS.|✓|✓|Feature|
