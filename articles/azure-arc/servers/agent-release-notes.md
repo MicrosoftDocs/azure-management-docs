@@ -26,6 +26,28 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
 
+## Version 1.63 - April 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.63/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+|**Guest Config**   |**1.29.107.0**|**1.26.108.0**||
+|Fixed extension package signing validation to match the expected catalog or signature file by name, preventing validation failures when multiple signing files are present.|✓|✓|Bug Fix|
+|Fixed status file parsing errors during Run Command extension install recovery.|✓|✓|Bug FIx|
+|Added early failure with a clear error message when the extension install path has the noexec mount flag set.||✓|Improvement|
+|Improved HIMDS token path handling for environments with symlinked directories.||✓|Improvement|
+|Stopped unnecessary error messages from heartbeat scripts appearing in /var/log/messages.||✓|Improvement|
+|Updated bundled PowerShell version from 7.4.13 to 7.4.14.|✓|✓|Improvement|
+|Improved compliance reporting for security baseline policy assignments.|✓|✓|Improvement|
+|Addressed CVE-2026-2673 ||✓|Bug Fix|
+|**Azcmagent**|**1.63**|**1.63**||
+|Added TLS cipher suite validation to azcmagent check command.|✓|✓|Feature|
+|Arc proxy now uses SSL endpoint for communication with HIMDS.|✓|✓|Feature|
+|Added BIOS serial number to detected properties.|✓||Feature|
+|Added retry logic for heartbeat and cloud config retrieval on 5xx server errors.|✓|✓|Improvement|
+|Increased timeout for identity requests.|✓|✓|Improvement|
+
 ## Version 1.62 - March 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)

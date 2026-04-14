@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 04/01/2026
+ms.date: 04/13/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -57,7 +57,7 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 #### 1.17.1
 
-Allow diabling guardrails on ARO clusters through configuration flag.
+Allow disabling guardrails on ARO clusters through configuration flag.
 Security improvements.
  - Released: Apr 2026
  - Policy Image: v1.15.5
@@ -334,6 +334,12 @@ For more information, see [Connected registry for Azure Arc-enabled Kubernetes c
 Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG). RAG is an industry-standard architecture that augments the capabilities of a language model with private data. With Edge RAG, build custom chat assistants and derive insights from your private data.
 
 For more information, see [What is Edge RAG?](../edge-rag/overview.md)
+
+## Cert-manager for Arc-enabled Kubernetes (preview)
+
+The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
+
+For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md)
 
 ## Related content
 
