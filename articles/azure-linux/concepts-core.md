@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS basic core concepts
 description: Learn the basic core concepts that make up the Azure Linux Container Host for AKS. 
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.topic: concept-article 
 ms.date: 08/18/2024

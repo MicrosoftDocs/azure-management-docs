@@ -3,8 +3,8 @@ title: Azure Linux Container Host for AKS support lifecycle
 description: Learn about the support lifecycle for the Azure Linux Container Host for AKS.
 ms.service: microsoft-linux
 ms.custom: linux-related-content
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.topic: overview
 ms.date: 09/29/2023
 # Customer intent: As an AKS administrator, I want to understand the support lifecycle for Azure Linux Container Host, so that I can ensure my Kubernetes environment remains up-to-date and compliant with the necessary security and performance standards.

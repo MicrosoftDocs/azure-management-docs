@@ -1,8 +1,8 @@
 ---
 title: Introduction to the Azure Linux Container Host for AKS
 description: Learn about the Azure Linux Container Host.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview

@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS tutorial - Create a cluster
 description: In this Azure Linux Container Host for AKS tutorial, you learn how to create an AKS cluster with Azure Linux.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: tutorial

@@ -1,8 +1,8 @@
 ---
 title: Installing certificates on the Azure Linux Container Host for AKS
 description: How to install certificates on the Azure Linux Container Host for AKS.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.editor: schaffererin
 ms.service: microsoft-linux
 ms.topic: how-to

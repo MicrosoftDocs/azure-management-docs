@@ -1,8 +1,8 @@
 ---
 title: Troubleshooting Azure Linux Container Host for AKS package upgrade issues
 description: How to troubleshoot Azure Linux Container Host for AKS package upgrade issues.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: troubleshooting
