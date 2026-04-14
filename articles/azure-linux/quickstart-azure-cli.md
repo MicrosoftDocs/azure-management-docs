@@ -1,8 +1,8 @@
 ---
 title: 'Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using the Azure CLI'
 description: Learn how to quickly create an Azure Linux Container Host for AKS cluster using the Azure CLI.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: references_regions, devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: quickstart

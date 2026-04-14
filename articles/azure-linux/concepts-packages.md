@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS packages
 description: Learn about the packages supported by the Azure Linux Container Host for AKS.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.topic: concept-article
 ms.date: 08/18/2024
