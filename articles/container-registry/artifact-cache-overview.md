@@ -59,6 +59,8 @@ Artifact cache currently supports the following upstream registries.
 | Upstream registry                                       | Support                                                | Availability             |
 |---------------------------------------------------------|--------------------------------------------------------|--------------------------|
 | Docker Hub                                              | Supports authenticated pulls only.                     | Azure CLI, Azure portal  |
+| Docker Hardened Images (`dhi.io`)                       | Supports authenticated pulls only.                     | Azure CLI                |
+| Azure Container Registry (`azurecr.io`)                 | Supports authenticated pulls only.                     | Azure CLI                |
 | Microsoft Artifact Registry                             | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
 | AWS Elastic Container Registry (ECR) Public Gallery     | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
 | GitHub Container Registry                               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
@@ -66,6 +68,7 @@ Artifact cache currently supports the following upstream registries.
 | Kubernetes Container Image Registry (`registry.k8s.io`) | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
 | Google Artifact Registry (`*.pkg.dev`)                  | Supports authenticated pulls only.                     | Azure CLI                |
 | Legacy Google Container Registry (`gcr.io`)             | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
+| NVIDIA NGC Container Registry (`nvcr.io`)               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
 
 ### Authentication method for Google Artifact Registry
 
