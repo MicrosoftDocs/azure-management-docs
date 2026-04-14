@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS tutorial - Upgrade Azure Linux Container Host nodes
 description: In this Azure Linux Container Host for AKS tutorial, you learn how to upgrade Azure Linux Container Host nodes.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial

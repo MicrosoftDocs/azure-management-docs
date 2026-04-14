@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS tutorial - Enable telemetry and monitoring for the Azure Linux Container Host
 description: In this Azure Linux Container Host for AKS tutorial, you'll learn how to enable telemetry and monitoring for the Azure Linux Container Host.
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial

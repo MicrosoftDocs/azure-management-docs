@@ -1,8 +1,8 @@
 ---
 title: Azure Linux Container Host for AKS support and help options 
 description: How to obtain help and support for questions or problems when you create solutions using the Azure Linux Container Host. 
-author: suhuruli
-ms.author: suhuruli
+author: schaffererin
+ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: troubleshooting
