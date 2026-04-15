@@ -3,7 +3,7 @@ title: Migration agent capabilities in Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot lets you get help with migration tasks help using intelligent agent capabilities.
 author: JnHs
 ms.author: jenhayes
-ms.date:  03/10/2026
+ms.date:  04/15/2026
 ms.service: copilot-for-azure
 ms.topic: concept-article
 
@@ -52,3 +52,7 @@ Keep in mind the following considerations and limitations when working with migr
 
 - While Azure Copilot can provide guidance, create plans, and apply tags, it can't perform actual migration actions such as server replication on your behalf.
 - Migration tasks that require Azure Migrate to interact with other Azure services, such as Azure Backup and Azure Site Recovery, aren't currently supported.
+
+## Related content
+
+- Learn more about [using the migration agent capabilities](/azure/migrate/azure-copilot-migration-agent) and ways to [plan and analyze VMware migrations](/azure/migrate/how-to-plan-analyze-migration-with-agent).
