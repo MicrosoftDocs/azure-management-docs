@@ -67,5 +67,5 @@ If you selected the Arc onboarding solution, but your EC2 instance or GCP VM isn
 
 ## Known scale limitations
 - The Connector creates Azure resource groups per AWS Account and GCP project. Therefore, we are limited to 980 accounts / projects that can be scanned with one Azure subscription. The number will be lower if you have other resources groups created in your subscription. 
-- The maximum number of AWS/GCP resources that can be synced to a single resource type is 800 per AWS account / GCP project.  Please see the current Azure limits [here](azure-resource-manager/management/azure-subscription-service-limits).
+- The maximum number of AWS/GCP resources that can be synced to a single resource type is 800 per AWS account / GCP project.  Please see the current Azure limits [here](azure-resource-manager/management/azure-subscription-service-limits.md).
 
