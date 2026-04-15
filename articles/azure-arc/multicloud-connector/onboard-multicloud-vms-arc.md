@@ -28,6 +28,9 @@ AWS prerequisites include the following:
 - You must have **AmazonEC2FullAccess** permissions in your public cloud.
 - EC2 instances must meet the [general prerequisites for installing the Connected Machine agent](../servers/prerequisites.md).
 - EC2 instances must have the AWS Systems Manager (SSM) agent installed. Most EC2 instances are preconfigured with this agent if you use a [supported OS](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html).
+- EC2 instances can't already have the Azure Arc Connected Machine agent installed. If the Connected Machine agent is already present on the EC2 instance, the onboarding process will skip that machine, even if the machine is in a Disconnected state. To onboard such machines, remediate the issue on the machine (for example, by restoring connectivity, restarting the agent, or reinstalling the agent if required). After remediation, the machine should reconnect to Azure Arc without requiring a new onboarding attempt.
+
+As part of the Arc onboarding solution, Azure deploys an AWS Lambda function in your AWS account to help assign the required SSM Instance IAM role to eligible EC2 instances. This behavior is configurable, and you can opt out if you prefer to manage IAM role assignment manually. This Lambda function runs on a schedule and may incur minimal AWS costs, depending on how frequently it is configured to execute. By default, the function runs once per day. You can modify the schedule to run more frequently (down to every 15 minutes), which might increase AWS costs accordingly.
 
 ### [GCP](#tab/gcp)
 
@@ -62,7 +65,9 @@ You can also select an Arc gateway resource to handle the connection for your Ar
 
 The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your source cloud is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance or GCP VM that meets the prerequisites is discovered, the Arc agent is automatically installed. If Arc onboarding fails for an eligible machine (for example, due to insufficient disk space or a transient installation error), the machine is automatically retried during the next periodic sync, provided it still meets the onboarding prerequisites. The connector doesn't permanently mark a failed machine as excluded, so on each subsequent periodic sync, the connector reevaluates eligible machines and reattempts Arc onboarding until the operation succeeds or the machine no longer meets the configured prerequisites.
 
- The periodic sync option also helps clean up your resources in Azure. For instance, if the EC2 instance or GCP VM is removed from the source cloud, the corresponding Arc server created in the `<PublicCloud>_<AccountId>` resource group in Azure is also deleted.
+Machines that already have the Azure Arc Connected Machine agent installed but are in a disconnected state aren't retried during subsequent periodic syncs; these machinese will be reconnected to Azure Arc after you fix the underlying issue by restoring connectivity, restarting the agent, or reinstalling the agent.
+
+The periodic sync option also helps clean up your resources in Azure. For instance, if the EC2 instance or GCP VM is removed from the source cloud, the corresponding Arc server created in the `<PublicCloud>_<AccountId>` resource group in Azure is also deleted.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances and GCP VMs aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
