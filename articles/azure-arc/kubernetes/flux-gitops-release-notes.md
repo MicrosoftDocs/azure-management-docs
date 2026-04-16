@@ -16,7 +16,7 @@ The [most recent version of the Flux (GitOps) extension](flux-gitops-release-not
 
 When a new version of the `microsoft.flux` extension is released, it can take several days for the new version to become available in all regions.
 
-## `microsoft.flux` version 1.21.0 (April 2026)
+## April 2026 - `microsoft.flux` version 1.21.0
 
 > [!IMPORTANT]
 > If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
@@ -36,7 +36,7 @@ Changes in this version include:
 - Migrated CRs in `etcd` storage for Flux CRDs that have deprecated API versions.
 - Optimized logging to reduce logging footprint in `fluxconfig-agent` and `fluxconfig-controller`.
 
-## `microsoft.flux` version 1.20.4 (March 2026)
+## March 2026 - `microsoft.flux` version 1.20.4
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
@@ -55,7 +55,7 @@ Changes in this version include:
 - Compliance with deployment safeguards for AKS automatic.
 - Object-level workload identity support for Flux controllers.
 
-## `microsoft.flux` version 1.19.5 (February 2026)
+## February 2026 - `microsoft.flux` version 1.19.5
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
