@@ -5,7 +5,7 @@ ms.date: 03/01/2026
 ms.topic: release-notes
 ---
 
-# Release notes
+# Azure Key Vault Secret Store extension release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
 ## March 2026

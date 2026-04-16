@@ -5,7 +5,7 @@ ms.date: 04/16/2026
 ms.topic: release-notes
 ---
 
-# Release notes
+# Flux (GitOps) extension release notes
 
 Important updates and improvements to the Flux (GitOps) extension are listed here.
 
