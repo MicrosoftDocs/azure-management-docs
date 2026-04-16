@@ -16,6 +16,42 @@ The [most recent version of the Flux (GitOps) extension](flux-gitops-release-not
 
 When a new version of the `microsoft.flux` extension is released, it can take several days for the new version to become available in all regions.
 
+## Deprecation and removal notice: Upcoming changes to `microsoft.flux` extension
+
+Several upstream Flux APIs that have been retired by the Flux project will be removed in upcoming releases of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
+
+The following Flux APIs are being deprecated and will be removed:
+
+- Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1` and `helm.toolkit.fluxcd.io/v2beta2`
+- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
+
+For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
+
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources. Ensure that all clusters are upgraded to use `microsoft.flux` version 1.21.0 so that they will be able to upgrade to the upcoming release that introduces the Flux 2.7 API version.
+
+Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
+
+- `Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
+- `HelmRelease` to `helm.toolkit.fluxcd.io/v2`
+- `Bucket` to `source.toolkit.fluxcd.io/v1`
+- `GitRepository` to `source.toolkit.fluxcd.io/v1`
+- `HelmChart` to `source.toolkit.fluxcd.io/v1`
+- `HelmRepository` to `source.toolkit.fluxcd.io/v1`
+- `OCIRepository` to `source.toolkit.fluxcd.io/v1`
+- `Receiver` to `notification.toolkit.fluxcd.io/v1`
+- `Alert` to `notification.toolkit.fluxcd.io/v1beta3`
+- `Provider` to `notification.toolkit.fluxcd.io/v1beta3`
+- `ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
+- `ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
+- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
+
+Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
+
+Once the manifests are updated in the sources, Flux will reconcile the new API versions.
+
 ## April 2026 - `microsoft.flux` version 1.21.0
 
 > [!IMPORTANT]
@@ -69,42 +105,6 @@ Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6
 Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages and base images.
-
-## Deprecation and removal notice: Upcoming changes to `microsoft.flux` extension
-
-Several upstream Flux APIs that have been retired by the Flux project will be removed in upcoming releases of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
-
-The following Flux APIs are being deprecated and will be removed:
-
-- Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
-- Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
-- Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1` and `helm.toolkit.fluxcd.io/v2beta2`
-- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
-- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
-
-For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
-
-**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources. Ensure that all clusters are upgraded to use `microsoft.flux` version 1.21.0 so that they will be able to upgrade to the upcoming release that introduces the Flux 2.7 API version.
-
-Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
-
-- `Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
-- `HelmRelease` to `helm.toolkit.fluxcd.io/v2`
-- `Bucket` to `source.toolkit.fluxcd.io/v1`
-- `GitRepository` to `source.toolkit.fluxcd.io/v1`
-- `HelmChart` to `source.toolkit.fluxcd.io/v1`
-- `HelmRepository` to `source.toolkit.fluxcd.io/v1`
-- `OCIRepository` to `source.toolkit.fluxcd.io/v1`
-- `Receiver` to `notification.toolkit.fluxcd.io/v1`
-- `Alert` to `notification.toolkit.fluxcd.io/v1beta3`
-- `Provider` to `notification.toolkit.fluxcd.io/v1beta3`
-- `ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
-
-Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
-
-Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
 ## Related content
 
