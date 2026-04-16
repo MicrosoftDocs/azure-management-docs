@@ -7,17 +7,16 @@ ms.topic: release-notes
 
 # Flux (GitOps) extension release notes
 
-Important updates and improvements to the Flux (GitOps) extension are listed here.
+The Flux (GitOps) extension is updated on an ongoing basis. This article provides information about the most recent releases of the extension.
 
 > [!IMPORTANT]
 > To ensure continued compatibility and avoid disruptions, update your sources to [remove references to deprecated APIs](#deprecation-and-removal-notice-upcoming-changes-to-microsoftflux-extension) and ensure that clusters are running the latest version of the extension.
 
 The [most recent version of the Flux (GitOps) extension](flux-gitops-release-notes.md) and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
-> [!NOTE]
-> When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
+When a new version of the `microsoft.flux` extension is released, it can take several days for the new version to become available in all regions.
 
-### `microsoft.flux` version 1.21.0 (April 2026)
+## `microsoft.flux` version 1.21.0 (April 2026)
 
 > [!IMPORTANT]
 > If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
@@ -37,7 +36,7 @@ Changes in this version include:
 - Migrated CRs in `etcd` storage for Flux CRDs that have deprecated API versions.
 - Optimized logging to reduce logging footprint in `fluxconfig-agent` and `fluxconfig-controller`.
 
-### `microsoft.flux` version 1.20.4 (March 2026)
+## `microsoft.flux` version 1.20.4 (March 2026)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
@@ -56,7 +55,7 @@ Changes in this version include:
 - Compliance with deployment safeguards for AKS automatic.
 - Object-level workload identity support for Flux controllers.
 
-### `microsoft.flux` version 1.19.5 (February 2026)
+## `microsoft.flux` version 1.19.5 (February 2026)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
@@ -106,3 +105,8 @@ Migrate all your resources to the Flux stable APIs in your sources (Git reposito
 Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
+
+## Related content
+
+- Learn more about the [Flux (GitOps) extension](conceptual-gitops-flux2.md).
+- Get started with the Flux (GitOps) extension by using our [tutorial](tutorial-use-gitops-flux2.md).
