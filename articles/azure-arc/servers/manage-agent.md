@@ -567,25 +567,26 @@ Save the following code as `Cleanup-StaleArcServers.ps1`.
 .DESCRIPTION
     This script queries Azure Resource Graph to find Azure Arc-enabled servers (Microsoft.HybridCompute/machines)
     that have a status of 'Disconnected' and have not updated their status for more than the specified number of days.
-    It supports a -WhatIf parameter to preview the resources that would be deleted.
+    Supports -WhatIf and -Confirm via SupportsShouldProcess.
 
 .PARAMETER DaysDisconnected
     The number of days a server must be disconnected to be considered stale. Default is 60.
 
-.PARAMETER Scope
-    Optional. The scope to query (e.g., a specific Subscription ID or Management Group ID). 
+.PARAMETER Subscription
+    Optional. One or more Subscription IDs to scope the query to.
     If not specified, queries all subscriptions the current context has access to.
 
-.PARAMETER WhatIf
-    If specified, the script will only list the resources specifically targeting for deletion without actually deleting them.
+.PARAMETER ManagementGroup
+    Optional. A Management Group name to scope the query to.
+    Cannot be used together with -Subscription.
 
 .EXAMPLE
     .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
-    Lists Arc servers disconnected for more than 60 days.
+    Lists Arc servers disconnected for more than 60 days across all subscriptions.
 
 .EXAMPLE
-    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 90
-    Permanently deletes Arc servers disconnected for more than 90 days.
+    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 90 -Subscription 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    Permanently deletes Arc servers disconnected for more than 90 days in the specified subscription.
 
 .NOTES
     Author: Microsoft
@@ -593,13 +594,24 @@ Save the following code as `Cleanup-StaleArcServers.ps1`.
     Requires: Az.ResourceGraph, Az.Resources
 #>
 
+[CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
 param (
     [int]$DaysDisconnected = 60,
     
-    [string]$Scope,
+    [ValidateNotNullOrEmpty()]
+    [string[]]$Subscription,
 
-    [switch]$WhatIf
+    [ValidateNotNullOrEmpty()]
+    [string]$ManagementGroup
 )
+
+# Check required modules
+foreach ($mod in @('Az.ResourceGraph', 'Az.Resources')) {
+    if (-not (Get-Module -Name $mod -ListAvailable -ErrorAction SilentlyContinue)) {
+        Write-Error "Required module '$mod' is not installed. Run: Install-Module $mod -Scope CurrentUser"
+        return
+    }
+}
 
 # Check for Azure connection
 try {
@@ -608,7 +620,7 @@ try {
 }
 catch {
     Write-Error "Not connected to Azure. Please run 'Connect-AzAccount' first."
-    exit
+    return
 }
 
 # Construct the KQL query
@@ -625,90 +637,129 @@ Resources
 
 Write-Host "Searching for Arc servers disconnected for more than $DaysDisconnected days..." -ForegroundColor Yellow
 
-# Execute Search
-$params = @{
-    Query = $kqlQuery
-}
-
-if (-not [string]::IsNullOrWhiteSpace($Scope)) {
-    $params.Add('Scope', $Scope)
-}
+# Execute Search with pagination (Search-AzGraph returns max 1000 results per call)
+$staleServers = [System.Collections.Generic.List[object]]::new()
+$skipToken = $null
 
 try {
-    $staleServers = Search-AzGraph @params -ErrorAction Stop
+    do {
+        $params = @{
+            Query = $kqlQuery
+            First = 1000
+        }
+        if ($skipToken) {
+            $params['SkipToken'] = $skipToken
+        }
+        if ($Subscription) {
+            $params['Subscription'] = $Subscription
+        }
+        if ($ManagementGroup) {
+            $params['ManagementGroup'] = $ManagementGroup
+        }
+
+        $result = Search-AzGraph @params -ErrorAction Stop
+        if ($result) {
+            $staleServers.AddRange([object[]]$result)
+            $skipToken = $result.SkipToken
+        }
+    } while ($skipToken)
 }
 catch {
     Write-Error "Failed to query Azure Resource Graph. Ensure resource graph module is installed and you have read permissions.`nError: $_"
-    exit
+    return
 }
 
 if ($staleServers.Count -eq 0) {
     Write-Host "No stale Arc servers found matching the criteria." -ForegroundColor Green
-    exit
+    return
 }
 
 Write-Host "Found $($staleServers.Count) stale servers." -ForegroundColor Yellow
 
 # Process results
+$successCount = 0
+$failCount = 0
+
 foreach ($server in $staleServers) {
-    $message = "Deleting '$($server.name)' in RG '$($server.resourceGroup)' (Disconnected since: $($server.lastStatusChange))"
-    
-    if ($WhatIf) {
-        Write-Host "[WhatIf] $message" -ForegroundColor Cyan
-    }
-    else {
-        Write-Host $message -ForegroundColor White
+    if ($PSCmdlet.ShouldProcess($server.id, "Delete stale Arc server '$($server.name)' (Disconnected since: $($server.lastStatusChange))")) {
         try {
             Remove-AzResource -ResourceId $server.id -Force -ErrorAction Stop
             Write-Host "Successfully deleted '$($server.name)'." -ForegroundColor Green
+            $successCount++
         }
         catch {
             Write-Error "Failed to delete '$($server.name)'. Error: $_"
+            $failCount++
         }
     }
 }
 
-if ($WhatIf) {
-    Write-Host "`n[WhatIf] Run completed. No resources were deleted. Remove -WhatIf to execute deletion." -ForegroundColor Cyan
-}
-else {
-    Write-Host "`nCleanup completed." -ForegroundColor Green
-}
+Write-Host "`nCleanup completed. Deleted: $successCount, Failed: $failCount, Total: $($staleServers.Count)" -ForegroundColor Green
 ```
 
 ### How to use the script
 
+#### Prerequisites
+
+The script requires the following PowerShell modules:
+
+- `Az.ResourceGraph`
+- `Az.Resources`
+
+If they aren't installed, run:
+
+```powershell
+Install-Module Az.ResourceGraph, Az.Resources -Scope CurrentUser
+```
+
+#### Steps
+
 1. Sign in to Azure
 
    Open your PowerShell terminal and sign in.
-   
+
    ```powershell
    Connect-AzAccount
    ```
 
 2. Run a What-If analysis
 
-   First run the script with the `-WhatIf` switch. This will list the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
-   
+   First run the script with the `-WhatIf` switch. This lists the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
+
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
+   ```
+
+   To scope the query to a specific subscription, use the `-Subscription` parameter:
+
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -Subscription 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' -WhatIf
+   ```
+
+   To scope the query to a management group instead, use the `-ManagementGroup` parameter:
+
+   ```powershell
+   .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -ManagementGroup 'MyManagementGroup' -WhatIf
    ```
 
    Review the output to ensure only the intended servers are listed.
 
 3. Perform the cleanup
 
-   Once you are confident in the list of servers to be removed, run the script without the switch.
-   
+   Once you're confident in the list of servers to be removed, run the script without the `-WhatIf` switch.
+
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60
    ```
 
-   To clean up servers disconnected for a longer period (e.g., 6 months), increase the day count:
-   
+   To clean up servers disconnected for a longer period (for example, 6 months), increase the day count:
+
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 180
    ```
+
+   The script prompts for confirmation before each deletion. To skip prompts, add `-Confirm:$false`.
+
 
 ## Related content
 
