@@ -2,7 +2,7 @@
 title: Multicloud connector resource representation in Azure
 description: Understand how AWS and GCP resources are represented in Azure after they're added through the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 04/13/2026
 ms.custom: references_regions
 # Customer intent: As a cloud administrator, I want to understand how my connected AWS and GCP resources are represented in Azure, so that I can efficiently manage and govern all my cloud resources from a centralized platform.
 ---
@@ -77,14 +77,12 @@ Resources that are discovered and projected in Azure are placed in Azure regions
 ---
 ## Removing resources
 
-If you remove the connector, or disable a solution, periodic syncs will stop for that solution, and resources will no longer be updated in Azure. However, the resources will remain in your Azure account unless you delete them. To avoid confusion, we recommend removing these resource representations from Azure when you remove a  public cloud.
+If you remove the connector, or disable a solution, periodic syncs will stop for that solution, and resources will no longer be updated in Azure. However, the resources will remain in your Azure account unless you delete them. To avoid confusion, we recommend removing these resource representations from Azure when you remove a public cloud.
 
-To remove all of the resource representations from Azure, navigate to the `<PublicCloud>_<AccountId>` resource group, then delete it.
+To fully offboard a multicloud connector and stop access, you must remove configuration in both Azure and the source cloud (AWS or GCP). Deleting the connector in Azure doesn't remove the configuration created in the source cloud. To offboard the connector, follow these steps:
 
-If you delete the connector:
-
-- In AWS, you should delete the CloudFormation Template. If you delete a solution, you'll also need to update your template to remove the required access for the deleted solution. You can find the updated template for the connector in the Azure portal under **Settings > Authentication template**.
-- In GCP, you should delete the OSConfig policy for the Arc Onboarding solution. If you delete a solution, you'll also need to update your Terraform template to remove the required access for the deleted solution. You can find the updated template for the connector in the Azure portal under **Settings > Terraform template**.
+- In Azure, delete the multicloud connector resource and delete the resource group (`<PublicCloud>_<AccountId>`) that contains the resource representations.  
+- For AWS, delete the CloudFormation Template. If you delete a solution, you'll also need to update your template to remove the required access for the deleted solution. You can find the updated template for the connector in the Azure portal under **Settings > Authentication template**.
+- For GCP, delete the OSConfig policy created for the Arc Onboarding solution, and remove the authentication configuration created during onboarding.  If you delete a solution, you'll also need to update your Terraform template to remove the required access for the deleted solution. You can find the updated template for the connector in the Azure portal under **Settings > Terraform template**.
 
 To move the connector to a different subscription or resource group, you must delete it and recreate it in the desired location. Moving the connector resource and the resources directly in Azure isn't supported.
-
