@@ -40,6 +40,7 @@ The current version of the cert-manager for Arc-enabled Kubernetes (preview) ext
 - Red Hat Open Shift: v4.17.15, v4.18.9, v4.20.8
 - Suse Rancher RKE2: v1.33.6+rke2r1, v1.34.2+rke2r, v1.35.0+rke2r3
 - AKS Edge Essentials: v1.30.5 and v.1.31.5
+- Azure Local version 2602 + Kubernetes versions 1.31.13, 1.32.9, 1.33.5
 
 While you can deploy the extension to any Kubernetes cluster connected to Azure Arc, some functionality may not work as expected if your cluster is running a distribution that hasn't been validated.
 
