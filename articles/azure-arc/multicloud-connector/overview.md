@@ -2,7 +2,7 @@
 title: "What is Multicloud connector enabled by Azure Arc?"
 description: "The multicloud connector lets you connect non-Azure public cloud resources to Azure, providing a centralized source for management and governance."
 ms.topic: overview
-ms.date: 11/07/2025
+ms.date: 04/13/2026
 ms.custom: references_regions
 # Customer intent: As a cloud administrator, I want to connect AWS resources to Azure using a centralized management tool, so that I can efficiently manage and govern my multicloud environment.
 ---
@@ -28,7 +28,7 @@ The multicloud connector can work side-by-side with Defender for Cloud support f
 
 In Azure, the following regions are supported for the multicloud connector:
 
-- East US, East US 2, West US 2, West US 3, West Central US, Canada Central, West Europe, North Europe, Sweden Central, UK South, Southeast Asia, AU East
+- East US, East US 2, West US 2, West US 3, West Central US, South Central US, Canada Central, West Europe, North Europe, Sweden Central, UK South, Southeast Asia, AU East
 
 The multicloud connector isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet). The multicloud connector doesn't store customer data outside the region the customer deploys the service instance in.
 
