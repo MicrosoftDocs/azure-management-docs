@@ -90,7 +90,7 @@ Get started deploying NVIDIA GPU workloads on AKS with Azure Linux [here][use-nv
 [nvidia-ndasr-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndasra100v4-series
 [nvidia-ndm-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndma100v4-series
 [nvidia-ncads-h100-v5]: /azure/virtual-machines/sizes/gpu-accelerated/ncadsh100v5-series
-[nvidia-nd-h100-v5]: /azure/virtual-machines/sizes/gpu-accelerated/ndh100v5
+[nvidia-nd-h100-v5]: /azure/virtual-machines/sizes/gpu-accelerated/ndh100v5-series
 [nvidia-nd-h200-v5]: /azure/virtual-machines/sizes/gpu-accelerated/nd-h200-v5-series
 
 [use-nvidia-gpu]: /azure/aks/use-nvidia-gpu
