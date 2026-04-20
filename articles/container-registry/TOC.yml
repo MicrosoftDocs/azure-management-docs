@@ -122,6 +122,8 @@
           href: artifact-cache-cli.md
         - name: Enable artifact cache - Portal
           href: artifact-cache-portal.md
+        - name: Enable artifact cache from another ACR registry
+          href: artifact-cache-acr-to-acr-cli.md
         - name: Wildcard support
           href: wildcards-artifact-cache.md
         - name: Troubleshoot artifact cache
