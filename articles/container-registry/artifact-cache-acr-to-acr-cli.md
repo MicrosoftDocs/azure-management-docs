@@ -11,7 +11,7 @@ ms.date:     04/06/2026
 
 # Enable artifact cache to cache artifacts from another Azure Container Registry
 
-In this article, you will learn how to enable the [artifact cache feature](../artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry. The downstream registry authenticates to the upstream registry using a managed identity, so you don't need to store credentials in Azure Key Vault.
+In this article, you will learn how to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) to cache images from another Azure Container Registry. The downstream registry authenticates to the upstream registry using a managed identity, so you don't need to store credentials in Azure Key Vault.
 
 In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -56,7 +56,7 @@ ACR-to-ACR caching authenticates to the upstream registry using a user-assigned 
 
 #### Assign pull permissions on the upstream registry
 
-The upstream registry must have [ABAC (Attribute-Based Access Control) enabled](../container-registry-rbac-abac-repository-permissions.md) so you can assign fine-grained repository permissions. The managed identity needs the **Container Registry Repository Reader** role on the upstream registry, scoped to the specific repository you want to cache.
+The upstream registry must have [ABAC (Attribute-Based Access Control) enabled](container-registry-rbac-abac-repository-permissions.md) so you can assign fine-grained repository permissions. The managed identity needs the **Container Registry Repository Reader** role on the upstream registry, scoped to the specific repository you want to cache.
 
 > [!NOTE]
 > If the upstream registry doesn't have ABAC enabled yet, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac`.
@@ -177,7 +177,7 @@ Save this file as `acr-cache.bicep`.
 1. Assign the **Container Registry Repository Reader** role to the managed identity on the upstream registry:
 
    > [!NOTE]
-   > The upstream registry must have [ABAC enabled](../container-registry-rbac-abac-repository-permissions.md). If it doesn't, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac` first.
+   > The upstream registry must have [ABAC enabled](container-registry-rbac-abac-repository-permissions.md). If it doesn't, run `az acr update --name UpstreamRegistry --role-assignment-mode rbac-abac` first.
 
    ```azurecli-interactive
    UPSTREAM_ID=$(az acr show --name UpstreamRegistry --query 'id' -o tsv)
@@ -242,9 +242,9 @@ When the cache resources are no longer needed, delete the cache rule, role assig
 
 ## Next steps
 
-* Learn about [troubleshooting issues with artifact caching](../troubleshoot-artifact-cache.md).
-* Learn about [artifact cache overview](../artifact-cache-overview.md).
-* Learn how to [enable artifact cache using the Azure portal](../artifact-cache-portal.md).
+* Learn about [troubleshooting issues with artifact caching](troubleshoot-artifact-cache.md).
+* Learn about [artifact cache overview](artifact-cache-overview.md).
+* Learn how to [enable artifact cache using the Azure portal](artifact-cache-portal.md).
 
 <!-- LINKS - External -->
 [Install Azure CLI]: /cli/azure/install-azure-cli
