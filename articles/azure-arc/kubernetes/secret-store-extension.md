@@ -22,7 +22,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 - An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (this guide assumes a [K3s](https://k3s.io/) cluster, and provides guidance on how to Arc-enable it.) or a Microsoft-managed [AKS enabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
-- cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
+- [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md) extension is required to support TLS for intracluster log communication. The examples later in this guide direct you through installation. For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md).
 
 Install the [Azure CLI](/cli/azure/install-azure-cli-linux?pivots=apt) and sign in, if you haven't already:
 
@@ -218,19 +218,20 @@ Create a Kubernetes service account for the workload that needs access to secret
 
 The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
-[cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) are also required for secure communication of logs between cluster services and must be installed before the Arc extension.
+The [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md) extension is also required for secure communication of logs between cluster services and must be installed before the SSE extension. The cert-manager extension installs both cert-manager and trust-manager.
 
-1. Install cert-manager.
-   ```azurecli
-   helm repo add jetstack https://charts.jetstack.io/ --force-update
-   helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set crds.enabled=true 
-   ```
-
-1. Install trust-manager.
+1. Install the cert-manager for Arc-enabled Kubernetes extension.
 
    ```azurecli
-   helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
+   az k8s-extension create \
+     --resource-group ${RESOURCE_GROUP} \
+     --cluster-name ${CLUSTER_NAME} \
+     --cluster-type connectedClusters \
+     --name "azure-cert-management" \
+     --extension-type "microsoft.certmanagement"
    ```
+
+   For more information, see [Deploy cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-deploy.md).
 
 1. Install the SSE to your Arc-enabled cluster using the following command:
 
