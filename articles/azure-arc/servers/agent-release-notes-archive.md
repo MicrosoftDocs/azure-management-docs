@@ -779,7 +779,7 @@ Download for [Windows](https://download.microsoft.com/download/0/7/4/074a7a9e-1d
   - Onboarding aborts when required networking endpoints are inaccessible
   - New `--skip-network-check` flag to override the new network check behavior
   - On-demand network check now available using `azcmagent check`
-- [Proxy bypass](manage-agent-proxy-settings.md##proxy-bypass-for-private-endpoints) is now available for customers using private endpoints. This feature allows you to send Azure Active Directory and Azure Resource Manager traffic through a proxy server, but skip the proxy server for traffic that should stay on the local network to reach private endpoints.
+- [Proxy bypass](manage-agent-proxy-settings.md#proxy-bypass-for-private-endpoints) is now available for customers using private endpoints. This feature allows you to send Azure Active Directory and Azure Resource Manager traffic through a proxy server, but skip the proxy server for traffic that should stay on the local network to reach private endpoints.
 - Oracle Linux 8 is now supported
 
 ### Fixed
