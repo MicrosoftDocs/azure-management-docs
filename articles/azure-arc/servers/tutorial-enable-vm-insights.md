@@ -18,7 +18,11 @@ ms.date: 04/27/2026
 
 * Verify that your hybrid machine uses an [operating system supported by the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems).
 
-* Configure your network security group (NSG) or firewall to allow outbound TCP port 443 (HTTPS) traffic to the `AzureMonitor` and `AzureResourceManager` **service tag** endpoints. These service tags are for your NSG and *not* Azure resource tags. For full requirements, see [Azure Monitor Agent network configuration](/azure/azure-monitor/agents/azure-monitor-agent-network-configuration). You can run one of the following commands to configure traffic to your firewall:
+* Have permissions to create data collection rules (DCRs) and associate them with machines. See [Data collection rule permissions](/azure/azure-monitor/data-collection/data-collection-rule-create-edit#permissions).
+
+* Configure your network security group (NSG) or firewall to allow outbound TCP port 443 (HTTPS) traffic to the `AzureMonitor` and `AzureResourceManager` **service tag** endpoints. These service tags are for your NSG and *not* Azure resource tags.
+
+  For full requirements, see [Azure Monitor Agent network configuration](/azure/azure-monitor/agents/azure-monitor-agent-network-configuration). You can run one of the following commands to configure traffic for your firewall:
 
   # [Azure PowerShell](#tab/azure-powershell)
 
@@ -84,10 +88,6 @@ ms.date: 04/27/2026
 
   ---
 
-* Have permissions to create data collection rules (DCRs) and associate them with machines. See [Data collection rule permissions](/azure/azure-monitor/data-collection/data-collection-rule-create-edit#permissions).
-
-* Optionally, have a [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) available. If you don't have one, a default workspace is created for you in the same region as your connected machine during setup.
-
 ## Enable VM insights
 
 1. Sign in to the [Azure portal](https://portal.azure.com). In the search bar, search for and select **Azure Arc**.
@@ -118,7 +118,7 @@ After the Azure Monitor Agent is installed, it takes a few minutes for enough da
 
    - **Log based visualizations (Classic)** - Uses summarized performance data collected in your Log Analytics workspace. Select the **Performance** tab to view counters for your machine. Scroll down to view more counters, or hover over a chart and view averages, and percentiles from the time the Azure Monitor Agent was installed.
 
-   :::image type="content" source="./media/tutorial-enable-vm-insights/insights-performance-charts.png" lightbox="./media/tutorial-enable-vm-insights/insights-performance-charts.png" alt-text="Screenshot of Insights Performance tab with charts for selected machine in log-based classic view." border="false":::
+     :::image type="content" source="./media/tutorial-enable-vm-insights/insights-performance-charts.png" lightbox="./media/tutorial-enable-vm-insights/insights-performance-charts.png" alt-text="Screenshot of Insights Performance tab with charts for selected machine in log-based classic view." border="false":::
 
 1. Select the **Map** tab. The maps feature shows the processes running on the machine and their dependencies. Select **Properties** to open the property pane (if it isn't already open).
 
@@ -127,9 +127,9 @@ After the Azure Monitor Agent is installed, it takes a few minutes for enough da
    > [!NOTE]
    > Even though the **Map** tab is visible in both experiences, see [VM Insights Map and Dependency Agent retirement guidance](/azure/azure-monitor/vm/vminsights-maps-retirement) to learn more.
 
-1. To view log data, in the service menu, under **Monitoring**, select **Logs**. A list of tables stored in the Log Analytics workspace for the machine appears. The tables available differ between Windows and Linux machines.
+1. To view log data, in the service menu, under **Monitoring**, select **Logs**. A list of tables stored in the Log Analytics workspace for the machine appears. The tables available differ between Windows and Linux machines. By default, VM insights populate the **Heartbeat** and **InsightsMetrics** tables.
 
-1. Select the **Event** table. Log Analytics opens with a simple query to retrieve collected Windows event log entries.
+1. (Optional) If you're using a Windows machine and configured Windows event log collection, select the **Event** table. Log Analytics opens with a simple query to retrieve collected event log entries. If this table isn't present, event log collection isn't configured. To add it, see [Collect Windows event logs with Azure Monitor Agent](/azure/azure-monitor/agents/data-collection-windows-events).
 
 ## Next steps
 
