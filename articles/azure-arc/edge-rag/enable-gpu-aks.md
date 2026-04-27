@@ -1,20 +1,20 @@
 ---
-title: Sample - Enable GPU for AKS on Azure Arc
-description: "Learn about how to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc to meet the prerequisites for Edge RAG."
+title: Sample — Enable GPU for AKS on Azure Arc
+description: "Learn about how to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc to meet the prerequisites for Agentic RAG."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
-ms.date: 05/13/2025
+ms.date: 04/27/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a system administrator, I want to enable GPU support on Azure Kubernetes Service (AKS) through Azure Arc, so that I can prepare for deploying Edge RAG applications efficiently.
+# Customer intent: As a system administrator, I want to enable GPU support on Azure Kubernetes Service (AKS) through Azure Arc, so that I can prepare for deploying Agentic RAG applications efficiently.
 ---
 
 
 # Enabling GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc
 
-If you need to enable GPUs on the Azure Local cluster nodes to use for Edge RAG Preview, enabled by Azure Arc, we recommend using the sample script in this article. For more information, see [Complete Edge RAG deployment prerequisites](complete-prerequisites.md).
+If you need to enable GPUs on the Azure Local cluster nodes to use for Agentic RAG, enabled by Azure Arc, we recommend using the sample script in this article. Agentic RAG requires 2 GPU-enabled VMs for the Knowledge Layer (text embedding and image embedding). Docling (document parser) runs on CPU. For more information, see [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -138,5 +138,5 @@ $pnpScriptBlock= {
 
 ## Related content
 
-- [What you need for Edge RAG](requirements.md)
-- [Complete Edge RAG deployment prerequisites](complete-prerequisites.md)
+- [What you need for Agentic RAG](requirements.md)
+- [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md)
