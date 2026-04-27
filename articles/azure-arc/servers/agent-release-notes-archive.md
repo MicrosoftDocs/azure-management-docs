@@ -14,6 +14,53 @@ ms.custom: references_regions
 
 This article contains information about older releases of the Connected Machine agent. The primary [What's new in Azure Connected Machine agent?](agent-release-notes.md) article contains updates for the last six months. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.56 - September 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**   | **1.29.99.0**   |**1.26.94.0**||
+|Increased timeout when retrieving data from HIMDS on Azure Local servers.| ✓ |✓|Bug Fix|
+|**Azcmagent**|**1.56.03167.2465**|**1.56.03167.593**||
+|Added support for ARM64 Debian 12.||✓|New Distro Support|
+|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓|Security, Bug Fix|
+|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓||Security, Bug Fix|
+|Enforces minimum-required TLS cipher-suite enablement.|✓||Security, Bug Fix|
+|Removed requests concerning the Arc gateway feature for ALDO (Azure Local Disconnected Operations).|✓ |✓ |Bug Fix|
+|Increased token acquisition timeout.|✓ |✓ |Bug Fix|
+|HIMDS now reports 'service stop' only after cleanup tasks complete.|✓ ||Bug Fix|
+
+## Version 1.55 - August 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Improved logic to accurately detect whether the server is Azure Local.
+
+- Arc proxy no longer requests tokens from HIMDS unless explicitly enabled.
+
+- [Windows Only] Minor accessibility improvements to the GUI application.
+
+## Version 1.54 - July 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Fixed issues related to double-free memory errors and updating policy compliance status.
+
+- [Linux Only] Updated Boost on Linux to resolve service start issues caused by compatibility problems.
+
+- [Linux Only] Corrected Arc proxy log file permission during upgrade.
+
+- [Windows Only] Updated local PATH environment variable to resolve service install/delete errors.
+
+### New features and enhancements
+
+- Added support for managed identity-based custom policy downloads.
+
 ## Version 1.53 - June 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
@@ -343,7 +390,7 @@ The Windows Admin Center in Azure feature is incompatible with Azure Connected M
 ### New features
 
 - [azcmagent show](azcmagent-show.md) now reports extended security license status on Windows Server 2012 server machines.
-- Introduced a new [proxy bypass](manage-agent.md#proxy-bypass-for-private-endpoints) option, `ArcData`, that covers the SQL Server enabled by Azure Arc endpoints. This enables you to use a private endpoint with Azure Arc-enabled servers with the public endpoints for SQL Server enabled by Azure Arc.
+- Introduced a new [proxy bypass](manage-agent-proxy-settings.md#proxy-bypass-for-private-endpoints) option, `ArcData`, that covers the SQL Server enabled by Azure Arc endpoints. This enables you to use a private endpoint with Azure Arc-enabled servers with the public endpoints for SQL Server enabled by Azure Arc.
 - The [CPU limit for extension operations](agent-overview.md#agent-resource-governance) on Linux is now 30%. This increase helps improve reliability of extension install, upgrade, and uninstall operations.
 - Older extension manager and machine configuration agent logs are automatically zipped to reduce disk space requirements.
 - New executable names for the extension manager (`gc_extension_service`) and machine configuration (`gc_arc_service`) agents on Windows to help you distinguish the two services. For more information, see [Windows agent installation details](./agent-overview.md#windows-agent-installation-details).
@@ -382,7 +429,7 @@ Download for [Windows](https://download.microsoft.com/download/b/3/2/b3220316-13
 
 ### New features
 
-- [Extended Security Updates for Windows Server 2012 and 2012 R2](prepare-extended-security-updates.md) can be purchased and enabled through Azure Arc. If your server is already running the Azure Connected Machine agent, [upgrade to agent version 1.34](manage-agent.md#upgrade-the-agent) or later to take advantage of this new capability.
+- [Extended Security Updates for Windows Server 2012 and 2012 R2](prepare-extended-security-updates.md) can be purchased and enabled through Azure Arc. If your server is already running the Azure Connected Machine agent, upgrade to agent version 1.34 or later to take advantage of this new capability.
 - New system metadata is collected to enhance your device inventory in Azure:
   - Total physical memory
   - More processor information
@@ -654,7 +701,7 @@ Download for [Windows](https://download.microsoft.com/download/8/9/f/89f80a2b-32
 
 ### Known issues
 
-- Agents configured to use private endpoints incorrectly download extensions from a public endpoint. [Upgrade the agent](manage-agent.md#upgrade-the-agent) to version 1.20 or later to restore correct functionality.
+- Agents configured to use private endpoints incorrectly download extensions from a public endpoint. Upgrade the agent to version 1.20 or later to restore correct functionality.
 - Some systems might incorrectly report their cloud provider as Azure Stack HCI.
 
 ### New features
@@ -732,7 +779,7 @@ Download for [Windows](https://download.microsoft.com/download/0/7/4/074a7a9e-1d
   - Onboarding aborts when required networking endpoints are inaccessible
   - New `--skip-network-check` flag to override the new network check behavior
   - On-demand network check now available using `azcmagent check`
-- [Proxy bypass](manage-agent.md#proxy-bypass-for-private-endpoints) is now available for customers using private endpoints. This feature allows you to send Azure Active Directory and Azure Resource Manager traffic through a proxy server, but skip the proxy server for traffic that should stay on the local network to reach private endpoints.
+- [Proxy bypass](manage-agent-proxy-settings.md##proxy-bypass-for-private-endpoints) is now available for customers using private endpoints. This feature allows you to send Azure Active Directory and Azure Resource Manager traffic through a proxy server, but skip the proxy server for traffic that should stay on the local network to reach private endpoints.
 - Oracle Linux 8 is now supported
 
 ### Fixed
@@ -765,7 +812,7 @@ Download for [Windows](https://download.microsoft.com/download/8/a/9/8a963958-c4
 ### New features
 
 - Local configuration of agent settings now available using the [azcmagent config command](azcmagent-config.md).
-- Support for configuring proxy server settings [using agent-specific settings](manage-agent.md#update-or-remove-proxy-settings) instead of environment variables.
+- Support for configuring proxy server settings [using agent-specific settings](manage-agent-proxy-settings.md) instead of environment variables.
 - Extension operations execute faster using a new notification pipeline. You might need to adjust your firewall or proxy server rules to allow the new network addresses for this notification service (see [networking configuration](network-requirements.md)). The extension manager falls back to the existing behavior of checking every 5 minutes when the notification service is inaccessible.
 - Detection of the AWS account ID, instance ID, and region information for servers running in Amazon Web Services.
 

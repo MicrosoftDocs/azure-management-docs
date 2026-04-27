@@ -10,7 +10,7 @@ ms.custom: references_regions
 # What's new with Azure Connected Machine agent
 
 > [!WARNING]
-> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
+> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#enable-automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
 The Azure Connected Machine agent receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about:
 
@@ -179,53 +179,6 @@ If the Windows installer is launched by double-clicking (followed by the UAC pro
 - **Right-click** the installer and select **Run as administrator**, or
 
 - Execute the installer using `msiexec` from an **elevated PowerShell or Command Prompt**.
-
-## Version 1.56 - September 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-| Feature| Windows |Linux|Change Type|
-| -------- | -------- | -------- | -------- |
-| **Guest Config**   | **1.29.99.0**   |**1.26.94.0**||
-|Increased timeout when retrieving data from HIMDS on Azure Local servers.| ✓ |✓|Bug Fix|
-|**Azcmagent**|**1.56.03167.2465**|**1.56.03167.593**||
-|Added support for ARM64 Debian 12.||✓|New Distro Support|
-|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓|Security, Bug Fix|
-|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓||Security, Bug Fix|
-|Enforces minimum-required TLS cipher-suite enablement.|✓||Security, Bug Fix|
-|Removed requests concerning the Arc gateway feature for ALDO (Azure Local Disconnected Operations).|✓ |✓ |Bug Fix|
-|Increased token acquisition timeout.|✓ |✓ |Bug Fix|
-|HIMDS now reports 'service stop' only after cleanup tasks complete.|✓ ||Bug Fix|
-
-## Version 1.55 - August 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Improved logic to accurately detect whether the server is Azure Local.
-
-- Arc proxy no longer requests tokens from HIMDS unless explicitly enabled.
-
-- [Windows Only] Minor accessibility improvements to the GUI application.
-
-## Version 1.54 - July 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Fixed issues related to double-free memory errors and updating policy compliance status.
-
-- [Linux Only] Updated Boost on Linux to resolve service start issues caused by compatibility problems.
-
-- [Linux Only] Corrected Arc proxy log file permission during upgrade.
-
-- [Windows Only] Updated local PATH environment variable to resolve service install/delete errors.
-
-### New features and enhancements
-
-- Added support for managed identity-based custom policy downloads.
 
 > [!NOTE]
 > This article contains updates covering the past six months. For earlier releases, see [Archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md)

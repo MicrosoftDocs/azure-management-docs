@@ -11,7 +11,7 @@ ms.topic: overview
 The Azure Connected Machine agent lets you manage Windows and Linux machines hosted outside of Azure, on your corporate network or other cloud providers.
 
 > [!WARNING]
-> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview).
+> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#enable-automatic-agent-upgrade-preview).
 
 ## Agent components
 
