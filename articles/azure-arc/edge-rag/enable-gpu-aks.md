@@ -1,5 +1,5 @@
 ---
-title: Sample — Enable GPU for AKS on Azure Arc
+title: Sample - Enable GPU for AKS on Azure Arc
 description: "Learn about how to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc to meet the prerequisites for Agentic RAG."
 author: cwatson-cat
 ms.author: cwatson
@@ -14,7 +14,7 @@ ms.custom:
 
 # Enabling GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc
 
-If you need to enable GPUs on the Azure Local cluster nodes to use for Agentic RAG, enabled by Azure Arc, we recommend using the sample script in this article. Agentic RAG requires 2 GPU-enabled VMs for the Knowledge Layer (text embedding and image embedding). Docling (document parser) runs on CPU. For more information, see [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md).
+To enable GPUs on the Azure Local cluster nodes for use with Agentic RAG, enabled by Azure Arc, use the sample script in this article. Agentic RAG requires two GPU-enabled virtual machines (VMs) for the knowledge layer (text embedding and image embedding). Docling (document parser) runs on CPU. For more information, see [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
