@@ -14,7 +14,7 @@ ai-usage: ai-generated
 
 A search method or type, like full text, vector, or hybrid, controls how Agentic RAG retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
 
-You select a search type when you configure your data query settings in the Agentic RAG developer portal. All search types are available with your BYOM language model endpoint.
+You select a search type when you configure your data query settings in the Agentic RAG developer portal. All search types are available with bring your own model (BYOM) language model endpoint.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -68,7 +68,7 @@ All search types are available with Agentic RAG, since all deployments use BYOM:
 | Deep search | Yes (for best results, use GPT-4o or GPT-4.1-mini or later) |
 | Hybrid multimodal search | Yes |
 
-For deep search, we recommend using GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
+For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
 
 For more information about deploying with a language model, see:
 
@@ -77,17 +77,17 @@ For more information about deploying with a language model, see:
 
 ## How to select a search type
 
-You select the search type in the Agentic RAG developer portal when you configure your data query settings. Some parameters might differ by search type and model.
+Select the search type in the Agentic RAG developer portal when you configure your data query settings. Some parameters might differ by search type and model.
 
 ## Collection-scoped search
 
-All search types can be scoped to specific collections. When querying via the developer portal or API, you specify which collection(s) to search:
+You can scope all search types to specific collections. When you query through the developer portal or API, specify which collections to search:
 
 - **Developer portal**: Select the target collection in the data query settings.
 - **Inference API**: Set `data_sources[0].parameters.index_name` to the collection name.
 - **MCP Server**: Set `collection_names` in the tool arguments. You can query multiple collections in a single request.
 
-For more information, see [Collections overview](collections-overview.md) and [MCP Server overview](mcp-server-overview.md).
+For more information, see Collections overview and MCP Server overview.
 
 ## Performance considerations
 
@@ -110,7 +110,7 @@ Use these tips to help you select the best search type for your Agentic RAG depl
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
 - All search types are available with your BYOM endpoint. For deep search, use a model like GPT-4o or later for best results.
-- When using agents, search tools are available via the built-in MCP server. See [MCP Server overview](mcp-server-overview.md).
+- When you use agents, the built-in MCP server provides search tools.
 
 ## Search type parameters
 
@@ -127,7 +127,7 @@ The following model parameters are available for text, vector, hybrid, and hybri
 | Model parameter | Description |
 |---|---|
 | **Temperature** | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both.  |
-| **Top-P (nucleus sampling)** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
+| **Top-P (nucleus sampling)** | Similar to temperature, this parameter controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
 
 ### Search parameters
 
@@ -139,7 +139,7 @@ These parameters only apply to the **Knowledge-based** chat experience.
 |---|---|
 | **Top-N documents** | Refers to number of most relevant chunks given to the language model. Choosing *N* depends on the application's needs:<br> <br>- For broad coverage, use a larger *N*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *N*. For example, 3-5.<br><br> Experiment with *N* values to balance retrieval accuracy and downstream model performance. Bigger the *value of N*, the longer the inference time.  |
 | **Text strictness** | Controls how strictly the RAG system filters and ranks retrieved text documents before passing them to the generation model.<br><br>- **Low strictness**: More documents are considered relevant, even if they're only loosely related to the query.<br>- **High strictness**: Only documents that closely match the query are used. |
-| **Image strictness** (Hybrid multimodal search only) | Similar to text strictness but applies to retrieved image data.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are very closely aligned with the query are retrieved. |
+| **Image strictness** (Hybrid multimodal search only) | Similar to text strictness but applies to retrieved image data.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are closely aligned with the query are retrieved. |
 
 ### Deep search parameters
 

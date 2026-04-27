@@ -53,7 +53,7 @@ To get started, create a data source by using the local developer portal.
 
     | Field | Value |
     |---|---|
-    | Collection | Select the target collection for ingested data. Choose an existing collection or use the default `edgeragapp` collection. To create a new collection first, use the [Collections API](api-collections.md). |
+    | Collection | Select the target collection for ingested data. Choose an existing collection or use the default `edgeragapp` collection. |
     | Schedule updates | Frequency at which your data is synced for updates |
     | Chunk size | Select the appropriate chunk size |
     | Chunk overlap |Select the appropriate chunk overlap |
