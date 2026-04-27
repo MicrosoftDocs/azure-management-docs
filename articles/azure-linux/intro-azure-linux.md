@@ -65,7 +65,7 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 
 - [NVIDIA V100][nvidia-v100]
 - [NVIDIA T4][nvidia-t4]
-- [NVIDIA NV A10 V5][nvidia-nv-a10-v5]
+- [NVIDIA NVads A10 v5][nvidia-nv-a10-v5]
 - [NVIDIA NC A100 V4][nvidia-nc-a100-v4]
 - [NVIDIA NDasr A100 V4][nvidia-ndasr-a100-v4]
 - [NVIDIA NDm A100 V4][nvidia-ndm-a100-v4]
