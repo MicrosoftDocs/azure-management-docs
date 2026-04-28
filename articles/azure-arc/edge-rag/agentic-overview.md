@@ -5,15 +5,15 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 04/28/2026
-ms.subservice: edge-rag
+ms.subservice: agentic-rag
 ai-usage: ai-generated
 ---
 
-# Agentic layer in Agentic RAG
+# The agentic layer in Agentic RAG
 
 The Agentic RAG (retrieval-augmented generation) platform is organized into two layers. The *knowledge layer* handles document ingestion, indexing, and retrieval. The *agentic layer* sits above it and decides how agents use that knowledge at runtime.
 
-:::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agentic RAG platform with the agentic layer on top of the knowledge layer.":::
+:::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agentic RAG platform with the agentic layer on top of the knowledge layer." lightbox="media/agentic-overview/agentic-rag-platform.png":::
 
 The agentic layer adds planning, tool use, and conversation orchestration to Agentic RAG . The agentic layer lets you build assistants that can manage multi-turn interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
 
@@ -131,20 +131,11 @@ The agentic layer is a good fit when your solution needs one or more of these pa
 
 If you only need direct ingestion and RAG-style querying against indexed content, the knowledge layer by itself might be enough.
 
-## Use cases
-
-| Use case | Deployment mode | Description |
-|---|---|---|
-| **Edge manufacturing assistant** | Combined | Ingest equipment manuals, safety docs. Agent answers technician questions grounded in local data. |
-| **Multi-source knowledge agent** | Agentic Only | Agent connects to multiple external MCP servers (database, ticketing system, docs) without local ingestion. |
-| **Document search API** | Knowledge only | Ingest and query documents via REST API. No agent orchestration; direct API integration. |
-| **Retail store assistant** | Combined | Ingest product catalogs, policies. Agent handles customer queries with citation-backed answers. |
-
 ## Bring your own model (BYOM)
 
 Agentic RAG does **not** bundle any language models. You must provide your own LLM endpoint. The LLM must expose an OpenAI-compatible chat completions API.
 
-**Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). See the [requirements](ExistingDocsChanged/requirements.md) for detailed hardware specs.
+**Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). For detailed hardware requirements, see [What you need for Agentic RAG Preview](requirements.md).
 
 **Hosting options**: You can deploy GPT-OSS-20B (or another model) using any of these options:
 
