@@ -2,7 +2,7 @@
 title: Monitor a hybrid machine with Azure Monitor VM insights
 description: Learn how to collect and analyze data from a hybrid machine in Azure Monitor.
 ms.topic: tutorial
-ms.date: 04/27/2026
+ms.date: 04/28/2026
 # Customer intent: As a system administrator, I want to enable VM insights on my hybrid machines, so that I can collect and analyze performance data for better monitoring and management of my infrastructure.
 ---
 
@@ -120,9 +120,7 @@ After the Azure Monitor Agent is installed, it takes a few minutes for enough da
 
      :::image type="content" source="./media/tutorial-enable-vm-insights/insights-performance-charts.png" lightbox="./media/tutorial-enable-vm-insights/insights-performance-charts.png" alt-text="Screenshot of Insights Performance tab with charts for selected machine in log-based classic view." border="false":::
 
-1. Select the **Map** tab. The maps feature shows the processes running on the machine and their dependencies. Select **Properties** to open the property pane (if it isn't already open).
-
-   :::image type="content" source="./media/tutorial-enable-vm-insights/insights-map.png" lightbox="./media/tutorial-enable-vm-insights/insights-map.png" alt-text="Screenshot of Insights Map tab with map for selected machine." border="false":::
+1. Select the **Map** tab. The maps feature shows the processes running on the machine and their dependencies. The log-based classic view includes an extra tab. Select **Expand property panel** to open the property pane.
 
    > [!NOTE]
    > Even though the **Map** tab is visible in both experiences, see [VM Insights Map and Dependency Agent retirement guidance](/azure/azure-monitor/vm/vminsights-maps-retirement) to learn more.
