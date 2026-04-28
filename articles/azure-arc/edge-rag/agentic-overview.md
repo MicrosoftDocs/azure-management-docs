@@ -80,33 +80,21 @@ This model keeps knowledge access explicit. Agents do not automatically see all 
 
 ## Key concepts in the agentic layer
 
-### Agent
+Review the following key concepts for the agentic layer:
 
-An agent is the execution entity that follows instructions, reasons over a request, calls tools, and returns a response. You configure an agent with its instructions, model settings, and a reference to a knowledge base.
+- **Agent** is the execution entity that follows instructions, reasons over a request, calls tools, and returns a response. You configure an agent with its instructions, model settings, and a reference to a knowledge base.
 
-### Knowledge base
+- **Knowledge base** groups one or more knowledge sources into a reusable boundary. It defines what knowledge an agent can access rather than how the agent behaves.
 
-A knowledge base groups one or more knowledge sources into a reusable boundary. It defines what knowledge an agent can access rather than how the agent behaves.
+- **Knowledge source** is a registered MCP connection. It contains the endpoint and configuration required to reach a specific MCP server or indexed source.
 
-### Knowledge source
+- **Thread** represents a conversation session between a user and an agent. It stores the ordered message history for that interaction.
 
-A knowledge source is a registered MCP connection. It contains the endpoint and configuration required to reach a specific MCP server or indexed source.
+- **Message** is a single turn in a thread. Messages can represent user input, assistant output, or system content.
 
-### Thread
+- **Run** is a single execution of an agent against a thread. During a run, the agent reads the thread state, decides whether to call knowledge tools, and produces a response.
 
-A thread represents a conversation session between a user and an agent. It stores the ordered message history for that interaction.
-
-### Message
-
-A message is a single turn in a thread. Messages can represent user input, assistant output, or system content.
-
-### Run
-
-A run is a single execution of an agent against a thread. During a run, the agent reads the thread state, decides whether to call knowledge tools, and produces a response.
-
-### Model Context Protocol
-
-MCP is the protocol used to connect agents to tools and external data sources. Agentic RAG can both expose MCP tools through its built-in MCP server and consume external MCP servers through knowledge sources.
+- **Model Context Protocol** is the protocol used to connect agents to tools and external data sources. Agentic RAG can both expose MCP tools through its built-in MCP server and consume external MCP servers through knowledge sources.
 
 ## Deployment modes and the agentic layer
 
