@@ -115,7 +115,7 @@
         href: manage-automatic-vm-extension-upgrade.md
     - name: Use managed identities on server
       href: managed-identity-authentication.md
-    - name: Migrate machine across regions
+    - name: Rename or move Arc-enabled servers
       href: manage-howto-migrate.md
     - name: Use Run command
       href: run-command.md

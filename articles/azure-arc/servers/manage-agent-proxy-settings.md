@@ -1,23 +1,23 @@
 ---
 title:  Manage and maintain Azure Connected Machine agent proxy settings
 description: This article describes proxy setting management tasks for the Azure Connected Machine agent.
-ms.date: 03/24/2026
+ms.date: 04/27/2026
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to manage the proxy settings of the Azure Connected Machine agent, so that I can ensure optimal connectivity of my Azure-connected servers.
 ---
 
 # Manage and maintain Azure Connected Machine agent proxy settings
 
-To configure the agent to communicate to the service through a proxy server or to remove this configuration after deployment, use one of the methods described here. The agent communicates outbound using the HTTP protocol under this scenario.
+To configure the agent to communicate with the service through a proxy server or to remove this configuration after deployment, use one of the methods described in this article. The agent communicates outbound by using the HTTP protocol under this scenario.
 
-Proxy settings can be configured using the `azcmagent config` command or system environment variables. If a proxy server is specified in both the agent configuration and system environment variables, the agent configuration takes precedence and becomes the effective setting. Use `azcmagent show` to view the effective proxy configuration for the agent.
+You can configure proxy settings by using the `azcmagent config` command or system environment variables. If you specify a proxy server in both the agent configuration and system environment variables, the agent configuration takes precedence and becomes the effective setting. Use `azcmagent show` to view the effective proxy configuration for the agent.
 
 > [!NOTE]
-> Azure Arc-enabled servers doesn't support using [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent.
+> Azure Arc-enabled servers don't support using [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent.
 
 ### Agent-specific proxy configuration
 
-Agent-specific proxy configuration is the preferred way of configuring proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. Using agent-specific proxy configuration helps prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
+Agent-specific proxy configuration is the preferred way to configure proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. Using agent-specific proxy configuration helps prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
 
 > [!NOTE]
 > Some extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
@@ -28,7 +28,7 @@ To configure the agent to communicate through a proxy server, run the following 
 azcmagent config set proxy.url "http://ProxyServerFQDN:port"
 ```
 
-You can use an IP address or simple hostname in place of the FQDN if your network requires it. If your proxy server runs on port 80, you may omit ":80" at the end.
+You can use an IP address or simple hostname in place of the FQDN if your network requires it. If your proxy server runs on port 80, you can omit ":80" at the end.
 
 To check if a proxy server URL is configured in the agent settings, run the following command:
 
@@ -42,15 +42,15 @@ To stop the agent from communicating through a proxy server, run the following c
 azcmagent config clear proxy.url
 ```
 
-You don't need to restart any services when reconfiguring the proxy settings with the `azcmagent config` command.
+You don't need to restart any services when reconfiguring the proxy settings by using the `azcmagent config` command.
 
 ### Proxy bypass for private endpoints
 
-Starting with agent version 1.15, you can also specify services which should **not** use the specified proxy server. This can help with split-network designs and private endpoint scenarios where you want Microsoft Entra ID and Azure Resource Manager traffic to go through your proxy server to public endpoints, but you want Azure Arc traffic to skip the proxy and communicate with a private IP address on your network.
+Starting with agent version 1.15, you can specify services that shouldn't use the specified proxy server. This configuration helps with split-network designs and private endpoint scenarios where you want Microsoft Entra ID and Azure Resource Manager traffic to go through your proxy server to public endpoints, but you want Azure Arc traffic to skip the proxy and communicate with a private IP address on your network.
 
 The proxy bypass feature doesn't require you to enter specific URLs to bypass. Instead, you provide the name of any services that shouldn't use the proxy server. The location parameter refers to the Azure region of the Arc-enabled server.
 
-Proxy bypass value when set to `ArcData` only bypasses the traffic of the Azure extension for SQL Server and not the Arc agent.
+Setting the proxy bypass value to `ArcData` only bypasses the traffic of the Azure extension for SQL Server and not the Arc agent.
 
 | Proxy bypass value | Affected endpoints |
 | --------------------- | ------------------ |
@@ -85,7 +85,7 @@ You can view the effective proxy server and proxy bypass configuration by runnin
 
 ### Windows environment variables
 
-On Windows, the Azure Connected Machine agent first checks the `proxy.url` agent configuration property (starting with agent version 1.13), and then the system-wide `HTTPS_PROXY` environment variable, to determine which proxy server to use. If both are empty, no proxy server is used, even if the default Windows system-wide proxy setting is configured.
+On Windows, the Azure Connected Machine agent first checks the `proxy.url` agent configuration property (starting with agent version 1.13), and then the system-wide `HTTPS_PROXY` environment variable, to determine which proxy server to use. If both are empty, the agent doesn't use a proxy server, even if the default Windows system-wide proxy setting is configured.
 
 We recommend using the agent-specific proxy configuration instead of the system environment variable.
 

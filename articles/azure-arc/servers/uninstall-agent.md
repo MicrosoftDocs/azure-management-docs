@@ -1,18 +1,18 @@
 ---
 title: Uninstall the Azure Connected Machine agent
 description: This article describes how to remove the Azure Connected Machine agent from Azure Arc-enabled servers.
-ms.date: 03/24/2026
+ms.date: 04/27/2026
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to uninstall the Azure Connected Machine agent from Azure Arc-enabled servers, so that I can remove management of these servers from Azure Arc.
 ---
 
 # Uninstall the Azure Connected Machine agent from Arc-enabled servers
 
-For servers you no longer want to manage with Azure Arc-enabled servers, follow these steps to remove any VM extensions from the server, disconnect the agent, and uninstall the software from your server. It's important to complete all of these steps to fully remove all related software components from your system.
+If you no longer want to manage a machine through Azure Arc-enabled servers, you must remove any VM extensions from the server, disconnect the agent, and uninstall the software from your server. It's important to complete all of these steps to fully remove all related software components from your system.
 
 ## Remove VM extensions
 
-If you deployed Azure VM extensions to an Azure Arc-enabled server, you must uninstall all extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and these extensions won't be recognized if you reconnect the server to Azure Arc.
+If you deployed Azure VM extensions to an Azure Arc-enabled server, you must uninstall all extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and these extensions aren't recognized if you reconnect the server to Azure Arc.
 
 For guidance on how to list and remove any extensions on your Azure Arc-enabled server, see the following resources:
 
@@ -22,18 +22,18 @@ For guidance on how to list and remove any extensions on your Azure Arc-enabled 
 
 ## Disconnect the server from Azure Arc
 
-After you remove all extensions from your server, the next step is to disconnect the agent. Doing so deletes the corresponding Azure resource for the server and clears the local state of the agent.
+After you remove all extensions from your Arc-enabled server, the next step is to disconnect the agent. This action deletes the corresponding Azure resource for the server and clears the local state of the agent.
 
-To disconnect the agent, run the `azcmagent disconnect` command as an administrator on the server. You're prompted to sign in with an Azure account that has permission to delete the resource in your subscription. If the resource has already been deleted in Azure, pass an additional flag to clean up the local state: `azcmagent disconnect --force-local-only`.
+To disconnect the agent, run the `azcmagent disconnect` command as an administrator on the server. You're prompted to sign in with an Azure account that has permission to delete the resource in your subscription. If the resource was already deleted in Azure, pass an additional flag to clean up the local state: `azcmagent disconnect --force-local-only`.
 
-If your Administrator and Azure accounts are different, you may encounter issues with the sign-in prompt defaulting to the Administrator account. To resolve these issues, run the `azcmagent disconnect --use-device-code` command. You're prompted to sign in with an Azure account that has permission to delete the resource.
+If your Administrator and Azure accounts are different, you might encounter problems with the sign-in prompt defaulting to the Administrator account. To resolve these problems, run the `azcmagent disconnect --use-device-code` command. You're prompted to sign in with an Azure account that has permission to delete the resource.
 
 > [!CAUTION]
 > When disconnecting the agent from Arc-enabled VMs running on Azure Local, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `--force-local-only` flag can cause your Arc VM on Azure Local to be deleted both from Azure and on-premises.
 
 ## Uninstall the agent
 
-Finally, you can remove the Connected Machine agent from the server.
+After you disconnect the agent from Azure Arc, remove the Connected Machine agent from the server.
 
 ### [Windows](#tab/windows)
 
@@ -77,7 +77,7 @@ You can uninstall the agent manually from the Command Prompt or by using an auto
 ### [Linux - apt](#tab/linux-apt)
 
 > [!NOTE]
-> To uninstall the agent, you must have *root* access permissions or an account that has elevated rights using sudo.
+> To uninstall the agent, you need *root* access permissions, or an account with elevated rights using sudo.
 
 Run the following command to remove the agent:
 
@@ -88,7 +88,7 @@ sudo apt purge azcmagent
 ### [Linux - yum](#tab/linux-yum)
 
 > [!NOTE]
-> To uninstall the agent, you must have *root* access permissions or an account that has elevated rights using sudo.
+> To uninstall the agent, you need *root* access permissions, or an account with elevated rights using sudo.
 
 Run the following command to remove the agent:
 
@@ -99,51 +99,25 @@ sudo yum remove azcmagent
 ### [Linux - zypper](#tab/linux-zypper)
 
 > [!NOTE]
-> To uninstall the agent, you must have *root* access permissions or an account that has elevated rights using sudo.
+> To uninstall the agent, you need *root* access permissions, or an account with elevated rights using sudo.
+
+Run the following command to remove the agent:
 
 ```bash
 sudo zypper remove azcmagent
 ```
 ---
 
-## Rename an Azure Arc-enabled server resource
-
-**Move to "migrate across regions"??**
-
-When you change the name of a Linux or Windows machine connected to Azure Arc-enabled servers, the new name isn't recognized automatically, because the resource name in Azure is immutable. As with other Azure resources, to use the new name, you must delete the resource in Azure and then recreate it.
-
-For Azure Arc-enabled servers, before you rename the machine, you must remove the VM extensions:
-
-1. List the VM extensions installed on the machine and note their configuration using the [Azure portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed), or [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed).
-
-2. Remove all VM extensions installed on the machine by using the [Azure portal](manage-vm-extensions-portal.md#remove-extensions), [Azure CLI](manage-vm-extensions-cli.md#remove-extensions), or [Azure PowerShell](manage-vm-extensions-powershell.md#remove-extensions).
-
-3. Use the **azcmagent** tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can run this tool manually while logged on interactively, with a Microsoft identity [access token](/azure/active-directory/develop/access-tokens), or with a [service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
-
-    Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
-
-4. Re-register the Connected Machine agent with Azure Arc-enabled servers. Run the `azcmagent` tool with the [Connect](azcmagent-connect.md) parameter to complete this step. The agent defaults to using the computer's current hostname, but you can choose your own resource name by passing the `--resource-name` parameter to the connect command.
-
-5. Redeploy the VM extensions that were originally deployed to the machine from Azure Arc-enabled servers. If you deployed the Azure Monitor for VMs (insights) agent using an Azure Policy definition, the agents are redeployed after the next [evaluation cycle](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
-
-## Investigate Azure Arc-enabled server disconnection
-
-**Move to "agent overview"??**
-
-The Connected Machine agent [sends a regular heartbeat message](overview.md#agent-status) to Azure every five minutes. If an Arc-enabled server stops sending heartbeats to Azure for longer than 15 minutes, it can mean that the server is offline, the network connection is blocked, or the agent isn't running.
-
-Develop a plan for responding and investigating these incidents, including setting up resource Health alerts to get notified when such incidents occur. For more information, see [Create Resource Health alerts in the Azure portal](/azure/service-health/resource-health-alert-monitor-guide).
-
 ## Remove stale server resources
 
-If a server is decommissioned or disconnected without cleanly removing the agent, the resource usually remains in the Azure portal with a "Disconnected" status. Over time, these stale resources can clutter your environment.
+If you decommission or disconnect a server without cleanly removing the agent, the resource usually remains in the Azure portal with a **Disconnected** status. Over time, these stale resources can clutter your environment.
 
-The following PowerShell script allows you to identify and delete Azure Arc-enabled servers that have been disconnected for a specified number of days.
+The following PowerShell script helps you identify and delete Azure Arc-enabled servers that have been disconnected for a specified number of days.
 
 ### Prerequisites
 
 *   **Azure PowerShell**: The `Az` module installed.
-*   **Permissions**: Reader access to query via Azure Resource Graph, and Contributor/Owner (or `Microsoft.HybridCompute/machines/delete`) to delete the resources.
+*   **Permissions**: Reader access to query via Azure Resource Graph, and Contributor or Owner (or `Microsoft.HybridCompute/machines/delete`) to delete the resources.
 
 ### The cleanup script
 
@@ -298,7 +272,7 @@ The script requires the following PowerShell modules:
 - `Az.ResourceGraph`
 - `Az.Resources`
 
-If they aren't installed, run:
+If they're not installed, run:
 
 ```powershell
 Install-Module Az.ResourceGraph, Az.Resources -Scope CurrentUser
@@ -314,9 +288,9 @@ Install-Module Az.ResourceGraph, Az.Resources -Scope CurrentUser
    Connect-AzAccount
    ```
 
-2. Run a What-If analysis
+1. Run a What-If analysis
 
-   First run the script with the `-WhatIf` switch. This lists the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
+      First, run the script with the `-WhatIf` switch. This step lists the servers that meet the criteria without actually deleting them. This command checks servers that have been disconnected for 60 days or more.
 
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -WhatIf
@@ -334,17 +308,17 @@ Install-Module Az.ResourceGraph, Az.Resources -Scope CurrentUser
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60 -ManagementGroup 'MyManagementGroup' -WhatIf
    ```
 
-   Review the output to ensure only the intended servers are listed.
+   Review the output to ensure it lists only the intended servers.
 
-3. Perform the cleanup
+1. Perform the cleanup
 
-   Once you're confident in the list of servers to be removed, run the script without the `-WhatIf` switch.
+   When you're confident in the list of servers to remove, run the script without the `-WhatIf` switch.
 
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 60
    ```
 
-   To clean up servers disconnected for a longer period (for example, 6 months), increase the day count:
+   To clean up servers disconnected for a longer period (for example, six months), increase the day count:
 
    ```powershell
    .\Cleanup-StaleArcServers.ps1 -DaysDisconnected 180
