@@ -134,7 +134,7 @@ Identifies the mechanism being used to connect the server to Azure Arc. For exam
 
 `--enable-automatic-upgrade`
 
-Instructs the agent to automatically upgrade itself when a new version is available. If this flag isn't specified when the machine is connected, automatic upgrades are disabled unless another [automatic upgrade method](manage-agent.md#automatic-agent-upgrade-preview) is configured later.
+Instructs the agent to automatically upgrade itself when a new version is available. If this flag isn't specified when the machine is connected, automatic upgrades are disabled unless another [automatic upgrade method](manage-agent.md#enable-automatic-agent-upgrade-preview) is configured later.
 
 The `--enable-automatic-upgrade` flag is currently in public preview.
 

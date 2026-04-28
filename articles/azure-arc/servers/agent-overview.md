@@ -11,7 +11,7 @@ ms.topic: overview
 The Azure Connected Machine agent lets you manage Windows and Linux machines hosted outside of Azure, on your corporate network or other cloud providers.
 
 > [!WARNING]
-> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview).
+> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#enable-automatic-agent-upgrade-preview).
 
 ## Agent components
 
@@ -226,7 +226,7 @@ Metadata information about a connected machine is collected after the Connected 
 * Hardware manufacturer
 * Hardware model
 * CPU family, socket, physical core and logical core counts
-* Total physical memory (for Linux systems this holds the MemTotal value from /proc/meminfo, which is the Total usable RAM rather than the Total physical memory) 
+* Total physical memory (for Linux systems this holds the MemTotal value from /proc/meminfo, which is the Total usable RAM rather than the Total physical memory)
 * Serial number
 * SMBIOS asset tag
 * Network interface information
@@ -282,11 +282,17 @@ If your connected server is receiving 429 error messages, it's likely that you c
 
 To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machines to the cloud using a unique resource name.
 
-## Disaster Recovery
+## Disaster recovery
 
 There are no customer-enabled disaster recovery options for Arc-enabled servers. In the event of an outage in an Azure region, the system will fail over to another region in the same [Azure geography](https://azure.microsoft.com/explore/global-infrastructure/geographies/) (if one exists). While this failover procedure is automatic, it does take some time. The Connected Machine agent is disconnected during this period and shows a status of **Disconnected** until the failover is complete. The system will fail back to its original region once the outage has been resolved.
 
 An outage of Azure Arc will not affect the customer workload itself; only management of the applicable servers via Arc will be impaired.
+
+## Server disconnection
+
+The Connected Machine agent [sends a regular heartbeat message](overview.md#agent-status) to Azure every five minutes. If an Arc-enabled server stops sending heartbeats to Azure for longer than 15 minutes, it can mean that the server is offline, the network connection is blocked, or the agent isn't running.
+
+Develop a plan for responding to and investigating these incidents, including setting up resource Health alerts to get notified when such incidents occur. For more information, see [Create Resource Health alerts in the Azure portal](/azure/service-health/resource-health-alert-monitor-guide) and [Troubleshoot Azure Arc-enabled servers in disconnected scenarios](troubleshoot-connectivity.md).
 
 ## Next steps
 

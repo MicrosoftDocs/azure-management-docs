@@ -44,7 +44,7 @@ Update role assignment with any resources accessed by the managed identity to al
 
 ## Step 3: Uninstall the Azure Connected Machine agent
 
-Follow the guidance to [uninstall the agent](manage-agent.md#uninstall-the-agent) from the server. Double check that all extensions are removed before disconnecting the agent.
+Follow the guidance to [uninstall the agent](uninstall-agent.md) from the server. Double check that all extensions are removed before disconnecting the agent.
 
 ## Step 4: Install the Azure Guest Agent
 
