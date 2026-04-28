@@ -22,7 +22,7 @@ ms.date: 04/28/2026
 
 * Configure your network security group (NSG) or firewall to allow outbound TCP port 443 (HTTPS) traffic to the `AzureMonitor` and `AzureResourceManager` **service tag** endpoints. These service tags are for your NSG and *not* Azure resource tags.
 
-  For full requirements, see [Azure Monitor Agent network configuration](/azure/azure-monitor/agents/azure-monitor-agent-network-configuration). You can run one of the following commands to configure traffic for your firewall:
+  For full requirements, see [Azure Monitor Agent network configuration](/azure/azure-monitor/agents/azure-monitor-agent-network-configuration). You can run one of the following commands to configure traffic for your firewall. Replace `<resource-group>` and `<nsg-name>` with your own values:
 
   # [Azure PowerShell](#tab/azure-powershell)
 
