@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 04/28/2026
-ms.subservice: agentic-rag
+ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
