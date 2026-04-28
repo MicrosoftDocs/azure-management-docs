@@ -23,8 +23,7 @@ After you [connect your public cloud to Azure](add-public-cloud.md), the multicl
 `<PublicCloud>_<AccountId>`
 
 > [!NOTE]
-> The Connector creates Azure resource groups per AWS Account and GCP project. Therefore, you are limited to a maximum of 980 accounts or projects that can be scanned with one Azure subscription, or a lower number if you have other resource groups created in your subscription. In addition, the maximum number of AWS/GCP resources that can be synced to a single resource type is 800 per AWS account / GCP project. For more information, see the [current Azure limits](/azure/azure-resource-manager/management/azure-subscription-service-limits).
-
+> The Connector creates Azure resource groups per AWS Account and GCP project. Therefore, you are limited to a maximum of 980 accounts or projects that can be scanned with one Azure subscription, or a lower number if you have other resource groups created in your subscription. For more information, see the [current Azure limits](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 
 For every AWS resource discovered through the **[Inventory](view-multicloud-inventory.md)** solution, an Azure representation is created in the `<PublicCloud>_<AccountId>` resource group. Each resource has the [namespace value associated with its AWS service](view-multicloud-inventory.md#supported-services).
 

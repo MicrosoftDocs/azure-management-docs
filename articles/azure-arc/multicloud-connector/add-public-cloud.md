@@ -153,7 +153,7 @@ If your AWS account is an organization account, you also need to create a StackS
 
    1. Otherwise, leave the other options set to their default settings and select **Next**.
 1. In **Configure stack options**, leave the options set to their default settings and select **Next**.
-1. In **Set deployment options**, enter the ID for the AWS account where the StackSet will be deployed, and select any AWS region to deploy the stack. Leave the other options set to their default settings and select **Next**.
+1. In **Set deployment options**, enter the ID for the AWS account where the StackSet will be deployed, and select any AWS region to deploy the stack. Optionally, you can choose to **Deploy to organizational units (OUs)** in the **Deployment Targets** section if you prefer the connector to only scan accounts associated with specific OUs. Leave the other options set to their default settings and select **Next**.
 1. In **Review**, confirm that the information is correct, select the acknowledgment checkbox, and then select **Submit**.
 
 ### [GCP](#tab/gcp)
