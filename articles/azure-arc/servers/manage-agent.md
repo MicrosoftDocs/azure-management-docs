@@ -162,7 +162,7 @@ Get the latest version of the Azure Connected Machine agent for Windows-based ma
 
 #### Microsoft Update configuration
 
-To keep the Windows agent version up to date, we recommend using Microsoft Update to automatically get the latest version . By using your existing update infrastructure, such as Microsoft Configuration Manager or Windows Server Update Services, you can include Azure Connected Machine agent updates with your regular OS update schedule.
+To keep the Windows agent version up to date, we recommend using Microsoft Update to automatically get the latest version. By using your existing update infrastructure, such as Microsoft Configuration Manager or Windows Server Update Services, you can include Azure Connected Machine agent updates with your regular OS update schedule.
 
 Windows Server doesn't check for updates in Microsoft Update by default. To receive automatic updates for the Azure Connected Machine Agent, you must configure the Windows Update client on the machine to check for other Microsoft products.
 
