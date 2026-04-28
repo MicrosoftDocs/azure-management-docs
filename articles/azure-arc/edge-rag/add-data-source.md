@@ -1,18 +1,18 @@
 ---
-title: Add Data Source for Edge RAG Chat Solution
-description: "Learn how to add and manage data sources for Edge RAG chat solutions, including setup, and ingestion processes."
+title: Add a Data Source for Agentic RAG
+description: "Learn how to add and manage data sources for Agentic RAG chat solutions, including setup, and ingestion processes."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 11/11/2025
+ms.date: 04/27/2026
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
   - build-2025
 ---
-# Add data source for Edge RAG Preview, enabled by Azure Arc
+# Add data source for Agentic RAG enabled by Azure Arc
 
-Add and configure a data source for your Edge RAG chat solution by using the developer portal. Follow the step-by-step instructions to set up data ingestion, and define indexing parameters.
+Add and configure a data source for your Agentic RAG chat solution by using the developer portal. Follow the step-by-step instructions to set up data ingestion, and define indexing parameters.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -21,9 +21,9 @@ Add and configure a data source for your Edge RAG chat solution by using the dev
 Before you begin:
 
 - Review the following articles:
-  - [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
+  - [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
-  - [Advanced data parsing for Edge RAG](advanced-data-parsing.md)
+  - [Advanced data parsing for Agentic RAG](advanced-data-parsing.md)
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Set up data ingestion
@@ -53,6 +53,7 @@ To get started, create a data source by using the local developer portal.
 
     | Field | Value |
     |---|---|
+    | Collection | Select the target collection for ingested data. Choose an existing collection or use the default `edgeragapp` collection. |
     | Schedule updates | Frequency at which your data is synced for updates |
     | Chunk size | Select the appropriate chunk size |
     | Chunk overlap |Select the appropriate chunk overlap |
@@ -63,6 +64,8 @@ To get started, create a data source by using the local developer portal.
 1. On the **Review and finish** tab, review your configurations.
 1. When you're satisfied, select **Create**.
 
+You can also perform data ingestion programmatically using the Ingestion API. When using the API, specify the target collection with the `collectionName` parameter in the request body.
+
 ## Related content
 
-- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
+- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)

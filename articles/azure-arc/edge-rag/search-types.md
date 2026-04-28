@@ -1,20 +1,20 @@
 ---
-title: Types of search in Edge RAG
-description: Learn about search types, their options, and how they're used in Edge RAG deployments.
+title: Types of Search in Agentic RAG
+description: Learn about search types, their options, and how they're used in Agentic RAG deployments.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 10/29/2025
+ms.date: 04/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
-#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Edge RAG so I can choose and configure the right search type for my deployment.
+#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agentic RAG so I can choose and configure the right search type for my deployment.
 ---
 
-# Search types in Edge RAG Preview enabled by Azure Arc
+# Search types in Agentic RAG enabled by Azure Arc
 
-A search method or type, like full text, vector, or hybrid, controls how Edge RAG retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
+A search method or type, like full text, vector, or hybrid, controls how Agentic RAG retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
 
-You select a search type when you configure your data query settings in the Edge RAG developer portal, after you deploy your solution with either an Edge RAG-provided model or your own model (BYOM).
+You select a search type when you configure your data query settings in the Agentic RAG developer portal. All search types are available with bring your own model (BYOM) language model endpoint.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -31,7 +31,7 @@ Your choice of search type affects:
 
 ## Available search types
 
-The following definitions describe each search type available in Edge RAG, so you can understand how they work and choose the best option for your scenario.
+The following definitions describe each search type available in Agentic RAG, so you can understand how they work and choose the best option for your scenario.
 
 - **Deep search**: Implements [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0), a method that builds a dynamic graph of information at query time to find the most relevant and connected content. Instead of relying on precomputed summaries or embeddings, LazyGraph RAG incrementally explores and connects data across sources, gathering only the information needed to answer the question. This approach improves answer quality and reduces cost by focusing retrieval on the most useful content for each query.
 
@@ -39,46 +39,55 @@ The following definitions describe each search type available in Edge RAG, so yo
 
 - **Hybrid search**: Combines both full-text search (keyword-based) and vector search (semantic similarity) to retrieve the most relevant documents. It uses the precision of keyword matching and the depth of semantic understanding for improved retrieval accuracy.
 
-- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Edge RAG to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
+- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Agentic RAG to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
 
 - **Vector search**: A search method that finds relevant documents by comparing the semantic similarity between vector embeddings of the user's query and precomputed embeddings of documents, typically using cosine similarity or other distance metrics in a vector space.
 
 ## Compare search types
 
-Edge RAG supports several search types. The following table summarizes each search type, best use cases, and performance considerations. The options you see depend on the language model you use and your scenario:
+Agentic RAG supports several search types. The following table summarizes each search type, best use cases, and performance considerations:
 
 | Search type               | What it does      | Best use cases       | Performance notes                                                                                  |
 |--------------------------|------------------|-----------------|---------------------|
 | **Text search**          | Finds exact words or phrases in your documents using keywords, phrases, or boolean queries.                                                                                                                              | Standard question and answer (Q&A), document lookup, compliance scenarios           | Fastest; highly efficient for simple lookups.                                                     |
 | **Vector search**        | Uses semantic similarity to find contextually relevant results by comparing vector embeddings.                                                                                                                           | Conversational Q&A, finding related content                   | Fast; slightly more compute than text search.                                                      |
 | **Hybrid search**        | Combines text (keyword) and vector (semantic) search for better coverage and accuracy.                                                                                            | Most scenarios; default for general use                       | Fast; combines strengths of text and vector search.                                                |
-| **Deep search**          | Implements [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0), dynamically exploring and connecting data at query time for advanced retrieval. | Complex reasoning, summarization, multi-document Q&A          | Slower; higher compute, but higher quality and context. Requires BYOM and advanced language model. |
-| **Hybrid multimodal**    | Combines text, vector, and image search to retrieve and rank results from multiple data types in a single query.                                                                  | Scenarios involving both text and images                      | Slower than text/vector; performance depends on data size/type. Requires BYOM.                     |
+| **Deep search**          | Implements [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0), dynamically exploring and connecting data at query time for advanced retrieval. | Complex reasoning, summarization, multi-document Q&A          | Slower; higher compute, but higher quality and context. For best results, use GPT-4o or GPT-4.1-mini or later. |
+| **Hybrid multimodal**    | Combines text, vector, and image search to retrieve and rank results from multiple data types in a single query.                                                                  | Scenarios involving both text and images                      | Slower than text/vector; performance depends on data size/type. |
 | **Full text search**     | Scans and matches the entire body of text in documents.            | Legal, compliance, or when exact matches are required         | Fastest for keyword lookups; might miss semantic matches.                                            |
 
 ## Search type availability by deployment
 
-The search types available when you configure your chat solution depend on how you deployed Edge RAG, whether you use an Edge RAG-provided language model or bring your own (BYOM). 
+All search types are available with Agentic RAG, since all deployments use BYOM:
 
-| Deployment type                | Available search types                                      |
-|-------------------------------|------------------------------------------------------------|
-| Edge RAG-provided language model       | Hybrid search, text search, vector search                  |
-| Bring your own model (BYOM)    | Hybrid search, text search, vector search, deep search, hybrid multimodal search |
+| Search type | Available |
+|---|---|
+| Hybrid search | Yes |
+| Text search | Yes |
+| Vector search | Yes |
+| Deep search | Yes (for best results, use GPT-4o or GPT-4.1-mini or later) |
+| Hybrid multimodal search | Yes |
 
-If you plan to bring your own model (BYOM), we recommend OpenAI [GPT-4o](https://github.com/marketplace/models/azure-openai/gpt-4o), [GPT-4.1-mini](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini) or a later version. For more information about BYOM, see: 
-
-- [Choose the right language model for Edge RAG](prepare-language-model.md)
-- [Create a "BYOM" endpoint to use for Edge RAG](prepare-model-endpoint.md)
+For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
 
 For more information about deploying with a language model, see:
 
-- [Deployment overview for Edge RAG](deploy-overview.md) 
-- [Deploy the extension for Edge RAG](deploy.md)
-
+- [Deployment overview for Agentic RAG](deploy-overview.md) 
+- [Deploy the extension for Agentic RAG](deploy.md)
 
 ## How to select a search type
 
-You select the search type in the Edge RAG developer portal when you configure your data query settings. The available options depend on your deployment. Some parameters might differ by search type and model.
+Select the search type in the Agentic RAG developer portal when you configure your data query settings. Some parameters might differ by search type and model.
+
+## Collection-scoped search
+
+You can scope all search types to specific collections. When you query through the developer portal or API, specify which collections to search:
+
+- **Developer portal**: Select the target collection in the data query settings.
+- **Inference API**: Set `data_sources[0].parameters.index_name` to the collection name.
+- **MCP Server**: Set `collection_names` in the tool arguments. You can query multiple collections in a single request.
+
+For more information, see Collections overview and MCP Server overview.
 
 ## Performance considerations
 
@@ -96,16 +105,16 @@ Each search type offers different performance characteristics. Consider these po
 
 ## Tips for choosing a search type
 
-Use these tips to help you select the best search type for your Edge RAG deployment and scenario:
+Use these tips to help you select the best search type for your Agentic RAG deployment and scenario:
 
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
-- For advanced or multimodal needs, deploy Edge RAG with your own language model to use deep or hybrid multimodal search.
-- Not all search types are available for every model. For more information, see [Search type availability by deployment](#search-type-availability-by-deployment).
+- All search types are available with your BYOM endpoint. For deep search, use a model like GPT-4o or later for best results.
+- When you use agents, the built-in MCP server provides search tools.
 
 ## Search type parameters
 
-The following tables list and describe all parameters you can configure for each search type in Edge RAG. Not all parameters are available for every search type or deployment. The Edge RAG developer portal shows only the options that apply to your selected search type and model.
+The following tables list and describe all parameters you can configure for each search type in Agentic RAG. Not all parameters are available for every search type or deployment. The Agentic RAG developer portal shows only the options that apply to your selected search type and model.
 
 Model and search parameters apply to text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search.
 
@@ -118,11 +127,11 @@ The following model parameters are available for text, vector, hybrid, and hybri
 | Model parameter | Description |
 |---|---|
 | **Temperature** | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both.  |
-| **Top-P (nucleus sampling)** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
+| **Top-P (nucleus sampling)** | Similar to temperature, this parameter controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
 
 ### Search parameters
 
-The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Edge RAG retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
+The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Agentic RAG retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
 
 These parameters only apply to the **Knowledge-based** chat experience.
 
@@ -130,7 +139,7 @@ These parameters only apply to the **Knowledge-based** chat experience.
 |---|---|
 | **Top-N documents** | Refers to number of most relevant chunks given to the language model. Choosing *N* depends on the application's needs:<br> <br>- For broad coverage, use a larger *N*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *N*. For example, 3-5.<br><br> Experiment with *N* values to balance retrieval accuracy and downstream model performance. Bigger the *value of N*, the longer the inference time.  |
 | **Text strictness** | Controls how strictly the RAG system filters and ranks retrieved text documents before passing them to the generation model.<br><br>- **Low strictness**: More documents are considered relevant, even if they're only loosely related to the query.<br>- **High strictness**: Only documents that closely match the query are used. |
-| **Image strictness** (Hybrid multimodal search only) | Similar to text strictness but applies to retrieved image data.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are very closely aligned with the query are retrieved. |
+| **Image strictness** (Hybrid multimodal search only) | Similar to text strictness but applies to retrieved image data.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are closely aligned with the query are retrieved. |
 
 ### Deep search parameters
 
@@ -149,8 +158,8 @@ The following parameters let you customize how deep search retrieves, expands, a
 
 ## Related content
 
-- [Deployment overview for Edge RAG](deploy-overview.md)
-- [Deploy Edge RAG](deploy.md)
-- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
+- [Deployment overview for Agentic RAG](deploy-overview.md)
+- [Deploy Agentic RAG](deploy.md)
+- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
 - [Set up data query](set-up-data-query.md)
 
