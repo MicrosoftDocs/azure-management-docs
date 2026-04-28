@@ -19,21 +19,23 @@ You follow the same process for either of these processes: uninstall any VM exte
 
 ## Remove VM extensions
 
-1. List the VM extensions installed on the machine and note their configuration by using the [Azure portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed), or [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed).
+First, list the VM extensions installed on the machine and note their configuration by using the [Azure portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed), or [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed).
 
-1. Remove all VM extensions installed on the machine. To remove extensions, use the [Azure portal](manage-vm-extensions-portal.md#remove-extensions), [Azure CLI](manage-vm-extensions-cli.md#remove-extensions), or [Azure PowerShell](manage-vm-extensions-powershell.md#remove-extensions).
+After noting the configuration of the installed extensions, remove all VM extensions installed on the machine. To remove extensions, use the [Azure portal](manage-vm-extensions-portal.md#remove-extensions), [Azure CLI](manage-vm-extensions-cli.md#remove-extensions), or [Azure PowerShell](manage-vm-extensions-powershell.md#remove-extensions).
 
 ## Disconnect from Azure Arc
 
-1. Use the `azcmagent` tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can run this tool manually while signed in interactively, with a Microsoft identity [access token](/azure/active-directory/develop/access-tokens), or with a [service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
+Use the `azcmagent` tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can run this tool manually while signed in interactively, with a Microsoft identity [access token](/azure/active-directory/develop/access-tokens), or with a [service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
 
-   Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
+Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
 
 ## Reconnect to Azure Arc
 
-1. Run the `azcmagent` tool with the [Connect](azcmagent-connect.md) parameter to re-register the Connected Machine agent on the machine. The agent defaults to using the computer's current hostname, but you can choose a different resource name by using the `--resource-name` parameter. Specify a region by using the `--location` parameter.
+Run the `azcmagent` tool with the [Connect](azcmagent-connect.md) parameter to re-register the Connected Machine agent on the machine. The agent defaults to using the computer's current hostname, but you can choose a different resource name by using the `--resource-name` parameter. Specify a region by using the `--location` parameter.
 
-1. Redeploy the VM extensions that were originally deployed to the machine from Azure Arc-enabled servers. If you deployed the Azure Monitor for VMs (insights) agent by using an Azure Policy definition, the agents are redeployed after the next [evaluation cycle](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
+After the connection is in place and the machine is visible in Azure, redeploy any VM extensions that were originally deployed to the machine from Azure Arc-enabled servers.
+
+If you deployed the Azure Monitor for VMs (insights) agent by using an Azure Policy definition, the agents are redeployed after the next [evaluation cycle](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
 
 ## Next steps
 
