@@ -37,6 +37,6 @@ You follow the same process for either of these processes: uninstall any VM exte
 
 ## Next steps
 
-* For troubleshooting information, see [Troubleshoot Connected Machine agent connection issues](troubleshoot-agent-onboard.md).
-
-* Learn how to manage your machine by using [Azure Policy](/azure/governance/policy/overview) for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verifying the machine is reporting to the expected Log Analytics workspace, enabling monitoring by using [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy) policy, and much more.
+* Get tips for [troubleshooting Connected Machine agent connection issues](troubleshoot-agent-onboard.md).
+* Learn how to [manage Connected Machine agent versions on Arc-enabled servers](manage-agent.md).
+* Learn how to [configure Azure Connected Machine agent proxy settings](manage-agent-proxy-settings.md).

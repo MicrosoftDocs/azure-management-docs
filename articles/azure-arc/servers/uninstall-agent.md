@@ -325,3 +325,9 @@ Install-Module Az.ResourceGraph, Az.Resources -Scope CurrentUser
    ```
 
    The script prompts for confirmation before each deletion. To skip prompts, add `-Confirm:$false`.
+
+## Related content
+
+* Learn how to [manage Connected Machine agent versions on Arc-enabled servers](manage-agent.md).
+* Learn how to [configure Azure Connected Machine agent proxy settings](manage-agent-proxy-settings.md).
+* Learn how to [rename an Arc-enabled server or move it to a different Azure region](manage-howto-migrate.md).

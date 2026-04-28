@@ -287,3 +287,9 @@ You can download the latest agent package from Microsoft's [package repository](
 The `/var/log/zypper.log` log file records the actions of the [zypper](https://en.opensuse.org/Portal:Zypper) command, such as installation and removal of packages.
 
 ---
+
+## Related content
+
+* Learn how to [configure Azure Connected Machine agent proxy settings](manage-agent-proxy-settings.md).
+* Learn how to [uninstall the Azure Connected Machine agent](uninstall-agent.md) from Arc-enabled servers.
+* Learn how to [rename an Arc-enabled server or move it to a different Azure region](manage-howto-migrate.md).

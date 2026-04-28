@@ -134,4 +134,8 @@ If you're already using environment variables to configure the proxy server for 
 
 1. Remove the unused environment variables by following the steps for [Windows](#windows-environment-variables) or [Linux](#linux-environment-variables).
 
+## Related content
 
+- Learn how to [manage Connected Machine agent versions on Arc-enabled servers](manage-agent.md).
+- Learn how to [uninstall the Azure Connected Machine agent](uninstall-agent.md) from Arc-enabled servers.
+- Learn how to [rename an Arc-enabled server or move it to a different Azure region](manage-howto-migrate.md).
