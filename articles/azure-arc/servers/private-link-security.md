@@ -2,7 +2,7 @@
 title: Use Azure Private Link to connect servers to Azure Arc by using a private endpoint
 description: Learn how to use Azure Private Link to securely connect networks to Azure Arc.
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 04/29/2026
 # Customer intent: "As a network administrator, I want to configure Azure Private Link to connect on-premises servers to Azure Arc so that I can securely manage my resources without exposing data to public networks."
 ---
 
@@ -235,7 +235,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
 
 1. After validation passes, select **Create**.
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [Azure PowerShell](#tab/azure-powershell2)
 
 1. Create the private link scope:
 
@@ -274,7 +274,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
      -PrivateLinkServiceConnection $privateEndpointConnection
    ```
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 1. Create the private link scope:
 
@@ -337,7 +337,7 @@ If you opted out of using Azure private DNS zones during private endpoint creati
 
 1. On the service menu, under **Settings**, select **DNS configuration** to see a list of the DNS records and corresponding IP addresses that you need to set up on your DNS server. The FQDNs and IP addresses change based on the region that you selected for your private endpoint and the available IP addresses in your subnet.
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [Azure PowerShell](#tab/azure-powershell2)
 
 Run the following command to retrieve the DNS records and IP addresses required for your DNS server:
 
@@ -349,7 +349,7 @@ $endpoint = Get-AzPrivateEndpoint `
 $endpoint.CustomDnsConfigs | Select-Object Fqdn, IpAddresses
 ```
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 Run the following command to retrieve the DNS records and IP addresses required for your DNS server:
 
@@ -445,7 +445,7 @@ For Azure Arc-enabled servers that were set up before your private link scope, y
 
    :::image type="content" source="./media/private-link-security/select-servers-private-link-scope.png" lightbox="./media/private-link-security/select-servers-private-link-scope.png" alt-text="Screenshot that shows selecting Azure Arc resources." border="true":::
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [Azure PowerShell](#tab/azure-powershell2)
 
 1. Retrieve the private link scope resource ID:
 
@@ -464,7 +464,7 @@ For Azure Arc-enabled servers that were set up before your private link scope, y
      -PrivateLinkScopeResourceId $scope.Id
    ```
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/azure-cli2)
 
 1. Retrieve the private link scope resource ID:
 
