@@ -15,7 +15,7 @@ The Agentic RAG (retrieval-augmented generation) platform is organized into two 
 
 :::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agentic RAG platform with the agentic layer on top of the knowledge layer." lightbox="media/agentic-overview/agentic-rag-platform.png":::
 
-The agentic layer adds planning, tool use, and conversation orchestration to Agentic RAG . The agentic layer lets you build assistants that can manage multi-turn interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
+The agentic layer adds planning, tool use, and conversation orchestration to Agentic RAG. The agentic layer lets you build assistants that can manage multi-turn interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
 
 You can deploy the agentic layer together with the knowledge layer or by itself, depending on whether you need local document ingestion and retrieval or only agent orchestration.
 
@@ -134,7 +134,7 @@ Agentic RAG does **not** bundle any language models. You must provide your own L
 | **Azure OpenAI** | Cloud-hosted models (requires network connectivity from the edge) |
 | **Any OpenAI-compatible endpoint** | Self-hosted or third-party (for example, Ollama) |
 
-The BYOM endpoint is configured *at the cluster level* during deployment via Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint. The Agent model includes an `endpoint_url` field for future per-agent BYOM support, but it's not yet used by the runtime.
+The BYOM endpoint is configured *at the cluster level* during deployment via Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint.
 
 ## Related content
 
