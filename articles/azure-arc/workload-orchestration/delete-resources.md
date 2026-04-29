@@ -79,7 +79,7 @@ Target deletion automatically uninstalls all running workloads (instances, solut
 A deleted target can be recreated with the same name successfully. Once the target is re-linked to the relevant common config templates, users can once again start deploying solutions post re-configuring the parameter values.
 
 > [!NOTE]
-> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the arguement `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster will not be impacted.
+> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the argument `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster will not be impacted.
 
 ***
 
