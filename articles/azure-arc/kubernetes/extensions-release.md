@@ -41,7 +41,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ### Azure Red Hat OpenShift (ARO) Considerations
 
-Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.17.0, these guardrails can be uninstalled through configuration flag below.
+Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.18.0, these guardrails can be uninstalled through configuration flag below.
 
 ```bash
 --configuration-settings azurepolicy.env.disableGuardrails=true
@@ -50,14 +50,24 @@ Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. T
 Example:
 
 ```bash
-az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version true --version <verison above 1.17.0> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
+az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version true --version <verison 1.18.0 or above> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
 ```
 
 ### Azure Policy Extension Release Notes
 
-#### 1.17.1
+#### 1.18.0
+
+Introducing Validating Admission Policy (VAP) generation. Validating Admission Policies are Kubernetes-native validating policy resources that are evaluated in-process, allowing for reduced latency and fail-close evaluation. Azure Policies that contain Common Expression Language (CEL) will automatically generate VAPs for Kubernetes version 1.30+
 
 Allow disabling guardrails on ARO clusters through configuration flag.
+
+Security improvements.
+ - Released: May 2026
+ - Policy Image: v1.15.5
+ - Gatekeeper Image: v3.22.1-1
+
+#### 1.17.1
+
 Security improvements.
  - Released: Apr 2026
  - Policy Image: v1.15.5
@@ -69,6 +79,7 @@ Fixed policy extension installation bug in AKS on Azure Local (AKS enabled by Az
 Added RKE2 support.
 Enabled mutation.
 Enabled external data.
+
 Security improvements.
  - Released: Jan 2026
  - Policy Image: v1.15.4
