@@ -1,7 +1,7 @@
 ---
 title: Create eligible authorizations
 description: When onboarding customers to Azure Lighthouse, you can let users in your managing tenant elevate their role on a just-in-time basis. 
-ms.date: 04/28/2025
+ms.date: 04/06/2026
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 # Customer intent: "As a cloud administrator onboarding customers to Azure Lighthouse, I want to create eligible authorizations with just-in-time role elevation, so that I can control privileged access while minimizing security risks associated with permanent role assignments."
@@ -9,53 +9,49 @@ ms.custom: devx-track-arm-template
 
 # Create eligible authorizations
 
-When onboarding customers to Azure Lighthouse, you create authorizations to grant specified Azure built-in roles to users in your managing tenant. You can also create eligible authorizations that use [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure) to let users in your managing tenant temporarily elevate their role. This lets you grant additional permissions on a just-in-time basis so that users only have those permissions for a set duration.
+When you onboard customers to Azure Lighthouse, you create authorizations to grant specified Azure built-in roles to users in your managing tenant. You can also create eligible authorizations that use [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure) to let users in your managing tenant temporarily elevate their role. This role elevation grants additional permissions on a just-in-time basis so that users only have those permissions for a set duration.
 
-Creating eligible authorizations lets you minimize the number of permanent assignments of users to privileged roles, helping to reduce security risks related to privileged access by users in your tenant.
+By creating eligible authorizations, you minimize the number of permanent assignments of users to privileged roles. This approach helps reduce security risks related to privileged access by users in your tenant.
 
-This topic explains how eligible authorizations work and how to create them when [onboarding a customer to Azure Lighthouse](onboard-customer.md).
+This article explains how eligible authorizations work and how to create them when [onboarding a customer to Azure Lighthouse](onboard-customer.md).
 
 ## License requirements
 
-Creating eligible authorizations requires an [Enterprise Mobility + Security E5 (EMS E5)](https://www.microsoft.com/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing) or [Microsoft Entra ID P2](https://www.microsoft.com/security/business/microsoft-entra-pricing) license.
+Because eligible authorizations use Microsoft Entra Privileged Identity Management, the managing tenant must have a [valid Microsoft Entra ID Governance license that supports Privileged Identity management](/entra/id-governance/licensing-fundamentals#privileged-identity-management) in order to create eligible authorizations.
 
-The EMS E5 or Microsoft Entra ID P2 license must be held by the managing tenant, not the customer tenant.
-
-Any extra costs associated with an eligible role will apply only during the period of time in which the user elevates their access to that role.
-
-For information about licenses for users, see [Microsoft Entra ID Governance licensing fundamentals](/entra/id-governance/licensing-fundamentals).
+Any extra costs associated with an eligible role apply only during the period of time in which the user elevates their access to that role.
 
 > [!NOTE]
 > Creating eligible authorizations isn't supported in [national clouds](/entra/identity-platform/authentication-national-cloud).
 
 ## How eligible authorizations work
 
-An eligible authorization defines a role assignment that requires the user to activate the role when they need to perform privileged tasks. When they activate the eligible role, they'll have the full access granted by that role for the specified period of time.
+An eligible authorization defines a role assignment that requires the user to activate the role when they need to perform privileged tasks. When they activate the eligible role, they have the full access granted by that role for the specified period of time.
 
 Users in the customer tenant can review all role assignments, including those in eligible authorizations, before the onboarding process.
 
-Once a user successfully activates an eligible role, they will have that elevated role on the delegated scope for a pre-configured time period, in addition to their permanent role assignment(s) for that scope.
+When a user activates an eligible role, they get that elevated role on the delegated scope for a preconfigured time period, in addition to their permanent role assignments for that scope.
 
 Administrators in the managing tenant can review all Privileged Identity Management activities by viewing the audit log in the managing tenant. Customers can view these actions in the Azure activity log for the delegated subscription.
 
 ## Eligible authorization elements
 
-You can create an eligible authorization when onboarding customers with Azure Resource Manager templates or by publishing a Managed Services offer to Microsoft Marketplace. Each eligible authorization must include three elements: the user, the role, and the access policy.
+You can create an eligible authorization when onboarding customers by using Azure Resource Manager templates or by publishing a Managed Services offer to Microsoft Marketplace. Each eligible authorization must include three elements: the user, the role, and the access policy.
 
 ### User
 
-For each eligible authorization, you provide the Principal ID for either an individual user or a Microsoft Entra group in the managing tenant. Along with the Principal ID, you must provide a display name of your choice for each authorization.
+For each eligible authorization, provide the principal ID for either an individual user or a Microsoft Entra group in the managing tenant. Along with the principal ID, provide a display name for each authorization.
 
-If a group is provided in an eligible authorization, any member of that group will be able to elevate their own individual access to that role, per the access policy.
+If you assign an eligible authorization to a group, any member of that group can elevate their own individual access to that role, per the access policy.
 
-You can't use eligible authorizations with service principals, since there's currently no way for a service principal account to elevate its access and use an eligible role. You also can’t use eligible authorizations with `delegatedRoleDefinitionIds` that a User Access Administrator can [assign to managed identities](deploy-policy-remediation.md).
+You can't use eligible authorizations with service principals, since there's currently no way for a service principal account to elevate its access and use an eligible role. You also can't use eligible authorizations with `delegatedRoleDefinitionIds` that a User Access Administrator can [assign to managed identities](deploy-policy-remediation.md).
 
 > [!NOTE]
-> For each eligible authorization, be sure to also create a permanent (active) authorization for the same Principal ID with a different role, such as Reader (or another Azure built-in role that includes Reader access). If you don't include a permanent authorization with Reader access, the user won't be able to elevate their role in the Azure portal.
+> For each eligible authorization, be sure to also create a permanent (active) authorization for the same principal ID with a different role, such as Reader (or another Azure built-in role that includes Reader access). If you don't include a permanent authorization with Reader access, the user can't elevate their role in the Azure portal.
 
 ### Role
 
-Each eligible authorization needs to include an [Azure built-in role](/azure/role-based-access-control/built-in-roles) that the user will be eligible to use on a just-in-time basis.
+Each eligible authorization needs to include an [Azure built-in role](/azure/role-based-access-control/built-in-roles) that the user can use on a just-in-time basis.
 
 The role can be any Azure built-in role that is [supported for Azure delegated resource management](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse), except for User Access Administrator.
 
@@ -68,7 +64,7 @@ The access policy defines the multifactor authentication requirements, the lengt
 
 #### Multifactor authentication
 
-Specify whether or not to require [Microsoft Entra multifactor authentication](/entra/identity/authentication/concept-mfa-howitworks) in order for an eligible role to be activated.
+Specify whether to require [Microsoft Entra multifactor authentication](/entra/identity/authentication/concept-mfa-howitworks) to activate an eligible role.
 
 #### Maximum duration
 
@@ -78,23 +74,23 @@ Define the total length of time for which the user will have the eligible role. 
 
 The approvers element is optional. If you include it, you can specify up to 10 users or user groups in the managing tenant who can approve or deny requests from a user to activate the eligible role.
 
-You can't use a service principal account as an approver. Also, approvers can't approve their own access; if an approver is also included as the user in an eligible authorization, a different approver will have to grant access in order for them to elevate their role.
+You can't use a service principal account as an approver. Also, approvers can't approve their own access. If an approver is also included as the user in an eligible authorization, a different approver must grant access for them to elevate their role.
 
-If you don’t include any approvers, the user will be able to activate the eligible role whenever they choose.
+If you don't include any approvers, the user can activate the eligible role whenever they choose.
 
-## Create eligible authorizations using Managed Services offers
+## Create eligible authorizations by using Managed Services offers
 
-To onboard your customer to Azure Lighthouse, you can publish Managed Services offers to Microsoft Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you can now specify whether the **Access type** for each [Authorization](/azure/marketplace/create-managed-service-offer-plans#authorizations) should be **Active** or **Eligible**.
+You can onboard your customer to Azure Lighthouse by publishing Managed Services offers to Microsoft Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you specify whether the **Access type** for each [**Authorization**](/azure/marketplace/create-managed-service-offer-plans#authorizations) should be **Active** or **Eligible**.
 
-When you select **Eligible**, the user in your authorization will be able to activate the role according to the access policy you configure. You must set a maximum duration between 30 minutes and 8 hours, and specify whether you'll require multifactor authentication. You can also add up to 10 approvers if you choose to use them, providing a display name and a principal ID for each one.
+When you select **Eligible**, the user in your authorization can activate the role according to the access policy you configure. You must set a maximum duration between 30 minutes and 8 hours, and specify whether you require multifactor authentication. You can also add up to 10 approvers if you choose to use them, providing a display name and a principal ID for each one.
 
-Be sure to review the details in the [Eligible authorization elements](#eligible-authorization-elements) section when configuring your eligible authorizations in Partner Center.
+Be sure to understand the [eligible authorization elements](#eligible-authorization-elements) when configuring your eligible authorizations in Partner Center.
 
-## Create eligible authorizations using Azure Resource Manager templates
+## Create eligible authorizations by using Azure Resource Manager templates
 
-To onboard your customer to Azure Lighthouse, you use an [Azure Resource Manager template along with a corresponding parameters file](onboard-customer.md#create-an-azure-resource-manager-template) that you modify. The template you choose will depend on whether you're onboarding an entire subscription, a resource group, or multiple resource groups within a subscription.
+You can onboard customers to Azure Lighthouse by using an [Azure Resource Manager template along with a corresponding parameters file](onboard-customer.md#create-an-azure-resource-manager-template) that you modify. The template you choose depends on whether you're onboarding an entire subscription, a resource group, or multiple resource groups within a subscription.
 
-To include eligible authorizations when you onboard a customer, use one of the templates from the [delegated-resource-management-eligible-authorizations section of our samples repo](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/delegated-resource-management-eligible-authorizations). We provide templates with and without approvers included, so that you can use the one that works best for your scenario.
+To include eligible authorizations when you onboard a customer, use one of the templates from the [delegated-resource-management-eligible-authorizations section of our samples repo](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/delegated-resource-management-eligible-authorizations). The repository provides templates with and without approvers included, so that you can use the one that works best for your scenario.
 
 |To onboard this (with eligible authorizations)  |Use this Azure Resource Manager template  |And modify this parameter file |
 |---------|---------|---------|
@@ -105,7 +101,7 @@ To include eligible authorizations when you onboard a customer, use one of the t
 |Multiple resource groups within a subscription   |[multiple-rg.json](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/rg/multiple-rg.json)  |[multiple-rg.parameters.json](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/rg/multiple-rg.parameters.json)    |
 |Multiple resource groups within a subscription (with approvers)  |[multiple-rg-managing-tenant-approvers.json](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/rg/multiple-rg-managing-tenant-approvers.json)  |[multiple-rg-managing-tenant-approvers.parameters.json](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/rg/multiple-rg-managing-tenant-approvers.parameters.json)    |
 
-The **subscription-managing-tenant-approvers.json** template, which can be used to onboard a subscription with eligible authorizations (including approvers), is shown below.
+For example, this is the **subscription-managing-tenant-approvers.json** template, which onboards a subscription with eligible authorizations (including approvers).
 
 ```json
 {
@@ -191,11 +187,10 @@ The **subscription-managing-tenant-approvers.json** template, which can be used 
 
 ### Define eligible authorizations in your parameters file
 
-The [subscription-managing-tenant-approvers.parameters.json sample template](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/subscription/subscription-managing-tenant-approvers.parameters.json) can be used to define authorizations, including eligible authorizations, when onboarding a subscription.
+The parameters file that corresponds with your deployment template defines authorizations, including eligible authorizations.
 
-Each of your eligible authorizations must be defined in the `eligibleAuthorizations` parameter. This example includes one eligible authorization.
-
-This template also includes the `managedbyTenantApprovers` element, which adds a `principalId` who will be required to approve all attempts to activate the eligible roles that are defined in the `eligibleAuthorizations` element.
+Define each of your eligible authorizations in the `eligibleAuthorizations` parameter. For example, this [subscription-managing-tenant-approvers.parameters.json sample template](https://github.com/Azure/Azure-Lighthouse-samples/blob/master/templates/delegated-resource-management-eligible-authorizations/subscription/subscription-managing-tenant-approvers.parameters.json)
+includes one eligible authorization. It also includes the `managedbyTenantApprovers` element, which adds a `principalId` who must approve all attempts to activate the eligible roles that are defined in the `eligibleAuthorizations` element.
 
 ```json
 {
@@ -246,25 +241,27 @@ This template also includes the `managedbyTenantApprovers` element, which adds a
 
 Each entry within the `eligibleAuthorizations` parameter contains [three elements](#eligible-authorization-elements) that define an eligible authorization: `principalId`, `roleDefinitionId`, and `justInTimeAccessPolicy`.
 
-`principalId` specifies the ID for the Microsoft Entra user or group to which this eligible authorization will apply.
+`principalId` specifies the ID for the Microsoft Entra user or group to which this eligible authorization applies.
 
 `roleDefinitionId` contains the role definition ID for an [Azure built-in role](/azure/role-based-access-control/built-in-roles) that the user will be eligible to use on a just-in-time basis. If you include multiple eligible authorizations that use the same `roleDefinitionId`, they all must have identical settings for `justInTimeAccessPolicy`.
 
 `justInTimeAccessPolicy` specifies three elements:
 
-- `multiFactorAuthProvider` can either be set to **Azure**, which will require authentication using Microsoft Entra multifactor authentication, or to **None** if no multifactor authentication will be required.
-- `maximumActivationDuration` sets the total length of time for which the user will have the eligible role. This value must use the ISO 8601 duration format. The minimum value is PT30M (30 minutes) and the maximum value is PT8H (8 hours). For simplicity, we recommend using values in half-hour increments only, such as PT6H for 6 hours or PT6H30M for 6.5 hours.
-- `managedByTenantApprovers` is optional. If you include it, it must contain one or more combinations of a principalId and a principalIdDisplayName who will be required to approve any activation of the eligible role.
+- `multiFactorAuthProvider` can either be set to **Azure**, which requires authentication by using Microsoft Entra multifactor authentication, or to **None** if no multifactor authentication is required.
+- `maximumActivationDuration` sets the total length of time for which the user will have the eligible role. This value must use the ISO 8601 duration format. The minimum value is PT30M (30 minutes) and the maximum value is PT8H (8 hours). For simplicity, use values in half-hour increments, such as PT6H for 6 hours or PT6H30M for 6.5 hours.
+- `managedByTenantApprovers` is optional. If you include it, it must contain one or more combinations of a principalId and a principalIdDisplayName who must approve any activation of the eligible role.
 
 For more information about these elements, see the [Eligible authorization elements](#eligible-authorization-elements) section.
 
 ## Elevation process for users
 
-After you onboard a customer to Azure Lighthouse, any eligible roles you included will be available to the specified user (or to users in any specified groups).
+After you onboard a customer to Azure Lighthouse, the specified user (or users in any specified groups) can access the eligible roles you included.
 
 Each user can elevate their access at any time by visiting the **My customers** page in the Azure portal, selecting a delegation, and then selecting **Manage eligible roles**. After that, they can follow the [steps to activate the role](/entra/id-governance/privileged-identity-management/pim-resource-roles-activate-your-roles) in Microsoft Entra Privileged Identity Management.
 
-If approvers have been specified, the user won't have access to the role until approval is granted by a designated [approver from the managing tenant](#approvers). All of the approvers will be notified when approval is requested, and the user won't be able to use the eligible role until approval is granted. Approvers will also be notified when that happens. For more information about the approval process, see [Approve or deny requests for Azure resource roles in Privileged Identity Management](/entra/id-governance/privileged-identity-management/pim-resource-roles-approval-workflow).
+If you specify approvers, the user can't access the role until an [approver from the managing tenant](#approvers) grants approval. All of the approvers are notified when approval is requested, and the user can't use the eligible role until approval is granted. Approvers also get notified about each approval.
+
+For more information about the approval process, see [Approve or deny requests for Azure resource roles in Privileged Identity Management](/entra/id-governance/privileged-identity-management/pim-resource-roles-approval-workflow).
 
 Once the eligible role has been activated, the user will have that role for the full duration specified in the eligible authorization. After that time period, they will no longer be able to use that role, unless they repeat the elevation process and elevate their access again.
 

@@ -68,7 +68,6 @@
       - name: Cluster extensions
         href: conceptual-extensions.md
       - name: Available extensions
-        displayName: gitops, flux, version
         href: extensions-release.md
       - name: Version-managed extensions
         href: managed-extensions.md
@@ -80,10 +79,13 @@
       - name: Application deployment with GitOps (Argo CD)
         displayName: argo, deploy, configuration
         href: conceptual-gitops-argocd.md
-      - name: Application deployment with GitOps (Flux v2)
+      - name: Application deployment with GitOps (Flux)
         displayName: deploy, configuration
         href: conceptual-gitops-flux2.md
-      - name: GitOps (Flux v2) parameters
+      - name: GitOps (Flux) Release notes
+        displayName: gitops, flux, version
+        href: flux-gitops-release-notes.md
+      - name: GitOps (Flux) parameters
         href: gitops-flux2-parameters.md
       - name: CI/CD workflow using GitOps
         displayName: flux, pipeline
@@ -173,6 +175,18 @@
       - name: Azure Arc-enabled Machine Learning
         displayName: ML, AzureML, compute
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
+  - name: Cert-manager for Arc-enabled Kubernetes (preview)
+    items:
+    - name: Overview
+      href: cert-manager-overview.md
+    - name: Deploy extension
+      href: cert-manager-deploy.md
+    - name: Ingress support
+      href: cert-manager-ingress.md
+    - name: Egress support
+      href: cert-manager-egress.md
+    - name: Monitor and troubleshoot
+      href: cert-manager-monitor-troubleshoot.md
   - name: Simplify network connectivity
     href: arc-gateway-simplify-networking.md
     displayName: gateway, arc gateway

@@ -3,8 +3,8 @@ title: Configure Service Health alerts and notification for Azure Container Regi
 description: Start here to learn how you can use the features of Azure Service Health to monitor and alert service issues in Azure Container Registry.
 ms.date: 02/06/2026
 ms.topic: concept-article
-author: feynmanzhou
-ms.author: feynmanzhou
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom:
   - horz-monitor
@@ -177,7 +177,7 @@ Once your Service Health alerts are configured, you can view notifications when 
 
 :::image type="content" source="media/monitor-service/service-health-history.png" alt-text="Screenshot of the Azure Service Health history showing past service events for Azure Container Registry.":::
 
-For more information about viewing and managing service health notifications, see [View service health notifications in the Azure portal](/azure/service-health/service-notifications).
+For more information about viewing and managing service health notifications, see [View service health notifications in the Azure portal](/azure/service-health/service-health-notifications-properties).
 
 ## Respond to Service Health alerts
 

@@ -64,3 +64,6 @@ If you selected the Arc onboarding solution, but your EC2 instance or GCP VM isn
 1. Ensure your EC2 instance is in a supported [AWS region](overview.md#supported-regions).
 1. Check to ensure your EC2 instance meets your filtering requirements by browsing to **Solutions** under the **Settings** tab. Select **Arc onboarding** and see if there are any EC2 Filter Tags or AWS regions. Ensure your EC2 instance meets these filter requirements.
 1. Select **Scan now** to rescan your AWS account. Browse to the **Machines** view for Azure Arc in the Azure portal, then select your EC2 instance to check the connectivity status.
+
+## Known scale limitations
+The Connector creates Azure resource groups per AWS Account and GCP project. Therefore, you are limited to a maximum of 980 accounts or projects that can be scanned with one Azure subscription, or a lower number if you have other resource groups created in your subscription. For more information, see the [current Azure limits](/azure/azure-resource-manager/management/azure-subscription-service-limits).

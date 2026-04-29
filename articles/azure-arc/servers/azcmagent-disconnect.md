@@ -8,7 +8,7 @@ ms.date: 12/01/2025
 
 # `azcmagent disconnect`
 
-Deletes the Azure Arc-enabled server resource in the cloud and resets the configuration of the local agent. For detailed information on removing extensions and disconnecting and uninstalling the agent, see [uninstall the agent](manage-agent.md#uninstall-the-agent).
+Deletes the Azure Arc-enabled server resource in the cloud and resets the configuration of the local agent. For detailed information on removing extensions and disconnecting and uninstalling the agent, see [Uninstall the Azure Connected Machine agent from Arc-enabled servers](uninstall-agent.md).
 
 > [!CAUTION]
 > When disconnecting the agent from Azure Local VMs enabled by Azure Arc, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `--force-local-only` flag can cause your Azure Local VM to be deleted both from Azure and on-premises.

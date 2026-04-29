@@ -11,38 +11,39 @@ ms.custom:
 ---
 
 # What is workload orchestration?
+ 
+Workload orchestration for Azure Arc is a cloud‑native, cross‑platform service that enables centralized deployment, configuration, and lifecycle management of application workloads across distributed edge environments. It helps organizations deploy applications consistently across multiple fleets with site‑specific configurations, and natively supports Kubernetes workloads.
 
-Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform service engine that simplifies the deployment, management, and update of application workloads across edge environments. Workload orchestration addresses typical application lifecycle management problems for customers who need to have application deployments across multiple fleets with site-specific configurations. It natively supports kubernetes workloads. 
+## Why use workload orchestration?
 
-## What problems does workload orchestration solve?
+Imagine a manufacturing company, Contoso, where workers use a simple on‑premises app to monitor factory machines such as motors, pumps, and mixers. The app runs locally inside each factory—not in the cloud. Contoso operates multiple factories, and while the same app runs everywhere, each site needs it configured differently. One factory may have 10 machines, another 30. Safety thresholds may vary, and alerts might need to be delivered in different languages.
 
-Imagine a company, Contoso manufacturing, where workers use a simple app to monitor the status of factory machines — like motors, pumps, or mixers. This app doesn’t run in the cloud. It runs on-premises, inside the factory, on a computer. Now imagine that Contoso has multiple locations, each with its own computer running the same app, but each location needs it set up a bit differently. Contoso factory A might have 10 machines while Contoso factory B has 30. Contoso factory A might have different safety thresholds than Contoso factory B. Contoso factory A might need alerts in English, while Contoso factory B needs them in Spanish.
+When the app is updated—whether for a new feature or a bug fix—it must be deployed carefully to every factory, ensuring each site’s unique settings remain intact. And this challenge isn’t limited to a single application. Most factories run many workloads, from monitoring and predictive maintenance to legacy systems and AI‑powered apps. These same challenges apply beyond manufacturing, across industries like retail, quick‑service restaurants, energy, and healthcare, where distributed operations rely on consistent yet localized applications.
 
-So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to each computer in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many — some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
+## Key challenges addressed
 
-These challenges aren't limited to manufacturing — workload orchestration is sector-agnostic and highly relevant for enterprise customers in industries like retail, quick service restaurants, energy, and healthcare, where distributed operations rely on consistent, localized applications.
+Workload orchestration helps organizations by addressing the following common challenges:
 
-Workload orchestration addresses several key challenges faced by organizations managing applications at the edge:
-
-- **Distributed configuration authoring:** Managing configuration files for multiple applications often requires input from different stakeholders across various edge locations, making collaboration and consistency difficult.
-- **Edge contextualization:** Edge environments typically include diverse devices and complex topologies, each requiring tailored configurations to meet site-specific needs.
-- **Configuration validation:** Ensuring that configuration parameters are correct before deployment is critical to prevent misconfigurations and avoid costly downtime or productivity loss.
-- **Version management:** Maintaining multiple versions of application code and configuration files can complicate auditing and tracking changes across deployments.
-- **Lack of visibility:** Without a unified view of applications and deployment status, identifying failures and optimizing operations becomes a manual, resource-intensive process.
-- **Role-Based Access Control (RBAC):** Enforcing role-based access ensures that only authorized users can manage and operate within their designated scope, improving security and governance.
-- **Logging and traceability:** Comprehensive logging and error tracing are essential for effective debugging, remediation, and compliance.
+- **Distributed configuration authoring:** Enables collaboration across teams while maintaining consistency in application configurations.
+- **Edge contextualization:** Supports site‑specific customization for diverse devices and topologies.
+- **Configuration validation:** Prevents misconfigurations through pre‑deployment checks and validation rules, avoiding costly downtime or productivity loss.
+- **Version management:** Tracks application and configuration versions across deployments for auditing and rollback.
+- **Observability:** Provides a unified view of deployment status and workload health across sites.
+- **Security and governance:** Enforces Role‑Based Access Control (RBAC) to ensure users operate only within their designated scope.
+- **Logging and traceability:** Captures comprehensive logs and errors for debugging, remediation, and compliance needs.
 
 ## What are the key features of workload orchestration?
 
-Workload orchestration provides a centralized platform for managing applications, their configurations and thus enabling better overall collaboration between the different personas who may interact with the system. The Role-Based Access Control (RBAC) feature ensures that only authorized users can access and manage the applications and devices.
+Workload orchestration provides a centralized way to manage applications and their configurations across edge environments, enabling collaboration across IT, DevOps, and operations teams. Built‑in Role‑Based Access Control (RBAC) ensures that users can only access and manage resources within their assigned scope.
 
+- **Fast onboarding and setup:** Guided workflows help you quickly configure your [organizational hierarchy](service-group.md#set-up-a-service-group-hierarchy-for-workload-orchestration), user roles, and access policies, so teams and edge infrastructure are ready for orchestration in minutes.
 - **Template framework and schema inheritance:** Define [solution configurations](configuring-template.md) and [schemas](configuring-schema.md) once, then reuse or extend them for multiple deployments. Central IT teams can create a single source of truth for app configurations, which sites can inherit and customize as needed. This ensures consistency and reduces duplicate work.
-- **Dependent application management:** Deploy and manage interdependent applications using orchestrated workflows. Workload orchestration supports configuring and deploying apps with dependencies through the [CLI](quickstart-solution-without-common-configuration.md) or [workload orchestration portal](portal-user-guide.md), reducing errors and streamlining complex rollouts.
-- **Custom and external validation rules:** Administrators can define pre-deployment validation rules to check parameter inputs and settings, preventing misconfigurations. For advanced scenarios, [external validation](external-validation.md) lets you verify templates through services like Azure Functions or webhooks, enabling business-specific logic and reducing runtime errors.
 - **Integrated monitoring and unified control:** Monitor deployments and workload health from a [centralized dashboard](deploy.md). Pause, retry, or roll back deployments as needed, with full logging and compliance visibility.
-- **No-code authoring experience with RBAC:** The workload orchestration portal offers a no-code UI for [defining and updating application settings](configure.md), secured with role-based access control and audit logging. Non-developers can safely make approved changes without compromising security.
+- **Dependent application management:** Deploy and manage interdependent applications using orchestrated workflows.
+- **Custom and external validation rules:** Define pre-deployment validation rules to check parameter inputs and prevent misconfigurations. For advanced scenarios, [external validation](external-validation.md) lets you verify templates through services like Azure Functions or webhooks.
+- **No-code authoring experience with RBAC:** The workload orchestration portal offers a no-code UI for [defining and updating application settings](configure.md), secured with role-based access control and audit logging.
 - **CLI and automation support:** IT admins and DevOps engineers can use the CLI for scripted deployments, automation, and CI/CD integration, enabling bulk management of application lifecycles across sites.
-- **Fast onboarding and setup:** Guided workflows help you quickly configure your [organizational hierarchy](service-group.md#set-up-a-service-group-hierarchy-for-workload-orchestration), user roles, and access policies, so you can onboard teams and prepare [edge infrastructure](initial-setup-environment.md) for orchestration in minutes.
+- **Git integration:** In addition to the CLI and portal experience, workload orchestration provides the option to manage your resources and automate deployments from a [central Git repository](workload-orchestration-multicluster-git.md).
 
 ## How does workload orchestration work?
 
@@ -66,26 +67,19 @@ IT personas usually have admin privileges that span across certain subcomponents
 |------|------------------|
 |IT Admin | Responsible for setting up and managing the physical hierarchy, user roles, and access control with RBACs. They also manage the overall IT infrastructure and monitor alerts. |
 |IT DevOps | Responsible for writing configuration expressions and attributes, and submitting configuration changes. They also manage the deployment process and ensure that applications are running correctly. |
+|Solution engineers | Responsible for solutions and their configurations. They onboard the existing apps, write configuration expressions and attributes, and define configuration schema. They also configure parameters for various applications, deploy the latest version of applications, and roll back when deployment fails. They also monitor application statuses and alerts. |
 
 If you're an IT user and want to set up workload orchestration, follow the steps below:
 
 - To manually set up workload orchestration, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md). 
 - To run the setup automatically, you can use the scripts in [Onboarding scripts](onboarding-scripts.md).
 
-#### Organization with central IT team
-
-If your organization has a central IT team and no OT personas, workload orchestration covers the end-to-end journey with IT personas such as platform engineers and solution engineers. Both platform engineers and solution engineers have access to the Azure CLI and can use it to set up the environment, manage the overall IT infrastructure, and monitor alerts and infrastructure statuses.
-
-| Role | Responsibilities |
-|------|------------------|
-|Platform engineers | Responsible for setting up initial infrastructure, profiles of all personas with RBACs and hierarchy level configurations. They also monitor alerts and infrastructure statuses. |
-|Solution engineers | Responsible for solutions and their configurations. They onboard the existing apps, write configuration expressions and attributes, and define configuration schema. They also configure and publish parameters for various applications, deploy the latest version of applications, and roll back when deployment fails. They also monitor application statuses and alerts. |
 
 ### OT personas
 
-OT personas, also known as low-code/no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface to allow no-code personas to easily manage various tasks. For more information, see the [User guide of workload orchestration portal ](portal-user-guide.md).
+OT personas, also known as low-code/no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas can leverage the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface for no-code personas. For more information, see the [User guide of workload orchestration portal ](portal-user-guide.md).
 
-The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md), which are defined by the IT admin. 
+The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the [RBACs assigned to the user](rbac-guide.md), typically defined by the IT admin. 
 
 | Role | Responsibilities | Access required|
 |------|------------------| ---------------|

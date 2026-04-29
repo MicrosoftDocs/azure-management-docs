@@ -1,11 +1,11 @@
 ---
 title: What's new for AKV Secret Store extension
 description: The release notes identify important updates and improvements in the Azure Key Vault Secret Store extension.
-ms.date: 08/01/2025
+ms.date: 03/01/2026
 ms.topic: release-notes
 ---
 
-# Release notes
+# Azure Key Vault Secret Store extension release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
 ## March 2026
