@@ -10,17 +10,19 @@ ms.custom:
 # Customer intent: "As a system administrator, I want to automate the setup of infrastructure and resources for workload orchestration, so that I can efficiently provision a Kubernetes cluster and related services without manual intervention."
 ---
 
-# Onboarding scripts for workload orchestration
+# Set up workload orchestration using onboarding scripts
 
 The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, installing the workload orchestration CLI extension and other resources necessary to deploy your 1st application. The scripts are available in 3 variants - PowerShell, Python and Bash, all of which are functionally equivalent.
 
 > [!TIP]
-> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
+> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Set up workload orchestration](setup-wo.md).
 
 ## Prerequisites
 
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder.
+- Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
+
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 - Fill the `onboarding-data.json` file with your details, or directly edit the file `mock-data.json` containing the mock data. The files are identical and either of them can be used as input while running the scripts. Instructions about various properties are provided below.
 
 ### Additional prerequisites by platform

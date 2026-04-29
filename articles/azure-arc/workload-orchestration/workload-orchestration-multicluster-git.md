@@ -1,112 +1,334 @@
 ---
-title: Workload Orchestration in a Multi-Cluster Environment with GitHub
-description: Learn how to orchestrate workloads across multiple Kubernetes clusters using Workload Orchestration service and "as-code" paradigm
-author: eedorenko
-ms.date: 8/11/2025
+title: Manage workload orchestration resources as Bicep in Git
+description: Learn how to manage Workload Orchestration resources (schemas, solution templates, and configuration templates) as Bicep templates in a Git repository, with automated validation and deployment via Azure Deployment Stacks.
+author: nathmanish
+ms.author: nathmanish
 ms.topic: how-to
+ms.date: 04/24/2026
+ms.custom:
+  - build-2025
+# Customer intent: As a platform engineer, I want to manage workload orchestration resources as Bicep templates in Git, so that I can apply GitOps practices, enforce review through pull requests, and protect deployed resources from out-of-band changes.
 ---
 
-# Workload orchestration in a multi-cluster environment with GitHub
+# Manage workload orchestration resources in Git
 
-This article explains how to run a GitHub-driven, "as-code" operating model for deploying and managing applications across many Kubernetes clusters. It introduces the core personas (application vs. platform), the separation of configuration concerns, repository layout, and the automated workflows that promote changes through environments. You’ll learn how this model improves consistency, traceability, velocity, and deployment reliability while preserving clear team boundaries.
+Workload orchestration allows you to manage resources such as schemas, solution templates, and configuration templates as Bicep templates stored in a Git repository. Leveraging pre-configured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
 
+This article describes how to set up your GitHub repository for managing the lifecycle of workload orchestration resources.
 
-## Personas 
+## How it works
 
-Most commonly, two key personas are involved in workload orchestration: the application team and the platform team. In smaller environments or early stages, these roles may overlap, with the same individuals handling both responsibilities. As the environment grows and complexity increases, the distinction between these roles becomes more defined, enabling clearer separation of concerns and more efficient collaboration. 
+Your GitHub repository uses a single Bicep template `main.bicep` that declares all of your workload orchestration resources. Two GitHub Actions workflows enforce validation and synchronization between your repository and Azure account to manage the declared resources. The following are the steps in this workflow:
 
+1. **Edit** `workload-orchestration/main.bicep` in a feature branch to add, update, or remove resource declarations.
+1. **Open a pull request** to the `main` branch. The validation workflow runs automatically and:
+   - Validates the Bicep templates against Azure.
+   - Posts a validation result comment on the pull request.
+1. **Merge** the pull request into `main`. The sync workflow deploys the resources to Azure by using a deployment stack with configurable deny settings.
 
-## Workload orchestration as code 
+## Repository structure
 
-Treating workload orchestration "as code" means storing all desired states, platform resources, and configuration values—in Git as the single source of truth. Both application and platform teams use the same workflow: propose changes with commits or pull requests, validate with automation, review and approve, and let automated processes update the runtime state. This approach provides clear audit trails, easy rollbacks, consistent deployments, reduced configuration drift, and enforceable compliance. Using Git for all personas streamlines tooling and collaboration, making deployments faster and more reliable. 
+The repository is organized as follows:
 
+```
+workload-orchestration/
+  config.yaml                  # Deployment stack settings (resource group, deny settings, and so on)
+  main.bicep                   # Bicep template that declares all workload orchestration resources
+.github/workflows/
+  validate-bicep.yml           # Pull request gate: validates Bicep templates
+  sync-bicep.yml               # Sync on merge to main, by using deployment stacks
+```
 
-## Separation of concerns 
+The `main.bicep` file declares all workload orchestration resources&mdash;schemas, solution templates, configuration templates, and their versions&mdash;directly. Edit this file to define which resources to deploy.
 
-Application behavior on a deployment target is determined by configuration values. However, configuration values are not all the same. These values are provided by different personas at different points in the application lifecycle and have different scopes. Generally, there are application and platform configurations. 
+## Prerequisites
 
-Application configurations, defined by the application team, are independent of deployment target specifics. Examples include logging levels, operating modes, and feature flags. These settings are often treated as part of the source code and are typically specified during the packaging phase, when the application is prepared for deployment across multiple environments. 
+- A GitHub repository where you store the Bicep templates and workflow files.
+- An Azure subscription with permissions to create resource groups and deployment stacks.
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
 
-Platform configurations are defined by the platform team. These settings tailor the runtime behavior of the application for specific deployment targets. Examples include endpoints, resource paths, subscription IDs, Key Vault references, and cluster-specific parameters. Platform configurations ensure that the same application package can operate correctly and securely across diverse clusters and environments. 
+### Authenticate to Azure with OpenID Connect
 
-Both the application team and the platform team manage their respective configurations in separate GitHub repositories. Automated GitHub Actions workflows monitor these repositories, and when changes are detected, they trigger deployment processes. Using Azure CLI commands, these workflows interact with the Workload Orchestration service to apply application updates and configuration changes across the targeted Kubernetes clusters. 
+The workflows authenticate to Azure by using [OpenID Connect (OIDC)](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure) with a user-assigned managed identity that has federated credentials configured for GitHub Actions.
 
-:::image type="content" source="media/workload-orchestration-git-general.png" alt-text="Diagram showing the general flow of the workload orchestration as code model." lightbox="media/workload-orchestration-git-general.png":::
+To configure authentication:
 
-While this article describes the "as code" approach using GitHub repositories and automated workflows, some platform teams may choose to interact directly with the Workload Orchestration service providing configuration values through the portal or Azure CLI commands. The guidance here focuses on the Git-driven model for consistency, traceability, and automation.
+1. Create a user-assigned managed identity in Azure.
+1. Configure federated credentials on the managed identity for both the `main` branch and pull requests in your GitHub repository. For step-by-step guidance, see [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure).
+1. Store the following values as GitHub repository secrets:
 
-## Application team
+   | Secret name | Value |
+   |---|---|
+   | `AZURE_CLIENT_ID` | The client ID of the user-assigned managed identity. |
+   | `AZURE_TENANT_ID` | The Microsoft Entra tenant ID. |
+   | `AZURE_SUBSCRIPTION_ID` | The target Azure subscription ID. |
 
-The application team oversees the entire software development lifecycle (SDLC) for their applications. They manage and maintain CI/CD pipelines that build container images, generate Kubernetes manifests, and promote deployable artifacts through various environments. Their focus is on delivering application features, ensuring code quality, and enabling smooth deployments, while remaining abstracted from the underlying cluster infrastructure. 
+### Assign Azure RBAC roles
 
-Typically, the application team doesn't know the details of the clusters, platform-specific configurations, or the activities of other teams. Their primary measure of success is the outcome of their CI/CD pipeline stages, which indicate whether application deployments and updates have been successfully executed across the entire environment.
+Assign one of the following roles to the managed identity, based on the deny settings you intend to use:
 
-Key responsibilities of the application team are: 
- - Develop, build, deploy, test, promote, release, and support their applications. 
- - Maintain and contribute to source, config and manifests repositories of their applications. 
- - Communicate to platform team, requesting configured compute resources for successful SDLC operations.
+| Role | When to use |
+|---|---|
+| **Azure Deployment Stack Owner** | Required when `denySettingsMode` is `denyWriteAndDelete` or `denyDelete`. This role can manage deployment stacks, including creating and deleting deny assignments. |
+| **Azure Deployment Stack Contributor** | Use when `denySettingsMode` is `none` (the default). This role can manage deployment stacks but cannot create or delete deny assignments. |
 
-:::image type="content" source="media/workload-orchestration-git-application-team-flow.png" alt-text="Diagram showing the workflow for the application team." lightbox="media/workload-orchestration-git-application-team-flow.png":::
+For more information about deployment stack roles, see [Deployment stacks built-in roles](/azure/azure-resource-manager/bicep/deployment-stacks).
 
-The software development lifecycle for each application is managed through a system of three dedicated GitHub repositories:
+## Get started
 
-- Application Source Code repository: Stores the application's source code, Dockerfile, and manifest templates (such as Helm charts). It also includes the application configuration schema, configuration templates, and solution specifications.
-- Application Config repository: Holds environment-specific configuration values for the application. These settings are application-centric, such as logging levels, replica counts, feature flags, and localization options.
-- Application GitOps repository: Stores the composed application configuration values and the fully rendered Kubernetes manifests for each environment. This repository serves as the single source of truth for the desired deployment state, allowing the application team to review, validate, and track exactly what will be deployed to each target cluster. The commit history in this repository provides a complete, auditable record of all deployment changes.
+To set up Git-based management of workload orchestration resources:
 
-### CI
+1. **Fork this [repository](https://github.com/manaswita-chichili/GIT_POC/)** into your GitHub account or organization.
+1. **Set up Azure authentication** by following [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure). Then store `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_SUBSCRIPTION_ID` as repository secrets.
+1. **Configure deployment settings** in `workload-orchestration/config.yaml`:
 
-The `ci` workflow is initiated by a commit to the main branch. It performs standard continuous integration tasks such as code style checks, security scanning, static code analysis, unit testing, and building and pushing Docker images. Upon successful completion, the `ci` workflow triggers the `prepare-pr` workflow, which begins the continuous delivery (CD) process.
+   ```yaml
+   resourceGroup: my-resource-group
+   denySettingsMode: none
+   denySettingsExcludedActions:
+     - Microsoft.Edge/configTemplates/linkToHierarchies/action
+     - Microsoft.Edge/configTemplates/unLinkFromHierarchies/action
+   actionOnUnmanageResources: detach
+   actionOnUnmanageResourceGroups: detach
+   ```
 
-### Prepare PR
+   For details on each setting, see [Customize resource management](#customize-resource-management).
 
-The `prepare-pr` workflow retrieves Helm manifest templates from the source repository at the specified commit. It then generates Kubernetes manifests by merging these templates with the composed configuration values from the config repository, using the branch that matches the target environment (for example, `dev`). After generating the manifests, the workflow automatically creates a pull request to the corresponding environment branch in the GitOps repository (such as `dev`).
+1. **Author your resources** in `workload-orchestration/main.bicep`. Declare schemas, solution templates, configuration templates, and their versions directly as Bicep resources.
+1. **Push a branch** and open a pull request. The validation workflow runs automatically.
+1. **Merge the pull request** into `main`. The sync workflow triggers and synchronizes your resources to Azure.
 
-Manual changes to the GitOps repository are not permitted; all pull requests are created exclusively by automated CI/CD workflows. This approach guarantees that every update is traceable to validated changes in the source and config repositories, ensuring consistency, traceability, and compliance transparency. 
+## Customize resource management
 
-Each branch in the GitOps repository corresponds to a specific environment (for example, `dev`, `stage`, or `prod`) and is protected with branch policies and required approvals from designated personas. Additionally, all PRs are subject to automated Kubernetes security and compliance scans before merging, ensuring that only validated and secure configurations are deployed.
+The deployment stack protects managed resources from out-of-band changes and controls their lifecycle. All settings are configured in `workload-orchestration/config.yaml`.
 
+```yaml
+resourceGroup: my-resource-group
+denySettingsMode: none
+denySettingsExcludedActions:
+  - Microsoft.Edge/configTemplates/linkToHierarchies/action
+  - Microsoft.Edge/configTemplates/unLinkFromHierarchies/action
+actionOnUnmanageResources: detach
+actionOnUnmanageResourceGroups: detach
+```
 
-### Notify on PR
+### resourceGroup
 
-The `notify-on-pr` workflow is triggered when a pull request containing the rendered manifests is merged into an environment branch (such as `dev`, `stage`, or `prod`) in the GitOps repository. Upon this event, the workflow sends a notification back to the source repository, which acts as the orchestrator for the continuous delivery (CD) process. This notification triggers the `deploy` workflow, initiating the deployment of the validated manifests to the target Kubernetes clusters.
+The target Azure resource group for deployment. This setting is required.
 
-### Deploy 
+### denySettingsMode
 
-The `deploy` workflow interacts with the Workload Orchestration service to create a new solution version, apply the composed configuration values, and deploy the solution to the deployment targets. Each cluster may host multiple deployment targets. If any cluster reports a deployment failure, the workflow marks the Git commit status in the source repository as failed, halting the entire promotion process.
+Controls whether Azure blocks direct, out-of-band changes to resources managed by the stack.
 
-After deployment, the workflow determines whether the change that initiated the CD process should be promoted to the next environment (if it originated from the `main` branch) and verifies if the next environment is configured. If so, it triggers the `prepare-pr` workflow for the subsequent environment, continuing the promotion cycle. The process ends when there are no further environments in the promotion chain.
+| Value | Behavior |
+|---|---|
+| `denyWriteAndDelete` | Blocks both modifications and deletions of managed resources outside the stack. |
+| `denyDelete` | Blocks deletions but allows modifications. Use this option to allow operational changes (for example, scaling) while preventing accidental deletions. |
+| `none` | Default. No restrictions. Resources can be freely modified or deleted outside the stack. |
 
-### Notify on config change
+### denySettingsExcludedActions
 
-The `notify-on-config-change` workflow is activated when a pull request containing configuration value changes is merged into an environment branch in the config repository. This workflow sends a notification to the source repository, prompting it to regenerate the manifests for the affected environment by invoking the `prepare-pr` workflow with the environment name as a parameter. Because these changes are specific to a single environment, they are not promoted to subsequent environments.
+A list of Azure RBAC actions that are exempt from the deny assignment. These actions can be performed on managed resources even when deny settings are active.
 
-## Platform team
+The default value includes actions required for configuration template hierarchy operations. Git-based hierarchy linking isn't yet supported, so these actions must be allowlisted to allow linking and unlinking configuration templates to hierarchies from outside the deployment stack (for example, by using the Azure CLI or the portal):
 
-The platform team operates as a shared service, supporting multiple application teams by managing the underlying Kubernetes clusters and associated infrastructure. Their primary focus is to ensure that clusters are secure, reliable, and properly configured to meet the needs of the applications they host.
+```yaml
+denySettingsExcludedActions:
+  - Microsoft.Edge/configTemplates/linkToHierarchies/action
+  - Microsoft.Edge/configTemplates/unLinkFromHierarchies/action
+```
 
-Key responsibilities of the platform team include:
+You can add more actions to the list as needed:
 
-- Assigning applications to appropriate clusters across different environments (Dev, Stage, Prod).
-- Supplying and maintaining platform and infrastructure configurations required by applications on each cluster.
-- Managing and updating platform services and configurations within the clusters.
-- Onboarding new clusters into the fleet and overseeing their distribution and lifecycle across environments.
-- Facilitating communication and collaboration with application teams to ensure smooth deployment and operation of workloads.
+| Action | Reason to exclude |
+|---|---|
+| `Microsoft.Edge/configTemplates/linkToHierarchies/action` | Required. Git-based linking isn't yet supported and must be performed outside the stack. |
+| `Microsoft.Edge/configTemplates/unLinkFromHierarchies/action` | Required. Git-based unlinking isn't yet supported and must be performed outside the stack. |
+| `Microsoft.Resources/tags/write` | Allow tagging resources without going through the stack. |
+| `Microsoft.Authorization/locks/write` | Allow adding resource locks directly. |
+| `Microsoft.Insights/diagnosticSettings/write` | Allow configuring diagnostic settings outside the stack. |
 
-By maintaining a clear separation of concerns, the platform team enables application teams to focus on delivering business value, while ensuring that the underlying infrastructure remains robust and compliant.
- 
-:::image type="content" source="media/workload-orchestration-git-platform-team-flow.png" alt-text="Diagram showing the workflow for the platform team." lightbox="media/workload-orchestration-git-platform-team-flow.png":::
+### actionOnUnmanageResources
 
-The platform team's GitHub repository structure and associated GitHub Actions workflows mirror the setup used by the application team. This system consists of three main repositories:
+Controls what happens to *resources* when they're removed from the Bicep template and the stack is redeployed.
 
-- **Platform control plane repository**: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
-- **Platform config repository**: Contains environment- and cluster-specific platform configuration values.
-- **Platform GitOps repository**: Holds the composed platform configuration values and the rendered manifests for platform resources. This allows the platform team to review and validate the configurations and resources that will be deployed to each cluster.
+| Value | Behavior |
+|---|---|
+| `detach` | Default. Resources remain in Azure but are no longer tracked by the stack. |
+| `delete` | Resources are deleted from Azure. |
 
-The platform team deploys platform configurations (such as ConfigMaps) and namespace resources (including service accounts, limits, quotas, and more) as a separate solution, distinct from the application lifecycle. This approach ensures a clear separation of responsibilities and minimizes cross-team dependencies. Key principles include:
+### actionOnUnmanageResourceGroups
 
-- The platform team maintains autonomy over platform resource management, avoiding direct involvement in the application deployment process.
-- Platform and application configuration deployments are asynchronous, allowing each team to operate independently. The platform team can update or add configurations without blocking or delaying application deployments, even if some required values are not yet available.
-- New platform configurations are made available to applications on clusters immediately after deployment. Applications may consume these updated values as needed, depending on their design and environment, without waiting for the next application deployment cycle.
+Controls what happens to *resource groups* when they're removed from the template.
 
-This model enables rapid iteration and flexibility for both teams, ensuring that platform updates can be delivered promptly while allowing application teams to adopt changes at their own pace. 
+| Value | Behavior |
+|---|---|
+| `detach` | Default. Resource groups remain in Azure but are no longer tracked. |
+| `delete` | Resource groups are deleted from Azure. |
+
+## Resource deployment scope
+
+By default, the deployment stack is created at **resource group** scope and targets the resource group specified in `workload-orchestration/config.yaml`. All resources in `main.bicep` are deployed into this single resource group. The workflows use the [`azure/bicep-deploy@v2`](https://github.com/azure/bicep-deploy) action with `type: deploymentStack`.
+
+You can change the scope to suit your requirements.
+
+> [!NOTE]
+> Deny settings (resource protection) only apply at the level of the deployment stack scope. For example, a resource-group-scoped stack only blocks changes to resources within that resource group. If you need protection across multiple resource groups or the entire subscription, use a higher scope accordingly.
+
+The following table summarizes the configuration changes required for each scope:
+
+| Scope | Bicep `targetScope` | `scope` in `bicep-deploy` action | `scope` on resources | Authentication change |
+|---|---|---|---|---|
+| **Resource group** (default) | *(none&mdash;default)* | `resourceGroup` | *(none needed&mdash;deploys directly)* | `subscription-id` in login |
+| **Subscription** | `subscription` | `subscription` | `resourceGroup('<rg-name>')` | `subscription-id` in login |
+| **Tenant** | `tenant` | `tenant` | `resourceGroup('<sub-id>', '<rg-name>')` | `allow-no-subscriptions: true` in login |
+| **Management group** | `managementGroup` | `managementGroup` | `resourceGroup('<sub-id>', '<rg-name>')` | `allow-no-subscriptions: true` in login |
+
+To change the scope, update the following:
+
+1. The `targetScope` in `workload-orchestration/main.bicep`.
+1. The resource `scope` in `main.bicep`. Add the resource group and subscription ID as needed.
+1. The `scope:` value in the `azure/bicep-deploy@v2` steps in all workflow files.
+1. For **subscription** scope, remove `resource-group-name` from workflow deploy steps. The resource group is set in the Bicep resource `scope` instead.
+1. For **tenant** or **management group** scopes:
+   - Add `management-group-id` to workflow deploy steps (for management group scope).
+   - Change `azure/login` to use `allow-no-subscriptions: true` instead of `subscription-id`.
+
+### Resource group scope (default)
+
+No `targetScope` is needed. Resources deploy directly into the resource group defined in `config.yaml`. No workflow changes are required.
+
+**main.bicep:**
+
+```bicep
+// no targetScope (defaults to resourceGroup)
+
+resource schema 'Microsoft.Edge/schemas@2026-03-01' = {
+  name: '<your-schema-name>'
+  location: '<location>'
+  properties: {}
+}
+```
+
+**Workflow step (default):**
+
+```yaml
+- uses: azure/bicep-deploy@v2
+  with:
+    type: deploymentStack
+    operation: create
+    scope: resourceGroup
+    resource-group-name: ${{ steps.config.outputs.rg }}
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    template-file: ./workload-orchestration/main.bicep
+    # ... other inputs
+```
+
+### Subscription scope
+
+**main.bicep:**
+
+```bicep
+targetScope = 'subscription'
+
+resource schema 'Microsoft.Edge/schemas@2026-03-01' = {
+  name: '<your-schema-name>'
+  scope: resourceGroup('my-resource-group')
+  location: '<location>'
+  properties: {}
+}
+```
+
+**Workflow step.** Change `scope` to `subscription` and remove `resource-group-name`:
+
+```yaml
+- uses: azure/bicep-deploy@v2
+  with:
+    type: deploymentStack
+    operation: create
+    scope: subscription
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    template-file: ./workload-orchestration/main.bicep
+    # ... other inputs (no resource-group-name)
+```
+
+### Tenant scope
+
+**main.bicep:**
+
+```bicep
+targetScope = 'tenant'
+
+resource schema 'Microsoft.Edge/schemas@2026-03-01' = {
+  name: '<your-schema-name>'
+  scope: resourceGroup('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'my-resource-group')
+  location: '<location>'
+  properties: {}
+}
+```
+
+**Workflow step.** Change `scope` to `tenant` and remove `resource-group-name` and `subscription-id`:
+
+```yaml
+- uses: azure/bicep-deploy@v2
+  with:
+    type: deploymentStack
+    operation: create
+    scope: tenant
+    template-file: ./workload-orchestration/main.bicep
+    # ... other inputs (no resource-group-name or subscription-id)
+```
+
+**Azure login.** Add `allow-no-subscriptions`:
+
+```yaml
+- uses: azure/login@v2
+  with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    allow-no-subscriptions: true
+```
+
+### Management group scope
+
+**main.bicep:**
+
+```bicep
+targetScope = 'managementGroup'
+
+resource schema 'Microsoft.Edge/schemas@2026-03-01' = {
+  name: '<your-schema-name>'
+  scope: resourceGroup('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'my-resource-group')
+  location: '<location>'
+  properties: {}
+}
+```
+
+**Workflow step.** Change `scope` to `managementGroup`, add `management-group-id`, and remove `resource-group-name` and `subscription-id`:
+
+```yaml
+- uses: azure/bicep-deploy@v2
+  with:
+    type: deploymentStack
+    operation: create
+    scope: managementGroup
+    management-group-id: <your-management-group-id>
+    template-file: ./workload-orchestration/main.bicep
+    # ... other inputs (no resource-group-name or subscription-id)
+```
+
+**Azure login.** Add `allow-no-subscriptions`:
+
+```yaml
+- uses: azure/login@v2
+  with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    allow-no-subscriptions: true
+```
+
+## Related content
+
+- [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure)
+- [Azure Deployment Stacks overview](/azure/azure-resource-manager/bicep/deployment-stacks)
+- [Set up workload orchestration](setup-wo.md)

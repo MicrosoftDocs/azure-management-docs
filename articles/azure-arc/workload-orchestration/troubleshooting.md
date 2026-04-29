@@ -7,9 +7,9 @@ ms.topic: troubleshooting-general
 ms.date: 06/01/2025
 ---
 
-# Troubleshooting workload orchestration
+# Troubleshooting and known issues
 
-This article provides troubleshooting guidance for common issues encountered when using workload orchestration in Azure Arc.
+This article provides troubleshooting guidance and a list of known issues for workload orchestration in Azure Arc.
 
 ## Troubleshoot Kubernetes cluster
 
@@ -60,6 +60,29 @@ To only run cluster checks and skip generating logs, use:
 az workload-orchestration support create-bundle --skip-logs
 ```
 
+## Cluster migration
+
+Users can now migrate their targets along with deployed solutions to a new Arc-enabled cluster. This is especially critical when the existing cluster gets deleted or solution deployments require capacity expansion.
+
+> [!NOTE]
+> Cluster migration requires Azure CLI with workload-orchestration extension version 5.2.0 or above.
+
+Follow these steps to migrate your targets and workloads to the new cluster:
+
+1. Delete the custom location associated with the old cluster, if not done already.
+1. Enable Azure Arc on the new cluster and initialize it for workload orchestration using:
+    ```azurecli
+    az workload-orchestration cluster init -c "<CLUSTER-NAME>" -g "<RESOURCE-GROUP>" -l "<LOCATION>"
+    ```
+1. Recreate the custom location on this cluster, ensuring it has the same ARM ID as the previous custom location.
+1. Sync the targets and solutions to the new cluster using:
+    ```azurecli
+    az workload-orchestration sync --custom-location <custom location ARM id>
+    ```
+1. You will be asked to choose the targets you want to sync from the list of all targets that were using this custom location in the old cluster. Provide comma-separated list for the targets or press Enter if you want to sync all targets.
+
+> [!NOTE]
+> To sync staged solutions as well, run `az workload-orchestration sync` with the additional argument `--local-connected-registry-ip <local connected registry-ip-address>`.
 
 ## Troubleshoot staging
 
@@ -287,34 +310,29 @@ az rest `
 ```
 ***
 
-## Troubleshoot GitHub actions 
+## Known issues for workload orchestration
 
-### Schema creation failures 
+### Custom location creation error when running onboarding script
 
-If you encounter issues while creating a schema in GitHub actions, consider the following troubleshooting steps:
+When running the [infrastructure onboarding script](onboarding-scripts.md), you may encounter the following error during custom location creation:
 
-- Verify schema file syntax. 
-- Check if schema name/version already exists.
-- Ensure Azure credentials have proper permissions.
+```
+'CredentialAdaptor' object has no attribute 'signed_session'
+```
 
-### Template issues 
+This issue affects Azure CLI version 2.70.0 and occurs when using the `az customlocation create` command. To resolve this issue, create the custom location via Azure portal
 
-If you encounter issues with templates in GitHub actions, consider the following troubleshooting steps:
+1. Navigate to the [Azure portal](https://portal.azure.com)
+1. Click on **+ Create a resource** and search for "custom location".
+1. In the **Basics** tab:
+   - Select your subscription and resource group
+   - Enter a name for your custom location
+   - Select your Arc-enabled cluster
+   - Select the appropriate extension (either `microsoft.testsymphonyex` or `microsoft.workloadorchestreation`)
+   - Specify your namespace (the same value you use in the script)
+1. Complete the creation process. 
 
-- Verify schema version exists.
-- Check specification file JSON format.
-- Validate capabilities in metadata.
-- Check external validation settings.
-
-### File detection issues 
-
-If you encounter issues with file detection in GitHub actions, consider the following troubleshooting steps:
-
-- Ensure files use correct naming patterns.
-- Verify files are in the correct directories:
-    - **Apps:** `.pg/apps/<app>/workload-orchestration/`
-    - **Common:** `.pg/apps/common/`
-- Check workflow logs for file detection output.
+After creating the custom location through the portal, run the onboarding script with `-skipCustomLocationCreation` set to `$true` to skip this step.
 
 ## Contact support
 

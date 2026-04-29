@@ -13,7 +13,7 @@ Workload orchestration allows you to bulk review, publish, and deploy a solution
 
 ## Prerequisites
 
-Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
+Set up the required Azure resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
 
 ## Perform bulk review
 
