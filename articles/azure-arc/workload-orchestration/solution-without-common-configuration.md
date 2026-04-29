@@ -19,10 +19,10 @@ In this guide, you create a basic solution using workload orchestration via CLI.
 - Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-[![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
+  [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 
 
-## Define the variables for solution templating
+## Define the variables
 
 ### [Bash](#tab/bash)
 
@@ -229,19 +229,19 @@ Create the schema file by referring to *shared-schema.yaml* from [GitHub reposit
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-1. You can provide version on file instead of as a CLI argument. Add below section to the *shared-schema.yaml* file.
+You can provide version on file instead of as a CLI argument. Add below section to the *shared-schema.yaml* file.
 
-    ```yaml
-    metadata:
-        name: <name> [optional]
-        version: <version> [optional]
-    ```
+```yaml
+metadata:
+    name: <name> [optional]
+    version: <version> [optional]
+```
 
-1. Run the same CLI command without `--version argument`. The service takes version input from file.
+Run the same CLI command without `--version argument`. The service takes version input from file.
 
-    ```azurecli
-    az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --schema-file "$schemaFile"
-    ```
+```azurecli
+az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --schema-file "$schemaFile"
+```
 
 The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--schema-name` argument.
 
@@ -359,7 +359,7 @@ Follow these steps to create a solution template for your application.
 
 ## Deploy the solution
 
-Run the following command to configure the solution template and deploy the corresponding solution/application to your target. The configuration values need to be stored in `config.yaml`.
+Run the following command to configure the solution template and deploy the corresponding solution/application to your target. The configuration values need to be stored in **config.yaml**.
 
 ```azurecli
 az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName/versions/$appVersion" --configuration “config.yaml”   
@@ -400,8 +400,8 @@ You can also choose to configure and deploy the solution in separate individual 
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
-> [!TIP]
-> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
+  > [!TIP]
+  > You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
 
 ## Next steps
 

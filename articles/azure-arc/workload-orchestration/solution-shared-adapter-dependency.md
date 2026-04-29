@@ -21,7 +21,7 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 - Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
 
 > [!NOTE]
 > You can reuse the global variables defined in [Set up workload orchestration](setup-wo.md).
@@ -51,7 +51,7 @@ The following example illustrates the user scenario of creating a solution with 
 A configuration template is a YAML file that defines the configuration parameters for a solution. The configuration template is used to create a configuration schema, which is a JSON file that defines the structure of the configuration data. 
 
 > [!NOTE]
-> Check out [Configuration template](configuring-template.md) and [Configuration schema](configuring-schema.md) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
+> Check out [Configuration template](solution-without-common-configuration.md#create-the-solution-template) and [schemas](solution-without-common-configuration.md#create-a-configuration-schema) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
 
 Sample of a FSAD configuration template:
 

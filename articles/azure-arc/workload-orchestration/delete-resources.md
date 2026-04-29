@@ -178,6 +178,8 @@ az workload-orchestration config-template delete --subscription "$subId" --resou
 az workload-orchestration config-template delete --subscription $subId --resource-group $rg --config-template-name $appConfig
 ```
 
+***
+
 Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets and configured again. If the recreated configuration template references a different schema and a solution template inherits that schema, the `az workload-orchestration target review` command is expected to fail since the schema properties have changed.
 
 

@@ -62,8 +62,7 @@ Workload orchestration is available for Arc-enabled clusters in **East US** and 
 
 All sample input files required in this quide can be downloaded from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-[![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
-
+[![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 
 ### [Bash](#tab/bash)
 
@@ -99,9 +98,9 @@ All sample input files required in this quide can be downloaded from the [worklo
 
 1. Install the workload orchestration CLI extension
 
-```powershell
-az extension add --name workload-orchestration
-```
+    ```powershell
+    az extension add --name workload-orchestration
+    ```
 
 ### [PowerShell](#tab/powershell)
 
@@ -137,9 +136,9 @@ az extension add --name workload-orchestration
 
 1. Install the workload orchestration CLI extension
 
-```powershell
-az extension add --name workload-orchestration
-```
+    ```powershell
+    az extension add --name workload-orchestration
+    ```
 
 ***
 
@@ -192,7 +191,7 @@ az extension add --name workload-orchestration
 
     > [!TIP]
     > You can choose to specify additional properties like name, version and release train of Arc extension, along with custom location details, by running `az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l" --release-train stable --extension-version 2.1.28  --extension-name "$extensionName" --custom-location-name "$customLocation"
-    ```
+    
 
     On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory. 
 
@@ -200,7 +199,7 @@ az extension add --name workload-orchestration
 ## Step 3: Create the Hierarchy
 
 Workload orchestration involves multiple resource types that stitch the whole experience together:
-- **Context:** Master resource that binds together all workload orchestration resources within an Azure Tenant, including the organizational hierarchy.
+- **Context:** Also called as Environment, this is master resource that binds together all workload orchestration resources within an Azure Tenant, including the organizational hierarchy.
 - **Hierarchy:** Set of name-description pairs that define the levels of hierarchical structure resonating with the customer’s resource topology. For example, a manufacturing customer can have two levels, Factory and Line.
 - **Capabilities:** Name-description pairs that describe what a resource is capable of doing. 
 - **Target:** Typically a Kubernetes cluster or custom location within the cluster where you can deploy applications. These resources need to be tagged with Capabilities for application deployment purposes.
@@ -255,7 +254,7 @@ The following steps demonstrate the process of setting up these resources.
           ```
 
 
-1. Create workload orchestration context with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. You can refer to sample file for `capabilities.json` from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). The hierarchy level names must match those specified in the previous step.
+1. Create the workload orchestration context or environment with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. You can refer to sample file for `capabilities.json` from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). The hierarchy level names must match those specified in the previous step.
 
     ```azurecli
     az workload-orchestration context create -g "$rg" -n "$contextName" -l "$l" --capabilities @capabilities.json --hierarchies "[0].name=factory" "[0].description=Factory" "[1].name=line" "[1].description=Line" --site-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName
@@ -307,14 +306,10 @@ The following steps demonstrate the process of setting up these resources.
 
 ***
 
+## Next steps
+
+Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, refer to [Create a basic solution](solution-without-common-configuration.md) to learn how to create a basic solution, configure it, and deploy it to a target.
+
 ## Contact support
 
 [!INCLUDE [form-feedback-note](includes/form-feedback.md)]
-
-## Next steps
-
-Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, refer to [Quickstart: Create a basic solution](quickstart-solution-without-common-configuration.md) to learn how to create a basic solution, configure it, and deploy it to a target.
-
----
-
-*Last updated: April 2026*

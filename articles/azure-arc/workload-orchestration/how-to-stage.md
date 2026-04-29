@@ -702,6 +702,4 @@ az workload-orchestration target unstage --name $targetName --resource-group $rg
 ## Related content
 
 - [Monitor your solutions with Azure portal](azure-portal-monitoring.md)
-- [Diagnose of problems](diagnose-problems.md)
-- [Service groups](service-group.md)
 - [Bulk deployment](bulk-deployment.md)

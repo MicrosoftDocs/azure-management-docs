@@ -1,3 +1,16 @@
+---
+title: PUT, PATCH, and DELETE operations for versioned resources
+description: PUT, PATCH, and DELETE operations for versioned workload orchestration resources
+ms.custom:
+  - references_regions
+  - build-2026
+author: nathmanish
+ms.author: nathmanish
+ms.topic: put-patch-delete
+ms.date: 29/04/2026
+# Customer intent: "I want to use rest api commands on versioned resources."
+---
+
 # PUT, PATCH, and DELETE operations for versioned resources
 
 Workload Orchestration supports creation, update, and deletion operations for versioned resources such as **Schemas**, **Config Templates**, and **Solution Templates** using Azure REST APIs.

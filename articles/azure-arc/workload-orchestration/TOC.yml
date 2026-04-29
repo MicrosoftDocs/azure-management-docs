@@ -22,7 +22,7 @@ items:
       - name: Stage a solution before deployment
         href: how-to-stage.md
       - name: Create a solution with shared adapter dependency
-        href: quickstart-solution-shared-adapter-dependency.md
+        href: solution-shared-adapter-dependency.md
       - name: Enable external validation
         href: external-validation.md
     - name: Manage workload orchestration resources in Git
@@ -53,6 +53,8 @@ items:
       href: workload-orchestration-sdk.md
     - name: Migration script for GA
       href: migration-script.md
+    - name: PUT, PATCH, and DELETE operations
+      href: put-patch-delete.md
     - name: Troubleshooting and known issues
       href: troubleshooting.md
     - name: Release notes

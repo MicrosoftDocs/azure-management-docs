@@ -11,17 +11,13 @@ ms.date: 06/01/2025
 
 In this tutorial, you create a scenario with multiple solutions that share a single dependency at different levels of the hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
 
-For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
-
-[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
 - Create the service group hierarchy.
 
 

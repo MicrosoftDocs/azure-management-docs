@@ -273,7 +273,5 @@ bulk_deployment.ps1 "input.json"
 
 ## Related content
 
-- [Diagnose of problems](diagnose-problems.md)
 - [External validation](external-validation.md)
 - [Stage solution before deployment](how-to-stage.md)
-- [Service groups](service-group.md)

@@ -22,7 +22,7 @@ The onboarding scripts are designed to help you set up the necessary infrastruct
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=for-the-badge&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 - Fill the `onboarding-data.json` file with your details, or directly edit the file `mock-data.json` containing the mock data. The files are identical and either of them can be used as input while running the scripts. Instructions about various properties are provided below.
 
 ### Additional prerequisites by platform
@@ -304,7 +304,5 @@ Use these parameters as needed based on which components you have already create
 
 ## Related content
 
-- [Service groups with workload orchestration](service-group.md)
+- [Set up workload orchestration](setup-wo.md)
 - [RBAC guide](rbac-guide.md)
-- [Configuration template](configuring-template.md)
-- [Configuration schema](configuring-schema.md)

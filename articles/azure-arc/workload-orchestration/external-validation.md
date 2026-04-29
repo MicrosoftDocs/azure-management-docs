@@ -212,7 +212,7 @@ az workload-orchestration solution-template create `
 > [!NOTE]
 > When a solution template version is created with the external validation flag set (true or false), the flag is stored at the solution template level. As a result, all solution versions—both new and existing—inherit the same external validation setting. Thus, it isn't possible to have multiple versions under the same solution template with different external validation configurations.
 
-For more information about solution templates and publishing a solution, see [Quickstart: Create a basic solution without common configurations](quickstart-solution-without-common-configuration.md#define-the-variables-for-solution-templating).
+For more information about solution templates and publishing a solution, see [Create a basic solution without common configurations](solution-without-common-configuration.md).
 
 ### Publish and validate the solution 
 
@@ -389,6 +389,8 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
     1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
     1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](monitor.md).
     1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
+
+***
 
 
 ## Event Grid external validation payload

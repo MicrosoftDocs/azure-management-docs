@@ -143,7 +143,7 @@ The following table describes some of the user scenarios and the associated cust
 
 ### RBAC for service groups
 
-The following table shows recommended actions for different user roles when using a custom-defined role at a service group level. For more information about service groups, see [Service groups for workload orchestration](service-group.md).
+The following table shows recommended actions for different user roles when using a custom-defined role at a service group level.
 
 #### Service group contributor
 
