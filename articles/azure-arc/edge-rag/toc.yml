@@ -7,6 +7,8 @@ items:
         items:
           - name: What is Edge RAG?
             href: overview.md
+          - name: Agentic layer overview
+            href: agentic-overview.md
           - name: What's new
             href: whats-new.md
           - name: Release notes
