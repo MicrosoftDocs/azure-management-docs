@@ -167,21 +167,21 @@ To configure DNS records, get the IP configuration of the private endpoint. In t
 
 ## Plan subnet IP capacity for private endpoints
 
-Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication, and optionally with dedicated data endpoints and regional endpoints. Plan your subnet size before enabling these features to avoid provisioning failures.
+Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
 
 ### IP address consumption per feature
 
 | Configuration | IPs consumed per VNet |
 |---|---|
-| Initial private endpoint (registry endpoint + home region data endpoint) | 2 |
-| Each geo-replication region added | +1 (regional data endpoint) |
+| Initial private endpoint (registry endpoint + home region regional dedicated data endpoint) | 2 |
+| Each geo-replication region added | +1 (regional dedicated data endpoint) |
 | [Regional endpoints](https://techcommunity.microsoft.com/blog/appsonazureblog/regional-endpoints-for-geo-replicated-azure-container-registries-private-preview/4496186) enabled | +1 per geo-replica |
 
-**Example:** A registry with 3 geo-replicas, dedicated data endpoints enabled, and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 data endpoints + 3 regional endpoints).
+**Example:** A registry with 3 geo-replicas and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 regional dedicated data endpoints + 3 regional endpoints).
 
 ### Geo-replication and subnet capacity
 
-When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the entire operation rolls back. The replica appears briefly in a `Creating` state and then is removed.
+When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's regional dedicated data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the entire operation rolls back. The replica appears briefly in a `Creating` state and then is removed.
 
 The resulting error does not identify which subnet or VNet is exhausted. If a geo-replication fails unexpectedly, verify that every PE subnet connected to the registry has free IP capacity using the command in [Recommendations](#recommendations).
 
