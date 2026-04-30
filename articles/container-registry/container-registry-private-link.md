@@ -181,11 +181,12 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 
 ### Geo-replication and subnet capacity
 
-When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the operation rolls back. The replica will appear briefly in a `Creating` state and then be removed.
+When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the entire operation rolls back. The replica appears briefly in a `Creating` state and then is removed.
 
-### Why the failure error doesn't identify the exhausted subnet
-
-When a replication fails due to subnet IP exhaustion, the error message does not specify which VNet or subnet caused the failure. This is by design. Private endpoints can connect from VNets in different subscriptions within the same tenant, and the VNet owner and the registry owner are often different teams. Surfacing the specific subnet, VNet, or subscription that ran out of addresses in a registry-level error would leak network topology information across those subscription boundaries. For this reason, the error remains generic, and each network administrator must verify capacity on their own subnets independently.
+> [!IMPORTANT]
+> The resulting error message is generic and does not identify which subnet or VNet ran out of addresses. This is by design — private endpoints can connect from VNets in different subscriptions, and the VNet owner and registry owner are often separate teams. Revealing which subnet is exhausted in a registry-level error would expose network topology details across subscription boundaries.
+>
+> If a geo-replication fails unexpectedly, ask each network administrator to verify that their PE subnets have free IP capacity using the command in [Recommendations](#recommendations).
 
 ### Recommendations
 
