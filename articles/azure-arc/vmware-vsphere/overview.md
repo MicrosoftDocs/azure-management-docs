@@ -2,7 +2,7 @@
 title: What is Azure Arc-enabled VMware vSphere?
 description: Azure Arc-enabled VMware vSphere extends Azure governance and management capabilities to VMware vSphere infrastructure and delivers a consistent management experience across both platforms.
 ms.topic: overview
-ms.date: 02/10/2026
+ms.date: 04/30/2026
 ms.custom:
   - references_regions
   - build-2025
@@ -65,7 +65,7 @@ You have the flexibility to start with either option, and incorporate the other 
 
 ## Supported scenarios
 
-- Azure Arc-enabled VMware vSphere currently works with vCenter Server versions 7 and 8 with a maximum of 9,500 VMs.
+- Azure Arc-enabled VMware vSphere currently works with vCenter Server version 8 with a maximum of 9,500 VMs.
 - You can onboard multiple vCenters by using a single Azure Arc resource bridge if the total number of VMs managed by these vCenters doesn't exceed 9,500 VMs.
 - Azure Arc-enabled VMware vSphere works with Azure VMware Solution (AVS) private clouds.
 - Virtualized Infrastructure Administrators and Cloud Administrators can connect a vCenter instance to Azure.

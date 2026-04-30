@@ -11,6 +11,8 @@ items:
             href: agentic-overview.md
           - name: MCP server in Agent RAG
             href: mcp-server-overview.md
+          - name: Collections overview
+            href: collections-overview.md
           - name: What's new
             href: whats-new.md
           - name: Release notes
