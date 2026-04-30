@@ -2,7 +2,7 @@
 title: Use Azure Private Link to connect servers to Azure Arc by using a private endpoint
 description: Learn how to use Azure Private Link to securely connect networks to Azure Arc.
 ms.topic: how-to
-ms.date: 04/29/2026
+ms.date: 04/30/2026
 # Customer intent: "As a network administrator, I want to configure Azure Private Link to connect on-premises servers to Azure Arc so that I can securely manage my resources without exposing data to public networks."
 ---
 
@@ -56,8 +56,11 @@ For more information about how to configure Private Link for the Azure services 
 - An Azure virtual network in the same region as your Azure Arc-enabled servers.
 - [Azure Connected Machine agent version 1.4 or later](agent-release-notes.md) on each server to connect through Private Link.
 - At least Contributor role on the Azure subscription or resource group, to create private link scope and private endpoint resources.
-- If using Azure PowerShell, the [Az.ConnectedMachine module](/powershell/module/az.connectedmachine) must be installed. Run `Install-Module -Name Az.ConnectedMachine -AllowClobber`.
-- If using Azure CLI, the [`connectedmachine` extension](/cli/azure/connectedmachine) must be installed. Run `az extension add --name connectedmachine`.
+- If using Azure PowerShell, the following modules are required:
+  - [Az.ConnectedMachine module](/powershell/module/az.connectedmachine). Run `Install-Module -Name Az.ConnectedMachine -AllowClobber`.
+  - [Az.Network module](/powershell/module/az.network) and [Az.PrivateDns module](/powershell/module/az.privatedns). Run `Install-Module -Name Az.Network, Az.PrivateDns -AllowClobber`.
+- If using Azure CLI, the following extension is required:
+  - [`connectedmachine` extension](/cli/azure/connectedmachine). Run `az extension add --name connectedmachine`.
 
 ## Restrictions and limitations
 
@@ -86,8 +89,11 @@ To connect your server to Azure Arc over a private link, you must configure your
 - Optionally, deploy private endpoints for other Azure services that manage your machine or server, such as:
 
   - Azure Monitor
+
   - Azure Automation
+
   - Azure Blob Storage
+
   - Azure Key Vault
 
 ## Network configuration
@@ -128,12 +134,11 @@ There are two ways to allow access:
   ```azurepowershell
   $nsgName = "<nsg-name>"
   $resourceGroup = "<resource-group>"
-
   $nsg = Get-AzNetworkSecurityGroup -Name $nsgName -ResourceGroupName $resourceGroup
 
   # Microsoft Entra ID rule
 
-  $nsg | Add-AzNetworkSecurityRuleConfig `
+  $nsg = $nsg | Add-AzNetworkSecurityRuleConfig `
     -Name "AllowAADOutboundAccess" `
     -Priority 150 `
     -Direction Outbound `
@@ -146,7 +151,7 @@ There are two ways to allow access:
 
   # Azure rule
 
-  $nsg | Add-AzNetworkSecurityRuleConfig `
+  $nsg = $nsg | Add-AzNetworkSecurityRuleConfig `
     -Name "AllowAzOutboundAccess" `
     -Priority 151 `
     -Direction Outbound `
@@ -244,10 +249,10 @@ To understand more about the network traffic flows, see the diagram in the [How 
      -ResourceGroupName "<resource-group>" `
      -Location "<location>" `
      -ScopeName "<scope-name>" `
-     -PublicNetworkAccess "Enabled"
+     -PublicNetworkAccess Enabled
    ```
 
-   Set `-PublicNetworkAccess` to `"Disabled"` to restrict machines to communicate only through the private endpoint.
+   Set `-PublicNetworkAccess` to `Disabled` to restrict machines to communicate only through the private endpoint.
 
 1. Retrieve the scope resource ID for use in later steps:
 
@@ -261,17 +266,73 @@ To understand more about the network traffic flows, see the diagram in the [How 
 1. Create the private endpoint and associate it with the scope:
 
    ```azurepowershell
+   $vnet = Get-AzVirtualNetwork -Name "<vnet-name>" -ResourceGroupName "<resource-group>"
+   $subnet = Get-AzVirtualNetworkSubnetConfig -Name "<subnet-name>" -VirtualNetwork $vnet
+
    $privateEndpointConnection = New-AzPrivateLinkServiceConnection `
-     -Name "<connection-name>" `
-     -PrivateLinkServiceId $scopeId `
-     -GroupId "hybridcompute"
+       -Name "<connection-name>" `
+       -PrivateLinkServiceId $scopeId `
+       -GroupId "hybridcompute"
 
    New-AzPrivateEndpoint `
-     -ResourceGroupName "<resource-group>" `
-     -Name "<endpoint-name>" `
-     -Location "<location>" `
-     -Subnet (Get-AzVirtualNetworkSubnetConfig -Name "<subnet-name>" -VirtualNetwork (Get-AzVirtualNetwork -Name "<vnet-name>" -ResourceGroupName "<resource-group>")) `
-     -PrivateLinkServiceConnection $privateEndpointConnection
+       -ResourceGroupName "<resource-group>" `
+       -Name "<endpoint-name>" `
+       -Location "<location>" `
+       -Subnet $subnet `
+       -PrivateLinkServiceConnection $privateEndpointConnection
+   ```
+
+1. Create and link a DNS zone:
+
+   ```azurepowershell
+   $resourceGroup = "<resource-group>"
+   $vnetName = "<vnet-name>"
+   $endpointName = "<endpoint-name>"
+
+   # Define required DNS zones for Azure Arc
+   $dnsZoneNames = @(
+       "privatelink.his.arc.azure.com",
+       "privatelink.guestconfiguration.azure.com"
+
+       # Uncomment the following line if using Kubernetes extensions:
+       # "privatelink.dp.kubernetesconfiguration.azure.com"
+   )
+
+   $vnet = Get-AzVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroup
+
+   # Step 1: Create private DNS zones and link to VNet
+   foreach ($zoneName in $dnsZoneNames) {
+
+       # Create the private DNS zone
+       New-AzPrivateDnsZone `
+           -ResourceGroupName $resourceGroup `
+           -Name $zoneName
+
+    # Link the DNS zone to the VNet
+    New-AzPrivateDnsVirtualNetworkLink `
+        -ResourceGroupName $resourceGroup `
+        -ZoneName $zoneName `
+        -Name "$($zoneName -replace '\.', '-')-link" `
+        -VirtualNetworkId $vnet.Id
+
+    Write-Host "Created and linked DNS zone: $zoneName"
+   }
+
+   # Step 2: Create the DNS zone group on the private endpoint
+   $dnsZoneConfigs = $dnsZoneNames | ForEach-Object {
+       $zone = Get-AzPrivateDnsZone -ResourceGroupName $resourceGroup -Name $_
+       New-AzPrivateDnsZoneConfig `
+           -Name ($_ -replace '\.', '-') `
+           -PrivateDnsZoneId $zone.ResourceId
+   }
+
+   New-AzPrivateDnsZoneGroup `
+       -ResourceGroupName $resourceGroup `
+       -PrivateEndpointName $endpointName `
+       -Name "arc-dns-zone-group" `
+       -PrivateDnsZoneConfig $dnsZoneConfigs
+
+   Write-Host "DNS zone group created on endpoint $endpointName"
    ```
 
 # [Azure CLI](#tab/azure-cli2)
@@ -283,10 +344,10 @@ To understand more about the network traffic flows, see the diagram in the [How 
      --resource-group "<resource-group>" \
      --location "<location>" \
      --scope-name "<scope-name>" \
-     --public-network-access "Enabled"
+     --public-network-access Enabled
    ```
 
-   Set `--public-network-access` to `"Disabled"` to restrict machines to communicate only through the private endpoint.
+   Set `--public-network-access` to `Disabled` to restrict machines to communicate only through the private endpoint.
 
 1. Retrieve the scope resource ID for use in later steps:
 
@@ -309,6 +370,85 @@ To understand more about the network traffic flows, see the diagram in the [How 
      --private-connection-resource-id $scopeId \
      --group-id "hybridcompute" \
      --connection-name "<connection-name>"
+   ```
+
+1. Create and link a DNS zone:
+
+   ```azurecli
+   RESOURCE_GROUP="<resource-group>"
+   VNET_NAME="<vnet-name>"
+   ENDPOINT_NAME="<endpoint-name>"
+
+   # Define required DNS zones for Azure Arc
+   DNS_ZONES=(
+       "privatelink.his.arc.azure.com"
+       "privatelink.guestconfiguration.azure.com"
+       # Uncomment the following line if using Kubernetes extensions:
+       # "privatelink.dp.kubernetesconfiguration.azure.com"
+   )
+
+   # Get VNet resource ID
+   VNET_ID=$(az network vnet show \
+       --resource-group "$RESOURCE_GROUP" \
+       --name "$VNET_NAME" \
+       --query id -o tsv)
+
+   # Step 1: Create DNS zones and link to VNet
+   for ZONE in "${DNS_ZONES[@]}"; do
+       LINK_NAME="${ZONE//./-}-link"
+
+       # Create the private DNS zone
+       az network private-dns zone create \
+           --resource-group "$RESOURCE_GROUP" \
+           --name "$ZONE" \
+           --output none
+
+       # Link the DNS zone to the VNet
+       az network private-dns link vnet create \
+           --resource-group "$RESOURCE_GROUP" \
+           --zone-name "$ZONE" \
+           --name "$LINK_NAME" \
+           --virtual-network "$VNET_ID" \
+           --registration-enabled false \
+           --output none
+
+       echo "Created and linked DNS zone: $ZONE"
+   done
+
+   # Step 2: Create DNS zone group on the private endpoint
+   FIRST=true
+   for ZONE in "${DNS_ZONES[@]}"; do
+       ZONE_ID=$(az network private-dns zone show \
+           --resource-group "$RESOURCE_GROUP" \
+           --name "$ZONE" \
+           --query id -o tsv)
+       CONFIG_NAME="${ZONE//./-}"
+
+       if [ "$FIRST" = true ]; then
+           # Create the zone group with the first zone
+           az network private-endpoint dns-zone-group create \
+               --resource-group "$RESOURCE_GROUP" \
+               --endpoint-name "$ENDPOINT_NAME" \
+               --name "arc-dns-zone-group" \
+               --zone-name "$CONFIG_NAME" \
+               --private-dns-zone "$ZONE_ID" \
+               --output none
+           FIRST=false
+       else
+           # Add subsequent zones to the existing group
+           az network private-endpoint dns-zone-group add \
+               --resource-group "$RESOURCE_GROUP" \
+               --endpoint-name "$ENDPOINT_NAME" \
+               --name "arc-dns-zone-group" \
+               --zone-name "$CONFIG_NAME" \
+               --private-dns-zone "$ZONE_ID" \
+               --output none
+       fi
+
+       echo "Added zone '$ZONE' to DNS zone group."
+   done
+
+   echo "DNS zone group created on endpoint '$ENDPOINT_NAME'."
    ```
 
 ---
