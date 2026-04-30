@@ -181,7 +181,13 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 
 ### Geo-replication and subnet capacity
 
-When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If the PE subnet does not have enough free IPs, the replication provisioning fails and rolls back. The replica will appear briefly in a `Creating` state and then be removed.
+When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the operation rolls back. The replica will appear briefly in a `Creating` state and then be removed.
+
+### Why the failure error doesn't identify the exhausted subnet
+
+When a replication fails due to subnet IP exhaustion, the error message does not specify which VNet or subnet caused the failure. This is by design. Private endpoints frequently span subscription and tenant boundaries — the VNet owner and the registry owner are often different teams or organizations. Surfacing the specific subnet, VNet, or subscription that ran out of addresses in a registry-level error would leak network topology information across those trust boundaries. For this reason, the error remains generic, and each network administrator must verify capacity on their own subnets independently.
+
+### Recommendations
 
 Ensure the subnet hosting your private endpoints has sufficient free IP capacity before adding replicas. Microsoft recommends using at minimum a `/27` (32 addresses) subnet for PE subnets on geo-replicated registries, and `/24` where possible.
 
