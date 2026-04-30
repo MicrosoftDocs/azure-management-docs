@@ -9,6 +9,8 @@ items:
             href: overview.md
           - name: Agentic layer overview
             href: agentic-overview.md
+          - name: MCP server overview
+            href: mcp-server-overview.md
           - name: What's new
             href: whats-new.md
           - name: Release notes
@@ -19,10 +21,12 @@ items:
         items:
           - name: Install Edge RAG
             href: quickstart-edge-rag.md
+          - name: Create your first agent 
+            href: create-agent-quickstart.md
       - name: Plan
         items:
           - name: Requirements
-            href: Requirements.md
+            href: requirements.md
       - name: Deploy
         items:
           - name: Overview
