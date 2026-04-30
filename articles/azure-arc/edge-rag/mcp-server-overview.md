@@ -9,7 +9,7 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Model Context Protocol server overview
+# MCP server in Agentic RAG
 
 The Agentic RAG platform includes a built-in Model Context Protocol (MCP) server that exposes RAG retrieval capabilities as tools. Any MCP-compatible AI agent or client can connect to search your ingested collections.
 
@@ -24,7 +24,7 @@ This plug-and-play architecture allows agents to connect to new data sources wit
 
 ## Agentic RAG's MCP server implementation
 
-The built-in MCP server (`indexed-sources-mcp-server`) runs on port 8080 and exposes search tools that query your ingested collections. It also supports consuming external MCP servers by registering them as knowledge sources, allowing agents to access tools and data from any MCP-compatible service.
+The built-in MCP server `indexed-sources-mcp-server` runs on port 8080 and exposes search tools that query your ingested collections. It also supports consuming external MCP servers by registering them as knowledge sources, allowing agents to access tools and data from any MCP-compatible service.
 
 ### Protocol details
 
@@ -129,7 +129,7 @@ kubectl port-forward deployment/indexed-sources-mcp-server-deployment 8080:8080 
 
 Agentic RAG agents can connect to *external* MCP servers by registering them as knowledge sources with `kind: remote_mcp`. This registration allows agents to access tools and data from any MCP-compatible service.
 
-### Create a knowledge source for the external MCP server
+Use the following command to create a knowledge source for the external MCP server:
 
 ```bash
 curl -X POST https://<cluster-domain>/edgeai/knowledgesources \
@@ -147,11 +147,7 @@ curl -X POST https://<cluster-domain>/edgeai/knowledgesources \
   }'
 ```
 
-The system validates connectivity with the MCP server (three retries with exponential backoff). On success, `validation_status` is `active`.
-
-### Add to a knowledge base and assign to an agent
-
-For the full flow, see [Knowledge Bases Guide](knowledge-bases-guide.md).
+<!-- For the full flow, see [Knowledge Bases Guide](knowledge-bases-guide.md). -->
 
 ## Authentication and security
 
@@ -178,7 +174,7 @@ You can connect to the MCP server using bearer token authentication or without a
 ## Related content
 
 - [Agentic layer overview](agentic-overview.md)
-- [Collections overview](collections-overview.md)
-<!-- - [MCP server API reference](APIs/MCP-SERVER-API-REFERENCE.md)
+<!-- - [Collections overview](collections-overview.md)
+- [MCP server API reference](APIs/MCP-SERVER-API-REFERENCE.md)
 - [Knowledge sources API reference](APIs/KNOWLEDGE-SOURCES-API-REFERENCE.md)
 -->

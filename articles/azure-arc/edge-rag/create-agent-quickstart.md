@@ -269,7 +269,7 @@ If you encounter issues, check the following common problems and solutions:
 ## Related articles
 
 - [Agentic layer overview](agentic-overview.md)
-- [MCP server overview](mcp-server-overview.md)
+- [MCP server in Agentic RAG](mcp-server-overview.md)
 <!-- - [Collections overview](collections-overview.md)
 - [Agent Manager API reference](APIs/agent-manager-api.md)
 - [Agents Runtime API reference](APIs/agents-runtime-api.md) -->
