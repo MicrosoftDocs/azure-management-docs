@@ -185,7 +185,7 @@ When you add a geo-replication region to a registry that has private endpoints c
 
 ### Why the failure error doesn't identify the exhausted subnet
 
-When a replication fails due to subnet IP exhaustion, the error message does not specify which VNet or subnet caused the failure. This is by design. Private endpoints frequently span subscription and tenant boundaries — the VNet owner and the registry owner are often different teams or organizations. Surfacing the specific subnet, VNet, or subscription that ran out of addresses in a registry-level error would leak network topology information across those trust boundaries. For this reason, the error remains generic, and each network administrator must verify capacity on their own subnets independently.
+When a replication fails due to subnet IP exhaustion, the error message does not specify which VNet or subnet caused the failure. This is by design. Private endpoints can connect from VNets in different subscriptions within the same tenant, and the VNet owner and the registry owner are often different teams. Surfacing the specific subnet, VNet, or subscription that ran out of addresses in a registry-level error would leak network topology information across those subscription boundaries. For this reason, the error remains generic, and each network administrator must verify capacity on their own subnets independently.
 
 ### Recommendations
 
