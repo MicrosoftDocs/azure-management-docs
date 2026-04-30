@@ -21,7 +21,7 @@ items:
         items:
           - name: Install Edge RAG
             href: quickstart-edge-rag.md
-          - name: Create your first agent 
+          - name: Create your first agent
             href: create-agent-quickstart.md
       - name: Plan
         items:
