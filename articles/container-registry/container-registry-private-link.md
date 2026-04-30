@@ -183,10 +183,7 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 
 When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the entire operation rolls back. The replica appears briefly in a `Creating` state and then is removed.
 
-> [!IMPORTANT]
-> The resulting error message is generic and does not identify which subnet or VNet ran out of addresses. This is by design — private endpoints can connect from VNets in different subscriptions, and the VNet owner and registry owner are often separate teams. Revealing which subnet is exhausted in a registry-level error would expose network topology details across subscription boundaries.
->
-> If a geo-replication fails unexpectedly, ask each network administrator to verify that their PE subnets have free IP capacity using the command in [Recommendations](#recommendations).
+The resulting error does not identify which subnet or VNet is exhausted. If a geo-replication fails unexpectedly, verify that every PE subnet connected to the registry has free IP capacity using the command in [Recommendations](#recommendations).
 
 ### Recommendations
 
