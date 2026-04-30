@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Create Your First Agentic RAG Agent"
-description: Learn how to create an Agentic RAG agent end-to-end by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+description: Learn how to create an Agentic RAG agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: quickstart
@@ -11,7 +11,7 @@ ai-usage: ai-generated
 
 # Quickstart: Create your first Agentic RAG agent
 
-In this quickstart, you create an Agentic RAG agent end-to-end by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+In this quickstart, you create an Agentic RAG agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
 
 ## Prerequisites
 
@@ -158,7 +158,7 @@ AGENT_ID=$(echo $AGENT_RESPONSE | jq -r '.data.id')
 echo "Agent: $AGENT_ID"
 ```
 
-Replace `<your-byom-endpoint-url>` with your LLM endpoint (e.g., `https://my-model.openai.azure.com/v1`).
+Replace `<your-byom-endpoint-url>` with your LLM endpoint (for example, `https://my-model.openai.azure.com/v1`).
 
 ## Step 6: Create a thread
 
@@ -203,7 +203,7 @@ curl -N -X POST "https://$CLUSTER/threads/$THREAD_ID/runs?stream=true" \
   }"
 ```
 
-You'll see server-sent events (SSE) streaming back:
+You see server-sent events (SSE) streaming back:
 
 ```output
 event: thread.run.created
@@ -254,11 +254,11 @@ If you encounter issues, check the following common problems and solutions:
 
 | Problem | Solution |
 |---|---|
-| Knowledge source validation status is `failed` | Check `validation_error`. Verify the MCP server URL is reachable. Update via PATCH to trigger re-validation. |
+| Knowledge source validation status is `failed` | Check `validation_error`. Verify the MCP server URL is reachable. Update via PATCH to trigger revalidation. |
 | Run status is `failed` | Check `last_error` on the run object. Common issues: BYOM endpoint unreachable, model timeout, invalid endpoint URL. |
-| `401 Unauthorized` | Token expired. Re-acquire: `TOKEN=$(az account get-access-token ...)` |
+| `401 Unauthorized` | Token expired. Reacquire: `TOKEN=$(az account get-access-token ...)` |
 | `403 Forbidden` | Missing `EdgeRAGDeveloper` role on token. Check Entra ID app role assignments. |
-| `404 Not Found` on thread/message | Thread ownership is enforced — you can only access threads you created. |
+| `404 Not Found` on thread/message | Thread ownership is enforced; you can only access threads you created. |
 | Ingestion job stuck in `PENDING` | Check ingestion service logs. Verify NFS path is accessible from the cluster. |
 
 ## Next step

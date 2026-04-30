@@ -9,7 +9,7 @@ items:
             href: overview.md
           - name: Agentic layer overview
             href: agentic-overview.md
-          - name: MCP server overview
+          - name: MCP server in Agent RAG
             href: mcp-server-overview.md
           - name: What's new
             href: whats-new.md
