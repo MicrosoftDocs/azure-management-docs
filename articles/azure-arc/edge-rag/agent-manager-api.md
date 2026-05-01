@@ -79,7 +79,7 @@ POST https://localhost:8000/knowledge-bases
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -192,7 +192,7 @@ GET https://localhost:8000/knowledge-bases?limit=10&order=desc
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -269,7 +269,7 @@ GET https://localhost:8000/knowledge-bases/asst_abc123def456789012345678
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -346,7 +346,7 @@ PATCH https://localhost:8000/knowledge-bases/asst_abc123def456789012345678
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -437,7 +437,7 @@ PUT https://localhost:8000/knowledge-bases/asst_abc123def456789012345678
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -537,7 +537,7 @@ DELETE https://localhost:8000/knowledge-bases/asst_abc123def456789012345678
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response

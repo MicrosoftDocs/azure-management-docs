@@ -15,13 +15,11 @@ Use this REST API to manage conversation threads, messages, and runs with knowle
 
 ## Authorization
 
-All endpoints require a valid Bearer token issued by Microsoft Entra ID (Azure AD). The MISE sidecar running alongside the service validates the token.
+All endpoints require a valid Bearer token issued by Microsoft Entra ID. The MISE sidecar running alongside the service validates the token.
 
 ### Obtain a token
 
-Acquire an access token from Microsoft Entra ID using the OAuth 2.0 client credentials flow or authorization code flow. The token must be issued for the Agentic RAG app registration audience.
-
-Using the Azure CLI:
+Acquire an access token from Entra ID using the OAuth 2.0 client credentials flow or authorization code flow. The token must be issued for the Agentic RAG app registration audience.
 
 ```azurecli
 az account get-access-token --resource api://<app-registration-client-id> --query accessToken -o tsv
@@ -37,7 +35,7 @@ Authorization: Bearer <access-token>
 
 ### Thread ownership
 
-The `oid` (Object ID) claim from the token identifies the user. Thread ownership is enforced - users can only access threads they created. All CRUD operations on threads, messages, runs, and steps respect this ownership boundary. No specific role is required beyond being authenticated.
+The `oid` (Object ID) claim from the token identifies the user. Thread ownership is enforced; users can only access threads they created. All CRUD operations on threads, messages, runs, and steps respect this ownership boundary. No specific role is required beyond being authenticated.
 
 ### Disable authentication (Development)
 
@@ -72,7 +70,7 @@ POST https://localhost:8001/threads
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -137,7 +135,7 @@ GET https://{runtime_host}/threads?limit={limit}&order={order}&after={after}&bef
 
 | Name | Description | Data type |
 | --- | --- | --- |
-| runtime\_host | Hostname of the Agents Runtime Service. | String |
+| runtime\_host | Hostname of the Agents Runtime Service | String |
 
 ### Query parameters
 
@@ -157,7 +155,7 @@ GET https://localhost:8001/threads?limit=10&order=desc
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -228,7 +226,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -293,7 +291,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -370,7 +368,7 @@ DELETE https://localhost:8001/threads/thread_abc123def456789012345678
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -430,7 +428,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678/messages
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -464,7 +462,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678/messages
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 #### Body
@@ -574,7 +572,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678/messages?limi
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -677,7 +675,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678/messages/msg_
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -752,7 +750,7 @@ DELETE https://localhost:8001/threads/thread_abc123def456789012345678/messages/m
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -818,7 +816,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678/runs
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Body example
@@ -858,7 +856,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678/runs?stream=
 
 ```http
 Content-Type: application/json
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 #### Body
@@ -964,7 +962,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678/runs/run_abc1
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -1039,7 +1037,7 @@ POST https://localhost:8001/threads/thread_abc123def456789012345678/runs/run_abc
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -1126,7 +1124,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678/runs/run_abc1
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
@@ -1238,7 +1236,7 @@ GET https://localhost:8001/threads/thread_abc123def456789012345678/runs/run_abc1
 ### Header
 
 ```http
-Authorization: Bearer eyJ0eX ... FWSXfwtQ
+Authorization: Bearer <access-token>
 ```
 
 ### Response
