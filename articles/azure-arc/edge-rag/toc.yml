@@ -111,3 +111,9 @@ items:
             href: /rest/api/aks/
           - name: Azure Local REST API reference
             href: /rest/api/stackhci/
+      - name: API reference
+        items:
+          - name: Agent Management Service
+            href: agent-manager-api.md
+          - name: Agents Runtime Service
+            href: agents-runtime-api.md
