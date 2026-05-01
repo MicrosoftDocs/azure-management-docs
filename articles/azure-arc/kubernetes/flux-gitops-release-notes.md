@@ -52,7 +52,7 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
-## April 2026 - `microsoft.flux version 1.21.1
+## April 2026 - `microsoft.flux` version 1.21.1
 
 > [!IMPORTANT]
 > If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
