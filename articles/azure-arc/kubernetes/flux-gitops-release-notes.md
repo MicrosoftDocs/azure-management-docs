@@ -54,6 +54,9 @@ Once the manifests are updated in the sources, Flux will reconcile the new API v
 
 ## April 2026 - `microsoft.flux version 1.21.1
 
+> [!IMPORTANT]
+> If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
+
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
 - source-controller: v1.6.4-13
@@ -68,9 +71,6 @@ Changes in this version include:
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
 
 ## April 2026 - `microsoft.flux` version 1.21.0
-
-> [!IMPORTANT]
-> If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
