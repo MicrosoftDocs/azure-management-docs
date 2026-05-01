@@ -65,6 +65,7 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 
 - [NVIDIA V100][nvidia-v100]
 - [NVIDIA T4][nvidia-t4]
+- [NVIDIA NVads A10 v5][nvidia-nv-a10-v5]
 - [NVIDIA NC A100 V4][nvidia-nc-a100-v4]
 - [NVIDIA NDasr A100 V4][nvidia-ndasr-a100-v4]
 - [NVIDIA NDm A100 V4][nvidia-ndm-a100-v4]
@@ -86,6 +87,7 @@ Get started deploying NVIDIA GPU workloads on AKS with Azure Linux [here][use-nv
 <!-- LINKS - internal -->
 [nvidia-v100]: /azure/virtual-machines/ncv3-series
 [nvidia-t4]: /azure/virtual-machines/nct4-v3-series
+[nvidia-nv-a10-v5]: /azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series
 [nvidia-nc-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/nca100v4-series
 [nvidia-ndasr-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndasra100v4-series
 [nvidia-ndm-a100-v4]: /azure/virtual-machines/sizes/gpu-accelerated/ndma100v4-series
