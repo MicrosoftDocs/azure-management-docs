@@ -36,10 +36,10 @@ Before you can use the Quota Group feature, you must:
 
 ## Limitations
 
-- Available only for Enterprise Agreement or Microsoft Customer Agreement and Internal subscriptions. 
+- Available only for Enterprise Agreement and internal subscriptions. 
 - Supports IaaS compute resources only.  
 - Available in public cloud regions only.  
-- Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
+- Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the event that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
 - A subscription can belong to a single Quota group at a time.
 - Quota Groups addresses the quota management pain point, it does not address the regional and or zonal access pain point. To get region and or zonal access on subscriptions, [see region access request process](/troubleshoot/azure/general/region-access-request-process). Quota transfers between subscriptions and deployments will fail unless regional and or zonal access is provided on the subscription.  
 

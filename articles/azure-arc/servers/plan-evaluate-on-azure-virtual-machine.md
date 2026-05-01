@@ -131,4 +131,4 @@ After you install and configure the agent to register with Azure Arc-enabled ser
 
 * Learn about our [supported Azure VM extensions](manage-vm-extensions.md) available to simplify deployment with other Azure services like Automation, KeyVault, and others for your Windows or Linux machine.
 
-* When you have finished testing, [uninstall the Azure Connected Machine agent](manage-agent.md#uninstall-the-agent).
+* When you have finished testing, [uninstall the Azure Connected Machine agent](uninstall-agent.md).

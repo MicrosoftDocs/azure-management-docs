@@ -165,6 +165,45 @@ az network private-endpoint create \
 
 To configure DNS records, get the IP configuration of the private endpoint. In this example, the private endpoint's network interface connects to two private IP addresses for the container registry: one for the registry itself, and one for the registry's data endpoint. If your registry is geo-replicated, each replica has an additional IP address.
 
+## Plan subnet IP capacity for private endpoints
+
+Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
+
+### IP address consumption per feature
+
+| Configuration | IPs consumed per VNet |
+|---|---|
+| Initial private endpoint (registry endpoint + home region regional dedicated data endpoint) | 2 |
+| Each geo-replication region added | +1 (regional dedicated data endpoint) |
+| [Regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints) enabled | +1 per geo-replica |
+
+**Example:** A registry with 3 geo-replicas and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 regional dedicated data endpoints + 3 regional endpoints).
+
+### Geo-replication and subnet capacity
+
+When you add a geo-replication region to a registry that has private endpoints configured, ACR automatically provisions an additional private IP in each associated VNet for the new region's regional dedicated data endpoint. If **any** PE subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and the entire operation rolls back. The replica appears briefly in a `Creating` state and then is removed.
+
+The resulting error does not identify which subnet or VNet is exhausted. If a geo-replication fails unexpectedly, verify that every PE subnet connected to the registry has free IP capacity using the command in [Recommendations](#recommendations).
+
+### Recommendations
+
+Ensure the subnet hosting your private endpoints has sufficient free IP capacity before adding replicas. Microsoft recommends using at minimum a `/27` (32 addresses) subnet for PE subnets on geo-replicated registries, and `/24` where possible.
+
+> [!TIP]
+> To check how many private IPs are already consumed on a subnet before adding a replica, run:
+> ```azurecli
+> az network vnet subnet show \
+>   --name <subnet-name> \
+>   --vnet-name <vnet-name> \
+>   --resource-group <resource-group> \
+>   --query "{addressPrefix:addressPrefix, usedIPs:length(ipConfigurations || \`[]\`)}" \
+>   --output table
+> ```
+
+### Regional endpoints and IP consumption
+
+If you enable [regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints), each geo-replica gets a dedicated login server URL (`myregistry.<region>.geo.azurecr.io`). For registries with private endpoints, this allocates one additional private IP per geo-replica in every associated VNet. Evaluate your subnet capacity before enabling this feature on registries with multiple replicas and many associated VNets.
+
 First, run [az network private-endpoint show][az-network-private-endpoint-show] to query the private endpoint for the network interface ID:
 
 ```azurecli
