@@ -173,94 +173,84 @@ curl -X PATCH https://<cluster-domain>/edgeai/knowledgesources/<ks-id> \
 
 You can delete knowledge sources individually or in batch operations.
 
-1. Delete a single knowledge source
+1. Delete a single knowledge source.
 
-  Send a DELETE request to remove the knowledge source:
+    ```bash
+    curl -X DELETE https://<cluster-domain>/edgeai/knowledgesources/<ks-id> \
+      -H "Authorization: Bearer $TOKEN"
+    ```
 
-  ```bash
-  curl -X DELETE https://<cluster-domain>/edgeai/knowledgesources/<ks-id> \
-    -H "Authorization: Bearer $TOKEN"
-  ```
+1. Batch delete multiple knowledge sources.
 
-1. Batch delete multiple knowledge sources
-
-  Send a POST request to delete multiple knowledge sources at once:
-
-  ```bash
-  curl -X POST https://<cluster-domain>/edgeai/knowledgesources/batch-delete \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $TOKEN" \
-    -d '{
-      "ks_ids": ["<ks-id-1>", "<ks-id-2>"]
-    }'
-  ```
+    ```bash
+    curl -X POST https://<cluster-domain>/edgeai/knowledgesources/batch-delete \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d '{
+        "ks_ids": ["<ks-id-1>", "<ks-id-2>"]
+      }'
+    ```
 
 ## Step 5: Complete an end-to-end example
 
 Follow this complete flow to create a knowledge source, knowledge base, and agent together.
 
-1. Create a knowledge source for your collection
+1. Create a knowledge source for your collection.
 
-  Send a POST request to create the knowledge source and save the ID:
-
-  ```bash
-  KS_RESPONSE=$(curl -s -X POST https://<cluster-domain>/edgeai/knowledgesources \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $TOKEN" \
-    -d '{
-      "name": "my-docs-search",
-      "kind": "indexed_sources_mcp",
-      "auth_type": "microsoft_entra_id",
-      "description": "Search the my-docs collection",
-      "indexed_sources_parameters": {
-        "server_url": "https://<cluster-domain>/edgeai/mcp",
-        "indexed_source_ref": "my-docs",
-        "server_label": "indexed-sources-mcp-server"
+    ```bash
+    KS_RESPONSE=$(curl -s -X POST https://<cluster-domain>/edgeai/knowledgesources \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d '{
+        "name": "my-docs-search",
+        "kind": "indexed_sources_mcp",
+        "auth_type": "microsoft_entra_id",
+        "description": "Search the my-docs collection",
+        "indexed_sources_parameters": {
+          "server_url": "https://<cluster-domain>/edgeai/mcp",
+          "indexed_source_ref": "my-docs",
+          "server_label": "indexed-sources-mcp-server"
+          }
         }
-      }
-    }')
+      }')
 
-  KS_ID=$(echo $KS_RESPONSE | jq -r '.id')
-  echo "Knowledge Source ID: $KS_ID"
-  ```
+    KS_ID=$(echo $KS_RESPONSE | jq -r '.id')
+    echo "Knowledge Source ID: $KS_ID"
+    ```
 
-1. Create a knowledge base
+1. Create a knowledge base.
 
-  Send a POST request to create the knowledge base using the knowledge source ID:
+    ```bash
+    KB_RESPONSE=$(curl -s -X POST https://<cluster-domain>/knowledge-bases \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d "{
+        \"name\": \"Product Docs KB\",
+        \"description\": \"Knowledge base for product documentation\",
+        \"knowledge_source_ids\": [\"$KS_ID\"]
+      }")
 
-  ```bash
-  KB_RESPONSE=$(curl -s -X POST https://<cluster-domain>/knowledge-bases \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $TOKEN" \
-    -d "{
-      \"name\": \"Product Docs KB\",
-      \"description\": \"Knowledge base for product documentation\",
-      \"knowledge_source_ids\": [\"$KS_ID\"]
-    }")
+    KB_ID=$(echo $KB_RESPONSE | jq -r '.data.id')
+    echo "Knowledge Base ID: $KB_ID"
+    ```
 
-  KB_ID=$(echo $KB_RESPONSE | jq -r '.data.id')
-  echo "Knowledge Base ID: $KB_ID"
-  ```
+1. Create an agent that uses the knowledge base.
 
-1. Create an agent
+    ```bash
+    curl -X POST https://<cluster-domain>/agents \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d "{
+        \"name\": \"Product Support Agent\",
+        \"instructions\": \"You are a helpful agent. Answer questions using your knowledge base.\",
+        \"endpoint_url\": \"https://my-model.example.com/v1\",
+        \"knowledge_base_id\": \"$KB_ID\",
+        \"temperature\": 0.7,
+        \"top_p\": 0.9
+      }"
+    ```
 
-  Send a POST request to create an agent that uses the knowledge base:
-
-  ```bash
-  curl -X POST https://<cluster-domain>/agents \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $TOKEN" \
-    -d "{
-      \"name\": \"Product Support Agent\",
-      \"instructions\": \"You are a helpful agent. Answer questions using your knowledge base.\",
-      \"endpoint_url\": \"https://my-model.example.com/v1\",
-      \"knowledge_base_id\": \"$KB_ID\",
-      \"temperature\": 0.7,
-      \"top_p\": 0.9
-    }"
-  ```
-
-  The agent is now ready to use. To create threads, send messages, and execute runs, see [Quickstart: Create your first agent](create-agent-quickstart.md).
+The agent is now ready to use. To create threads, send messages, and execute runs, see [Quickstart: Create your first agent](create-agent-quickstart.md).
 
 ## Related content
 

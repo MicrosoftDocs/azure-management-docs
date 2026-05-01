@@ -93,24 +93,24 @@ Knowledge sources can be linked at creation time through `knowledge_source_ids` 
 
 1. Get the current knowledge source IDs:
 
-  ```bash
-  CURRENT=$(curl -s https://<cluster-domain>/knowledge-bases/<kb-id> \
-    -H "Authorization: Bearer $TOKEN" | jq -r '.data.knowledge_source_ids')
-  ```
+    ```bash
+    CURRENT=$(curl -s https://<cluster-domain>/knowledge-bases/<kb-id> \
+      -H "Authorization: Bearer $TOKEN" | jq -r '.data.knowledge_source_ids')
+    ```
 
 1. Send a PATCH request with the updated list (include all desired IDs):
 
-  ```bash
-  curl -X PATCH https://<cluster-domain>/knowledge-bases/<kb-id> \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $TOKEN" \
-    -d '{
-      "knowledge_source_ids": ["<existing-ks-id>", "<new-ks-id>"]
-    }'
-  ```
+    ```bash
+    curl -X PATCH https://<cluster-domain>/knowledge-bases/<kb-id> \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d '{
+        "knowledge_source_ids": ["<existing-ks-id>", "<new-ks-id>"]
+      }'
+    ```
 
-  > [!IMPORTANT]
-  > PATCH replaces the entire `knowledge_source_ids` array. It doesn't append. You must include all desired IDs in the array. Omitting an existing ID effectively removes that knowledge source from the knowledge base.
+    > [!IMPORTANT]
+    > PATCH replaces the entire `knowledge_source_ids` array. It doesn't append. You must include all desired IDs in the array. Omitting an existing ID effectively removes that knowledge source from the knowledge base.
 
 ## Step 3: Assign to an agent
 
@@ -210,6 +210,6 @@ curl -X DELETE https://<cluster-domain>/knowledge-bases/<kb-id> \
 ## Related content
 
 - [Configure a knowledge source](knowledge-sources-guide.md)
-- [Agentic layer overview](agentic-overview.md)
-- [Quickstart: Create your first agent](create-agent-quickstart.md)
+- [The agentic layer in Agentic RAG](agentic-overview.md)
+- [Quickstart: Create your first Agentic RAG agent](create-agent-quickstart.md)
 <!-- - [Agent manager API reference](APIs/agent-manager-api.md) -->
