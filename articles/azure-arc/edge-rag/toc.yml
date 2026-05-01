@@ -57,6 +57,10 @@ items:
             href: deploy.md
           - name: Configure authentication for your model (optional)
             href: configure-endpoint-authentication.md
+          - name: Create knowledge base
+            href: knowledge-bases-guide.md
+          - name: Configure knowledge source
+            href: knowledge-sources-guide.md
       - name: Configure chat solution
         items:
           - name: Overview
