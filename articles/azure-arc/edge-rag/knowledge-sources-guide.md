@@ -5,6 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 04/30/2026
+ms.service: azure-arc
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
@@ -255,6 +256,6 @@ The agent is now ready to use. To create threads, send messages, and execute run
 ## Related content
 
 - [Create a knowledge base in Agentic RAG](knowledge-bases-guide.md)
-- [Agentic layer overview](agentic-overview.md)
+- [The agentic layer in Agentic RAG](agentic-overview.md)
 - [MCP server in Agentic RAG](mcp-server-overview.md)
 <!-- - [Knowledge sources API reference](APIs/KNOWLEDGE-SOURCES-API-REFERENCE.md) -->

@@ -5,6 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 04/30/2026
+ms.service: azure-arc
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
