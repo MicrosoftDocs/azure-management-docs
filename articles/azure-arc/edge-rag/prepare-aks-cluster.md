@@ -78,7 +78,7 @@ To create a node pool for AKS Arc, complete the following steps from the driver 
 
    - You must create a node pool of at least three CPU virtual machines (VMs), with minimal size of "Standard_D8s_v3". Run the following command:
    
-    	```powershell
+```powershell
     	$cpuPoolName = "<CPU Pool Name>"
     	$gpuPoolName = "<GPU Pool Name>"
     	$gpuVmSku = "Standard_NC8_A2" #Can also use Standard_NC8_A16
@@ -88,26 +88,26 @@ To create a node pool for AKS Arc, complete the following steps from the driver 
     	$gpuNodeCount = 2
     			
     	az aksarc nodepool add --name $cpuPoolName --cluster-name $k8scluster -g $rg --node-count $cpuNodeCount --node-vm-size $cpuVmSku
-    	```
+```
    
    - You must create a node pool of at least two GPU virtual machines (VMs), with minimal size of "Standard_NC8_A2" or "Standard_NC8_A16". Run the following command:
 
 The 2 GPU VMs are used for the Knowledge Layer's text embedding model (BGE-M3) and image embedding model (CLIP ViT-L/14). Docling (document parser) runs on CPU. The language model (LLM) runs externally via your BYOM endpoint and does not consume cluster GPUs.
    
-    	```powershell
-    	az aksarc nodepool add --name $gpuPoolName --cluster-name $k8scluster -g $rg --node-count $gpuNodeCount  --node-vm-size $gpuVmSku
-    	```
+```powershell
+az aksarc nodepool add --name $gpuPoolName --cluster-name $k8scluster -g $rg --node-count $gpuNodeCount  --node-vm-size $gpuVmSku
+```
    
    If only CPUs are available, you must create a node pool of at least six CPU VMs, with minimal size of "Standard_D8s_v3". Run the following command:
    
-    ```powershell
-    $cpuPoolName = "<CPU Pool Name>"
-    $cpuVmSku = "Standard_D8s_v3"
-    $rg = "<Resource Group name>"
-    $cpuNodeCount = 6
-    $k8scluster = "<AKS Arc Cluster>"
-    az aksarc nodepool add --name $cpuPoolName --cluster-name $k8scluster -g $rg --node-count $cpuNodeCount --node-vm-size $cpuVmSku
-    ```
+```powershell
+$cpuPoolName = "<CPU Pool Name>"
+$cpuVmSku = "Standard_D8s_v3"
+$rg = "<Resource Group name>"
+$cpuNodeCount = 6
+$k8scluster = "<AKS Arc Cluster>"
+az aksarc nodepool add --name $cpuPoolName --cluster-name $k8scluster -g $rg --node-count $cpuNodeCount --node-vm-size $cpuVmSku
+```
 
 CPU-only mode applies to the Knowledge Layer only. In CPU-only mode, embedding quality may be reduced and image search is not available. Docling (document parser) runs on CPU by default and does not require GPU. CPU-only mode is not applicable to agentic deployments, which have no GPU requirements regardless.
 
