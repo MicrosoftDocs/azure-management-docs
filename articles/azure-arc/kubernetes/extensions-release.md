@@ -41,25 +41,27 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ### Azure Red Hat OpenShift (ARO) Considerations
 
-Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation. Starting version 1.18.0, these guardrails can be uninstalled through configuration flag below.
+Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
+
+To disable ARO Guardrails, run the following commands **in order** after connecting ARO cluster to Azure:
 
 ```bash
---configuration-settings azurepolicy.env.disableGuardrails=true
+kubectl patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "path": "/spec/operatorflags/aro.guardrails.deploy.managed", "value":"false" }]'
+
+kubectl patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "path": "/spec/operatorflags/aro.guardrails.enabled", "value":"false" }]'
+
+kubectl delete ns openshift-azure-guardrails
+
+kubectl get validatingwebhookconfiguration,mutatingwebhookconfiguration,clusterrole,clusterrolebinding,crd -o name | grep gatekeeper
 ```
 
-Example:
-
-```bash
-az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --auto-upgrade-minor-version true --version <verison 1.18.0 or above> --release-train stable --configuration-settings azurepolicy.env.disableGuardrails=true
-```
+Once guardrails are disabled, you may proceed with installing the Azure Policy Extension.
 
 ### Azure Policy Extension Release Notes
 
 #### 1.18.0
 
 Introducing Validating Admission Policy (VAP) generation. Validating Admission Policies are Kubernetes-native validating policy resources that are evaluated in-process, allowing for reduced latency and fail-close evaluation. Azure Policies that contain Common Expression Language (CEL) will automatically generate VAPs for Kubernetes version 1.30+
-
-Allow disabling guardrails on ARO clusters through configuration flag.
 
 Security improvements.
  - Released: May 2026
