@@ -4,7 +4,7 @@ description: "Learn how to complete deployment prerequisites for Agentic RAG to 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 04/30/2026
+ms.date: 04/27/2026
 ai-usage: ai-generated
 ms.subservice: edge-rag
 ms.custom:
@@ -28,11 +28,7 @@ Use this checklist to prepare your environment before deploying Agentic RAG on A
 | Step | Task | Description |
 |------|------|-------------|
 | 1 | [Verify your environment meets requirements](requirements.md) | Before you begin, review [What you need for Agentic RAG](requirements.md). |
-
-> [!NOTE]
-> Before starting, decide which deployment mode you need: **combined** (default — full platform), **agentic** (agents only, no local data ingestion), or **knowledge** (data ingestion and RAG only, no agents). Your choice affects which prerequisites apply. For example, agentic mode does not require GPUs or an NFS data source.
-
-| 2 | Choose your deployment mode| Decide which deployment mode you need: **combined** (default, full platform), **agentic** (agents only, no local data ingestion), or **knowledge** (data ingestion and RAG only, no agents). Your choice affects which prerequisites apply. For example, agentic mode doesn't require GPUs or a network files system (NFS) data source. |
+| 2 | Choose your deployment mode | Decide which deployment mode you need: **combined** (default, full platform), **agentic** (agents only, no local data ingestion), or **knowledge** (data ingestion and RAG only, no agents). Your choice affects which prerequisites apply. For example, agentic mode doesn't require GPUs or a network files system (NFS) data source. |
 | 3 | [Verify you have the Contributor role](prepare-contributor-permission.md) | Verify that you have the **Contributor** role at the subscription level. This role is required to register providers and enable features. |
 | 4 | [Set up your language model endpoint (BYOM)](prepare-language-model.md) | Agentic RAG requires you to Bring Your Own Model (BYOM). Set up an OpenAI-compatible LLM endpoint before deployment. See [Prepare your language model endpoint](prepare-language-model.md). |
 | 5 | [Create a BYOM endpoint](prepare-model-endpoint.md) | Set up an OpenAI API-compatible endpoint for your language model. This step is **mandatory** for all deployments. See [Create a BYOM endpoint](prepare-model-endpoint.md). |
