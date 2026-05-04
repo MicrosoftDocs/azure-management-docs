@@ -39,10 +39,10 @@ Data ingestion means you add your on-premises data and set up options so the dat
 Before ingesting data, you can optionally create a **collection** to organize your vector data. Collections are logical groupings — each maps to dedicated Milvus vector collections and Postgres tables.
 
 - If you don't specify a collection, data is ingested into the default `edgeragapp` collection.
-- To create a new collection, use the [Collections API](collections-overview) or specify a collection name during ingestion.
+- To create a new collection, use the [Collections API](collections-overview.md) or specify a collection name during ingestion.
 - Multiple collections let you separate data by department, tenant, or use case, with per-collection RBAC.
 
-For more information, see [Collections overview](collections-overview).
+For more information, see [Collections overview](collections-overview.md).
 
 ### Planning data ingestion
 
@@ -94,8 +94,8 @@ When it comes to chunking data, think about these factors:
 
 You can also perform data ingestion programmatically by using the REST APIs:
 
-- [Collections API](collections-overview) — Create and manage collections before ingesting.
-- [Ingestion API](agent-manager-api) — Start ingestion jobs targeting a specific collection.
+- [Collections API](collections-overview.md) — Create and manage collections before ingesting.
+- [Ingestion API](agent-manager-api.md) — Start ingestion jobs targeting a specific collection.
 
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
 - Create as many data ingestions as you'd like. Data is vectorized and stored in the collection you specify (or the default `edgeragapp` collection if none is specified). You can create multiple collections to organize data by domain, department, or use case.
@@ -134,10 +134,10 @@ If you want to integrate the chat endpoint in one of your line-of-business appli
 
 If you deployed in combined mode, your ingested collections can be accessed by AI agents through the Agentic Layer:
 
-1. Create [Knowledge Sources](knowledge-sources-guide) pointing to your collections (using `kind: indexed_sources_mcp` with `indexed_source_ref` = collection name).
-2. Group them into a [Knowledge Base](knowledge-bases-guide) and assign to an [Agent](create-agent-quickstart).
+1. Create [Knowledge Sources](knowledge-sources-guide.md) pointing to your collections (using `kind: indexed_sources_mcp` with `indexed_source_ref` = collection name).
+2. Group them into a [Knowledge Base](knowledge-bases-guide.md) and assign to an [Agent](create-agent-quickstart.md).
 
-For a full walkthrough, see [Create your first agent](create-agent-quickstart).
+For a full walkthrough, see [Create your first agent](create-agent-quickstart.md).
 
 ## Related content
 

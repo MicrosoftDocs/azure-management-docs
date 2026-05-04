@@ -68,7 +68,7 @@ All search types are available with Agentic RAG, since all deployments use BYOM:
 | Deep search | Yes (for best results, use GPT-4o or GPT-4.1-mini or later) |
 | Hybrid multimodal search | Yes |
 
-For deep search, we recommend using GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model).
+For deep search, we recommend using GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
 
 For more information about deploying with a language model, see:
 
@@ -87,7 +87,7 @@ All search types can be scoped to specific collections. When querying via the de
 - **Inference API**: Set `data_sources[0].parameters.index_name` to the collection name.
 - **MCP Server**: Set `collection_names` in the tool arguments. You can query multiple collections in a single request.
 
-For more information, see [Collections overview](collections-overview) and [MCP Server overview](mcp-server-overview).
+For more information, see [Collections overview](collections-overview.md) and [MCP Server overview](mcp-server-overview.md).
 
 ## Performance considerations
 
@@ -110,7 +110,7 @@ Use these tips to help you select the best search type for your Agentic RAG depl
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
 - All search types are available with your BYOM endpoint. For deep search, use a model like GPT-4o or later for best results.
-- When using agents, search tools are available via the built-in MCP server. See [MCP Server overview](mcp-server-overview).
+- When using agents, search tools are available via the built-in MCP server. See [MCP Server overview](mcp-server-overview.md).
 
 ## Search type parameters
 

@@ -33,7 +33,7 @@ Before deploying Agentic RAG, make sure you have the following Azure resources a
 | Microsoft Entra ID  permissions |- Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).<br>- Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application. <br> <br> As part of the prerequisites tasks, you [configure authentication for Agentic RAG Preview enabled by Azure Arc](prepare-authentication.md).|
 | Permissions for AKS enabled by Azure Arc| Permissions to deploy [AKS Arc Kubernetes clusters](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).   As part of the prerequisites tasks, see [Verify contributor role for Agentic RAG Preview enabled by Azure Arc](prepare-contributor-permission.md).|
 | Transport Layer Security (TLS) termination certificate | A certificate signed by a company-specific certification authority (CA) or a well-known public CA for secure deployments. If you don't provide one, Agentic RAG generates a self-signed certificate. We don't recommend using a self-signed certificate for production environments. |
-| BYOM language model endpoint | An OpenAI-compatible chat completions endpoint for your language model. The recommended model is **GPT-OSS-20B** via Foundry Local on Arc (requires its own GPU — see BYOM hardware requirements above). Also supported: KAITO, Azure OpenAI, Ollama, or another provider. See [Create a BYOM endpoint](prepare-model-endpoint). |
+| BYOM language model endpoint | An OpenAI-compatible chat completions endpoint for your language model. The recommended model is **GPT-OSS-20B** via Foundry Local on Arc (requires its own GPU — see BYOM hardware requirements above). Also supported: KAITO, Azure OpenAI, Ollama, or another provider. See [Create a BYOM endpoint](prepare-model-endpoint.md). |
 
 ### On-premises resources
 
@@ -71,7 +71,7 @@ The 2 GPUs in the cluster are used for embedding models. Docling runs on CPU:
 | GPU 2 | Image embedding model (CLIP ViT-L/14) |
 | CPU | Document parser (Docling) — no GPU required |
 
-**Recommended BYOM model:** GPT-OSS-20B via Foundry Local on Arc. Also supported: KAITO, Azure OpenAI, Ollama, or any OpenAI-compatible endpoint. See [Create a BYOM endpoint](prepare-model-endpoint).
+**Recommended BYOM model:** GPT-OSS-20B via Foundry Local on Arc. Also supported: KAITO, Azure OpenAI, Ollama, or any OpenAI-compatible endpoint. See [Create a BYOM endpoint](prepare-model-endpoint.md).
 
 #### BYOM hardware requirements (GPT-OSS-20B via Foundry Local)
 

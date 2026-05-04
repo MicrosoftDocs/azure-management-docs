@@ -270,8 +270,8 @@ az group delete `
 
 Now that Agentic RAG is deployed:
 
-1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source).
-2. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart) to build an agent with a knowledge base and run a conversation with streaming.
+1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source.md).
+2. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart.md) to build an agent with a knowledge base and run a conversation with streaming.
 
 ## Next step
 

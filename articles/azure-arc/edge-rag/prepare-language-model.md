@@ -42,10 +42,10 @@ Agentic RAG works with any language model that exposes an OpenAI-compatible chat
 | **Foundry Local** | Run models locally via Microsoft Foundry Local. | Local development and evaluation. |
 | **Any OpenAI-compatible endpoint** | Any service exposing `/v1/chat/completions`. | Custom or third-party model servers. |
 
-For step-by-step setup instructions for each method, see [Create a BYOM endpoint](prepare-model-endpoint).
+For step-by-step setup instructions for each method, see [Create a BYOM endpoint](prepare-model-endpoint.md).
 
 ## Next steps
 
-- [Create a BYOM endpoint](prepare-model-endpoint) — set up your LLM endpoint.
-- [Deploy the Agentic RAG extension](deploy) — use the endpoint during deployment.
-- [Configure BYOM endpoint authentication](configure-endpoint-authentication) — set up authentication after deployment.
+- [Create a BYOM endpoint](prepare-model-endpoint.md) — set up your LLM endpoint.
+- [Deploy the Agentic RAG extension](deploy.md) — use the endpoint during deployment.
+- [Configure BYOM endpoint authentication](configure-endpoint-authentication.md) — set up authentication after deployment.

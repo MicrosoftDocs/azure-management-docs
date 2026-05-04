@@ -56,10 +56,10 @@ Complete API documentation for: Agents Runtime, Agent Manager, Knowledge Sources
 
 **Related content**
 
-- [Agentic Layer Overview](agentic-overview) — Architecture and concepts
-- [Create Agent Quickstart](create-agent-quickstart) — End-to-end tutorial
-- [Collections Overview](collections-overview) — Collection architecture and RBAC
-- [MCP Server Overview](mcp-server-overview) — Built-in and external MCP servers
+- [Agentic Layer Overview](agentic-overview.md) — Architecture and concepts
+- [Create Agent Quickstart](create-agent-quickstart.md) — End-to-end tutorial
+- [Collections Overview](collections-overview.md) — Collection architecture and RBAC
+- [MCP Server Overview](mcp-server-overview.md) — Built-in and external MCP servers
 
 ## February 2026
 
