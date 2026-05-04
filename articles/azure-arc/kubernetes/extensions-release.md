@@ -52,7 +52,7 @@ kubectl patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace
 
 kubectl delete ns openshift-azure-guardrails
 
-kubectl get validatingwebhookconfiguration,mutatingwebhookconfiguration,clusterrole,clusterrolebinding,crd -o name | grep gatekeeper
+kubectl get validatingwebhookconfiguration,mutatingwebhookconfiguration,clusterrole,clusterrolebinding,crd -o name | grep gatekeeper | xargs -r kubectl delete
 ```
 
 Once guardrails are disabled, you may proceed with installing the Azure Policy Extension.
@@ -61,7 +61,7 @@ Once guardrails are disabled, you may proceed with installing the Azure Policy E
 
 #### 1.18.0
 
-Introducing Validating Admission Policy (VAP) generation. Validating Admission Policies are Kubernetes-native validating policy resources that are evaluated in-process, allowing for reduced latency and fail-close evaluation. Azure Policies that contain Common Expression Language (CEL) will automatically generate VAPs for Kubernetes version 1.30+
+Introducing Validating Admission Policy (VAP) generation. Validating Admission Policies are Kubernetes-native validating policy resources that are evaluated in-process, allowing for reduced latency and fail-close evaluation. Azure Policies that contain Common Expression Language (CEL) will automatically generate VAPs  for Kubernetes version 1.30+
 
 Security improvements.
  - Released: May 2026
