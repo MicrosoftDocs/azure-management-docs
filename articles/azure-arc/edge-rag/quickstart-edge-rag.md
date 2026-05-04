@@ -1,19 +1,19 @@
 ---
-title: "Quickstart: Install Edge RAG on Azure Kubernetes Service"
-description: "Learn how to install Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware."
+title: "Quickstart: Install Agentic RAG on Azure Kubernetes Service"
+description: "Learn how to install Agentic RAG on Azure Kubernetes Service (AKS) without the need for local hardware."
 author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/28/2025
+ms.date: 04/30/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
+#customer intent: As a user, I want to install Agentic RAG on Azure Kubernetes Service so that I can assess the solution.
 ---
 
-# Quickstart: Install Edge RAG Preview enabled by Azure Arc
+# Quickstart: Install Agentic RAG Preview enabled by Azure Arc
 
-In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
+In this quickstart, you deploy Agentic RAG on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Agentic RAG for evaluation or development purposes. To deploy Agentic RAG for a production environment, see [Deployment overview](deploy-overview.md).
 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
@@ -24,8 +24,8 @@ Before you begin, make sure you have:
 
 - An active Azure subscription. If you don't have a service subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). If you're not using Azure Cloud Shell, see [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
-- Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
-- Application (client) ID and the directory (tenant) ID. To get these values after registering Edge RAG, see [Get app and tenant IDs](prepare-authentication.md#optional-get-app-and-tenant-ids).
+- Agentic RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Agentic RAG](prepare-authentication.md).
+- Application (client) ID and the directory (tenant) ID. To get these values after registering Agentic RAG, see [Get app and tenant IDs](prepare-authentication.md#optional-get-app-and-tenant-ids).
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -52,7 +52,7 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
 
 ## Create resource group
 
-Create a resource group to contain the AKS cluster, node pool, and Edge RAG resources.
+Create a resource group to contain the AKS cluster, node pool, and Agentic RAG resources.
 
 ```azurecli
 $rg = "edge-rag-aks-rg" 
@@ -64,7 +64,7 @@ az group create `
 
 ## Create and configure an AKS cluster
 
-In this section, you create an AKS cluster and configure it for Edge RAG deployment. The steps include setting up the cluster, connecting it to Azure Arc, and preparing it with the necessary extensions and GPU support.
+In this section, you create an AKS cluster and configure it for Agentic RAG deployment. The steps include setting up the cluster, connecting it to Azure Arc, and preparing it with the necessary extensions and GPU support.
 
 1. Create an AKS cluster:
 
@@ -77,12 +77,16 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --generate-ssh-keys
    ```
 
-1. Set the rest of the following values as needed and then run the command. If you created the application registration for Edge RAG in a different tenant from the AKS cluster, set the values for `$entraAppId` and `$entraTenantId` by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
+1. Set the rest of the following values as needed and then run the command. If you created the application registration for Agentic RAG in a different tenant from the AKS cluster, set the values for `$entraAppId` and `$entraTenantId` by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
 
    ```azurecli
     
-   # Set Edge RAG extension values
-   $modelName = "microsoft/Phi-3.5"    
+   # BYOM is mandatory — set your model endpoint
+   $apiEndpoint = "<Your OpenAI-compatible LLM endpoint URI>"
+   $apiModel = "<Model Name, e.g. gpt-4o>"
+   $maxTokensInK = "128"  # Adjust based on your model's context window
+
+   # Set Agentic RAG extension values
    $gpu_enabled = "true" # set to false if no GPU nodes 
    $localextname = "edgeragdemo"  
    $autoUpgrade = "false" 
@@ -149,7 +153,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 ## Create node pools
 
-Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG.
+Add dedicated GPU and CPU node pools to your AKS cluster to support Agentic RAG.
 
 If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
 
@@ -160,12 +164,12 @@ If you get an error message when you try to create the node pools, you might nee
        --resource-group $rg ` 
        --cluster-name $k8scluster ` 
        --name "gpunodepool" ` 
-       --node-count 4 ` 
+       --node-count 3 ` 
        --node-vm-size "Standard_NC24ads_A100_v4" `
        --enable-cluster-autoscaler `
-       --min-count 4 ` 
-       --max-count 4 ` 
-       --mode User 
+       --min-count 3 ` 
+       --max-count 3 ` 
+       --mode User
    ```
 
 1. Run the following command to create a CPU node pool with nodes:
@@ -183,29 +187,32 @@ If you get an error message when you try to create the node pools, you might nee
        --mode User
     ```
 
-## Deploy Edge RAG on AKS
+## Deploy Agentic RAG on AKS
 
-Complete the following steps to deploy the Edge RAG extension onto your AKS cluster.
+Complete the following steps to deploy the Agentic RAG extension onto your AKS cluster.
 
-1. Deploy the Edge RAG extension by running the following command:
+1. Deploy the Agentic RAG extension by running the following command:
 
    ```azurecli
-   az k8s-extension create `    
-       --cluster-type connectedClusters `   
-       --cluster-name $k8scluster `    
-       --resource-group $rg `    
-       --name $localextname `   
-       --extension-type $extension `    
-       --debug --release-train preview ` 
-       --auto-upgrade $autoUpgrade ` 
-       --configuration-settings isManagedIdentityRequired=true ` 
-       --configuration-settings gpu_enabled=$gpu_enabled ` 
-       --configuration-settings AgentOperationTimeoutInMinutes=60 ` 
-       --configuration-settings model=$modelName ` 
-       --configuration-settings auth.tenantId=$entraTenantId ` 
-       --configuration-settings auth.clientId=$entraAppId ` 
-       --configuration-settings ingress.domainname=$domainName ` 
-       --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
+   az k8s-extension create `
+       --cluster-type connectedClusters `
+       --cluster-name $k8scluster `
+       --resource-group $rg `
+       --name $localextname `
+       --extension-type $extension `
+       --debug --release-train preview `
+       --auto-upgrade $autoUpgrade `
+       --configuration-settings isManagedIdentityRequired=true `
+       --configuration-settings gpu_enabled=$gpu_enabled `
+       --configuration-settings AgentOperationTimeoutInMinutes=60 `
+       --configuration-settings auth.tenantId=$entraTenantId `
+       --configuration-settings auth.clientId=$entraAppId `
+       --configuration-settings ingress.domainname=$domainName `
+       --configuration-settings byom.enabled="true" `
+       --configuration-settings byom.apiEndpoint=$apiEndpoint `
+       --configuration-settings byom.apiModel=$apiModel `
+       --configuration-settings byom.maxTokensInK=$maxTokensInK `
+       --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz
    ```
 
    Wait several minutes for the deployment to complete.
@@ -228,7 +235,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 
 ## Connect to the developer portal
 
-Update your host file on your local machine to connect to the developer portal for Edge RAG.
+Update your host file on your local machine to connect to the developer portal for Agentic RAG.
 
 1. On your local machine, open Notepad in Administrator mode. 
 1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the "hosts" file, set the extension type to **All files**.
@@ -240,17 +247,17 @@ Update your host file on your local machine to connect to the developer portal f
    For example:
 
    ```markdown
-   # Edge RAG developer portal
+   # Agentic RAG developer portal
    172.16.0.0 arcrag.contoso.com
    ```
 
 1. Save the file.
-1. Go to the developer portal for Edge RAG by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
+1. Go to the developer portal for Agentic RAG by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
 1. Select **Get started**. Then, follow the next steps at the end of this article to add a data source and set up the data query.
 
 ## (Optional) Clean up resources 
 
-If you're done trying out Edge RAG, remove the resources created in this quickstart by running the following command:
+If you're done trying out Agentic RAG, remove the resources created in this quickstart by running the following command:
 
 ```azurecli
 az group delete `
@@ -259,7 +266,14 @@ az group delete `
    --no-wait
 ```
 
+## Next steps
+
+Now that Agentic RAG is deployed:
+
+1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source).
+2. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart) to build an agent with a knowledge base and run a conversation with streaming.
+
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add Data Source for Edge RAG](add-data-source.md)
+> [Add Data Source for Agentic RAG](add-data-source.md)

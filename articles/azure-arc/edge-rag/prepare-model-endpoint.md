@@ -1,28 +1,28 @@
 ---
-title: Create "BYOM" Endpoint for Your Model for Edge RAG Preview Enabled by Azure Arc
-description: "Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
+title: Create Your Language Model Endpoint for Agentic RAG
+description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agentic RAG by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 04/30/2026
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Edge RAG deployment.
+#CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Agentic RAG deployment.
 ---
 
-# Create a "BYOM" endpoint to use for Edge RAG Preview enabled by Azure Arc
+# Create your language model endpoint for Agentic RAG
 
-If you plan to bring your own language model (BYOM) instead of one of the models included in Edge RAG, you must set up an OpenAI API compatible endpoint for your Edge RAG deployment. Choose one of the following methods included in this article to create your endpoint.
+Agentic RAG requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint using one of the methods below.
 
-By bringing your own model, you can enable advanced search types, like hybrid multimodal and deep search, that aren’t available with Edge RAG-provided models. For deep search, we recommend OpenAI [GPT-4o](https://github.com/marketplace/models/azure-openai/gpt-4o), [GPT-4.1-mini](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini) or a later version.
+All search types (hybrid, vector, text, hybrid multimodal, and deep search) are available with your BYOM endpoint.
 
-After you create your endpoint, use the endpoint when you [deploy the extension for Edge RAG](deploy.md) and choose to add your own language model.
+After you create your endpoint, use it when you [deploy the Agentic RAG extension](deploy.md). The endpoint URL, model name, and max tokens are required deployment parameters.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Microsoft Foundry
 
-To use your own model with Edge RAG, you can deploy a language model and create an endpoint by using Foundry.
+To use your own model with Agentic RAG, you can deploy a language model and create an endpoint by using Foundry.
 
 1. Go to [Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
 
@@ -205,11 +205,11 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
    ```bash
    ollama pull <model_name>
    ```
-1. Use the following endpoint value as you configure the Edge RAG extension deployment:
+1. Use the following endpoint value as you configure the Agentic RAG extension deployment:
 
     `http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions`
 
-After you deploy the Edge RAG extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
+After you deploy the Agentic RAG extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
 
 ```bash
 curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
@@ -222,6 +222,25 @@ curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
         ]
     }'
 ```
+
+## Validate your endpoint
+
+Before deploying Agentic RAG, verify your endpoint works by sending a test request:
+
+```bash
+curl -X POST <your-endpoint-url> \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <your-api-key-if-needed>" \
+  -d '{
+    "model": "<your-model-name>",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "What is the capital of France?"}
+    ]
+  }'
+```
+
+You should receive a JSON response with a `choices` array containing the model's answer. If this works, your endpoint is ready for Agentic RAG.
 
 ## Next step
 

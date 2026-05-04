@@ -4,7 +4,7 @@ description: "Learn how to add and manage data sources for Agentic RAG chat solu
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 04/27/2026
+ms.date: 04/30/2026
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
@@ -64,7 +64,8 @@ To get started, create a data source by using the local developer portal.
 1. On the **Review and finish** tab, review your configurations.
 1. When you're satisfied, select **Create**.
 
-You can also perform data ingestion programmatically using the Ingestion API. When using the API, specify the target collection with the `collectionName` parameter in the request body.
+> [!TIP]
+> You can also perform data ingestion programmatically using the [Ingestion API](agent-manager-api). When using the API, specify the target collection with the `collectionName` parameter in the request body.
 
 ## Related content
 
