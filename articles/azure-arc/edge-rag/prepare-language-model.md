@@ -46,6 +46,6 @@ For step-by-step setup instructions for each method, see [Create a BYOM endpoint
 
 ## Next steps
 
-1. [Create a BYOM endpoint](prepare-model-endpoint) — set up your LLM endpoint.
-2. [Deploy the Agentic RAG extension](deploy) — use the endpoint during deployment.
-3. [Configure BYOM endpoint authentication](configure-endpoint-authentication) — set up authentication after deployment.
+- [Create a BYOM endpoint](prepare-model-endpoint) — set up your LLM endpoint.
+- [Deploy the Agentic RAG extension](deploy) — use the endpoint during deployment.
+- [Configure BYOM endpoint authentication](configure-endpoint-authentication) — set up authentication after deployment.

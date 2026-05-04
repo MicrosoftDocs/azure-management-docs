@@ -44,8 +44,7 @@ The agentic chat UI provides:
 
 To access the agentic chat UI, navigate to the agentic chat endpoint on your cluster domain.
 
-> [!NOTE]
-> The legacy chat at `/user` queries the Knowledge Layer directly (Inference API). The agentic chat UI routes queries through agents, which can invoke knowledge bases and MCP tools before generating a response. Both interfaces are available simultaneously.
+The legacy chat at `/user` queries the Knowledge Layer directly (Inference API). The agentic chat UI routes queries through agents, which can invoke knowledge bases and MCP tools before generating a response. Both interfaces are available simultaneously.
 
 ## Collection access for end users
 
@@ -55,8 +54,7 @@ When an end user with the `EdgeRAGEndUser` role accesses the chat, their access 
 - The `EdgeRAGDeveloper` role bypasses RBAC and grants access to all collections.
 - If a user has `EdgeRAGEndUser` but **no collection-specific roles**, they will receive a `403 Forbidden` error with no guidance on which roles are needed.
 
-> [!IMPORTANT]
-> Ensure end users are assigned app roles matching the collection names they need to access before granting them the `EdgeRAGEndUser` role. The default `edgeragapp` collection also requires an `edgeragapp` role for end users.
+Make end users are assigned app roles matching the collection names they need to access before granting them the `EdgeRAGEndUser` role. The default `edgeragapp` collection also requires an `edgeragapp` role for end users.
 
 ## Related content
 
