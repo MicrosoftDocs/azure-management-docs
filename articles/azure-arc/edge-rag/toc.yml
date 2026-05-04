@@ -25,8 +25,6 @@ items:
         items:
           - name: Requirements
             href: requirements.md
-          - name: Design your data organization
-            href: collections-overview.md
       - name: Deploy
         items:
           - name: Overview
@@ -57,7 +55,9 @@ items:
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer
         items:
-          - name: Overview
+          - name: Data collections
+            href: collections-overview.md
+          - name: Chat solution overview
             href: build-chat-solution-overview.md
           - name: Advanced data parsing
             href: advanced-data-parsing.md
