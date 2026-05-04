@@ -4,7 +4,7 @@ description: "Learn about the Azure Arc-enabled Kubernetes extension Agentic RAG
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -13,18 +13,18 @@ ms.custom:
 ---
 # What is Agentic Retrieval Augmented Generation (RAG)?
 
-Agentic RAG is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) that provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a Knowledge Layer (document ingestion, embedding, vector search) with an Agentic Layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multi-turn assistants grounded in your private on-premises data.
+Agentic RAG is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) that provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a Knowledge Layer (document ingestion, embedding, vector search) with an Agentic Layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
 Agentic RAG packages everything necessary to build and deploy AI-powered assistants on local data, including:
 
 - **An Agentic Layer** with AI agent orchestration, knowledge bases, knowledge sources, and a built-in MCP (Model Context Protocol) server.
 - **A Knowledge Layer** with a turnkey data ingestion and RAG pipeline that keeps all data local, with Azure role-based access controls (Azure RBAC) to prevent unauthorized access.
 - **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via FoundryOnArc, KAITO, Azure OpenAI, or similar).
-- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on 2 GPUs. Docling (document parser) runs on CPU.
+- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on two GPUs. Docling (document parser) runs on CPU.
 - An out-of-the-box developer portal and agentic chat UI, plus REST APIs for integration into business applications.
 - **Independent deployment modes** — deploy the full platform, or just the Agentic Layer or Knowledge Layer separately.
 
-Agentic RAG can ingest and retrieve relevant images as contextual references alongside text. It is not a visual language model (VLM).
+Agentic RAG can ingest and retrieve relevant images as contextual references alongside text. It's not a visual language model (VLM).
 
 Agentic RAG is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
 
@@ -34,9 +34,9 @@ For more information, see [Azure Arc](/azure/azure-arc/overview), [Azure Arc-ena
 
 ## Customer scenarios and use cases
 
-For customers across verticals like manufacturing, financial services, healthcare, government, and defense, valuable data is generated and stored locally. This happens outside of the hyperscale cloud due to regulation, latency, business continuity, or the sheer volume of data generated in real time. Customers want to use generative AI applications to get insights from this on-premises data.
+Customers across verticals like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside of the hyperscale cloud. Customers want to use generative AI applications to get insights from this on-premises data.
 
-Agentic RAG supports Q&A capabilities and multi-turn agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
+Agentic RAG supports Q&A capabilities and multistep agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
 
 - A government customer wants to derive insights from sensitive on-premises data to enable quicker decision making, summarize large datasets, create training materials, and more.
 
@@ -52,10 +52,10 @@ Agentic RAG supports Q&A capabilities and multi-turn agentic conversations that 
 
 Use Agentic RAG to:
 
-- **Build intelligent agents** that orchestrate across multiple knowledge sources, tools, and external services using the built-in MCP server and knowledge base framework.
-- **Reduce time to market** with a turnkey experience that accelerates the development and deployment of AI applications on local data. 
-- **Simplify operations** and **end-to-end management** with an enterprise quality solution that delivers the same standard of security, compliance, and manageability you to expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
-- **Remove the need for separate developer skillsets** with cloud-consistent developer experiences 
+- **Build intelligent agents** that orchestrate across multiple knowledge sources, tools, and external services by using the built-in MCP server and knowledge base framework.
+- **Reduce time to market** by using a turnkey experience that accelerates the development and deployment of AI applications on local data. 
+- **Simplify operations** and **end-to-end management** by using an enterprise-quality solution that delivers the same standard of security, compliance, and manageability you expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
+- **Remove the need for separate developer skillsets** by using cloud-consistent developer experiences. 
 - Stay on top of this rapidly evolving space with **continuous innovation from Microsoft**, the leader in AI technologies, and continue to focus on delivering business value.
 
 ## Key concepts
@@ -110,24 +110,24 @@ Review the following key concepts for Agentic RAG:
 
 ## Compare with AI services in Azure
 
-Agentic RAG runs on customer infrastructure outside the public cloud, allowing customers to search their on-premises data using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
+Agentic RAG runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
-In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions, requiring customers to bring their data and applications to Azure infrastructure.
+In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions. Customers need to bring their data and applications to Azure infrastructure.
 
-Agentic RAG provides local developer UI experiences that are aligned to Foundry experiences.
+Agentic RAG provides local developer UI experiences that align to Foundry experiences.
 
 ## Data on-premises versus cloud
 
-Agentic RAG sends only system metadata and organizational identifiable information like subscription ID and cluster names to Microsoft. All customer content — including ingested documents, embeddings, agent configurations, and conversation threads — always stays in the on-premises infrastructure within the network boundaries defined by customers.
+Agentic RAG sends only system metadata and organizational identifiable information like subscription ID and cluster names to Microsoft. All customer content, including ingested documents, embeddings, agent configurations, and conversation threads, always stays in the on-premises infrastructure within the network boundaries defined by customers.
 
 ## User roles
 
 The Agentic RAG solution has four distinct user roles:
 
-- **Lifecycle management of the extension**: Users are responsible for managing the lifecycle of the Agentic RAG Arc extension. This includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities fall to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
-- **Development and evaluation of agents and chat endpoints**: The user responsibilities in this workflow include configuring agents, knowledge bases, and knowledge sources; providing the data source; customizing the RAG pipeline settings; providing custom system prompts; evaluating, monitoring, and updating the solution. This role is typically carried out by a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
-- **Consuming the endpoint to query the on-premises data**: The user responsibilities in this workflow can include integration of the chat endpoint into line-of-business applications and using a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
-- **Agentic Layer administration**: Users configure and manage AI agents, knowledge bases, and knowledge sources via the Agent Manager API. This includes registering MCP servers as knowledge sources, creating knowledge bases, and associating them with agents. This role requires the `EdgeRAGDeveloper` Entra ID role.
+- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic RAG Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
+- **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
+- **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
+- **Agentic Layer administration**: Users configure and manage AI agents, knowledge bases, and knowledge sources by using the Agent Manager API. This role includes registering MCP servers as knowledge sources, creating knowledge bases, and associating them with agents. Requires the `EdgeRAGDeveloper` Entra ID role.
 
 ## Related content
 

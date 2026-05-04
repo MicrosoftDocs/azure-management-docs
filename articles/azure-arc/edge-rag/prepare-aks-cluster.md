@@ -4,7 +4,7 @@ description: "Learn how to prepare an AKS cluster on Azure Local for Agentic RAG
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare an AKS cluster on Azure Local for Agentic RAG deployment so that my environment meets the requirements for running the Agentic RAG workload.
@@ -30,7 +30,7 @@ Create an AKS Arc cluster by using one of the following methods:
 
 ## Install supported GPU drivers (optional)
 
-AKS Arc only supports Nvidia A2 and A16 GPUs. The following steps are applicable only to these two GPUs.
+AKS Arc supports only Nvidia A2 and A16 GPUs. The following steps apply only to these two GPUs.
 
 If you have GPUs available in your Azure Local instance that you want to use for Agentic RAG, make sure that the necessary GPU drivers are installed and available in the AKS Arc cluster nodes.
 
@@ -42,9 +42,9 @@ To check if the right drivers are already installed and the GPUs are available t
 
 If the output lists all the GPUs available on the Azure Local cluster, you can move to the next step. Otherwise, complete the following steps on any of the Azure Local cluster nodes to enable GPUs.
 
-We recommend using the script in the [Enabling GPU on AKS on Azure ARC - sample](enable-gpu-aks.md) to enable GPUs for use by Agentic RAG.
+Use the script in the [Enabling GPU on AKS on Azure ARC - sample](enable-gpu-aks.md) to enable GPUs for use by Agentic RAG.
 
-Alternately, you can follow the instructions in [Use GPUs for compute-intensive workloads](/azure/aks/hybrid/deploy-gpu-node-pool) and ensure you meet the [minimum VM hardware requirements](requirements.md#minimum-vm-hardware-requirements) for the GPU mode. If you follow these instructions, you need to run the following command on each Hyper-V host in the Azure Local cluster:
+Alternatively, follow the instructions in [Use GPUs for compute-intensive workloads](/azure/aks/hybrid/deploy-gpu-node-pool) and ensure you meet the [minimum VM hardware requirements](requirements.md#minimum-vm-hardware-requirements) for the GPU mode. If you follow these instructions, run the following command on each Hyper-V host in the Azure Local cluster:
 
 ```powershell
 Restart-Service wssdagent -Force -Verbose 
@@ -52,7 +52,7 @@ Start-sleep 60
 (Get-MocNode -location MocLocation).properties.statuses.Info
 ```
 
-Make sure that all the available GPUs across all nodes are listed in the output of the command.
+Make sure that the output of the command lists all the available GPUs across all nodes.
 
 ## Configure machine to manage Azure Arc-enabled Kubernetes clusters (optional)
 
@@ -76,7 +76,7 @@ To create a node pool for AKS Arc, complete the following steps from the driver 
 
    If GPUs are available:
 
-   - You must create a node pool of at least three CPU virtual machines (VMs), with minimal size of "Standard_D8s_v3". Run the following command:
+   - You must create a node pool of at least three CPU virtual machines (VMs), with a minimum size of `Standard_D8s_v3`. Run the following command:
    
 ```powershell
     	$cpuPoolName = "<CPU Pool Name>"
@@ -90,15 +90,15 @@ To create a node pool for AKS Arc, complete the following steps from the driver 
     	az aksarc nodepool add --name $cpuPoolName --cluster-name $k8scluster -g $rg --node-count $cpuNodeCount --node-vm-size $cpuVmSku
 ```
    
-   - You must create a node pool of at least two GPU virtual machines (VMs), with minimal size of "Standard_NC8_A2" or "Standard_NC8_A16". Run the following command:
+   - You must create a node pool of at least two GPU virtual machines (VMs), with a minimum size of `Standard_NC8_A2` or `Standard_NC8_A16`. Run the following command:
 
-The 2 GPU VMs are used for the Knowledge Layer's text embedding model (BGE-M3) and image embedding model (CLIP ViT-L/14). Docling (document parser) runs on CPU. The language model (LLM) runs externally via your BYOM endpoint and does not consume cluster GPUs.
+The two GPU VMs are used for the Knowledge Layer's text embedding model (BGE-M3) and image embedding model (CLIP ViT-L/14). Docling (document parser) runs on CPU. The language model (LLM) runs externally via your BYOM endpoint and doesn't consume cluster GPUs.
    
 ```powershell
 az aksarc nodepool add --name $gpuPoolName --cluster-name $k8scluster -g $rg --node-count $gpuNodeCount  --node-vm-size $gpuVmSku
 ```
    
-   If only CPUs are available, you must create a node pool of at least six CPU VMs, with minimal size of "Standard_D8s_v3". Run the following command:
+   If only CPUs are available, you must create a node pool of at least six CPU VMs, with a minimum size of `Standard_D8s_v3`. Run the following command:
    
 ```powershell
 $cpuPoolName = "<CPU Pool Name>"
@@ -109,17 +109,17 @@ $k8scluster = "<AKS Arc Cluster>"
 az aksarc nodepool add --name $cpuPoolName --cluster-name $k8scluster -g $rg --node-count $cpuNodeCount --node-vm-size $cpuVmSku
 ```
 
-CPU-only mode applies to the Knowledge Layer only. In CPU-only mode, embedding quality may be reduced and image search is not available. Docling (document parser) runs on CPU by default and does not require GPU. CPU-only mode is not applicable to agentic deployments, which have no GPU requirements regardless.
+CPU-only mode applies to the Knowledge Layer only. In CPU-only mode, embedding quality might be reduced and image search isn't available. Docling (document parser) runs on CPU by default and doesn't require GPU. CPU-only mode isn't applicable to agentic deployments, which have no GPU requirements regardless.
 
 ### Node pool requirements by deployment mode
 
 | Deployment mode | GPU node pool | CPU node pool |
 |---|---|---|
 | **combined** (default) | 2 GPU VMs required | 3+ CPU VMs required |
-| **agentic** | Not required (no embedding/parsing) | 3+ CPU VMs required |
+| **agentic** | Not required (no embedding or parsing) | 3+ CPU VMs required |
 | **knowledge** | 2 GPU VMs required | 3+ CPU VMs required |
 
-If deploying in **agentic** mode, you can skip the GPU node pool creation step.
+If you deploy in **agentic** mode, you can skip the GPU node pool creation step.
 
 For more information, see [Create node pools for a cluster in Azure Kubernetes Service (AKS)](/azure/aks/create-node-pools).
 

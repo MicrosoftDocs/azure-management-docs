@@ -3,7 +3,7 @@ title: Create Your Language Model Endpoint for Agentic RAG
 description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agentic RAG by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
@@ -12,7 +12,7 @@ ms.subservice: edge-rag
 
 # Create your language model endpoint for Agentic RAG
 
-Agentic RAG requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint using one of the methods below.
+Agentic RAG requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint by using one of the following methods.
 
 All search types (hybrid, vector, text, hybrid multimodal, and deep search) are available with your BYOM endpoint.
 
@@ -22,7 +22,7 @@ After you create your endpoint, use it when you [deploy the Agentic RAG extensio
 
 ## Microsoft Foundry
 
-To use your own model with Agentic RAG, you can deploy a language model and create an endpoint by using Foundry.
+To use your own model with Agentic RAG, deploy a language model and create an endpoint by using Foundry.
 
 1. Go to [Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
 
@@ -37,14 +37,14 @@ To use your own model with Agentic RAG, you can deploy a language model and crea
 
     | Field            | Description   |
     |------------------|--------------|
-    | Deployment name  | Choose deployment name. The default is name of the model you selected.                   |
-    | Deployment type  | Select deployment type. The default is **Global Standard**.      |
+    | Deployment name  | Choose a deployment name. The default is the name of the model you selected.                   |
+    | Deployment type  | Select a deployment type. The default is **Global Standard**.      |
 
 1. Select **Deploy to selected resource**.
 
 1. Wait for the deployment to complete and the **State** is **Succeeded**.
 
-1. Get the endpoint and API Key by selecting on the deployed model. For example, the endpoint looks like the following URL.
+1. Get the endpoint and API key by selecting the deployed model. For example, the endpoint looks like the following URL.
 
    `https://<Foundry Resource Name>.openai.azure.com/openai/deployments/<Model Deployment Name>/chat/completions?api-version=<API Version>`
 
@@ -65,7 +65,7 @@ To deploy an AI model using Foundry Local, see [GitHub - microsoft/Foundry-Local
 
 You can set up Ollama as a language model endpoint on your Kubernetes cluster. Use either CPU or GPU.
 
-1. If you're using the Ollama with GPU, you must set the following two things on the GPU node. Replace `moc-gpunode` with the name of your GPU node.
+1. If you're using Ollama with GPU, set the following two configurations on the GPU node. Replace `moc-gpunode` with the name of your GPU node.
 
    ```bash
    kubectl taint nodes <moc-gpunode> ollamasku=ollamagpu:NoSchedule –overwrite
@@ -73,9 +73,9 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
    kubectl label node <moc-gpunode> hardware=ollamagpu`
    ```
 
-1. Create a yaml file by using one of the following snippets depending on whether you're using GPU or CPU for your model.
+1. Create a YAML file by using one of the following snippets depending on whether you're using GPU or CPU for your model.
 
-    - GPU yaml:
+    - GPU YAML:
 
       ```yaml
       # ollama-deploy.yaml
@@ -140,7 +140,7 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
                   protocol: TCP
       ```
  
-    - CPU yaml:
+    - CPU YAML:
 
       ```yaml
       # ollama-deploy.yaml
@@ -188,7 +188,7 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
                   protocol: TCP
       ```
 
-1. Deploy Ollama in the default namespace by using the following yaml snippet. This snippet creates an Ollama deployment and service in default namespace.  
+1. Deploy Ollama in the default namespace by using the following YAML snippet. This snippet creates an Ollama deployment and service in the default namespace.  
 
    ```bash
    kubectl apply -f ollama-deploy.yaml

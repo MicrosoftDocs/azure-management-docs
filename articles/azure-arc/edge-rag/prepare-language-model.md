@@ -4,7 +4,7 @@ description: "Learn how to set up an OpenAI-compatible LLM endpoint for your Age
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 #CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agentic RAG so that I can deploy and manage an AI chat solution for my edge environment.
@@ -19,11 +19,11 @@ Agentic RAG requires an external language model (Bring Your Own Model). This art
 
 ## Select a language model
 
-Agentic RAG does not bundle any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. This endpoint is used by both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference).
+Agentic RAG doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
 
 Work with your application development team to choose the right model for your use case. For the best results with deep search, use a model like GPT-4o, GPT-4.1-mini, or later.
 
-You can refer to some of these resources from Microsoft to choose the right model for your use case:
+To choose the right model for your use case, refer to these resources from Microsoft:
 
 - Blog: [How to Choose the Right Models for Your Apps | Azure AI](https://techcommunity.microsoft.com/blog/microsoftmechanicsblog/how-to-choose-the-right-models-for-your-apps--azure-ai/4271216)
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
@@ -31,11 +31,11 @@ You can refer to some of these resources from Microsoft to choose the right mode
 
 ## Set up your BYOM endpoint
 
-Agentic RAG works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
+Agentic RAG works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
 
 | Method | Description | Best for |
 |---|---|---|
-| **FoundryOnArc** | Deploy models on your Arc-connected cluster using Azure AI Foundry. | Production deployments with Azure-managed models. |
+| **FoundryOnArc** | Deploy models on your Arc-connected cluster by using Azure AI Foundry. | Production deployments with Azure-managed models. |
 | **KAITO** | Kubernetes AI Toolchain Operator for model hosting on AKS. | On-premises model hosting with GPU support. |
 | **Azure OpenAI** | Cloud-hosted models via Azure OpenAI Service. | When cloud connectivity is available and acceptable. |
 | **Ollama** | Lightweight model server running on your cluster. | Development, testing, and CPU-only scenarios. |

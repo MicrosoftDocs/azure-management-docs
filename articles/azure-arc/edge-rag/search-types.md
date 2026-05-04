@@ -4,7 +4,7 @@ description: Learn about search types, their options, and how they're used in Ag
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agentic RAG so I can choose and configure the right search type for my deployment.
@@ -68,7 +68,7 @@ All search types are available with Agentic RAG, since all deployments use BYOM:
 | Deep search | Yes (for best results, use GPT-4o or GPT-4.1-mini or later) |
 | Hybrid multimodal search | Yes |
 
-For deep search, we recommend using GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
+For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
 
 For more information about deploying with a language model, see:
 
@@ -81,7 +81,7 @@ Select the search type in the Agentic RAG developer portal when you configure yo
 
 ## Collection-scoped search
 
-All search types can be scoped to specific collections. When querying via the developer portal or API, you specify which collection(s) to search:
+You can scope all search types to specific collections. When you query through the developer portal or API, specify which collections to search:
 
 - **Developer portal**: Select the target collection in the data query settings.
 - **Inference API**: Set `data_sources[0].parameters.index_name` to the collection name.
@@ -110,7 +110,7 @@ Use these tips to help you select the best search type for your Agentic RAG depl
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
 - All search types are available with your BYOM endpoint. For deep search, use a model like GPT-4o or later for best results.
-- When using agents, search tools are available via the built-in MCP server. See [MCP Server overview](mcp-server-overview.md).
+- When using agents, the built-in MCP server provides search tools. See [MCP Server overview](mcp-server-overview.md).
 
 ## Search type parameters
 

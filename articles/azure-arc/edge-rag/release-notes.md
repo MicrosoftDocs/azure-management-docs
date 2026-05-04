@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Edge RAG release so that I can plan updates for my organization.
@@ -17,16 +17,16 @@ ai-usage: ai-generated
 
 Agentic RAG enabled by Azure Arc helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic RAG in your organization.
 
-## April 2026
+## June 2026
 
-**Extension version**: TBD
+**Extension version**: `0.9.0` [Preview]
 
-### Breaking changes
+### Changes
 
 | Change | Details |
 |---|---|
 | **Product renamed** | "Edge RAG" is now **Agentic RAG**. The Azure extension type remains `microsoft.arc.rag`. |
-| **SLM models removed** | Phi-3.5 and Mistral-7B are no longer bundled. Bring Your Own Model (BYOM) is the only model path. You must provide an external LLM endpoint. |
+| **SLM models removed** | Phi-3.5 and Mistral-7B models are no longer bundled. Bring Your Own Model (BYOM) is the only model path. You must provide an external LLM endpoint. |
 | **GPU count reduced** | 4 → **2 GPUs** required. GPUs are used for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14). Docling (document parser) now runs on CPU. The LLM runs externally via BYOM. |
 | **BYOM is now mandatory** | The model endpoint step is no longer optional. All deployments require an OpenAI-compatible LLM endpoint. |
 
@@ -88,7 +88,7 @@ The following table summarizes the updates included in this release.
 | Capability                | Description |
 |---------------------------|---------|
 | Data ingestion  | - Improved parsing for documents, including tables and charts.<br>- Added new ingestion type options for high-fidelity document processing.  <br></br>For more information, see [Advanced data parsing for Edge RAG](advanced-data-parsing.md)|
-|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval & image-rich outputs<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) and [Advanced data parsing for Edge RAG](advanced-data-parsing.md).|
+|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) and [Advanced data parsing for Edge RAG](advanced-data-parsing.md).|
 |Performance enhancements | From previous release version: <br>- Achieved a 5× faster query performance for hybrid search.<br>- Delivered 100× faster ingestion of live-streamed images. |
 |Preview support for disconnected scenarios|Edge RAG supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).|
 

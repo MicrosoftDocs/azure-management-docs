@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agentic RAG extension by using either Azur
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -13,7 +13,7 @@ ms.custom:
 ---
 # Deploy the extension for Agentic RAG Preview enabled by Azure Arc
 
-After you complete the prerequisites steps, complete the steps in this article to deploy Agentic RAG extension.
+After you complete the prerequisite steps, complete the steps in this article to deploy the Agentic RAG extension.
 
 To try Agentic RAG without the need for local hardware, see [Quickstart: Install Agentic RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
 

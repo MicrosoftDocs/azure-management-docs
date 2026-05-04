@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ms.custom:
@@ -18,23 +18,23 @@ This article lists the various features and improvements that are available in A
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## April 2026
+## June 2026
 
-### Agentic RAG — GA Release
+### Agentic RAG (preview)
 
-This release transforms Edge RAG into **Agentic RAG**, an agentic Retrieval-Augmented Generation platform at the edge. The product has been renamed and the architecture expanded with a full Agentic Layer.
+This release transforms Edge RAG into **Agentic RAG**, an agentic Retrieval-Augmented Generation platform at the edge, and adds a new agentic layer for AI agent orchestration. Build agents that manage multistep conversations, invoke external tools, and ground responses in your on-premises data.
 
-**Agentic Layer (NEW)**
+**Agentic Layer**
 
-Build intelligent, multi-turn AI agents that orchestrate across knowledge sources and external tools:
+Build intelligent, multithread AI agents that orchestrate across knowledge sources and external tools:
 
 - **Agents Runtime** — Create threads, send messages, execute runs with streaming (SSE). OpenAI Assistants-compatible API.
 - **Agent Manager** — CRUD for agents and knowledge bases. Associate agents with knowledge bases for grounded responses.
 - **Knowledge Sources** — Register MCP server connections as self-contained knowledge sources (two kinds: `remote_mcp` and `indexed_sources_mcp`), and organize them into knowledge bases.
-- **Built-in MCP Server** — 7 search tools (hybrid, vector, text, image, multimodal, deep search, list collections) exposed over Model Context Protocol for any MCP-compatible client.
+- **Built-in MCP Server** — Seven search tools (hybrid, vector, text, image, multimodal, deep search, list collections) exposed over Model Context Protocol for any MCP-compatible client.
 - **Collections** — Multiple named collections for vector data with per-collection RBAC, replacing the single-index model.
 
-**Independent Deployment Modes (NEW)**
+**Independent Deployment Modes**
 
 Deploy exactly what you need with the new `layerSelection` parameter:
 
@@ -42,19 +42,19 @@ Deploy exactly what you need with the new `layerSelection` parameter:
 - `agentic` — agents without local data ingestion (no GPUs needed)
 - `knowledge` — data ingestion and RAG without agent orchestration
 
-**BYOM Only (BREAKING)**
+**BYOM Only**
 
-Phi-3.5 and Mistral-7B are no longer bundled. All deployments now require a BYOM (Bring Your Own Model) endpoint — an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI.
+Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYOM (Bring Your Own Model) endpoint - an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI.
 
-**GPU Count Reduced (BREAKING)**
+**GPU Count Reduced**
 
 GPU requirement reduced from 4 to **3** (embedding, image, docling). The LLM runs externally via BYOM.
 
-**7 REST API References Published**
+**Seven REST API references published**
 
 Complete API documentation for: Agents Runtime, Agent Manager, Knowledge Sources, Collections, MCP Server, Ingestion, and Inference.
 
-**Related content**
+For more information, see the following articles:
 
 - [Agentic Layer Overview](agentic-overview.md) — Architecture and concepts
 - [Create Agent Quickstart](create-agent-quickstart.md) — End-to-end tutorial

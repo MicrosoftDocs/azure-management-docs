@@ -4,7 +4,7 @@ description: Learn about deploying Agentic RAG with Azure Arc, including prerequ
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agentic RAG with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -12,7 +12,7 @@ ai-usage: ai-generated
 
 # Deployment overview for Agentic RAG Preview enabled by Azure Arc
 
-Agentic RAG brings agentic AI capabilities to your edge and hybrid environments, letting you deploy a secure, scalable, and intelligent AI agent platform that uses your own data. Deploy the full Agentic RAG platform, or independently deploy just the Agentic Layer or Knowledge Layer based on your needs. This article gives an overview of the deployment process, key components, and workflow to deploy Agentic RAG with Azure Arc.
+Agentic RAG brings agentic AI capabilities to your edge and hybrid environments. Deploy a secure, scalable, and intelligent AI agent platform that uses your own data. Deploy the full Agentic RAG platform, or independently deploy just the Agentic Layer or Knowledge Layer based on your needs. This article provides an overview of the deployment process, key components, and workflow to deploy Agentic RAG with Azure Arc.
 
 To try Agentic RAG without the need for local hardware, see [Quickstart: Install Agentic RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
 
@@ -65,15 +65,15 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 ## Key configuration options
 
-When you deploy Agentic RAG, you can set several configuration options to tailor the solution to your environment and requirements.
+When you deploy Agentic RAG, set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model (BYOM — mandatory):** Agentic RAG does not bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
-- **Deployment mode:** Choose which layers to deploy using the `layerSelection` parameter:
+- **Language model (BYOM - mandatory):** Agentic RAG doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
+- **Deployment mode:** Choose which layers to deploy by using the `layerSelection` parameter:
   - `combined` (default) — full platform with both layers
   - `agentic` — agents, knowledge bases, KT/KS, MCP server only (no GPUs required)
   - `knowledge` — ingestion, inference, collections only (2 GPUs required)
 - **SSL and domain configuration:** Set up a Transport Layer Security (TLS) termination certificate and domain so you can securely access the chat endpoint.
-- **Access and authentication:** Set up the Entra app ID and assign roles to users and groups.
+- **Access and authentication:** Set up the Microsoft Entra app ID and assign roles to users and groups.
 - **Data source configuration:** Make sure your data source, an NFS share, is reachable and contains the required files in supported formats.
 
 ## Deployment process for Agentic RAG

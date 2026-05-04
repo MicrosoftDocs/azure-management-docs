@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Agentic RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -52,7 +52,7 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
 
 ## Create resource group
 
-Create a resource group to contain the AKS cluster, node pool, and Agentic RAG resources.
+Create a resource group to hold the AKS cluster, node pool, and Agentic RAG resources.
 
 ```azurecli
 $rg = "edge-rag-aks-rg" 
@@ -268,9 +268,9 @@ az group delete `
 
 ## Next steps
 
-Now that Agentic RAG is deployed:
+Now that you deployed Agentic RAG:
 
 1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source.md).
-2. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart.md) to build an agent with a knowledge base and run a conversation with streaming.
+1. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart.md) to build an agent with a knowledge base and run a conversation with streaming.
 
 
