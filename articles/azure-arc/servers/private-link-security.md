@@ -57,9 +57,9 @@ For more information about how to configure Private Link for the Azure services 
 - [Azure Connected Machine agent version 1.4 or later](agent-release-notes.md) on each server to connect through Private Link.
 - At least **Contributor** role on the Azure subscription or resource group, to create private link scope and private endpoint resources.
 - If using Azure PowerShell, the following modules are required:
-  - [Az.ConnectedMachine](/powershell/module/az.connectedmachine), [Az.Network](/powershell/module/az.network), and [Az.PrivateDns](/powershell/module/az.privatedns). Run `Install-Module -Name Az.ConnectedMachine, Az.Network, Az.PrivateDns -AllowClobber`.
+  - [Az.ConnectedMachine](/powershell/module/az.connectedmachine), [Az.Network](/powershell/module/az.network), and [Az.PrivateDns](/powershell/module/az.privatedns). Run: `Install-Module -Name Az.ConnectedMachine, Az.Network, Az.PrivateDns -AllowClobber`.
 - If using Azure CLI, the following extension is required:
-  - [`connectedmachine` extension](/cli/azure/connectedmachine). Run `az extension add --name connectedmachine`.
+  - [`connectedmachine` extension](/cli/azure/connectedmachine). Run: `az extension add --name connectedmachine`.
 
 ## Restrictions and limitations
 
@@ -78,21 +78,13 @@ The Azure Arc-enabled servers private link scope object has several limits that 
 To connect your server to Azure Arc over a private link, you must configure your network to accomplish the following tasks:
 
 - Deploy an Azure Arc private link scope, which controls the machines or servers that can communicate with Azure Arc over private endpoints. Associate it with your Azure virtual network by using a private endpoint.
-
 - To resolve the private endpoint addresses, update the DNS configuration on your local network.
-
 - Configure your local firewall to allow access to Microsoft Entra ID and Resource Manager.
-
 - Associate the machines or servers that are registered with Azure Arc-enabled servers with the private link scope.
-
 - Optionally, deploy private endpoints for other Azure services that manage your machine or server, such as:
-
   - Azure Monitor
-
   - Azure Automation
-
   - Azure Blob Storage
-
   - Azure Key Vault
 
 ## Network configuration
@@ -199,6 +191,9 @@ To understand more about the network traffic flows, see the diagram in the [How 
 
 ## Create an Azure Arc private link scope
 
+> [!IMPORTANT]
+> If you use Azure PowerShell or Azure CLI, run all the steps in *this section* within a **single terminal session** (or combine each step into one script file). Variables such as `$scopeId` (PowerShell) and `scopeId` (Bash) are set in earlier steps and referenced in later steps. Starting a new terminal session between steps causes these variables to be lost and subsequent commands fail.
+
 # [Azure portal](#tab/azure-portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
@@ -239,7 +234,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
 1. Create the private link scope:
 
    ```azurepowershell
-   New-AzConnectedMachinePrivateLinkScope `
+   New-AzConnectedPrivateLinkScope `
      -ResourceGroupName "<resource-group>" `
      -Location "<location>" `
      -ScopeName "<scope-name>" `
@@ -251,7 +246,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
 1. Retrieve the scope resource ID for use in later steps:
 
    ```azurepowershell
-   $scope = Get-AzConnectedMachinePrivateLinkScope `
+   $scope = Get-AzConnectedPrivateLinkScope `
      -ResourceGroupName "<resource-group>" `
      -ScopeName "<scope-name>"
    $scopeId = $scope.Id
@@ -596,7 +591,7 @@ For Azure Arc-enabled servers that were set up before your private link scope, y
 1. Retrieve the private link scope resource ID:
 
    ```azurepowershell
-   $scope = Get-AzConnectedMachinePrivateLinkScope `
+   $scope = Get-AzConnectedPrivateLinkScope `
      -ResourceGroupName "<resource-group>" `
      -ScopeName "<scope-name>"
    ```
