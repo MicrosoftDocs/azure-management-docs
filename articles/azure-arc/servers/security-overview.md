@@ -67,6 +67,24 @@ The guest configuration service evaluates and enforces Azure machine (guest) con
 
 The Azure Arc proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions you’ve installed and deciding where to route that data. If you’re using the Azure Arc Gateway to simplify your network endpoints, the Azure Arc proxy service is the local component that forwards network requests via the Azure Arc Gateway instead of the default route. The Azure Arc proxy runs as Network Service on Windows and a standard user account (`arcproxy`) on Linux. It's disabled by default until you configure the agent to use the Azure Arc Gateway.
 
+## Service account model
+
+The Azure Connected Machine agent is designed to run under local, system-managed identities. On Windows, core agent services run using a virtual service account, and on Linux they run under standard, non-privileged user accounts.
+
+The Azure Arc agent does not support the use of domain-joined service accounts or alternate user-provided identities, and there is no supported method to change this configuration.
+
+This design is intentional and aligns with the security and operational model of Azure Arc-enabled servers:
+
+- **Independence from domain infrastructure -** The agent is designed to operate consistently across domain-joined, workgroup, and disconnected environments. Avoiding domain-managed identities ensures the agent does not depend on Active Directory availability, trust relationships, or domain-specific policies.
+
+- **Reduced credential exposure -** Local virtual service accounts are system-managed and do not require password management, rotation, or interactive sign-in. This minimizes the risk of credential theft, reuse, or misconfiguration compared to domain service accounts.
+
+- **Machine-scoped security boundary** - The agent operates using identities scoped to the local machine rather than domain-level identities. This enforces a clear boundary between the agent and customer-managed identity systems, reducing the risk of unintended access to domain resources.
+
+- **Consistent behavior across environments** - Standardizing on local service identities ensures predictable and supportable behavior across on-premises, multicloud, and edge deployments, without introducing variability from customer-specific identity configurations.
+
+This service account model is a core part of the agent’s security design and is not configurable.
+
 ## Security considerations for Tier 0 assets
 
 Tier 0 assets such as an Active Directory Domain Controller, Certificate Authority server, or highly sensitive business application server can be connected to Azure Arc with extra care to ensure only the desired management functions and authorized users can manage the servers. These recommendations are not required but are strongly recommended to maintain the security posture of your Tier 0 assets.
