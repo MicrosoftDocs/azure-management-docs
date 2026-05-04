@@ -273,7 +273,4 @@ Now that Agentic RAG is deployed:
 1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source.md).
 2. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart.md) to build an agent with a knowledge base and run a conversation with streaming.
 
-## Next step
 
-> [!div class="nextstepaction"]
-> [Add Data Source for Agentic RAG](add-data-source.md)
