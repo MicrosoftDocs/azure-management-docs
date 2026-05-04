@@ -2,7 +2,7 @@
 title: Use Azure Private Link to connect servers to Azure Arc by using a private endpoint
 description: Learn how to use Azure Private Link to securely connect networks to Azure Arc.
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 # Customer intent: "As a network administrator, I want to configure Azure Private Link to connect on-premises servers to Azure Arc so that I can securely manage my resources without exposing data to public networks."
 ---
 
@@ -55,10 +55,9 @@ For more information about how to configure Private Link for the Azure services 
 - An active [ExpressRoute circuit](/azure/expressroute/expressroute-howto-linkvnet-arm) or [site-to-site VPN connection](/azure/vpn-gateway/tutorial-site-to-site-portal) between your on-premises network and an Azure virtual network.
 - An Azure virtual network in the same region as your Azure Arc-enabled servers.
 - [Azure Connected Machine agent version 1.4 or later](agent-release-notes.md) on each server to connect through Private Link.
-- At least Contributor role on the Azure subscription or resource group, to create private link scope and private endpoint resources.
+- At least **Contributor** role on the Azure subscription or resource group, to create private link scope and private endpoint resources.
 - If using Azure PowerShell, the following modules are required:
-  - [Az.ConnectedMachine module](/powershell/module/az.connectedmachine). Run `Install-Module -Name Az.ConnectedMachine -AllowClobber`.
-  - [Az.Network module](/powershell/module/az.network) and [Az.PrivateDns module](/powershell/module/az.privatedns). Run `Install-Module -Name Az.Network, Az.PrivateDns -AllowClobber`.
+  - [Az.ConnectedMachine](/powershell/module/az.connectedmachine), [Az.Network](/powershell/module/az.network), and [Az.PrivateDns](/powershell/module/az.privatedns). Run `Install-Module -Name Az.ConnectedMachine, Az.Network, Az.PrivateDns -AllowClobber`.
 - If using Azure CLI, the following extension is required:
   - [`connectedmachine` extension](/cli/azure/connectedmachine). Run `az extension add --name connectedmachine`.
 
@@ -102,14 +101,9 @@ Azure Arc-enabled servers integrate with several Azure services to bring cloud m
 
 There are two ways to allow access:
 
-- Configure the firewall on your local network to allow outbound TCP 443 (HTTPS) access to Microsoft
-  Entra ID and Azure by using the downloadable service tag files. The
-  [JSON file](https://www.microsoft.com/en-us/download/details.aspx?id=56519) contains the public IP
-  address ranges used by Microsoft Entra ID and Azure and is updated monthly to reflect any changes.
+- Configure the firewall on your local network to allow outbound TCP 443 (HTTPS) access to Microsoft Entra ID and Azure by using the downloadable service tag files. The [JSON file](https://www.microsoft.com/en-us/download/details.aspx?id=56519) contains the public IP address ranges used by Microsoft Entra ID and Azure and is updated monthly to reflect any changes.
 
-  The Microsoft Entra ID service tag is `AzureActiveDirectory`. The Azure service tag is
-  `AzureResourceManager`. To learn how to configure your firewall rules, consult your network
-  administrator and network firewall vendor.
+  The Microsoft Entra ID service tag is `AzureActiveDirectory`. The Azure service tag is `AzureResourceManager`. To learn how to configure your firewall rules, consult your network administrator and network firewall vendor.
 
 - If your network is configured to route all internet-bound traffic through the Azure VPN or ExpressRoute circuit, you can configure the network security group (NSG) associated with your subnet in Azure. Use [service tags](/azure/virtual-network/service-tags-overview) to allow outbound TCP 443 (HTTPS) access to Microsoft Entra ID and Azure.
 
@@ -263,11 +257,13 @@ To understand more about the network traffic flows, see the diagram in the [How 
    $scopeId = $scope.Id
    ```
 
-1. Create the private endpoint and associate it with the scope:
+1. Disable private endpoint network policies on the target subnet, and then create the private endpoint:
 
    ```azurepowershell
    $vnet = Get-AzVirtualNetwork -Name "<vnet-name>" -ResourceGroupName "<resource-group>"
    $subnet = Get-AzVirtualNetworkSubnetConfig -Name "<subnet-name>" -VirtualNetwork $vnet
+   $subnet.PrivateEndpointNetworkPolicies = "Disabled"
+   Set-AzVirtualNetwork -VirtualNetwork $vnet
 
    $privateEndpointConnection = New-AzPrivateLinkServiceConnection `
        -Name "<connection-name>" `
@@ -358,6 +354,16 @@ To understand more about the network traffic flows, see the diagram in the [How 
      --query id -o tsv)
    ```
 
+1. Disable private endpoint network policies on the target subnet:
+
+   ```azurecli
+   az network vnet subnet update \
+     --resource-group "<resource-group>" \
+     --vnet-name "<vnet-name>" \
+     --name "<subnet-name>" \
+     --private-endpoint-network-policies Disabled
+   ```
+
 1. Create the private endpoint and associate it with the scope:
 
    ```azurecli
@@ -367,7 +373,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
      --location "<location>" \
      --vnet-name "<vnet-name>" \
      --subnet "<subnet-name>" \
-     --private-connection-resource-id $scopeId \
+     --private-connection-resource-id "$scopeId" \
      --group-id "hybridcompute" \
      --connection-name "<connection-name>"
    ```
@@ -621,7 +627,7 @@ For Azure Arc-enabled servers that were set up before your private link scope, y
    az connectedmachine update \
      --resource-group "<resource-group>" \
      --name "<machine-name>" \
-     --private-link-scope-resource-id $scopeId
+     --private-link-scope-resource-id "$scopeId"
    ```
 
 ---
