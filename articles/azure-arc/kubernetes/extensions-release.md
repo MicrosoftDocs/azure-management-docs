@@ -43,7 +43,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
 
-To disable ARO Guardrails, run the following commands **in order** after connecting ARO cluster to Azure:
+To disable ARO Guardrails, run the following commands in order after connecting ARO cluster to Azure:
 
 ```bash
 kubectl patch cluster.aro.openshift.io cluster --type json -p '[{ "op": "replace", "path": "/spec/operatorflags/aro.guardrails.deploy.managed", "value":"false" }]'
@@ -56,6 +56,12 @@ kubectl get validatingwebhookconfiguration,mutatingwebhookconfiguration,clusterr
 ```
 
 Once guardrails are disabled, you may proceed with installing the Azure Policy Extension.
+
+To install the Azure Policy Extension:
+
+```bash
+az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name>
+```
 
 ### Azure Policy Extension Release Notes
 
