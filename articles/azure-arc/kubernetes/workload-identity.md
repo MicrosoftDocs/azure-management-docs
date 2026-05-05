@@ -1,6 +1,6 @@
 ---
 title: "Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes"
-ms.date: 11/17/2025
+ms.date: 05/06/2026
 ms.topic: how-to
 ms.custom:
   - ignite-2024
@@ -295,6 +295,78 @@ To configure workload identity settings on the various Kubernetes distributions,
    ```shell
    kubectl rollout restart deployment -n azure-arc
    ```
+
+## Rotate service-account signing key on K3s clusters
+
+For K3s clusters that are onboarded to Azure Arc with workload identity federation enabled, rotating the service-account issuer key is an important security operation. Key rotation is necessary for security hygiene and may be required as part of incident remediation.
+
+The service-account issuer key (`service.key`) is an RSA private key used to sign service-account tokens. When rotating, the **old key must be retained** in the file so that existing tokens are not immediately invalidated. Both should coexist until all existing tokens have expired or been refreshed (at least 24 hours).
+
+### Prerequisites
+
+In order to rotate the service-account issuer key on a K3s cluster, ensure you have the following prerequisites in place:
+
+- K3s cluster onboarded to Azure Arc with workload identity federation enabled
+- `sudo` root access on the K3s server node
+- OpenSSL 3 installed on the node
+- Familiarity with the [K3s certificate CLI](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation)
+
+### Generate a new key and perform the rotation
+
+Run the following commands on the K3s server node to generate a new key and stage it for rotation:
+
+```bash
+# Create a temporary directory for staging
+mkdir -p /opt/k3s/server/tls
+
+# Check OpenSSL version (OpenSSL 3.x requires -traditional flag)
+openssl version | grep -qF 'OpenSSL 3' && OPENSSL_GENRSA_FLAGS=-traditional
+
+# Generate a new RSA key
+openssl genrsa ${OPENSSL_GENRSA_FLAGS:-} -out /opt/k3s/server/tls/service.key 2048
+
+# Append the existing (old) key to preserve validity of current tokens
+cat /var/lib/rancher/k3s/server/tls/service.key >> /opt/k3s/server/tls/service.key
+
+# Load the updated key into the K3s datastore
+k3s certificate rotate-ca --path=/opt/k3s/server
+
+# Restart K3s to apply
+sudo systemctl restart k3s
+```
+
+> ⚠️ **Do NOT overwrite** the currently in-use data in `/var/lib/rancher/k3s/server/tls` directly. Always stage updated files in a separate directory (e.g., `/opt/k3s/server/tls`).
+
+After restart:
+- New tokens will be minted using the new key.
+- Existing tokens remain valid because the old key is still in the file.
+
+For details about rotating the service-account issuer key, see the [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation) in the K3s documentation.
+
+### Remove the old service-account issuer key
+
+> [!IMPORTANT]
+> To ensure that all existing tokens signed with the old service-account issuer key have expired or been refreshed, be sure to wait at least 24 hours before removing the old key.
+
+Run the following commands on the K3s server node to remove the old key safely:
+
+```bash
+# Backup the current key file
+sudo cp /var/lib/rancher/k3s/server/tls/service.key /var/lib/rancher/k3s/server/tls/service.key.bak.$(date +%s)
+
+# Split the keys into individual files
+csplit -f /tmp/service-key- /var/lib/rancher/k3s/server/tls/service.key '/BEGIN RSA PRIVATE KEY/' '{*}'
+
+# Copy only the new key (first key in the file) to staging
+sudo cp /tmp/service-key-01 /opt/k3s/server/tls/service.key
+
+# Load the updated key into the datastore
+k3s certificate rotate-ca --path=/opt/k3s/server
+
+# Restart K3s
+sudo systemctl restart k3s
+```
+
 
 ## Disable workload identity
 
