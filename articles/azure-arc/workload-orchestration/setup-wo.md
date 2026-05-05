@@ -21,10 +21,6 @@ This article walks you through the process of onboarding Workload Orchestration 
 
 * An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * Role-Based Access Control (RBAC) enabled user role assignment. For more information, see [Role-Based Access Control (RBAC) guide](rbac-guide.md).
-* An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
-
-    > [!NOTE]
-    > The workload orchestration Arc extension doesn't support Arm-based architecture nodes. If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine.
 
 * The latest version of Azure CLI installed on your development machine. For more information, see [How to install Azure CLI](/cli/azure/install-azure-cli).
 * The latest version of the following Azure CLI extensions:
@@ -41,19 +37,9 @@ This article walks you through the process of onboarding Workload Orchestration 
   winget install -e --id Kubernetes.kubectl
   ```  
 
-### System Requirements
-
-| Cluster Type | RAM | CPUs | Disk |
-|---|---|---|---|
-| Single node K3s | Minimum 4 GB | 2 | — |
-| Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
-
 ### Region Availability
 
-Workload orchestration is available for Arc-enabled clusters in **East US** and **East US 2**.
-
-> [!IMPORTANT]
-> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, must be created in the same Azure region.
+Workload orchestration is available for Arc-enabled clusters in **East US** and **East US 2**. Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, must be created in the same Azure region.
 
 
 ---
@@ -143,7 +129,7 @@ All sample input files required in this quide can be downloaded from the [worklo
 ***
 
 
-## Step 2: Set up the required workload orchestration resources
+## Step 2: Set up the required Azure resources
 
 1. Register Resource Providers
 
@@ -157,9 +143,22 @@ All sample input files required in this quide can be downloaded from the [worklo
 
 1. Create Resource Group and Azure Kubernetes Service (AKS) Cluster
 
-    For information about virtual machine sizes available for AKS cluster, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
+    If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine, since the workload orchestration Arc extension doesn't support Arm-based architecture nodes. For information about virtual machine sizes available for AKS cluster, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview), keeping in mind the following cluster requirements.
+    
+    <details>
+    <summary>Cluster requirements</summary>
+    
+    <br/>
 
-    ```azurecli
+    | Cluster Type | RAM | CPUs | Disk |
+    |---|---|---|---|
+    | Single node K3s | Minimum 4 GB | 2 | — |
+    | Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
+    </details>
+
+    ### [Bash](#tab/bash)
+    
+    ```bash
     az group create --location "$l" --name "$rg"
     
     az identity create --resource-group "$rg" --name "$clusterName"
@@ -167,6 +166,15 @@ All sample input files required in this quide can be downloaded from the [worklo
     
     az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count <node-count> --assign-identity "$clusterIdentity" --generate-ssh-keys --node-vm-size "<node-size>"
     ```
+
+    ### [Powershell](#tab/powershell)
+
+    ```powershell
+    az identity create --resource-group $rg --name $clusterName
+    $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
+    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys --node-vm-size <node size>
+    ```
+---
 
 1. Enable Azure Arc on the Kubernetes cluster.
 
@@ -195,8 +203,48 @@ All sample input files required in this quide can be downloaded from the [worklo
 
     On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory. 
 
+    <details>
+    <summary> Perform the cluster initialization steps individually </summary>
 
-## Step 3: Create the Hierarchy
+    You can also choose to manually set up your cluster for workload orchestration by following these steps:
+    
+    1. Install Cert Manager and Trust Manager.
+
+        ```azurecli
+        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --name "aio-certmgr" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+        ```
+
+    1. Run the following command and pick a storage class list to use as the persistent volume storage class for workload orchestration extension.
+        ```azurecli
+        kubectl get sc
+        ```
+    1. Run the following command to install the `microsoft.workloadorchestration` extension:
+    
+        ```azurecli
+        storageClassName="<pick up one storage class from 'kubectl get sc'>"
+        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi 
+        ```
+    1. Enable custom location for the cluster.
+
+        ### [Bash](#tab/bash)
+        ```bash
+        clusterId=$(az connectedk8s show --resource-group "$rg" --name "$clusterName" --query id --output tsv)
+        extensionId=$(az k8s-extension show --resource-group "$rg" --name "$extensionName" --cluster-type connectedClusters --cluster-name "$clusterName" --query id --output tsv)
+        az customlocation create --resource-group "$rg" --name "${clusterName}-Location" --namespace default --host-resource-id "$clusterId" --cluster-extension-ids "$extensionId" --location "$l"
+        ```
+
+        ### [PowerShell](#tab/powershell)
+        ```powershell
+        $clusterId = az connectedk8s show --resource-group $rg --name $clusterName --query id --output tsv
+        $extensionId = az k8s-extension show --resource-group $rg --name $extensionName --cluster-type connectedClusters --cluster-name $clusterName --query id --output tsv
+        az customlocation create --resource-group $rg --name "$clusterName-Location" --namespace default --host-resource-id $clusterId --cluster-extension-ids $extensionId --location $l
+        ```
+        ---
+    
+    </details>
+
+
+## Step 3: Set up the workload orchestration resources
 
 Workload orchestration involves multiple resource types that stitch the whole experience together:
 - **Context:** Also called as Environment, this is master resource that binds together all workload orchestration resources within an Azure Tenant, including the organizational hierarchy.
@@ -266,11 +314,25 @@ The following steps demonstrate the process of setting up these resources.
     az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$contextName" --name "$siteReference" --site-id "$siteId"
     ```
 
+    <details>
+    <summary> Use existing context </summary>
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
     
     ```azurecli
     az workload-orchestration context create --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName" --hierarchies "[0].name=factory" "[0].description=Factory" "[1].name=line" "[1].description=Line" --capabilities @capabilities.json
     ```
+
+    You can add new capabilities to your existing context.
+    ```azurecli
+    az workload-orchestration context add-capability -g "$rg" --context-name "$contextName" --capabilities "[{name:soap,description:Soap},{name:shampoo,description:Shampoo}]" 
+    ```
+    You can also pass the list of capabilities in a JSON file using `--capabilities @capabilities.json`
+
+    Existing capabilities can also be deleted from a context by running:
+    ```azurecli
+    az workload-orchestration context remove-capability -g "$rg" --context-name "$contextName" --names soap,shampoo --yes
+    ```
+    </details>
 
     > [!NOTE]
     > Workload orchestration currently supports creation of only 1 context per Azure tenant. The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:

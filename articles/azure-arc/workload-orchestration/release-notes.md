@@ -17,8 +17,6 @@ This article provides the latest and past release notes for workload orchestrati
 
 - **Git-based management of resources**: Workload orchestration now supports a [Git-based workflow](workload-orchestration-multicluster-git.md) for managing resources, enabling you to define and manage schemas, solution templates, and configuration templates from your Git repository at scale. This approach introduces a streamlined authoring and deployment experience with pull request–based validation, automated synchronization to Azure using Deployment Stacks, and configurable resource protection.
 
-- **IT operations on Azure portal**: All IT operations involved in onboarding workload orchestration&mdash;including the creation and management of environment, hierarchy, targets, schemas and templates&mdash;are now supported in the [Azure portal](https://ms.portal.azure.com/), in addition to the existing CLI experience.
-
 - **Cluster migration**: Users can now migrate their targets along with deployed solutions to a new Arc-enabled cluster. This is especially critical when the existing cluster gets deleted or solution deployments require capacity expansion.
 
 ### Improvements in CLI

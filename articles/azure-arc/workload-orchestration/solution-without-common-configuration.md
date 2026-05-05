@@ -276,8 +276,8 @@ The building blocks of a solution template help you manage configurations dynami
 
 | Expression        | Example                     | Behavior       |
 |----------------------------|---------------------|--------------------------------------------------|
-| `$val(<jsonPath>)`                               | `${{$val(key1.key2.key3)}}`                                                    | Reads the value from current config value of given json path set in different hierarchy. If the value is set in multiple hierarchy levels, lowest level value is taken.                                                                                                                                                                                                                                                                                                                |
-| `$config(<config path>, <json path (optional)>)` | `$config(subId/resourceGroupName/commonConfig/1.0.0, key1.key2.key3)` | Reads the value of given json path from given config path set. If the value is set in multiple hierarchy levels, lowest level value is taken.<br><br>Config path can be full path, that is, subscription/resourceGroupName/configName/version or just configName/version, in case of configName/Version. the subscription and resourceGroup is taken from current resolveconfig request context.<br><br>If json path isn't provided, then it reads the entire config from ARM object. |
+| `$val(<jsonPath>)`                               | `${{$val(key1.key2.key3)}}`                                                    | Reads the value of given json path from given config path set. This allows user to set dynamic values for a configuration parameter defined in the template, at the time of solution deployment.                                                                                                                                                                                                                                                                                                                |
+| `$config(<config path>, <json path (optional)>)` | `$config(subId/resourceGroupName/commonConfig/1.0.0, key1.key2.key3)` | Reads the value of given json path from given config path set. Config path can be full path, that is, subscription/resourceGroupName/configName/version or just configName/version, in which case the subscription and resourceGroup is taken from current resolveconfig request context. If json path isn't provided, then it reads the entire config from ARM object. |
 | `$property(<json path>)`                         | `$property(key1.key2.key3)`                                                    | This is used to read config key within the config template                   |
 
 ### String concatenation
@@ -289,13 +289,11 @@ You can perform a concatenation using `<string>` + `<expression>`. For example,
 
 ### Handling Null Values
 
-If key is having the null value, parser checks whether schema rule has `defaultValue` defined for this key. If `defaultValue` is present, then it sets the `defaultValue` to the key. If `required` is set true in the schema rule, it throws the null value error. Else it sets the null value to key.
+If key in the template is having the null value, parser checks whether schema rule has `defaultValue` defined for this key. If `defaultValue` is present, then it sets the `defaultValue` to the key. If `required` is set true in the schema rule, it throws the null value error. Else it sets the null value to key.
 
 ### Referencing ARM properties of target resource
 
-Any ARM properties of target resource can be used in the configuration template.
-
-For example, if you prefer to insert the name or ID of the target in the template, it can be done using the following syntax:
+Any ARM properties of target resource can be used in the configuration template, using the following syntax:
 
 ```yaml
 TargetName= ${{$target(name)}}
@@ -304,7 +302,7 @@ TargetArmId = ${{$target(id)}}
 
 ### Nested Expression
 
-Expression can be nested, for example ${{$if($eq($val(key1), value), equal, notEqual)}}. In this case, the expression is evaluated from inside out. The inner expression is evaluated first, $val(key1), then the outer expression $eq($val(key1), value) is evaluated, and finally the outermost expression *$if($eq($val(key1), value), equal, notEqual) is evaluated.
+Expression can be nested, for example ${{$if($eq($val(key1), value), equal, notEqual)}}. In this case, the expression is evaluated from inside out.
 
 ### Including and referencing other configurations
 
@@ -362,8 +360,11 @@ Follow these steps to create a solution template for your application.
 Run the following command to configure the solution template and deploy the corresponding solution/application to your target. The configuration values need to be stored in **config.yaml**.
 
 ```azurecli
-az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName/versions/$appVersion" --configuration “config.yaml”   
+az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName" --solution-template-version $appVersion --configuration “config.yaml”   
 ```
+
+> [!NOTE]
+> If your template resides in a different resource group, you can use the `--solution-template-rg` argument to specify your template resource group.
 
 You can also choose to configure and deploy the solution in separate individual steps:
 
