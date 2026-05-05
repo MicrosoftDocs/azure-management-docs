@@ -1,21 +1,48 @@
 ---
-title: Release Notes for Edge RAG Preview Enabled by Azure Arc
+title: Release Notes for Agentic RAG Enabled by Azure Arc
 ms.reviewer: cwatson
-description: "Discover the latest updates and features for Edge RAG Preview enabled by Azure Arc."
+description: "Discover the latest updates and features for Agentic RAG enabled by Azure Arc."
 author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 02/09/2026
+ms.date: 05/04/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Edge RAG release so that I can plan updates for my organization.
 
 ---
 
-# Release notes for Edge RAG Preview enabled by Azure Arc
+# Release notes for Agentic RAG enabled by Azure Arc
 
-Edge RAG Preview enabled by Azure Arc helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Edge RAG in your organization.
+Agentic RAG enabled by Azure Arc helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic RAG in your organization.
+
+## June 2026
+
+**Extension version**: `0.9.0` [Preview]
+
+### Changes
+
+| Change | Details |
+|---|---|
+| **Product renamed** | "Edge RAG" is now **Agentic RAG**. The Azure extension type remains `microsoft.arc.rag`. |
+| **SLM models removed** | Phi-3.5 and Mistral-7B models are no longer bundled. Bring Your Own Model (BYOM) is the only model path. You must provide an external LLM endpoint. |
+| **GPU count reduced** | 4 → **2 GPUs** required. GPUs are used for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14). Docling (document parser) now runs on CPU. The LLM runs externally via BYOM. |
+| **BYOM is now mandatory** | The model endpoint step is no longer optional. All deployments require an OpenAI-compatible LLM endpoint. |
+
+### New features
+
+| Feature | Description |
+|---|---|
+| **Independent layer deployment** | New `layerSelection` ARM parameter: `combined` (default), `agentic`, `knowledge`. Deploy layers independently. |
+| **Agents Runtime API** | Full agent orchestration with threads, messages, runs, and streaming (SSE). OpenAI Assistants-compatible API. Port 8080. |
+| **Agent Manager API** | CRUD operations for agents and knowledge bases. Supports custom agent IDs, metadata. Port 8080. |
+| **Knowledge Sources API** | Register MCP server connections as self-contained knowledge sources (two kinds: `remote_mcp` and `indexed_sources_mcp`). Port 3005. |
+| **Collections API** | Manage multiple collections for vector data with per-collection RBAC. Port 3002. |
+| **MCP Server** | Built-in MCP server with 7 search tools over Model Context Protocol. Port 8080. |
+| **Ingestion API** | Public REST API for programmatic document ingestion. Port 8000. |
+| **Inference API** | Public REST API for RAG chat completions and model-only queries. Port 3001. |
+| **Agentic Chat UI** | New agentic chat interface with multi-turn conversations, thread history, and streaming. |
 
 ## February 2026
 
@@ -61,7 +88,7 @@ The following table summarizes the updates included in this release.
 | Capability                | Description |
 |---------------------------|---------|
 | Data ingestion  | - Improved parsing for documents, including tables and charts.<br>- Added new ingestion type options for high-fidelity document processing.  <br></br>For more information, see [Advanced data parsing for Edge RAG](advanced-data-parsing.md)|
-|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval & image-rich outputs<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) and [Advanced data parsing for Edge RAG](advanced-data-parsing.md).|
+|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) and [Advanced data parsing for Edge RAG](advanced-data-parsing.md).|
 |Performance enhancements | From previous release version: <br>- Achieved a 5× faster query performance for hybrid search.<br>- Delivered 100× faster ingestion of live-streamed images. |
 |Preview support for disconnected scenarios|Edge RAG supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).|
 

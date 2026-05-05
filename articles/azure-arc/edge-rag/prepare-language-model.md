@@ -1,56 +1,51 @@
 ---
-title: Choose the Right Language Model for Edge RAG Preview Enabled by Azure Arc
-description: "Learn how to choose the right language model for Edge RAG deployment, including Microsoft and custom options, to optimize your AI solution."
+title: Prepare Your Language Model Endpoint for Agentic RAG
+description: "Learn how to set up an OpenAI-compatible LLM endpoint for your Agentic RAG deployment using the Bring Your Own Model (BYOM) approach."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 06/20/2025
+ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Edge RAG so that I can deploy and manage an AI chat solution for my edge environment.
+#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agentic RAG so that I can deploy and manage an AI chat solution for my edge environment.
 
 ---
 
-# Choose the right language model for Edge RAG Preview enabled by Azure Arc
+# Prepare your language model endpoint for Agentic RAG
 
-Review available model options and understand model requirements to choose the right language model for your Edge RAG deployment. This article is part of the deployment prerequisites checklist.
+Agentic RAG requires an external language model (Bring Your Own Model). This article helps you set up an OpenAI-compatible LLM endpoint for your deployment.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Select a language model
 
-Decide which language model your organization wants to deploy. You can use your own language model or use one of the Edge RAG-provided language models.  
+Agentic RAG doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
 
-After Edge RAG extension is deployed, you can't change the language model. Therefore, work with your application development team to decide which is the right model for your organization's use case.
+Work with your application development team to choose the right model for your use case. For the best results with deep search, use a model like GPT-4o, GPT-4.1-mini, or later.
 
-You can refer to some of these resources from Microsoft to choose the right model for your use case:
+To choose the right model for your use case, refer to these resources from Microsoft:
 
 - Blog: [How to Choose the Right Models for Your Apps | Azure AI](https://techcommunity.microsoft.com/blog/microsoftmechanicsblog/how-to-choose-the-right-models-for-your-apps--azure-ai/4271216)
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
 - [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) also provides tooling such as model benchmarks to choose the right model.
 
+## Set up your BYOM endpoint
 
-## Edge RAG-provided language models
+Agentic RAG works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
 
-If you don't have your own language model to use with Edge RAG, select one of the following provided language models when you deploy the Edge RAG extension:
+| Method | Description | Best for |
+|---|---|---|
+| **FoundryOnArc** | Deploy models on your Arc-connected cluster by using Azure AI Foundry. | Production deployments with Azure-managed models. |
+| **KAITO** | Kubernetes AI Toolchain Operator for model hosting on AKS. | On-premises model hosting with GPU support. |
+| **Azure OpenAI** | Cloud-hosted models via Azure OpenAI Service. | When cloud connectivity is available and acceptable. |
+| **Ollama** | Lightweight model server running on your cluster. | Development, testing, and CPU-only scenarios. |
+| **Foundry Local** | Run models locally via Microsoft Foundry Local. | Local development and evaluation. |
+| **Any OpenAI-compatible endpoint** | Any service exposing `/v1/chat/completions`. | Custom or third-party model servers. |
 
-- [Microsoft Phi 3.5 Mini](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)
-- [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
+For step-by-step setup instructions for each method, see [Create a BYOM endpoint](prepare-model-endpoint.md).
 
-## Bring your own language model
+## Next steps
 
-Edge RAG works with small language models (SLM) or large language models (LLM) that expose endpoints that support the OpenAI inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO) or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
-
-When you bring your own language model (BYOM), you can enable advanced search options like deep search. For the best results with deep search, use a language model like OpenAI [GPT-4o](https://github.com/marketplace/models/azure-openai/gpt-4o), [GPT-4.1-mini](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini) or a later version. These models provide the advanced reasoning and quality needed for deep search scenarios.
-
-If you plan to use your own language model with Edge RAG, you must complete the steps in the following articles:
-
-- Before you deploy Edge RAG, [create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
-- After you deploy the Edge RAG extension, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
-
-
-## Next step
-
-If you choose to:
-- Use an Edge RAG-provided language model, see [Verify file share access for Edge RAG](prepare-file-server.md).
-- Bring use your own language model, see [Create an endpoint to use for Edge RAG](prepare-model-endpoint.md).
+- [Create a BYOM endpoint](prepare-model-endpoint.md) — set up your LLM endpoint.
+- [Deploy the Agentic RAG extension](deploy.md) — use the endpoint during deployment.
+- [Configure BYOM endpoint authentication](configure-endpoint-authentication.md) — set up authentication after deployment.
