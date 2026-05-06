@@ -75,7 +75,7 @@ The Azure Arc agent doesn't support the use of domain-joined service accounts or
 
 This design is intentional and aligns with the security and operational model of Azure Arc-enabled servers:
 
-- **Independence from domain infrastructure -** The agent is designed to operate consistently across domain-joined, workgroup, and disconnected environments. Avoiding domain-managed identities ensures the agent does not depend on Active Directory availability, trust relationships, or domain-specific policies.
+- **Independence from domain infrastructure -** The agent is designed to operate consistently across domain-joined, workgroup, and disconnected environments. Avoiding domain-managed identities ensures the agent doesn't depend on Active Directory availability, trust relationships, or domain-specific policies.
 
 - **Reduced credential exposure -** Local virtual service accounts are system-managed and do not require password management, rotation, or interactive sign-in. This minimizes the risk of credential theft, reuse, or misconfiguration compared to domain service accounts.
 
