@@ -1,6 +1,6 @@
 ---
-title: Monitor Edge RAG Preview
-description: "Learn how to monitor Edge RAG metrics using Azure Monitor, Azure Managed Grafana, and Azure Arc for better insights."
+title: Monitor Agents and Tools with Foundry Local
+description: "Learn how to monitor Agents and Tools with Foundry Local metrics using Azure Monitor, Azure Managed Grafana, and Azure Arc for better insights."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,12 +9,12 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a cloud administrator or DevOps engineer, I want to monitor Edge RAG metrics using Azure Monitor and Azure Managed Grafana so that I can obtain insights into the performance and health of my edge deployment for better operational management.
+# Customer intent: As a cloud administrator or DevOps engineer, I want to monitor Agents and Tools with Foundry Local metrics using Azure Monitor and Azure Managed Grafana so that I can obtain insights into the performance and health of my edge deployment for better operational management.
 ---
 
-# Monitor Edge RAG Preview, enabled by Azure Arc
+# Monitor Agents and Tools with Foundry Local
 
-Edge RAG publishes metrics to [Azure Monitor](/azure/azure-monitor/fundamentals/overview) to assess the performance of the deployed extension. These metrics are composed of numerical values within a sequential set of time-series data. They offer detailed insights into specific aspects of the extension at a particular point in time.
+Agents and Tools with Foundry Local publishes metrics to [Azure Monitor](/azure/azure-monitor/fundamentals/overview) to assess the performance of the deployed extension. These metrics are composed of numerical values within a sequential set of time-series data. They offer detailed insights into specific aspects of the extension at a particular point in time.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -23,17 +23,17 @@ Edge RAG publishes metrics to [Azure Monitor](/azure/azure-monitor/fundamentals/
 Before you begin:
 
 - If you want to use [Azure Managed Grafana](/azure/managed-grafana/overview) to visualize your metrics, [configure an Azure Monitor data source plug-in](/azure/azure-monitor/visualize/grafana-plugin#configure-an-azure-monitor-data-source-plug-in).
-- Review [Edge RAG metrics available for monitoring](observability-metrics.md).
+- Review [Agents and Tools with Foundry Local metrics available for monitoring](observability-metrics.md).
 
 ## Review the metrics visualizations
 
-Build a chart with metrics for Edge RAG in the Azure portal or by using Azure Managed Grafana.
+Build a chart with metrics for Agents and Tools with Foundry Local in the Azure portal or by using Azure Managed Grafana.
 
 #### [Azure portal](#tab/azure-portal)
 
 1. Go to the Extensions blade in the Azure portal: **AKS cluster on Azure Local** > **Settings** > **Extensions**.
 
-1. Select the installed Edge RAG extension:
+1. Select the installed Agents and Tools with Foundry Local extension:
 
    :::image type="content" source="media/observability/extensions.png" alt-text="Screenshot of the Azure portal showing the Extensions blade for an AKS cluster on Azure Local.":::
 
@@ -57,7 +57,7 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
  
    :::image type="content" source="media/observability/grafana-data-source.png" alt-text="Screenshot showing the Azure Monitor data source configuration in Azure Managed Grafana.":::  
 1. Select **Select a resource**.  
-1. Search for and select the **Kubernetes - Azure Arc** resource where Edge RAG is installed.
+1. Search for and select the **Kubernetes - Azure Arc** resource where Agents and Tools with Foundry Local is installed.
 1. Open **Advanced**.  
 
    :::image type="content" source="media/observability/grafana-select-resource.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the 'Select a resource' drop-down menu expanded, displaying available Azure Arc resources grouped by subscription and resource group.":::  
@@ -67,13 +67,13 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
 
       :::image type="content" source="media/observability/grafana-namespace-resource-name.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the Namespace field set to 'Microsoft.KubernetesConfiguration/extensions' and the Resource Name field populated with a specific resource path.":::
 
-1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of the Edge RAG extension:
+1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of the Agents and Tools with Foundry Local extension:
 
    `<Current Resource Name>/Microsoft.KubernetesConfiguration/<Extension Name>`
 
    For example, `contoso-arc-cluster/Microsoft.KubernetesConfiguration/edgeragdemo`
 
-   If you don't know the Edge RAG extension name, find it in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.
+   If you don't know the Agents and Tools with Foundry Local extension name, find it in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.
 
 1. Select **Apply**  
 1. Select a metric from the **"Metric"** drop-down.  

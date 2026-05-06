@@ -1,20 +1,20 @@
 ---
-title: Types of Search in Agentic RAG
-description: Learn about search types, their options, and how they're used in Agentic RAG deployments.
+title: Types of Search in Agents and Tools with Foundry Local
+description: Learn about search types, their options, and how they're used in Agents and Tools with Foundry Local deployments.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
-#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agentic RAG so I can choose and configure the right search type for my deployment.
+#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agents and Tools with Foundry Local so I can choose and configure the right search type for my deployment.
 ---
 
-# Search types in Agentic RAG enabled by Azure Arc
+# Search types in Agents and Tools with Foundry Local
 
-A search method or type, like full text, vector, or hybrid, controls how Agentic RAG retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
+A search method or type, like full text, vector, or hybrid, controls how Agents and Tools with Foundry Local retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
 
-You select a search type when you configure your data query settings in the Agentic RAG developer portal. All search types are available with your BYOM language model endpoint.
+You select a search type when you configure your data query settings in the Agents and Tools with Foundry Local developer portal. All search types are available with your BYOM language model endpoint.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -31,7 +31,7 @@ Your choice of search type affects:
 
 ## Available search types
 
-The following definitions describe each search type available in Agentic RAG, so you can understand how they work and choose the best option for your scenario.
+The following definitions describe each search type available in Agents and Tools with Foundry Local, so you can understand how they work and choose the best option for your scenario.
 
 - **Deep search**: Implements [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0), a method that builds a dynamic graph of information at query time to find the most relevant and connected content. Instead of relying on precomputed summaries or embeddings, LazyGraph RAG incrementally explores and connects data across sources, gathering only the information needed to answer the question. This approach improves answer quality and reduces cost by focusing retrieval on the most useful content for each query.
 
@@ -39,13 +39,13 @@ The following definitions describe each search type available in Agentic RAG, so
 
 - **Hybrid search**: Combines both full-text search (keyword-based) and vector search (semantic similarity) to retrieve the most relevant documents. It uses the precision of keyword matching and the depth of semantic understanding for improved retrieval accuracy.
 
-- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Agentic RAG to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
+- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Agents and Tools with Foundry Local to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
 
 - **Vector search**: A search method that finds relevant documents by comparing the semantic similarity between vector embeddings of the user's query and precomputed embeddings of documents, typically using cosine similarity or other distance metrics in a vector space.
 
 ## Compare search types
 
-Agentic RAG supports several search types. The following table summarizes each search type, best use cases, and performance considerations:
+Agents and Tools with Foundry Local supports several search types. The following table summarizes each search type, best use cases, and performance considerations:
 
 | Search type               | What it does      | Best use cases       | Performance notes                                                                                  |
 |--------------------------|------------------|-----------------|---------------------|
@@ -58,7 +58,7 @@ Agentic RAG supports several search types. The following table summarizes each s
 
 ## Search type availability by deployment
 
-All search types are available with Agentic RAG, since all deployments use BYOM:
+All search types are available with Agents and Tools with Foundry Local, since all deployments use BYOM:
 
 | Search type | Available |
 |---|---|
@@ -72,12 +72,12 @@ For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more informat
 
 For more information about deploying with a language model, see:
 
-- [Deployment overview for Agentic RAG](deploy-overview.md) 
-- [Deploy the extension for Agentic RAG](deploy.md)
+- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
+- [Deploy the extension for Agents and Tools with Foundry Local](deploy.md)
 
 ## How to select a search type
 
-Select the search type in the Agentic RAG developer portal when you configure your data query settings. Some parameters might differ by search type and model.
+Select the search type in the Agents and Tools with Foundry Local developer portal when you configure your data query settings. Some parameters might differ by search type and model.
 
 ## Collection-scoped search
 
@@ -105,7 +105,7 @@ Each search type offers different performance characteristics. Consider these po
 
 ## Tips for choosing a search type
 
-Use these tips to help you select the best search type for your Agentic RAG deployment and scenario:
+Use these tips to help you select the best search type for your Agents and Tools with Foundry Local deployment and scenario:
 
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
@@ -114,7 +114,7 @@ Use these tips to help you select the best search type for your Agentic RAG depl
 
 ## Search type parameters
 
-The following tables list and describe all parameters you can configure for each search type in Agentic RAG. Not all parameters are available for every search type or deployment. The Agentic RAG developer portal shows only the options that apply to your selected search type and model.
+The following tables list and describe all parameters you can configure for each search type in Agents and Tools with Foundry Local. Not all parameters are available for every search type or deployment. The Agents and Tools with Foundry Local developer portal shows only the options that apply to your selected search type and model.
 
 Model and search parameters apply to text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search.
 
@@ -131,7 +131,7 @@ The following model parameters are available for text, vector, hybrid, and hybri
 
 ### Search parameters
 
-The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Agentic RAG retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
+The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. These parameters aren't available for deep search. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Agents and Tools with Foundry Local retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
 
 These parameters only apply to the **Knowledge-based** chat experience.
 
@@ -158,8 +158,8 @@ The following parameters let you customize how deep search retrieves, expands, a
 
 ## Related content
 
-- [Deployment overview for Agentic RAG](deploy-overview.md)
-- [Deploy Agentic RAG](deploy.md)
-- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
+- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
+- [Deploy Agents and Tools with Foundry Local](deploy.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
 - [Set up data query](set-up-data-query.md)
 

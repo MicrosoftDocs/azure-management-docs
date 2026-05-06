@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Create Your First Agentic RAG Agent"
-description: Learn how to create an Agentic RAG agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+title: "Quickstart: Create Your First Agents and Tools with Foundry Local Agent"
+description: Learn how to create an Agents and Tools with Foundry Local agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: quickstart
@@ -9,13 +9,15 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Quickstart: Create your first Agentic RAG agent
+# Quickstart: Create your first Agents and Tools with Foundry Local agent
 
-In this quickstart, you create an Agentic RAG agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+In this quickstart, you create an Agents and Tools with Foundry Local agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites
 
-- Agentic RAG deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-4 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead.
+- Agents and Tools with Foundry Local deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-4 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead.
 - A *bring-your-own-model (BYOM) endpoint*: an LLM that exposes an OpenAI-compatible chat completions API (for example, FoundryOnArc, KAITO, or Azure OpenAI) configured at the cluster level during deployment through Helm values (`byom.apiEndpoint`).
 - Azure CLI installed and authenticated.
 - **curl** and **jq** installed.
@@ -42,7 +44,7 @@ CLUSTER="<your-cluster-domain>"
 
 ## Step 2: Create a collection and ingest data
 
-Collections are how you organize and store your data in the Agentic RAG system. In this step, you create a collection and ingest documents from an NFS data source.
+Collections are how you organize and store your data in the Agents and Tools with Foundry Local system. In this step, you create a collection and ingest documents from an NFS data source.
 
 ### Create a collection
 
@@ -269,7 +271,7 @@ If you encounter issues, check the following common problems and solutions:
 ## Related articles
 
 - [Agentic layer overview](agentic-overview.md)
-- [MCP server in Agentic RAG](mcp-server-overview.md)
+- [MCP server in Agents and Tools with Foundry Local](mcp-server-overview.md)
 <!-- - [Collections overview](collections-overview.md)
 - [Agent Manager API reference](APIs/agent-manager-api.md)
 - [Agents Runtime API reference](APIs/agents-runtime-api.md) -->

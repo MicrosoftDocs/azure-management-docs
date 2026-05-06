@@ -1,6 +1,6 @@
 ---
-title: Set up the Data Query for Edge RAG Chat Solution
-description: "Learn how to set up your data query with Edge RAG to configure model settings and create effective AI-driven chat solutions."
+title: Set up the Data Query for Agents and Tools with Foundry Local Chat Solution
+description: "Learn how to set up your data query with Agents and Tools with Foundry Local to configure model settings and create effective AI-driven chat solutions."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,12 +9,12 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer, I want to set up the data query and configure model settings for the Edge RAG chat solution, so that I can create effective AI-driven chat experiences tailored to my application's requirements.
+# Customer intent: As a developer, I want to set up the data query and configure model settings for the Agents and Tools with Foundry Local chat solution, so that I can create effective AI-driven chat experiences tailored to my application's requirements.
 ---
 
-# Set up the data query for chat solution in Edge RAG Preview, enabled by Azure Arc
+# Set up the data query for chat solution in Agents and Tools with Foundry Local
 
-Configure data queries and model settings for your Edge RAG chat solution to optimize your chat results. Adjust search types, tune model parameters, and refine your chat experience in the Edge RAG developer portal.
+Configure data queries and model settings for your Agents and Tools with Foundry Local chat solution to optimize your chat results. Adjust search types, tune model parameters, and refine your chat experience in the Agents and Tools with Foundry Local developer portal.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -23,9 +23,9 @@ Configure data queries and model settings for your Edge RAG chat solution to opt
 Before you begin:
 
 - Make sure you are in **Knowledge-based** chat mode.
-- Review [Search types in Edge RAG](search-types.md) to understand the available search types and when to use them.
-- Review [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
-- [Add data source for the chat solution in Edge RAG](add-data-source.md)
+- Review [Search types in Agents and Tools with Foundry Local](search-types.md) to understand the available search types and when to use them.
+- Review [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
+- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
 - To access the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Configure model settings
@@ -43,7 +43,7 @@ To get started, configure the model settings.
 
    The available search types depend on your deployment:
 
-   | Search type                | Edge RAG-provided model | Bring your own model (BYOM) |
+   | Search type                | Agents and Tools with Foundry Local-provided model | Bring your own model (BYOM) |
    |---------------------------|:-----------------------:|:---------------------:|
    | Hybrid text search  (default value)      |           Yes           |         Yes           |
    | Text search               |           Yes           |         Yes           |
@@ -72,9 +72,9 @@ Next, test the chat endpoint.
 
    :::image type="content" source="media/set-up-data-query/test-chat.png" alt-text="Screenshot of the chat playground with a question in the chat window." lightbox="media/set-up-data-query/test-chat.png":::
 
-   Be aware that with Edge RAG extension version `0.1.5` and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
+   Be aware that with Agents and Tools with Foundry Local extension version `0.1.5` and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
 1. (Optional) To see how the language model responds without using your ingested data, switch the chat mode to **Model-only** and enter your question. Switch back to **Knowledge-based** chat to keep refining your solution with your ingested data.
-1. (Optional) [Test the end user experience by using the chat solution app for Edge RAG](test-end-user-app.md).
+1. (Optional) [Test the end user experience by using the chat solution app for Agents and Tools with Foundry Local](test-end-user-app.md).
 
 ## View details to refine settings
 
@@ -110,6 +110,6 @@ When you're satisfied with the solution, select on **View the endpoint** to get 
 
 ## Related content
 
--[Search types in Edge RAG](search-types.md)
-- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
-- [Add data source for chat solution in Edge RAG](add-data-source.md)
+-[Search types in Agents and Tools with Foundry Local](search-types.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Add data source for chat solution in Agents and Tools with Foundry Local](add-data-source.md)

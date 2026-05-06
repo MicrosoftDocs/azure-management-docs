@@ -1,15 +1,15 @@
 ### YamlMime:Landing
 
-title: Edge RAG Preview, enabled by Azure Arc documentation # < 60 chars
-summary: Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).  # < 160 chars
+title: Agents and Tools with Foundry Local documentation # < 60 chars
+summary: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).  # < 160 chars
 
 metadata:
-  title: Edge RAG Preview, enabled by Azure Arc Documentation
-  description: Edge RAG is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).
+  title: Agents and Tools with Foundry Local Documentation
+  description: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).
   ms.topic: landing-page
   author: cwatson-cat
   ms.author: cwatson
-  ms.date: 06/05/2025
+  ms.date: 05/06/2026
   ms.service: azure-arc
   ms.custom: build-2025
   ms.subservice: edge-rag
@@ -20,17 +20,17 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card (optional)
-  - title: About Edge RAG Preview
+  - title: About Agents and Tools with Foundry Local
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Edge RAG Preview?
+          - text: What is Agents and Tools with Foundry Local?
             url: overview.md
           - text: Requirements
             url: Requirements.md
       - linkListType: whats-new
         links:
-          - text: What's new in Edge RAG Preview?
+          - text: What's new in Agents and Tools with Foundry Local?
             url: whats-new.md
 
   # Card (optional)
@@ -40,7 +40,7 @@ landingContent:
         links:
           - text: Complete prerequisites
             url: complete-prerequisites.md
-          - text: Deploy Edge RAG
+          - text: Deploy Agents and Tools with Foundry Local
             url: deploy.md
 
   # Card (optional)

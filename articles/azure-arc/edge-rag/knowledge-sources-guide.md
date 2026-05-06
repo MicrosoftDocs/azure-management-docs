@@ -1,6 +1,6 @@
 ---
-title: Configure a Knowledge Source in Agentic RAG
-description: Learn how to configure knowledge sources in Agentic RAG, which define MCP server connections for agent access.
+title: Configure a Knowledge Source in Agents and Tools with Foundry Local
+description: Learn how to configure knowledge sources in Agents and Tools with Foundry Local, which define MCP server connections for agent access.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
@@ -10,15 +10,17 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Configure a knowledge source in Agentic RAG
+# Configure a knowledge source in Agents and Tools with Foundry Local
 
-This guide explains how to configure knowledge sources in Agentic RAG. A *knowledge source* is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Each knowledge source includes all MCP server connection details (URL, auth type). 
+This guide explains how to configure knowledge sources in Agents and Tools with Foundry Local. A *knowledge source* is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Each knowledge source includes all MCP server connection details (URL, auth type). 
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites
 
-- Deploy Agentic RAG in combined or agentic mode.
+- Deploy Agents and Tools with Foundry Local in combined or agentic mode.
 
-- MCP server. Either the built-in Agentic RAG MCP server or an external one.
+- MCP server. Either the built-in Agents and Tools with Foundry Local MCP server or an external one.
 
 - Bearer token with **EdgeRAGDeveloper** role for write operations.
 
@@ -255,7 +257,7 @@ The agent is now ready to use. To create threads, send messages, and execute run
 
 ## Related content
 
-- [Create a knowledge base in Agentic RAG](knowledge-bases-guide.md)
-- [The agentic layer in Agentic RAG](agentic-overview.md)
-- [MCP server in Agentic RAG](mcp-server-overview.md)
+- [Create a knowledge base in Agents and Tools with Foundry Local](knowledge-bases-guide.md)
+- [The agentic layer in Agents and Tools with Foundry Local](agentic-overview.md)
+- [MCP server in Agents and Tools with Foundry Local](mcp-server-overview.md)
 <!-- - [Knowledge sources API reference](APIs/KNOWLEDGE-SOURCES-API-REFERENCE.md) -->

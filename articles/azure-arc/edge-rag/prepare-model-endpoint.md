@@ -1,28 +1,28 @@
 ---
-title: Create Your Language Model Endpoint for Agentic RAG
-description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agentic RAG by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
+title: Create Your Language Model Endpoint for Agents and Tools with Foundry Local
+description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agents and Tools with Foundry Local by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
 ms.date: 05/04/2026
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Agentic RAG deployment.
+#CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Agents and Tools with Foundry Local deployment.
 ---
 
-# Create your language model endpoint for Agentic RAG
+# Create your language model endpoint for Agents and Tools with Foundry Local
 
-Agentic RAG requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint by using one of the following methods.
+Agents and Tools with Foundry Local requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint by using one of the following methods.
 
 All search types (hybrid, vector, text, hybrid multimodal, and deep search) are available with your BYOM endpoint.
 
-After you create your endpoint, use it when you [deploy the Agentic RAG extension](deploy.md). The endpoint URL, model name, and max tokens are required deployment parameters.
+After you create your endpoint, use it when you [deploy the Agents and Tools with Foundry Local extension](deploy.md). The endpoint URL, model name, and max tokens are required deployment parameters.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Microsoft Foundry
 
-To use your own model with Agentic RAG, deploy a language model and create an endpoint by using Foundry.
+To use your own model with Agents and Tools with Foundry Local, deploy a language model and create an endpoint by using Foundry.
 
 1. Go to [Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
 
@@ -205,11 +205,11 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
    ```bash
    ollama pull <model_name>
    ```
-1. Use the following endpoint value as you configure the Agentic RAG extension deployment:
+1. Use the following endpoint value as you configure the Agents and Tools with Foundry Local extension deployment:
 
     `http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions`
 
-After you deploy the Agentic RAG extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
+After you deploy the Agents and Tools with Foundry Local extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
 
 ```bash
 curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
@@ -225,7 +225,7 @@ curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
 
 ## Validate your endpoint
 
-Before deploying Agentic RAG, verify your endpoint works by sending a test request:
+Before deploying Agents and Tools with Foundry Local, verify your endpoint works by sending a test request:
 
 ```bash
 curl -X POST <your-endpoint-url> \
@@ -240,7 +240,7 @@ curl -X POST <your-endpoint-url> \
   }'
 ```
 
-You should receive a JSON response with a `choices` array containing the model's answer. If this works, your endpoint is ready for Agentic RAG.
+You should receive a JSON response with a `choices` array containing the model's answer. If this works, your endpoint is ready for Agents and Tools with Foundry Local.
 
 ## Next step
 

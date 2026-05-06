@@ -1,6 +1,6 @@
 ---
-title: Collections Overview for Agentic RAG
-description: Learn about collections, the fundamental unit of data organization in Agentic RAG's Knowledge Layer, including architecture, lifecycle, naming rules, and access control.
+title: Collections Overview for Agents and Tools with Foundry Local
+description: Learn about collections, the fundamental unit of data organization in Agents and Tools with Foundry Local's Knowledge Layer, including architecture, lifecycle, naming rules, and access control.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
@@ -9,9 +9,11 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Collections in Agentic RAG
+# Collections in Agents and Tools with Foundry Local
 
-Collections are the fundamental unit of data organization in Agentic RAG's knowledge layer. Each collection is a logical grouping that contains ingested documents stored as vector embeddings and metadata. This article explains how collections work, how they're organized internally, and when to use multiple collections in your solution.
+Collections are the fundamental unit of data organization in Agents and Tools with Foundry Local's knowledge layer. Each collection is a logical grouping that contains ingested documents stored as vector embeddings and metadata. This article explains how collections work, how they're organized internally, and when to use multiple collections in your solution.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## What are collections?
 
@@ -43,7 +45,7 @@ The collection lifecycle follows these steps:
 
 ## Default collection
 
-Agentic RAG autocreates a default collection named `edgeragapp` on startup. This collection:
+Agents and Tools with Foundry Local autocreates a default collection named `edgeragapp` on startup. This collection:
 - Is used when no `collectionName` is specified during ingestion or querying.
 - Can't be deleted; returns `409 Conflict`.
 - Requires an `edgeragapp` app role for end-user access through RBAC.

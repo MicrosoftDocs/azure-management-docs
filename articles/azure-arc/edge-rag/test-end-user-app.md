@@ -1,6 +1,6 @@
 ---
-title: Test Chat Solution for Agentic RAG
-description: "Learn how to test the end user experience of the Agentic RAG chat solution to evaluate AI-powered search in hybrid or multicloud environments."
+title: Test Chat Solution for Agents and Tools with Foundry Local
+description: "Learn how to test the end user experience of the Agents and Tools with Foundry Local chat solution to evaluate AI-powered search in hybrid or multicloud environments."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -8,12 +8,12 @@ ms.date: 05/04/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer or IT administrator, I want to test the Agentic RAG chat solution using the provided application, so that I can assess the performance and user experience of AI-powered search in hybrid or multicloud environments.
+# Customer intent: As a developer or IT administrator, I want to test the Agents and Tools with Foundry Local chat solution using the provided application, so that I can assess the performance and user experience of AI-powered search in hybrid or multicloud environments.
 ---
 
-# Test the chat solution for Agentic RAG Preview, enabled by Azure Arc
+# Test the chat solution for Agents and Tools with Foundry Local
 
-After you configure the Knowledge Layer (or the full Agentic RAG platform), test the solution by using the built-in chat applications.
+After you configure the Knowledge Layer (or the full Agents and Tools with Foundry Local platform), test the solution by using the built-in chat applications.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -29,12 +29,12 @@ To try the chat for end users, start from the local chat portal.
 1. Sign in by using the end user credentials that have the **EdgeRAGEndUser** role assigned. If you have the right access configured, you're automatically redirected to the chat portal.
 1. Start using the simple chat interface by entering a query.
 
-    Be aware that with Edge RAG extension version `0.1.5` and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
+    Be aware that with Agents and Tools with Foundry Local extension version `0.1.5` and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
 1. (Optional) To share feedback to Microsoft, select thumbs up or thumbs down.
 
 ## Agentic Chat UI
 
-If you deployed Agentic RAG in **combined** or **agentic** mode, you get a new **agentic chat interface** alongside the legacy developer portal chat playground.
+If you deployed Agents and Tools with Foundry Local in **combined** or **agentic** mode, you get a new **agentic chat interface** alongside the legacy developer portal chat playground.
 
 The agentic chat UI provides:
 - Multiturn conversations with AI agents
@@ -58,7 +58,7 @@ Assign app roles that match the collection names end users need to access before
 
 ## Related content
 
-- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
-- [Add data source for the chat solution in Agentic RAG](add-data-source.md)
-- [Set up the data query for Agentic RAG chat solution](set-up-data-query.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
+- [Set up the data query for Agents and Tools with Foundry Local chat solution](set-up-data-query.md)
 
