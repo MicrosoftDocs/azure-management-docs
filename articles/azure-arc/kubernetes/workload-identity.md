@@ -30,27 +30,27 @@ For an overview of this feature, see [Workload identity federation in Azure Arc-
 
 ## Prerequisites
 
-- Workload identity for Azure Arc-enabled Kubernetes clusters is supported on the following Kubernetes distributions:
+- Workload identity for Azure Arc-enabled Kubernetes clusters supports the following Kubernetes distributions:
   - Ubuntu Linux cluster running K3s
   - AKS enabled by Azure Arc
   - Red Hat OpenShift
   - VMware Tanzu TKGm
   - AKS on Edge Essentials
 
-To use the workload identity feature, you must have Azure CLI version 2.64 or higher, and `az connectedk8s` version 1.10.0 or higher. Be sure to update your Azure CLI version before updating your `az connectedk8s` version. If you use Azure Cloud Shell, the latest version of Azure CLI will be installed.
+To use the workload identity feature, you must have Azure CLI version 2.64 or higher, and `az connectedk8s` version 1.10.0 or higher. Update your Azure CLI version before updating your `az connectedk8s` version. If you use Azure Cloud Shell, the latest version of Azure CLI is installed.
 
 ## Enable workload identity on your cluster
 
-Follow the appropriate steps to enable the workload identity feature for either a new Arc-enabled Kubernetes cluster or an existing one. In both cases, make sure to replace the name and resource group with your values, and configure parameters as desired.
+Follow the appropriate steps to enable the workload identity feature for either a new Arc-enabled Kubernetes cluster or an existing one. In both cases, replace the name and resource group with your values, and configure parameters as desired.
 
 |Parameter  |Description  |Required  |
 |---------|---------|---------|
-|`--enable-oidc-issuer`   |Generates and hosts OIDC issuer URL which is a publicly accessible URL that allows the API server to find public signing keys for verifying tokens.           | Required        |
-|`--enable-workload-identity`     | Installs a mutating admission webhook which projects a signed service account token to a well-known path and injects authentication-related environment variables to the application pods based on the settings of the annotated service account. For a new cluster, if this parameter isn't enabled, you must mount a projected volume at a well-known path that exposes the signed service account token to the path.         | Optional       |
+|`--enable-oidc-issuer`   |Generates and hosts OIDC issuer URL, which is a publicly accessible URL that allows the API server to find public signing keys for verifying tokens.           | Required        |
+|`--enable-workload-identity`     | Installs a mutating admission webhook that projects a signed service account token to a well-known path and injects authentication-related environment variables to the application pods based on the settings of the annotated service account. For a new cluster, if you don't enable this parameter, you must mount a projected volume at a well-known path that exposes the signed service account token to the path.         | Optional       |
 
 ### Set environment variables
 
-For convenience, the environment variables defined below are referenced in the examples in this article. Replace these values with your own values:
+For convenience, the examples in this article reference the environment variables defined in the following section. Replace these values with your own values:
 
 ```azurecli
 export RESOURCE_GROUP="myRG"
@@ -77,7 +77,7 @@ az connectedk8s update --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GRO
 
 ## Retrieve the OIDC issuer URL
 
-Fetch the OIDC issuer URL and save it to an environmental variable. This issuer URL will be used in the following step.
+Fetch the OIDC issuer URL and save it to an environment variable. Use this issuer URL in the following step.
 
 ```azurecli
 export OIDC_ISSUER="$(az connectedk8s show --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" \ 
@@ -89,11 +89,11 @@ To view the environment variable, enter `echo ${OIDC_ISSUER}`. The environment v
 
 `https://northamerica.oic.prod-arc.azure.com/00000000-0000-0000-0000-000000000000/12345678-1234-1234-1234-123456789123/`
 
-By default, the issuer is set to use the base URL `https://{region}.oic.prod-arc.azure.com/{tenant_id}/{uuid}`, where the value for `{region}` matches the location where the Arc-enabled Kubernetes cluster is created. The value `{uuid}` represents the OpenID Connect (OIDC) key, which is an immutable, randomly generated guid for each cluster.
+By default, the issuer uses the base URL `https://{region}.oic.prod-arc.azure.com/{tenant_id}/{uuid}`, where the value for `{region}` matches the location where you created the Arc-enabled Kubernetes cluster. The value `{uuid}` represents the OpenID Connect (OIDC) key, which is an immutable, randomly generated GUID for each cluster.
 
 ## Create a managed identity
 
-Use the `az identity create` command to create a user-assigned managed identity. With workload identity, a trust relationship is established between the token of the user-assigned management identity and the Kubernetes cluster's service account token.  
+Use the `az identity create` command to create a user-assigned managed identity. By using workload identity, you establish a trust relationship between the token of the user-assigned management identity and the Kubernetes cluster's service account token.  
 
 ```azurecli
 az identity create \ 
@@ -103,7 +103,7 @@ az identity create \
     --subscription "${SUBSCRIPTION}"
 ```
 
-Fetch the managed identity's client ID and store in an environment variable.
+Fetch the managed identity's client ID and store it in an environment variable.
 
 ```azurecli
 export USER_ASSIGNED_CLIENT_ID="$(az identity show \ 
@@ -115,9 +115,9 @@ export USER_ASSIGNED_CLIENT_ID="$(az identity show \
 
 ## Create a Kubernetes service account
 
-Create a Kubernetes service account and annotate it with the client ID of the managed identity created in the previous step. The signed tokens associated with the Kubernetes service account will be exchanged for a Microsoft Entra ID token after the trust relationship is established between the two.
+Create a Kubernetes service account and annotate it with the client ID of the managed identity you created in the previous step. After you establish the trust relationship between the two, the signed tokens associated with the Kubernetes service account are exchanged for a Microsoft Entra ID token.
 
-Apply the following YAML snippet to create a service account with workload identity annotation added.  
+Apply the following YAML snippet to create a service account with the workload identity annotation added.  
 
 ```yml
 apiVersion: v1 
@@ -144,19 +144,19 @@ az identity federated-credential create \
 ```
 
 > [!NOTE]
-> After the federated identity credential is added, it takes a few seconds to propagate. If a token request is made immediately after adding the federated identity credential, the request might fail until the cache is refreshed. To avoid this issue, add a slight delay in your scripts after adding the federated identity credential.
+> After you add the federated identity credential, it takes a few seconds to propagate. If you make a token request immediately after adding the federated identity credential, the request might fail until the cache is refreshed. To avoid this issue, add a slight delay in your scripts after adding the federated identity credential.
 
 ## Configure service account annotations and pod labels
 
-The following service account and pod annotations are available for configuring workload identity based on application requirements. Pod label specified below is mandatory if `--enable-workload-identity` is set to `true`.
+The following service account and pod annotations are available for configuring workload identity based on application requirements. The pod label specified in the following section is mandatory if you set `--enable-workload-identity` to `true`.
 
 ### Service account annotations
 
-All service account annotations are optional. If an annotation isn't specified, the default value will be used.
+All service account annotations are optional. If you don't specify an annotation, the default value is used.
 
 |Annotation  |Description  |Default  |
 |---------|---------|---------|
-|`azure.workload.identity/client-id`     |Microsoft Entra application client ID to be used with the pod.          |         |
+|`azure.workload.identity/client-id`     |Microsoft Entra application client ID to use with the pod.          |         |
 |`azure.workload.identity/tenant-id`     |Azure tenant ID where the Microsoft Entra application is registered.         |`AZURE_TENANT_ID` environment variable extracted from `azure-wi-webhook-config` ConfigMap.          |
 |`azure.workload.identity/service-account-token-expiration`     | `expirationSeconds` field for the projected service account token. Configure to prevent downtime caused by errors during service account token refresh. Kubernetes service account token expiry isn't correlated with Microsoft Entra tokens. Microsoft Entra tokens expire 24 hours after they're issued.         |3600 (supported range is 3600-86400)          |
 
@@ -164,22 +164,22 @@ All service account annotations are optional. If an annotation isn't specified, 
 
 |Label  |Description  |Recommended value  |Required |
 |---------|---------|---------|---------|
-|`azure.workload.identity/use` |Required in the pod template spec. If `--enable-workload-identity` is set to `true`, only pods with this label are mutated by the mutating admission webhook to inject the Azure-specific environment variables and the projected service account token volume. | `true` | Yes |
+|`azure.workload.identity/use` |Required in the pod template spec. If you set `--enable-workload-identity` to `true`, the mutating admission webhook adds the Azure-specific environment variables and the projected service account token volume only to pods with this label. | `true` | Yes |
 
 ### Pod annotations
 
-All pod annotations are optional. If an annotation isn't specified, the default value will be used.
+All pod annotations are optional. If you don't specify an annotation, the default value is used.
 
 |Annotation  |Description  |Default  |
 |---------|---------|---------|
 |`azure.workload.identity/service-account-token-expiration`     | `expirationSeconds` field for the projected service account token. Configure to prevent downtime caused by errors during service account token refresh. Kubernetes service account token expiry isn't correlated with Microsoft Entra tokens. Microsoft Entra tokens expire 24 hours after they're issued.         |3600 (supported range is 3600-86400)          |
-|`azure.workload.identity/skip-containers` |Represents a semi-colon-separated list of containers to skip adding projected service account token volume. For example: `container1;container2`. |By default, the projected service account token volume is added to all containers if the pod is labeled with `azure.workload.identity/use: true`.|
+|`azure.workload.identity/skip-containers` |Represents a semicolon-separated list of containers to skip adding projected service account token volume. For example: `container1;container2`. |By default, the projected service account token volume is added to all containers if you label the pod with `azure.workload.identity/use: true`.|
 
 ## Configure workload identity settings on the Kubernetes cluster
 
  The API server on the Kubernetes cluster needs to be configured to issue service account tokens that include the publicly accessible OIDC issuer URL (so that Entra knows where to find the public keys to validate the token).
 
-To configure workload identity settings on the various Kubernetes distributions, follow the below steps to complete the configuration.
+To configure workload identity settings on the various Kubernetes distributions, follow these steps to complete the configuration.
 
 ### K3s clusters
 
@@ -193,9 +193,9 @@ To configure workload identity settings on the various Kubernetes distributions,
    ```
 
 1. Save the config.yaml.
-1. Restart the k3s API server using the command `systemctl restart k3s`.
+1. Restart the k3s API server by running `systemctl restart k3s`.
 
-   We recommend rotating service account keys frequently. For more information, see [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation).
+   Rotate service account keys frequently. For more information, see [Rotate service-account signing key on K3s clusters](#rotate-service-account-signing-key-on-k3s-clusters).
 
 ### Red Hat OpenShift clusters
 
@@ -298,13 +298,13 @@ To configure workload identity settings on the various Kubernetes distributions,
 
 ## Rotate service-account signing key on K3s clusters
 
-For K3s clusters that are onboarded to Azure Arc with workload identity federation enabled, rotating the service-account issuer key is an important security operation. Key rotation is necessary for security hygiene and may be required as part of incident remediation.
+For K3s clusters that you onboard to Azure Arc with workload identity federation enabled, rotating the service-account issuer key is an important security operation. Key rotation is necessary for security hygiene and might be required as part of incident remediation.
 
-The service-account issuer key (`service.key`) is an RSA private key used to sign service-account tokens. When rotating, the **old key must be retained** in the file so that existing tokens are not immediately invalidated. Both should coexist until all existing tokens have expired or been refreshed (at least 24 hours).
+The service-account issuer key (`service.key`) is an RSA private key used to sign service-account tokens. When you rotate the key, **keep the old key** in the file so that existing tokens stay valid. Both keys should coexist until all existing tokens expire or are refreshed (at least 24 hours).
 
 ### Prerequisites
 
-In order to rotate the service-account issuer key on a K3s cluster, ensure you have the following prerequisites in place:
+To rotate the service-account issuer key on a K3s cluster, make sure you have the following prerequisites:
 
 - K3s cluster onboarded to Azure Arc with workload identity federation enabled
 - `sudo` root access on the K3s server node
@@ -335,18 +335,20 @@ k3s certificate rotate-ca --path=/opt/k3s/server
 sudo systemctl restart k3s
 ```
 
-> ⚠️ **Do NOT overwrite** the currently in-use data in `/var/lib/rancher/k3s/server/tls` directly. Always stage updated files in a separate directory (e.g., `/opt/k3s/server/tls`).
+> [!IMPORTANT]
+> Don't directly overwrite the currently in-use data in `/var/lib/rancher/k3s/server/tls`. Always stage updated files in a separate directory, such as `/opt/k3s/server/tls`.
 
-After restart:
-- New tokens will be minted using the new key.
-- Existing tokens remain valid because the old key is still in the file.
+After you restart:
 
-For details about rotating the service-account issuer key, see the [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation) in the K3s documentation.
+- New tokens are minted by using the new key.
+- Existing tokens stay valid because the old key is still in the file.
+
+For more details about rotating the service-account issuer key, see the [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation) in the K3s documentation.
 
 ### Remove the old service-account issuer key
 
 > [!IMPORTANT]
-> To ensure that all existing tokens signed with the old service-account issuer key have expired or been refreshed, be sure to wait at least 24 hours before removing the old key.
+> To ensure that all existing tokens signed with the old service-account issuer key expire or refresh, wait at least 24 hours before removing the old key.
 
 Run the following commands on the K3s server node to remove the old key safely:
 
@@ -367,10 +369,9 @@ k3s certificate rotate-ca --path=/opt/k3s/server
 sudo systemctl restart k3s
 ```
 
-
 ## Disable workload identity
 
-To disable workload identity feature on an Azure Arc-enabled Kubernetes cluster, run the following command:
+To disable the workload identity feature on an Azure Arc-enabled Kubernetes cluster, run the following command:
 
 ```azurecli
 az connectedk8s update
@@ -382,4 +383,4 @@ az connectedk8s update
 ## Next steps
 
 - Explore a [sample for configuring an application to use workload identity](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
-- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
+- Help protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
