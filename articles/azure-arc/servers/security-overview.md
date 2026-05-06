@@ -77,7 +77,7 @@ This design is intentional and aligns with the security and operational model of
 
 - **Independence from domain infrastructure -** The agent is designed to operate consistently across domain-joined, workgroup, and disconnected environments. Avoiding domain-managed identities ensures the agent doesn't depend on Active Directory availability, trust relationships, or domain-specific policies.
 
-- **Reduced credential exposure -** Local virtual service accounts are system-managed and do not require password management, rotation, or interactive sign-in. This minimizes the risk of credential theft, reuse, or misconfiguration compared to domain service accounts.
+- **Reduced credential exposure -** Local virtual service accounts are system-managed and don't require password management, rotation, or interactive sign-in. This minimizes the risk of credential theft, reuse, or misconfiguration compared to domain service accounts.
 
 - **Machine-scoped security boundary** - The agent operates using identities scoped to the local machine rather than domain-level identities. This enforces a clear boundary between the agent and customer-managed identity systems, reducing the risk of unintended access to domain resources.
 
