@@ -27,7 +27,7 @@ To get started with Agents and Tools with Foundry Local, you need the following 
 
 Before deploying Agents and Tools with Foundry Local, make sure you have the following Azure resources and permissions in place:
 
-| **Resource** | **Description** |
+|**Resource** | **Description** |
 |---|---|
 | Azure subscription | An [Azure subscription](https://azure.microsoft.com/pricing/details/search/). |
 | Microsoft Entra ID  permissions |- Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).<br>- Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application. <br> <br> As part of the prerequisites tasks, you [configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).|
@@ -65,7 +65,7 @@ Agents and Tools with Foundry Local doesn't bundle any language models. You must
 
 The two GPUs in the cluster are used for embedding models. Docling runs on CPU:
 
-| Resource | Purpose |
+|**Resource** | **Purpose** |
 |---|---|
 | GPU 1 | Text embedding model (BGE-M3) |
 | GPU 2 | Image embedding model (CLIP ViT-L/14) |
@@ -77,7 +77,7 @@ The two GPUs in the cluster are used for embedding models. Docling runs on CPU:
 
 The BYOM endpoint runs separately from Agents and Tools with Foundry Local. If you use GPT-OSS-20B with Foundry Local on Arc, the model host requires its own GPU:
 
-| | Minimum | Recommended (production) |
+|**Resource**| **Minimum** | **Recommended (production)** |
 |---|---|---|
 | **GPU** | 1 × NVIDIA GPU, ≥ 24 GB VRAM | 1 × NVIDIA GPU, ≥ 48 GB VRAM |
 | **CPU** | 8+ vCPUs | 16+ vCPUs |
@@ -90,7 +90,7 @@ Foundry Local validates GPU compatibility at deployment time and fails with a cl
 
 ### Requirements by deployment mode
 
-| Requirement | combined | agentic | knowledge |
+|**Requirement**| **Combined** | **Agentic** | **Knowledge** |
 |---|---|---|---|
 | GPU-enabled VMs (embedding) | 2 | 0 | 2 |
 | CPU VMs | 3+ | 3+ | 3+ |
