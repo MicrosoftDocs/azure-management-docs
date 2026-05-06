@@ -15,7 +15,7 @@ ms.custom:
 The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, installing the workload orchestration CLI extension and other resources necessary to deploy your 1st application. The scripts are available in 3 variants - PowerShell, Python and Bash, all of which are functionally equivalent.
 
 > [!TIP]
-> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Set up workload orchestration](setup-wo.md).
+> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Set up workload orchestration](setup-workload-orchestration.md).
 
 ## Prerequisites
 
@@ -304,5 +304,5 @@ Use these parameters as needed based on which components you have already create
 
 ## Related content
 
-- [Set up workload orchestration](setup-wo.md)
+- [Set up workload orchestration](setup-workload-orchestration.md)
 - [RBAC guide](rbac-guide.md)

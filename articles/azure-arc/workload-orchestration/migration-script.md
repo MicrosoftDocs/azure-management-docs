@@ -13,7 +13,7 @@ If you used workload orchestration in preview, you need to run a migration scrip
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
 
 - Install Azure CLI `resource-graph` extension. If you don't have it installed, run the following command:
 

@@ -23,13 +23,6 @@ This article walks you through the process of onboarding Workload Orchestration 
 * Role-Based Access Control (RBAC) enabled user role assignment. For more information, see [Role-Based Access Control (RBAC) guide](rbac-guide.md).
 
 * The latest version of Azure CLI installed on your development machine. For more information, see [How to install Azure CLI](/cli/azure/install-azure-cli).
-* The latest version of the following Azure CLI extensions:
-
-  ```bash
-  az extension add --upgrade --name connectedk8s
-  az extension add --upgrade --name k8s-extension
-  az extension add --upgrade --name customlocation
-  ```
 
 * A kubectl client installed on your development machine. If you don't have kubectl installed, you can install it using the following command:
 
@@ -82,9 +75,12 @@ All sample input files required in this quide can be downloaded from the [worklo
     capChildList="[soap,shampoo,conditioner]"
     ```
 
-1. Install the workload orchestration CLI extension
+1. Install the workload orchestration and other required CLI extensions
 
     ```powershell
+    az extension add --upgrade --name connectedk8s
+    az extension add --upgrade --name k8s-extension
+    az extension add --upgrade --name customlocation
     az extension add --name workload-orchestration
     ```
 
@@ -120,9 +116,12 @@ All sample input files required in this quide can be downloaded from the [worklo
     $capChildList="[soap,shampoo,conditioner]"
     ```
 
-1. Install the workload orchestration CLI extension
+1. Install the workload orchestration and other required CLI extensions
 
     ```powershell
+    az extension add --upgrade --name connectedk8s
+    az extension add --upgrade --name k8s-extension
+    az extension add --upgrade --name customlocation
     az extension add --name workload-orchestration
     ```
 
@@ -143,7 +142,7 @@ All sample input files required in this quide can be downloaded from the [worklo
 
 1. Create Resource Group and Azure Kubernetes Service (AKS) Cluster
 
-    If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine, since the workload orchestration Arc extension doesn't support Arm-based architecture nodes. For information about virtual machine sizes available for AKS cluster, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview), keeping in mind the following cluster requirements.
+    If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine, since the workload orchestration Arc extension doesn't support Arm-based architecture nodes. For information about virtual machine sizes available for AKS cluster, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview), keeping in mind the cluster hardware requirements.
     
     <details>
     <summary>Cluster requirements</summary>
@@ -170,11 +169,13 @@ All sample input files required in this quide can be downloaded from the [worklo
     ### [Powershell](#tab/powershell)
 
     ```powershell
+    az group create --location $l --name $rg
+
     az identity create --resource-group $rg --name $clusterName
     $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
+
     az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys --node-vm-size <node size>
     ```
----
 
 1. Enable Azure Arc on the Kubernetes cluster.
 
@@ -243,6 +244,29 @@ All sample input files required in this quide can be downloaded from the [worklo
     
     </details>
 
+1. If you are planning to set up an Azure Container Registry (ACR) to host your container images, follow these steps:
+
+    1. Set up ACR Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
+
+    1. Set up ACR Helm Chart Pull (any Arc connected cluster). Verify that the extension has a system managed identity. Run the following command:
+
+        ```azurecli
+        az k8s-extension show --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --query identity
+        ```
+
+    1. Assign the `AcrPull` role to the identity of the `microsoft.workloadorchestration` extension. Replace `<IDENTITY_ID>` with the identity ID from the previous step.
+
+    ### [Bash](#tab/bash)
+    ```bash
+    extensionSPId=$(az k8s-extension show --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --query identity.principalId --output tsv)
+    az role assignment create --assignee "$extensionSPId" --role "AcrPull" --scope "<ACR Resource ID>"
+    ```
+    
+    ### [PowerShell](#tab/powershell)
+     ```powershell
+    $extensionSPId = az k8s-extension show --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --query identity.principalId --output tsv
+    az role assignment create --assignee $extensionSPId --role "AcrPull" --scope "<ACR Resource ID>"
+    ```
 
 ## Step 3: Set up the workload orchestration resources
 
@@ -264,7 +288,7 @@ The following steps demonstrate the process of setting up these resources.
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "name=$contextName level=$level1"
     ```
 
-    You can also store the hierarchy details in a YAML file and pass it as an argument as shown below. The sample file can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration).
+    You can also store the hierarchy details in a YAML file and pass it as an argument as shown below. The sample file `hierarchy.yaml` can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
@@ -274,13 +298,16 @@ The following steps demonstrate the process of setting up these resources.
 
     Choose a Service Group hierarchy for enterprise-scale deployments, especially when your organisation has a deeper, multi-level structure spanning between two and four levels (for example, Region → City → Factory → Line), or when you need to logically group resources across multiple resource groups at the tenant scope. Except the leaf level in the hierarchy, each level must have a Service Group, an associated Site and a configuration reference object. Sites are used to identify the physical hierarchy such as plant, factory, and store. 
 
-    The following command creates a Service Group hierarchy according to the structure defined in `hierarchy.yaml`. You can refer to the sample file from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration).
+    The following command creates a Service Group hierarchy according to the structure defined in `hierarchy.yaml`. You can refer to the sample file from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
     ```
 
+    <details>
+    <summary> Manually add Sites to hierarchy </summary>
     You also have the option to manually add a Site to any level of the hierarchy, using the following steps:
+    
       1. Create the Service Group
           ```azurecli
           $sg = "<service-group-name>"
@@ -300,7 +327,7 @@ The following steps demonstrate the process of setting up these resources.
           az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$l'}"
           az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
           ```
-
+    </details>
 
 1. Create the workload orchestration context or environment with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. You can refer to sample file for `capabilities.json` from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). The hierarchy level names must match those specified in the previous step.
 
@@ -314,6 +341,9 @@ The following steps demonstrate the process of setting up these resources.
     az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$contextName" --name "$siteReference" --site-id "$siteId"
     ```
 
+    > [!NOTE]
+    > You can also pass the list of capabilities in a JSON file using `--capabilities @capabilities.json` (sample file included in [GitHub repository](https://github.com/Azure/workload-orchestration)). Description for capabilities is optional and will default to the capability name if not specified.
+
     <details>
     <summary> Use existing context </summary>
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
@@ -326,11 +356,10 @@ The following steps demonstrate the process of setting up these resources.
     ```azurecli
     az workload-orchestration context add-capability -g "$rg" --context-name "$contextName" --capabilities "[{name:soap,description:Soap},{name:shampoo,description:Shampoo}]" 
     ```
-    You can also pass the list of capabilities in a JSON file using `--capabilities @capabilities.json`
 
     Existing capabilities can also be deleted from a context by running:
     ```azurecli
-    az workload-orchestration context remove-capability -g "$rg" --context-name "$contextName" --names soap,shampoo --yes
+    az workload-orchestration context remove-capability -g "$rg" --context-name "$contextName" --capabilities "[shampoo,detergent]" --yes
     ```
     </details>
 

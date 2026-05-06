@@ -8,7 +8,7 @@ items:
     - name: Infrastructure Management
       items: 
       - name: Set up workload orchestration
-        href: setup-wo.md
+        href: setup-workload-orchestration.md
       - name: Onboard using scripts
         href: onboarding-scripts.md
     - name: Application management
@@ -25,7 +25,7 @@ items:
         href: solution-shared-adapter-dependency.md
       - name: Enable external validation
         href: external-validation.md
-    - name: Manage workload orchestration resources in Git
+    - name: Git-based resource management
       href: workload-orchestration-multicluster-git.md
     - name: RBAC guide 
       href: rbac-guide.md
@@ -55,7 +55,13 @@ items:
       href: migration-script.md
     - name: PUT, PATCH, and DELETE operations
       href: put-patch-delete.md
-    - name: Troubleshooting and known issues
-      href: troubleshooting.md
+    - name: Troubleshoot
+      items:
+      - name: Troubleshooting guide
+        href: troubleshooting.md
+      - name: Diagnose edge logs
+        href: diagnose-problems.md
+      - name: Known issues
+        href: known-issues.md
     - name: Release notes
       href: release-notes.md

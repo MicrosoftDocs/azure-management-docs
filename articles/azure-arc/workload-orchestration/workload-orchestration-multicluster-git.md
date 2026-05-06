@@ -45,16 +45,16 @@ The `main.bicep` file declares all workload orchestration resources&mdash;schema
 
 - A GitHub repository where you store the Bicep templates and workflow files.
 - An Azure subscription with permissions to create resource groups and deployment stacks.
-- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md).
 
 ### Authenticate to Azure with OpenID Connect
 
-The workflows authenticate to Azure by using [OpenID Connect (OIDC)](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure) with a user-assigned managed identity that has federated credentials configured for GitHub Actions.
+The workflows authenticate to Azure by using [OpenID Connect (OIDC)](https://learn.microsoft.com/azure/developer/github/connect-from-azure) with a user-assigned managed identity that has federated credentials configured for GitHub Actions.
 
 To configure authentication:
 
 1. Create a user-assigned managed identity in Azure.
-1. Configure federated credentials on the managed identity for both the `main` branch and pull requests in your GitHub repository. For step-by-step guidance, see [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure).
+1. Configure federated credentials on the managed identity for both the `main` branch and pull requests in your GitHub repository. For step-by-step guidance, see [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/azure/developer/github/connect-from-azure).
 1. Store the following values as GitHub repository secrets:
 
    | Secret name | Value |
@@ -79,7 +79,7 @@ For more information about deployment stack roles, see [Deployment stacks built-
 To set up Git-based management of workload orchestration resources:
 
 1. **Fork this [repository](https://github.com/manaswita-chichili/GIT_POC/)** into your GitHub account or organization.
-1. **Set up Azure authentication** by following [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure). Then store `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_SUBSCRIPTION_ID` as repository secrets.
+1. **Set up Azure authentication** by following [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/azure/developer/github/connect-from-azure). Then store `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_SUBSCRIPTION_ID` as repository secrets.
 1. **Configure deployment settings** in `workload-orchestration/config.yaml`:
 
    ```yaml
@@ -329,6 +329,6 @@ resource schema 'Microsoft.Edge/schemas@2026-03-01' = {
 
 ## Related content
 
-- [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure)
+- [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/azure/developer/github/connect-from-azure)
 - [Azure Deployment Stacks overview](/azure/azure-resource-manager/bicep/deployment-stacks)
-- [Set up workload orchestration](setup-wo.md)
+- [Set up workload orchestration](setup-workload-orchestration.md)

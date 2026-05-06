@@ -16,7 +16,7 @@ In this guide, you create a basic solution using workload orchestration via CLI.
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
   [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
@@ -141,7 +141,6 @@ The following constraints apply to the rules defined in the configuration schema
 
 - The `config` key is optional. If a key has a rule, the `type` property is mandatory.
 - The `minValue` and `maxValue` properties are only supported for numeric types (`int`, `float`).
-- The `minValue` must be greater than the `maxValue`.
 - The `allowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
@@ -149,16 +148,13 @@ The following constraints apply to the rules defined in the configuration schema
 
 ### Including and referencing rules from another schema
 
-Workload orchestration allows you to re-use a particular set of rules from another schema. For example, if you want to include full content from *LogSettingsSchema* in your current schema, use the `include` function as defined and make sure you end with ":" to make the YAML file valid.
+Workload orchestration allows you to re-use a particular set of rules from another schema. For example, if you want to include full content from *LogSettingsSchema* in your current schema, use the `include` function as shown below.
 
 ```yaml
 rules:
     configs:
       ${{$include(LogSettingsSchema/1.0.0)}}:
-      TempSettings:
-        type: object
-        required: true
-      TempSettings.Threshold:
+      ErrorThreshold:
         type: int
         required: true
 ```
@@ -169,10 +165,7 @@ You can also choose to include only a specific section or specific nested object
 rules:
     configs:
       ${{$include(LogSettingsSchema/1.0.0, LogSettings)}}:
-      TempSettings:
-        type: object
-        required: true
-      TempSettings.Threshold:
+      ErrorThreshold:
         type: int
         required: true
 ```
@@ -181,11 +174,8 @@ rules:
 
 Custom validation is supported using user defined expressions at two levels:
 
-1. **Per Rule Validation:** Using expression (optional property) inside each rule.
-   - Suitable for validations that are constrained to a single configuration key.
-1. **Per Schema Validation:** Using "validations" property that accepts a list of expressions.
-   - Suitable for validations that span across multiple configuration keys.
-   - Suitable for validating the generated config as a single unit.
+1. **Per Rule Validation:** Uses `expression` (optional property) inside each rule. Suitable for validations that are constrained to a single configuration key.
+1. **Per Schema Validation:** Uses `validations` property that accepts a list of expressions. Suitable for validations that span across multiple configuration keys or the whole schema.
 
 These expressions need to return true (as boolean or string) to indicate success in validation.
 
@@ -229,21 +219,13 @@ Create the schema file by referring to *shared-schema.yaml* from [GitHub reposit
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-You can provide version on file instead of as a CLI argument. Add below section to the *shared-schema.yaml* file.
+You can provide schema name and version in schema file instead of as a CLI arguments. To do that, add below section to the *shared-schema.yaml* file and run the previous command without `--schema-name` and `--version` arguments.
 
 ```yaml
 metadata:
     name: <name> [optional]
     version: <version> [optional]
 ```
-
-Run the same CLI command without `--version argument`. The service takes version input from file.
-
-```azurecli
-az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --schema-file "$schemaFile"
-```
-
-The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--schema-name` argument.
 
 > [!TIP]
 > You can view the created schema using `az workload-orchestration schema version show --resource-group "$rg" --schema-name "$schemaName" --version "$schemaVersion"`
@@ -343,7 +325,7 @@ Follow these steps to create a solution template for your application.
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
-    Values for `--solution-template-name` and `--version` can be provided in the solution template file instead of as CLI arguments. If name or version are specified in both file and CLI, the values should match. Add the following section to the *app-config-template.yaml* file:
+    Values for `--solution-template-name` and `--version` can be provided in the solution template file instead of as CLI arguments. If specified in both file and CLI, the values should match. You can the following section to the *app-config-template.yaml* file and rerun the previous command without the two arguments:
 
     ```yaml
     metadata:
@@ -364,9 +346,10 @@ az workload-orchestration target install --resource-group "$rg" --target-name "$
 ```
 
 > [!NOTE]
-> If your template resides in a different resource group, you can use the `--solution-template-rg` argument to specify your template resource group.
+> If your template resides in a different resource group, you can use the `--solution-template-rg` argument to specify your template resource group. 
 
-You can also choose to configure and deploy the solution in separate individual steps:
+<details>
+<summary> You can also configure and deploy the solution in separate individual steps. </summary>
 
 1. Set the configuration values for the solution.
 
@@ -375,10 +358,7 @@ You can also choose to configure and deploy the solution in separate individual 
     ```
 
     > [!NOTE]
-    > To view the configuration values you have set, use `az workload-orchestration configuration show` with the same set of arguments.
-
-    > [!TIP]
-    > You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
+    > To view the configuration values you have set, use `az workload-orchestration configuration show` with the same set of arguments. You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
 1. Review the configurations for a particular target. This step ensures the configured values obey all schema rules and generates a solution version based on the solution template.
 
@@ -401,8 +381,10 @@ You can also choose to configure and deploy the solution in separate individual 
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
-  > [!TIP]
-  > You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
+</details>
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
 
 ## Next steps
 

@@ -22,7 +22,7 @@ When the app is updated—whether for a new feature or a bug fix—it must be de
 
 ## What are the key features of workload orchestration?
 
-- **Fast onboarding and setup:** Guided workflows help you quickly configure your [organizational hierarchy](setup-wo.md#step-3-create-the-hierarchy), user roles, and access policies, so teams and edge infrastructure are ready for orchestration in minutes.
+- **Fast onboarding and setup:** Guided workflows help you quickly configure your [organizational hierarchy](setup-workload-orchestration.md#step-3-set-up-the-workload-orchestration-resources), user roles, and access policies, so teams and edge infrastructure are ready for orchestration in minutes.
 - **Application lifecycle management:** Rapidly scale application rollouts and centrally manage them across distributed edge environments with custom site‑specific configurations and version control, enabling collaboration across IT, DevOps, and operations teams.
 - **Template framework and schema inheritance:** Define [solution configurations](solution-without-common-configuration.md#create-the-solution-template) and [schemas](solution-without-common-configuration.md#create-a-configuration-schema) once, then reuse or extend them for multiple deployments. Central IT teams can create a single source of truth for app configurations, which sites can inherit and customize as needed. This ensures consistency through pre‑deployment checks and validation rules, and reduces duplicate work.
 - **Integrated monitoring and unified control:** Monitor deployments and workload health from a [centralized dashboard](https://portal.digitaloperations.configmanager.azure.com). Pause, retry, or roll back deployments as needed, with full logging and compliance visibility.

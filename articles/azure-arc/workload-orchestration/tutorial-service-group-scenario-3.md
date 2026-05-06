@@ -14,7 +14,7 @@ In this tutorial, you create a solution with multiple shared dependencies at dif
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
     [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)  
@@ -22,7 +22,7 @@ In this tutorial, you create a solution with multiple shared dependencies at dif
 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Set up workload orchestration](setup-wo.md).
+> You can reuse the global variables defined in [Set up workload orchestration](setup-workload-orchestration.md).
 
 ## Define the scenario
 

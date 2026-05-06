@@ -21,7 +21,7 @@ This article describes how to set up an Event Grid subscription for workload orc
 ### Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
 
 ### Event Grid subscription for workload orchestration
 

@@ -29,7 +29,7 @@ landingContent:
           - text: Set up workload orchestration using onboarding scripts
             url: onboarding-scripts.md
           - text: Setup workload orchestration
-            url: setup-wo.md
+            url: setup-workload-orchestration.md
       - linkListType: quickstart
         links:
           - text: Create a basic solution

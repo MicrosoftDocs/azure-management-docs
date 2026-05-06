@@ -17,7 +17,7 @@ This article details how to delete or uninstall any workload orchestration resou
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md).
 
 ## Delete resources manually
 
@@ -226,11 +226,11 @@ Deleting a resource group results in deletion of all resources within the same.
 
 ## Delete resources using scripts
 
-To delete all resources created as part of workload orchestration in a resource group, please refer to the [Clean-up script](clean-up-script.md). This script allows you to clean up resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions, offering you the flexibility to filter by resource type.
+To delete all resources created as part of workload orchestration in a resource group, you can use the PowerShell script `RGCleanScript.ps1` provided in the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration), that allows you to delete resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions, offering you the flexibility to filter by resource type.
 
 ### Run the clean-up script 
 
-You can find the PowerShell script `RGCleanScript.ps1` in the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). Execute the script by running the following command in PowerShell, replacing `<YourResourceGroupName>` with the name of your resource group. You can also specify which resources to delete by using the optional parameters.
+Execute the script by running the following command in PowerShell, replacing `<YourResourceGroupName>` with the name of your resource group. You can also specify which resources to delete by using the optional parameters.
 
 ```powershell
 # Clean only specific resources (safe by default - nothing is deleted unless explicitly specified)

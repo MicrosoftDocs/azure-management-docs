@@ -17,7 +17,7 @@ In this guide, you create a basic solution with common configurations using the 
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-wo.md).
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
     [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
@@ -203,7 +203,8 @@ Run the following command to configure the solution template and deploy the corr
 az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName/versions/$appVersion" --configuration “config.yaml”   
 ```
 
-You can also choose to configure and deploy the solution in separate individual steps:
+<details>
+<summary> You can also configure and deploy the solution in separate individual steps. </summary>
 
 1. Set the configuration values for the solution.
 
@@ -212,12 +213,9 @@ You can also choose to configure and deploy the solution in separate individual 
     ```
 
     > [!NOTE]
-    > To view the configuration values you have set, use `az workload-orchestration configuration show` with the same set of arguments.
+    > To view the configuration values you have set, use `az workload-orchestration configuration show` with the same set of arguments. You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
-    > [!TIP]
-    > You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
-
-1. Review the configurations for a particular target.
+1. Review the configurations for a particular target. This step ensures the configured values obey all schema rules and generates a solution version based on the solution template.
 
     ```azurecli
     az workload-orchestration target review --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName/versions/$appVersion"
@@ -230,11 +228,15 @@ You can also choose to configure and deploy the solution in separate individual 
     az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
+    Completion of this step generates the final configuration of the solution after it's validated and approved, created by combining the schema, configuration template, and solution Helm chart. It represents a fully rendered, a pre-deployment ready, targeted solution.
+
 1. Run the `target install` command to deploy the solution.
 
     ```azurecli
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
-    > [!TIP]
-    > You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
+</details>
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
