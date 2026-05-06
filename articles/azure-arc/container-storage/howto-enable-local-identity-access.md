@@ -10,7 +10,7 @@ ms.reviewer: sethm
 # CustomerIntent: As a Kubernetes administrator, I want to reduce the security privileges required by the identity adapter sidecar in Azure Container Storage enabled by Azure Arc.
 ---
 
-# Enable reduced-privilege identity access for Azure Container Storage enabled by Azure Arc
+# Enable reduced-privilege identity access
 
 This article describes how to enable the localhost token endpoint for Azure Container Storage enabled by Azure Arc. When you use Managed Identity authentication for cloud-backed Edge Volumes, an identity adapter sidecar runs alongside the data mover in each volume pod. By default, this sidecar requires `NET_ADMIN` and `NET_RAW` Linux capabilities.
 
