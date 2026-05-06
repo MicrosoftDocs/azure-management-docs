@@ -22,7 +22,7 @@ This article lists the various features and improvements that are available in A
 
 ### Agents and Tools with Foundry Local (preview)
 
-This release transforms Agents and Tools with Foundry Local into **Agents and Tools with Foundry Local**, an agentic Retrieval-Augmented Generation platform at the edge, and adds a new agentic layer for AI agent orchestration. Build agents that manage multistep conversations, invoke external tools, and ground responses in your on-premises data.
+This release transforms Edge RAG enabled by Azure Arc into Agents and Tools with Foundry Local, an agentic Retrieval-Augmented Generation platform at the edge, and adds a new agentic layer for AI agent orchestration. Build agents that manage multistep conversations, invoke external tools, and ground responses in your on-premises data.
 
 **Agentic Layer**
 
@@ -65,7 +65,7 @@ For more information, see the following articles:
 
 ### Release of extension version `0.8.5`
 
-This release focuses on reliability, stability, and security improvements for Agents and Tools with Foundry Local. These updates make the system more robust and predictable, with better error handling and enhanced security protections.
+This release focuses on reliability, stability, and security improvements for Edge RAG. These updates make the system more robust and predictable, with better error handling and enhanced security protections.
 
 **Enhanced search reliability**  
 Search operations are more dependable with improved deep search accuracy for complex queries. You get clearer error messages that tell you whether the system is unavailable or the knowledge base is empty, so you know exactly what's happening and can take the right action.
