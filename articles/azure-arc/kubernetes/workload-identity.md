@@ -93,7 +93,7 @@ By default, the issuer uses the base URL `https://{region}.oic.prod-arc.azure.co
 
 ## Create a managed identity
 
-Use the `az identity create` command to create a user-assigned managed identity. By using workload identity, you establish a trust relationship between the token of the user-assigned management identity and the Kubernetes cluster's service account token.  
+Use the `az identity create` command to create a user-assigned managed identity. By using workload identity, you establish a trust relationship between the token of the user-assigned managed identity and the Kubernetes cluster's service account token.  
 
 ```azurecli
 az identity create \ 
@@ -374,9 +374,9 @@ sudo systemctl restart k3s
 To disable the workload identity feature on an Azure Arc-enabled Kubernetes cluster, run the following command:
 
 ```azurecli
-az connectedk8s update
-    --resource-group "${RESOURCE_GROUP}"
-    --name "${CLUSTER_NAME}"
+az connectedk8s update \
+    --resource-group "${RESOURCE_GROUP}" \
+    --name "${CLUSTER_NAME}" \
     --disable-workload-identity
 ```
 
