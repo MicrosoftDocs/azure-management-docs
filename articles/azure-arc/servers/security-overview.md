@@ -83,7 +83,7 @@ This design is intentional and aligns with the security and operational model of
 
 - **Consistent behavior across environments** - Standardizing on local service identities ensures predictable and supportable behavior across on-premises, multicloud, and edge deployments, without introducing variability from customer-specific identity configurations.
 
-This service account model is a core part of the agent’s security design and is not configurable.
+This service account model is a core part of the agent’s security design and isn't configurable.
 
 ## Security considerations for Tier 0 assets
 
