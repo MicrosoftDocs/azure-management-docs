@@ -71,7 +71,7 @@ The Azure Arc proxy service is responsible for aggregating network traffic from 
 
 The Azure Connected Machine agent is designed to run under local, system-managed identities. On Windows, core agent services run using a virtual service account, and on Linux they run under standard, non-privileged user accounts.
 
-The Azure Arc agent does not support the use of domain-joined service accounts or alternate user-provided identities, and there is no supported method to change this configuration.
+The Azure Arc agent doesn't support the use of domain-joined service accounts or alternate user-provided identities, and there's no supported method to change this configuration.
 
 This design is intentional and aligns with the security and operational model of Azure Arc-enabled servers:
 
