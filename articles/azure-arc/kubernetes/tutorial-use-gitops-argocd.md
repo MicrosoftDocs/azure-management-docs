@@ -165,13 +165,13 @@ To create the extension with workload identity, first replace the following vari
 var clusterName = '<aks-or-arc-cluster-name>'
 
 var workloadIdentityClientId = 'replace-me##-##-###-###'
-var ssoWorkloadIdentityClientId = 'replace-me##-##-###-###'
+var ssoApplicationClientId = 'replace-me##-##-###-###'
 
 var url = 'https://<public-ip-for-argocd-ui>/'
 var oidcConfig = '''
 name: Azure
 issuer: https://login.microsoftonline.com/<your-tenant-id>/v2.0
-clientID: <same-value-as-ssoWorkloadIdentityClientId-above>
+clientID: <same-value-as-ssoApplicationClientId>
 azure:
   useWorkloadIdentity: true
 requestedIDTokenClaims:
@@ -207,7 +207,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
       'redis-ha.enabled': 'true'
       'azure.workloadIdentity.enabled': 'true'
       'azure.workloadIdentity.clientId': workloadIdentityClientId
-      'azure.workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
+      'azure.workloadIdentity.entraSSOClientId': ssoApplicationClientId
       'configs.cm.oidc\\.config': oidcConfig
       'configs.cm.url': url
       'configs.rbac.policy\\.default': defaultPolicy
@@ -229,11 +229,11 @@ The Bicep template can be created using this command:
 
 `clusterName` is the name of the AKS or Arc-enabled Kubernetes cluster.
 
-`workloadIdentityClientId` and `ssoWorkloadIdentityClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoWorkloadIdentityClientId` is used for the authentication for the Argo CD UI and the `workloadIdentityClientId` is used for the workload identity for the Argo CD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoWorkloadIdentityClientId.
+`workloadIdentityClientId` and `ssoApplicationClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoApplicationClientId` is used for the authentication for the Argo CD UI and the `workloadIdentityClientId` is used for the workload identity for the Argo CD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoApplicationClientId.
 
 `url` is the public IP of the Argo CD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the Argo CD UI after deployment.
 
-`oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoWorkloadIdentityClientId-above>` with the same value as `ssoWorkloadIdentityClientId`.
+`oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoApplicationClientId-above>` with the same value as `ssoApplicationClientId`.
 
 `policy` variable is the `argocd-rbac-cm configmap` settings of Argo CD. `g, replace-me##-argocd-ui-entra-group-admin-id` is the Microsoft Entra group ID that gives admin access to the Argo CD UI. The Microsoft Entra group ID can be found in the Azure portal under **Microsoft Entra ID > Groups > _your-group-name_ > Properties**. You can use the Microsoft Entra user ID instead of a Microsoft Entra group ID. The Microsoft Entra user ID can be found in the Azure portal under **Microsoft Entra ID > Users > _your-user-name_ > Properties.**
 
