@@ -300,7 +300,9 @@ To configure workload identity settings on the various Kubernetes distributions,
 
 For K3s clusters that you onboard to Azure Arc with workload identity federation enabled, rotating the service-account issuer key is an important security operation. Key rotation is necessary for security hygiene and might be required as part of incident remediation.
 
-The service-account issuer key (`service.key`) is an RSA private key used to sign service-account tokens. When you rotate the key, **keep the old key** in the file so that existing tokens stay valid. Both keys should coexist until all existing tokens expire or are refreshed (at least 24 hours).
+The service-account issuer key (`service.key`) is an RSA private key used to sign service-account tokens. When you rotate the key, keep the old key in the file so that existing tokens stay valid. Both keys should coexist until all existing tokens expire or are refreshed (at least 24 hours).
+
+As a best practice, you should rotate service-account issuer keys at least [once every three months](https://azure.github.io/azure-workload-identity/docs/topics/self-managed-clusters/service-account-key-rotation.html).
 
 ### Prerequisites
 
