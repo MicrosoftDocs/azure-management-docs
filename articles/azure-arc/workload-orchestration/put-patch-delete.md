@@ -6,7 +6,7 @@ ms.custom:
   - build-2026
 author: nathmanish
 ms.author: nathmanish
-ms.topic: rest-api-commands
+ms.topic: how-to
 ms.date: 4/29/2026
 # Customer intent: "I want to use rest api commands on versioned resources."
 ---

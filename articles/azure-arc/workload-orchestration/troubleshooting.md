@@ -216,7 +216,7 @@ Solution: To resolve this issue, fix your solution template input.
 
 ## Troubleshoot service groups 
 
-For [service group](service-group.md) related resources, only the user who created the resource can fetch/GET that resources due to [RBAC limitations](rbac-guide.md).
+For service group related resources, only the user who created the resource can fetch/GET that resources due to [RBAC limitations](rbac-guide.md).
 
 To fetch service groups, run the following command.
 
