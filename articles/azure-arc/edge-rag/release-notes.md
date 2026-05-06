@@ -27,7 +27,7 @@ Agents and Tools with Foundry Local helps you deploy Retrieval Augmented Generat
 
 | Change | Details |
 |---|---|
-| **Product renamed** | "Agents and Tools with Foundry Local" is now **Agents and Tools with Foundry Local**. The Azure extension type remains `microsoft.arc.rag`. |
+| **Product renamed** | Edge RAG enabled by Azure Arc is now Agents and Tools with Foundry Local. The Azure extension type remains `microsoft.arc.rag`. |
 | **SLM models removed** | Phi-3.5 and Mistral-7B models are no longer bundled. Bring Your Own Model (BYOM) is the only model path. You must provide an external LLM endpoint. |
 | **GPU count reduced** | 4 → **2 GPUs** required. GPUs are used for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14). Docling (document parser) now runs on CPU. The LLM runs externally via BYOM. |
 | **BYOM is now mandatory** | The model endpoint step is no longer optional. All deployments require an OpenAI-compatible LLM endpoint. |
@@ -108,7 +108,7 @@ For more information, see [What's new in Agents and Tools with Foundry Local](wh
 
 **Extension version**: `0.1.3` [Preview]
 
-Agents and Tools with Foundry Local is available as a public preview.
+Edge RAG enabled by Azure Arc is available as a public preview.
 
 See the related blog posts:
 

@@ -14,7 +14,7 @@ ms.custom:
 
 # What's new in Agents and Tools with Foundry Local
 
-This article lists the various features and improvements that are available in Agents and Tools with Foundry Local (formerly Agents and Tools with Foundry Local).
+This article lists the various features and improvements that are available in Agents and Tools with Foundry Local (formerly Edge RAG enabled by Azure Arc).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -86,20 +86,20 @@ This release addresses two important vulnerabilities: a critical Next.js Denial-
 
 ### Release of extension version `0.8.2`
 
-This release of Agents and Tools with Foundry Local introduces several new features, enhancements, and improvements designed to expand capabilities, improve performance, and streamline the user experience.
+This release of Edge RAG introduces several new features, enhancements, and improvements designed to expand capabilities, improve performance, and streamline the user experience.
 
 **Deep search**  
-Find the most relevant information with the new deep search model. Deep search uses production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. Agents and Tools with Foundry Local now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Agents and Tools with Foundry Local](search-types.md).
+Find the most relevant information with the new deep search model. Deep search uses production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. Edge RAG now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Agents and Tools with Foundry Local](search-types.md).
 
 **High-fidelity parsing**  
-Choose between basic text extraction or advanced parsing to capture tables, images, and more. By using advanced parsing, Agents and Tools with Foundry Local offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md#planning-data-ingestion) and  [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
+Choose between basic text extraction or advanced parsing to capture tables, images, and more. By using advanced parsing, Edge RAG offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md#planning-data-ingestion) and  [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
 
 **Performance and scale**  
-Experience up to 5× faster query performance for hybrid search and 100× faster ingestion of live-streamed images from the previous Agents and Tools with Foundry Local extension version `0.1.5`.
+Experience up to 5× faster query performance for hybrid search and 100× faster ingestion of live-streamed images from the previous Edge RAG extension version `0.1.5`.
 
 **Advanced search and chat experience**  
 
-Agents and Tools with Foundry Local now offers a more powerful and flexible search and chat experience, making it easier to find information and interact with your data through new capabilities and interface improvements.
+Edge RAG now offers a more powerful and flexible search and chat experience, making it easier to find information and interact with your data through new capabilities and interface improvements.
 
 - Use hybrid multimodal search to retrieve images and deliver responses with rich visual content. For more information, see [Search types in Agents and Tools with Foundry Local](search-types.md).
 - Enjoy markdown-formatted responses that support images and rich text for responses that are easier to read and interpret.
@@ -107,19 +107,14 @@ Agents and Tools with Foundry Local now offers a more powerful and flexible sear
 
 **Preview support for disconnected scenarios**
 
-Agents and Tools with Foundry Local is supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
+Edge RAG is supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
 
 **Related content**
 
 For more information about this release, see:
 
-- Blog: [Transforming City Operations: How Villa Park and DataON Deliver Real-Time Decisions and Resilience with Agents and Tools with Foundry Local]( https://aka.ms/EdgeAI/EdgeRAG/IgniteBlog2025)
+- Blog: [Transforming City Operations: How Villa Park and DataON Deliver Real-Time Decisions and Resilience with Edge RAG]( https://aka.ms/EdgeAI/EdgeRAG/IgniteBlog2025)
 
-## October 2025
-
-### New article: Quickstart Install Agents and Tools with Foundry Local
-
-To try Agents and Tools with Foundry Local in an evaluation or development environment without the need for local hardware, see [Quickstart: Install Agents and Tools with Foundry Local](quickstart-edge-rag.md).
 
 ## Related content
 
