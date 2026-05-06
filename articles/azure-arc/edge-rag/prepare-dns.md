@@ -1,18 +1,18 @@
 ---
-title: Configure DNS for Edge RAG Preview Enabled by Azure Arc
-description: "Learn how to configure DNS for your Edge RAG deployment so users and services can access the local portal using the correct domain name."
+title: Configure DNS for Agents and Tools with Foundry Local
+description: "Learn how to configure DNS for your Agents and Tools with Foundry Local deployment so users and services can access the local portal using the correct domain name."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/20/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to configure DNS for my Edge RAG deployment so that users and services can access the local portal using the correct domain name.
+#CustomerIntent: As a cloud administrator, I want to configure DNS for my Agents and Tools with Foundry Local deployment so that users and services can access the local portal using the correct domain name.
 ---
 
-# Configure DNS for Edge RAG Preview enabled by Azure Arc
+# Configure DNS for Agents and Tools with Foundry Local
 
-For your Edge RAG deployment, configure DNS by mapping the MetalLB IP address to your local portal domain or updating your hosts file. This article is part of the deployment prerequisites checklist.
+For your Agents and Tools with Foundry Local deployment, configure DNS by mapping the MetalLB IP address to your local portal domain or updating your hosts file. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -35,4 +35,4 @@ Alternately, update your local machine (laptop or DVM) to reach the local portal
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Deploy the Edge RAG extension](deploy.md)
+> [Deploy the Agents and Tools with Foundry Local extension](deploy.md)

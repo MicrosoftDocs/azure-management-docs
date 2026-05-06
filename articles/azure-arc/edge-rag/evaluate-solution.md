@@ -1,6 +1,6 @@
 ---
-title: Evaluate the Edge RAG System
-description: "Learn how to evaluate the functionality of the RAG system after you configure the chat solution in Edge RAG."
+title: Evaluate the Agents and Tools with Foundry Local System
+description: "Learn how to evaluate the functionality of the RAG system after you configure the chat solution in Agents and Tools with Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,11 +9,11 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer Intent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
+# Customer Intent: As a developer working with Agents and Tools with Foundry Local, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
 ---
-# Evaluate the Edge RAG Preview system
+# Evaluate the Agents and Tools with Foundry Local system
 
-Evaluate the system, models, and datasets within Edge RAG Preview, enabled by Azure Arc. There are two types of evaluations: baseline, and automatic.
+Evaluate the system, models, and datasets within Agents and Tools with Foundry Local. There are two types of evaluations: baseline, and automatic.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -21,7 +21,7 @@ Evaluate the system, models, and datasets within Edge RAG Preview, enabled by Az
 
 Before you begin:
 
-- Review [Metrics for evaluating the Edge RAG system](evaluation-metrics.md).
+- Review [Metrics for evaluating the Agents and Tools with Foundry Local system](evaluation-metrics.md).
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Run baseline check
@@ -98,5 +98,5 @@ The automatic evaluation evaluates the quality of the RAG system by using your o
 
 ## Related content
 
-- [Add data source for the chat solution in Edge RAG](add-data-source.md)
-- [Set up the data query for Edge RAG chat solution](set-up-data-query.md)
+- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
+- [Set up the data query for Agents and Tools with Foundry Local chat solution](set-up-data-query.md)

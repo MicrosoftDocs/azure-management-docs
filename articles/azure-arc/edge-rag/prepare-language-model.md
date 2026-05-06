@@ -1,25 +1,25 @@
 ---
-title: Prepare Your Language Model Endpoint for Agentic RAG
-description: "Learn how to set up an OpenAI-compatible LLM endpoint for your Agentic RAG deployment using the Bring Your Own Model (BYOM) approach."
+title: Prepare Your Language Model Endpoint for Agents and Tools with Foundry Local
+description: "Learn how to set up an OpenAI-compatible LLM endpoint for your Agents and Tools with Foundry Local deployment using the Bring Your Own Model (BYOM) approach."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agentic RAG so that I can deploy and manage an AI chat solution for my edge environment.
+#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agents and Tools with Foundry Local so that I can deploy and manage an AI chat solution for my edge environment.
 
 ---
 
-# Prepare your language model endpoint for Agentic RAG
+# Prepare your language model endpoint for Agents and Tools with Foundry Local
 
-Agentic RAG requires an external language model (Bring Your Own Model). This article helps you set up an OpenAI-compatible LLM endpoint for your deployment.
+Agents and Tools with Foundry Local requires an external language model (Bring Your Own Model). This article helps you set up an OpenAI-compatible LLM endpoint for your deployment.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Select a language model
 
-Agentic RAG doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
+Agents and Tools with Foundry Local doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
 
 Work with your application development team to choose the right model for your use case. For the best results with deep search, use a model like GPT-4o, GPT-4.1-mini, or later.
 
@@ -31,7 +31,7 @@ To choose the right model for your use case, refer to these resources from Micro
 
 ## Set up your BYOM endpoint
 
-Agentic RAG works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
+Agents and Tools with Foundry Local works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
 
 | Method | Description | Best for |
 |---|---|---|
@@ -47,5 +47,5 @@ For step-by-step setup instructions for each method, see [Create a BYOM endpoint
 ## Next steps
 
 - [Create a BYOM endpoint](prepare-model-endpoint.md) — set up your LLM endpoint.
-- [Deploy the Agentic RAG extension](deploy.md) — use the endpoint during deployment.
+- [Deploy the Agents and Tools with Foundry Local extension](deploy.md) — use the endpoint during deployment.
 - [Configure BYOM endpoint authentication](configure-endpoint-authentication.md) — set up authentication after deployment.

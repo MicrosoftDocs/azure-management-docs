@@ -1,6 +1,6 @@
 ---
-title: Create a Knowledge Base in Agentic RAG
-description: Learn how to create and manage knowledge bases in Agentic RAG, which group knowledge sources for agent access.
+title: Create a Knowledge Base in Agents and Tools with Foundry Local
+description: Learn how to create and manage knowledge bases in Agents and Tools with Foundry Local, which group knowledge sources for agent access.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
@@ -10,15 +10,17 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Create a knowledge base in Agentic RAG
+# Create a knowledge base in Agents and Tools with Foundry Local
 
-This article explains how to create and manage knowledge bases in Agentic RAG. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what knowledge an agent is allowed to access, decoupling knowledge configuration from agent logic.
+This article explains how to create and manage knowledge bases in Agents and Tools with Foundry Local. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what knowledge an agent is allowed to access, decoupling knowledge configuration from agent logic.
 
 An agent references a knowledge base; the knowledge base itself doesn't execute anything. Multiple agents can reuse the same knowledge base, and agents can be rebound to different knowledge bases per tenant, deployment, or region.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Prerequisites
 
-- Deploy Agentic RAG in combined or agentic mode.
+- Deploy Agents and Tools with Foundry Local in combined or agentic mode.
 
 - Create at least one knowledge source. See [Configure a knowledge source](knowledge-sources-guide.md).
 
@@ -211,6 +213,6 @@ curl -X DELETE https://<cluster-domain>/knowledge-bases/<kb-id> \
 ## Related content
 
 - [Configure a knowledge source](knowledge-sources-guide.md)
-- [The agentic layer in Agentic RAG](agentic-overview.md)
-- [Quickstart: Create your first Agentic RAG agent](create-agent-quickstart.md)
+- [The agentic layer in Agents and Tools with Foundry Local](agentic-overview.md)
+- [Quickstart: Create your first Agents and Tools with Foundry Local agent](create-agent-quickstart.md)
 <!-- - [Agent manager API reference](APIs/agent-manager-api.md) -->

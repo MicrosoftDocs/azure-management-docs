@@ -8,12 +8,12 @@ ms.date: 04/24/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a system administrator, I want to configure a Windows machine with the necessary tools to manage Azure Arc-enabled Kubernetes clusters, so that I can efficiently deploy and manage Edge RAG workloads.
+# Customer intent: As a system administrator, I want to configure a Windows machine with the necessary tools to manage Azure Arc-enabled Kubernetes clusters, so that I can efficiently deploy and manage Agents and Tools with Foundry Local workloads.
 ---
 
 # Script to configure machine to manage Azure Arc-enabled Kubernetes cluster 
 
-To communicate with and configure an Azure Arc-enabled Kubernetes cluster for Edge RAG, set up any Windows machine with tools like Azure CLI, kubectl, and Helm. The machine needs to be able to reach the Kubernetes cluster.
+To communicate with and configure an Azure Arc-enabled Kubernetes cluster for Agents and Tools with Foundry Local, set up any Windows machine with tools like Azure CLI, kubectl, and Helm. The machine needs to be able to reach the Kubernetes cluster.
 
 ## Sample script
 
@@ -253,5 +253,5 @@ az aksarc get-credentials --name $k8scluster --resource-group $rg --admin  --onl
 
 ## Related content
 
-- [Complete Edge RAG deployment prerequisites](complete-prerequisites.md)
+- [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md)
 - [Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/cluster-connect?tabs=azure-cli)

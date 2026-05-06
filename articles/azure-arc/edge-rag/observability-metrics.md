@@ -1,6 +1,6 @@
 ---
-title: Metrics Available For Monitoring Edge RAG
-description: "Learn about the metrics you can use to monitor Edge RAG to track API performance, ingestion rates, and processing times for optimal system performance."
+title: Metrics Available For Monitoring Agents and Tools with Foundry Local
+description: "Learn about the metrics you can use to monitor Agents and Tools with Foundry Local to track API performance, ingestion rates, and processing times for optimal system performance."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
@@ -8,12 +8,12 @@ ms.date: 05/13/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a cloud administrator or DevOps engineer, I want to utilize the available metrics for Edge RAG to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and swiftly address any issues in my infrastructure.
+# Customer intent: As a cloud administrator or DevOps engineer, I want to utilize the available metrics for Agents and Tools with Foundry Local to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and swiftly address any issues in my infrastructure.
 ---
 
-# Metrics available for monitoring Edge RAG Preview, enabled by Azure Arc
+# Metrics available for monitoring Agents and Tools with Foundry Local
 
-The following table lists the metrics available for Edge RAG.
+The following table lists the metrics available for Agents and Tools with Foundry Local.
 
 | Metric Name | Description |
 |---|---|
@@ -47,4 +47,4 @@ The following table lists the metrics available for Edge RAG.
 
 ## Related content
 
-[Monitor Edge RAG](observability.md)
+[Monitor Agents and Tools with Foundry Local](observability.md)

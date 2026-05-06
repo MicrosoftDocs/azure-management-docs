@@ -1,6 +1,6 @@
 ---
-title: Configure NFS Server for Edge RAG 
-description: "Learn how to configure an NFS server for Edge RAG to enable shared storage for high availability and scalable applications."
+title: Configure NFS Server for Agents and Tools with Foundry Local 
+description: "Learn how to configure an NFS server for Agents and Tools with Foundry Local to enable shared storage for high availability and scalable applications."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -8,18 +8,18 @@ ms.date: 05/13/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a system administrator, I want to configure an NFS server for Edge RAG, so that I can implement shared storage that enhances the high availability and scalability of my applications.
+# Customer intent: As a system administrator, I want to configure an NFS server for Agents and Tools with Foundry Local, so that I can implement shared storage that enhances the high availability and scalability of my applications.
 ---
 
-# Configure an NFS server for Edge RAG Preview, enabled by Azure Arc 
+# Configure an NFS server for Agents and Tools with Foundry Local
 
-Install network file system (NFS) server packages and create the shared directory to use as a data source for Edge RAG.
+Install network file system (NFS) server packages and create the shared directory to use as a data source for Agents and Tools with Foundry Local.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Configure the NFS server
 
-Complete the following steps to set up your NFS server to use with Edge RAG.
+Complete the following steps to set up your NFS server to use with Agents and Tools with Foundry Local.
 
 1. Install NFS server packages. On the server to host the NFS shares, install the necessary NFS packages:
 
@@ -80,4 +80,4 @@ Complete the following steps to set up your NFS server to use with Edge RAG.
 ## Related content
 
 - [Supported data sources](requirements.md#supported-data-sources)
-- [Complete Edge RAG deployment prerequisites](complete-prerequisites.md)
+- [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md)

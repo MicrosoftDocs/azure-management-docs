@@ -1,18 +1,18 @@
 ---
-title: Prepare AKS Cluster on Azure Local for Agentic RAG Preview Enabled by Azure Arc
-description: "Learn how to prepare an AKS cluster on Azure Local for Agentic RAG deployment, including node pool setup and GPU driver installation."
+title: Prepare AKS Cluster on Azure Local for Agents and Tools with Foundry Local
+description: "Learn how to prepare an AKS cluster on Azure Local for Agents and Tools with Foundry Local deployment, including node pool setup and GPU driver installation."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 05/04/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to prepare an AKS cluster on Azure Local for Agentic RAG deployment so that my environment meets the requirements for running the Agentic RAG workload.
+#CustomerIntent: As a cloud administrator, I want to prepare an AKS cluster on Azure Local for Agents and Tools with Foundry Local deployment so that my environment meets the requirements for running the Agents and Tools with Foundry Local workload.
 ---
 
-# Prepare AKS cluster on Azure Local for Agentic RAG Preview enabled by Azure Arc
+# Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local
 
-For your Agentic RAG deployment, prepare an AKS cluster on Azure Local by creating the cluster, configuring node pools, and installing GPU drivers as needed. This article is part of the deployment prerequisites checklist.
+For your Agents and Tools with Foundry Local deployment, prepare an AKS cluster on Azure Local by creating the cluster, configuring node pools, and installing GPU drivers as needed. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -32,7 +32,7 @@ Create an AKS Arc cluster by using one of the following methods:
 
 AKS Arc supports only Nvidia A2 and A16 GPUs. The following steps apply only to these two GPUs.
 
-If you have GPUs available in your Azure Local instance that you want to use for Agentic RAG, make sure that the necessary GPU drivers are installed and available in the AKS Arc cluster nodes.
+If you have GPUs available in your Azure Local instance that you want to use for Agents and Tools with Foundry Local, make sure that the necessary GPU drivers are installed and available in the AKS Arc cluster nodes.
 
 To check if the right drivers are already installed and the GPUs are available to the AKS Arc cluster, run the following command:
 
@@ -42,7 +42,7 @@ To check if the right drivers are already installed and the GPUs are available t
 
 If the output lists all the GPUs available on the Azure Local cluster, you can move to the next step. Otherwise, complete the following steps on any of the Azure Local cluster nodes to enable GPUs.
 
-Use the script in the [Enabling GPU on AKS on Azure ARC - sample](enable-gpu-aks.md) to enable GPUs for use by Agentic RAG.
+Use the script in the [Enabling GPU on AKS on Azure ARC - sample](enable-gpu-aks.md) to enable GPUs for use by Agents and Tools with Foundry Local.
 
 Alternatively, follow the instructions in [Use GPUs for compute-intensive workloads](/azure/aks/hybrid/deploy-gpu-node-pool) and ensure you meet the [minimum VM hardware requirements](requirements.md#minimum-vm-hardware-requirements) for the GPU mode. If you follow these instructions, run the following command on each Hyper-V host in the Azure Local cluster:
 

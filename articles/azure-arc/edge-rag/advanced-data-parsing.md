@@ -1,17 +1,17 @@
 ---
-title: Advanced data parsing for Edge RAG
-description: "Learn about advanced data parsing in Edge RAG to extract structured data, tables, and images for more accurate search and chat results."
+title: Advanced data parsing for Agents and Tools with Foundry Local
+description: "Learn about advanced data parsing in Agents and Tools with Foundry Local to extract structured data, tables, and images for more accurate search and chat results."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 11/10/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a solution architect or data engineer, I want to use advanced data parsing in Edge RAG to extract structured information, tables, and images from complex documents so that I can enable more accurate, context-rich search and chat experiences for my users.
+#CustomerIntent: As a solution architect or data engineer, I want to use advanced data parsing in Agents and Tools with Foundry Local to extract structured information, tables, and images from complex documents so that I can enable more accurate, context-rich search and chat experiences for my users.
 ---
-# Advanced data parsing for Edge RAG preview enabled by Azure Arc
+# Advanced data parsing for Agents and Tools with Foundry Local
 
-Edge RAG offers an advanced data parsing option that helps you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how advanced data parsing works in Edge RAG, when to use it, and how it can help you get the most from your data.
+Agents and Tools with Foundry Local offers an advanced data parsing option that helps you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how advanced data parsing works in Agents and Tools with Foundry Local, when to use it, and how it can help you get the most from your data.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -101,8 +101,8 @@ If you notice missing or incomplete tables, check that your source documents are
 
 ## Related content
 
-- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
-- [Add data source for the chat solution in Edge RAG](add-data-source.md)
-- [Set up the data query for Edge RAG chat solution](set-up-data-query.md)
+- [Configuring the chat solution](build-chat-solution-overview.md)
+- [Add data source for the chat solution](add-data-source.md)
+- [Set up the data query for chat solution](set-up-data-query.md)
 - [Supported data sources](requirements.md#supported-data-sources)
 

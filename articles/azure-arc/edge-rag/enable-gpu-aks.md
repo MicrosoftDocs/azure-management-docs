@@ -1,6 +1,6 @@
 ---
 title: Sample - Enable GPU for AKS on Azure Arc
-description: "Learn about how to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc to meet the prerequisites for Agentic RAG."
+description: "Learn about how to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc to meet the prerequisites for Agents and Tools with Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
@@ -8,13 +8,13 @@ ms.date: 05/04/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a system administrator, I want to enable GPU support on Azure Kubernetes Service (AKS) through Azure Arc, so that I can prepare for deploying Agentic RAG applications efficiently.
+# Customer intent: As a system administrator, I want to enable GPU support on Azure Kubernetes Service (AKS) through Azure Arc, so that I can prepare for deploying Agents and Tools with Foundry Local applications efficiently.
 ---
 
 
 # Enabling GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc
 
-To enable GPUs on the Azure Local cluster nodes for use with Agentic RAG, enabled by Azure Arc, use the sample script in this article. Agentic RAG requires two GPU-enabled VMs for the Knowledge Layer (text embedding and image embedding). Docling (document parser) runs on CPU. For more information, see [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md).
+To enable GPUs on the Azure Local cluster nodes for use with Agents and Tools with Foundry Local use the sample script in this article. Agents and Tools with Foundry Local requires two GPU-enabled VMs for the Knowledge Layer (text embedding and image embedding). Docling (document parser) runs on CPU. For more information, see [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -138,5 +138,5 @@ $pnpScriptBlock= {
 
 ## Related content
 
-- [What you need for Agentic RAG](requirements.md)
-- [Complete Agentic RAG deployment prerequisites](complete-prerequisites.md)
+- [What you need for Agents and Tools with Foundry Local](requirements.md)
+- [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md)

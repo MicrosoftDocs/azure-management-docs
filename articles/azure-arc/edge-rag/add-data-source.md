@@ -1,6 +1,6 @@
 ---
-title: Add a Data Source for Agentic RAG
-description: "Learn how to add and manage data sources for Agentic RAG chat solutions, including setup, and ingestion processes."
+title: Add a Data Source for Agents and Tools with Foundry Local
+description: "Learn how to add and manage data sources for Agents and Tools with Foundry Local chat solutions, including setup, and ingestion processes."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -10,9 +10,9 @@ ms.subservice: edge-rag
 ms.custom:
   - build-2025
 ---
-# Add data source for Agentic RAG enabled by Azure Arc
+# Add data source for Agents and Tools with Foundry Local
 
-Add and configure a data source for your Agentic RAG chat solution by using the developer portal. Follow the step-by-step instructions to set up data ingestion, and define indexing parameters.
+Add and configure a data source for your Agents and Tools with Foundry Local chat solution by using the developer portal. Follow the step-by-step instructions to set up data ingestion, and define indexing parameters.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -21,9 +21,9 @@ Add and configure a data source for your Agentic RAG chat solution by using the 
 Before you begin:
 
 - Review the following articles:
-  - [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
+  - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
-  - [Advanced data parsing for Agentic RAG](advanced-data-parsing.md)
+  - [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md)
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Set up data ingestion
@@ -68,4 +68,4 @@ You can also perform data ingestion programmatically using the Ingestion API. Wh
 
 ## Related content
 
-- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)

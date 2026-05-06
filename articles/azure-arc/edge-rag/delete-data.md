@@ -1,7 +1,7 @@
 ---
 
-title: Delete data for Edge RAG Chat Solution
-description: "Learn how to delete data in Edge RAG chat solutions, including removing all data ingestions and evaluation data from the vector database."
+title: Delete data for Agents and Tools with Foundry Local Chat Solution
+description: "Learn how to delete data in Agents and Tools with Foundry Local chat solutions, including removing all data ingestions and evaluation data from the vector database."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,11 +9,11 @@ ms.date: 06/05/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer using Edge RAG, I want to delete all data from the vector database, so that I can ensure a complete reset of the index and remove any unwanted data ingestions and evaluation data.
+# Customer intent: As a developer using Agents and Tools with Foundry Local, I want to delete all data from the vector database, so that I can ensure a complete reset of the index and remove any unwanted data ingestions and evaluation data.
 ---
-# Delete data in Edge RAG Preview, enabled by Azure Arc
+# Delete data in Agents and Tools with Foundry Local
 
-Edge RAG supports only one index, which contains the embeddings for all the data ingested and any evaluation data. You can't delete individual data ingestions or evaluations from the **Data** tab.
+Agents and Tools with Foundry Local supports only one index, which contains the embeddings for all the data ingested and any evaluation data. You can't delete individual data ingestions or evaluations from the **Data** tab.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -37,5 +37,5 @@ If there's a data ingestion job running or pending, you see an error message and
 
 ## Related content
 
-- [Add data source for the chat solution in Edge RAG](add-data-source.md)
-- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
+- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)

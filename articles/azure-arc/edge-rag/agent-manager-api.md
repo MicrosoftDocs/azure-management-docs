@@ -19,7 +19,7 @@ All endpoints require a valid Bearer token issued by Microsoft Entra ID. The MIS
 
 ### Obtain a token
 
-Acquire an access token from Entra ID by using the OAuth 2.0 client credentials flow or authorization code flow. The token must be issued for the Agentic RAG app registration audience.
+Acquire an access token from Entra ID by using the OAuth 2.0 client credentials flow or authorization code flow. The token must be issued for the Agents and Tools with Foundry Local app registration audience.
 
 ```azurecli
 az account get-access-token --resource api://<app-registration-client-id> --query accessToken -o tsv

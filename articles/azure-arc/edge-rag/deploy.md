@@ -1,6 +1,6 @@
 ---
-title: Deploy the Agentic RAG Extension
-description: "Learn how to deploy the Agentic RAG extension by using either Azure CLI or the Azure portal."
+title: Deploy the Agents and Tools with Foundry Local Extension
+description: "Learn how to deploy the Agents and Tools with Foundry Local extension by using either Azure CLI or the Azure portal."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,23 +9,23 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer Intent: As a cloud administrator or developer, I want to deploy the Agentic RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
+# Customer Intent: As a cloud administrator or developer, I want to deploy the Agents and Tools with Foundry Local extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
 ---
-# Deploy the extension for Agentic RAG Preview enabled by Azure Arc
+# Deploy the extension for Agents and Tools with Foundry Local
 
-After you complete the prerequisite steps, complete the steps in this article to deploy the Agentic RAG extension.
+After you complete the prerequisite steps, complete the steps in this article to deploy the Agents and Tools with Foundry Local extension.
 
-To try Agentic RAG without the need for local hardware, see [Quickstart: Install Agentic RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
+To try Agents and Tools with Foundry Local without the need for local hardware, see [Quickstart: Install Agents and Tools with Foundry Local](quickstart-edge-rag.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites
 
-Before you begin, [complete the deployment prerequisites for Agentic RAG Preview](complete-prerequisites.md).
+Before you begin, [complete the deployment prerequisites for Agents and Tools with Foundry Local](complete-prerequisites.md).
 
 ## Deploy the extension
 
-Deploy Agentic RAG by using either the Azure portal or Azure CLI.
+Deploy Agents and Tools with Foundry Local by using either the Azure portal or Azure CLI.
 
 #### [Azure portal](#tab/azure-portal)
 
@@ -40,8 +40,8 @@ Deploy Agentic RAG by using either the Azure portal or Azure CLI.
    | Subscription    | Select the subscription that contains your Azure Kubernetes Service (AKS) cluster on Azure Local. |
    | Resource group  | Select the resource group that contains your AKS Arc cluster. |
    | Deployment name | Provide a name for the deployment.                           |
-   | Region          | Select the region to deploy Agentic RAG.                        |
-   | Cluster         | Select the cluster that you want to deploy Agentic RAG to.      |
+   | Region          | Select the region to deploy Agents and Tools with Foundry Local.                        |
+   | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
 
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details.":::
 
@@ -58,7 +58,7 @@ Deploy Agentic RAG by using either the Azure portal or Azure CLI.
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
    |**SSL settings**||
    |SSL CNAME           | Provide the domain name for your system. This domain name is the same as redirect URI provided during app registration.|
-   |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application. By default, Agentic RAG uses a self-signed SSL certificate to store under this name in the kubernetes secret store. After installation, you can update the certificate with an official signed certificate.               |
+   |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application. By default, Agents and Tools with Foundry Local uses a self-signed SSL certificate to store under this name in the kubernetes secret store. After installation, you can update the certificate with an official signed certificate.               |
    |**Access**||
    | Entra app ID    | Provide the application ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
    | Entra tenant ID | Provide tenant ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
@@ -67,7 +67,7 @@ Deploy Agentic RAG by using either the Azure portal or Azure CLI.
 
 1. Select **Review + create**.
 1. Review and validate the parameters you provided.
-1. Select **Create** to complete the Agentic RAG deployment.
+1. Select **Create** to complete the Agents and Tools with Foundry Local deployment.
 1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagnostics** are listed.
 
 #### [Azure CLI](#tab/azure-cli)
@@ -75,7 +75,7 @@ Deploy Agentic RAG by using either the Azure portal or Azure CLI.
 1. Set the values for the parameters in the following command and then run the command.
 
    ```powershell
-   $gpu_enabled = "true"  # Mark it true if you have GPUs available for Agentic RAG
+   $gpu_enabled = "true"  # Mark it true if you have GPUs available for Agents and Tools with Foundry Local
    $localextname = "edgeragdemo" # Once used do not change
    $autoUpgrade = "false"
    $tenantId = "<App Tenant ID>" # App registrations -> Your app -> Overview on Azure portal
@@ -113,11 +113,11 @@ Deploy Agentic RAG by using either the Azure portal or Azure CLI.
 
 ----
 
-The Agentic RAG extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
+The Agents and Tools with Foundry Local extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
 
 ## Bring your own language model
 
-After deploying the Agentic RAG extension, complete the steps in [Configure BYOM endpoint authentication for Agentic RAG](configure-endpoint-authentication.md).
+After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
 
 ## Verify deployment by mode
 
@@ -137,8 +137,8 @@ kubectl get pods -n arc-rag
 
 ## Related content
 
-- [Configure BYOM endpoint authentication for Agentic RAG](configure-endpoint-authentication.md)
+- [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
-- [Configuring the chat solution for Agentic RAG](build-chat-solution-overview.md)
-- [Add data source for the chat solution in Agentic RAG](add-data-source.md)
+- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
 - [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)
