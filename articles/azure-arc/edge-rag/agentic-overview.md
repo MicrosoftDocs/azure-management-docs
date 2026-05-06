@@ -11,7 +11,7 @@ ai-usage: ai-generated
 
 # The agentic layer in Agents and Tools with Foundry Local
 
-The Agents and Tools with Foundry Local (retrieval-augmented generation) platform is organized into two layers. The *knowledge layer* handles document ingestion, indexing, and retrieval. The *agentic layer* sits above it and decides how agents use that knowledge at runtime.
+The Agents and Tools with Foundry Local platform is organized into two layers. The *knowledge layer* handles document ingestion, indexing, and retrieval. The *agentic layer* sits above it and decides how agents use that knowledge at runtime.
 
 :::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agents and Tools with Foundry Local platform with the agentic layer on top of the knowledge layer." lightbox="media/agentic-overview/agentic-rag-platform.png":::
 
