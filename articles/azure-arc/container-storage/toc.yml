@@ -43,6 +43,8 @@ items:
         href: howto-configure-onelake-identity.md
       - name: Configure Workload Identity
         href: howto-configure-workload-identity.md
+      - name: Enable local identity access
+        href: howto-enable-local-identity-access.md
   - name: Monitor deployments
     items:
       - name: Monitor with Azure Monitor
