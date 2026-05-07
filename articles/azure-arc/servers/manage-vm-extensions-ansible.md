@@ -107,9 +107,9 @@ To use managed identity authentication in your playbook, set the authentication 
 auth_source: msi
 ```
 
-### Azure CLI authentication (development only)
+### Azure CLI authentication
 
-Use the currently signed-in Azure CLI identity on the Ansible control node. This option is recommended for interactive use and development environments. Set the following in your playbook:
+ This option is recommended for interactive use and development environments. Use the currently signed-in Azure CLI identity on the Ansible control node. Set the following in your playbook:
 
 ```yaml
 auth_source: cli
