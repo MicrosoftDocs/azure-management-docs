@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Create Your First Agents and Tools with Foundry Local Agent"
-description: Learn how to create an Agents and Tools with Foundry Local agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+title: "Quickstart: Query Your Data with Agents and Tools with Foundry Local"
+description: Learn how to query your data with Agents and Tools with Foundry Local by registering knowledge, linking it to your default knowledge base, starting a conversation, and streaming a response from your LLM.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: quickstart
@@ -9,22 +9,22 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Quickstart: Create your first Agents and Tools with Foundry Local agent
+# Quickstart: Query your data with Agents and Tools with Foundry Local
 
-In this quickstart, you create an Agents and Tools with Foundry Local agent by registering knowledge, creating an agent, starting a conversation, and streaming a response from your LLM.
+In this quickstart, you query your data with Agents and Tools with Foundry Local by ingesting data, registering it as a knowledge source, linking it to your default knowledge base, and running a conversation with streaming.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites
 
-- Agents and Tools with Foundry Local deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-4 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead.
+- Agents and Tools with Foundry Local deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-3 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead.
 - A *bring-your-own-model (BYOM) endpoint*: an LLM that exposes an OpenAI-compatible chat completions API (for example, FoundryOnArc, KAITO, or Azure OpenAI) configured at the cluster level during deployment through Helm values (`byom.apiEndpoint`).
 - Azure CLI installed and authenticated.
 - **curl** and **jq** installed.
 - NFS data source with documents to ingest.
 
-> [!Note]
-> The `endpoint_url` field on agents is stored but not currently used by the runtime. All agents share the cluster-level BYOM endpoint configured via Helm values.
+> [!NOTE]
+> Each deployment includes a default knowledge base that is automatically provisioned. You link knowledge sources to this default knowledge base.
 
 ## Step 1: Get an access token
 
@@ -121,48 +121,26 @@ Verify the `validation_status` is `active`. If validation fails, the request is 
 > [!Note]
 > The `indexed_source_ref` value (`quickstart-docs`) must match the collection name created in Step 2.
 
-## Step 4: Create a knowledge base
+## Step 4: Link the knowledge source to your default knowledge base
 
-Group the knowledge source into a knowledge base:
+Get the default knowledge base ID and link the knowledge source to it:
 
 ```bash
-KB_RESPONSE=$(curl -s -X POST "https://$CLUSTER/knowledge-bases" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d "{
-    \"name\": \"Quickstart KB\",
-    \"description\": \"Knowledge base for the quickstart tutorial\",
-    \"knowledge_source_ids\": [\"$KS_ID\"]
-  }")
-
-KB_ID=$(echo $KB_RESPONSE | jq -r '.data.id')
+# Get default knowledge base ID
+KB_ID=$(curl -s "https://$CLUSTER/knowledge-bases?limit=1" \
+  -H "Authorization: Bearer $TOKEN" | jq -r '.data[0].id')
 echo "Knowledge Base: $KB_ID"
-```
 
-## Step 5: Create an agent
-
-Create an agent with your BYOM endpoint and knowledge base:
-
-```bash
-AGENT_RESPONSE=$(curl -s -X POST "https://$CLUSTER/agents" \
+# Link the knowledge source
+curl -s -X PATCH "https://$CLUSTER/knowledge-bases/$KB_ID" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $TOKEN" \
   -d "{
-    \"name\": \"Quickstart Agent\",
-    \"instructions\": \"You are a helpful assistant. Answer questions using your knowledge base. Always cite your sources.\",
-    \"endpoint_url\": \"<your-byom-endpoint-url>\",
-    \"knowledge_base_id\": \"$KB_ID\",
-    \"temperature\": 0.7,
-    \"top_p\": 0.9
-  }")
-
-AGENT_ID=$(echo $AGENT_RESPONSE | jq -r '.data.id')
-echo "Agent: $AGENT_ID"
+    \"knowledge_source_ids\": [\"$KS_ID\"]
+  }"
 ```
 
-Replace `<your-byom-endpoint-url>` with your LLM endpoint (for example, `https://my-model.openai.azure.com/v1`).
-
-## Step 6: Create a thread
+## Step 5: Create a thread
 
 Start a new conversation:
 
@@ -178,7 +156,7 @@ THREAD_ID=$(echo $THREAD_RESPONSE | jq -r '.id')
 echo "Thread: $THREAD_ID"
 ```
 
-## Step 7: Send a message
+## Step 6: Send a message
 
 Add a user message to the thread:
 
@@ -192,16 +170,16 @@ curl -s -X POST "https://$CLUSTER/threads/$THREAD_ID/messages" \
   }'
 ```
 
-## Step 8: Execute a run (streaming)
+## Step 7: Execute a run (streaming)
 
-Execute the agent against the thread with streaming enabled:
+Execute a run against the thread with streaming enabled, using the knowledge base ID:
 
 ```bash
 curl -N -X POST "https://$CLUSTER/threads/$THREAD_ID/runs?stream=true" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $TOKEN" \
   -d "{
-    \"agent_id\": \"$AGENT_ID\"
+    \"agent_id\": \"$KB_ID\"
   }"
 ```
 
@@ -257,7 +235,7 @@ If you encounter issues, check the following common problems and solutions:
 | Problem | Solution |
 |---|---|
 | Knowledge source validation status is `failed` | Check `validation_error`. Verify the MCP server URL is reachable. Update via PATCH to trigger revalidation. |
-| Run status is `failed` | Check `last_error` on the run object. Common issues: BYOM endpoint unreachable, model timeout, invalid endpoint URL. |
+| Run status is `failed` | Check `last_error` on the run object. Common issues: BYOM endpoint unreachable, model timeout. |
 | `401 Unauthorized` | Token expired. Reacquire: `TOKEN=$(az account get-access-token ...)` |
 | `403 Forbidden` | Missing `EdgeRAGDeveloper` role on token. Check Entra ID app role assignments. |
 | `404 Not Found` on thread/message | Thread ownership is enforced; you can only access threads you created. |
@@ -273,5 +251,5 @@ If you encounter issues, check the following common problems and solutions:
 - [Agentic layer overview](agentic-overview.md)
 - [MCP server in Agents and Tools with Foundry Local](mcp-server-overview.md)
 <!-- - [Collections overview](collections-overview.md)
-- [Agent Manager API reference](APIs/agent-manager-api.md)
+- [Knowledge Base Manager API reference](APIs/knowledge-base-manager-api.md)
 - [Agents Runtime API reference](APIs/agents-runtime-api.md) -->

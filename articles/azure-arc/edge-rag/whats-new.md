@@ -29,9 +29,9 @@ This release transforms Edge RAG enabled by Azure Arc into Agents and Tools with
 Build intelligent, multithread AI agents that orchestrate across knowledge sources and external tools:
 
 - **Agents Runtime** — Create threads, send messages, execute runs with streaming (SSE). OpenAI Assistants-compatible API.
-- **Agent Manager** — CRUD for agents and knowledge bases. Associate agents with knowledge bases for grounded responses.
+- **Knowledge Base Manager** — Manages the default knowledge base (GET, PATCH, PUT). Knowledge bases group knowledge sources and define what data the system can access.
 - **Knowledge Sources** — Register MCP server connections as self-contained knowledge sources (two kinds: `remote_mcp` and `indexed_sources_mcp`), and organize them into knowledge bases.
-- **Built-in MCP Server** — Seven search tools (hybrid, vector, text, image, multimodal, deep search, list collections) exposed over Model Context Protocol for any MCP-compatible client.
+- **Built-in MCP Server** — Six search tools (hybrid, vector, text, image, multimodal, list collections) exposed over Model Context Protocol for any MCP-compatible client.
 - **Collections** — Multiple named collections for vector data with per-collection RBAC, replacing the single-index model.
 
 **Independent Deployment Modes**
@@ -48,16 +48,16 @@ Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYO
 
 **GPU Count Reduced**
 
-GPU requirement reduced from 4 to **3** (embedding, image, docling). The LLM runs externally via BYOM.
+GPU requirement reduced from 4 to **2** (embedding, image). Docling now runs on CPU. The LLM runs externally via BYOM.
 
 **Seven REST API references published**
 
-Complete API documentation for: Agents Runtime, Agent Manager, Knowledge Sources, Collections, MCP Server, Ingestion, and Inference.
+Complete API documentation for: Agents Runtime, Knowledge Base Manager, Knowledge Sources, Collections, MCP Server, Ingestion, and Inference.
 
 For more information, see the following articles:
 
 - [Agentic Layer Overview](agentic-overview.md) — Architecture and concepts
-- [Create Agent Quickstart](create-agent-quickstart.md) — End-to-end tutorial
+- [Query Your Data Quickstart](create-agent-quickstart.md) — End-to-end tutorial
 - [Collections Overview](collections-overview.md) — Collection architecture and RBAC
 - [MCP Server Overview](mcp-server-overview.md) — Built-in and external MCP servers
 

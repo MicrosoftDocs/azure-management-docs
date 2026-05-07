@@ -33,7 +33,7 @@ The following table lists the known issues in this release.
 | Collection RBAC | When an `EdgeRAGEndUser` has no app roles matching any collection name, they receive a `403 Forbidden` error with no guidance on what roles are needed. **Workaround:** Assign collection-specific app roles in Entra ID before granting `EdgeRAGEndUser` access. |
 | Knowledge Sources | The `indexed_source_ref` field refers to a **collection name** when pointing to the built-in MCP server, not a tool name. This field is documented in the Knowledge Sources API Reference but might cause confusion. |
 | Knowledge Base PATCH | When updating a knowledge base by using PATCH, the `knowledge_source_ids` field **replaces** the entire list. It doesn't append. **Workaround:** Read the current list first, then include all desired IDs in the PATCH request. |
-| API timestamps | The Agent Manager returns timestamps as ISO 8601 strings (for example, `"2025-01-15T10:30:00Z"`), while the Agents Runtime uses Unix epoch integers (for example, `1699012345`). Ensure your client handles both formats. |
+| API timestamps | The Knowledge Base Manager returns timestamps as ISO 8601 strings (for example, `"2025-01-15T10:30:00Z"`), while the Agents Runtime uses Unix epoch integers (for example, `1699012345`). Ensure your client handles both formats. |
 
 The chat history limitation applies to the legacy `/user` chat endpoint (Inference API). The new agentic chat interface supports full multithread conversations with persistent thread history via the Agents Runtime.
 

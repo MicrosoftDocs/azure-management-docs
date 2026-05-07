@@ -164,11 +164,11 @@ If you get an error message when you try to create the node pools, you might nee
        --resource-group $rg ` 
        --cluster-name $k8scluster ` 
        --name "gpunodepool" ` 
-       --node-count 3 ` 
+       --node-count 2 ` 
        --node-vm-size "Standard_NC24ads_A100_v4" `
        --enable-cluster-autoscaler `
-       --min-count 3 ` 
-       --max-count 3 ` 
+       --min-count 2 ` 
+       --max-count 2 `
        --mode User
    ```
 
@@ -271,6 +271,6 @@ az group delete `
 Now that you deployed Agents and Tools with Foundry Local:
 
 1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source.md).
-1. **Create your first agent.** See [Create Agent Quickstart](create-agent-quickstart.md) to build an agent with a knowledge base and run a conversation with streaming.
+1. **Query your data.** See [Query Your Data Quickstart](create-agent-quickstart.md) to set up a knowledge source, link it to your default knowledge base, and run a conversation with streaming.
 
 

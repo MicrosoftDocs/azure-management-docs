@@ -44,9 +44,9 @@ The resources and components in the diagram form the core infrastructure for Age
 
 - **Agentic Layer** (when deployed in combined or agentic mode):
   - Agents Runtime (port 8080) — threads, messages, runs, SSE streaming
-  - Agent Manager (port 8080) — agents and knowledge bases CRUD
+  - Knowledge Base Manager (port 8080) — knowledge bases management (GET, PATCH, PUT)
   - Knowledge Sources service (port 3005) — MCP server connection registration
-  - MCP Server (port 8080) — 7 built-in search tools over Model Context Protocol
+  - MCP Server (port 8080) — 6 built-in search tools over Model Context Protocol
 
 - **Knowledge Layer** (when deployed in combined or knowledge mode):
   - Ingestion API (port 8000) — document parsing, chunking, embedding
@@ -86,7 +86,7 @@ The deployment process for Agents and Tools with Foundry Local consists of the f
 | 2. Deploy the Agents and Tools with Foundry Local extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), configure your BYOM endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agents and Tools with Foundry Local extension](deploy.md). <br><br>After deployment, [configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).|
 | 3. Validate the deployment               | After you deploy the extension, check that the Agents and Tools with Foundry Local extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure Knowledge Layer               | If you deployed in combined or knowledge mode, configure the Knowledge Layer: set up collections, add data sources, configure the user experience, and test the setup. See [Add a data source for Agents and Tools with Foundry Local](add-data-source.md), [Configure the chat solution](build-chat-solution-overview.md), and [Test the chat solution](test-end-user-app.md). |
-| 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources, knowledge bases, and agents to build intelligent assistants. See the Create Agent Quickstart. |
+| 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources and link them to your default knowledge base to build intelligent assistants. See the [Query your data quickstart](create-agent-quickstart.md). |
 | 6. Monitor and evaluate your deployment  | After deploying Agents and Tools with Foundry Local, monitor system health, track performance, and evaluate the quality of your AI solution. Use built-in metrics and evaluation tools to observe, assess, and optimize your deployment. See [Evaluate the Agents and Tools with Foundry Local system](evaluate-solution.md) and [Monitor Agents and Tools with Foundry Local](observability.md). |
 
 ## Related content
