@@ -23,7 +23,7 @@ You learn how to:
 
 ## Overview
 
-Azure Arc–enabled servers support [virtual machine (VM) extensions](/azure/azure-arc/servers/manage-vm-extensions#extensions) that provide post-deployment configuration and automation capabilities for Windows and Linux machines across hybrid, multi-cloud environments.
+Azure Arc–enabled servers support [virtual machine (VM) extensions](/azure/azure-arc/servers/manage-vm-extensions#extensions) that provide post-deployment configuration and automation capabilities for Windows and Linux machines across hybrid, multicloud environments.
 
 Common use cases include:
 
