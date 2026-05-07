@@ -229,7 +229,9 @@ The Bicep template can be created using this command:
 
 `clusterName` is the name of the AKS or Arc-enabled Kubernetes cluster.
 
-`workloadIdentityClientId` and `ssoApplicationClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoApplicationClientId` is used for the authentication for the Argo CD UI and the `workloadIdentityClientId` is used for the workload identity for the Argo CD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoApplicationClientId.
+`workloadIdentityClientId` is the client ID of the user-assigned managed identity used for workload identity by the Argo CD components.
+
+`ssoApplicationClientId` is the application (client) ID of the Microsoft Entra app registration used for OIDC SSO authentication to the Argo CD UI. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of `ssoApplicationClientId`.
 
 `url` is the public IP of the Argo CD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the Argo CD UI after deployment.
 
