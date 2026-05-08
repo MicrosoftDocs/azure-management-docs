@@ -100,7 +100,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Collection** is a logical grouping of ingested vector data. Each collection maps to Milvus vector collections and Postgres tables, and can be independently created, queried, and deleted.
 
-- **MCP (Model Context Protocol)** is an open protocol for connecting AI agents to external tools and data sources. Agents and Tools with Foundry Local includes a built-in MCP server with 7 search tools and can also connect to external MCP servers.
+- **MCP (Model Context Protocol)** is an open protocol for connecting AI agents to external tools and data sources. Agents and Tools with Foundry Local includes a built-in MCP server with 6 search tools and can also connect to external MCP servers.
 
 - **Thread** is a conversation session between a user and an agent. Threads contain ordered messages and are scoped to a single user.
 
@@ -127,7 +127,7 @@ The Agents and Tools with Foundry Local solution has four distinct user roles:
 - **Lifecycle management of the extension**: Users manage the lifecycle of the Agents and Tools with Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
 - **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
 - **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
-- **Agentic Layer administration**: Users configure and manage AI agents, knowledge bases, and knowledge sources by using the Agent Manager API. This role includes registering MCP servers as knowledge sources, creating knowledge bases, and associating them with agents. Requires the `EdgeRAGDeveloper` Entra ID role.
+- **Agentic Layer administration**: Users configure and manage knowledge bases and knowledge sources by using the Knowledge Base Manager API. This role includes registering MCP servers as knowledge sources, updating the default knowledge base, and linking knowledge sources to it. Requires the `EdgeRAGDeveloper` Entra ID role.
 
 ## Related content
 

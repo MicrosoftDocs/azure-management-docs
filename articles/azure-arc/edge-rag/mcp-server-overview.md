@@ -43,7 +43,7 @@ All tool calls go through a single endpoint. The `method` field in the JSON-RPC 
 
 ## Built-in search tools
 
-The built-in MCP server exposes seven search tools that query your ingested collections:
+The built-in MCP server exposes six search tools that query your ingested collections:
 
 | Search tool | Description | Best for |
 |---|---|---|
@@ -52,12 +52,11 @@ The built-in MCP server exposes seven search tools that query your ingested coll
 | `search_text` | Sparse/keyword search using BGE-M3 learned representations | Exact terms, codes, product names |
 | `search_image` | Image retrieval using vision embeddings | Finding images by text description |
 | `search_multimodal` | Parallel hybrid + image search | Queries needing both text and image results |
-| `deep_search` | Graph-based multi-hop search using Lazy GraphRAG | Complex questions requiring reasoning across documents |
 | `get_available_collections` | Lists collections accessible to the authenticated user | Discovery, collection selection |
 
 ### Common parameters
 
-All search tools (except `get_available_collections` and `deep_search`) accept:
+All search tools (except `get_available_collections`) accept:
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -66,9 +65,6 @@ All search tools (except `get_available_collections` and `deep_search`) accept:
 | `top_n` | integer | `5` | Number of results (1–50) |
 | `strictness` | integer | `1` | Relevance threshold (0–5). `0` returns all results; higher values filter more aggressively |
 | `filters` | string | `null` | Milvus boolean filter expression (for example, `file_path like "%manual%"`) |
-
-> [!NOTE]
-> `deep_search` uses different defaults (`strictness=3`, `image_strictness=3`) and has additional parameters for Lazy GraphRAG configuration. <!-- See the [MCP server API reference](APIs/MCP-SERVER-API-REFERENCE.md) for the full parameter list. -->
 
 ### Multi-collection search
 

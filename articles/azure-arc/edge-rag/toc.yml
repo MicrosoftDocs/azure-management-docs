@@ -19,7 +19,7 @@ items:
         items:
           - name: Install Agents and Tools with Foundry Local
             href: quickstart-edge-rag.md
-          - name: Create your first agent
+          - name: Query your data
             href: create-agent-quickstart.md
       - name: Plan
         items:
@@ -111,7 +111,7 @@ items:
             href: /rest/api/stackhci/
       - name: API reference
         items:
-          - name: Agent Management Service
+          - name: Knowledge Base Manager Service
             href: agent-manager-api.md
           - name: Agents Runtime Service
             href: agents-runtime-api.md

@@ -44,14 +44,16 @@ The agents runtime executes conversations. It creates and manages:
 
 This runtime is responsible for invoking tools, interacting with the language model, and returning responses. It supports streaming responses through server-sent events (SSE).
 
-### Agent manager
+### Knowledge Base Manager
 
-The agent manager is the control plane for agent configuration. You use it to create and manage:
+The Knowledge Base Manager is the control plane for knowledge base configuration. You use it to manage:
 
-- **Agents**: contain instructions, model behavior settings, and a reference to a knowledge base.
-- **Knowledge bases**: define the knowledge boundary available to an agent.
+- **Knowledge bases**: define the knowledge boundary available to agents. Each deployment includes a default knowledge base that is automatically provisioned.
 
-This separation lets you reuse one knowledge base across multiple agents and change knowledge configuration without redesigning each agent.
+Agents are automatically provisioned and paired 1:1 with a knowledge base. Changes to the knowledge base are synced to the paired internal agent.
+
+> [!NOTE]
+> Each deployment includes a default knowledge base. You cannot create additional knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
 
 ### Knowledge sources
 
@@ -66,15 +68,14 @@ Agents and Tools with Foundry Local supports two knowledge source kinds:
 
 The agentic layer organizes knowledge access through a simple relationship:
 
-**Knowledge source -> Knowledge base -> Agent -> Thread -> Run**
+**Knowledge source -> Knowledge base -> Agent (auto-provisioned) -> Thread -> Run**
 
 At a high level, the flow works like this:
 
 1. You register one or more knowledge sources.
-1. You group those sources into a knowledge base.
-1. You configure an agent to use that knowledge base.
+1. You link those sources to your default knowledge base.
 1. A user starts a thread and sends a message.
-1. A run executes the agent, which calls MCP tools when needed and generates a grounded response.
+1. A run executes the paired agent, which calls MCP tools when needed and generates a grounded response.
 
 This model keeps knowledge access explicit. Agents do not automatically see all available tools or indexed data. They only use the knowledge sources exposed through the assigned knowledge base.
 
@@ -82,9 +83,9 @@ This model keeps knowledge access explicit. Agents do not automatically see all 
 
 Review the following key concepts for the agentic layer:
 
-- **Agent** is the execution entity that follows instructions, reasons over a request, calls tools, and returns a response. You configure an agent with its instructions, model settings, and a reference to a knowledge base.
+- **Agent** is an internal execution entity that is automatically provisioned and paired 1:1 with a knowledge base. The agent handles reasoning, planning, calling tools, and producing responses. You don't create or manage agents directly. Instead, you configure the knowledge base, and the system keeps the paired agent in sync.
 
-- **Knowledge base** groups one or more knowledge sources into a reusable boundary. It defines what knowledge an agent can access rather than how the agent behaves.
+- **Knowledge base** groups one or more knowledge sources into a reusable boundary. Each deployment includes a default knowledge base. It defines what knowledge the agent can access rather than how the agent behaves.
 
 - **Knowledge source** is a registered MCP connection. It contains the endpoint and configuration required to reach a specific MCP server or indexed source.
 

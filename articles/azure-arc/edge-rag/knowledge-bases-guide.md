@@ -1,6 +1,6 @@
 ---
-title: Create a Knowledge Base in Agents and Tools with Foundry Local
-description: Learn how to create and manage knowledge bases in Agents and Tools with Foundry Local, which group knowledge sources for agent access.
+title: Manage the Knowledge Base in Agents and Tools with Foundry Local
+description: Learn how to manage the default knowledge base in Agents and Tools with Foundry Local, which groups knowledge sources and defines what data the system can access.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
@@ -10,11 +10,14 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Create a knowledge base in Agents and Tools with Foundry Local
+# Manage the knowledge base in Agents and Tools with Foundry Local
 
-This article explains how to create and manage knowledge bases in Agents and Tools with Foundry Local. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what knowledge an agent is allowed to access, decoupling knowledge configuration from agent logic.
+This article explains how to manage your knowledge base in Agents and Tools with Foundry Local. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what data the system can access when processing user queries.
 
-An agent references a knowledge base; the knowledge base itself doesn't execute anything. Multiple agents can reuse the same knowledge base, and agents can be rebound to different knowledge bases per tenant, deployment, or region.
+Each deployment includes a default knowledge base that is automatically provisioned. Changes to the knowledge base are automatically synced to its paired internal agent.
+
+> [!NOTE]
+> Each deployment includes a default knowledge base. You cannot create additional knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -35,64 +38,20 @@ An agent references a knowledge base; the knowledge base itself doesn't execute 
     --query accessToken -o tsv)
   ```
 
-## Step 1: Create a knowledge base
+## Step 1: Get your default knowledge base
 
-To create a new knowledge base, send a POST request with the knowledge base configuration to the knowledge bases endpoint.
+To retrieve your default knowledge base, send a GET request:
 
 ```bash
-curl -X POST https://<cluster-domain>/knowledge-bases \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{
-    "name": "Product Documentation KB",
-    "description": "Knowledge base for product manuals and FAQs",
-    "instructions": "You are a helpful product support assistant. Answer questions using the knowledge base. Always cite your sources.",
-    "temperature": 0.7,
-    "top_p": 0.9,
-    "knowledge_source_ids": [
-      "<knowledge-source-id-1>",
-      "<knowledge-source-id-2>"
-    ],
-    "metadata": {
-      "department": "engineering",
-      "version": "2.0"
-    }
-  }'
+curl https://<cluster-domain>/knowledge-bases?limit=1 \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
-You can verify the successful response (201 Created):
-
-```json
-{
-  "data": {
-    "id": "asst_abc123def456789012345678",
-    "object": "knowledge_base",
-    "created_at": "2026-04-13T10:30:00Z",
-    "name": "Product Documentation KB",
-    "description": "Knowledge base for product manuals and FAQs",
-    "knowledge_source_ids": ["<ks-id-1>", "<ks-id-2>"],
-    "metadata": { "department": "engineering", "version": "2.0" }
-  }
-}
-```
-
-### Request fields
-
-The following table describes the fields you can include in the knowledge base request body:
-
-| Field | Required | Description |
-|---|---|---|
-| `name` | **Yes** | Knowledge base name (1–256 characters, non-empty). |
-| `description` | No | Description (max 512 characters). |
-| `instructions` | No | System instructions that guide the knowledge base's response behavior. |
-| `temperature` | No | Sampling temperature (0–2). Controls response randomness. Default: `1.0`. |
-| `top_p` | No | Nucleus sampling (0–1). Controls response diversity. Default: `1.0`. |
-| `knowledge_source_ids` | No | List of knowledge source IDs to associate. Default: `[]`. |
-| `metadata` | No | Custom key-value pairs (max 16 pairs, 64-char keys, 512-char values). |
+The response includes the knowledge base ID that you use as `<kb-id>` in subsequent steps.
 
 ## Step 2: Link knowledge sources
 
-Knowledge sources can be linked at creation time through `knowledge_source_ids` or added later by updating the knowledge base. To add sources to an existing knowledge base, use a PATCH request to update the `knowledge_source_ids` array.
+Knowledge sources can be linked to your knowledge base via PATCH. To add sources, use a PATCH request to update the `knowledge_source_ids` array.
 
 1. Get the current knowledge source IDs:
 
@@ -115,30 +74,7 @@ Knowledge sources can be linked at creation time through `knowledge_source_ids` 
     > [!IMPORTANT]
     > PATCH replaces the entire `knowledge_source_ids` array. It doesn't append. You must include all desired IDs in the array. Omitting an existing ID effectively removes that knowledge source from the knowledge base.
 
-## Step 3: Assign to an agent
-
-Send a POST request to create an agent with the knowledge base:
-
-```bash
-curl -X POST https://<cluster-domain>/agents \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{
-    "name": "Product Support Agent",
-    "instructions": "You are a helpful product support agent. Answer questions using the knowledge base.",
-    "endpoint_url": "https://my-model-endpoint.example.com/v1",
-    "knowledge_base_id": "<kb-id>",
-    "temperature": 0.7,
-    "top_p": 0.9
-  }'
-```
-
-The agent now has access to all knowledge sources in the linked knowledge base when processing queries. Multiple agents can reference the same knowledge base.
-
-> [!NOTE]
-> Currently, all agents use the cluster-level BYOM endpoint configured through Helm values (`byom.apiEndpoint`).
-
-## Step 4: Update a knowledge base
+## Step 3: Update the knowledge base
 
 You can update a knowledge base by using either PATCH (partial update) or PUT (full replace) requests.
 
@@ -179,7 +115,7 @@ curl -X PUT https://<cluster-domain>/knowledge-bases/<kb-id> \
 
 All fields are overwritten. Fields not included reset to defaults.
 
-## Step 5: List knowledge bases
+## Step 4: List knowledge bases
 
 To retrieve a list of all knowledge bases, send a GET request to the knowledge bases endpoint:
 
@@ -190,29 +126,16 @@ curl https://<cluster-domain>/knowledge-bases?limit=10&order=desc \
 
 The response includes cursor-based pagination with `after` and `before` parameters for navigating large result sets.
 
-## Step 6: Delete a knowledge base
-
-To remove a knowledge base, send a DELETE request:
-
-```bash
-curl -X DELETE https://<cluster-domain>/knowledge-bases/<kb-id> \
-  -H "Authorization: Bearer $TOKEN"
-```
-
-> [!NOTE]
-> Deleting a knowledge base doesn't delete the underlying knowledge sources. It only removes the association. Knowledge sources can be reused in other knowledge bases.
-
 ## Best practices
 
-1. **One knowledge base per domain**: Group related knowledge sources into a single knowledge base (for example, *Engineering Docs knowledge base*, *HR Policies knowledge base*).
-1. **Reuse knowledge sources**: The same knowledge source can be referenced by multiple knowledge bases.
-1. **Start simple**: Create a knowledge base with the built-in MCP server's search tools, then add external MCP servers as needed.
-1. **Use metadata**: Tag knowledge bases with department, version, or environment for organization.
+1. **Group related sources**: Link all related knowledge sources into your default knowledge base (for example, product manuals and FAQs together).
+1. **Start simple**: Begin with the built-in MCP server's search tools, then add external MCP servers as needed.
+1. **Use metadata**: Tag your knowledge base with department, version, or environment for organization.
 1. **Audit before PATCH**: Since PATCH replaces the entire `knowledge_source_ids` array, always read the current state first to avoid accidentally removing sources.
 
 ## Related content
 
 - [Configure a knowledge source](knowledge-sources-guide.md)
 - [The agentic layer in Agents and Tools with Foundry Local](agentic-overview.md)
-- [Quickstart: Create your first Agents and Tools with Foundry Local agent](create-agent-quickstart.md)
-<!-- - [Agent manager API reference](APIs/agent-manager-api.md) -->
+- [Quickstart: Query your data with Agents and Tools with Foundry Local](create-agent-quickstart.md)
+<!-- - [Knowledge Base Manager API reference](APIs/knowledge-base-manager-api.md) -->
