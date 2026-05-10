@@ -27,7 +27,7 @@ This article provides the latest and past release notes for workload orchestrati
   az extension update --name workload-orchestration
   ```
 
-- **Simplified CLI experience**: Workload Orchestration now provides a simplified CLI experience that streamlines common workflows by consolidating multi-step operations like cluster setup, hierarchy creation and solution deployment into fewer commands with reduced manual configuration.This improves usability, reduces the risk of errors, and enables faster onboarding and deployment.
+- **Simplified CLI experience**: Workload Orchestration now provides a simplified CLI experience that streamlines common workflows by consolidating multi-step operations like cluster setup, hierarchy creation and solution deployment into fewer commands with reduced manual configuration. This improves usability, reduces the risk of errors, and enables faster onboarding and deployment.
 
 - Schema, solution templates and hierarchy configuration templates now offer additional support for resource management using [PUT, PATCH and DELETE operations](put-patch-delete.md).
 

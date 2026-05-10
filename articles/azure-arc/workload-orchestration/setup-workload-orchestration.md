@@ -1,12 +1,12 @@
 ---
 title: Set up workload orchestration
-description: Learn how to set up workload orchestration.
+description: Set up workload orchestration
 ms.custom:
   - references_regions
   - build-2025
 author: nathmanish
 ms.author: nathmanish
-ms.topic: install-set-up-deploy
+ms.topic: install-deploy
 ms.date: 11/04/2025
 # Customer intent: "As an IT admin, I want to onboard onto workload orchestration."
 ---
@@ -21,7 +21,6 @@ This article walks you through the process of onboarding Workload Orchestration 
 
 * An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * Role-Based Access Control (RBAC) enabled user role assignment. For more information, see [Role-Based Access Control (RBAC) guide](rbac-guide.md).
-
 * The latest version of Azure CLI installed on your development machine. For more information, see [How to install Azure CLI](/cli/azure/install-azure-cli).
 
 * A kubectl client installed on your development machine. If you don't have kubectl installed, you can install it using the following command:
@@ -30,14 +29,16 @@ This article walks you through the process of onboarding Workload Orchestration 
   winget install -e --id Kubernetes.kubectl
   ```  
 
-### Region Availability
+* An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
 
-Workload orchestration is available for Arc-enabled clusters in **East US** and **East US 2**. Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, must be created in the same Azure region.
+    > [!NOTE]
+    > The workload orchestration Arc extension doesn't support Arm-based architecture nodes. If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine. Your virtual machines should also meet the following requirements:
+    >| Cluster Type | RAM | CPUs | Disk |
+    >|---|---|---|---|
+    >| Single node K3s | Minimum 4 GB | 2 | — |
+    >| Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
 
-
----
-
-## Step 1: Set up workload orchestration CLI
+## Set up workload orchestration CLI
 
 All sample input files required in this quide can be downloaded from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
@@ -62,7 +63,8 @@ All sample input files required in this quide can be downloaded from the [worklo
 1. Replace the placeholders for the following global variables with your values.
 
     ```bash
-    rg="<RESOURCE_GROUP_NAME>"
+    rg="<AZURE_RESOURCE_GROUP_NAME>"
+    # Use either "eastus" or "eastus2" as location for all workload orchestration resources
     l="<LOCATION>"
     clusterName="<CLUSTER_NAME>"
     siteName="<SITE_NAME>"
@@ -72,7 +74,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     childDesc="This line is used for soap and conditioner production"
     level1="factory"
     level2="line"
-    capChildList="[soap,shampoo,conditioner]"
+    capChildList="[soap,shampoo]"
     ```
 
 1. Install the workload orchestration and other required CLI extensions
@@ -103,7 +105,8 @@ All sample input files required in this quide can be downloaded from the [worklo
 1. Replace the placeholders for the following global variables with your values.
 
     ```powershell
-    $rg = "<RESOURCE_GROUP_NAME>"
+    $rg = "<AZURE_RESOURCE_GROUP_NAME>"
+    # Use either "eastus" or "eastus2" as location for all workload orchestration resources
     $l = "<LOCATION>"
     $clusterName = "<CLUSTER_NAME>"
     $siteName = "<SITE_NAME>"
@@ -113,7 +116,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     $childDesc="This line is used for soap and conditioner production"
     $level1="factory"
     $level2="line"
-    $capChildList="[soap,shampoo,conditioner]"
+    $capChildList="[soap,shampoo]"
     ```
 
 1. Install the workload orchestration and other required CLI extensions
@@ -128,9 +131,9 @@ All sample input files required in this quide can be downloaded from the [worklo
 ***
 
 
-## Step 2: Set up the required Azure resources
+## Prepare your Arc cluster
 
-1. Register Resource Providers
+1. Register Azure Resource Providers.
 
     ```azurecli
     az provider register --namespace Microsoft.Edge
@@ -140,59 +143,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     az provider register --namespace Microsoft.Kubernetes
     ```
 
-1. Create Resource Group and Azure Kubernetes Service (AKS) Cluster
-
-    If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine, since the workload orchestration Arc extension doesn't support Arm-based architecture nodes. For information about virtual machine sizes available for AKS cluster, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview), keeping in mind the cluster hardware requirements.
-    
-    <details>
-    <summary>Cluster requirements</summary>
-    
-    <br/>
-
-    | Cluster Type | RAM | CPUs | Disk |
-    |---|---|---|---|
-    | Single node K3s | Minimum 4 GB | 2 | — |
-    | Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
-    </details>
-
-    ### [Bash](#tab/bash)
-    
-    ```bash
-    az group create --location "$l" --name "$rg"
-    
-    az identity create --resource-group "$rg" --name "$clusterName"
-    clusterIdentity=$(az identity show --resource-group "$rg" --name "$clusterName" --query id --output tsv)
-    
-    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count <node-count> --assign-identity "$clusterIdentity" --generate-ssh-keys --node-vm-size "<node-size>"
-    ```
-
-    ### [Powershell](#tab/powershell)
-
-    ```powershell
-    az group create --location $l --name $rg
-
-    az identity create --resource-group $rg --name $clusterName
-    $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
-
-    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys --node-vm-size <node size>
-    ```
-
-1. Enable Azure Arc on the Kubernetes cluster.
-
-    ```azurecli
-    az aks get-credentials --resource-group "$rg" --name "$clusterName"
-    kubectl config use-context "$clusterName" 
-    az connectedk8s connect --resource-group "$rg" --location "$l" --name "$clusterName"
-    az connectedk8s enable-features --resource-group "$rg" --name "$clusterName" --features cluster-connect custom-locations
-    ```
-
-1. Initialize the Cluster
-
-    This step prepares the Arc-connected Kubernetes cluster for workload orchestration by fulfilling the following prerequisites:
-    
-    1. Installation of cert-manager and trust-manager extensions.
-    1. Installation of workload orchestration Arc extension.
-    1. Creation of a custom location on the cluster.
+1. Initialize your Arc-connected Kubernetes cluster for application deployments using workload orchestration. This command installs the workload orchestration Arc extension along with cert-manager and trust-manager extensions, and creates a custom location on the cluster.
 
     ```azurecli
     az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l"
@@ -201,8 +152,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     > [!TIP]
     > You can choose to specify additional properties like name, version and release train of Arc extension, along with custom location details, by running `az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l" --release-train stable --extension-version 2.1.28  --extension-name "$extensionName" --custom-location-name "$customLocation"
     
-
-    On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory. 
+    On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory.
 
     <details>
     <summary> Perform the cluster initialization steps individually </summary>
@@ -244,7 +194,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     
     </details>
 
-1. If you are planning to set up an Azure Container Registry (ACR) to host your container images, follow these steps:
+1. This step is applicable only if you are planning to set up an Azure Container Registry (ACR) to host your container images.
 
     1. Set up ACR Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
 
@@ -256,49 +206,38 @@ All sample input files required in this quide can be downloaded from the [worklo
 
     1. Assign the `AcrPull` role to the identity of the `microsoft.workloadorchestration` extension. Replace `<IDENTITY_ID>` with the identity ID from the previous step.
 
-    ### [Bash](#tab/bash)
-    ```bash
-    extensionSPId=$(az k8s-extension show --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --query identity.principalId --output tsv)
-    az role assignment create --assignee "$extensionSPId" --role "AcrPull" --scope "<ACR Resource ID>"
-    ```
-    
-    ### [PowerShell](#tab/powershell)
-     ```powershell
-    $extensionSPId = az k8s-extension show --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --query identity.principalId --output tsv
-    az role assignment create --assignee $extensionSPId --role "AcrPull" --scope "<ACR Resource ID>"
-    ```
+        ### [Bash](#tab/bash)
+        ```bash
+        extensionSPId=$(az k8s-extension show --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --query identity.principalId --output tsv)
+        az role assignment create --assignee "$extensionSPId" --role "AcrPull" --scope "<ACR Resource ID>"
+        ```
+        
+        ### [PowerShell](#tab/powershell)
+        ```powershell
+        $extensionSPId = az k8s-extension show --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --query identity.principalId --output tsv
+        az role assignment create --assignee $extensionSPId --role "AcrPull" --scope "<ACR Resource ID>"
+        ```
+---
 
-## Step 3: Set up the workload orchestration resources
+## Set up the workload orchestration resources
 
-Workload orchestration involves multiple resource types that stitch the whole experience together:
-- **Context:** Also called as Environment, this is master resource that binds together all workload orchestration resources within an Azure Tenant, including the organizational hierarchy.
-- **Hierarchy:** Set of name-description pairs that define the levels of hierarchical structure resonating with the customer’s resource topology. For example, a manufacturing customer can have two levels, Factory and Line.
-- **Capabilities:** Name-description pairs that describe what a resource is capable of doing. 
-- **Target:** Typically a Kubernetes cluster or custom location within the cluster where you can deploy applications. These resources need to be tagged with Capabilities for application deployment purposes.
+1. Create the [Site hierarchy](resource-model#hierarchy). You can choose between the following two types of hierarchies based on your requirements.
 
-The following steps demonstrate the process of setting up these resources.
-
-1. Create the Site hierarchy. There are two types of hierarchies you can create, based on your organization's requirements.
-
-    ### [Resource Group Hierarchy](#tab/resource-group-hierarchy)
-    
-    Resource Group Hierarchy can be used when your organisation has a flat, two-level structure, for instance, a single factory or store with one level of operations beneath it. This is the recommended option for smaller deployments, proof-of-concepts, or when you don't need to logically group resources beyond your existing resource group boundaries. The hierarchy is defined as a single Site at the parent (factory or store) level, with a configuration reference object attached to it. Sites are used to identify the physical hierarchy such as plant, factory, and store. 
+    ### [Resource Group Hierarchy](#tab/resource-group-hierarchy) 
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "name=$contextName level=$level1"
     ```
 
-    You can also store the hierarchy details in a YAML file and pass it as an argument as shown below. The sample file `hierarchy.yaml` can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
+    You can also store the hierarchy details in a YAML file and pass it as an argument as shown below. The sample file `resource-group-hierarchy.yaml` can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
     ```
 
-    ### [Service Group Hierarchy](#tab/service-group-hierarchy)
+    ### [Service Group Hierarchy](#tab/service-group-hierarchy) 
 
-    Choose a Service Group hierarchy for enterprise-scale deployments, especially when your organisation has a deeper, multi-level structure spanning between two and four levels (for example, Region → City → Factory → Line), or when you need to logically group resources across multiple resource groups at the tenant scope. Except the leaf level in the hierarchy, each level must have a Service Group, an associated Site and a configuration reference object. Sites are used to identify the physical hierarchy such as plant, factory, and store. 
-
-    The following command creates a Service Group hierarchy according to the structure defined in `hierarchy.yaml`. You can refer to the sample file from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
+    The following command creates a Service Group hierarchy according to the structure defined in `service-group-hierarchy.yaml`. You can refer to the sample file from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
@@ -329,13 +268,13 @@ The following steps demonstrate the process of setting up these resources.
           ```
     </details>
 
-1. Create the workload orchestration context or environment with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. You can refer to sample file for `capabilities.json` from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). The hierarchy level names must match those specified in the previous step.
+1. Create the workload orchestration [context](resource-model.md#context) or environment with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. The hierarchy level names must match those specified in the previous step.
 
     ```azurecli
-    az workload-orchestration context create -g "$rg" -n "$contextName" -l "$l" --capabilities @capabilities.json --hierarchies "[0].name=factory" "[0].description=Factory" "[1].name=line" "[1].description=Line" --site-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName
+    az workload-orchestration context create -g "$rg" -n "$contextName" -l "$l" --capabilities "[{name:soap,description:Soap},{name:shampoo,description:Shampoo}]" --hierarchies "[0].name=$level1" "[0].description=$level1" "[1].name=$level2" "[1].description=$level2" --site-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName
     ```
 
-    Use the ARM ID of the parent Site of your hierarchy for the `--site-id` argument. If you do not have an existing hierarchy, you can create the context without this argument and link the parent site to the context later using:
+    Use the ARM ID of the parent Site of your hierarchy for the `--site-id` argument. If you do not have an existing hierarchy, you can create the context first and later link it to the parent site using:
 
     ```azurecli
     az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$contextName" --name "$siteReference" --site-id "$siteId"
@@ -370,7 +309,7 @@ The following steps demonstrate the process of setting up these resources.
     > - Can contain dots to separate segments, but not consecutive dots or empty segments.
     > - Can't have any special characters other than hyphen and dot.
 
-1. Create a target reference. The attribute `--solution-scope` specifies the cluster namespace. The `--target-specification` attribute specifies that Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
+1. Create a [target](resource-model.md#target) reference. The attribute `--solution-scope` specifies the cluster namespace. The `--target-specification` attribute specifies that Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the Arc cluster.
 
     ### [Resource Group Hierarchy](#tab/resource-group-hierarchy)
 
@@ -399,7 +338,8 @@ The following steps demonstrate the process of setting up these resources.
 
 ## Next steps
 
-Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, refer to [Create a basic solution](solution-without-common-configuration.md) to learn how to create a basic solution, configure it, and deploy it to a target.
+Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, refer to [Deploy a basic solution](solution-without-common-configuration.md) to learn how to create a basic solution, configure it, and deploy it to a target.
+
 
 ## Contact support
 

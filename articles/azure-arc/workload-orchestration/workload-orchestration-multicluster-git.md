@@ -12,13 +12,13 @@ ms.custom:
 
 # Manage workload orchestration resources in Git
 
-Workload orchestration allows you to manage resources such as schemas, solution templates, and configuration templates as Bicep templates stored in a Git repository. Leveraging pre-configured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
+Workload orchestration allows you to manage resources such as schemas, solution templates, and configuration templates as Bicep templates stored in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart). Leveraging pre-configured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
 
 This article describes how to set up your GitHub repository for managing the lifecycle of workload orchestration resources.
 
 ## How it works
 
-Your GitHub repository uses a single Bicep template `main.bicep` that declares all of your workload orchestration resources. Two GitHub Actions workflows enforce validation and synchronization between your repository and Azure account to manage the declared resources. The following are the steps in this workflow:
+Your GitHub repository uses the Bicep template `main.bicep` to declare all of your workload orchestration resources. Two GitHub Actions workflows enforce validation and synchronization between your repository and Azure account to manage the declared resources. The following are the steps in this workflow:
 
 1. **Edit** `workload-orchestration/main.bicep` in a feature branch to add, update, or remove resource declarations.
 1. **Open a pull request** to the `main` branch. The validation workflow runs automatically and:
@@ -78,7 +78,7 @@ For more information about deployment stack roles, see [Deployment stacks built-
 
 To set up Git-based management of workload orchestration resources:
 
-1. **Fork this [repository](https://github.com/manaswita-chichili/GIT_POC/)** into your GitHub account or organization.
+1. **Fork this [repository](https://github.com/Azure/workload-orchestration-quickstart)** into your GitHub account or organization.
 1. **Set up Azure authentication** by following [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/azure/developer/github/connect-from-azure). Then store `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_SUBSCRIPTION_ID` as repository secrets.
 1. **Configure deployment settings** in `workload-orchestration/config.yaml`:
 
@@ -165,6 +165,36 @@ Controls what happens to *resource groups* when they're removed from the templat
 |---|---|
 | `detach` | Default. Resource groups remain in Azure but are no longer tracked. |
 | `delete` | Resource groups are deleted from Azure. |
+
+## Included Modules
+
+The `modules/` folder contains optional, reusable Bicep modules that provide helper functions for defining Workload Orchestration resources. You can use them, extend them, or remove them as needed.
+
+### `solutionTemplate.bicep`
+
+Exports a `HelmChart` function that builds the component structure for a Helm-based solution template. Pass in a chart repo URL and version, and it returns the correctly shaped specification object.
+
+**Usage:**
+```bicep
+import { HelmChart } from 'modules/solutionTemplate.bicep'
+
+resource solutionTemplateVersion 'Microsoft.Edge/solutionTemplates/versions@2026-03-01' = {
+  parent: solutionTemplate
+  name: '1.0.0'
+  properties: {
+    configurations: $$'''
+      schema:
+        name: $${schema.name}
+        version: $${schemaVersion.name}
+      configs:
+        ErrorThreshold: ${{$val(ErrorThreshold)}}
+    '''
+    specification: HelmChart('<repo url>', '<version>')
+  }
+}
+```
+
+You can add more helper functions to this module or create new modules for schemas and config templates as your project grows.
 
 ## Resource deployment scope
 

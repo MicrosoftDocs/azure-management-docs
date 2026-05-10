@@ -10,9 +10,9 @@ ms.custom:
 # Customer intent: As a developer working with workload orchestration, I want to create a basic solution template with common configurations using CLI commands, so that I can streamline my deployment process and manage application dependencies effectively.
 ---
 
-# Create a basic solution with common configurations
+# Deploy a basic solution with common configurations
 
-In this guide, you create a basic solution with common configurations using the workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies. The common configurations are used to define the configurable attributes at each hierarchical level that can be used for a particular solution.
+In this guide, you create a basic solution with common configurations using the workload orchestration via CLI. The common configurations are enabled by defining the configurable attributes at each hierarchical level that can be used for a particular solution.
 
 
 ## Prerequisites
@@ -33,10 +33,6 @@ Create the template and schema files by referring to *common-config.yaml*, *comm
 subId="<SUBSCRIPTION_ID>"
 rg="<RESOURCE_GROUP_NAME>"
 l="<LOCATION>"
-contextName="<CONTEXT_NAME>"
-contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
-siteName="<SITE_NAME>"
-siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
 childName="<TARGET_NAME>"
 
 # Create variables for schema
@@ -46,16 +42,12 @@ schemaName="Common schema"
 schemaFile="common-schema.yaml"
 # Enter schema version in x.x.x format
 schemaVersion="1.0.0"
-# Enter name for common config
-configName="common-config"
-# Enter config file name
+# Enter name for hierarchical configuration template
+configName="CommonConfig"
+# Enter hierarchical config file name
 configFile="common-config.yaml"
-# Enter config version name
+# Enter hierarchical config version name
 configVersion="1.0.0"
-
-# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
-#  SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
-#  LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
 
 # Create variables for application/solution
 # Enter name of application
@@ -77,10 +69,6 @@ appConfig="app-config-template.yaml"
 $subId="<SUBSCRIPTION_ID>"
 $rg="<RESOURCE_GROUP_NAME>"
 $l="<LOCATION>"
-$contextName="<CONTEXT_NAME>"
-$contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
-$siteName="<SITE_NAME>"
-$siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
 $childName="<TARGET_NAME>"
 
 # Create variables for schema
@@ -90,16 +78,12 @@ $schemaName = "Common schema"
 $schemaFile = "common-schema.yaml"
 # Enter schema version in x.x.x format
 $schemaVersion = "1.0.0"
-# Enter name for common config
-$configName = "common-config"
-# Enter config file name
+# Enter name for hierarchical configuration template
+$configName = "CommonConfig"
+# Enter hierarchical config file name
 $configFile = "common-config.yaml"
-# Enter config version name
+# Enter hierarchical config version name
 $configVersion = "1.0.0"
-
-# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
-#  SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
-#  LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
 
 # Create variables for application/solution
 # Enter name of application
@@ -124,28 +108,18 @@ Create the schema file by referring to *common-schema.yaml* from [GitHub reposit
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-You can provide version on file instead of as a CLI argument. Add below section to the *common-schema.yaml* file.
+You can provide schema name and version in schema file instead of as a CLI arguments. To do that, add below section to the *shared-schema.yaml* file and run the previous command without `--schema-name` and `--version` arguments.
 
 ```yaml
 metadata:
-name: <name> [optional]
-version: <version> [optional]
+    name: <name> [optional]
+    version: <version> [optional]
 ```
-
-Run the same CLI command without `--version argument`. The service takes version input from file.
-
-```azurecli
-az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --schema-file "$schemaFile"
-```
-
-The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--schema-name` argument.
 
 > [!TIP]
 > You can view the created schema using `az workload-orchestration schema version show --resource-group "$rg" --schema-name "$schemaName" --version "$schemaVersion"`
 
 ## Set the hierarchy configuration
-
-A hierarchy configuration template follows the same design and rules as that of a solution template, except that instead of defining the configuration parameters for a particular solution, it applies them to any target or Site in the hierarchy it is linked to, which can be used as common configurations for any solutions deployed on those targets.
 
 1. Create the hierarchy configuration template.
 
@@ -168,14 +142,19 @@ A hierarchy configuration template follows the same design and rules as that of 
     ```
 
 > [!NOTE]
-> You can also link a configuration template to a specific target instead of a hierarchy, by specifying the target ID as value for parameter --hierarchy-ids. 
+> You can also link a configuration template to a specific target instead of a Site, by specifying the target ID as value for parameter --hierarchy-ids. 
 ***
 
 ## Create the solution template 
 
 Follow these steps to create a solution template for your application.
 
-1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*. Update the *app-config-template.yaml* file with proper reference to your schema which you created in the above step.
+1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*. Update the *app-config-template.yaml* file with proper reference to your schema which you created in the above step, and add the following new configs to it.
+
+    ```yaml
+    SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
+    LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
+    ```
 
 1. Create the solution template resource.
 

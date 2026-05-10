@@ -3,41 +3,35 @@ items:
     href: index.yml
   - name: Overview
     href: overview.md
-  - name: Product Guide
+  - name: Concepts
     items:
-    - name: Infrastructure Management
-      items: 
-      - name: Set up workload orchestration
-        href: setup-workload-orchestration.md
-      - name: Onboard using scripts
-        href: onboarding-scripts.md
-    - name: Application management
-      items:
-      - name: Deploy a basic solution
-        href: solution-without-common-configuration.md
-      - name: Deploy a solution with common configuration
-        href: solution-with-common-configuration.md
-      - name: Perform a bulk deployment
-        href: bulk-deployment.md
-      - name: Stage a solution before deployment
-        href: how-to-stage.md
-      - name: Create a solution with dependency
-        href: solution-shared-adapter-dependency.md
-      - name: Enable external validation
-        href: external-validation.md
+    - name: Architecture
+      href: architecture.md
+    - name: Resource model
+      href: resource-model.md
+    - name: Configuration model
+      href: configuration-model.md
+  - name: Tutorial
+    items:
+    - name: Set up workload orchestration
+      href: setup-workload-orchestration.md
+    - name: Deploy a basic solution
+      href: solution-without-common-configuration.md
+    - name: Deploy a solution with common configuration
+      href: solution-with-common-configuration.md
+    - name: Perform a bulk deployment
+      href: bulk-deployment.md
+    - name: Stage a solution before deployment
+      href: how-to-stage.md
+    - name: Enable external validation
+      href: external-validation.md
     - name: Git-based resource management
       href: workload-orchestration-multicluster-git.md
-    - name: RBAC guide 
-      href: rbac-guide.md
-    - name: Clean-up
-      href: delete-resources.md
-  - name: Tutorials
-    items:
-    - name: Create a solution with multiple shared dependencies
-      href: tutorial-service-group-scenario-3.md
-    - name: Create multiple solutions with a single shared dependency
-      href: tutorial-service-group-scenario-4.md
-  - name: Workload orchestration portal
+    - name: Onboard using scripts
+      href: onboarding-scripts.md
+    - name: Create a solution with dependency
+      href: solution-shared-adapter-dependency.md
+  - name: Portal
     items:
     - name: User guide 
       href: portal-user-guide.md
@@ -49,12 +43,8 @@ items:
       href: monitor.md
   - name: Developer reference and support
     items:
-    - name: Workload orchestration SDK
+    - name: SDK
       href: workload-orchestration-sdk.md
-    - name: Migration script for GA
-      href: migration-script.md
-    - name: PUT, PATCH, and DELETE operations
-      href: put-patch-delete.md
     - name: Troubleshoot
       items:
       - name: Troubleshooting guide
@@ -63,5 +53,9 @@ items:
         href: diagnose-problems.md
       - name: Known issues
         href: known-issues.md
+    - name: RBAC guide 
+      href: rbac-guide.md
+    - name: Delete resources
+      href: delete-resources.md
     - name: Release notes
       href: release-notes.md
