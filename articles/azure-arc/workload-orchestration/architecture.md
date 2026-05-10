@@ -6,7 +6,7 @@ ms.custom:
   - build-2025
 author: nathmanish
 ms.author: nathmanish
-ms.topic: architecture
+ms.topic: workload-orchestration-architecture
 ms.date: 05/10/2026
 # Customer intent: "As an IT admin, I want to onboard onto workload orchestration."
 ---

@@ -29,7 +29,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 - **Simplified CLI experience**: Workload Orchestration now provides a simplified CLI experience that streamlines common workflows by consolidating multi-step operations like cluster setup, hierarchy creation and solution deployment into fewer commands with reduced manual configuration. This improves usability, reduces the risk of errors, and enables faster onboarding and deployment.
 
-- Schema, solution templates and hierarchy configuration templates now offer additional support for resource management using [PUT, PATCH and DELETE operations](put-patch-delete.md).
+- Schema, solution templates and hierarchy configuration templates now offer additional support for resource management using PUT, PATCH and DELETE operations.
 
 ### Bug fixes
 
@@ -229,7 +229,7 @@ Resolved an issue related to the timestamp not being displayed correctly for few
 
 Workload orchestration is now generally available (GA) in Azure Arc. This release includes all the features and improvements that were previously in preview, along with additional enhancements.
 
-To migrate your existing workload orchestration target resources to the GA version, see [Migration script for workload orchestration](migration-script.md).
+To migrate your existing workload orchestration target resources to the GA version, refer to the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration).
 
 ### New features
 

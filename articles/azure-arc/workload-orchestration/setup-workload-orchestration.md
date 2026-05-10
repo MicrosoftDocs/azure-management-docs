@@ -6,7 +6,7 @@ ms.custom:
   - build-2025
 author: nathmanish
 ms.author: nathmanish
-ms.topic: install-deploy
+ms.topic: setup-workload-orchestration
 ms.date: 11/04/2025
 # Customer intent: "As an IT admin, I want to onboard onto workload orchestration."
 ---
@@ -29,18 +29,16 @@ This article walks you through the process of onboarding Workload Orchestration 
   winget install -e --id Kubernetes.kubectl
   ```  
 
-* An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
+* An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md). The workload orchestration Arc extension doesn't support Arm-based architecture nodes, so make sure your cluster uses a non-Arm virtual machine and meets the following requirements:
 
-    > [!NOTE]
-    > The workload orchestration Arc extension doesn't support Arm-based architecture nodes. If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine. Your virtual machines should also meet the following requirements:
-    >| Cluster Type | RAM | CPUs | Disk |
-    >|---|---|---|---|
-    >| Single node K3s | Minimum 4 GB | 2 | — |
-    >| Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
+    | Cluster Type | RAM | CPUs | Disk |
+    |---|---|---|---|
+    | Single node K3s | Minimum 4 GB | 2 | — |
+    | Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
 
 ## Set up workload orchestration CLI
 
-All sample input files required in this quide can be downloaded from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
+All sample input files required in this quide can be downloaded from the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
 [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 
@@ -52,7 +50,6 @@ All sample input files required in this quide can be downloaded from the [worklo
     az login
     ```
 
-1. After you sign in, Azure CLI displays all of your subscriptions and indicates your default subscription with an asterisk `*`. 
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```bash
@@ -94,7 +91,6 @@ All sample input files required in this quide can be downloaded from the [worklo
     az login
     ```
 
-1. After you sign in, Azure CLI displays all of your subscriptions and indicates your default subscription with an asterisk `*`. 
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```powershell
@@ -221,7 +217,7 @@ All sample input files required in this quide can be downloaded from the [worklo
 
 ## Set up the workload orchestration resources
 
-1. Create the [Site hierarchy](resource-model#hierarchy). You can choose between the following two types of hierarchies based on your requirements.
+1. Create the [Site hierarchy](resource-model.md#hierarchy). You can choose between the following two types of hierarchies based on your requirements.
 
     ### [Resource Group Hierarchy](#tab/resource-group-hierarchy) 
 
