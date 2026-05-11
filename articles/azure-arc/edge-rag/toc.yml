@@ -20,7 +20,7 @@ items:
           - name: Install Agents and Tools with Foundry Local
             href: quickstart-edge-rag.md
           - name: Query your data
-            href: create-agent-quickstart.md
+            href: quickstart-edge-rag.md
       - name: Plan
         items:
           - name: Requirements

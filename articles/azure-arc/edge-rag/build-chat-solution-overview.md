@@ -137,7 +137,7 @@ If you deployed in combined mode, AI agents can access your ingested collections
 1. Create [Knowledge Sources](knowledge-sources-guide.md) pointing to your collections (using `kind: indexed_sources_mcp` with `indexed_source_ref` = collection name).
 1. Group them into a [Knowledge Base](knowledge-bases-guide.md) by linking them to your default knowledge base.
 
-For a full walkthrough, see [Query your data quickstart](create-agent-quickstart.md).
+For a full walkthrough, see [Query your data quickstart](quickstart-edge-rag.md).
 
 ## Related content
 

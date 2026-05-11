@@ -57,7 +57,7 @@ Complete API documentation for: Agents Runtime, Knowledge Base Manager, Knowledg
 For more information, see the following articles:
 
 - [Agentic Layer Overview](agentic-overview.md) — Architecture and concepts
-- [Query Your Data Quickstart](create-agent-quickstart.md) — End-to-end tutorial
+- [Query Your Data Quickstart](quickstart-edge-rag.md) — End-to-end tutorial
 - [Collections Overview](collections-overview.md) — Collection architecture and RBAC
 - [MCP Server Overview](mcp-server-overview.md) — Built-in and external MCP servers
 
