@@ -1,5 +1,5 @@
 ---
-title: Prepare Your Language Model for Agents and Tools with Foundry Local
+title: Choose Your Language Model for Agents and Tools with Foundry Local
 description: "Learn how to choose a language model and understand endpoint requirements for your Agents and Tools with Foundry Local deployment using the Bring Your Own Model (BYOM) approach."
 author: cwatson-cat
 ms.author: cwatson
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Prepare your language model for Agents and Tools with Foundry Local
+# Choose your language model for Agents and Tools with Foundry Local
 
 Agents and Tools with Foundry Local requires an external language model (Bring Your Own Model). This article helps you choose the right model and understand the endpoint options for your deployment.
 
