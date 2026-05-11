@@ -122,7 +122,6 @@ When you allow collection of [advanced diagnostic information](https://azure.mic
 - [Microsoft Azure PaaS VM logs](/troubleshoot/azure/virtual-machines/sdp352ef8720-e3ee-4a12-a37e-cc3b0870f359-windows-vm)
 - [Microsoft Azure IaaS VM logs](https://github.com/azure/azure-diskinspect-service/blob/master/docs/manifest_by_file.md)
 - [Microsoft Azure Service Fabric logs](/troubleshoot/azure/general/fabric-logs)
-- [StorSimple support packages and device logs](https://support.microsoft.com/topic/storsimple-support-packages-and-device-logs-cb0a1c7e-6125-a5a7-f212-51439781f646)
 - [Microsoft Entra logs](/troubleshoot/azure/active-directory/support-data-collection-diagnostic-logs)
 - [Azure Stack Edge support package and device logs](/troubleshoot/azure/general/azure-stack-edge-support-package-device-logs)
 - [Azure Synapse Analytics logs](/troubleshoot/azure/general/synapse-analytics-apache-spark-pools-diagnostic-logs)
