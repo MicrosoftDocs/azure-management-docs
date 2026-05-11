@@ -57,7 +57,7 @@ The resources and components in the diagram form the core infrastructure for Age
   - Milvus vector database + PostgreSQL metadata store
 
 - **External** (customer-managed):
-  - LLM endpoint (BYOM) — FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint
+  - LLM endpoint (BYOM) — Foundry Local on Azure Local, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint
 
   Use a driver machine (local management host) to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
@@ -67,7 +67,7 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 When you deploy Agents and Tools with Foundry Local, set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
+- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: Foundry Local on Azure Local, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
 - **Deployment mode:** Choose which layers to deploy by using the `layerSelection` parameter:
   - `combined` (default) — full platform with both layers
   - `agentic` — agents, knowledge bases, KT/KS, MCP server only (no GPUs required)
