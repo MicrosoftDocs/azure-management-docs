@@ -20,6 +20,36 @@ After you create your endpoint, use it when you [deploy the Agents and Tools wit
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
+## Choose a setup method
+
+### Recommended methods
+
+Start with one of these Microsoft-supported options when you want the most reliable setup experience.
+
+| Method | Description | Best for |
+|---|---|---|
+| **[Foundry Local on Azure Local](#foundry-local)** | Deploy models on your Arc-connected cluster by using the Foundry Local extension. | Production deployments with Azure-managed models. |
+| **[Microsoft Foundry](#microsoft-foundry)** | Deploy cloud-hosted models through the Foundry portal. | Cloud-connected deployments with managed models. |
+
+### Other methods
+
+Use one of these options when your environment needs a different hosting model or a custom OpenAI-compatible endpoint.
+
+| Method | Description | Best for |
+|---|---|---|
+| **[KAITO](#kaito)** | Kubernetes AI Toolchain Operator for model hosting on AKS. | On-premises model hosting with GPU support. |
+| **[Ollama](#ollama)** | Lightweight model server running on your cluster. | Development, testing, and CPU-only scenarios. |
+| **Any OpenAI-compatible endpoint** | Any service exposing `/v1/chat/completions`. | Custom or third-party model servers. |
+
+## Foundry Local
+
+Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry Local extension. Foundry Local is currently a CLI-based experience.
+
+> [!IMPORTANT]
+> If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
+
+For setup instructions, see [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
+
 ## Microsoft Foundry
 
 To use your own model with Agents and Tools with Foundry Local, deploy a language model and create an endpoint by using Foundry.
@@ -56,10 +86,6 @@ For more information, see the following articles:
 ## KAITO
 
 To deploy an AI model by using Kubernetes AI Toolchain Operator (KAITO) on Azure Kubernetes, see [Deploy an AI model on AKS enabled by Azure Arc with the Kubernetes AI toolchain operator](/azure/aks/aksarc/deploy-ai-model?tabs=azurecli).
-
-## Foundry Local
-
-To deploy an AI model using Foundry Local, see [GitHub - microsoft/Foundry-Local](https://github.com/microsoft/Foundry-Local).
 
 ## Ollama
 
