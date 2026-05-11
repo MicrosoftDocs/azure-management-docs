@@ -6,7 +6,7 @@ ms.custom:
   - build-2025
 author: nathmanish
 ms.author: nathmanish
-ms.topic: workload-orchestration-architecture
+ms.topic: conceptual
 ms.date: 05/10/2026
 # Customer intent: "As an IT admin, I want to onboard onto workload orchestration."
 ---
@@ -21,4 +21,4 @@ The workload orchestration architecture consists of a control plane in Azure and
 
 :::image type="content" source="./media/workload-orchestration-architecture.png" alt-text="Diagram of the workload orchestration architecture" lightbox="./media/workload-orchestration-architecture.png":::
 
-Users can interact with workload orchestration through any of the 3 interfaces: portal, Azure CLI and SDK. At its core, the cloud-based control plane leverages a dedicated Azure resource manager as the primary entry point for all operations. All client requests processed by Azure resource manager are passed on to the workload orchestration service, that validates the configurations and prepares the deployment templates. These templates are then consumed by workload orchestration Arc agents installed and running on the on-premises Kubernetes clusters at edge locations, that deploy the user workloads and apply the necessary customizations for each site.
+Users can interact with workload orchestration through any of the 3 interfaces: portal, Azure CLI and SDK. At its core, the cloud-based control plane leverages a dedicated Azure resource manager as the primary entry point for all operations. All client requests processed by Azure resource manager are passed on to the workload orchestration service, that validates the configurations and prepares the deployment templates. These templates are then transferred to the edge environment through the K8s bridge, where they are consumed by workload orchestration Arc agents installed and running on the on-premises Kubernetes clusters, that deploy the user workloads and apply the necessary customizations for each site.
