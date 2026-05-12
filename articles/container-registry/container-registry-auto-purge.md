@@ -196,6 +196,45 @@ az acr task create --name weeklyPurgeTask \
   --context /dev/null
 ```
 
+## Purge in ABAC-enabled registries
+
+Registries with Attribute-Based Access Control (ABAC) enabled use repository-scoped permissions instead of registry-wide roles. The `acr purge` command automatically detects ABAC-enabled registries and adjusts its authentication — no additional flags are needed.
+
+Because ABAC registries don't support wildcard token scopes, `acr purge` processes repositories in **batches** (default: 10). For each batch, a new access token scoped to only those repositories is requested.
+
+### Required permissions
+
+| Permission | Role | Scope |
+|---|---|---|
+| List repositories | `Container Registry Repository Catalog Lister` | Registry |
+| Read, delete, and manage tags and manifests | `Container Registry Repository Contributor` | Per-repository |
+
+> [!NOTE]
+> You can use ABAC conditions to scope the `Container Registry Repository Contributor` role to specific repositories — for example, granting delete access only to `samples/*`.
+
+### Partial access behavior
+
+If `--filter` matches repositories your identity can't purge, the command stops at the first unauthorized repository and reports which repositories were completed, which failed, and which were not yet processed.
+
+> [!TIP]
+> Use a specific `--filter` that targets only repositories your identity has access to. For example, use `--filter 'samples/.*:.*'` instead of `--filter '.*:.*'`.
+
+### Configure batch size
+
+Adjust the batch size with the `ABAC_BATCH_SIZE` environment variable:
+
+```azurecli
+PURGE_CMD="acr purge --filter 'samples/.*:.*' --ago 7d"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  --set ABAC_BATCH_SIZE=5 \
+  /dev/null
+```
+
+Decrease the batch size if you encounter token size errors, or increase it to reduce the number of token refresh requests.
+
 ## Next steps
 
 Learn about other options to [delete image data](container-registry-delete.md) in Azure Container Registry.
