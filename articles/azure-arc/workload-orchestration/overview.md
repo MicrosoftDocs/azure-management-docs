@@ -16,9 +16,9 @@ Workload orchestration is a centralized approach to deploying, configuring, and 
 
 ## What are the key features of workload orchestration?
 
-- **Centralized deployment:** Deploy applications across multiple targets from a single control plane, eliminating manual on-site operations.
+- **Centralized deployment:** Deploy applications across multiple clusters from a single control plane, eliminating manual on-site operations.
 - **Configuration management:** Apply environment-specific configurations while maintaining a consistent deployment blueprint.
-- **Lifecycle management:** Handle upgrades, rollbacks, and version control seamlessly across all targets.
+- **Lifecycle management:** Handle upgrades, rollbacks, and version control seamlessly for all deployments.
 - **Scalability:** Rapidly scale application rollouts across thousands of sites with minimal operational overhead.
 - **Observability:** Monitor deployments status, workload health and compliance from a [centralized dashboard](https://portal.digitaloperations.configmanager.azure.com).
 
@@ -29,6 +29,8 @@ Workload orchestration operates in two key steps:
 - Setup: It is a one-time operation that prepares your environment for workload deployments. It involves initializing workload orchestration on existing ARC connected Kubernetes infrastructure, and provisioning targets that map to particular namespaces within the clusters where the applications are to be deployed.
 
 - Deploy: With setup in place, you can begin deploying applications consistently across your targets. This involves creating a blueprint for the application to be deployed, and leveraging the same consistently across all relevant targets.
+
+To get started with workload orchestration, refer to the [setup guide](setup-workload-orchestration.md).
 
 ## Contact support
 
