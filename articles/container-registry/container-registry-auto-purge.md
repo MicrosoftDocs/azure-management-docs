@@ -20,7 +20,7 @@ To delete multiple artifacts quickly, use the `acr purge` command. You can run `
 > `acr purge` is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.17`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
+The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.19`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
 
 Use the Azure Cloud Shell or a local installation of the Azure CLI to run the ACR task examples in this article. To install or upgrade, see [Install Azure CLI][azure-cli-install].
 
