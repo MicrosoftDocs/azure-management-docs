@@ -212,6 +212,22 @@ Because ABAC registries don't support wildcard token scopes, `acr purge` process
 > [!NOTE]
 > You can use ABAC conditions to scope the `Container Registry Repository Contributor` role to specific repositories — for example, granting delete access only to `samples/*`.
 
+### Purging without list permissions
+
+If your identity doesn't have `Container Registry Repository Catalog Lister` permissions, you can still purge tags and manifests within a single repository by specifying it directly in the `--filter` option. Because the repository name is explicit, `acr purge` doesn't need to list repositories. For example:
+
+```azurecli
+PURGE_CMD="acr purge --filter 'hello-world:.+' \
+  --ago 1d"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
+```
+
+In this case, only the `Container Registry Repository Contributor` role (or equivalent read/delete permissions) on the target repository is required.
+
 ### Partial access behavior
 
 If `--filter` matches repositories your identity can't purge, the command stops at the first unauthorized repository and reports which repositories were completed, which failed, and which were not yet processed.
