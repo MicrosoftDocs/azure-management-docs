@@ -22,6 +22,8 @@ After you create your endpoint, use it when you [deploy the Agents and Tools wit
 
 ## Choose a setup method
 
+Choose a method based on your environment, connectivity, and production requirements.
+
 ### Recommended methods
 
 Start with one of these Microsoft-supported options when you want the most reliable setup experience.
