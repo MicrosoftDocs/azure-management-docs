@@ -54,7 +54,8 @@ At a minimum, specify the following options when you run `acr purge`:
 * `--dry-run` - Specifies that no data is deleted, but the command produces the same output as if the command is run without this flag. This parameter is useful for testing a purge command to make sure it doesn't inadvertently delete data you intend to preserve.
 * `--keep` - Specifies the latest number of to-be-deleted tags per repository that are retained. The latest tags are determined by the last modified time of the tag for each repository matched by the provided `--filter` options.
 * `--concurrency` - Specifies a number of purge tasks to process concurrently.
-
+* `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. When this flag is used, `--filter` and `--ago` become optional. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests.
+  
 > [!NOTE]
 >  The --untagged parameter honors the --ago duration filter beginning with mcr.microsoft.com/acr/acr-cli:0.17.
 
@@ -194,6 +195,21 @@ az acr task create --name weeklyPurgeTask \
   --schedule "0 1 * * Sun" \
   --registry myregistry \
   --context /dev/null
+```
+
+### Example: Purge Only Untagged Manifests with `--untagged-only`
+
+The `--untagged-only` flag provides a simpler way to clean up dangling manifests without deleting any tags. Unlike `--untagged`, which removes untagged manifests *in addition to* tag deletions, `--untagged-only` skips tag deletion entirely.
+
+To purge all untagged manifests across every repository in the registry:
+
+```azurecli
+PURGE_CMD="acr purge --untagged-only"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
 ```
 
 ## Purge in ABAC-enabled registries
