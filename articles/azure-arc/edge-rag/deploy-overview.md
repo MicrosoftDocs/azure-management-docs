@@ -57,7 +57,7 @@ The resources and components in the diagram form the core infrastructure for Age
   - Milvus vector database + PostgreSQL metadata store
 
 - **External** (customer-managed):
-  - LLM endpoint (BYOM) — FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint
+  - LLM endpoint (BYOM) — Foundry Local on Azure Local, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint
 
   Use a driver machine (local management host) to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
@@ -67,7 +67,7 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 When you deploy Agents and Tools with Foundry Local, set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
+- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: Foundry Local on Azure Local, KAITO, Azure OpenAI, or any OpenAI-compatible endpoint. For the best results with deep search, use a model like GPT-4o or GPT-4.1-mini or later.
 - **Deployment mode:** Choose which layers to deploy by using the `layerSelection` parameter:
   - `combined` (default) — full platform with both layers
   - `agentic` — agents, knowledge bases, KT/KS, MCP server only (no GPUs required)
@@ -86,7 +86,7 @@ The deployment process for Agents and Tools with Foundry Local consists of the f
 | 2. Deploy the Agents and Tools with Foundry Local extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), configure your BYOM endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agents and Tools with Foundry Local extension](deploy.md). <br><br>After deployment, [configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).|
 | 3. Validate the deployment               | After you deploy the extension, check that the Agents and Tools with Foundry Local extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure Knowledge Layer               | If you deployed in combined or knowledge mode, configure the Knowledge Layer: set up collections, add data sources, configure the user experience, and test the setup. See [Add a data source for Agents and Tools with Foundry Local](add-data-source.md), [Configure the chat solution](build-chat-solution-overview.md), and [Test the chat solution](test-end-user-app.md). |
-| 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources and link them to your default knowledge base to build intelligent assistants. See the [Query your data quickstart](create-agent-quickstart.md). |
+| 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources and link them to your default knowledge base to build intelligent assistants. See the [Query your data quickstart](quickstart-edge-rag.md). |
 | 6. Monitor and evaluate your deployment  | After deploying Agents and Tools with Foundry Local, monitor system health, track performance, and evaluate the quality of your AI solution. Use built-in metrics and evaluation tools to observe, assess, and optimize your deployment. See [Evaluate the Agents and Tools with Foundry Local system](evaluate-solution.md) and [Monitor Agents and Tools with Foundry Local](observability.md). |
 
 ## Related content

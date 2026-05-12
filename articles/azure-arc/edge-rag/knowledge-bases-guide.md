@@ -137,5 +137,5 @@ The response includes cursor-based pagination with `after` and `before` paramete
 
 - [Configure a knowledge source](knowledge-sources-guide.md)
 - [The agentic layer in Agents and Tools with Foundry Local](agentic-overview.md)
-- [Quickstart: Query your data with Agents and Tools with Foundry Local](create-agent-quickstart.md)
+- [Quickstart: Query your data with Agents and Tools with Foundry Local](quickstart-edge-rag.md)
 <!-- - [Knowledge Base Manager API reference](APIs/knowledge-base-manager-api.md) -->
