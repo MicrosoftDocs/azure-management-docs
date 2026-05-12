@@ -4,7 +4,7 @@ description: Learn how to enable the localhost token endpoint for Azure Containe
 author: jswoodward
 ms.author: jawoodwa
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 05/12/2026
 ms.reviewer: sethm
 
 # CustomerIntent: As a Kubernetes administrator, I want to reduce the security privileges required by the identity adapter sidecar in Azure Container Storage enabled by Azure Arc.

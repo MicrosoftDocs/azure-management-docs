@@ -19,6 +19,11 @@ This article provides information about new features in Azure Container Storage 
 > Azure Container Storage enabled by Azure Arc is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
+## Version 2.12.0
+
+- Security updates and bug fixes.
+- Added support for the localhost token endpoint, which allows the identity adapter sidecar to run without elevated network privileges. For more information, see [Enable reduced-privilege identity access](howto-enable-local-identity-access.md).
+
 ## Version 2.11.2
 
 - Security updates and bug fixes​.
