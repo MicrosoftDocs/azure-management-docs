@@ -68,7 +68,7 @@ All search types are available with Agents and Tools with Foundry Local, since a
 | Deep search | Yes (for best results, use GPT-4o or GPT-4.1-mini or later) |
 | Hybrid multimodal search | Yes |
 
-For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Prepare your language model endpoint](prepare-language-model.md).
+For deep search, use GPT-4o, GPT-4.1-mini, or a later version. For more information, see [Choose your language model](prepare-language-model.md).
 
 For more information about deploying with a language model, see:
 
