@@ -4,7 +4,7 @@ description: Learn about new features in Azure Container Storage enabled by Azur
 author: sethmanheim
 ms.author: sethm
 ms.topic: release-notes
-ms.date: 02/25/2026
+ms.date: 05/12/2026
 
 # Customer intent: "As a cloud administrator, I want to review the latest release notes for Azure Container Storage enabled by Azure Arc, so that I can understand the new features and improvements to manage container data effectively."
 ms.custom:
@@ -18,6 +18,11 @@ This article provides information about new features in Azure Container Storage 
 > [!IMPORTANT]
 > Azure Container Storage enabled by Azure Arc is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+## Version 2.12.0
+
+- Security updates and bug fixes.
+- Added support for the localhost token endpoint, which allows the identity adapter sidecar to run without elevated network privileges. For more information, see [Enable reduced-privilege identity access](howto-enable-local-identity-access.md).
 
 ## Version 2.11.2
 
