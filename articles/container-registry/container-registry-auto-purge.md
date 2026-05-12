@@ -219,22 +219,6 @@ If `--filter` matches repositories your identity can't purge, the command stops 
 > [!TIP]
 > Use a specific `--filter` that targets only repositories your identity has access to. For example, use `--filter 'samples/.*:.*'` instead of `--filter '.*:.*'`.
 
-### Configure batch size
-
-Adjust the batch size with the `ABAC_BATCH_SIZE` environment variable:
-
-```azurecli
-PURGE_CMD="acr purge --filter 'samples/.*:.*' --ago 7d"
-
-az acr run \
-  --cmd "$PURGE_CMD" \
-  --registry myregistry \
-  --set ABAC_BATCH_SIZE=5 \
-  /dev/null
-```
-
-Decrease the batch size if you encounter token size errors, or increase it to reduce the number of token refresh requests.
-
 ## Next steps
 
 Learn about other options to [delete image data](container-registry-delete.md) in Azure Container Registry.
