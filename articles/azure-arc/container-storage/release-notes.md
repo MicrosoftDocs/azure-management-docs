@@ -4,7 +4,7 @@ description: Learn about new features in Azure Container Storage enabled by Azur
 author: sethmanheim
 ms.author: sethm
 ms.topic: release-notes
-ms.date: 02/25/2026
+ms.date: 05/12/2026
 
 # Customer intent: "As a cloud administrator, I want to review the latest release notes for Azure Container Storage enabled by Azure Arc, so that I can understand the new features and improvements to manage container data effectively."
 ms.custom:
