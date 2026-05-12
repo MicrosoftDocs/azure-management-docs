@@ -266,11 +266,7 @@ az group delete `
    --no-wait
 ```
 
-## Next steps
+## Next step
 
-Now that you deployed Agents and Tools with Foundry Local:
-
-1. Add a data source and configure the Knowledge Layer. See [Add a data source](add-data-source.md).
-1. **Query your data.** See [Query Your Data Quickstart](create-agent-quickstart.md) to set up a knowledge source, link it to your default knowledge base, and run a conversation with streaming.
-
-
+> [!div class="nextstepaction"]
+> [Add a data source](add-data-source.md)

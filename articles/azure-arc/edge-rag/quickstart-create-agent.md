@@ -17,14 +17,15 @@ In this quickstart, you query your data with Agents and Tools with Foundry Local
 
 ## Prerequisites
 
-- Agents and Tools with Foundry Local deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-3 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead.
-- A *bring-your-own-model (BYOM) endpoint*: an LLM that exposes an OpenAI-compatible chat completions API (for example, FoundryOnArc, KAITO, or Azure OpenAI) configured at the cluster level during deployment through Helm values (`byom.apiEndpoint`).
+Before you begin, make sure you have:
+
+- Agents and Tools with Foundry Local deployed in *combined* mode (default). If you deployed in *agentic* mode, skip Steps 2-3 and create a `remote_mcp` knowledge source that points to an external MCP server in Step 3 instead. See [Quickstart: Install Agents and Tools with Foundry Local](quickstart-edge-rag.md).
+- A *bring-your-own-model (BYOM) endpoint*: an LLM that exposes an OpenAI-compatible chat completions API (for example, Foundry Local on Azure Local, KAITO, or Azure OpenAI) configured at the cluster level during deployment through Helm values (`byom.apiEndpoint`).
 - Azure CLI installed and authenticated.
 - **curl** and **jq** installed.
 - NFS data source with documents to ingest.
 
-> [!NOTE]
-> Each deployment includes a default knowledge base that is automatically provisioned. You link knowledge sources to this default knowledge base.
+Each deployment includes a default knowledge base that is automatically provisioned. You link knowledge sources to this default knowledge base.
 
 ## Step 1: Get an access token
 

@@ -240,7 +240,7 @@ Follow this complete flow to create a knowledge source and link it to your defau
       }"
     ```
 
-The knowledge base is now ready to use. To create threads, send messages, and execute runs, see [Quickstart: Query your data](create-agent-quickstart.md).
+The knowledge base is now ready to use. To create threads, send messages, and execute runs, see [Quickstart: Query your data](quickstart-edge-rag.md).
 
 ## Related content
 

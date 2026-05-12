@@ -31,15 +31,26 @@ To choose the right model for your use case, refer to these resources from Micro
 
 ## Set up your BYOM endpoint
 
-Agents and Tools with Foundry Local works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access:
+Agents and Tools with Foundry Local works with any language model that exposes an OpenAI-compatible chat completions API endpoint. You can deploy your model locally by using one of the following methods, or use a cloud-hosted endpoint if your environment allows network access.
+
+### Recommended methods
+
+Start with one of these Microsoft-supported options when you want the most reliable setup experience.
 
 | Method | Description | Best for |
 |---|---|---|
-| **FoundryOnArc** | Deploy models on your Arc-connected cluster by using Azure AI Foundry. | Production deployments with Azure-managed models. |
+| **Foundry Local on Azure Local** | Deploy models on your Arc-connected cluster by using Azure AI Foundry. | Production deployments with Azure-managed models. |
+| **Microsoft Foundry** | Run models locally via Foundry Local. | Local development and evaluation. |
+
+### Other methods
+
+Use one of these options when your environment needs a different hosting model or a custom OpenAI-compatible endpoint.
+
+| Method | Description | Best for |
+|---|---|---|
 | **KAITO** | Kubernetes AI Toolchain Operator for model hosting on AKS. | On-premises model hosting with GPU support. |
 | **Azure OpenAI** | Cloud-hosted models via Azure OpenAI Service. | When cloud connectivity is available and acceptable. |
 | **Ollama** | Lightweight model server running on your cluster. | Development, testing, and CPU-only scenarios. |
-| **Foundry Local** | Run models locally via Microsoft Foundry Local. | Local development and evaluation. |
 | **Any OpenAI-compatible endpoint** | Any service exposing `/v1/chat/completions`. | Custom or third-party model servers. |
 
 For step-by-step setup instructions for each method, see [Create a BYOM endpoint](prepare-model-endpoint.md).
