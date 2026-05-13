@@ -26,6 +26,27 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!IMPORTANT]
 > Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
 
+## Version 1.64 - May 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+|**Guest Config**   |**1.29.109.0**|**1.26.110.0**||
+|Updated OpenSSL from 3.6.1 to 3.6.2.|✓|✓|Improvement|
+|Fixed security baseline customization report failing with invalid JSON due to long configuration parameter values.|✓|✓|Bug Fix|
+|Fixed compliance reporting for unknown Linux distributions in security baseline assignments to correctly report as non-compliant.||✓|Bug Fix|
+|Reduced network bandwidth for policy assignment requests.|✓|✓|Improvement|
+|**Azcmagent**|**1.64**|**1.64**||
+|Added Arc Gateway bypass list support so configured FQDNs skip the gateway and use the customer's enterprise proxy (or direct connection) instead.|✓|✓|Feature|
+|Added Ubuntu Pro subscription status to detected properties.||✓|Feature|
+|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures in locked down environments when intermediates are not cached|✓||Improvement|
+|HIMDS now refreshes its regional endpoint and retries the heartbeat when the service returns a 421 response.|✓|✓|Improvement|
+|Fixed an issue where `agentconfig.json` was unnecessarily read before onboarding, and added retry logic when saving the agent certificate to the cert store.|✓||Bug Fix|
+|Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
+|Updated Configuration UI to paginate Resource Graph subscription queries so all inherited subscriptions are returned.|✓||Improvement|
+|Added ESU eligibility to `azcmagent show` output.|✓|✓|Feature|
+
 ## Version 1.63 - April 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.63/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
