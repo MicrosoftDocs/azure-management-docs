@@ -47,7 +47,7 @@ IT DevOps can use the Azure portal to monitor their solutions. In the Azure port
 
     :::image type="content" source="./media/azure-portal-4.png" alt-text="Screenshot of the Azure portal showing how to change the view to monitor all resources in the Workload Orchestration menu." lightbox="./media/azure-portal-4.png":::
 
-1. In the **Hierarchy level** column, you can see the hierarchy level of the resources. Workload orchestration allows you to have an organization with a minimum of two and a maximum of four levels of hierarchy. For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
+1. In the **Hierarchy level** column, you can see the hierarchy level of the resources. Workload orchestration allows you to have an organization with a minimum of two and a maximum of four levels of hierarchy.
 
     :::image type="content" source="./media/azure-portal-hierarchy.png" alt-text="Screenshot of the Azure portal showing the hierarchy levels of the resources." lightbox="./media/azure-portal-hierarchy.png":::
 
@@ -67,6 +67,5 @@ IT DevOps can use the Azure portal to monitor their solutions. In the Azure port
 ## Related content
 
 - [RBAC guide](rbac-guide.md)
-- [Configuration template](configuring-template.md)
-- [Configuration schema](configuring-schema.md)
+- [Set up workload orchestration](set-up-workload-orchestration.md)
 - [Delete resources in workload orchestration](delete-resources.md)
