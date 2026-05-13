@@ -40,7 +40,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnect
 |**Azcmagent**|**1.64**|**1.64**||
 |Added Arc Gateway bypass list support so configured FQDNs skip the gateway and use the customer's enterprise proxy (or direct connection) instead.|✓|✓|Feature|
 |Added Ubuntu Pro subscription status to detected properties.||✓|Feature|
-|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures in locked down environments when intermediates are not cached|✓||Improvement|
+|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures in locked-down environments when intermediates are not cached.|✓||Improvement|
 |HIMDS now refreshes its regional endpoint and retries the heartbeat when the service returns a 421 response.|✓|✓|Improvement|
 |Fixed an issue where `agentconfig.json` was unnecessarily read before onboarding, and added retry logic when saving the agent certificate to the cert store.|✓||Bug Fix|
 |Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
