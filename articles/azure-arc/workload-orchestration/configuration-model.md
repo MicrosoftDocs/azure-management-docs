@@ -12,13 +12,12 @@ ms.date: 05/10/2026
 
 The configuration model operates on top of the resource model and focuses on how applications and their configurations are defined and applied. It is composed of three core components:
 
-- **Solution template**: Defines the application and its deployment artefacts
+- **Solution template**: Defines the application and its deployment artifacts
 - **Hierarchy configuration template**: Defines how configuration is applied to different hierarchy components
 - **Schema**: Defines configurable attributes and validation rules
 
 These components work together to enable consistent, reusable, and scalable configuration across distributed deployments.
 
----
 
 ## Solution template
 
@@ -32,8 +31,8 @@ A **solution template** defines the application to be deployed along with its co
 
 Solution templates are typically defined using:
 
-1. A YAML configuration template file defining the application parameters, template details and schema references.
-1. A JSON specification file specifying deployment artefacts like Helm chart details
+- A YAML configuration template file defining the application parameters, template details and schema references.
+- A JSON specification file specifying deployment artifacts like Helm chart details
 
 <details>
 <summary>Learn more</summary>
@@ -41,7 +40,7 @@ The building blocks of a solution template help you manage configurations dynami
 
 - **Variables**: Serve as placeholders for values that can be dynamically configured while deploying the solution.
 - **Conditionals**: Execute code based on specified conditions, enabling decision-making in templates.
-- **Functions**: Reusable code blocks that perform specific tasks, enhancing modularity and provides mechanism to incorporate configs from external config files or template promoting reusability.
+- **Functions**: Reusable code blocks that perform specific tasks, enhancing modularity and provide a mechanism to incorporate configs from external config files or template promoting reusability.
 
 ### Conditional Expressions
 
@@ -101,7 +100,7 @@ configs:
     ${{$include(LogSettingsConfig/1.0.0)}}:
 ```  
 
-You can also include only a subsection from `LogsettingsConfig`:
+You can also include only a subsection from `LogSettingsConfig`:
 
 ```yaml
 schema:
@@ -116,7 +115,6 @@ configs:
 
 </details>
 
----
 
 ## Hierarchy configuration template
 
@@ -126,7 +124,6 @@ This ensures that:
 - Global settings can be defined once and reused
 - Site-specific adjustments can be applied where needed
 
----
 
 ## Schema
 
@@ -156,7 +153,7 @@ rules:
       editableBy: # array of personas Ex: IT, OT who can edit the value. (optional)
       minValue: # minimum number  (optional)
       maxValue: # maximum number (optional)
-      defaultValue: # default value applicable for primitive types i.e. int, string, boolen, float (optional) 
+      defaultValue: # default value applicable for primitive types i.e. int, string, boolean, float (optional) 
       description: # string (optional)
       placeHolder: # place holder value applicable for string, int, float, boolean. (optional)
       label: # string to be displayed on the UI (optional)
@@ -181,7 +178,7 @@ The following constraints apply to the rules defined in the configuration schema
 
 ### Including and referencing rules from another schema
 
-Workload orchestration allows you to re-use a particular set of rules from another schema. For example, if you want to include full content from *LogSettingsSchema* in your current schema, use the `include` function as shown below.
+Workload orchestration allows you to reuse a particular set of rules from another schema. For example, if you want to include full content from *LogSettingsSchema* in your current schema, use the `include` function as shown below.
 
 ```yaml
 rules:
@@ -207,8 +204,8 @@ rules:
 
 Custom validation is supported using user defined expressions at two levels:
 
-1. **Per Rule Validation:** Uses `expression` (optional property) inside each rule. Suitable for validations that are constrained to a single configuration key.
-1. **Per Schema Validation:** Uses `validations` property that accepts a list of expressions. Suitable for validations that span across multiple configuration keys or the whole schema.
+- **Per Rule Validation:** Uses `expression` (optional property) inside each rule. Suitable for validations that are constrained to a single configuration key.
+- **Per Schema Validation:** Uses `validations` property that accepts a list of expressions. Suitable for validations that span across multiple configuration keys or the whole schema.
 
 These expressions need to return true (as boolean or string) to indicate success in validation.
 
@@ -245,26 +242,23 @@ validations:
 
 </details>
 
----
-
 
 ## Configuration resolution
 
 At deployment time, workload orchestration resolves configuration values by combining inputs from multiple levels:
 
-1. Schema definitions
-2. Solution template defaults
-3. Hierarchy configuration values
+- Schema definitions
+- Solution template defaults
+- Hierarchy configuration values
 
 Configuration is applied hierarchically, with lower levels overriding higher-level values where applicable.
 
----
 
 ## How the configuration model works together
 
 The configuration model operates as a layered system to achieve these objectives:
 - **Declarative configuration**: Define once and apply consistently
 - **Separation of definition and application**: Schemas define structure, templates define deployment
-- **Hierarchy-aware configuration**: Configuration is resolved based on organisational structure
+- **Hierarchy-aware configuration**: Configuration is resolved based on organizational structure
 - **Reusability**: Shared schemas and templates reduce duplication
 - **Version control**: Templates support versioned deployments

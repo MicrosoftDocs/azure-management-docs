@@ -18,13 +18,13 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](set-up-workload-orchestration.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
     [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Set up workload orchestration](setup-workload-orchestration.md).
+> You can reuse the global variables defined in [Set up workload orchestration](set-up-workload-orchestration.md).
 
 
 ## Description of the user scenario
@@ -74,11 +74,11 @@ Sample of an SSA configuration template:
 ```yaml            
 configs:
   AppName: SSA
-  DepedentAppConfigs: []   #It should be array or null
+  DependentAppConfigs: []   # It should be an array or null
 
 ```
 
-`AppConfig` of the FSAD configuration template changes at every target and target specific `AppConfig` gets injected into `DependantAppConfigs` of SSA configuration template.
+`AppConfig` of the FSAD configuration template changes at every target, and the target-specific `AppConfig` gets injected into `dependentAppConfigs` of the SSA configuration template.
 
 
 ## Define the variables for solution templating
@@ -284,7 +284,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 
 > [!NOTE]
 > Update the parameter `solutionTemplateId` under dependencies section of FSAD configuration template and schema with the SSA solution template ID.
-> The ``solution-template create` command displays the ID along with solution template version.
+> The `solution-template create` command displays the ID along with solution template version.
 >
 > ```bash
 > solutionTemplateId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
@@ -298,7 +298,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 
 > [!NOTE]
 > Update the parameter `solutionTemplateId` under dependencies section of FSAD configuration template and schema with the SSA solution template ID.
-> The ``solution-template create` command displays the ID along with solution template version.
+> The `solution-template create` command displays the ID along with solution template version.
 >
 > ```powershell
 > $solutionTemplateId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"

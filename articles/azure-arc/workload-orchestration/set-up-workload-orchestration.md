@@ -15,9 +15,8 @@ ms.date: 11/04/2025
 
 This article walks you through the process of onboarding Workload Orchestration for Azure Arc.
 
----
 
-## Pre-requisites
+## Prerequisites
 
 * An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * Role-Based Access Control (RBAC) enabled user role assignment. For more information, see [Role-Based Access Control (RBAC) guide](rbac-guide.md).
@@ -38,7 +37,7 @@ This article walks you through the process of onboarding Workload Orchestration 
 
 ## Set up workload orchestration CLI
 
-All sample input files required in this quide can be downloaded from the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
+All sample input files required in this guide can be downloaded from the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
 [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
 
@@ -146,7 +145,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     ```
 
     > [!TIP]
-    > You can choose to specify additional properties like name, version and release train of Arc extension, along with custom location details, by running `az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l" --release-train stable --extension-version 2.1.28  --extension-name "$extensionName" --custom-location-name "$customLocation"
+    > You can choose to specify other properties like name, version, and release train of Arc extension, along with custom location details, by running `az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l" --release-train stable --extension-version 2.1.28  --extension-name "$extensionName" --custom-location-name "$customLocation"
     
     On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory.
 
@@ -194,7 +193,7 @@ All sample input files required in this quide can be downloaded from the [worklo
 
     1. Set up ACR Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
 
-    1. Set up ACR Helm Chart Pull (any Arc connected cluster). Verify that the extension has a system managed identity. Run the following command:
+    1. Set up ACR Helm Chart Pull (an Azure Arc-connected cluster). Verify that the extension has a system managed identity. Run the following command:
 
         ```azurecli
         az k8s-extension show --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --query identity
@@ -213,7 +212,7 @@ All sample input files required in this quide can be downloaded from the [worklo
         $extensionSPId = az k8s-extension show --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --query identity.principalId --output tsv
         az role assignment create --assignee $extensionSPId --role "AcrPull" --scope "<ACR Resource ID>"
         ```
----
+
 
 ## Set up the workload orchestration resources
 
@@ -225,7 +224,7 @@ All sample input files required in this quide can be downloaded from the [worklo
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "name=$contextName level=$level1"
     ```
 
-    You can also store the hierarchy details in a YAML file and pass it as an argument as shown below. The sample file `resource-group-hierarchy.yaml` can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
+    You can also store the hierarchy details in a YAML file and pass it as an argument. The sample file `resource-group-hierarchy.yaml` can be downloaded from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to be used for your hierarchy in the YAML file.
 
     ```azurecli
     az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
@@ -241,7 +240,7 @@ All sample input files required in this quide can be downloaded from the [worklo
 
     <details>
     <summary> Manually add Sites to hierarchy </summary>
-    You also have the option to manually add a Site to any level of the hierarchy, using the following steps:
+    You can also manually add a Site to any level of the hierarchy, using the following steps:
     
       1. Create the Service Group
           ```azurecli
@@ -330,7 +329,6 @@ All sample input files required in this quide can be downloaded from the [worklo
     > [!TIP]
     > You can update the list of capability tags for an existing target by rerunning the `az workload-orchestration target create` command with the new set of values for `--capabilities` argument, while keeping the other parameters same.
 
-***
 
 ## Next steps
 

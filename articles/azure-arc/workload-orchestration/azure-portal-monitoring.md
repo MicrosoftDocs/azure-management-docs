@@ -67,5 +67,5 @@ IT DevOps can use the Azure portal to monitor their solutions. In the Azure port
 ## Related content
 
 - [RBAC guide](rbac-guide.md)
-- [Set up workload orchestration](setup-workload-orchestration.md)
+- [Set up workload orchestration](set-up-workload-orchestration.md)
 - [Delete resources in workload orchestration](delete-resources.md)

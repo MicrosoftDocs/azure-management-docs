@@ -14,7 +14,7 @@ items:
   - name: Tutorial
     items:
     - name: Set up workload orchestration
-      href: setup-workload-orchestration.md
+      href: set-up-workload-orchestration.md
     - name: Deploy a basic solution
       href: solution-without-common-configuration.md
     - name: Deploy a solution with common configuration

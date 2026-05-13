@@ -12,11 +12,11 @@ ms.custom:
 
 # Deploy a basic solution 
 
-In this guide, you will deploy a basic solution using workload orchestration via CLI. 
+Follow this guide to deploy a basic solution using workload orchestration via CLI. 
 
 ## Prerequisites
 
-- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md).
+- Set up the required resources for workload orchestration. If you haven't, refer to [Set up workload orchestration](set-up-workload-orchestration.md).
 - Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
   [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
@@ -90,7 +90,7 @@ Create the schema file by referring to *shared-schema.yaml* from [GitHub reposit
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-You can provide schema name and version in schema file instead of as a CLI arguments. To do that, add below section to the *shared-schema.yaml* file and run the previous command without `--schema-name` and `--version` arguments.
+You can provide schema name and version in schema file instead of as CLI arguments. To do that, add the following section to the *shared-schema.yaml* file and run the previous command without `--schema-name` and `--version` arguments.
 
 ```yaml
 metadata:
@@ -106,7 +106,7 @@ metadata:
 
 Follow these steps to create a solution template for your application.
 
-1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*. Update the *app-config-template.yaml* file with proper reference to your schema which you created in the above step.
+1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*. Update the *app-config-template.yaml* file with proper reference to your schema that you created in the previous step.
 
 1. Create the solution template resource.
 
@@ -114,7 +114,7 @@ Follow these steps to create a solution template for your application.
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
-    Values for `--solution-template-name` and `--version` can be provided in the solution template file instead of as CLI arguments. If specified in both file and CLI, the values should match. You can the following section to the *app-config-template.yaml* file and rerun the previous command without the two arguments:
+    Values for `--solution-template-name` and `--version` can be provided in the solution template file instead of as CLI arguments. If specified in both file and CLI, the values should match. You can add the following section to the *app-config-template.yaml* file and rerun the previous command without the two arguments:
 
     ```yaml
     metadata:
@@ -147,7 +147,7 @@ az workload-orchestration target install --resource-group "$rg" --target-name "$
     ```
 
     > [!NOTE]
-    > To view the configuration values you have set, use `az workload-orchestration configuration show` with the same set of arguments. You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
+    > To view the configuration values you set, use `az workload-orchestration configuration show` with the same set of arguments. You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
 1. Review the configurations for a particular target. This step ensures the configured values obey all schema rules and generates a solution version based on the solution template.
 
@@ -155,16 +155,16 @@ az workload-orchestration target install --resource-group "$rg" --target-name "$
     az workload-orchestration target review --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName/versions/$appVersion"
     ```
 
-1. Run `target publish` to publish the solution. Enter `reviewId` from the previous command response.
+1. Publish the solution. Enter `reviewId` from the previous command response.
 
     ```azurecli
     reviewId="<reviewId>"
     az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
-    Completion of this step generates the final configuration of the solution after it's validated and approved, created by combining the schema, configuration template, and solution Helm chart. It represents a fully rendered, a pre-deployment ready, targeted solution.
+    Completion of this step generates the final configuration of the solution after it is validated and approved, created by combining the schema, configuration template, and solution Helm chart. It represents a fully rendered, a predeployment ready, targeted solution.
 
-1. Run the `target install` command to deploy the solution.
+1. Deploy the solution.
 
     ```azurecli
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion

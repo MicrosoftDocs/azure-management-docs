@@ -14,7 +14,7 @@ This article describes how to diagnose workload orchestration logs and errors. I
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Set up the workload orchestration resources. If you haven't, refer to [Set up workload orchestration](setup-workload-orchestration.md) to set up the prerequisites.
+- Set up the workload orchestration resources. If you haven't, refer to [Set up workload orchestration](set-up-workload-orchestration.md) to set up the prerequisites.
 
 [!INCLUDE [cli-version-note](includes/cli-version-note.md)]
 

@@ -27,9 +27,9 @@ This article provides the latest and past release notes for workload orchestrati
   az extension update --name workload-orchestration
   ```
 
-- **Simplified CLI experience**: Workload Orchestration now provides a simplified CLI experience that streamlines common workflows by consolidating multi-step operations like cluster setup, hierarchy creation and solution deployment into fewer commands with reduced manual configuration. This improves usability, reduces the risk of errors, and enables faster onboarding and deployment.
+- **Simplified CLI experience**: Workload Orchestration now provides a simplified CLI experience that streamlines common workflows by consolidating multi-step operations like cluster setup, hierarchy creation, and solution deployment into fewer commands with reduced manual configuration. This improves usability, reduces the risk of errors, and enables faster onboarding and deployment.
 
-- Schema, solution templates and hierarchy configuration templates now offer additional support for resource management using PUT, PATCH and DELETE operations.
+- Schema, solution templates, and hierarchy configuration templates now offer additional support for resource management using PUT, PATCH, and DELETE operations.
 
 ### Bug fixes
 
@@ -39,7 +39,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### New features
 
-- **Cluster diagnostics and troubleshooting**: Users can now, using a single command, generate a comprehensive diagnostic [support bundle](troubleshooting.md) that captures cluster checks, resource snapshots, and container logs pertaining to a kubernetes cluster of any provider, all packaged into a readable zip file. This enables rapid root-cause analysis, empowering both customers and support teams to resolve installation and runtime issues efficiently.
+- **Cluster diagnostics and troubleshooting**: Users can now, using a single command, generate a comprehensive diagnostic [support bundle](troubleshooting.md) that captures cluster checks, resource snapshots, and container logs pertaining to a Kubernetes cluster of any provider, all packaged into a readable zip file. This enables rapid root-cause analysis, empowering both customers and support teams to resolve installation and runtime issues efficiently.
 
 - **Capability mutation**: Users shall now be able to dynamically add and delete capability tags from existing targets and solution templates, making it easier to maintain alignment between deployed solutions and their intended targets.
 
@@ -57,15 +57,15 @@ This article provides the latest and past release notes for workload orchestrati
   az extension update --name workload-orchestration
   ```
 
-- The support for parallelized bulk operations for Publish and Deploy have been scaled up to 1000 targets distributed across clusters, along with minimizing failures under throttling conditions. The execution time per target for bulk operations has also been significantly reduced.
+- The support for parallelized bulk operations for Publish and Deploy is scaled up to 1,000 targets distributed across clusters, along with minimizing failures under throttling conditions. The execution time per target for bulk operations is also significantly reduced.
 
-- To help users onboard onto workload orchestration faster, Bash scripts for setting up the environment and workload orchestration resources have been added to this [zip folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip), in addition to the existing PowerShell and Python scripts. The steps to use the scripts are detailed in this [guide](onboarding-scripts.md).
+- To help users onboard onto workload orchestration faster, Bash scripts for setting up the environment and workload orchestration resources are added to this [zip folder in GitHub repository](https://github.com/Azure/workload-orchestration/), in addition to the existing PowerShell and Python scripts. The steps to use the scripts are detailed in this [guide](onboarding-scripts.md).
 
 ### Bug fixes
 
 - In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency application is already uninstalled, the Workload Orchestration portal is now able to detect this and completes the deletion process without any errors.
 
-- The `az workload-orchestration target solution-revision-list` command to list solution revisions for a target now accepts the solution template name instead of solution version id for the argument `--solution-template-name`.
+- The `az workload-orchestration target solution-revision-list` command to list solution revisions for a target now accepts the solution template name instead of solution version ID for the argument `--solution-template-name`.
 
 ### Known issues
 - The action of adding a new capability tag added to a target may occasionally not get instantly synced to the cloud. This might throw a capability mismatch error while trying to review and deploy a solution having the new capability tag to the target. This issue can be fixed by rerunning the target capability addition command.
@@ -74,9 +74,9 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### New features
 
-- **Granular monitoring of operations**: The ability to view detailed real‑time progress in the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) has been extended to **Publish** (including staging and un-staging) and **Uninstall** operations on solutions. This enables viewing completion status of intermediate steps along with timestamps, and the user who initiated the operation. In case of a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
+- **Granular monitoring of operations**: The ability to view detailed real‑time progress in the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) is extended to **Publish** (including staging and unstaging) and **Uninstall** operations on solutions. This enables viewing completion status of intermediate steps along with timestamps, and the user who initiated the operation. If there is a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
 
-- **Support for un-staging solutions**: Users can now un-stage a staged solution (excluding shared applications) from a target through Azure CLI, and the progress of the same can be monitored from the workload orchestration portal.
+- **Support for un-staging solutions**: Users can now unstage a staged solution (excluding shared applications) from a target through Azure CLI, and the progress of the same can be monitored from the workload orchestration portal.
 
 ### Improvements in CLI
 
@@ -98,7 +98,7 @@ This article provides the latest and past release notes for workload orchestrati
 ### Known issues
 - In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
 
-- In the Azure CLI command `az workload-orchestration target solution-revision-list`, the argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value.
+- In the Azure CLI command `az workload-orchestration target solution-revision-list`, the argument `--solution-template-name` currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value.
 
 
 ## December 2025 release
@@ -107,9 +107,9 @@ This article provides the latest and past release notes for workload orchestrati
 
 - **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multicloud environments.
 
-- **Support for Target/Site level configuration**: Users can now create and set common configurations at any hierarchy level or target without authoring solution templates, by explicitly linking a configuration template to the desired level. Solution templates will automatically map to the deployment target. Schemas will no longer support the **editableAt** property for application parameters that was earlier used for such mapping. This enforces clearer configuration boundaries and reduces unintended edits.
+- **Support for Target/Site level configuration**: Users can now create and set common configurations at any hierarchy level or target without authoring solution templates, by explicitly linking a configuration template to the desired level. Solution templates automatically map to the deployment target. Schemas no longer support the **editableAt** property for application parameters that was earlier used for such mapping. This enforces clearer configuration boundaries and reduces unintended edits.
 
-- **Bulk deployment in portal**: Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
+- **Bulk deployment in portal**: Users can now configure, publish, and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
 
 ### Improvements in Portal
 

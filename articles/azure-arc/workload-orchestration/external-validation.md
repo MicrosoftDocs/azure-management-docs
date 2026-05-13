@@ -21,7 +21,7 @@ This article describes how to set up an Event Grid subscription for workload orc
 ### Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](set-up-workload-orchestration.md).
 
 ### Event Grid subscription for workload orchestration
 
@@ -236,7 +236,7 @@ For more information about solution templates and publishing a solution, see [Cr
 
 #### [PowerShell](#tab/powershell)
 
-1. When you publish the solution version, he publish command triggers the external validation process. The workload orchestration service sends an event to the Event Grid subscription, which invokes the external validation service. The external validation service can then perform custom validation logic and send a response back to the workload orchestration service.
+1. When you publish the solution version, the publish command triggers the external validation process. The workload orchestration service sends an event to the Event Grid subscription, which invokes the external validation service. The external validation service can then perform custom validation logic and send a response back to the workload orchestration service.
 
     ```powershell
     az workload-orchestration target publish `
@@ -244,7 +244,7 @@ For more information about solution templates and publishing a solution, see [Cr
       --resource-group $rg `
       --target-name $childName
     ```
-1. Set ``solutionVersionId` and `externalValidationId` as variables which you get a part of publish response.
+1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
 
     ```powershell	
     $solutionVersionId = "<solutionVersionId>"
@@ -369,7 +369,7 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
             --validation-status "Valid"
         ```
 
-    1. In the command response, solution version object is displayed where the state is changed to `ReadToDeploy`.
+    1. In the command response, solution version object is displayed where the state is changed to `ReadyToDeploy`.
     1. Proceed further with install.
 
 1. To set solution version configurations as **invalid**:
@@ -711,6 +711,4 @@ az workload-orchestration target update-external-validation-status `
 ***
 
 The *error.json* file follows the same schema as the `errorDetails` object. 
-
----
 

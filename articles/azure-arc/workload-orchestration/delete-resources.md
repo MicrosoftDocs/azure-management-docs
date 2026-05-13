@@ -17,7 +17,7 @@ This article details how to delete or uninstall any workload orchestration resou
 
 ## Delete all resources
 
-Deleting a resource group results in deletion of all Azure resources within the same, including those of workoad orchestration.
+Deleting a resource group results in deletion of all Azure resources within the same.
 
 ## Uninstall a solution
 
@@ -77,13 +77,13 @@ Target deletion automatically uninstalls all running workloads (instances, solut
 A deleted target can be recreated with the same name successfully. Once the target is re-linked to the relevant common config templates, users can once again start deploying solutions post re-configuring the parameter values.
 
 > [!NOTE]
-> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the argument `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster will not be impacted.
+> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the argument `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster won't be impacted.
 
 ***
 
 ## Delete a solution template version
 
-Delete solution template version across all targets even if it's deployed, using the following command:
+Delete solution template version across all targets using the following command:
 
 ### [Bash](#tab/bash)
 
@@ -98,7 +98,7 @@ az workload-orchestration solution-template remove-version --subscription $subId
 ```
 ***
 
-The deletion succeeds even if the solution template version is being referenced by a target solution version, which remains unaffected.
+The deletion succeeds even if the solution template version is being referenced by a target solution version. The solution version remains unaffected.
 You can verify the deletion of the solution template version by listing all revisions of a solution deployed on a target.
 
 ### [Bash](#tab/bash)
@@ -133,7 +133,7 @@ az workload-orchestration solution-template delete --subscription $subId --resou
 
 ***
 
-Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically. Any solutions already reviewed or published, referring to the deleted solution template, can still be deployed. No running workloads are impacted by this deletion.
+Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically. Any solutions already reviewed or published, referring to the deleted solution template, can still be deployed. No running workloads are impacted.
 
 Any deleted solution template can be recreated successfully with the same name, referencing the same or a different schema. However, solution parameters need to be re-configured to deploy solutions based on the template.
 
@@ -155,7 +155,7 @@ az workload-orchestration schema delete --subscription "$subId" --resource-group
 az workload-orchestration schema delete --subscription $subId --resource-group $rg --schema-name $schemaName
 ```
 
-Deleting a schema removes all associated schema versions, and any solution templates referencing the schema cannot be reviewed.
+Deleting a schema removes all associated schema versions, and any solution templates referencing the schema can't be reviewed.
 
 
 ***
@@ -178,6 +178,6 @@ az workload-orchestration config-template delete --subscription $subId --resourc
 
 ***
 
-Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets and configured again. If the recreated configuration template references a different schema and a solution template inherits that schema, the `az workload-orchestration target review` command is expected to fail since the schema properties have changed.
+Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets and configured again. If the recreated configuration template references a different schema and a solution template inherits that schema, the `az workload-orchestration target review` command is expected to fail since the schema properties changed.
 
 ***

@@ -19,7 +19,7 @@ Some common scenarios where staging is beneficial are:
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](setup-workload-orchestration.md).
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](set-up-workload-orchestration.md).
 
 ## Set up Azure Container Registry (ACR)
 
@@ -396,7 +396,7 @@ Staging is triggered automatically once the solution is configured.
 1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step.
 
     ```powershell
-    export image = "<image_name>"
+    $image = "<image_name>"
     
     # Copy your existing file into the build context (optional, if not already there)
     cp /path/to/your/file ./bigfile
@@ -642,7 +642,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
     armclient get "https://eastus2euap.management.azure.com/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
     ```
 
-1. After publish completed, run the following commands to check that the images are staged in local:
+1. After publish completed, run the following commands to check that the images are staged locally:
 
     ```powershell
     kubectl exec -it <connected_registry_pod> -n $cr -- bash

@@ -12,7 +12,7 @@ ms.custom:
 
 # Manage workload orchestration resources in Git
 
-Workload orchestration allows you to provision and manage all resources in the form of Bicep templates stored in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart), as well as single-click solution deployments using pre-configured GitHub Actions workflows. Leveraging pre-configured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
+Workload orchestration allows you to provision and manage all resources in the form of Bicep templates stored in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart), and trigger single-click solution deployments. Leveraging preconfigured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
 
 
 ## How it works
@@ -24,13 +24,13 @@ This is how you manage your workload orchestration resources from your Git repos
 1. **Edit** `workload-orchestration/main.bicep` in a feature branch to add, update, or remove resource declarations.
 1. **Open a pull request** to the `main` branch. The validation workflow runs automatically and:
    - Validates the Bicep templates against Azure.
-   - Posts a validation result comment on the pull request.
+   - Posts a validation result comment on the Pull Request.
 1. **Merge** the pull request into `main`. The sync workflow deploys the resources to Azure by using a deployment stack with configurable deny settings.
 
-Additional details on how to set up your Git repository can be found in the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration-quickstart). To quickly deploy a sample application using pre-authored Bicep templates, refer to this [README](https://github.com/Azure/workload-orchestration-quickstart/blob/main/samples/quickstart-basic/README.md) section within the repository.
+Additional details on how to set up your Git repository can be found in the [workload orchestration GitHub repository](https://github.com/Azure/workload-orchestration-quickstart). To quickly deploy a sample application using preauthored Bicep templates, refer to this [README](https://github.com/Azure/workload-orchestration-quickstart/blob/main/samples/quickstart-basic/README.md) section within the repository.
 
 ## Related content
 
-- [Use GitHub Actions to connect to Azure](https://learn.microsoft.com/azure/developer/github/connect-from-azure)
+- [Use GitHub Actions to connect to Azure](/azure/developer/github/connect-from-azure)
 - [Azure Deployment Stacks overview](/azure/azure-resource-manager/bicep/deployment-stacks)
-- [Set up workload orchestration](setup-workload-orchestration.md)
+- [Set up workload orchestration](set-up-workload-orchestration.md)
