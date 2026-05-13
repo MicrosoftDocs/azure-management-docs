@@ -6,8 +6,103 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/azure-arc/data/create-sql-managed-instance-azure-data-studio.md", 
+      "source_path": "articles/azure-arc/data/create-sql-managed-instance-azure-data-studio.md",
       "redirect_url": "/azure/azure-arc/data/create-sql-managed-instance",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/clean-up-script.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/delete-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/configuring-schema.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/configuration-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/configuring-template.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/configuration-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/external-validation-payload.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/external-validation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/initial-setup-configuration.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/set-up-workload-orchestration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/initial-setup-environment.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/set-up-workload-orchestration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/migration-script.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-solution-multiple-instances-k8s.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-solution-multiple-shared-adapter-dependency.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/solution-shared-adapter-dependency",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-solution-shared-adapter-dependency.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/solution-shared-adapter-dependency",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-solution-with-common-configuration.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/solution-with-common-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-solution-without-common-configuration.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/solution-without-common-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/quickstart-upgrade-shared-application.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/service-group.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/resource-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-1.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-2.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/workflow-features.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-3.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-4.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
       "redirect_document_id": false
     }
   ]

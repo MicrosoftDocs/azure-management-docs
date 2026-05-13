@@ -10,26 +10,27 @@ ms.custom:
 # Customer intent: "As a system administrator, I want to automate the setup of infrastructure and resources for workload orchestration, so that I can efficiently provision a Kubernetes cluster and related services without manual intervention."
 ---
 
-# Onboarding scripts for workload orchestration
+# Set up workload orchestration using onboarding scripts
 
-The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, installing the workload orchestration CLI extension and other resources necessary to deploy your 1st application. The scripts are available in 3 variants - PowerShell, Python and Bash, all of which are functionally equivalent.
+The onboarding scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of [setting up workload orchestration](set-up-workload-orchestration.md) to deploy your 1st application. The scripts are available in three variants - PowerShell, Python and Bash, all of which are functionally equivalent.
 
 > [!TIP]
-> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
+> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Set up workload orchestration](set-up-workload-orchestration.md).
 
 ## Prerequisites
 
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder.
-- Fill the `onboarding-data.json` file with your details, or directly edit the file `mock-data.json` containing the mock data. The files are identical and either of them can be used as input while running the scripts. Instructions about various properties are provided below.
+- Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
 
-### Additional prerequisites by platform
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip)
+- Fill the `onboarding-data.json` file with your details, or directly edit the file `mock-data.json` containing the mock data. The files are identical and either of them can be used as input while running the scripts.
+- Platform prerequisites:
 
-| Platform | Requirements |
-|----------|-------------|
-| **PowerShell** | Azure CLI, kubectl (installed via winget above) |
-| **Python** | Python 3.8+, Azure CLI, kubectl. Install via `winget install -e --id Python.Python.3.12` |
-| **Bash (Shell)** | Git Bash (Windows) or native Bash (Linux/macOS), Azure CLI, kubectl, `jq`. On Windows, the shell scripts auto-detect `jq.exe` in the `tools/` directory — download it from [jq releases](https://github.com/jqlang/jq/releases) if not already present. |
+    | Platform | Requirements |
+    |----------|-------------|
+    | **PowerShell** | Azure CLI, kubectl (installed via winget) |
+    | **Python** | Python 3.8+, Azure CLI, kubectl. Install via `winget install -e --id Python.Python.3.12` |
+    | **Bash (Shell)** | Git Bash (Windows) or native Bash (Linux/macOS), Azure CLI, kubectl, `jq`. On Windows, the shell scripts auto-detect `jq.exe` in the `tools/` directory — download it from [jq releases](https://github.com/jqlang/jq/releases) if not already present. |
 
 ## Common variables in input JSON
 
@@ -42,7 +43,7 @@ The following fields are common to both the `cmOnboarding` and `infraOnboarding`
 
 ## Step 1: Infra onboarding
 
-The infra setup script helps you onboard to the infrastructure needed for workload orchestration, such as creating an AKS cluster, deploying TCO on the cluster, creating custom location and site, and finally installing the workload orchestration CLI extension.
+The infra setup script helps you onboard the infrastructure needed for workload orchestration, such as Arc cluster, custom location, site hierarchy, and the workload orchestration CLI extension.
 
 > [!IMPORTANT]
 > The Service Group name should be unique across tenants. So the site name input must be chosen carefully.
@@ -70,7 +71,7 @@ bash shell/infra_onboarding.sh mock-data.json
 
 ### Arguments
 
-All of them are boolean arguments. PowerShell uses `$true`/`$false`, Python and Bash use `--flag-name` style.
+All of them are boolean arguments. PowerShell uses `$true`/`$false`. Python and Bash use `--flag-name` style.
 
 | PowerShell flag | Python / Bash flag | Default | Description |
 |-----------------|--------------------|---------|-------------|
@@ -78,11 +79,11 @@ All of them are boolean arguments. PowerShell uses `$true`/`$false`, Python and 
 | `-skipAzExtensions $true` | `--skip-az-extensions` | `false` | Skip installing/updating connectedk8s, k8s-extension & customlocation extensions. |
 | `-skipResourceGroupCreation $true` | `--skip-resource-group-creation` | `false` | Skip creation of resource group. |
 | `-skipAksCreation $true` | `--skip-aks-creation` | `false` | Skip creation of AKS cluster. Use when the cluster is already created. |
-| `-skipTcoDeployment $true` | `--skip-tco-deployment` | `false` | Skip connecting AKS to Arc and creation of TCO extension. Use when TCO has been deployed already. |
-| `-skipCustomLocationCreation $true` | `--skip-custom-location-creation` | `false` | Skip creation of CustomLocation. Use when it has been created before. |
+| `-skipTcoDeployment $true` | `--skip-tco-deployment` | `false` | Skip connecting AKS to Arc and creation of TCO extension. Use when TCO is deployed already. |
+| `-skipCustomLocationCreation $true` | `--skip-custom-location-creation` | `false` | Skip creation of CustomLocation. Use when it already exists. |
 | `-skipConnectedRegistryDeployment $false` | `--no-skip-connected-registry-deployment` | `true` | Skip connected registry deployment. By default, this step is skipped. Set to false when user needs to deploy the connected registry on AKS cluster for staging. |
 | `-skipSiteCreation $true` | `--skip-site-creation` | `false` | Skip creation of Site and SiteAddress. Use when it has been created before. |
-| `-skipAutoParsing $true` | `--skip-auto-parsing` | `false` | Skip auto-creation of custom location file and auto-parsing of site file. Set to true if you want to assign your own custom location or site address. |
+| `-skipAutoParsing $true` | `--skip-auto-parsing` | `false` | Skip auto-creation of custom location file and autoparsing of site file. Set to true if you want to assign your own custom location or site address. |
 | `-skipRelationshipCreation $true` | `--skip-relationship-creation` | `false` | Skip creation of serviceGroupMember relationships. |
 | `-enableWODiagnostics $true` | `--enable-wo-diagnostics` | `false` | Enable workload orchestration extension user-facing logs. |
 | `-enableContainerInsights $true` | `--enable-container-insights` | `false` | Enable Container.Insights on arc cluster to collect container logs and k8s events. |
@@ -95,17 +96,17 @@ The properties being used in this step fall under the `infraOnboarding` section 
 - `subscriptionId [Optional]` : If you want to override the common section's sub.
 - `resourceGroup [Optional]` : If you want to override the common section's RG.
 - `location [Optional]` (default: `eastus`) : If you want to override the common section's location.
-- `arcLocation [Optional]` (default: `eastus`): Azure region where the Arc-enabled Kubernetes cluster resource will reside.
+- `arcLocation [Optional]` (default: `eastus`): Azure region where the Arc-enabled Kubernetes cluster resource resides.
 - `aksClusterIdentity [Optional]` (default: `$resourceGroup-Cluster-Identity`): Name of the managed identity used by the AKS cluster.
 - `aksClusterName [Optional]` (default: `$resourceGroup-Cluster`): Name of the AKS cluster to be created or used.
 - `customLocationName [Optional]` (default: `$resourceGroup-Location`): Name for the Custom Location resource created on top of the Arc-enabled AKS cluster.
 - `customLocationNamespace [Optional]` (default: `mehoopany`): Kubernetes namespace associated with the Custom Location. Should be lowercase.
-- `contextResourceGroup [Required]`: Resource group where the Workload Orchestration Context exists (e.g., "Mehoopany"). This is used for setting up capabilities and site references.
-- `contextName [Required]`: Name of the Workload Orchestration Context (e.g., "Mehoopany-Context").
+- `contextResourceGroup [Required]`: Resource group where the Workload Orchestration Context exists (for example, "Mehoopany"). This is used for setting up capabilities and site references.
+- `contextName [Required]`: Name of the Workload Orchestration Context (for example, "Mehoopany-Context").
 - `contextSubscriptionId [Required]`: Subscription ID where the Workload Orchestration Context exists.
-- `contextLocation [Required]`: Azure region where the Workload Orchestration Context exists (e.g., "eastus2euap").
+- `contextLocation [Required]`: Azure region where the Workload Orchestration Context exists (for example, "eastus2euap").
 - `diagInfo [Optional]`: An array defining the diagnostic configurations.
-    - `diagnosticWorkspaceId [Optional]`: The ARM resource id of log analytics workspace.
+    - `diagnosticWorkspaceId [Optional]`: The Azure Resource Manager (ARM) resource ID of log analytics workspace.
     - `diagnosticResourceName [Optional]`: Name of the diagnostic resource.
     - `diagnosticSettingName [Optional]`: Name of the diagnostic settings.
 - `acrName [Optional]`: Name of the Azure container registry.
@@ -116,19 +117,19 @@ The properties being used in this step fall under the `infraOnboarding` section 
 - `storageSizeRequest [Optional]`: Size of the storage used for connected registry.
 - `siteHierarchy [Optional]`: An array defining the site structure and associated deployment targets.
     - `siteName [Required]`: Name of the site resource to be created. Avoid adding trailing Numbers in name
-    - `isRGSite [Optional]` (default: `false`): When set to `true`, the site is created as a Resource Group-scoped site instead of a Service Group-scoped site. RG-based sites do not require a Service Group, do not support `parentSite`, and skip the `serviceGroupMember` relationship creation. The site is created via `PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Edge/sites/{siteName}`. **Note:** Only one RG-based site is allowed per Resource Group scope. If you need multiple sites, use separate Resource Groups or use SG-based sites.
+    - `isRGSite [Optional]` (default: `false`): When set to `true`, the site is created as a Resource Group-scoped site instead of a Service Group-scoped site. RG-based sites don't require a Service Group, don't support `parentSite`, and skip the `serviceGroupMember` relationship creation. The site is created via `PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Edge/sites/{siteName}`. **Note:** Only one RG-based site is allowed per Resource Group scope. If you need multiple sites, use separate Resource Groups or use SG-based sites.
     - `parentSite [Optional]`: Name of the parent site in the hierarchy. Set to `null` for top-level sites. Ignored when `isRGSite` is `true`.
     - configuration [Required]: Nested object containing data about site configuration
         - name [Required]: name of site config
         - location [Required]: location to create site config
-    - `level [Required]`: The hierarchy level this site represents (e.g., "factory", "line"). Must match a level defined in the Context.
+    - `level [Required]`: The hierarchy level this site represents (for example, "factory", "line"). Must match a level defined in the Context.
     - `capabilityList [Optional]`: Defines capabilities to be added to the Context if this site node is processed for capability setup.
         - `capabilities [Required]`: An array of capability names (strings) to add/update in the Context.
     - `hierarchyLevels [Optional]`: Defines hierarchy levels to be added to the Context if this site node is processed for capability setup.
         - `levels [Required]`: An array of hierarchy level names (strings) to add/update in the Context.
     - `deploymentTargets [Optional]`: Defines deployment targets associated with this site.
         - `rbac [Optional]`: Default RBAC settings for targets under this site. Can be overridden per target.
-            - `role [Required]`: Azure role to assign (e.g., "Contributor").
+            - `role [Required]`: Azure role to assign (for example, "Contributor").
             - `userGroup [Required]`: Object ID of the user or group to assign the role to.
         - `capabilities [Optional]`: Default capabilities for targets under this site. Can be overridden per target. Array of strings.
         - `hierarchyLevel [Optional]`: Default hierarchy level for targets under this site. Can be overridden per target. String.
@@ -145,7 +146,7 @@ The properties being used in this step fall under the `infraOnboarding` section 
             - `customLocationFile [Optional]`: Overrides the parent `deploymentTargets.customLocationFile`. File path string.
             - `targetSpecFile [Optional]`: Overrides the parent `deploymentTargets.targetSpecFile`. File path string. (Less common to override per target).
 
-## Pre-requisite for next step: Context creation (only if you are not using an existing context)
+## Pre-requisite for next step: Context creation (only if you aren't using an existing context)
 
 Context creation is a one-time operation. If you have already created a context, you can skip this step. If you need to create a new context, use the following command:
 
@@ -252,7 +253,7 @@ This issue specifically affects Azure CLI version 2.70.0 and occurs when using t
    - Select your subscription and resource group
    - Enter a name for your custom location
    - Select your Arc-enabled cluster
-   - Select the appropriate extension (either `microsoft.testsymphonyex` or `microsoft.workloadorchestreation`)
+   - Select the appropriate extension (either `microsoft.testsymphonyex` or `microsoft.workloadorchestration`)
    - Specify your namespace (the same value you'd use in the script)
 4. Complete the creation process
 
@@ -302,7 +303,5 @@ Use these parameters as needed based on which components you have already create
 
 ## Related content
 
-- [Service groups with workload orchestration](service-group.md)
+- [Set up workload orchestration](set-up-workload-orchestration.md)
 - [RBAC guide](rbac-guide.md)
-- [Configuration template](configuring-template.md)
-- [Configuration schema](configuring-schema.md)

@@ -18,11 +18,13 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 
 ## Prerequisites
 
-- Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
+- Set up the required resources for workload orchestration by referring to [Set up workload orchestration](set-up-workload-orchestration.md).
+- Download the artifacts from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). 
+
+    [![Download](https://img.shields.io/badge/Download%20zip%20file-0078D4?style=flat&labelColor=0078D4)](https://github.com/Azure/workload-orchestration/archive/refs/heads/main.zip) 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Set up workload orchestration](set-up-workload-orchestration.md).
 
 
 ## Description of the user scenario
@@ -49,7 +51,7 @@ The following example illustrates the user scenario of creating a solution with 
 A configuration template is a YAML file that defines the configuration parameters for a solution. The configuration template is used to create a configuration schema, which is a JSON file that defines the structure of the configuration data. 
 
 > [!NOTE]
-> Check out [Configuration template](configuring-template.md) and [Configuration schema](configuring-schema.md) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
+> Check out [Configuration template](solution-without-common-configuration.md#create-the-solution-template) and [schemas](solution-without-common-configuration.md#create-a-configuration-schema) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
 
 Sample of a FSAD configuration template:
 
@@ -72,11 +74,11 @@ Sample of an SSA configuration template:
 ```yaml            
 configs:
   AppName: SSA
-  DepedentAppConfigs: []   #It should be array or null
+  DependentAppConfigs: []   # It should be an array or null
 
 ```
 
-`AppConfig` of the FSAD configuration template changes at every target and target specific `AppConfig` gets injected into `DependantAppConfigs` of SSA configuration template.
+`AppConfig` of the FSAD configuration template changes at every target, and the target-specific `AppConfig` gets injected into `dependentAppConfigs` of the SSA configuration template.
 
 
 ## Define the variables for solution templating
@@ -282,7 +284,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 
 > [!NOTE]
 > Update the parameter `solutionTemplateId` under dependencies section of FSAD configuration template and schema with the SSA solution template ID.
-> The ``solution-template create` command displays the ID along with solution template version.
+> The `solution-template create` command displays the ID along with solution template version.
 >
 > ```bash
 > solutionTemplateId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
@@ -296,7 +298,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 
 > [!NOTE]
 > Update the parameter `solutionTemplateId` under dependencies section of FSAD configuration template and schema with the SSA solution template ID.
-> The ``solution-template create` command displays the ID along with solution template version.
+> The `solution-template create` command displays the ID along with solution template version.
 >
 > ```powershell
 > $solutionTemplateId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
