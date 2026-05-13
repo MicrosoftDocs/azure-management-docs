@@ -17,9 +17,9 @@ items:
             href: known-issues.md
       - name: Quickstarts
         items:
-          - name: Install Agents and Tools with Foundry Local
+          - name: Step 1 - Install Agents and Tools
             href: quickstart-edge-rag.md
-          - name: Query your data
+          - name: Step 2 - Query your data
             href: quickstart-edge-rag.md
       - name: Plan
         items:
@@ -55,10 +55,10 @@ items:
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer
         items:
+          - name: Overview
+            href: build-chat-solution-overview.md
           - name: Data collections
             href: collections-overview.md
-          - name: Chat solution overview
-            href: build-chat-solution-overview.md
           - name: Advanced data parsing
             href: advanced-data-parsing.md
           - name: Add data source
