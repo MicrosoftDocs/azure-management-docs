@@ -4,7 +4,7 @@ description: Learn how the agentic layer in Agents and Tools with Foundry Local 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 05/13/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
@@ -15,7 +15,7 @@ The Agents and Tools with Foundry Local platform is organized into two layers. T
 
 :::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agents and Tools with Foundry Local platform with the agentic layer on top of the knowledge layer." lightbox="media/agentic-overview/agentic-rag-platform.png":::
 
-The agentic layer adds planning, tool use, and conversation orchestration to Agents and Tools with Foundry Local. The agentic layer lets you build assistants that can manage multi-turn interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
+The agentic layer adds planning, tool use, and conversation orchestration to Agents and Tools with Foundry Local. The agentic layer lets you build assistants that can manage multithread interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
 
 You can deploy the agentic layer together with the knowledge layer or by itself, depending on whether you need local document ingestion and retrieval or only agent orchestration.
 
@@ -26,7 +26,7 @@ In a combined deployment, agents can use the built-in MCP server to query collec
 Use the agentic layer when you need more than direct retrieval. It adds these capabilities:
 
 - **Agent execution** for running instructions, reasoning over a request, and deciding when to call tools.
-- **Conversation state** through threads, messages, and runs for multi-turn interactions.
+- **Conversation state** through threads, messages, and runs for multithread interactions.
 - **Knowledge orchestration** by connecting agents to one or more MCP-backed knowledge sources through a knowledge base.
 - **Flexible deployment** so you can use Agents and Tools with Foundry Local with the built-in knowledge layer or with external MCP servers only.
 
@@ -46,29 +46,24 @@ This runtime is responsible for invoking tools, interacting with the language mo
 
 ### Knowledge Base Manager
 
-The Knowledge Base Manager is the control plane for knowledge base configuration. You use it to manage:
+The Knowledge Base Manager is the control plane for knowledge base configuration. Use it to manage *Knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
 
-- **Knowledge bases**: define the knowledge boundary available to agents. Each deployment includes a default knowledge base that is automatically provisioned.
+The system automatically provisions agents and pairs them 1:1 with a knowledge base. Changes to the knowledge base sync to the paired internal agent.
 
-Agents are automatically provisioned and paired 1:1 with a knowledge base. Changes to the knowledge base are synced to the paired internal agent.
-
-> [!NOTE]
-> Each deployment includes a default knowledge base. You cannot create additional knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
+Each deployment includes a default knowledge base. You can't create extra knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
 
 ### Knowledge sources
 
 Knowledge sources register MCP connections that an agent can use as tools. Each knowledge source contains its own connection details and identifies the MCP endpoint the agent should call.
 
-Agents and Tools with Foundry Local supports two knowledge source kinds:
+Agents and Tools with Foundry Local support two knowledge source kinds:
 
 - **remote_mcp** for external MCP servers.
 - **indexed_sources_mcp** for the built-in MCP server with a reference to indexed content in the knowledge layer.
 
 ## How agents use knowledge
 
-The agentic layer organizes knowledge access through a simple relationship:
-
-**Knowledge source -> Knowledge base -> Agent (auto-provisioned) -> Thread -> Run**
+The agentic layer uses a predictable sequence for knowledge access. You register knowledge sources, link them to the default knowledge base, and let the system keep the paired internal agent in sync. At runtime, users interact through threads, and each run executes the paired agent with access only to the configured knowledge sources.
 
 At a high level, the flow works like this:
 
@@ -77,13 +72,13 @@ At a high level, the flow works like this:
 1. A user starts a thread and sends a message.
 1. A run executes the paired agent, which calls MCP tools when needed and generates a grounded response.
 
-This model keeps knowledge access explicit. Agents do not automatically see all available tools or indexed data. They only use the knowledge sources exposed through the assigned knowledge base.
+This model keeps knowledge access explicit. Agents don't automatically see all available tools or indexed data. They only use the knowledge sources exposed through the assigned knowledge base.
 
 ## Key concepts in the agentic layer
 
 Review the following key concepts for the agentic layer:
 
-- **Agent** is an internal execution entity that is automatically provisioned and paired 1:1 with a knowledge base. The agent handles reasoning, planning, calling tools, and producing responses. You don't create or manage agents directly. Instead, you configure the knowledge base, and the system keeps the paired agent in sync.
+- **Agent** is an internal execution entity that's automatically provisioned and paired one-to-one with a knowledge base. The agent handles reasoning, planning, calling tools, and producing responses. You don't create or manage agents directly. Instead, you configure the knowledge base, and the system keeps the paired agent in sync.
 
 - **Knowledge base** groups one or more knowledge sources into a reusable boundary. Each deployment includes a default knowledge base. It defines what knowledge the agent can access rather than how the agent behaves.
 
@@ -111,9 +106,9 @@ Choose **combined** when you want the full Agents and Tools with Foundry Local p
 
 ## When to use the agentic layer
 
-The agentic layer is a good fit when your solution needs one or more of these patterns:
+Use the agentic layer when your solution needs one or more of these patterns:
 
-- Multi-turn assistants that maintain conversation state.
+- Multiturn assistants that maintain conversation state.
 - Tool-calling workflows that must combine multiple knowledge sources.
 - Clear separation between agent behavior and knowledge access.
 - Deployments where agents need to work with either built-in retrieval or external MCP servers.
@@ -122,25 +117,18 @@ If you only need direct ingestion and RAG-style querying against indexed content
 
 ## Bring your own model (BYOM)
 
-Agents and Tools with Foundry Local does **not** bundle any language models. You must provide your own LLM endpoint. The LLM must expose an OpenAI-compatible chat completions API.
+Agents and Tools with Foundry Local doesn't bundle language models. You must provide your own LLM endpoint. The LLM must expose an OpenAI-compatible chat completions API.
 
-**Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). For detailed hardware requirements, see [What you need for Agents and Tools with Foundry Local](requirements.md).
+- **Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). For detailed hardware requirements, see [What you need for Agents and Tools with Foundry Local](requirements.md).
 
-**Hosting options**: You can deploy GPT-OSS-20B (or another model) using any of these options:
+- **Hosting options**: You can deploy GPT-OSS-20B (or another model) using any of these options:
 
-**Recommended**
+  | Hosting option | Description |
+  |---|---|
+  |[Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) (Recommended)| Run models locally on your Arc-connected cluster. Both extensions are designed to work together on the same cluster. Recommended for on-premises deployments. |
+  | [Microsoft Foundry](/azure/foundry/what-is-foundry) | Cloud-hosted models. Requires network connectivity from the edge. |
 
-| Hosting option | Description |
-|---|---|
-| **[Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local)** | Run models locally on your Arc-connected cluster. Both extensions are designed to work together on the same cluster. Recommended for on-premises deployments. |
-
-**Other options**
-
-| Hosting option | Description |
-|---|---|
-| **Microsoft Foundry** | Cloud-hosted models (requires network connectivity from the edge) |
-
-The BYOM endpoint is configured *at the cluster level* during deployment via Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint.
+Configure the BYOM endpoint at the cluster level during deployment by using Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint.
 
 ## Related content
 

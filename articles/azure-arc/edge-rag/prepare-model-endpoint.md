@@ -33,14 +33,15 @@ Choose a method based on your environment, connectivity, and production requirem
 
 Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry Local extension. Foundry Local is currently a CLI-based experience.
 
-> [!IMPORTANT]
-> If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
+If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
 
 For setup instructions, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) and [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
 
 This section shows how to deploy the recommended model (**gpt-oss-20b**) and configure its endpoint for use with Agents and Tools.
 
 ### Prerequisites
+
+Before you start, confirm that your cluster, tools, and access settings meet the minimum requirements for Foundry Local.
 
 - Preview deployment access for Foundry Local on Azure Local
 - Azure Arc-enabled Kubernetes cluster (Kubernetes 1.29 or later)
@@ -52,108 +53,114 @@ This section shows how to deploy the recommended model (**gpt-oss-20b**) and con
 
 ### Step 1 — Install required extensions
 
-Install cert-manager and trust-manager:
+Install the required Kubernetes extensions so your cluster can host and run Foundry Local model workloads.
 
-```azurecli
-az k8s-extension create \
-  --cluster-name <your_arc_cluster_name> \
-  --name "azure-cert-manager" \
-  --resource-group <resource_group> \
-  --cluster-type connectedClusters \
-  --extension-type Microsoft.CertManagement \
-  --scope cluster \
-  --release-train stable
-```
+1. Install cert-manager and trust-manager:
 
-Install the Foundry inference operator:
+   ```azurecli
+   az k8s-extension create \
+     --cluster-name <your_arc_cluster_name> \
+     --name "azure-cert-manager" \
+     --resource-group <resource_group> \
+     --cluster-type connectedClusters \
+     --extension-type Microsoft.CertManagement \
+     --scope cluster \
+     --release-train stable
+   ```
 
-```azurecli
-az k8s-extension create \
-  --resource-group <resource_group> \
-  --cluster-name <cluster_name> \
-  --name "inference-operator" \
-  --extension-type Microsoft.Foundry \
-  --scope cluster \
-  --release-namespace "foundry-local-operator" \
-  --cluster-type connectedClusters \
-  --auto-upgrade-minor-version true \
-  --release-train stable \
-  --config entraAuth.tenantId="<tenant_id>" \
-  --config entraAuth.clientId="<client_id>"
-```
+1. Install the Foundry inference operator:
 
-Verify installation:
+   ```azurecli
+   az k8s-extension create \
+     --resource-group <resource_group> \
+     --cluster-name <cluster_name> \
+     --name "inference-operator" \
+     --extension-type Microsoft.Foundry \
+     --scope cluster \
+     --release-namespace "foundry-local-operator" \
+     --cluster-type connectedClusters \
+     --auto-upgrade-minor-version true \
+     --release-train stable \
+     --config entraAuth.tenantId="<tenant_id>" \
+     --config entraAuth.clientId="<client_id>"
+   ```
 
-```bash
-kubectl get pods -n foundry-local-operator
-```
+1. Verify installation:
+
+   ```bash
+   kubectl get pods -n foundry-local-operator
+   ```
 
 ### Step 2 — Deploy the recommended model (gpt-oss-20b)
 
-Create a ModelDeployment resource:
+Deploy the recommended gpt-oss-20b model to create a local inference endpoint for your BYOM configuration.
 
-```yaml
-apiVersion: foundrylocal.azure.com/v1
-kind: ModelDeployment
-metadata:
-  name: gpt-oss-20b
-  namespace: foundry-local-operator
-spec:
-  model:
-    catalog:
-      name: gpt-oss-20b
-      version: "latest"
-  workloadType: generative
-  compute: gpu
-  runtime: vllm
-  replicas: 1
-```
+1. Create a ModelDeployment resource:
 
-Apply the deployment:
+   ```yaml
+   apiVersion: foundrylocal.azure.com/v1
+   kind: ModelDeployment
+   metadata:
+     name: gpt-oss-20b
+     namespace: foundry-local-operator
+   spec:
+     model:
+       catalog:
+         name: gpt-oss-20b
+         version: "latest"
+     workloadType: generative
+     compute: gpu
+     runtime: vllm
+     replicas: 1
+   ```
 
-```bash
-kubectl apply -f model-deployment.yaml
-```
+1. Apply the deployment:
 
-Verify it is running:
+   ```bash
+   kubectl apply -f model-deployment.yaml
+   ```
 
-```bash
-kubectl get modeldeployment gpt-oss-20b -n foundry-local-operator
-```
+1. Verify it's running:
 
-Wait until the status is **Running**.
+   ```bash
+   kubectl get modeldeployment gpt-oss-20b -n foundry-local-operator
+   ```
+
+   Wait until the status is **Running**.
 
 ### Step 3 — Verify the model endpoint
 
-Port-forward the model service:
+Test the deployed endpoint to confirm that it accepts chat completion requests and returns a valid response.
 
-```bash
-kubectl port-forward svc/gpt-oss-20b -n foundry-local-operator 5000:5000
-```
+1. Port-forward the model service:
 
-Retrieve the API key:
+   ```bash
+   kubectl port-forward svc/gpt-oss-20b -n foundry-local-operator 5000:5000
+   ```
 
-```bash
-kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
-  -o jsonpath="{.data.primary-key}" | base64 -d
-```
+1. Retrieve the API key:
 
-Test the endpoint:
+   ```bash
+   kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
+     -o jsonpath="{.data.primary-key}" | base64 -d
+   ```
 
-```bash
-curl -k -X POST https://localhost:5000/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "api-key: <your-api-key>" \
-  -d '{
-    "model": "gpt-oss-20b",
-    "messages": [
-      {"role": "user", "content": "Hello, what can you do?"}
-    ],
-    "max_tokens": 256
-  }'
-```
+1. Test the endpoint:
 
-You should receive a JSON response with a `choices` array.
+   ```bash
+   curl -k -X POST https://localhost:5000/v1/chat/completions \
+     -H "Content-Type: application/json" \
+     -H "api-key: <your-api-key>" \
+     -d '{
+       "model": "gpt-oss-20b",
+       "messages": [
+         {"role": "user", "content": "Hello, what can you do?"}
+       ],
+       "max_tokens": 256
+     }'
+   ```
+
+   You should receive a JSON response with a `choices` array.
 
 ### Step 4 — Configure Agents and Tools with Foundry Local
 
@@ -169,7 +176,7 @@ byom:
 
 Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the namespace used by Agents and Tools with Foundry Local, following your deployment requirements.
 
-After configuration, Agents and Tools with Foundry Local will use the local gpt-oss-20b deployment for all language model interactions.
+After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
 
 ## Microsoft Foundry
 

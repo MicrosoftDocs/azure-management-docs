@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agents and Tools with Foundry Local extens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/04/2026
+ms.date: 05/13/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -125,9 +125,9 @@ After deployment, verify the components running in the `arc-rag` namespace match
 
 | Mode | Expected pods |
 |---|---|
-| **combined** | All Knowledge Layer pods (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) + all Agentic Layer pods (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server) |
-| **agentic** | Agentic Layer pods only (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server, postgres) |
-| **knowledge** | Knowledge Layer pods only (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) |
+| **Combined** | All Knowledge Layer pods (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) + all Agentic Layer pods (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server) |
+| **Agentic** | Agentic Layer pods only (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server, postgres) |
+| **Knowledge** | Knowledge Layer pods only (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) |
 
 Run the following command to check:
 

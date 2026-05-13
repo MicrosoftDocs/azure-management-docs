@@ -4,7 +4,7 @@ description: Learn about deploying Agents and Tools with Foundry Local with Azur
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/04/2026
+ms.date: 05/13/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agents and Tools with Foundry Local with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -67,7 +67,7 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 When you deploy Agents and Tools with Foundry Local, set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle any language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) or [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models.
+- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) or [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models.
 - **Deployment mode:** Choose which layers to deploy by using the `layerSelection` parameter:
   - `combined` (default) — full platform with both layers
   - `agentic` — agents, knowledge bases, KT/KS, MCP server only (no GPUs required)
