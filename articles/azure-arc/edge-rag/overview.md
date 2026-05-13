@@ -129,7 +129,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM),an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM), an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
 
 - **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 
