@@ -4,12 +4,12 @@ description: Learn how to query your data with Agents and Tools with Foundry Loc
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: quickstart
-ms.date: 04/29/2026
+ms.date: 05/13/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Quickstart: Query your data with Agents and Tools with Foundry Local
+# Quickstart: Query your data with Agents and Tools with Foundry Local (Step 2 of 2)
 
 In this quickstart, you query your data with Agents and Tools with Foundry Local by ingesting data, registering it as a knowledge source, linking it to your default knowledge base, and running a conversation with streaming.
 
