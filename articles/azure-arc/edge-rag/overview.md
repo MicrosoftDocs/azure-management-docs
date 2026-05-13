@@ -4,7 +4,7 @@ description: "Learn about the Azure Arc-enabled Kubernetes extension Agents and 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 05/04/2026
+ms.date: 05/12/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -13,24 +13,79 @@ ms.custom:
 ---
 # What is Agents and Tools with Foundry Local?
 
-Agents and Tools with Foundry Local is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) that provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a Knowledge Layer (document ingestion, embedding, vector search) with an Agentic Layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
+Agents and Tools with Foundry Local is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) that provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
-Agents and Tools with Foundry Local packages everything necessary to build and deploy AI-powered assistants on local data, including:
-
-- **An Agentic Layer** with AI agent orchestration, knowledge bases, knowledge sources, and a built-in MCP (Model Context Protocol) server.
-- **A Knowledge Layer** with a turnkey data ingestion and RAG pipeline that keeps all data local, with Azure role-based access controls (Azure RBAC) to prevent unauthorized access.
-- **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
-- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on two GPUs. Docling (document parser) runs on CPU.
-- An out-of-the-box developer portal and agentic chat UI, plus REST APIs for integration into business applications.
-- **Independent deployment modes** — deploy the full platform, or just the Agentic Layer or Knowledge Layer separately.
-
-Agents and Tools with Foundry Local can ingest and retrieve relevant images as contextual references alongside text. It's not a visual language model (VLM).
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 Agents and Tools with Foundry Local is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
 
 For more information, see [Azure Arc](/azure/azure-arc/overview), [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/), and [Azure Arc extensions](/azure/azure-arc/kubernetes/conceptual-extensions). 
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+## Platform overview
+
+The platform is built on three components that work together:
+
+| Component | What it does |
+|---|---|
+| [**Local agentic RAG**](#local-agentic-rag) | AI agent orchestration with knowledge bases, knowledge sources, and an MCP server for multistep reasoning over your data. |
+| [**Local chat experience**](#local-chat-experience) | A built-in chat UI for interacting with agents, managing conversations, and viewing citations. No custom frontend is required. |
+| [**Local knowledge sources**](#local-knowledge-sources) | Data ingestion, embedding, and retrieval pipeline that indexes your on-premises documents into searchable collections. |
+
+Additional platform capabilities include:
+
+- **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
+- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on two GPUs. Docling (document parser) runs on CPU.
+- **Independent deployment modes** — deploy the full platform, or just the Agentic Layer or Knowledge Layer separately.
+- **Image retrieval** — ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
+
+## Key components
+
+The platform includes three key components that work together to help you build and run agentic RAG solutions on your on-premises data.
+
+### Local agentic RAG
+
+The agentic layer adds planning, tool use, and conversation orchestration to the platform. It lets you build AI assistants that manage multistep interactions, call MCP-connected knowledge tools, and generate responses grounded in your private data.
+
+Key capabilities:
+
+- **Agent execution** — agents process user queries by reasoning over instructions, invoking tools, and generating responses.
+- **Knowledge orchestration** — connect agents to one or more data sources through knowledge bases and knowledge sources.
+- **MCP server** — a built-in Model Context Protocol (MCP) server with search tools, plus support for connecting to external MCP servers.
+- **Conversation management** — threads, messages, and runs for managing multistep interactions with state.
+
+You can deploy the agentic layer together with the knowledge layer or by itself. In a combined deployment, agents query collections indexed locally. In an agentic-only deployment, agents connect to external MCP servers instead.
+
+For more information, see [Agentic layer overview](agentic-overview.md).
+
+### Local chat experience
+
+Agents and Tools with Foundry Local includes a built-in chat UI that provides a ready-to-use interface for interacting with agents. The chat UI is a static React app served by nginx that communicates with the agents runtime through the Foundry Agents API.
+
+The chat experience provides:
+
+- **Conversation management** — create, rename, delete, and browse conversations in a sidebar.
+- **Streaming responses** — real-time assistant responses via Server-Sent Events (SSE).
+- **Citations and sources** — view the sources the agent used to generate each response.
+- **Authentication** — optional Entra ID integration for user sign-in, with token-based authorization handled by the backend.
+
+The chat UI handles the browser experience only. Model orchestration, tool invocation, token validation, and data scoping are handled by the agents runtime and backend services.
+
+For more information, see [Configure the Knowledge Layer](build-chat-solution-overview.md).
+
+### Local knowledge sources
+
+The knowledge layer provides a turnkey data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
+
+Key capabilities:
+
+- **Data ingestion** — parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
+- **Collections** — organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
+- **Multiple search types** — choose from hybrid, vector, text, hybrid multimodal, and deep search to match your query needs.
+- **Developer portal** — configure ingestion settings, tune search parameters, and test queries through a local web interface.
+
+Access is controlled through Azure RBAC to prevent unauthorized access to ingested data.
+
+For more information, see [Collections overview](collections-overview.md) and [Search types](search-types.md).
 
 ## Customer scenarios and use cases
 
