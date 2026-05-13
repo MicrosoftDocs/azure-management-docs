@@ -116,7 +116,7 @@ The configuration process is similar to the one described in the previous sectio
 
     :::image type="content" source="./media/configure-fsad-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the values to configure the targets for a solution FSAD." lightbox="./media/configure-fsad-2.png":::
 
-1. In the **Shared dependencies** step, you can see the details of the dependant SSA instance. Under the **Instance** field, either choose existing or create a new SSA instance. 
+1. In the **Shared dependencies** step, you can see the details of the dependent SSA instance. Under the **Instance** field, either choose an existing one or create a new SSA instance. 
 
     :::image type="content" source="./media/configure-fsad-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure the shared dependencies for a solution FSAD." lightbox="./media/configure-fsad-3.png":::
 
@@ -128,7 +128,7 @@ The configuration process is similar to the one described in the previous sectio
     
         :::image type="content" source="./media/configure-fsad-5.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review a new SSA instance and publish it." lightbox="./media/configure-fsad-5.png":::
 
-1. Once the dependant solution details are filled, click on **Next**.
+1. Once the dependent solution details are filled in, click **Next**.
 
     :::image type="content" source="./media/configure-fsad-6.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the details of the shared dependencies for a solution FSAD." lightbox="./media/configure-fsad-6.png":::
 

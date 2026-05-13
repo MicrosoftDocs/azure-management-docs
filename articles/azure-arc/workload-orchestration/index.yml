@@ -26,14 +26,14 @@ landingContent:
             url: overview.md
       - linkListType: download
         links:
-          - text: Prepare the workload orchestration environment
-            url: initial-setup-environment.md
-          - text: Setup workload orchestration
-            url: initial-setup-configuration.md
+          - text: Set up workload orchestration using onboarding scripts
+            url: onboarding-scripts.md
+          - text: Set up workload orchestration
+            url: set-up-workload-orchestration.md
       - linkListType: quickstart
         links:
           - text: Create a basic solution
-            url: quickstart-solution-without-common-configuration.md
+            url: solution-without-common-configuration.md
 
   - title: Workload orchestration for IT users
     linkLists:
@@ -41,12 +41,8 @@ landingContent:
         links:
           - text: RBAC guide
             url: rbac-guide.md
-          - text: Configuration template
-            url: configuring-template.md
-          - text: Configuration schema
-            url: configuring-schema.md
-          - text: Use service groups 
-            url: service-group.md
+          - text: Operate in a multi-cluster environment with GitHub
+            url: workload-orchestration-multicluster-git.md
       - linkListType: how-to-guide
         links:
           - text: Enable external validation 
@@ -55,8 +51,8 @@ landingContent:
             url: how-to-stage.md
           - text: Perform a bulk deployment
             url: bulk-deployment.md
-          - text: Diagnose edge-related errors
-            url: diagnose-problems.md
+          - text: Troubleshooting and known issues
+            url: troubleshooting.md
 
   - title: Workload orchestration for OT users
     linkLists:
