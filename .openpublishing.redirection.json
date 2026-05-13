@@ -94,6 +94,16 @@
       "source_path": "articles/azure-arc/workload-orchestration/workflow-features.md",
       "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-3.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-4.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
     }
   ]
 }
