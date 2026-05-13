@@ -33,10 +33,10 @@ The platform is built on three components that work together:
 
 Additional platform capabilities include:
 
-- **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
-- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on two GPUs. Docling (document parser) runs on CPU.
-- **Independent deployment modes** — deploy the full platform, or just the Agentic Layer or Knowledge Layer separately.
-- **Image retrieval** — ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
+- **Bring Your Own Model (BYOM)** - Connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
+- **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) running locally on two GPUs. Docling (document parser) runs on CPU.
+- **Independent deployment modes** - Deploy the full platform, or just the agentic layer or knowledge layer separately.
+- **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
 
 ## Key components
 
@@ -48,10 +48,10 @@ The agentic layer adds planning, tool use, and conversation orchestration to the
 
 Key capabilities:
 
-- **Agent execution** — agents process user queries by reasoning over instructions, invoking tools, and generating responses.
-- **Knowledge orchestration** — connect agents to one or more data sources through knowledge bases and knowledge sources.
-- **MCP server** — a built-in Model Context Protocol (MCP) server with search tools, plus support for connecting to external MCP servers.
-- **Conversation management** — threads, messages, and runs for managing multistep interactions with state.
+- **Agent execution** - agents process user queries by reasoning over instructions, invoking tools, and generating responses.
+- **Knowledge orchestration** - connect agents to one or more data sources through knowledge bases and knowledge sources.
+- **MCP server** - a built-in Model Context Protocol (MCP) server with search tools, plus support for connecting to external MCP servers.
+- **Conversation management** - threads, messages, and runs for managing multistep interactions with state.
 
 You can deploy the agentic layer together with the knowledge layer or by itself. In a combined deployment, agents query collections indexed locally. In an agentic-only deployment, agents connect to external MCP servers instead.
 
@@ -63,10 +63,10 @@ Agents and Tools with Foundry Local includes a built-in chat UI that provides a 
 
 The chat experience provides:
 
-- **Conversation management** — create, rename, delete, and browse conversations in a sidebar.
-- **Streaming responses** — real-time assistant responses via Server-Sent Events (SSE).
-- **Citations and sources** — view the sources the agent used to generate each response.
-- **Authentication** — optional Entra ID integration for user sign-in, with token-based authorization handled by the backend.
+- **Conversation management** - create, rename, delete, and browse conversations in a sidebar.
+- **Streaming responses** - real-time assistant responses via Server-Sent Events (SSE).
+- **Citations and sources** - view the sources the agent used to generate each response.
+- **Authentication** - optional Entra ID integration for user sign-in, with token-based authorization handled by the backend.
 
 The chat UI handles the browser experience only. Model orchestration, tool invocation, token validation, and data scoping are handled by the agents runtime and backend services.
 
@@ -78,10 +78,10 @@ The knowledge layer provides a turnkey data ingestion and RAG pipeline that keep
 
 Key capabilities:
 
-- **Data ingestion** — parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
-- **Collections** — organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
-- **Multiple search types** — choose from hybrid, vector, text, hybrid multimodal, and deep search to match your query needs.
-- **Developer portal** — configure ingestion settings, tune search parameters, and test queries through a local web interface.
+- **Data ingestion** - parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
+- **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
+- **Multiple search types** - choose from hybrid, vector, text, hybrid multimodal, and deep search to match your query needs.
+- **Developer portal** - configure ingestion settings, tune search parameters, and test queries through a local web interface.
 
 Access is controlled through Azure RBAC to prevent unauthorized access to ingested data.
 
@@ -129,7 +129,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM) — an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM),an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
 
 - **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 
