@@ -19,7 +19,7 @@ Agents and Tools with Foundry Local packages everything necessary to build and d
 
 - **An Agentic Layer** with AI agent orchestration, knowledge bases, knowledge sources, and a built-in MCP (Model Context Protocol) server.
 - **A Knowledge Layer** with a turnkey data ingestion and RAG pipeline that keeps all data local, with Azure role-based access controls (Azure RBAC) to prevent unauthorized access.
-- **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via FoundryOnArc, KAITO, Azure OpenAI, or similar).
+- **Bring Your Own Model (BYOM)** — connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
 - **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) — running locally on two GPUs. Docling (document parser) runs on CPU.
 - An out-of-the-box developer portal and agentic chat UI, plus REST APIs for integration into business applications.
 - **Independent deployment modes** — deploy the full platform, or just the Agentic Layer or Knowledge Layer separately.
@@ -74,7 +74,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM) — an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via FoundryOnArc, KAITO, or Azure OpenAI.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM) — an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
 
 - **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 

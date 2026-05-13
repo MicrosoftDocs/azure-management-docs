@@ -44,7 +44,7 @@ Deploy exactly what you need with the new `layerSelection` parameter:
 
 **BYOM Only**
 
-Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYOM (Bring Your Own Model) endpoint - an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: FoundryOnArc, KAITO, Azure OpenAI.
+Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYOM (Bring Your Own Model) endpoint - an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: Foundry Local on Azure Local, KAITO, Azure OpenAI.
 
 **GPU Count Reduced**
 
@@ -57,7 +57,7 @@ Complete API documentation for: Agents Runtime, Knowledge Base Manager, Knowledg
 For more information, see the following articles:
 
 - [Agentic Layer Overview](agentic-overview.md) — Architecture and concepts
-- [Query Your Data Quickstart](create-agent-quickstart.md) — End-to-end tutorial
+- [Query Your Data Quickstart](quickstart-edge-rag.md) — End-to-end tutorial
 - [Collections Overview](collections-overview.md) — Collection architecture and RBAC
 - [MCP Server Overview](mcp-server-overview.md) — Built-in and external MCP servers
 

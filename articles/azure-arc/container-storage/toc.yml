@@ -3,6 +3,8 @@ items:
     href: index.yml
   - name: Overview
     href: overview.md
+  - name: Release notes
+    href: release-notes.md
   - name: What's new?
     href: whats-new.md
   - name: Quickstarts
@@ -43,6 +45,8 @@ items:
         href: howto-configure-onelake-identity.md
       - name: Configure Workload Identity
         href: howto-configure-workload-identity.md
+      - name: Enable local identity access
+        href: howto-enable-local-identity-access.md
   - name: Monitor deployments
     items:
       - name: Monitor with Azure Monitor
@@ -63,14 +67,12 @@ items:
         href: blobs-not-uploaded.md
   - name: Resources
     items:
-      - name: Release notes
-        href: release-notes.md
+      - name: Support and feedback
+        href: support-feedback.md
       - name: FAQ
         href: faq.yml
       - name: Azure Arc Jumpstart scenarios
         href: jumpstart.md
-      - name: Support and feedback
-        href: support-feedback.md
       - name: Filesystem behavior
         href: reference-filesystem-behavior.md
       - name: Filesystem out of space behavior

@@ -20,7 +20,7 @@ items:
           - name: Step 1 - Install Agents and Tools
             href: quickstart-edge-rag.md
           - name: Step 2 - Query your data
-            href: create-agent-quickstart.md
+            href: quickstart-edge-rag.md
       - name: Plan
         items:
           - name: Requirements
