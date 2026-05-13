@@ -1,6 +1,6 @@
 ---
 title: Create Your Language Model Endpoint for Agents and Tools with Foundry Local
-description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agents and Tools with Foundry Local by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
+description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agents and Tools with Foundry Local by using Foundry Local on Azure Local or Microsoft Foundry."
 author: cwatson-cat
 ms.topic: how-to
 ms.date: 05/12/2026
@@ -24,24 +24,10 @@ After you create your endpoint, use it when you [deploy the Agents and Tools wit
 
 Choose a method based on your environment, connectivity, and production requirements.
 
-### Recommended methods
-
-Start with one of these Microsoft-supported options when you want the most reliable setup experience.
-
 | Method | Description | Best for |
 |---|---|---|
 | **[Foundry Local on Azure Local](#foundry-local)** | Deploy models on your Arc-connected cluster by using the Foundry Local extension. | Production deployments with Azure-managed models. |
 | **[Microsoft Foundry](#microsoft-foundry)** | Deploy cloud-hosted models through the Foundry portal. | Cloud-connected deployments with managed models. |
-
-### Other methods
-
-Use one of these options when your environment needs a different hosting model or a custom OpenAI-compatible endpoint.
-
-| Method | Description | Best for |
-|---|---|---|
-| **[KAITO](#kaito)** | Kubernetes AI Toolchain Operator for model hosting on AKS. | On-premises model hosting with GPU support. |
-| **[Ollama](#ollama)** | Lightweight model server running on your cluster. | Development, testing, and CPU-only scenarios. |
-| **Any OpenAI-compatible endpoint** | Any service exposing `/v1/chat/completions`. | Custom or third-party model servers. |
 
 ## Foundry Local
 
@@ -51,6 +37,139 @@ Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry
 > If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
 
 For setup instructions, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) and [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
+
+This section shows how to deploy the recommended model (**gpt-oss-20b**) and configure its endpoint for use with Agents and Tools.
+
+### Prerequisites
+
+- Preview deployment access for Foundry Local on Azure Local
+- Azure Arc-enabled Kubernetes cluster (Kubernetes 1.29 or later)
+- `kubectl` configured for your cluster
+- An app registration for authentication (Microsoft Entra ID)
+- GPU nodes with sufficient memory for large language models (for example, 40 GB+ VRAM or multi-GPU setups recommended for gpt-oss-20b)
+
+---
+
+### Step 1 — Install required extensions
+
+Install cert-manager and trust-manager:
+
+```azurecli
+az k8s-extension create \
+  --cluster-name <your_arc_cluster_name> \
+  --name "azure-cert-manager" \
+  --resource-group <resource_group> \
+  --cluster-type connectedClusters \
+  --extension-type Microsoft.CertManagement \
+  --scope cluster \
+  --release-train stable
+```
+
+Install the Foundry inference operator:
+
+```azurecli
+az k8s-extension create \
+  --resource-group <resource_group> \
+  --cluster-name <cluster_name> \
+  --name "inference-operator" \
+  --extension-type Microsoft.Foundry \
+  --scope cluster \
+  --release-namespace "foundry-local-operator" \
+  --cluster-type connectedClusters \
+  --auto-upgrade-minor-version true \
+  --release-train stable \
+  --config entraAuth.tenantId="<tenant_id>" \
+  --config entraAuth.clientId="<client_id>"
+```
+
+Verify installation:
+
+```bash
+kubectl get pods -n foundry-local-operator
+```
+
+### Step 2 — Deploy the recommended model (gpt-oss-20b)
+
+Create a ModelDeployment resource:
+
+```yaml
+apiVersion: foundrylocal.azure.com/v1
+kind: ModelDeployment
+metadata:
+  name: gpt-oss-20b
+  namespace: foundry-local-operator
+spec:
+  model:
+    catalog:
+      name: gpt-oss-20b
+      version: "latest"
+  workloadType: generative
+  compute: gpu
+  runtime: vllm
+  replicas: 1
+```
+
+Apply the deployment:
+
+```bash
+kubectl apply -f model-deployment.yaml
+```
+
+Verify it is running:
+
+```bash
+kubectl get modeldeployment gpt-oss-20b -n foundry-local-operator
+```
+
+Wait until the status is **Running**.
+
+### Step 3 — Verify the model endpoint
+
+Port-forward the model service:
+
+```bash
+kubectl port-forward svc/gpt-oss-20b -n foundry-local-operator 5000:5000
+```
+
+Retrieve the API key:
+
+```bash
+kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
+  -o jsonpath="{.data.primary-key}" | base64 -d
+```
+
+Test the endpoint:
+
+```bash
+curl -k -X POST https://localhost:5000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "api-key: <your-api-key>" \
+  -d '{
+    "model": "gpt-oss-20b",
+    "messages": [
+      {"role": "user", "content": "Hello, what can you do?"}
+    ],
+    "max_tokens": 256
+  }'
+```
+
+You should receive a JSON response with a `choices` array.
+
+### Step 4 — Configure Agents and Tools with Foundry Local
+
+Use the model endpoint as your BYOM configuration.
+
+```yaml
+byom:
+  enabled: true
+  apiEndpoint: "http://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1"
+  apiModel: "gpt-oss-20b"
+  maxTokensInK: "16"
+```
+
+Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the namespace used by Agents and Tools with Foundry Local, following your deployment requirements.
+
+After configuration, Agents and Tools with Foundry Local will use the local gpt-oss-20b deployment for all language model interactions.
 
 ## Microsoft Foundry
 
@@ -84,172 +203,6 @@ For more information, see the following articles:
 
 - [Deployment types for Foundry Models](/azure/ai-foundry/foundry-models/concepts/deployment-types)
 - [Quickstart: Create your first Foundry resource](/azure/ai-services/multi-service-resource?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azportal)
-
-## KAITO
-
-To deploy an AI model by using Kubernetes AI Toolchain Operator (KAITO) on Azure Kubernetes, see [Deploy an AI model on AKS enabled by Azure Arc with the Kubernetes AI toolchain operator](/azure/aks/aksarc/deploy-ai-model?tabs=azurecli).
-
-## Ollama
-
-You can set up Ollama as a language model endpoint on your Kubernetes cluster. Use either CPU or GPU.
-
-1. If you're using Ollama with GPU, set the following two configurations on the GPU node. Replace `moc-gpunode` with the name of your GPU node.
-
-   ```bash
-   kubectl taint nodes <moc-gpunode> ollamasku=ollamagpu:NoSchedule –overwrite
-
-   kubectl label node <moc-gpunode> hardware=ollamagpu`
-   ```
-
-1. Create a YAML file by using one of the following snippets depending on whether you're using GPU or CPU for your model.
-
-    - GPU YAML:
-
-      ```yaml
-      # ollama-deploy.yaml
-      
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-          name: ollama-deploy
-          namespace: default
-      spec:
-          replicas: 1
-          selector:
-              matchLabels:
-                  app: ollama-deploy
-          template:
-              metadata:
-                  labels:
-                      app: ollama-deploy
-              spec:
-                  affinity:
-                      nodeAffinity:
-                          requiredDuringSchedulingIgnoredDuringExecution:
-                              nodeSelectorTerms:
-                              - matchExpressions:
-                                  - key: hardware
-                                      operator: In
-                                      values:
-                                      - ollamagpu
-                  containers:
-                      - name: ollama
-                          image: ollama/ollama
-                          args: ["serve"]
-                          ports:
-                              - containerPort: 11434
-                          volumeMounts:
-                              - name: ollama-data
-                                  mountPath: /root/.ollama
-                          resources:
-                              limits:
-                                  nvidia.com/gpu: "1"
-                  volumes:
-                      - name: ollama-data
-                          emptyDir: {}
-                  tolerations:
-                      - effect: NoSchedule
-                          key: ollamasku
-                          operator: Equal
-                          value: ollamagpu
-      
-      ---
-      apiVersion: v1
-      kind: Service
-      metadata:
-          name: ollama-llm
-          namespace: default
-      spec:
-          selector:
-              app: ollama-deploy
-          ports:
-              - port: 11434
-                  targetPort: 11434
-                  protocol: TCP
-      ```
- 
-    - CPU YAML:
-
-      ```yaml
-      # ollama-deploy.yaml
-      
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-          name: ollama-deploy
-          namespace: default
-      spec:
-          replicas: 1
-          selector:
-              matchLabels:
-                  app: ollama-deploy
-          template:
-              metadata:
-                  labels:
-                      app: ollama-deploy
-              spec:
-                  containers:
-                      - name: ollama
-                          image: ollama/ollama
-                          args: ["serve"]
-                          ports:
-                              - containerPort: 11434
-                          volumeMounts:
-                              - name: ollama-data
-                                  mountPath: /root/.ollama
-                  volumes:
-                      - name: ollama-data
-                          emptyDir: {}
-      
-      ---
-      apiVersion: v1
-      kind: Service
-      metadata:
-          name: ollama-llm
-          namespace: default
-      spec:
-          selector:
-              app: ollama-deploy
-          ports:
-              - port: 11434
-                  targetPort: 11434
-                  protocol: TCP
-      ```
-
-1. Deploy Ollama in the default namespace by using the following YAML snippet. This snippet creates an Ollama deployment and service in the default namespace.  
-
-   ```bash
-   kubectl apply -f ollama-deploy.yaml
-   ```
-
-1. Download a model by using one of the following commands. Get the latest supported models here: [Ollama Search](https://ollama.com/search).
-
-   ```bash
-   kubectl exec -n default -it deploy/ollama-deploy -- bash -c "ollama pull <model_name>"
-   ```
-
-   Or use k9s to connect to the pod and execute the following command inside the ollama pod:
-
-   ```bash
-   ollama pull <model_name>
-   ```
-1. Use the following endpoint value as you configure the Agents and Tools with Foundry Local extension deployment:
-
-    `http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions`
-
-After you deploy the Agents and Tools with Foundry Local extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
-
-```bash
-curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
-    -H "Content-Type: application/json" \
-    -d '{
-        "model": "llama3:8b",
-        "messages": [
-            { "role": "system", "content": "You are a helpful assistant." },
-            { "role": "user", "content": "What is the capital of Japan?" }
-        ]
-    }'
-```
 
 ## Validate your endpoint
 

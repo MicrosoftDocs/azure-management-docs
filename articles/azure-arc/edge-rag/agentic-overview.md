@@ -128,12 +128,17 @@ Agents and Tools with Foundry Local does **not** bundle any language models. You
 
 **Hosting options**: You can deploy GPT-OSS-20B (or another model) using any of these options:
 
+**Recommended**
+
 | Hosting option | Description |
 |---|---|
-| **Foundry Local on Arc** | Run models locally on your Arc-connected cluster; recommended for on-premises deployments |
-| **KAITO** | Kubernetes AI Toolchain Operator for model hosting on Kubernetes |
-| **Azure OpenAI** | Cloud-hosted models (requires network connectivity from the edge) |
-| **Any OpenAI-compatible endpoint** | Self-hosted or third-party (for example, Ollama) |
+| **[Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local)** | Run models locally on your Arc-connected cluster. Both extensions are designed to work together on the same cluster. Recommended for on-premises deployments. |
+
+**Other options**
+
+| Hosting option | Description |
+|---|---|
+| **Microsoft Foundry** | Cloud-hosted models (requires network connectivity from the edge) |
 
 The BYOM endpoint is configured *at the cluster level* during deployment via Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint.
 

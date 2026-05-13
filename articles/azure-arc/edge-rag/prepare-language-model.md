@@ -31,7 +31,7 @@ To choose the right model for your use case, refer to these resources from Micro
 
 ## Set up your endpoint
 
-After you choose a model, you need an OpenAI-compatible chat completions endpoint. Several methods are available, including Foundry Local on Azure Local (recommended for production) and other options like Microsoft Foundry, KAITO, and Ollama.
+After you choose a model, you need an OpenAI-compatible chat completions endpoint. Recommended methods include Foundry Local on Azure Local (recommended for production) and Microsoft Foundry for cloud-hosted models.
 
 For supported methods and step-by-step setup instructions, see [Create your language model endpoint](prepare-model-endpoint.md).
 

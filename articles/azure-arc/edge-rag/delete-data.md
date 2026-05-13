@@ -29,7 +29,7 @@ If you want to delete the data in your index, including all the individual data 
 1. Sign in with developer credentials that have both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned.
 1. Go to **Data** tab.
 1. Select on the **Delete** button on the toolbar
-1. Confirm if you want to delete all the data from the vector index.
+1. Confirm if you want to delete all the data from the collection.
 
 This step clears all the data in the vector database and empties the data ingestions history table.
 
