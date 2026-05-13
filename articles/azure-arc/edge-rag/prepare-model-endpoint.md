@@ -3,7 +3,7 @@ title: Create Your Language Model Endpoint for Agents and Tools with Foundry Loc
 description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agents and Tools with Foundry Local by using Microsoft Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 05/04/2026
+ms.date: 05/12/2026
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
@@ -50,7 +50,7 @@ Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry
 > [!IMPORTANT]
 > If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
 
-For setup instructions, see [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
+For setup instructions, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) and [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
 
 ## Microsoft Foundry
 
