@@ -86,7 +86,7 @@ The BYOM endpoint runs separately from Agents and Tools with Foundry Local. If y
 | **RAM** | 32 GB | 64 GB |
 | **Storage** | ≥ 50 GB | ≥ 50–100 GB per replica |
 
-The minimum configuration is suitable for development and low-concurrency scenarios. For production workloads, larger context windows, or higher concurrency, use the recommended configuration. For very large context sizes (deep search, long-context reasoning), 80 GB-class GPUs might be required.
+The minimum configuration is suitable for development and low-concurrency scenarios. For production workloads, larger context windows, or higher concurrency, use the recommended configuration.
 
 Foundry Local validates GPU compatibility at deployment time and fails with a clear error if resources are insufficient. Test in a non-production environment first.
 

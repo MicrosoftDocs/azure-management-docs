@@ -14,7 +14,7 @@ ms.subservice: edge-rag
 
 Agents and Tools with Foundry Local requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint by using one of the following methods.
 
-All search types (hybrid, vector, text, hybrid multimodal, and deep search) are available with your BYOM endpoint.
+All search types (hybrid, vector, text, and hybrid multimodal) are available with your BYOM endpoint.
 
 After you create your endpoint, use it when you [deploy the Agents and Tools with Foundry Local extension](deploy.md). The endpoint URL, model name, and max tokens are required deployment parameters.
 
