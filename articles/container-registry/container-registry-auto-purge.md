@@ -20,7 +20,7 @@ To delete multiple artifacts quickly, use the `acr purge` command. You can run `
 > `acr purge` is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.17`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
+The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.19`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
 
 Use the Azure Cloud Shell or a local installation of the Azure CLI to run the ACR task examples in this article. To install or upgrade, see [Install Azure CLI][azure-cli-install].
 
@@ -51,12 +51,14 @@ At a minimum, specify the following options when you run `acr purge`:
 `acr purge` supports several optional parameters:
 
 * `--untagged` - Deletes all manifests that don't have associated tags (*untagged manifests*). This parameter deletes untagged manifests in addition to tags that the command already deletes. Remove all tags associated with a manifest to purge it; only then can you purge a tag-free manifest by using `--untagged`.
-* `--dry-run` - Specifies that no data is deleted, but the command produces the same output as if the command is run without this flag. This parameter is useful for testing a purge command to make sure it doesn't inadvertently delete data you intend to preserve.
-* `--keep` - Specifies the latest number of to-be-deleted tags per repository that are retained. The latest tags are determined by the last modified time of the tag for each repository matched by the provided `--filter` options.
-* `--concurrency` - Specifies a number of purge tasks to process concurrently.
 
 > [!NOTE]
 >  The --untagged parameter honors the --ago duration filter beginning with mcr.microsoft.com/acr/acr-cli:0.17.
+
+* `--dry-run` - Specifies that no data is deleted, but the command produces the same output as if the command is run without this flag. This parameter is useful for testing a purge command to make sure it doesn't inadvertently delete data you intend to preserve.
+* `--keep` - Specifies the latest number of to-be-deleted tags per repository that are retained. The latest tags are determined by the last modified time of the tag for each repository matched by the provided `--filter` options.
+* `--concurrency` - Specifies a number of purge tasks to process concurrently.
+* `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. Unlike the standard `acr purge` flow, which requires `--filter` and `--ago`, this flag makes those parameters optional. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests.
 
 For information about additional parameters, run `acr purge --help`.
 
@@ -195,6 +197,60 @@ az acr task create --name weeklyPurgeTask \
   --registry myregistry \
   --context /dev/null
 ```
+
+### Example: Purge Only Untagged Manifests with `--untagged-only`
+
+The `--untagged-only` flag provides a simpler way to clean up dangling manifests without deleting any tags. Unlike `--untagged`, which removes untagged manifests *in addition to* tag deletions, `--untagged-only` skips tag deletion entirely.
+
+To purge all untagged manifests across every repository in the registry:
+
+```azurecli
+PURGE_CMD="acr purge --untagged-only"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
+```
+
+## Purge in ABAC-enabled registries
+
+Registries with Attribute-Based Access Control (ABAC) enabled use repository-scoped permissions instead of registry-wide roles. The `acr purge` command automatically detects ABAC-enabled registries and adjusts its authentication — no additional flags are needed.
+
+Because ABAC registries don't support wildcard token scopes, `acr purge` processes repositories in **batches** (default: 10). For each batch, a new access token scoped to only those repositories is requested.
+
+### Required permissions
+
+| Permission | Role | Scope |
+|---|---|---|
+| List repositories | `Container Registry Repository Catalog Lister` | Registry |
+| Read, delete, and manage tags and manifests | `Container Registry Repository Contributor` | Per-repository |
+
+> [!NOTE]
+> You can use ABAC conditions to scope the `Container Registry Repository Contributor` role to specific repositories — for example, granting delete access only to `samples/*`.
+
+### Purging without list permissions
+
+If your identity doesn't have `Container Registry Repository Catalog Lister` permissions, you can still purge tags and manifests within a single repository by specifying it directly in the `--filter` option. Because the repository name is explicit, `acr purge` doesn't need to list repositories. For example:
+
+```azurecli
+PURGE_CMD="acr purge --filter 'hello-world:.+' \
+  --ago 1d"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
+```
+
+In this case, only the `Container Registry Repository Contributor` role (or equivalent read/delete permissions) on the target repository is required.
+
+### Partial access behavior
+
+If `--filter` matches repositories your identity can't purge, the command stops at the first unauthorized repository and reports which repositories were completed, which failed, and which were not yet processed.
+
+> [!TIP]
+> Use a specific `--filter` that targets only repositories your identity has access to. For example, use `--filter 'samples/.*:.*'` instead of `--filter '.*:.*'`.
 
 ## Next steps
 
