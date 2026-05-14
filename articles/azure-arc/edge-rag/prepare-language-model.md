@@ -21,7 +21,7 @@ Agents and Tools with Foundry Local requires an external language model (Bring Y
 
 Agents and Tools with Foundry Local doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
 
-Work with your application development team to choose the right model for your use case. For the best results with deep search, use a model like GPT-4o, GPT-4.1-mini, or later.
+Work with your application development team to choose the right model for your use case.
 
 To choose the right model for your use case, refer to these resources from Microsoft:
 
@@ -31,7 +31,7 @@ To choose the right model for your use case, refer to these resources from Micro
 
 ## Set up your endpoint
 
-After you choose a model, you need an OpenAI-compatible chat completions endpoint. Several methods are available, including Foundry Local on Azure Local (recommended for production) and other options like Microsoft Foundry, KAITO, and Ollama.
+After you choose a model, you need an OpenAI-compatible chat completions endpoint. Recommended methods include Foundry Local on Azure Local (recommended for production) and Microsoft Foundry for cloud-hosted models.
 
 For supported methods and step-by-step setup instructions, see [Create your language model endpoint](prepare-model-endpoint.md).
 

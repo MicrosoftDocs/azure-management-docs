@@ -44,7 +44,7 @@ Deploy exactly what you need with the new `layerSelection` parameter:
 
 **BYOM Only**
 
-Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYOM (Bring Your Own Model) endpoint - an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: Foundry Local on Azure Local, KAITO, Azure OpenAI.
+Phi-3.5 and Mistral-7B aren't bundled anymore. All deployments now require a BYOM (Bring Your Own Model) endpoint - an external LLM exposing an OpenAI-compatible chat completions API. Recommended options: Foundry Local on Azure Local or Microsoft Foundry.
 
 **GPU Count Reduced**
 

@@ -1,17 +1,17 @@
 ---
-title: "Quickstart: Install Agents and Tools with Foundry Local on Azure Kubernetes Service"
-description: "Learn how to install Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware."
+title: "Quickstart: Deploy Agents and Tools with Foundry Local on Azure Kubernetes Service"
+description: "Learn how to deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware."
 author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 05/04/2026
+ms.date: 05/13/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a user, I want to install Agents and Tools with Foundry Local on Azure Kubernetes Service so that I can assess the solution.
+#customer intent: As a user, I want to deploy Agents and Tools with Foundry Local on Azure Kubernetes Service so that I can assess the solution.
 ---
 
-# Quickstart: Install Agents and Tools with Foundry Local
+# Quickstart: Deploy Agents and Tools with Foundry Local (Step 1 of 2)
 
 In this quickstart, you deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Agents and Tools with Foundry Local for evaluation or development purposes. To deploy Agents and Tools with Foundry Local for a production environment, see [Deployment overview](deploy-overview.md).
 
@@ -269,4 +269,4 @@ az group delete `
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add a data source](add-data-source.md)
+> [Query your data](quickstart-create-agent.md)

@@ -33,7 +33,7 @@ The platform is built on three components that work together:
 
 Additional platform capabilities include:
 
-- **Bring Your Own Model (BYOM)** - Connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local, KAITO, Azure OpenAI, or similar).
+- **Bring Your Own Model (BYOM)** - Connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local or Microsoft Foundry).
 - **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) running locally on two GPUs. Docling (document parser) runs on CPU.
 - **Independent deployment modes** - Deploy the full platform, or just the agentic layer or knowledge layer separately.
 - **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
@@ -80,7 +80,7 @@ Key capabilities:
 
 - **Data ingestion** - parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
 - **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
-- **Multiple search types** - choose from hybrid, vector, text, hybrid multimodal, and deep search to match your query needs.
+- **Multiple search types** — choose from hybrid, vector, text, and hybrid multimodal to match your query needs.
 - **Developer portal** - configure ingestion settings, tune search parameters, and test queries through a local web interface.
 
 Access is controlled through Azure RBAC to prevent unauthorized access to ingested data.
@@ -129,7 +129,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM), an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local, KAITO, or Azure OpenAI.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM), an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local or Microsoft Foundry.
 
 - **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 
@@ -139,7 +139,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Search parameters** are settings that control how Agents and Tools with Foundry Local retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 
-- **Search type**: A search type is the method Agents and Tools with Foundry Local uses to find and rank information from your indexed data. It determines how the system retrieves relevant content to answer user questions, such as by matching keywords, using semantic similarity, or combining multiple approaches. Agents and Tools with Foundry Local supports several search methods for retrieving information, including deep search, full text search, hybrid search, hybrid multimodal search, and vector search. For more information, see [Types of search in Agents and Tools with Foundry Local](search-types.md).
+- **Search type**: A search type is the method Agents and Tools with Foundry Local uses to find and rank information from your indexed data. It determines how the system retrieves relevant content to answer user questions, such as by matching keywords, using semantic similarity, or combining multiple approaches. Agents and Tools with Foundry Local supports several search methods for retrieving information, including full text search, hybrid search, hybrid multimodal search, and vector search. For more information, see [Types of search in Agents and Tools with Foundry Local](search-types.md).
 
 - **System prompt** are predefined instructions or messages provided to a language model at the start of a conversation or task to influence its behavior. These prompts define the model's role, tone, or task-specific context. For example, "You're a helpful assistant" or "Provide concise technical explanations." By shaping the initial context, system prompts ensure that the model generates responses aligned with the desired objective or persona.
 

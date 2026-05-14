@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agents and Tools with Foundry Local extens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/04/2026
+ms.date: 05/13/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -54,7 +54,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Deployment mode | Select the deployment mode: **Agentic and Knowledge** (default), **Agentic Only**, or **Knowledge Only**. |
    |**Language model (BYOM — required)**| |
    |Model name|Enter the name of your language model.|
-   |LLM endpoint|Enter the URL of your OpenAI-compatible LLM endpoint. For example, `https://<Endpoint_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. |
+   |LLM endpoint|Enter the URL of your OpenAI-compatible LLM endpoint. For example, for Microsoft Foundry: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use the cluster-internal endpoint from your model deployment. |
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
    |**SSL settings**||
    |SSL CNAME           | Provide the domain name for your system. This domain name is the same as redirect URI provided during app registration.|
@@ -125,9 +125,9 @@ After deployment, verify the components running in the `arc-rag` namespace match
 
 | Mode | Expected pods |
 |---|---|
-| **combined** | All Knowledge Layer pods (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) + all Agentic Layer pods (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server) |
-| **agentic** | Agentic Layer pods only (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server, postgres) |
-| **knowledge** | Knowledge Layer pods only (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) |
+| **Combined** | All Knowledge Layer pods (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) + all Agentic Layer pods (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server) |
+| **Agentic** | Agentic Layer pods only (agent-manager, agents-runtime, knowledge-sources, indexed-sources-mcp-server, postgres) |
+| **Knowledge** | Knowledge Layer pods only (ingestionapi, inferencingflow, vectordb-api-server, embedding models, docling, milvus, postgres) |
 
 Run the following command to check:
 
