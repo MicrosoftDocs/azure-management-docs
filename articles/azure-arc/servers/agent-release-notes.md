@@ -42,7 +42,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnect
 |Added Arc Gateway bypass list support so configured FQDNs skip the gateway and use the customer's enterprise proxy (or direct connection) instead.|✓|✓|Feature|
 |Added a backup file for localconfig.json to improve reliability, mirroring the agentconfig.json backup introduced in 1.62.|✓|✓|Improvement|
 |Added Ubuntu Pro subscription status to detected properties.||✓|Feature|
-|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures when intermediates are not cached.|✓||Improvement|
+|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures when intermediates aren't cached.|✓||Improvement|
 |HIMDS now refreshes its regional endpoint and retries the heartbeat when the service returns a 421 response.|✓|✓|Improvement|
 |Fixed an issue where agentconfig.json was unnecessarily read before onboarding, and added retry logic when saving the agent certificate to the cert store.|✓||Bug Fix|
 |Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
@@ -109,7 +109,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnect
 |Added option to disable automatic upgrades locally.|✓|✓|Feature|
 |Added MSI signature verification to the Windows installation script for enhanced security.|✓||Improvement|
 |Fixed a bug in the Linux install script where the wrong package manager was invoked on some distributions.||✓|Bug Fix|
-|Fix bug where serial number is not detected by `azcmagent connect` command, causing certificate-based authentication to fail.|✓||Bug Fix|
+|Fix bug where serial number isn't detected by `azcmagent connect` command, causing certificate-based authentication to fail.|✓||Bug Fix|
 |Fix bug causing installation to fail on machines with .NET < 4.5.1.|✓||Bug Fix|
 
 ### Known issues
