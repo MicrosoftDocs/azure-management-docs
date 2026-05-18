@@ -236,6 +236,9 @@ Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the na
 
 After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
 
+> [!TIP]
+> For optional operator parameters (such as `entraAuth.enabled` and namespace configuration) and API key rotation endpoints, see [Deployment parameter reference](deploy-reference.md#foundry-local-operator-parameters).
+
 ## Microsoft Foundry
 
 To use your own model with Agents and Tools with Foundry Local, deploy a language model and create an endpoint by using Foundry.
@@ -287,6 +290,11 @@ curl -X POST <your-endpoint-url> \
 ```
 
 You should receive a JSON response with a `choices` array containing the model's answer. If this works, your endpoint is ready for Agents and Tools with Foundry Local.
+
+## Related content
+
+- [Choose your language model](prepare-language-model.md)
+- [Deployment parameter reference](deploy-reference.md)
 
 ## Next step
 
