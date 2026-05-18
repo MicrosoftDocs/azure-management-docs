@@ -33,6 +33,8 @@ Choose a method based on your environment, connectivity, and production requirem
 
 Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry Local extension. Foundry Local is currently a CLI-based experience.
 
+The following table summarizes the key properties of the Foundry Local extension:
+
 | Property | Value |
 |---|---|
 | Extension type | `Microsoft.Foundry` |
@@ -236,8 +238,7 @@ Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the na
 
 After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
 
-> [!TIP]
-> For optional operator parameters (such as `entraAuth.enabled` and namespace configuration) and API key rotation endpoints, see [Deployment parameter reference](deploy-reference.md#foundry-local-operator-parameters).
+For optional operator parameters (such as `entraAuth.enabled` and namespace configuration) and API key rotation endpoints, see [Deployment parameter reference](deploy-reference.md#foundry-local-operator-parameters).
 
 ## Microsoft Foundry
 
