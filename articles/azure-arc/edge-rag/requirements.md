@@ -81,10 +81,10 @@ The BYOM endpoint runs separately from Agents and Tools with Foundry Local. If y
 
 |**Resource**| **Minimum** | **Recommended (production)** |
 |---|---|---|
-| **GPU** | 1 ├ù NVIDIA GPU, ΓëÑ 24 GB VRAM | 1 ├ù NVIDIA GPU, ΓëÑ 48 GB VRAM |
+| **GPU** | 1 × NVIDIA GPU, ≥ 24 GB VRAM | 1 × NVIDIA GPU, ≥  48 GB VRAM |
 | **CPU** | 8+ vCPUs | 16+ vCPUs |
 | **RAM** | 32 GB | 64 GB |
-| **Storage** | ΓëÑ 50 GB | ΓëÑ 50ΓÇô100 GB per replica |
+| **Storage** |≥ 50 GB | ≥ 50–100 GB per replica |
 
 The minimum configuration is suitable for development and low-concurrency scenarios. For production workloads, larger context windows, or higher concurrency, use the recommended configuration.
 

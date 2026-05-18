@@ -113,7 +113,7 @@ Certificates should be rotated before expiry. The extension supports zero-downti
 
 ### No passwords in Helm values
 
-The Personal Information Exchange (PFX) password is never stored in Helm values or ConfigMaps. The delivery chain is: Azure Key Vault secret ΓåÆ CSI driver ΓåÆ Kubernetes secret ΓåÆ pod environment variable. The password is not exposed in cluster configuration at any point.
+The Personal Information Exchange (PFX) password is never stored in Helm values or ConfigMaps. The delivery chain is: Azure Key Vault secret  →  CSI driver  → Kubernetes secret  →  pod environment variable. The password is not exposed in cluster configuration at any point.
 
 ### Transport Layer Security (TLS) verification
 
