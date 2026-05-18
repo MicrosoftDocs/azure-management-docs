@@ -40,8 +40,7 @@ Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry
 | Inference port | `5000` (no TLS) / `8443` (TLS) |
 | API format | OpenAI-compatible (`/v1/chat/completions`) |
 
-> [!IMPORTANT]
-> Foundry Local must be installed and operational on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment. If Foundry Local is not set up correctly, Agents and Tools with Foundry Local fails at runtime with connection errors.
+Foundry Local must be installed and operational on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment. If Foundry Local is not set up correctly, Agents and Tools with Foundry Local fails at runtime with connection errors.
 
 For setup instructions, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) and [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
 
@@ -59,7 +58,7 @@ Before you start, confirm that your cluster, tools, and access settings meet the
 
 ---
 
-### Step 1 ΓÇö Install required extensions
+### Step 1 - Install required extensions
 
 Install the required Kubernetes extensions so your cluster can host and run Foundry Local model workloads.
 
@@ -98,8 +97,7 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
      --config entraAuth.clientId="<client_id>"
    ```
 
-   > [!NOTE]
-   > If you don't have a Foundry Client ID (app registration), you can disable Microsoft Entra authentication by replacing the `entraAuth.tenantId` and `entraAuth.clientId` parameters with `--config entraAuth.enabled=false`.
+   If you don't have a Foundry Client ID (app registration), you can disable Microsoft Entra authentication by replacing the `entraAuth.tenantId` and `entraAuth.clientId` parameters with `--config entraAuth.enabled=false`.
 
 1. Verify installation:
 
@@ -110,7 +108,7 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
 
    Expected output: five pods in `Running` or `Completed` status, and four Foundry Local custom resource definitions registered.
 
-### Step 2 ΓÇö Deploy the recommended model (gpt-oss-20b)
+### Step 2 - Deploy the recommended model (gpt-oss-20b)
 
 Deploy the recommended gpt-oss-20b model to create a local inference endpoint for your BYOM configuration.
 
@@ -155,8 +153,7 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
          enforce_eager: true
    ```
 
-   > [!NOTE]
-   > The model is deployed with `endpoint.enabled: false`, which means it's accessed via internal Kubernetes service DNS rather than an external ingress. Adjust `nodeSelector` and `tolerations` to match your cluster's GPU node pool configuration.
+   The model is deployed with `endpoint.enabled: false`, which means it's accessed via internal Kubernetes service DNS rather than an external ingress. Adjust `nodeSelector` and `tolerations` to match your cluster's GPU node pool configuration.
 
 1. Apply the deployment:
 
@@ -172,37 +169,7 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
 
    Wait until the status is **Running**.
 
-### Available models
-
-In addition to gpt-oss-20b, the following models are available for deployment with Foundry Local.
-
-**CPU-optimized models** (no GPU required):
-
-| Model | Parameters | Notes |
-|---|---|---|
-| `phi-3-mini-4k-instruct-generic-cpu:2` | 3.8B | Microsoft Phi-3 Mini |
-| `phi-3.5-mini-instruct-generic-cpu:1` | 3.8B | Microsoft Phi-3.5 Mini |
-| `qwen2.5-0.5b-instruct-generic-cpu:3` | 0.5B | Small, fast |
-| `qwen2.5-1.5b-instruct-generic-cpu:3` | 1.5B | Larger Qwen |
-| `llama3.2:1b` | 1B | Meta Llama 3.2 |
-| `llama3.2:3b` | 3B | Meta Llama 3.2 |
-
-**GPU-optimized models** (CUDA required):
-
-| Model | Parameters |
-|---|---|
-| `qwen2.5-1.5b-instruct-cuda-gpu:3` | 1.5B |
-| `llama3.1:8b` | 8B |
-
-### Recommended models
-
-| Use case | Recommended model |
-|---|---|
-| General (CPU clusters) | `gpt-oss-20b` |
-| GPU clusters | `gpt-oss-20b` |
-| Graph RAG and agentic flows | `gpt-oss-20b` (good quality for entity extraction and tool calling) |
-
-### Step 3 ΓÇö Verify the model endpoint
+### Step 3 - Verify the model endpoint
 
 Test the deployed endpoint to confirm that it accepts chat completion requests and returns a valid response.
 
@@ -252,7 +219,7 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 
    You should receive a JSON response with a `choices` array.
 
-### Step 4 ΓÇö Configure Agents and Tools with Foundry Local
+### Step 4 - Configure Agents and Tools with Foundry Local
 
 Use the model endpoint as your BYOM configuration.
 
