@@ -190,7 +190,7 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 
 1. Note the internal Kubernetes service URL for use during deployment:
 
-   ```
+   ```text
    https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions
    ```
 
@@ -198,7 +198,7 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 
    If you have an external ingress configured, you can also use the external URL:
 
-   ```
+   ```text
    https://<foundry_ingress_host>/v1/chat/completions
    ```
 
@@ -235,24 +235,6 @@ foundryClientId: "<foundry_app_registration_client_id>"
 Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the namespace used by Agents and Tools with Foundry Local, following your deployment requirements.
 
 After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
-
-### Additional operator parameters
-
-You can set these optional parameters during Foundry inference operator installation:
-
-| Parameter | Description |
-|---|---|
-| `entraAuth.enabled` | When enabled, Microsoft Entra Auth SDK and msi-adapter sidecars are injected into inference pods for JWT validation and ARM RBAC authorization. When disabled, `tenantId` and `clientId` are optional. Default: `true`. |
-| `watch.namespaces` | Configure if the operator should manage resources across multiple namespaces. Default: `foundry-local-operator`. Pass as: `--config watch.namespaces[0]="<namespace_1>" --config watch.namespaces[1]="<namespace_2>"`. |
-
-### Key management
-
-You can retrieve and rotate API keys by using the Foundry Local inference service:
-
-| Endpoint | Description |
-|---|---|
-| `GET /namespaces/<namespace>/deployments/<name>/keys` | Retrieve both primary and secondary keys. |
-| `POST /namespaces/<namespace>/deployments/<name>/keys/{primary\|secondary}/rotate` | Rotate a specific key. |
 
 ## Microsoft Foundry
 

@@ -40,11 +40,9 @@ The following configuration parameters are used when you install the Agents and 
 | `embeddingmodel.image.gpu.repository` | No | GPU embedding model image repository. |
 | `embeddingmodel.image.gpu.tag` | No | GPU embedding model image tag. |
 
-> [!NOTE]
-> The BYOM API key is not passed as a configuration parameter. It's stored as a Kubernetes secret (`byom-api-key`) in the `arc-rag` namespace before extension installation.
+The BYOM API key is not passed as a configuration parameter. It's stored as a Kubernetes secret (`byom-api-key`) in the `arc-rag` namespace before extension installation.
 
-> [!TIP]
-> The Azure CLI accepts both `--config` and `--configuration-settings` for Arc extension parameters. Both syntaxes are equivalent.
+The Azure CLI accepts both `--config` and `--configuration-settings` for Arc extension parameters. Both syntaxes are equivalent.
 
 ## Environment variables
 
@@ -57,18 +55,6 @@ Helm templates populate the following environment variables for all inferencing 
 | `BYOM_MODEL` | `byom.apiModel` |
 | `BYOM_API_KEY` | `byom.apiKey` |
 | `FOUNDRY_CLIENT_ID` | `foundryClientId` |
-
-## Deploy with Microsoft Foundry (cloud)
-
-If you use Microsoft Foundry instead of Foundry Local, set the BYOM endpoint to your cloud-hosted model:
-
-```powershell
-$apiEndpoint = "https://<foundry_resource>.cognitiveservices.azure.com/openai/deployments/<model_name>/chat/completions?api-version=2025-01-01-preview"
-$apiModel = "<model_name>"
-```
-
-> [!NOTE]
-> For Microsoft Foundry, the BYOM API key secret should contain the Azure AI API key from your Foundry resource.
 
 ## Troubleshoot Foundry Local integration
 
@@ -92,6 +78,24 @@ Use the following commands to diagnose Foundry Local issues:
 | `401 Unauthorized` | Invalid or missing API key. | Update the `byom-api-key` secret with the correct `fndry-pk-*` value from the Foundry deployment secret. |
 | LLM calls fail but embedding and ingestion work | Expected behavior. Embedding models are local; only LLM inference uses Foundry. | Check Foundry connectivity and model deployment status. |
 | Managed identity token acquisition fails | Microsoft Entra ID unreachable or msi-adapter not running. | Check msi-adapter sidecar logs. The request falls back to API key authentication only. |
+
+## Foundry Local operator parameters
+
+You can set these optional parameters during Foundry inference operator installation:
+
+| Parameter | Description |
+|---|---|
+| `entraAuth.enabled` | When enabled, Microsoft Entra Auth SDK and msi-adapter sidecars are injected into inference pods for JWT validation and ARM RBAC authorization. When disabled, `tenantId` and `clientId` are optional. Default: `true`. |
+| `watch.namespaces` | Configure if the operator should manage resources across multiple namespaces. Default: `foundry-local-operator`. Pass as: `--config watch.namespaces[0]="<namespace_1>" --config watch.namespaces[1]="<namespace_2>"`. |
+
+## Foundry Local key management
+
+You can retrieve and rotate API keys by using the Foundry Local inference service:
+
+| Endpoint | Description |
+|---|---|
+| `GET /namespaces/<namespace>/deployments/<name>/keys` | Retrieve both primary and secondary keys. |
+| `POST /namespaces/<namespace>/deployments/<name>/keys/{primary\|secondary}/rotate` | Rotate a specific key. |
 
 ## Related content
 
