@@ -4,7 +4,7 @@ description: "Learn how to configure authentication for Agents and Tools with Fo
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 10/28/2025
+ms.date: 5/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Agents and Tools with Foundry Local so that I can securely connect to and manage the chat solution.
@@ -27,7 +27,7 @@ Before you begin, make sure you have:
    - Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).
    - Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application.
 
-## Register an application in Entra ID
+## Register an application in Microsoft Entra ID
 
 Create and configure an application registration for Agents and Tools with Foundry Local in your Microsoft Entra ID tenant.
 
@@ -92,17 +92,17 @@ Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you 
 1. Go to **Manage** > **Properties**.
 1. Disable **Assignment Required**.
 1. On the left-hand side menu, select **Users and groups** > **Add user/group**.
-1. Select users and/or groups and assign **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate. Assign both roles to the developers working on the chat solution.
+1. Select users and groups and assign the **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate. Assign both roles to the developers working on the chat solution.
 1. When complete, close the **Users and groups** page.
 
 ## (Optional) Register a Foundry Local application
 
-If you use Foundry Local as your model endpoint, a second app registration is required to identify the Foundry inference service. This registration provides the `foundryClientId` value used for managed identity token scope (`<client_id>/.default`).
+If you use Foundry Local as your model endpoint, you need a second app registration to identify the Foundry inference service. This registration provides the `foundryClientId` value used for managed identity token scope (`<client_id>/.default`).
 
 | App registration | Purpose | Key value |
 |---|---|---|
-| **Agents and Tools app** (EdgeRAG) | Identifies the Agents and Tools extension for Microsoft Entra authentication (JWT validation on external endpoints). | `auth.clientId` ΓÇö passed to the Agents and Tools extension. |
-| **Foundry Local app** | Identifies the Foundry inference service. Used as the managed identity token audience scope. | `foundryClientId` ΓÇö passed to the inference operator and Agents and Tools extension. |
+| **Agents and Tools app** (EdgeRAG) | Identifies the Agents and Tools extension for Microsoft Entra authentication (JWT validation on external endpoints). | `auth.clientId` - passed to the Agents and Tools extension. |
+| **Foundry Local app** | Identifies the Foundry inference service. Used as the managed identity token audience scope. | `foundryClientId` - passed to the inference operator and Agents and Tools extension. |
 
 For instructions on creating the Foundry Local app registration, see [Configure authentication for Foundry Local](/azure/azure-sovereign-clouds/private/foundry-local/how-to-configure-authentication).
 
@@ -110,7 +110,7 @@ For instructions on creating the Foundry Local app registration, see [Configure 
 
 Configure Azure role assignments so that the Agents and Tools extension's managed identity can call the Foundry inference endpoint, and the Foundry operator can perform ARM RBAC validation.
 
-These roles can be assigned at the **subscription or resource group level**. Azure RBAC inherits permissions from parent scopes, so a subscription-level assignment automatically covers all clusters within it. The principal IDs for the role assignments come from the Microsoft Entra ID app registrations created earlier.
+Assign these roles at the **subscription or resource group level**. Azure RBAC inherits permissions from parent scopes, so a subscription-level assignment automatically covers all clusters within it. The principal IDs for the role assignments come from the Microsoft Entra ID app registrations you created earlier.
 
 ```azurecli
 # Assign at subscription or resource group scope
@@ -138,16 +138,15 @@ az role assignment create \
     --assignee-principal-type ServicePrincipal
 ```
 
-> [!NOTE]
-> If you prefer to follow the principle of least privilege, you can scope these roles to individual connected cluster resources instead. In that case, run the role assignments after each cluster deployment by using the cluster resource ID as the scope and the per-cluster extension principal IDs:
->
-> ```azurecli
-> SCOPE=$(az connectedk8s show -g <resource_group> -n <cluster_name> --query "id" -o tsv)
-> FOUNDRY_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_name> \
->     -t connectedClusters --name inference-operator --query "identity.principalId" -o tsv)
-> EXTENSION_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_name> \
->     -t connectedClusters --name <extension_name> --query "identity.principalId" -o tsv)
-> ```
+If you prefer to follow the principle of least privilege, scope these roles to individual connected cluster resources instead. In that case, run the role assignments after each cluster deployment by using the cluster resource ID as the scope and the per-cluster extension principal IDs:
+
+```azurecli
+SCOPE=$(az connectedk8s show -g <resource_group> -n <cluster_name> --query "id" -o tsv)
+FOUNDRY_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_name> \
+    -t connectedClusters --name inference-operator --query "identity.principalId" -o tsv)
+EXTENSION_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_name> \
+    -t connectedClusters --name <extension_name> --query "identity.principalId" -o tsv)
+```
 
 ## (Optional) Get app and tenant IDs
 

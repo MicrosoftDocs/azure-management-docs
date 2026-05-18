@@ -67,8 +67,6 @@ items:
                 href: prepare-dns.md
           - name: Deploy Agents and Tools with Foundry Local
             href: deploy.md
-          - name: Deployment parameter reference
-            href: deploy-reference.md
           - name: Configure authentication for your model (optional)
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer
@@ -117,6 +115,8 @@ items:
             href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/edge-rag/TOC.json&bc=/azure/azure-arc/edge-rag/breadcrumb/toc.json 
       - name: Reference
         items:
+          - name: Deployment parameter reference
+            href: deploy-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Evaluation metrics

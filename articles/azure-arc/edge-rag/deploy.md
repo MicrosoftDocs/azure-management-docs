@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agents and Tools with Foundry Local extens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -42,6 +42,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Deployment name | Provide a name for the deployment.                           |
    | Region          | Select the region to deploy Agents and Tools with Foundry Local.                        |
    | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
+   | RAG components | Select the components to install: **Select all** (default), **Agentic Retrieval Engine**, or **Knowledge Sources Layer**. |
 
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details.":::
 
@@ -51,9 +52,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Field      | Value                                                                                           |
    |-----------------|-------------------------------------------------------------------------------------------------|
    | Deployment mode | Select GPU mode or CPU mode depending on your available hardware.                               |
-   | Deployment mode | Select the deployment mode: **Agentic and Knowledge** (default), **Agentic Only**, or **Knowledge Only**. |
-   |**Language model (BYOM ΓÇö required)**| |
-   |Model name|Enter the name of your language model.|
+   |**Inference model**||
+   |Language model name|Enter the name of your language model.|
    |LLM endpoint|Enter the URL of your OpenAI-compatible LLM endpoint. For example, for Microsoft Foundry: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use the cluster-internal endpoint from your model deployment. |
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
    |**SSL settings**||
@@ -91,14 +91,14 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 1. Set the values for your language model and deployment mode:
 
    ```powershell
-   # BYOM is mandatory ΓÇö set your model endpoint
+   # BYOM is mandatory - set your model endpoint
    $apiEndpoint = "<Your OpenAI-compatible LLM endpoint URI>"
    $apiModel = "<Model Name>"
    $maxTokensInK = "<Max Tokens In K (e.g. 10, 20 etc.)>"
    $layerSelection = "combined" # Options: combined, agentic, knowledge
    ```
 
-1. After you populate the parameter values, create the BYOM API key secret and deploy the Azure Arc extension:
+1. Create the BYOM API key secret:
 
    ```powershell
    # Create the BYOM API key secret before extension installation
@@ -107,8 +107,9 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    kubectl create secret generic byom-api-key --from-literal=BYOM_API_KEY="<your_foundry_api_key>" -n arc-rag
    ```
 
-   > [!NOTE]
-   > The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. You must create this secret before you install the extension. For Foundry Local, retrieve the key by running `kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator -o jsonpath="{.data.primary-key}" | base64 -d`.
+   The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. You must create this secret before you install the extension. For Foundry Local, retrieve the key by running `kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator -o jsonpath="{.data.primary-key}" | base64 -d`.
+
+1. After you populate the parameter values, deploy the Azure Arc extension by running the following command:
 
    ```powershell
    az provider register --namespace Microsoft.KubernetesConfiguration
@@ -125,10 +126,6 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 ----
 
 The Agents and Tools with Foundry Local extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
-
-## Bring your own language model
-
-After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
 
 ## Verify deployment by mode
 
@@ -185,10 +182,13 @@ After deployment, verify that the extension can communicate with Foundry Local:
      }'
    ```
 
+## Bring your own language model
+
+After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
+
 ## Related content
 
 - [Deployment parameter reference and troubleshooting](deploy-reference.md)
-
 - [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
 - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)

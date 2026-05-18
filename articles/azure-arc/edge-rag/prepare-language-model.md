@@ -29,12 +29,6 @@ To choose the right model for your use case, refer to these resources from Micro
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
 - [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) also provides tooling such as model benchmarks to choose the right model.
 
-## Set up your endpoint
-
-After you choose a model, you need an OpenAI-compatible chat completions endpoint. Recommended methods include Foundry Local on Azure Local (recommended for production) and Microsoft Foundry for cloud-hosted models.
-
-For supported methods and step-by-step setup instructions, see [Create your language model endpoint](prepare-model-endpoint.md).
-
 ## Available models with Foundry Local
 
 If you use [Foundry Local](prepare-model-endpoint.md#foundry-local) as your model endpoint, the following models are available for deployment.
@@ -67,6 +61,12 @@ The recommended model for most use cases is **gpt-oss-20b**. For step-by-step de
 | General (CPU clusters) | `gpt-oss-20b` |
 | GPU clusters | `gpt-oss-20b` |
 | Graph RAG and agentic flows | `gpt-oss-20b` (good quality for entity extraction and tool calling) |
+
+## Set up your endpoint
+
+After you choose a model, you need an OpenAI-compatible chat completions endpoint. Recommended methods include Foundry Local on Azure Local (recommended for production) and Microsoft Foundry for cloud-hosted models.
+
+For supported methods and step-by-step setup instructions, see [Create your language model endpoint](prepare-model-endpoint.md).
 
 ## Next steps
 
