@@ -40,7 +40,7 @@ A successful connection shows:
 ```
 SharePoint S2S: Certificate loaded from /certs/cert.pfx
 SharePoint S2S: Token created for audience 00000003-0000-0ff1-ce00-000000000000/sharepoint.contoso.com@da72f0f6-...
-SharePoint S2S: Connected to http://sharepoint.contoso.com ΓÇö 200 OK
+SharePoint S2S: Connected to http://sharepoint.contoso.com -  200 OK
 ```
 
 ### Verify Container Storage Interface (CSI) secret sync
@@ -60,8 +60,8 @@ kubectl get secret sharepoint-s2s-cert -n arc-rag
 | **CSI FailedMount:** generic auth failure | Federated credential not set up, or subject mismatch. | Rerun [Step 4](connect-sharepoint-setup.md#step-4-set-up-workload-identity-for-key-vault-access). Verify subject is `system:serviceaccount:arc-rag:edgerag-sp-sa`. |
 | **CSI FailedMount:** timeout or network error | Key Vault has firewall or private endpoint blocking cluster. | Add cluster outbound IPs to Key Vault firewall, or configure a private endpoint. |
 | **Pod CrashLoopBackOff:** `cert.pfx not found at /certs/cert.pfx` | The CSI driver didn't sync the certificate yet, or the Kubernetes secret is missing. | Run `kubectl get secret sharepoint-s2s-cert -n arc-rag`. If missing, check CSI logs: `kubectl logs -n kube-system -l app=secrets-store-csi-driver`. |
-| **401 Unauthorized**ΓÇöresponse has `WWW-Authenticate: NTLM` only (no `Bearer`) | SharePoint not processing OAuth tokens. | On the SharePoint server, run: `$sts = Get-SPSecurityTokenServiceConfig; $sts.AllowOAuthOverHttp = $true; $sts.AllowMetadataOverHttp = $true; $sts.Update()` |
-| **401 Unauthorized**ΓÇöresponse has `Bearer` in `WWW-Authenticate` | The JSON Web Token (JWT) `nameid` claim uses the wrong format. | Verify you're providing the Windows Security Identifier (SID) (`S-1-5-21-...`), not `DOMAIN\username`. Rerun [Step 5](connect-sharepoint-setup.md#create-user-profile-and-get-windows-sid). |
+| **401 Unauthorized**- response has `WWW-Authenticate: NTLM` only (no `Bearer`) | SharePoint not processing OAuth tokens. | On the SharePoint server, run: `$sts = Get-SPSecurityTokenServiceConfig; $sts.AllowOAuthOverHttp = $true; $sts.AllowMetadataOverHttp = $true; $sts.Update()` |
+| **401 Unauthorized**- response has `Bearer` in `WWW-Authenticate` | The JSON Web Token (JWT) `nameid` claim uses the wrong format. | Verify you're providing the Windows Security Identifier (SID) (`S-1-5-21-...`), not `DOMAIN\username`. Rerun [Step 5](connect-sharepoint-setup.md#create-user-profile-and-get-windows-sid). |
 | **403 Forbidden** | App principal registered but lacks permissions on target site. | Run `Set-SPAppPrincipalPermission` with `-Right FullControl` for the correct site. |
 | **500 Internal Server Error** from SharePoint | Missing service application (App Management or User Profile). | Run the service application creation script from [Step 5](connect-sharepoint-setup.md#create-required-service-applications). Check SharePoint Unified Logging Service (ULS) logs for `UserProfileApplicationNotAvailableException` or `AppManagement` errors. |
 | **`App Management Shared Service Proxy is not installed`** | App Management proxy wasn't created. | Run `New-SPAppManagementServiceApplicationProxy`. |
@@ -144,7 +144,7 @@ All SharePoint-related Helm values live under the `sharepoint` key.
 
 | Helm key | Type | Default | Required | Description |
 |---|---|---|---|---|
-| `sharepoint.sharepointIngestionEnabled` | bool | `false` | Yes | Master toggleΓÇögates all SharePoint config. |
+| `sharepoint.sharepointIngestionEnabled` | bool | `false` | Yes | Master toggle- gates all SharePoint config. |
 | `sharepoint.s2s.keyvaultName` | string | `""` | Yes | Azure Key Vault name. |
 | `sharepoint.s2s.kvCertSecretName` | string | `"edgerag-sp-s2s-cert"` | Yes | Key Vault secret name for PFX cert. |
 | `sharepoint.s2s.kvCertPasswordSecretName` | string | `"sp-cert-password"` | Yes | Key Vault secret name for PFX password. |

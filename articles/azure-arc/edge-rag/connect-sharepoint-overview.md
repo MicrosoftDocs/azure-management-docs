@@ -14,7 +14,7 @@ ms.subservice: edge-rag
 
 Agents and Tools with Foundry Local connects to SharePoint Server on-premises by using High-Trust Server-to-Server (S2S) authentication. Instead of storing a username and password, the extension signs a JWT token with a certificate's private key, and SharePoint validates it by using the registered public key.
 
-This is a fully disconnected-compatible authentication flow ΓÇö no ADFS, no ACS (Azure Access Control Service), and no internet connectivity is required for authentication.
+This is a fully disconnected-compatible authentication flow -  no ADFS, no ACS (Azure Access Control Service), and no internet connectivity is required for authentication.
 
 This article applies to Agents and Tools with Foundry Local on AKS or Azure Local (Arc-enabled Kubernetes) connecting to SharePoint Server Subscription Edition (on-premises).
 
@@ -34,41 +34,17 @@ This article applies to Agents and Tools with Foundry Local on AKS or Azure Loca
 
 ## Architecture
 
-```mermaid
-graph TD
-    KV("≡ƒöæ <b>Azure Key Vault</b><br/>PFX cert ┬╖ base64<br/>PFX password")
+The SharePoint Server S2S ingestion architecture for Agents and Tools with Foundry Local uses certificate-based trust to authenticate requests without stored credentials or an external token service. Azure Key Vault stores the PFX certificate and password, the CSI Secrets Store Driver syncs them into Kubernetes, the ingestion pod signs JWTs locally, and SharePoint Server validates the token by using the trusted public key before returning documents.
 
-    subgraph Cluster ["Γÿ╕∩╕Å Kubernetes Cluster"]
-        direction TB
-        Secret("≡ƒöÆ <b>K8s Secret</b><br/>cert.pfx<br/>cert-password")
-        Pod("≡ƒôª <b>Ingestion Pod</b><br/>/certs/cert.pfx<br/>Signs JWT locally<br/>No network call needed")
-    end
-
-    SP("≡ƒÅó <b>SharePoint Server SE</b><br/>On-premises<br/>Validates JWT with<br/>registered public key")
-
-    KV -->|"1. CSI Secrets Store Driver<br/>syncs via Workload Identity"| Secret
-    Secret -->|"2. Volume mount"| Pod
-    Pod -->|"3. Bearer JWT<br/>over HTTP/HTTPS"| SP
-    SP -->|"4. Returns<br/>documents"| Pod
-
-    classDef azure fill:#0078D4,stroke:#005A9E,color:#fff,stroke-width:2px
-    classDef secret fill:#D4A017,stroke:#B8860B,color:#fff,stroke-width:2px
-    classDef pod fill:#4A90D9,stroke:#2E6EB5,color:#fff,stroke-width:2px
-    classDef onprem fill:#8C6BB1,stroke:#6A4C93,color:#fff,stroke-width:2px
-
-    class KV azure
-    class Secret secret
-    class Pod pod
-    class SP onprem
-```
+![Architecture diagram showing certificate-based SharePoint S2S authentication flow through Azure Key Vault, Kubernetes, and SharePoint Server](media/connect-sharepoint-overview/sharepoint-s2s-architecture.png)
 
 ### Key design points
 
-- **No stored passwords** ΓÇö authentication uses a certificate-signed JWT.
-- **No ADFS or ACS required** ΓÇö the token is created locally by the pod.
-- **Disconnected/air-gap compatible** ΓÇö once the certificate is synced to the cluster, no Azure connectivity is needed for authentication.
-- **Per-datasource isolation** ΓÇö different SharePoint sites can use different identities.
-- **Token caching** ΓÇö JWTs are valid for 12 hours and auto-refreshed.
+- **No stored passwords** -  authentication uses a certificate-signed JWT.
+- **No ADFS or ACS required** -  the token is created locally by the pod.
+- **Disconnected/air-gap compatible** -  once the certificate is synced to the cluster, no Azure connectivity is needed for authentication.
+- **Per-datasource isolation** -  different SharePoint sites can use different identities.
+- **Token caching** -  JWTs are valid for 12 hours and auto-refreshed.
 
 ## Prerequisites checklist
 
@@ -124,7 +100,7 @@ These configure how the certificate is delivered from Azure Key Vault to the clu
 | **Workload Identity Client ID** | `sharepoint.s2s.workloadIdentityClientId` | GUID | _(empty)_ | Client ID of the user-assigned managed identity that has `get` access to the Key Vault secrets. |
 | **Key Vault Tenant ID** | `sharepoint.s2s.kvTenantId` | GUID | _(auto from session)_ | Microsoft Entra tenant ID where the managed identity and Key Vault reside. Usually auto-populated. Falls back to `auth.tenantId` if not specified. |
 
-### Post-install fields (S2S identity ΓÇö optional at install time)
+### Post-install fields (S2S identity -  optional at install time)
 
 These can be set at install time or later per-datasource in the UI. They're stored in a ConfigMap and can be updated without reinstalling via `az k8s-extension update`.
 

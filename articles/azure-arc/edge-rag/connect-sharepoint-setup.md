@@ -53,7 +53,7 @@ az k8s-extension create \
 
 ### Workload Identity / OIDC Issuer
 
-Workload Identity allows the CSI driver to authenticate to Azure Key Vault by using a federated Kubernetes ServiceAccount ΓÇö no client secrets are stored in the cluster.
+Workload Identity allows the CSI driver to authenticate to Azure Key Vault by using a federated Kubernetes ServiceAccount -  no client secrets are stored in the cluster.
 
 **For AKS:**
 
@@ -93,10 +93,10 @@ $cert = New-SelfSignedCertificate `
 # Choose a strong password for the PFX export
 $pfxPassword = ConvertTo-SecureString "<your_pfx_password>" -AsPlainText -Force
 
-# Export PFX (private key) ΓÇö this goes to Azure Key Vault
+# Export PFX (private key) -  this goes to Azure Key Vault
 Export-PfxCertificate -Cert $cert -FilePath "C:\edgerag-s2s.pfx" -Password $pfxPassword
 
-# Export CER (public key only) ΓÇö this stays on the SharePoint server
+# Export CER (public key only) -  this stays on the SharePoint server
 Export-Certificate -Cert $cert -FilePath "C:\edgerag-s2s.cer"
 
 # Note the thumbprint for troubleshooting
@@ -148,7 +148,7 @@ az identity create \
   --resource-group "<resource_group>" \
   --location "<location>"
 
-# Capture the Client ID ΓÇö you need this for the "Workload Identity Client ID" portal field
+# Capture the Client ID -  you need this for the "Workload Identity Client ID" portal field
 MI_CLIENT_ID=$(az identity show \
   --name "edgerag-kv-identity" \
   --resource-group "<resource_group>" \
@@ -229,7 +229,7 @@ New-SPTrustedRootAuthority -Name "EdgeRAG-S2S" -Certificate $cert
 ### Register as trusted security token issuer
 
 ```powershell
-# Choose a unique GUID for the Issuer ID ΓÇö SAVE THIS VALUE
+# Choose a unique GUID for the Issuer ID -  SAVE THIS VALUE
 $issuerId = [guid]::NewGuid().ToString()
 
 # Get the SharePoint realm
@@ -354,7 +354,7 @@ if (-not $upa) {
 Set-SPAppDomain "<your_ad_domain>"
 Set-SPAppSiteSubscriptionName -Name "app" -Confirm:$false
 
-# Choose a unique GUID for the Client ID ΓÇö SAVE THIS VALUE
+# Choose a unique GUID for the Client ID -  SAVE THIS VALUE
 $clientId = [guid]::NewGuid().ToString()
 
 $realm = Get-SPAuthenticationRealm
@@ -414,7 +414,7 @@ Write-Output "================================================"
 ```
 
 > [!IMPORTANT]
-> The Windows SID must be in `S-1-5-21-...` format. Don't use `DOMAIN\username` or `i:0#.w|domain\user` ΓÇö only the SID format works with S2S JWT authentication.
+> The Windows SID must be in `S-1-5-21-...` format. Don't use `DOMAIN\username` or `i:0#.w|domain\user` -  only the SID format works with S2S JWT authentication.
 
 ## Summary: Values collected
 
@@ -449,7 +449,7 @@ After completing all steps, you should have these values ready for installation:
    | **Workload Identity Client ID** | Managed identity Client ID (from Step 4) |
    | **Key Vault Tenant ID** | Usually auto-populated from your portal session |
 
-1. Optionally enter the S2S identity parameters (Client ID, Issuer ID, SID, Realm) ΓÇö or configure them per-datasource later in the UI.
+1. Optionally enter the S2S identity parameters (Client ID, Issuer ID, SID, Realm) -  or configure them per-datasource later in the UI.
 1. Complete the rest of the installation wizard.
 
 ### Azure CLI
@@ -505,7 +505,7 @@ az k8s-extension create \
 1. Select **Connect & Ingest**.
 
 > [!TIP]
-> If you provided S2S identity values during installation, they serve as cluster-wide defaults. You can override any of them per-datasource ΓÇö per-datasource values take precedence when non-empty. This allows different data sources to connect to different SharePoint sites with different identities.
+> If you provided S2S identity values during installation, they serve as cluster-wide defaults. You can override any of them per-datasource -  per-datasource values take precedence when non-empty. This allows different data sources to connect to different SharePoint sites with different identities.
 
 ## Next step
 

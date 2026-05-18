@@ -24,18 +24,18 @@ Kerberos configuration lives on the Kubernetes worker node, not inside the pod. 
 
 ```mermaid
 graph TD
-    AD("≡ƒöÉ <b>Active Directory / KDC</b><br/>dc01.contoso.com<br/>Ports: 88 ┬╖ 464 ┬╖ 389")
+    AD("🔐 <b>Active Directory / KDC</b><br/>dc01.contoso.com<br/>Ports: 88 · 464 · 389")
 
-    subgraph Node ["≡ƒûÑ∩╕Å Kubernetes Worker Node (domain-joined)"]
+    subgraph Node ["🖥️ Kubernetes Worker Node (domain-joined)"]
         direction TB
-        Config("ΓÜÖ∩╕Å <b>Node Kerberos Config</b><br/>/etc/krb5.conf<br/>/etc/krb5.keytab<br/>rpc.gssd ┬╖ kubelet")
-        Pod("≡ƒôª <b>Ingestion Pod</b><br/>/mnt/dataΓÇöPVC mount<br/>Pod is unaware of Kerberos")
+        Config("⚙️ <b>Node Kerberos Config</b><br/>/etc/krb5.conf<br/>/etc/krb5.keytab<br/>rpc.gssd · kubelet")
+        Pod("📦 <b>Ingestion Pod</b><br/>/mnt/data—PVC mount<br/>Pod is unaware of Kerberos")
     end
 
-    NFS("≡ƒÆ╛ <b>NFS File Server</b><br/>nfs-server.contoso.com<br/>/exports/data ┬╖ sec=krb5p<br/>Port: 2049")
+    NFS("💾 <b>NFS File Server</b><br/>nfs-server.contoso.com<br/>/exports/data · sec=krb5p<br/>Port: 2049")
 
     AD -->|"Kerberos tickets<br/>port 88"| Config
-    Config -->|"NFS mount<br/>sec=krb5p ┬╖ port 2049"| Pod
+    Config -->|"NFS mount<br/>sec=krb5p · port 2049"| Pod
     Pod -->|"NFS v4.1 + krb5p<br/>fully encrypted"| NFS
 
     classDef azure fill:#0078D4,stroke:#005A9E,color:#fff,stroke-width:2px
@@ -51,11 +51,11 @@ graph TD
 
 ### Key design points
 
-- **No passwords stored**ΓÇöauthentication uses a keytab file on the node.
-- **Data encrypted in transit**ΓÇö`krb5p` provides full NFS payload encryption.
-- **Pod is Kerberos-unaware**ΓÇöthe kernel handles everything via `rpc.gssd`.
-- **Continuous health monitoring**ΓÇöa DaemonSet validates each node every 60 seconds and labels it ready or not ready.
-- **Node affinity**ΓÇöingestion pods only schedule on nodes that pass validation.
+- **No passwords stored**- authentication uses a keytab file on the node.
+- **Data encrypted in transit**- `krb5p` provides full NFS payload encryption.
+- **Pod is Kerberos-unaware**- the kernel handles everything via `rpc.gssd`.
+- **Continuous health monitoring**- a DaemonSet validates each node every 60 seconds and labels it ready or not ready.
+- **Node affinity**- ingestion pods only schedule on nodes that pass validation.
 
 ## What happens during ingestion
 
@@ -65,8 +65,8 @@ When you create an NFS data source with Kerberos authentication:
 1. **Preflight check** queries for nodes with `edge-rag/kerberos-ready=true` and raises an error if no nodes are found.
 1. **PV/PVC creation** creates a static PersistentVolume with `mount_options: ["sec=krb5p", "vers=4.1"]`.
 1. **Pod scheduling** uses node affinity to land the pod on a `kerberos-ready=true` node.
-1. **Mount**ΓÇökubelet on the node triggers the NFS mount, and `rpc.gssd` intercepts and obtains a Kerberos ticket from the keytab.
-1. **File access**ΓÇöthe pod reads `/mnt/data` as a normal directory with no Kerberos code in the pod.
+1. **Mount**- kubelet on the node triggers the NFS mount, and `rpc.gssd` intercepts and obtains a Kerberos ticket from the keytab.
+1. **File access**- the pod reads `/mnt/data` as a normal directory with no Kerberos code in the pod.
 
 ## Prerequisites checklist
 
@@ -75,9 +75,9 @@ Complete every item before installing Agents and Tools with Foundry Local with K
 | # | Prerequisite | Who | Validation command |
 |---|---|---|---|
 | **Azure / Cluster** | | | |
-| 1 | Azure Local Arc-enabled Kubernetes cluster operational | Platform Admin | `kubectl get nodes`ΓÇöall nodes `Ready` |
+| 1 | Azure Local Arc-enabled Kubernetes cluster operational | Platform Admin | `kubectl get nodes`- all nodes `Ready` |
 | 2 | Active Directory domain available (with Key Distribution Center (KDC)) | AD Admin | `nslookup -type=SRV _kerberos._tcp.contoso.com` |
-| 3 | Worker nodes joined to AD domain | AD Admin | `realm list`ΓÇöshows `configured: kerberos-member` |
+| 3 | Worker nodes joined to AD domain | AD Admin | `realm list`- shows `configured: kerberos-member` |
 | 4 | Kerberos client packages installed (`krb5-user` or `krb5-workstation`) | Node Admin | `kinit --version` |
 | 5 | `/etc/krb5.conf` configured on every worker node | Node Admin | `grep default_realm /etc/krb5.conf` |
 | 6 | NFS service principal created in AD | AD Admin | `klist -kt /etc/krb5.keytab` |
@@ -89,7 +89,7 @@ Complete every item before installing Agents and Tools with Foundry Local with K
 | 12 | Forward DNS (A record) for NFS server hostname | Network Admin | `nslookup nfs-server.contoso.com` |
 | 13 | Reverse DNS (pointer (PTR) record) for NFS server IP | Network Admin | `nslookup <nfs_server_ip>` |
 | 14 | Forward DNS for all domain controllers | Network Admin | `nslookup dc01.contoso.com` |
-| 15 | Network Time Protocol (NTP) time synchronization configured (clock skew less than 5 minutes) | Node Admin | `timedatectl status`ΓÇö`NTP synchronized: yes` |
+| 15 | Network Time Protocol (NTP) time synchronization configured (clock skew less than 5 minutes) | Node Admin | `timedatectl status`- `NTP synchronized: yes` |
 | 16 | Firewall rules open (see [Network requirements](connect-nfs-kerberos-reference.md#network-requirements)) | Network Admin | `nc -zv dc01.contoso.com 88` |
 | 17 | Test NFS mount with `sec=krb5p` succeeds from every worker node | Node Admin | See [Validate NFS Kerberos mount](connect-nfs-kerberos-setup.md#step-6-validate-nfs-kerberos-mount) |
 | 18 | Worker nodes labeled `edge-rag/kerberos-provisioned=true` | Platform Admin | `kubectl get nodes -l edge-rag/kerberos-provisioned=true` |

@@ -103,12 +103,12 @@ for NODE in <node_1> <node_2> <node_3>; do
   ssh ${NODE} "sudo chmod 600 /etc/krb5.keytab && sudo chown root:root /etc/krb5.keytab"
 done
 
-# 3. Verify ΓÇö DaemonSet detects the new keytab within 60 seconds
+# 3. Verify -  DaemonSet detects the new keytab within 60 seconds
 kubectl get nodes -l edge-rag/kerberos-ready=true
 ```
 
 > [!NOTE]
-> After the AD password is reset, existing Kerberos TGTs remain valid for approximately 10 hours. Deploy the new keytab within this window for uninterrupted service. Running pods don't need to restart ΓÇö `rpc.gssd` re-reads the keytab on its next `kinit`.
+> After the AD password is reset, existing Kerberos TGTs remain valid for approximately 10 hours. Deploy the new keytab within this window for uninterrupted service. Running pods don't need to restart -  `rpc.gssd` re-reads the keytab on its next `kinit`.
 
 ## Add new nodes
 
@@ -145,10 +145,10 @@ kubectl label node <new_node_name> edge-rag/kerberos-provisioned=true
 | Helm key | Type | Default | Description |
 |---|---|---|---|
 | `kerberos.enabled` | bool | `false` | Master toggle for Kerberos NFS authentication. |
-| `kerberos.spn` | string | `""` | Service Principal Name ΓÇö required when enabled. Example: `nfs/edgerag-svc@CONTOSO.COM`. |
+| `kerberos.spn` | string | `""` | Service Principal Name -  required when enabled. Example: `nfs/edgerag-svc@CONTOSO.COM`. |
 | `kerberos.minNodes` | int | `1` | Minimum nodes with `kerberos-provisioned=true` label for pre-install validation. |
 | `kerberos.checkInterval` | int | `60` | DaemonSet health check polling interval (seconds). |
-| `skipKerberosValidations` | bool | `false` | Skip DaemonSet and pre-install hook. For development and test only ΓÇö don't use in production. |
+| `skipKerberosValidations` | bool | `false` | Skip DaemonSet and pre-install hook. For development and test only -  don't use in production. |
 
 ## Related content
 

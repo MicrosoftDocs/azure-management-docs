@@ -99,7 +99,7 @@ ktpass /out <node_name>.keytab `
 ```
 
 ```bash
-# On the Linux node ΓÇö copy the keytab
+# On the Linux node -  copy the keytab
 sudo scp <admin_user>@<domain_controller>:/path/<node_name>.keytab /etc/krb5.keytab
 sudo chmod 600 /etc/krb5.keytab
 sudo chown root:root /etc/krb5.keytab
@@ -174,7 +174,7 @@ Agents and Tools with Foundry Local uses a service account keytab for non-intera
 
 ### Create the service principal in AD
 
-**Option A ΓÇö Using kadmin (Linux):**
+**Option A -  Using kadmin (Linux):**
 
 ```bash
 sudo kadmin -p <admin_user>@<YOUR_REALM> <<EOF
@@ -183,7 +183,7 @@ ktadd -k /tmp/edgerag-nfs.keytab nfs/<service_account>@<YOUR_REALM>
 EOF
 ```
 
-**Option B ΓÇö Using PowerShell (Windows domain controller):**
+**Option B -  Using PowerShell (Windows domain controller):**
 
 ```powershell
 # Create service account
@@ -299,30 +299,30 @@ Example NFS server export (`/etc/exports`):
 ```
 
 > [!IMPORTANT]
-> Agents and Tools with Foundry Local requires the NFS server to be specified by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS ΓÇö using an IP address causes authentication to fail.
+> Agents and Tools with Foundry Local requires the NFS server to be specified by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS -  using an IP address causes authentication to fail.
 
 ## Step 7: Configure DNS and time sync
 
-### DNS ΓÇö Forward and reverse resolution required
+### DNS -  Forward and reverse resolution required
 
 Kerberos requires both forward and reverse DNS. Without proper DNS, ticket requests fail silently.
 
 ```bash
-# Forward lookup ΓÇö NFS server
+# Forward lookup -  NFS server
 nslookup <nfs_server_fqdn>
 
-# Reverse lookup ΓÇö NFS server (REQUIRED for Kerberos)
+# Reverse lookup -  NFS server (REQUIRED for Kerberos)
 nslookup <nfs_server_ip>
 # Must return the FQDN
 
-# Forward lookup ΓÇö domain controllers
+# Forward lookup -  domain controllers
 nslookup <domain_controller_fqdn>
 
 # KDC SRV records
 nslookup -type=SRV _kerberos._tcp.<your_domain>
 ```
 
-### Time sync ΓÇö Clock skew must be less than 5 minutes
+### Time sync -  Clock skew must be less than 5 minutes
 
 ```bash
 # Enable NTP
@@ -338,7 +338,7 @@ chronyc tracking   # or: ntpq -p
 
 ## Step 8: Label nodes
 
-Apply the Kerberos provisioning label to every prepared node. The pre-install hook checks for this label ΓÇö installation fails if no nodes have it.
+Apply the Kerberos provisioning label to every prepared node. The pre-install hook checks for this label -  installation fails if no nodes have it.
 
 ```bash
 # Label each prepared node
@@ -366,7 +366,7 @@ Run this script on each prepared node before installing Agents and Tools with Fo
 
 ```bash
 #!/bin/bash
-# Agents and Tools with Foundry Local ΓÇö Kerberos prerequisites validation
+# Agents and Tools with Foundry Local -  Kerberos prerequisites validation
 set -euo pipefail
 
 RED='\033[0;31m'
@@ -443,10 +443,10 @@ echo -e "  Results: ${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}, ${YELLOW
 if [ $FAIL -eq 0 ]; then
     echo -e "  ${GREEN}[PASS] Node is ready for Kerberos installation${NC}"
     echo ""
-    echo "  Next step ΓÇö apply the label (if not already set):"
+    echo "  Next step -  apply the label (if not already set):"
     echo "    kubectl label node $(hostname) edge-rag/kerberos-provisioned=true"
 else
-    echo -e "  ${RED}[FAIL] Node has $FAIL failing checks ΓÇö resolve before installation${NC}"
+    echo -e "  ${RED}[FAIL] Node has $FAIL failing checks -  resolve before installation${NC}"
 fi
 echo "============================================================"
 ```
