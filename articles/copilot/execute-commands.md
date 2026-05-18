@@ -48,4 +48,3 @@ You can also specify the resource name in your prompt. When you say things like 
 
 - Explore [capabilities](capabilities.md) of Azure Copilot.
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Azure Copilot.
-- Learn how to use Azure Copilot with [AI Shell](ai-shell-overview.md). 

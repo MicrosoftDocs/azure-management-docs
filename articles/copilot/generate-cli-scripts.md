@@ -16,9 +16,6 @@ Azure Copilot can generate [Azure CLI](/cli/azure/) scripts that you can use to 
 
 When you tell Azure Copilot about a task you want to perform by using Azure CLI, it provides a script with the necessary commands. You'll see which placeholder values that you need to update with the actual values based on your environment.
 
-> [!TIP]
-> You can also get help from Azure Copilot [directly from your command-line interface](ai-shell-overview.md).
-
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 ## Sample prompts
