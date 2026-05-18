@@ -33,7 +33,15 @@ Choose a method based on your environment, connectivity, and production requirem
 
 Deploy an AI model on your Arc-connected Kubernetes cluster by using the Foundry Local extension. Foundry Local is currently a CLI-based experience.
 
-If you use Foundry Local as your model endpoint, you must install the **Foundry Local extension** on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment.
+| Property | Value |
+|---|---|
+| Extension type | `Microsoft.Foundry` |
+| Default namespace | `foundry-local-operator` |
+| Inference port | `5000` (no TLS) / `8443` (TLS) |
+| API format | OpenAI-compatible (`/v1/chat/completions`) |
+
+> [!IMPORTANT]
+> Foundry Local must be installed and operational on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment. If Foundry Local is not set up correctly, Agents and Tools with Foundry Local fails at runtime with connection errors.
 
 For setup instructions, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) and [Foundry Local on GitHub](https://github.com/microsoft/Foundry-Local).
 
@@ -51,7 +59,7 @@ Before you start, confirm that your cluster, tools, and access settings meet the
 
 ---
 
-### Step 1 — Install required extensions
+### Step 1 ΓÇö Install required extensions
 
 Install the required Kubernetes extensions so your cluster can host and run Foundry Local model workloads.
 
@@ -65,7 +73,12 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
      --cluster-type connectedClusters \
      --extension-type Microsoft.CertManagement \
      --scope cluster \
-     --release-train stable
+     --release-train stable \
+     --config config.enableGatewayAPI=true \
+     --config cert-manager.crds.keep=true \
+     --config trust-manager.defaultPackage.enabled=false \
+     --config trust-manager.secretTargets.enabled=true \
+     --config trust-manager.secretTargets.authorizedSecretsAll=true
    ```
 
 1. Install the Foundry inference operator:
@@ -85,13 +98,19 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
      --config entraAuth.clientId="<client_id>"
    ```
 
+   > [!NOTE]
+   > If you don't have a Foundry Client ID (app registration), you can disable Microsoft Entra authentication by replacing the `entraAuth.tenantId` and `entraAuth.clientId` parameters with `--config entraAuth.enabled=false`.
+
 1. Verify installation:
 
    ```bash
    kubectl get pods -n foundry-local-operator
+   kubectl get crd | grep foundry
    ```
 
-### Step 2 — Deploy the recommended model (gpt-oss-20b)
+   Expected output: five pods in `Running` or `Completed` status, and four Foundry Local custom resource definitions registered.
+
+### Step 2 ΓÇö Deploy the recommended model (gpt-oss-20b)
 
 Deploy the recommended gpt-oss-20b model to create a local inference endpoint for your BYOM configuration.
 
@@ -104,15 +123,40 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
      name: gpt-oss-20b
      namespace: foundry-local-operator
    spec:
+     workloadType: generative
+     compute: gpu
+     runtime: vllm
      model:
        catalog:
          name: gpt-oss-20b
          version: "latest"
-     workloadType: generative
-     compute: gpu
-     runtime: vllm
      replicas: 1
+     port: 5000
+     resources:
+       requests: { cpu: "4", memory: "32Gi" }
+       limits: { cpu: "8", memory: "64Gi", gpu: 1 }
+     nodeSelector:
+       kubernetes.azure.com/accelerator: nvidia
+       agentpool: <your_gpu_node_pool>
+     tolerations:
+       - { key: "sku", operator: "Equal", value: "gpu", effect: "NoSchedule" }
+       - { key: "nvidia.com/gpu", operator: "Exists", effect: "NoSchedule" }
+     endpoint:
+       enabled: false
+     vllm:
+       modelCacheStorageGi: 100
+       preferences:
+         gpu_memory_utilization: 0.92
+         max_model_len: 16384
+         dtype: "bfloat16"
+         kv_cache_dtype: "fp8_e4m3"
+         max_num_seqs: 128
+         max_num_batched_tokens: 4096
+         enforce_eager: true
    ```
+
+   > [!NOTE]
+   > The model is deployed with `endpoint.enabled: false`, which means it's accessed via internal Kubernetes service DNS rather than an external ingress. Adjust `nodeSelector` and `tolerations` to match your cluster's GPU node pool configuration.
 
 1. Apply the deployment:
 
@@ -128,7 +172,37 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
 
    Wait until the status is **Running**.
 
-### Step 3 — Verify the model endpoint
+### Available models
+
+In addition to gpt-oss-20b, the following models are available for deployment with Foundry Local.
+
+**CPU-optimized models** (no GPU required):
+
+| Model | Parameters | Notes |
+|---|---|---|
+| `phi-3-mini-4k-instruct-generic-cpu:2` | 3.8B | Microsoft Phi-3 Mini |
+| `phi-3.5-mini-instruct-generic-cpu:1` | 3.8B | Microsoft Phi-3.5 Mini |
+| `qwen2.5-0.5b-instruct-generic-cpu:3` | 0.5B | Small, fast |
+| `qwen2.5-1.5b-instruct-generic-cpu:3` | 1.5B | Larger Qwen |
+| `llama3.2:1b` | 1B | Meta Llama 3.2 |
+| `llama3.2:3b` | 3B | Meta Llama 3.2 |
+
+**GPU-optimized models** (CUDA required):
+
+| Model | Parameters |
+|---|---|
+| `qwen2.5-1.5b-instruct-cuda-gpu:3` | 1.5B |
+| `llama3.1:8b` | 8B |
+
+### Recommended models
+
+| Use case | Recommended model |
+|---|---|
+| General (CPU clusters) | `gpt-oss-20b` |
+| GPU clusters | `gpt-oss-20b` |
+| Graph RAG and agentic flows | `gpt-oss-20b` (good quality for entity extraction and tool calling) |
+
+### Step 3 ΓÇö Verify the model endpoint
 
 Test the deployed endpoint to confirm that it accepts chat completion requests and returns a valid response.
 
@@ -143,6 +217,22 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
    ```bash
    kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
      -o jsonpath="{.data.primary-key}" | base64 -d
+   ```
+
+   API keys use the format `fndry-pk-<uuid>` (primary) and `fndry-sk-<uuid>` (secondary).
+
+1. Note the internal Kubernetes service URL for use during deployment:
+
+   ```
+   https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions
+   ```
+
+   Use this URL as your BYOM endpoint when Foundry Local runs on the same cluster as Agents and Tools with Foundry Local.
+
+   If you have an external ingress configured, you can also use the external URL:
+
+   ```
+   https://<foundry_ingress_host>/v1/chat/completions
    ```
 
 1. Test the endpoint:
@@ -162,21 +252,40 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 
    You should receive a JSON response with a `choices` array.
 
-### Step 4 — Configure Agents and Tools with Foundry Local
+### Step 4 ΓÇö Configure Agents and Tools with Foundry Local
 
 Use the model endpoint as your BYOM configuration.
 
 ```yaml
 byom:
   enabled: true
-  apiEndpoint: "http://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1"
+  apiEndpoint: "https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions"
   apiModel: "gpt-oss-20b"
   maxTokensInK: "16"
+foundryClientId: "<foundry_app_registration_client_id>"
 ```
 
 Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the namespace used by Agents and Tools with Foundry Local, following your deployment requirements.
 
 After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
+
+### Additional operator parameters
+
+You can set these optional parameters during Foundry inference operator installation:
+
+| Parameter | Description |
+|---|---|
+| `entraAuth.enabled` | When enabled, Microsoft Entra Auth SDK and msi-adapter sidecars are injected into inference pods for JWT validation and ARM RBAC authorization. When disabled, `tenantId` and `clientId` are optional. Default: `true`. |
+| `watch.namespaces` | Configure if the operator should manage resources across multiple namespaces. Default: `foundry-local-operator`. Pass as: `--config watch.namespaces[0]="<namespace_1>" --config watch.namespaces[1]="<namespace_2>"`. |
+
+### Key management
+
+You can retrieve and rotate API keys by using the Foundry Local inference service:
+
+| Endpoint | Description |
+|---|---|
+| `GET /namespaces/<namespace>/deployments/<name>/keys` | Retrieve both primary and secondary keys. |
+| `POST /namespaces/<namespace>/deployments/<name>/keys/{primary\|secondary}/rotate` | Rotate a specific key. |
 
 ## Microsoft Foundry
 

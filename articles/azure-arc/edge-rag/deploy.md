@@ -52,7 +52,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    |-----------------|-------------------------------------------------------------------------------------------------|
    | Deployment mode | Select GPU mode or CPU mode depending on your available hardware.                               |
    | Deployment mode | Select the deployment mode: **Agentic and Knowledge** (default), **Agentic Only**, or **Knowledge Only**. |
-   |**Language model (BYOM — required)**| |
+   |**Language model (BYOM ΓÇö required)**| |
    |Model name|Enter the name of your language model.|
    |LLM endpoint|Enter the URL of your OpenAI-compatible LLM endpoint. For example, for Microsoft Foundry: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use the cluster-internal endpoint from your model deployment. |
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
@@ -91,14 +91,24 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 1. Set the values for your language model and deployment mode:
 
    ```powershell
-   # BYOM is mandatory — set your model endpoint
+   # BYOM is mandatory ΓÇö set your model endpoint
    $apiEndpoint = "<Your OpenAI-compatible LLM endpoint URI>"
    $apiModel = "<Model Name>"
    $maxTokensInK = "<Max Tokens In K (e.g. 10, 20 etc.)>"
    $layerSelection = "combined" # Options: combined, agentic, knowledge
    ```
 
-1. After you populate the parameter values, deploy the Azure Arc extension by running the following command:
+1. After you populate the parameter values, create the BYOM API key secret and deploy the Azure Arc extension:
+
+   ```powershell
+   # Create the BYOM API key secret before extension installation
+   kubectl create namespace arc-rag --dry-run=client -o yaml | kubectl apply -f -
+   kubectl delete secret byom-api-key -n arc-rag --ignore-not-found
+   kubectl create secret generic byom-api-key --from-literal=BYOM_API_KEY="<your_foundry_api_key>" -n arc-rag
+   ```
+
+   > [!NOTE]
+   > The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. You must create this secret before you install the extension. For Foundry Local, retrieve the key by running `kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator -o jsonpath="{.data.primary-key}" | base64 -d`.
 
    ```powershell
    az provider register --namespace Microsoft.KubernetesConfiguration
@@ -108,7 +118,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
        --configuration-settings isManagedIdentityRequired=true --configuration-settings gpu_enabled=$gpu_enabled --configuration-settings AgentOperationTimeoutInMinutes=30 `
        --configuration-settings auth.tenantId=$tenantId --configuration-settings auth.clientId=$appId --configuration-settings ingress.domainname=$domainName `
        --configuration-settings layerSelection=$layerSelection `
-       --configuration-settings byom.enabled="true" --configuration-settings byom.apiEndpoint=$apiEndpoint --configuration-settings byom.apiModel=$apiModel --configuration-settings byom.maxTokensInK=$maxTokensInK
+       --configuration-settings byom.enabled="true" --configuration-settings byom.apiEndpoint=$apiEndpoint --configuration-settings byom.apiModel=$apiModel --configuration-settings byom.maxTokensInK=$maxTokensInK `
+       --configuration-settings foundryClientId="<foundry_app_registration_client_id>"
    ```
 
 ----
@@ -135,7 +146,48 @@ Run the following command to check:
 kubectl get pods -n arc-rag
 ```
 
+## Verify end-to-end connectivity
+
+After deployment, verify that the extension can communicate with Foundry Local:
+
+1. Check Foundry model availability (port-forward since `endpoint.enabled=false`):
+
+   ```bash
+   kubectl port-forward svc/gpt-oss-20b 5000:5000 -n foundry-local-operator
+   # In another terminal:
+   curl http://localhost:5000/v1/models
+   ```
+
+1. Test a chat completion via port-forward:
+
+   ```bash
+   curl -X POST http://localhost:5000/v1/chat/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+       "model": "gpt-oss-20b",
+       "messages": [
+         {"role": "user", "content": "Hello, what is 2+2?"}
+       ],
+       "temperature": 0.7,
+       "max_tokens": 100
+     }'
+   ```
+
+1. Test the extension's inference endpoint:
+
+   ```bash
+   curl -X POST http://localhost:3001/edgeai/chat/completions?api-version=2024-10-01-preview \
+     -H "Content-Type: application/json" \
+     -H "x-user-role: dev" \
+     -d '{
+       "messages": [{"role": "user", "content": "Test question"}],
+       "data_sources": [{"type": "milvus", "parameters": {"endpoint": "", "index_name": "edgeragapp"}}]
+     }'
+   ```
+
 ## Related content
+
+- [Deployment parameter reference and troubleshooting](deploy-reference.md)
 
 - [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)

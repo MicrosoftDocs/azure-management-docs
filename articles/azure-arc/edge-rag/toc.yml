@@ -41,6 +41,22 @@ items:
                 href: prepare-model-endpoint.md
               - name: Verify NFS server
                 href: prepare-file-server.md
+              - name: Connect NFS with Kerberos (optional)
+                items:
+                  - name: Overview
+                    href: connect-nfs-kerberos-overview.md
+                  - name: Set up Kerberos authentication
+                    href: connect-nfs-kerberos-setup.md
+                  - name: Reference and troubleshooting
+                    href: connect-nfs-kerberos-reference.md
+              - name: Connect SharePoint Server (S2S)
+                items:
+                  - name: Overview
+                    href: connect-sharepoint-overview.md
+                  - name: Set up S2S authentication
+                    href: connect-sharepoint-setup.md
+                  - name: Reference and troubleshooting
+                    href: connect-sharepoint-reference.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
               - name: Configure authentication
@@ -51,6 +67,8 @@ items:
                 href: prepare-dns.md
           - name: Deploy Agents and Tools with Foundry Local
             href: deploy.md
+          - name: Deployment parameter reference
+            href: deploy-reference.md
           - name: Configure authentication for your model (optional)
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer

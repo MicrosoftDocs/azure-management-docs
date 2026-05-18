@@ -62,6 +62,31 @@ After you install the Agents and Tools with Foundry Local extension and configur
    ```powershell
    kubectl.exe delete pods -n arc-rag -l app=inferencingflow 
    ```
+
+## API key format for Foundry Local
+
+If you use Foundry Local as your model endpoint, API keys use the following format:
+
+- **Primary key**: `fndry-pk-<uuid>`
+- **Secondary key**: `fndry-sk-<uuid>`
+
+Retrieve the key from the Foundry Local deployment secret:
+
+```bash
+kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
+  -o jsonpath="{.data.primary-key}" | base64 -d
+```
+
+### Rotate API keys
+
+You can rotate Foundry Local API keys by using the inference service API:
+
+| Endpoint | Description |
+|---|---|
+| `GET /namespaces/<namespace>/deployments/<name>/keys` | Retrieve both primary and secondary keys. |
+| `POST /namespaces/<namespace>/deployments/<name>/keys/{primary\|secondary}/rotate` | Rotate a specific key. |
+
+After rotating a key, update the `byom-api-key` secret and restart the inferencing flow pod as described earlier in this article.
  
 ## Related content
 
