@@ -3,7 +3,7 @@ title: Work smarter with your Azure Local instances using Azure Copilot
 description: Learn about scenarios where Azure Copilot can help you work with your Azure Local instances.
 ms.date: 11/19/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
