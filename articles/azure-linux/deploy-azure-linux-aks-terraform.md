@@ -1,47 +1,51 @@
 ---
-title: 'Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using Terraform'
-description: Learn how to quickly create an Azure Linux Container Host for AKS cluster using Terraform.
-author: schaffererin
+title: "Quickstart: Deploy an Azure Linux Container Host for AKS Cluster using Terraform"
+description: Learn how to quickly deploy an Azure Linux Container Host for Azure Kubernetes Service (AKS) cluster using Terraform.
+author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
-ms.custom: devx-track-terraform, linux-related-content
-ms.editor: schaffererin
 ms.topic: quickstart
-ms.date: 06/27/2023
-# Customer intent: "As a cloud engineer, I want to deploy an Azure Linux Container Host for an AKS cluster using Terraform, so that I can automate the infrastructure provisioning and management for my containerized applications."
+ms.date: 04/28/2026
 ---
 
-# Quickstart: Deploy an Azure Linux Container Host for AKS cluster using Terraform
+# Quickstart: Deploy an Azure Linux Container Host for Azure Kubernetes Service (AKS) cluster using Terraform
 
-Get started with the Azure Linux Container Host using Terraform to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you implement the Terraform code, initialize Terraform, and create and apply a Terraform execution plan.
+Get started with the Azure Linux Container Host by using [Terraform](https://www.terraform.io/) to deploy an Azure Linux Container Host cluster.
 
-[Terraform](https://www.terraform.io/) enables the definition, preview, and deployment of cloud infrastructure. With Terraform, you create configuration files using [HCL syntax](https://developer.hashicorp.com/terraform/language/syntax/configuration). The HCL syntax allows you to specify the cloud provider and elements that make up your cloud infrastructure. After you create your configuration files, you create an execution plan that allows you to preview your infrastructure changes before they're deployed. Once you verify the changes, you apply the execution plan to deploy the infrastructure.
+In this quickstart, you learn how to:
+
+> [!div class="checklist"]
+>
+> - Implement the Terraform code to deploy an Azure Linux Container Host cluster.
+> - Initialize Terraform and create an execution plan.
+> - Apply the Terraform execution plan to deploy the Azure Linux Container Host cluster.
+> - Validate the Azure Linux Container Host cluster deployment.
 
 > [!NOTE]
 > The example code in this article is located in the [Microsoft Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/201-k8s-cluster-with-tf-and-aks).
-
-[!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
 
 ## Prerequisites
 
 - [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 
 - If you haven't already configured Terraform, you can do so using one of the following options:
+
   - [Azure Cloud Shell with Bash](/azure/developer/terraform/get-started-cloud-shell-bash?tabs=bash)
   - [Azure Cloud Shell with PowerShell](/azure/developer/terraform/get-started-cloud-shell-powershell?tabs=bash)
   - [Windows with Bash](/azure/developer/terraform/get-started-windows-bash?tabs=bash)
   - [Windows with PowerShell](/azure/developer/terraform/get-started-windows-powershell?tabs=bash)
+
 - If you don't have an Azure service principal, [create a service principal](/azure/developer/terraform/authenticate-to-azure?tabs=bash#create-a-service-principal). Make note of the `appId`, `display_name`, `password`, and `tenant`.
 - You need the Kubernetes command-line tool `kubectl`. If you don't have it, [download kubectl](https://kubernetes.io/releases/download/).
 
 ### Create an SSH key pair
 
-To access AKS nodes, you connect using an SSH key pair (public and private), which you generate using the `ssh-keygen` command. By default, these files are created in the *~/.ssh* directory. Running the `ssh-keygen` command overwrites any SSH key pair with the same name already existing in the given location.
+To access AKS nodes, you connect using an SSH key pair (public and private), which you generate using the `ssh-keygen` command. By default, these files are created in the _~/.ssh_ directory. Running the `ssh-keygen` command overwrites any SSH key pair with the same name already existing in the given location.
 
-1. Go to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in your browser.
-2. Run the `ssh-keygen` command. The following example creates an SSH key pair using RSA encryption and a bit length of 4096:
+1. Navigate to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in your browser.
+1. Run the `ssh-keygen` command. The following example creates an SSH key pair using RSA encryption and a bit length of 4096:
 
-    ```console
+    ```bash
     ssh-keygen -t rsa -b 4096
     ```
 
@@ -50,7 +54,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
 ## Implement the Terraform code
 
 1. Create a directory in which to test the sample Terraform code and make it the current directory.
-2. Create a file named `providers.tf` and insert the following code:
+1. Create a file named `providers.tf` and insert the following code:
 
       ```terraform
           terraform {
@@ -73,7 +77,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
           }
       ```
 
-3. Create a file named `main.tf` and insert the following code:
+1. Create a file named `main.tf` and insert the following code:
 
       ```terraform
           # Generate random resource group name
@@ -147,7 +151,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
 
     Similarly, you can specify the Azure Linux `os_sku` in [azurerm_kubernetes_cluster_node_pool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool#os_sku).
 
-4. Create a file named `variables.tf` and insert the following code:
+1. Create a file named `variables.tf` and insert the following code:
 
       ```terraform
           variable "agent_count" {
@@ -201,7 +205,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
           }
       ```
 
-5. Create a file named `outputs.tf` and insert the following code:
+1. Create a file named `outputs.tf` and insert the following code:
 
       ```terraform
           output "client_certificate" {
@@ -244,7 +248,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
           }
       ```
 
-6. Create a file named `terraform.tfvars` and insert the following code:
+1. Create a file named `terraform.tfvars` and insert the following code:
 
       ```terraform
           aks_service_principal_app_id = "<service_principal_app_id>"
@@ -259,7 +263,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
     terraform init
     ```
 
-2. Create a Terraform execution plan using the [`terraform plan`](https://developer.hashicorp.com/terraform/cli/commands/plan) command.
+1. Create a Terraform execution plan using the [`terraform plan`](https://developer.hashicorp.com/terraform/cli/commands/plan) command.
 
     ```console
     terraform plan -out main.tfplan
@@ -271,7 +275,7 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
 
     To read more about persisting execution plans and security, see the [security warnings](https://developer.hashicorp.com/terraform/cli/commands/plan#security-warning).
 
-3. Apply the Terraform execution plan using the [`terraform apply`](https://developer.hashicorp.com/terraform/cli/commands/apply) command.
+1. Apply the Terraform execution plan using the [`terraform apply`](https://developer.hashicorp.com/terraform/cli/commands/apply) command.
 
     ```console
     terraform apply main.tfplan
@@ -287,18 +291,20 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
     echo "$(terraform output resource_group_name)"
     ```
 
-2. Browse to the [Azure portal](https://portal.azure.com).
-3. Under **Azure services**, select **Resource groups** and locate your new resource group to see the following resources created in this demo:
-      - **Solution:** By default, the demo names this solution **ContainerInsights**. The portal shows the solution's workspace name in parenthesis.
-      - **Kubernetes service:** By default, the demo names this service **k8stest**. (A managed Kubernetes cluster is also known as an AKS/Azure Kubernetes Service.)
-      - **Log Analytics Workspace:** By default, the demo names this workspace with a prefix of **TestLogAnalyticsWorkspaceName-** followed by a random number.
-4. Get the Kubernetes configuration from the Terraform state and store it in a file that kubectl can read using the following `echo` command.
+1. Navigate to the [Azure portal](https://portal.azure.com).
+1. Under **Azure services**, select **Resource groups** and locate your new resource group to see the following resources created in this demo:
+
+      - **Solution**: By default, the demo names this solution **ContainerInsights**. The portal shows the solution's workspace name in parenthesis.
+      - **Kubernetes service**: By default, the demo names this service **k8stest**. (A managed Kubernetes cluster is also known as an AKS/Azure Kubernetes Service.)
+      - **Log Analytics Workspace**: By default, the demo names this workspace with a prefix of **TestLogAnalyticsWorkspaceName-** followed by a random number.
+
+1. Get the Kubernetes configuration from the Terraform state and store it in a file that kubectl can read using the following `echo` command.
   
       ```console
       echo "$(terraform output kube_config)" > ./azurek8s
       ```
 
-5. Verify the previous command didn't add an ASCII EOT character using the following `cat` command.
+1. Verify the previous command didn't add an ASCII EOT character using the following `cat` command.
 
       ```console
       cat ./azurek8s
@@ -306,13 +312,13 @@ For more information about creating SSH keys, see [Create and manage SSH keys fo
 
     If you see `<< EOT` at the beginning and `EOT` at the end, remove these characters from the file. Otherwise, you could receive the following error message: `error: error loading config file "./azurek8s": yaml: line 2: mapping values are not allowed in this context`.
 
-6. Set an environment variable so kubectl picks up the correct config using the following `export` command.
+1. Set an environment variable so kubectl picks up the correct config using the following `export` command.
 
     ```console
     export KUBECONFIG=./azurek8s
     ```
 
-7. Verify the health of the cluster using the `kubectl get nodes` command.
+1. Verify the health of the cluster using the `kubectl get nodes` command.
 
     ```console
     kubectl get nodes
@@ -336,7 +342,7 @@ When you no longer need the resources created with Terraform, you can remove the
     terraform plan -destroy -out main.destroy.tfplan
     ```
 
-2. Remove the execution plan using the [`terraform apply`](https://www.terraform.io/docs/commands/apply.html) command.
+1. Remove the execution plan using the [`terraform apply`](https://www.terraform.io/docs/commands/apply.html) command.
 
     ```console
     terraform apply main.destroy.tfplan
@@ -349,13 +355,13 @@ When you no longer need the resources created with Terraform, you can remove the
 
 1. Get the object ID of the service principal using the [`az ad sp list`][az-ad-sp-list] command
 
-    ```azurecli
+    ```azurecli-interactive
     az ad sp list --display-name "<display_name>" --query "[].{\"Object ID\":id}" --output table
     ```
 
-2. Delete the service principal using the [`az ad sp delete`][az-ad-sp-delete] command.
+1. Delete the service principal using the [`az ad sp delete`][az-ad-sp-delete] command.
 
-      ```azurecli
+      ```azurecli-interactive
       az ad sp delete --id <service_principal_object_id>
       ```
 
@@ -363,12 +369,12 @@ When you no longer need the resources created with Terraform, you can remove the
 
 [Troubleshoot common problems when using Terraform on Azure](/azure/developer/terraform/troubleshoot).
 
-## Next steps
+## Related content
 
-In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host and walk through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial.
+In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host, see the following resources:
 
-> [!div class="nextstepaction"]
-> [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
+- [Azure Linux Container Host tutorial series: Part 1](./tutorial-create-cluster-azure-linux-aks.md)
+- [Overview of the Azure Linux Container Host for Azure Kubernetes Service (AKS)](./azure-linux-aks-overview.md)
 
 <!-- LINKS - internal -->
 [az-ad-sp-list]: /cli/azure/ad/sp#az_ad_sp_list
