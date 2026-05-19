@@ -15,7 +15,7 @@ ms.date: 12/12/2023
 > [!NOTE]
 > On **May 18, 2026**, at the [Open Source Summit North America](https://events.linuxfoundation.org/open-source-summit-north-america/), we announced the upcoming preview of Azure Linux 4.0 for Virtual Machines (VMs) and the upcoming general availability (GA) of Azure Container Linux (ACL). For more information, see the [announcement blog post](https://opensource.microsoft.com/blog/2026/05/18/from-open-source-to-agentic-systems-microsoft-at-open-source-summit-north-america-2026/).
 
-> If you're interested in signing up for the Azure Linux 4.0 VM preview, submit [this form](http://aka.ms/AzureLinuxForm).
+> If you're interested in signing up for the Azure Linux 4.0 VM preview, submit [this form](https://aka.ms/AzureLinuxForm).
 
 > These docs currently cover Azure Linux 3.0 as a container host on AKS. Full documentation for VMs and additional scenarios will be updated with the official launch announcement in the coming weeks.
 
