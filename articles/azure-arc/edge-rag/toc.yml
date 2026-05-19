@@ -44,11 +44,11 @@ items:
               - name: Connect NFS with Kerberos (optional)
                 items:
                   - name: Overview
-                    href: connect-nfs-kerberos-overview.md
+                    href: connect-file-share-kerberos-overview.md
                   - name: Set up Kerberos authentication
-                    href: connect-nfs-kerberos-setup.md
+                    href: connect-file-share-kerberos-setup.md
                   - name: Reference and troubleshooting
-                    href: connect-nfs-kerberos-reference.md
+                    href: connect-file-share-kerberos-reference.md
               - name: Connect SharePoint Server (server-to-server)
                 items:
                   - name: Overview
