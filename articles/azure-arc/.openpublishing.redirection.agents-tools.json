@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/index.yml",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/azure-arc/edge-rag/add-data-source.md",
       "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/add-data-source",
       "redirect_document_id": true
