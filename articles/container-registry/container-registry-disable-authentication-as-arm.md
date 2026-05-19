@@ -58,6 +58,10 @@ Your registry configuration, controlled by the `azureADAuthenticationAsArmPolicy
 - **When enabled** (default): The registry accepts both ARM-scoped and ACR-scoped Microsoft Entra authentication.
 - **When disabled** (recommended): The registry accepts only ACR-scoped Microsoft Entra authentication and rejects ARM-scoped authentication.
 
+> [!IMPORTANT]
+> When using Web Apps with Azure Container Registry (ACR), image pulls rely on ARM-scoped credentials.
+> Disabling ARM authentication on the registry will cause image pull failures.
+
 ### Why ACR recommends ACR-scoped authentication only
 
 Configuring your registry to accept only ACR-scoped Microsoft Entra authentication provides several benefits:
