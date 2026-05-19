@@ -47,7 +47,7 @@ items:
                 href: prepare-file-server.md
               - name: Connect NFS with Kerberos (optional)
                 href: connect-file-share-kerberos-setup.md
-              - name: Connect SharePoint Server (server-to-server)
+              - name: Connect SharePoint Server server-to-server
                 href: connect-sharepoint-setup.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
