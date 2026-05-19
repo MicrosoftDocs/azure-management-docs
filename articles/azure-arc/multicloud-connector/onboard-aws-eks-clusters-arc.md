@@ -8,16 +8,16 @@ ms.date: 05/19/2026
 
 # Onboard Amazon EKS clusters to Azure Arc through the multicloud connector (preview)
 
-> [!IMPORTANT]
-> The EKS Arc onboarding solution of the multicloud connector is currently in preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
-The **EKS Arc onboarding** solution of the multicloud connector autodiscovers Amazon Elastic Kubernetes Service (Amazon EKS) clusters in a [connected AWS account](add-public-cloud.md), then helps onboard supported clusters to [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview). This simplified experience lets you view and manage AWS EKS clusters alongside Azure and Arc-enabled resources, and use supported Azure management, governance, and security services for Kubernetes workloads.
+The **EKS Arc onboarding** solution of the multicloud connector autodiscoversAmazon Elastic Kubernetes Service (Amazon EKS) clusters in a [connected AWS account](add-public-cloud.md), then helps onboard supported clusters to [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview). This simplified experience lets you view and manage AWS EKS clusters alongside Azure and Arc-enabled resources, and use supported Azure management, governance, and security services for Kubernetes workloads.
 
 Currently, EKS Arc onboarding through the multicloud connector is supported for:
 
 - Amazon Web Services (AWS)
 
 You can enable the **EKS Arc onboarding** solution when you [connect your AWS account to Azure](add-public-cloud.md) through the multicloud connector.
+
+> [!IMPORTANT]
+> The EKS Arc onboarding solution of the multicloud connector is currently in preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Prerequisites
 
