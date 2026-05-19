@@ -13,7 +13,7 @@ ai-usage: ai-generated
 
 The Agents and Tools with Foundry Local platform is organized into two layers. The *knowledge layer* handles document ingestion, indexing, and retrieval. The *agentic layer* sits above it and decides how agents use that knowledge at runtime.
 
-:::image type="content" source="media/agentic-overview/agentic-rag-platform.png" alt-text="Diagram showing the Agents and Tools with Foundry Local platform with the agentic layer on top of the knowledge layer." lightbox="media/agentic-overview/agentic-rag-platform.png":::
+:::image type="content" source="media/agentic-overview/agentic-rag-platform.svg" alt-text="Diagram showing the Agents and Tools with Foundry Local platform with the agentic layer on top of the knowledge layer." border="false":::
 
 The agentic layer adds planning, tool use, and conversation orchestration to Agents and Tools with Foundry Local. The agentic layer lets you build assistants that can manage multithread interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
 
