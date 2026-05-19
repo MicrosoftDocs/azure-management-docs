@@ -4,7 +4,7 @@ description: Learn how the agentic layer in Agents and Tools with Foundry Local 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/13/2026
+ms.date: 05/19/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
