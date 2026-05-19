@@ -12,6 +12,13 @@ ms.date: 12/12/2023
 
 # What is the Azure Linux Container Host for AKS?
 
+> [!NOTE]
+> On **May 18, 2026**, at the [Open Source Summit North America](https://events.linuxfoundation.org/open-source-summit-north-america/), we announced the upcoming preview of Azure Linux 4.0 for Virtual Machines (VMs) and the upcoming general availability (GA) of Azure Container Linux (ACL). For more information, see the [announcement blog post](https://opensource.microsoft.com/blog/2026/05/18/from-open-source-to-agentic-systems-microsoft-at-open-source-summit-north-america-2026/).
+
+> If you're interested in signing up for the Azure Linux 4.0 VM preview, submit [this form](https://aka.ms/AzureLinuxForm).
+
+> These docs currently cover Azure Linux 3.0 as a container host on AKS. Full documentation for VMs and additional scenarios will be updated with the official launch announcement in the coming weeks.
+
 The Azure Linux Container Host is an operating system image that's optimized for running container workloads on [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes). Microsoft maintains the Azure Linux Container Host and based it on [CBL-Mariner][cbl-mariner], an open-source Linux distribution created by Microsoft.
 
 The Azure Linux Container Host is lightweight, containing only the packages needed to run container workloads. The container host is hardened based on significant validation tests and internal usage and is compatible with Azure agents. It provides reliability and consistency from cloud to edge across AKS, AKS for Azure Stack HCI (Hyper Converged Infrastructure), and Azure Arc. You can deploy Azure Linux node pools in a new cluster, add Azure Linux node pools to your existing clusters, or migrate your existing nodes to Azure Linux nodes.
