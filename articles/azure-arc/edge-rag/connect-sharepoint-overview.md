@@ -146,7 +146,7 @@ The CSI Secrets Store Driver syncs the PFX and password from Azure Key Vault int
 **What happens if Key Vault becomes unreachable after initial setup?**
 The Kubernetes secret persists in the cluster. Existing and new pods continue to work by using the cached secret. The certificate doesn't rotate until Key Vault is reachable again, but authentication continues uninterrupted.
 
-## Next step
+## Related content
 
-> [!div class="nextstepaction"]
-> [Set up server-to-server authentication](connect-sharepoint-setup.md)
+- [Set up server-to-server authentication](connect-sharepoint-setup.md)
+- [SharePoint Server-to-Server reference](connect-sharepoint-reference.md)
