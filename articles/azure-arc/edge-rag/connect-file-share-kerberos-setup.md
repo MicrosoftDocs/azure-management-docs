@@ -4,7 +4,7 @@ description: "Learn how to configure Active Directory, Kerberos, and NFS with kr
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 05/17/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a platform administrator, I want to set up NFS with Kerberos authentication so that I can securely ingest on-premises data with Agents and Tools with Foundry Local.
@@ -12,13 +12,22 @@ ms.subservice: edge-rag
 
 # Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local
 
-This article walks through the step-by-step setup for NFS with Kerberos (`krb5p`) authentication. Before you begin, review the [prerequisites checklist](connect-nfs-kerberos-overview.md#prerequisites-checklist).
+This article shows you how to configure NFS with Kerberos (`krb5p`) authentication for ingestion workloads in Agents and Tools with Foundry Local.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
+## Prerequisites
+
+Before you begin, you must have:
+
+- An Azure Local cluster deployed and operational.
+- Arc-enabled Kubernetes connected to Azure.
+- At least one worker node available for Kerberos workloads.
+- Reviewed and completed the [prerequisites checklist](connect-file-share-kerberos-overview.md#prerequisites-checklist).
+
 ## Step 1: Verify your Azure Local cluster
 
-Ensure your Arc-enabled Kubernetes cluster is operational.
+Verify cluster connectivity and node readiness before you configure Kerberos.
 
 ```bash
 # Verify cluster nodes
@@ -32,18 +41,11 @@ az connectedk8s show \
   -o table
 ```
 
-**Requirements:**
-
-- Azure Local cluster deployed and operational
-- Arc-enabled Kubernetes connected to Azure
-- At least one worker node available for Kerberos workloads
-
-> [!IMPORTANT]
-> New or replaced nodes don't automatically have Kerberos prerequisites (keytab, `rpc.gssd`, domain join). We recommend a fixed node pool for Kerberos workloads. If autoscaling is required, see [Adding new nodes](connect-nfs-kerberos-reference.md#add-new-nodes).
+New or replaced nodes don't automatically have Kerberos prerequisites (keytab, `rpc.gssd`, domain join). Use a fixed node pool for Kerberos workloads. If you need autoscaling, see [Adding new nodes](connect-file-share-kerberos-reference.md#add-new-nodes).
 
 ## Step 2: Join worker nodes to Active Directory
 
-All Kubernetes worker nodes that run NFS ingestion must be joined to your AD domain.
+You must join all Kubernetes worker nodes that run NFS ingestion to your AD domain.
 
 ### Install required packages
 
@@ -105,7 +107,11 @@ sudo chmod 600 /etc/krb5.keytab
 sudo chown root:root /etc/krb5.keytab
 ```
 
+Expected result: Each ingestion worker node shows domain membership and a valid machine keytab entry.
+
 ## Step 3: Install and configure Kerberos client
+
+Each worker node requires Kerberos client tools and a configuration file (`/etc/krb5.conf`) to communicate securely with your Active Directory domain.
 
 ### Install packages
 
@@ -168,9 +174,15 @@ klist
 kdestroy
 ```
 
-## Step 4: Create service principal and deploy keytab
+Expected result: Kerberos ticket acquisition succeeds and returns a valid TGT.
 
-Agents and Tools with Foundry Local uses a service account keytab for non-interactive Kerberos authentication. No passwords are stored.
+## Step 4: Create a service principal and deploy the keytab
+
+Create the AD service principal and distribute its keytab to every ingestion worker node.
+
+1. Create the service principal in AD.
+1. Deploy the keytab to all worker nodes.
+1. Verify keytab-based authentication on each node.
 
 ### Create the service principal in AD
 
@@ -232,12 +244,13 @@ sudo klist
 sudo kdestroy
 ```
 
-> [!NOTE]
-> Note the SPN (for example, `nfs/edgerag-svc@CONTOSO.COM`). You enter this value in the **Service Principal Name** field during installation.
+Enter the SPN value (for example, `nfs/edgerag-svc@CONTOSO.COM`) in the **Service Principal Name** field during installation.
+
+Expected result: The service principal exists in AD and each worker node can authenticate with the deployed keytab.
 
 ## Step 5: Install NFS client and enable rpc-gssd
 
-`rpc-gssd` is the kernel-level Kerberos daemon that intercepts NFS mount requests and acquires tickets by using the keytab. This must be running on every worker node.
+`rpc-gssd` is the kernel-level Kerberos daemon that intercepts NFS mount requests and acquires tickets by using the keytab. This daemon must run on every worker node.
 
 ```bash
 # Install NFS client
@@ -278,8 +291,9 @@ sudo umount /mnt/nfs-kerberos-test
 sudo rmdir /mnt/nfs-kerberos-test
 ```
 
-> [!IMPORTANT]
-> If this mount fails, Agents and Tools with Foundry Local also fails. Resolve the issue before proceeding. See [Troubleshooting](connect-nfs-kerberos-reference.md#troubleshooting).
+Expected result: The NFS export mounts successfully with `sec=krb5p` and file listing returns expected content.
+
+If this mount fails, Agents and Tools with Foundry Local also fails. Resolve the issue before proceeding. See [Troubleshooting](connect-file-share-kerberos-reference.md#troubleshooting).
 
 ### NFS server requirements
 
@@ -298,10 +312,11 @@ Example NFS server export (`/etc/exports`):
 /exports/data  *.contoso.com(ro,sync,sec=krb5p,no_subtree_check)
 ```
 
-> [!IMPORTANT]
-> Agents and Tools with Foundry Local requires the NFS server to be specified by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS -  using an IP address causes authentication to fail.
+Agents and Tools with Foundry Local requires the NFS server to be specified by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS -  using an IP address causes authentication to fail.
 
 ## Step 7: Configure DNS and time sync
+
+Kerberos authentication depends on proper DNS resolution and time synchronization between your nodes and domain controllers.
 
 ### DNS -  Forward and reverse resolution required
 
@@ -336,9 +351,9 @@ timedatectl status
 chronyc tracking   # or: ntpq -p
 ```
 
-## Step 8: Label nodes
+## Step 8: Label worker nodes
 
-Apply the Kerberos provisioning label to every prepared node. The pre-install hook checks for this label -  installation fails if no nodes have it.
+Label each prepared worker node so pre-install validation can target Kerberos-ready infrastructure.
 
 ```bash
 # Label each prepared node
@@ -460,9 +475,11 @@ sudo ./validate-kerberos-prereqs.sh
 
 ## Install Agents and Tools with Foundry Local with Kerberos
 
+When you have all the prerequisites and infrastructure configurations in place, you're ready to install Agents and Tools with Foundry Local with Kerberos authentication enabled.
+
 ### Azure portal (recommended)
 
-1. In the Azure portal, navigate to your Azure Local cluster.
+1. In the Azure portal, go to your Azure Local cluster.
 1. Go to **Extensions** > **Add** > **Agentic RAG**.
 1. In the **Data Source Connection / Authentication** section:
    - Toggle **Enable Kerberos** to **On**.
@@ -490,7 +507,16 @@ az k8s-extension create \
 | `kerberos.spn` | Service Principal Name (required when enabled). | _(empty)_ |
 | `kerberos.minNodes` | Minimum nodes with `kerberos-provisioned=true` label required for install to succeed. | `1` |
 
+## Confirm completion
+
+You're ready to continue when:
+
+- Nodes intended for ingestion are labeled `edge-rag/kerberos-provisioned=true`.
+- Kerberos client and keytab validation pass on each worker node.
+- A test NFS mount succeeds with `sec=krb5p`.
+- Kerberos-enabled installation settings are applied successfully.
+
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Reference and troubleshooting](connect-nfs-kerberos-reference.md)
+> [Reference and troubleshooting](connect-file-share-kerberos-reference.md)

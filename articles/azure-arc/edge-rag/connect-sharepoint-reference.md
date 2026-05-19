@@ -1,16 +1,16 @@
 ---
-title: SharePoint Server S2S Reference and Troubleshooting for Agents and Tools with Foundry Local
-description: "Verify, troubleshoot, and maintain SharePoint Server S2S authentication for Agents and Tools with Foundry Local."
+title: SharePoint Server-to-Server Reference and Troubleshooting for Agents and Tools with Foundry Local
+description: "Verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agents and Tools with Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
 ms.date: 05/17/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to verify, troubleshoot, and maintain SharePoint Server S2S authentication for Agents and Tools with Foundry Local.
+#CustomerIntent: As a platform administrator, I want to verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agents and Tools with Foundry Local.
 ---
 
-# SharePoint Server S2S reference and troubleshooting for Agents and Tools with Foundry Local
+# SharePoint server-to-server reference and troubleshooting for Agents and Tools with Foundry Local
 
 Use this reference to verify your SharePoint Server-to-Server (S2S) setup, diagnose issues, manage certificates, and review Helm values.
 
@@ -66,7 +66,7 @@ kubectl get secret sharepoint-s2s-cert -n arc-rag
 | **500 Internal Server Error** from SharePoint | Missing service application (App Management or User Profile). | Run the service application creation script from [Step 5](connect-sharepoint-setup.md#create-required-service-applications). Check SharePoint Unified Logging Service (ULS) logs for `UserProfileApplicationNotAvailableException` or `AppManagement` errors. |
 | **`App Management Shared Service Proxy is not installed`** | App Management proxy wasn't created. | Run `New-SPAppManagementServiceApplicationProxy`. |
 | **`UserProfileNoUserFoundException`** | No user profile for the service account. | Create it using `$upm.CreateUserProfile("<DOMAIN\service_account>")`. |
-| **SharePoint datasource shows "not configured"** | S2S identity parameters not provided. | Provide Client ID, Issuer ID, and SID either via `az k8s-extension update` or in the datasource Authentication section. |
+| **SharePoint datasource shows "not configured"** | Server-to-server identity parameters not provided. | Provide Client ID, Issuer ID, and SID either via `az k8s-extension update` or in the datasource Authentication section. |
 | **SSL/TLS error** connecting to SharePoint | SharePoint uses internal CA not trusted by pod. | Set `SHAREPOINT_VERIFY_SSL` to your CA bundle path. Don't set to `false` in production. |
 
 ## Network requirements
@@ -166,5 +166,5 @@ All SharePoint-related Helm values live under the `sharepoint` key.
 
 ## Related content
 
-- [SharePoint Server S2S authentication overview](connect-sharepoint-overview.md)
-- [Set up S2S authentication](connect-sharepoint-setup.md)
+- [SharePoint server-to-server authentication overview](connect-sharepoint-overview.md)
+- [Set up server-to-server authentication](connect-sharepoint-setup.md)

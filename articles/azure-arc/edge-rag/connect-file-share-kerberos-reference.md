@@ -55,8 +55,8 @@ kubectl logs -n arc-rag -l app=kerberos-validator --tail=20
 | Symptom | Root cause | Fix |
 |---|---|---|
 | **Install fails:** "No nodes with kerberos-provisioned label" | No nodes are labeled. | Run `kubectl label node <node_name> edge-rag/kerberos-provisioned=true`. Complete all prerequisite steps first. |
-| **Node shows `kerberos-ready=false`** with reason `KRB5_CONF_MISSING` | `/etc/krb5.conf` doesn't exist on the node. | Create the file per [Step 3](connect-nfs-kerberos-setup.md#step-3-install-and-configure-kerberos-client). |
-| **Node shows `kerberos-ready=false`** with reason `KEYTAB_MISSING` or `KEYTAB_EMPTY` | `/etc/krb5.keytab` is missing or zero bytes. | Deploy the keytab per [Step 4](connect-nfs-kerberos-setup.md#step-4-create-service-principal-and-deploy-keytab). |
+| **Node shows `kerberos-ready=false`** with reason `KRB5_CONF_MISSING` | `/etc/krb5.conf` doesn't exist on the node. | Create the file per [Step 3](connect-file-share-kerberos-setup.md#step-3-install-and-configure-kerberos-client). |
+| **Node shows `kerberos-ready=false`** with reason `KEYTAB_MISSING` or `KEYTAB_EMPTY` | `/etc/krb5.keytab` is missing or zero bytes. | Deploy the keytab per [Step 4](connect-file-share-kerberos-setup.md#step-4-create-service-principal-and-deploy-keytab). |
 | **Node shows `kerberos-ready=false`** with reason `KDC_UNREACHABLE` | Can't reach the domain controller on port 88. | Check firewall rules and DNS: `nc -zv <domain_controller> 88`. |
 | **Node shows `kerberos-ready=false`** with reason `KDC_DNS_UNREACHABLE` | DNS can't resolve KDC hostname. | Check `/etc/resolv.conf` and `nslookup <domain_controller>`. |
 | **Ingestion fails:** "No Kerberos-ready nodes available" | All nodes are `kerberos-ready=false`. | Check DaemonSet logs: `kubectl logs -n arc-rag -l app=kerberos-validator`. |
@@ -152,6 +152,6 @@ kubectl label node <new_node_name> edge-rag/kerberos-provisioned=true
 
 ## Related content
 
-- [NFS with Kerberos authentication overview](connect-nfs-kerberos-overview.md)
-- [Set up Kerberos authentication](connect-nfs-kerberos-setup.md)
+- [NFS with Kerberos authentication overview](connect-file-share-kerberos-overview.md)
+- [Set up Kerberos authentication](connect-file-share-kerberos-setup.md)
 - [Configure NFS server](configure-nfs-server.md)

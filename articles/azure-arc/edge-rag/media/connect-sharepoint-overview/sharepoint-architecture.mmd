@@ -14,12 +14,7 @@ graph TD
     Pod -->|"3. Bearer JWT<br/>over HTTP/HTTPS"| SP
     SP -->|"4. Returns<br/>documents"| Pod
 
-    classDef azure fill:#0078D4,stroke:#005A9E,color:#fff,stroke-width:2px
-    classDef secret fill:#FF8C00,stroke:#E07B00,color:#fff,stroke-width:2px
-    classDef pod fill:#50E6FF,stroke:#0078D4,color:#002050,stroke-width:2px
-    classDef onprem fill:#5C2D91,stroke:#4A2574,color:#fff,stroke-width:2px
-
-    class KV azure
-    class Secret secret
-    class Pod pod
-    class SP onprem
+    style KV fill:#0078d4,stroke:#005a9e,stroke-width:2px,color:#fff
+    style Secret fill:#ff8c00,stroke:#e07b00,stroke-width:2px,color:#fff
+    style Pod fill:#50e6ff,stroke:#0078d4,stroke-width:2px,color:#002050
+    style SP fill:#5c2d91,stroke:#4a2574,stroke-width:2px,color:#fff

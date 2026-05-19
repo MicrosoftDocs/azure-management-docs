@@ -49,11 +49,11 @@ items:
                     href: connect-nfs-kerberos-setup.md
                   - name: Reference and troubleshooting
                     href: connect-nfs-kerberos-reference.md
-              - name: Connect SharePoint Server (S2S)
+              - name: Connect SharePoint Server (server-to-server)
                 items:
                   - name: Overview
                     href: connect-sharepoint-overview.md
-                  - name: Set up S2S authentication
+                  - name: Set up server-to-server authentication
                     href: connect-sharepoint-setup.md
                   - name: Reference and troubleshooting
                     href: connect-sharepoint-reference.md

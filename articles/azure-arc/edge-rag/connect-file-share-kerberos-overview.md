@@ -4,7 +4,7 @@ description: "Learn about Network File System (NFS) data source connectivity wit
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/17/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a platform administrator, I want to understand how NFS with Kerberos authentication works with Agents and Tools with Foundry Local so that I can securely connect on-premises file shares in disconnected environments.
@@ -22,34 +22,11 @@ This article applies to Agents and Tools with Foundry Local on Azure Local (Arc-
 
 Kerberos configuration lives on the Kubernetes worker node, not inside the pod. The pod reads files from a mounted directory and has no awareness of Kerberos. The node's kernel (`rpc.gssd`) handles all ticket acquisition and encrypted NFS communication transparently.
 
-```mermaid
-graph TD
-    AD("🔐 <b>Active Directory / KDC</b><br/>dc01.contoso.com<br/>Ports: 88 · 464 · 389")
-
-    subgraph Node ["🖥️ Kubernetes Worker Node (domain-joined)"]
-        direction TB
-        Config("⚙️ <b>Node Kerberos Config</b><br/>/etc/krb5.conf<br/>/etc/krb5.keytab<br/>rpc.gssd · kubelet")
-        Pod("📦 <b>Ingestion Pod</b><br/>/mnt/data—PVC mount<br/>Pod is unaware of Kerberos")
-    end
-
-    NFS("💾 <b>NFS File Server</b><br/>nfs-server.contoso.com<br/>/exports/data · sec=krb5p<br/>Port: 2049")
-
-    AD -->|"Kerberos tickets<br/>port 88"| Config
-    Config -->|"NFS mount<br/>sec=krb5p · port 2049"| Pod
-    Pod -->|"NFS v4.1 + krb5p<br/>fully encrypted"| NFS
-
-    classDef azure fill:#0078D4,stroke:#005A9E,color:#fff,stroke-width:2px
-    classDef node fill:#2D7D2D,stroke:#1B5E1B,color:#fff,stroke-width:2px
-    classDef pod fill:#4A90D9,stroke:#2E6EB5,color:#fff,stroke-width:2px
-    classDef storage fill:#8C6BB1,stroke:#6A4C93,color:#fff,stroke-width:2px
-
-    class AD azure
-    class Config node
-    class Pod pod
-    class NFS storage
-```
+:::image type="content" source="media/connect-file-share-kerberos-overview/kerberos-architecture.png" alt-text="Diagram showing the architecture of Kerberos NFS authentication with Active Directory, Kubernetes worker node, ingestion pod, and NFS file server." lightbox="media/connect-file-share-kerberos-overview/kerberos-architecture.png" border="false":::
 
 ### Key design points
+
+The Kerberos NFS architecture is designed around these foundational principles:
 
 - **No passwords stored**- authentication uses a keytab file on the node.
 - **Data encrypted in transit**- `krb5p` provides full NFS payload encryption.
@@ -90,8 +67,8 @@ Complete every item before installing Agents and Tools with Foundry Local with K
 | 13 | Reverse DNS (pointer (PTR) record) for NFS server IP | Network Admin | `nslookup <nfs_server_ip>` |
 | 14 | Forward DNS for all domain controllers | Network Admin | `nslookup dc01.contoso.com` |
 | 15 | Network Time Protocol (NTP) time synchronization configured (clock skew less than 5 minutes) | Node Admin | `timedatectl status`- `NTP synchronized: yes` |
-| 16 | Firewall rules open (see [Network requirements](connect-nfs-kerberos-reference.md#network-requirements)) | Network Admin | `nc -zv dc01.contoso.com 88` |
-| 17 | Test NFS mount with `sec=krb5p` succeeds from every worker node | Node Admin | See [Validate NFS Kerberos mount](connect-nfs-kerberos-setup.md#step-6-validate-nfs-kerberos-mount) |
+| 16 | Firewall rules open (see [Network requirements](connect-file-share-kerberos-reference.md#network-requirements)) | Network Admin | `nc -zv dc01.contoso.com 88` |
+| 17 | Test NFS mount with `sec=krb5p` succeeds from every worker node | Node Admin | See [Validate NFS Kerberos mount](connect-file-share-kerberos-setup.md#step-6-validate-nfs-kerberos-mount) |
 | 18 | Worker nodes labeled `edge-rag/kerberos-provisioned=true` | Platform Admin | `kubectl get nodes -l edge-rag/kerberos-provisioned=true` |
 
 ## Portal fields reference
@@ -103,10 +80,9 @@ When you install Agents and Tools with Foundry Local via the Azure portal, the *
 | **Enable Kerberos** | `kerberos.enabled` | Toggle | `false` | Enables Kerberos authentication for NFS data sources. When enabled, the installer validates that at least one node is labeled `kerberos-provisioned=true`. |
 | **Service principal name (SPN)** | `kerberos.spn` | Text (required when enabled) | _(empty)_ | The Kerberos SPN for NFS authentication. Format: `nfs/<service_account>@<REALM>`. Example: `nfs/edgerag-svc@CONTOSO.COM`. Must match the principal in the keytab deployed on your nodes. |
 
-> [!IMPORTANT]
-> The SPN field is required when Kerberos is enabled. The installation fails with a template error if left empty.
+The SPN field is required when Kerberos is enabled. The installation fails with a template error if left empty.
 
-When `kerberos.enabled` is set to `true`, Agents and Tools with Foundry Local:
+When you set `kerberos.enabled` to `true`, Agents and Tools with Foundry Local:
 
 1. Deploys a Kerberos Validator DaemonSet on every node (health checks every 60 seconds).
 1. Runs a preinstall validation hook (checks for labeled nodes).
@@ -114,7 +90,7 @@ When `kerberos.enabled` is set to `true`, Agents and Tools with Foundry Local:
 1. Uses PVC-based NFS mounts with `sec=krb5p,vers=4.1` (instead of inline NFS volumes).
 1. Schedules ingestion pods only on `kerberos-ready=true` nodes.
 
-The `kerberos.spn` value is injected into the ingestion API pod as the `KERBEROS_SPN` environment variable. The system uses this value for logging and validation. The keytab on the node handles the actual Kerberos authentication.
+The system injects the `kerberos.spn` value into the ingestion API pod as the `KERBEROS_SPN` environment variable. The system uses this value for logging and validation. The keytab on the node handles the actual Kerberos authentication.
 
 ## Frequently asked questions
 
@@ -139,4 +115,4 @@ Remove the provisioned label: `kubectl label node <node_name> edge-rag/kerberos-
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up Kerberos authentication](connect-nfs-kerberos-setup.md)
+> [Set up Kerberos authentication](connect-file-share-kerberos-setup.md)

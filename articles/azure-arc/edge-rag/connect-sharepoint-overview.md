@@ -1,47 +1,51 @@
 ---
-title: SharePoint Server S2S Authentication Overview for Agents and Tools with Foundry Local
+title: SharePoint Server-to-Server Authentication Overview for Agents and Tools with Foundry Local
 description: "Learn about SharePoint Server on-premises connectivity with High-Trust Server-to-Server (S2S) authentication for Agents and Tools with Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/17/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to understand how SharePoint Server S2S authentication works with Agents and Tools with Foundry Local so that I can securely connect on-premises SharePoint data.
+#CustomerIntent: As a platform administrator, I want to understand how SharePoint server-to-server authentication works with Agents and Tools with Foundry Local so that I can securely connect on-premises SharePoint data.
 ---
 
-# SharePoint Server S2S authentication overview for Agents and Tools with Foundry Local
+# SharePoint server-to-server authentication overview for Agents and Tools with Foundry Local
 
-Agents and Tools with Foundry Local connects to SharePoint Server on-premises by using High-Trust Server-to-Server (S2S) authentication. Instead of storing a username and password, the extension signs a JWT token with a certificate's private key, and SharePoint validates it by using the registered public key.
+Agents and Tools with Foundry Local connects to SharePoint Server on-premises by using High-Trust Server-to-Server (S2S) authentication. Instead of storing a username and password, the extension signs a JSON Web Token (JWT) with a certificate's private key, and SharePoint validates it by using the registered public key.
 
-This is a fully disconnected-compatible authentication flow -  no ADFS, no ACS (Azure Access Control Service), and no internet connectivity is required for authentication.
+This authentication flow works fully disconnected. It doesn't require Active Directory Federation Services (AD FS), Azure Access Control Service (ACS), or internet connectivity.
 
-This article applies to Agents and Tools with Foundry Local on AKS or Azure Local (Arc-enabled Kubernetes) connecting to SharePoint Server Subscription Edition (on-premises).
+This article applies to Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) or Azure Local (Arc-enabled Kubernetes) connecting to SharePoint Server Subscription Edition (on-premises).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## What you set up vs. what the extension handles
 
+The following table shows which one-time setup tasks you complete and which certificate and token tasks the extension completes for you automatically.
+
 | Your responsibility (one-time setup) | Extension handles automatically |
 |---|---|
-| Create a certificate (PFX + CER) | Syncs the certificate from Key Vault into the cluster via CSI driver |
+| Create a certificate (Personal Information Exchange (PFX) + public certificate file (.cer)) | Syncs the certificate from Key Vault into the cluster via Container Storage Interface (CSI) driver |
 | Upload the PFX to Azure Key Vault | Signs JWT tokens with the certificate private key at runtime |
 | Register the certificate trust on SharePoint Server | Caches tokens (12 hours), handles expiry, retries on transient errors |
 | Register the app principal and grant permissions on SharePoint | Mounts the certificate into ingestion pods securely |
 | Create a managed identity and federate it with the cluster | Discovers the SharePoint realm automatically (if not provided) |
-| Create a user profile and obtain the Windows SID | |
-| Provide configuration values during installation or in the UI | |
+| Create a user profile and obtain the Windows Security Identifier (SID) | |
+| Provide configuration values during installation or in the user interface (UI) | |
 
 ## Architecture
 
-The SharePoint Server S2S ingestion architecture for Agents and Tools with Foundry Local uses certificate-based trust to authenticate requests without stored credentials or an external token service. Azure Key Vault stores the PFX certificate and password, the CSI Secrets Store Driver syncs them into Kubernetes, the ingestion pod signs JWTs locally, and SharePoint Server validates the token by using the trusted public key before returning documents.
+The SharePoint server-to-server ingestion architecture for Agents and Tools with Foundry Local uses certificate-based trust to authenticate requests without stored credentials or an external token service. Azure Key Vault stores the PFX certificate and password, the CSI Secrets Store Driver syncs them into Kubernetes, the ingestion pod signs JWTs locally, and SharePoint Server validates the token by using the trusted public key before returning documents.
 
-![Architecture diagram showing certificate-based SharePoint S2S authentication flow through Azure Key Vault, Kubernetes, and SharePoint Server](media/connect-sharepoint-overview/sharepoint-s2s-architecture.png)
+:::image type="content" source="media/connect-sharepoint-overview/sharepoint-architecture.png" alt-text="Architecture diagram showing certificate-based SharePoint authentication flow through Azure Key Vault, Kubernetes, and SharePoint Server." lightbox="media/connect-sharepoint-overview/sharepoint-architecture.png" border="false":::
 
 ### Key design points
 
+This server-to-server ingestion architecture uses certificate-based trust to provide secure, resilient SharePoint authentication in connected and disconnected environments without storing user credentials.
+
 - **No stored passwords** -  authentication uses a certificate-signed JWT.
-- **No ADFS or ACS required** -  the token is created locally by the pod.
+- **No AD FS or ACS required** -  the token is created locally by the pod.
 - **Disconnected/air-gap compatible** -  once the certificate is synced to the cluster, no Azure connectivity is needed for authentication.
 - **Per-datasource isolation** -  different SharePoint sites can use different identities.
 - **Token caching** -  JWTs are valid for 12 hours and auto-refreshed.
@@ -56,7 +60,7 @@ Complete every item before installing Agents and Tools with Foundry Local with S
 | 1 | AKS or Arc-enabled Kubernetes cluster operational | Platform Admin |
 | 2 | Azure Key Vault instance available (or ability to create one) | Azure Admin |
 | 3 | CSI Secrets Store Driver installed on the cluster | Platform Admin |
-| 4 | Workload Identity / OIDC Issuer enabled on the cluster | Platform Admin |
+| 4 | Workload Identity / OpenID Connect (OIDC) Issuer enabled on the cluster | Platform Admin |
 | 5 | User-assigned managed identity with Key Vault secret read access | Azure Admin |
 | 6 | Federated identity credential linking the managed identity to `edgerag-sp-sa` ServiceAccount | Azure Admin |
 | **Certificate** | | |
@@ -80,7 +84,7 @@ Complete every item before installing Agents and Tools with Foundry Local with S
 | 23 | Windows SID obtained for the service account | IT Admin |
 | **Network** | | |
 | 24 | Pods can reach SharePoint server on port 80 (HTTP) or 443 (HTTPS) | Network Admin |
-| 25 | Pods can resolve SharePoint server hostname via DNS | Network Admin |
+| 25 | Pods can resolve SharePoint server hostname via Domain Name System (DNS) | Network Admin |
 | 26 | Pods can reach Azure Key Vault on port 443 (for initial certificate sync) | Network Admin |
 
 ## Portal fields reference
@@ -89,7 +93,7 @@ When you install Agents and Tools with Foundry Local via the Azure portal, the *
 
 ### Install-time fields (CSI / certificate delivery)
 
-These configure how the certificate is delivered from Azure Key Vault to the cluster. They require a Helm upgrade and pod restart to change after installation.
+These fields configure how the certificate is delivered from Azure Key Vault to the cluster. Changing these fields requires a Helm upgrade and pod restart after installation.
 
 | Portal field | Helm key | Type | Default | Description |
 |---|---|---|---|---|
@@ -97,27 +101,26 @@ These configure how the certificate is delivered from Azure Key Vault to the clu
 | **Key Vault Name** | `sharepoint.s2s.keyvaultName` | Text | _(empty)_ | Name of your Azure Key Vault containing the PFX certificate and password. |
 | **KV Cert Secret Name** | `sharepoint.s2s.kvCertSecretName` | Text | `edgerag-sp-s2s-cert` | Name of the secret in Key Vault that holds the PFX certificate (base64-encoded). |
 | **KV Cert Password Secret Name** | `sharepoint.s2s.kvCertPasswordSecretName` | Text | `sp-cert-password` | Name of the secret in Key Vault that holds the PFX password. |
-| **Workload Identity Client ID** | `sharepoint.s2s.workloadIdentityClientId` | GUID | _(empty)_ | Client ID of the user-assigned managed identity that has `get` access to the Key Vault secrets. |
-| **Key Vault Tenant ID** | `sharepoint.s2s.kvTenantId` | GUID | _(auto from session)_ | Microsoft Entra tenant ID where the managed identity and Key Vault reside. Usually auto-populated. Falls back to `auth.tenantId` if not specified. |
+| **Workload Identity Client ID** | `sharepoint.s2s.workloadIdentityClientId` | Globally unique identifier (GUID) | _(empty)_ | Client ID of the user-assigned managed identity that has `get` access to the Key Vault secrets. |
+| **Key Vault Tenant ID** | `sharepoint.s2s.kvTenantId` | Globally unique identifier (GUID) | _(auto from session)_ | Microsoft Entra tenant ID where the managed identity and Key Vault reside. Usually auto-populated. Falls back to `auth.tenantId` if not specified. |
 
-### Post-install fields (S2S identity -  optional at install time)
+### Post-install fields (server-to-server identity -  optional at install time)
 
-These can be set at install time or later per-datasource in the UI. They're stored in a ConfigMap and can be updated without reinstalling via `az k8s-extension update`.
+Set these fields during installation or later per-datasource in the user interface (UI). The process stores them in a ConfigMap. You can update them without reinstalling by using `az k8s-extension update`.
 
 | Portal field | Helm key | Type | Default | Description |
 |---|---|---|---|---|
-| Client ID | `sharepoint.s2s.clientId` | GUID | _(empty)_ | The app Client ID you chose when registering the app principal in SharePoint. |
-| Issuer ID | `sharepoint.s2s.issuerId` | GUID | _(empty)_ | The Issuer ID you chose when registering the trusted security token issuer. |
+| Client ID | `sharepoint.s2s.clientId` | GUID | _(empty)_ | The app Client ID you choose when registering the app principal in SharePoint. |
+| Issuer ID | `sharepoint.s2s.issuerId` | GUID | _(empty)_ | The Issuer ID you choose when registering the trusted security token issuer. |
 | Default SID | `sharepoint.s2s.defaultSid` | String | _(empty)_ | Windows SID of the service account (for example, `S-1-5-21-...-1001`). |
 | Realm | `sharepoint.s2s.realm` | GUID | _(empty, auto-discovered)_ | SharePoint authentication realm. If left blank, the extension discovers it automatically from the SharePoint server. |
 
-> [!TIP]
-> If you manage multiple SharePoint sites with different identities, leave the S2S identity fields empty at install time and configure them per-datasource in the UI.
+If you manage multiple SharePoint sites with different identities, leave the server-to-server identity fields empty at install time and configure them per-datasource in the UI.
 
 ## Frequently asked questions
 
 **Does the extension need internet access to authenticate to SharePoint?**
-No. The JWT is signed locally by the pod using the certificate private key. No external token service is contacted. The only Azure connectivity needed is the initial certificate sync from Key Vault (via the CSI driver).
+No. The pod signs the JWT locally by using the certificate private key. The extension doesn't contact any external token service. The only Azure connectivity needed is the initial certificate sync from Key Vault (via the CSI driver).
 
 **What SharePoint versions are supported?**
 SharePoint Server Subscription Edition (SE). Earlier versions might work but aren't tested.
@@ -128,11 +131,11 @@ Yes. Register the trust on each SharePoint server, and register the app principa
 **What if I don't know my SharePoint realm?**
 Leave the `realm` field blank. The extension auto-discovers it by making an unauthenticated request to your SharePoint server and parsing the `WWW-Authenticate` response header.
 
-**Can I change the S2S identity (Client ID, Issuer ID, SID) without reinstalling?**
-Yes. These values are stored in a ConfigMap and can be updated via `az k8s-extension update`. The install-time values (Key Vault name, managed identity) require a Helm upgrade.
+**Can I change the server-to-server identity (Client ID, Issuer ID, SID) without reinstalling?**
+Yes. The extension stores these values in a ConfigMap. You can update them by using `az k8s-extension update`. The install-time values (Key Vault name, managed identity) require a Helm upgrade.
 
 **What permissions does the app principal need?**
-`FullControl` at the `SiteCollection` scope. This allows the extension to enumerate and download documents. Read-only access isn't sufficient due to SharePoint API requirements for document library enumeration.
+`FullControl` at the `SiteCollection` scope. This permission level allows the extension to enumerate and download documents. Read-only access isn't sufficient due to SharePoint API requirements for document library enumeration.
 
 **What is the Windows SID and why is it needed?**
 The Windows SID (Security Identifier, format `S-1-5-21-...`) identifies the service account in the JWT `nameid` claim. SharePoint uses it to resolve the user's identity and apply permissions. Using `DOMAIN\username` format causes 401 errors.
@@ -141,9 +144,9 @@ The Windows SID (Security Identifier, format `S-1-5-21-...`) identifies the serv
 The CSI Secrets Store Driver syncs the PFX and password from Azure Key Vault into a Kubernetes secret. The pod mounts this secret as a volume at `/certs/cert.pfx` and receives the password as the `SHAREPOINT_CERT_PASSWORD` environment variable. The pod never communicates with Key Vault directly.
 
 **What happens if Key Vault becomes unreachable after initial setup?**
-The Kubernetes secret persists in the cluster. Existing and new pods continue to work using the cached secret. The certificate doesn't rotate until Key Vault is reachable again, but authentication continues uninterrupted.
+The Kubernetes secret persists in the cluster. Existing and new pods continue to work by using the cached secret. The certificate doesn't rotate until Key Vault is reachable again, but authentication continues uninterrupted.
 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Set up S2S authentication](connect-sharepoint-setup.md)
+> [Set up server-to-server authentication](connect-sharepoint-setup.md)
