@@ -1,0 +1,80 @@
+### YamlMime:FAQ
+metadata:
+  title: "Azure Linux Frequently Asked Questions (FAQ) - Security"
+  description: Frequently asked questions about Azure Linux security, including how to handle Common Vulnerabilities and Exposures (CVEs), supported vulnerability scanners, and sandboxing untrusted applications. 
+  keywords: frequently asked questions, faq
+  ms.service: microsoft-linux
+  ms.topic: faq
+  ms.date: 04/29/20266
+title: "Azure Linux frequently asked questions (FAQ) - Security"
+summary: |
+    This article provides answers to some of the most common questions about Azure Linux security.
+
+sections:
+  - name: Ignored
+    questions:
+      - question: |
+          How does Azure Linux handle CVEs?
+        answer: |
+          Azure Linux publishes security advisories in VEX (Vulnerability Exploitability eXchange) format. The Azure Linux team scans for security vulnerabilities against the [National Vulnerability Database (NVD)](https://nvd.nist.gov/). Tier 1 (core operating system (OS)) packages receive security CVE backports with fast-track patches for _Critical_ and _High_ severity issues. Live patching is available for eligible kernel CVEs.
+
+          You can apply security updates using the following command:
+
+          ```bash
+          sudo dnf update -y
+          ```
+
+          You can check package details and changelogs using the following commands:
+
+          ```bash
+          dnf info <PACKAGE_NAME>
+          dnf info <PACKAGE_NAME> --changelog
+          ```
+
+          For more information, see [Manage CVEs on Azure Linux and Azure Container Linux (ACL)](./manage-cves.md).
+
+      - question: |
+          What vulnerability scanners support Azure Linux?
+        answer: |
+          Common vulnerability scanning tools are supported. The following vendors have Azure Linux support:
+
+          | Vendor | Tooling |
+          |---|---|
+          | Qualys | Qualys scan |
+          | Aquasec | Trivy |
+          | Tenable | Nessus, Tenable.io, Tenable.sc |
+          | Anchore | Syft, Grype (0.62.0 and later) |
+
+      - question: |
+          Why are scanners reporting unfixed CVEs?
+        answer: |
+          By default, tools like Trivy and Grype also detect unpatched/unfixed vulnerabilities, meaning you can't fix them even by updating all packages. To filter these vulnerabilities out, use the following options:
+
+          - **Trivy**: Use the `--ignore-unfixed` option.
+          - **Grype**: Use the `--only-fixed` option.
+
+      - question: |
+          How does Azure Linux sandbox untrusted applications?
+        answer: |
+          Azure Linux uses containerd as the supported container runtime technology to sandbox untrusted applications. SELinux is used as the mandatory access control framework (AppArmor isn't supported). The SELinux targeted policy ships with all packages prelabeled at build time. For more information, see [Configure mandatory access control (MAC) in Azure Linux with SELinux and Landlock](./mandatory-access-control.md).
+
+      - question: |
+          How do I set up Polyinstantiated Directories?
+        answer: |
+          Polyinstantiated Directories aren't enabled by default, but Azure Linux provides the capability. This feature uses SELinux to give each user a private view of `/tmp/` and `/var/tmp/`, preventing race condition attacks and information leaks based on file names. To enable this feature, follow these steps:
+
+          1. Uncomment the following lines in `/etc/security/namespace.conf`:
+
+            ```text
+            /tmp     /tmp-inst/            level      root,adm
+            /var/tmp /var/tmp/tmp-inst/    level      root,adm
+            $HOME    $HOME/$USER.inst/     level
+            ```
+
+          1. Ensure the following line exists in `/etc/pam.d/login`:
+
+            ```text
+            session    required     pam_namespace.so
+            ```
+
+          1. Reboot the system.
