@@ -95,7 +95,6 @@ When you chunk data, consider these factors:
 You can also perform data ingestion programmatically by using the REST APIs:
 
 - [Collections API](collections-overview.md) — Create and manage collections before ingesting.
-- [Ingestion API](agent-manager-api.md) — Start ingestion jobs targeting a specific collection.
 
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
 - Create as many data ingestions as you'd like. Data is vectorized and stored in the collection you specify (or the default `edgeragapp` collection if none is specified). You can create multiple collections to organize data by domain, department, or use case.

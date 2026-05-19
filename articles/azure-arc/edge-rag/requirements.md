@@ -44,7 +44,7 @@ Agents and Tools with Foundry Local deployment supports the following on-premise
 | Azure Local infrastructure* | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2504. |
 | AKS Arc cluster on Azure Local* | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance. Include at least two [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool - one for text embedding and one for image processing. Docling (document parser) runs on CPU. The LLM runs externally via your BYOM endpoint. As part of the prerequisite tasks, you [prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md). |
 | Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, you can skip this requirement. The IP must be accessible from client machines. <br><br>As part of the prerequisite tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Agents and Tools with Foundry Local](prepare-networking-observability.md) <br>- [Configure DNS for Agents and Tools with Foundry Local](prepare-dns.md). |
-| Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. Only AUTH_SYS authentication method is supported. Kerberos authentication isn't supported. Requires share path, NFS user ID, and group ID. **Required for combined and knowledge modes only.** Not required for agentic mode. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux).|
+| Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. AUTH_SYS authentication is supported for all deployments. For disconnected on-premises deployments, Kerberos (`krb5p`) authentication and SharePoint Server with High-Trust Server-to-Server (S2S) authentication are also supported as data sources. Requires share path, NFS user ID, and group ID (for AUTH_SYS) or Kerberos service principal (for `krb5p`). **Required for combined and knowledge modes only.** Not required for agentic mode. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). For Kerberos setup, see [NFS with Kerberos authentication](connect-file-share-kerberos-overview.md). For SharePoint, see [SharePoint Server-to-Server authentication](connect-sharepoint-overview.md).|
 |Windows machine (optional)| Ease the management of the Azure Arc-enabled Kubernetes cluster on Azure Local by configuring a driver machine or local management host.<br><br>As part of the prerequisite tasks, install tools like Azure CLI, kubectl, and Helm to prepare the driver machine. For more information, see: <br><br>- [Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md)<br>- [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).|
 
 \* Agents and Tools with Foundry Local is validated on Azure Local.
@@ -81,10 +81,10 @@ The BYOM endpoint runs separately from Agents and Tools with Foundry Local. If y
 
 |**Resource**| **Minimum** | **Recommended (production)** |
 |---|---|---|
-| **GPU** | 1 × NVIDIA GPU, ≥ 24 GB VRAM | 1 × NVIDIA GPU, ≥ 48 GB VRAM |
+| **GPU** | 1 × NVIDIA GPU, ≥ 24 GB VRAM | 1 × NVIDIA GPU, ≥  48 GB VRAM |
 | **CPU** | 8+ vCPUs | 16+ vCPUs |
 | **RAM** | 32 GB | 64 GB |
-| **Storage** | ≥ 50 GB | ≥ 50–100 GB per replica |
+| **Storage** |≥ 50 GB | ≥ 50–100 GB per replica |
 
 The minimum configuration is suitable for development and low-concurrency scenarios. For production workloads, larger context windows, or higher concurrency, use the recommended configuration.
 
@@ -136,7 +136,11 @@ Document or image file types not listed, like audio and video files, aren't curr
 
 ## Supported data sources
 
-Agents and Tools with Foundry Local support Network File System (NFS) v3.0 and v4.1 with AUTH_SYS authentication as a data source. Kerberos authentication isn't supported.
+Agents and Tools with Foundry Local supports the following data sources:
+
+- **NFS** v3.0 and v4.1 with AUTH_SYS authentication (all deployments).
+- **NFS** v4.1 with Kerberos (`krb5p`) authentication (disconnected on-premises deployments only). See [NFS with Kerberos authentication](connect-file-share-kerberos-overview.md).
+- **SharePoint Server** Subscription Edition with High-Trust Server-to-Server (S2S) authentication (disconnected on-premises deployments only). See [SharePoint Server-to-Server authentication](connect-sharepoint-overview.md).
 
 ## Supported regions
 

@@ -41,6 +41,22 @@ items:
                 href: prepare-model-endpoint.md
               - name: Verify NFS server
                 href: prepare-file-server.md
+              - name: Connect NFS with Kerberos (optional)
+                items:
+                  - name: Overview
+                    href: connect-file-share-kerberos-overview.md
+                  - name: Set up Kerberos authentication
+                    href: connect-file-share-kerberos-setup.md
+                  - name: Reference and troubleshooting
+                    href: connect-file-share-kerberos-reference.md
+              - name: Connect SharePoint Server (server-to-server)
+                items:
+                  - name: Overview
+                    href: connect-sharepoint-overview.md
+                  - name: Set up server-to-server authentication
+                    href: connect-sharepoint-setup.md
+                  - name: Reference and troubleshooting
+                    href: connect-sharepoint-reference.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
               - name: Configure authentication
@@ -99,6 +115,8 @@ items:
             href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/edge-rag/TOC.json&bc=/azure/azure-arc/edge-rag/breadcrumb/toc.json 
       - name: Reference
         items:
+          - name: Deployment parameter reference
+            href: deploy-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Evaluation metrics
@@ -109,9 +127,3 @@ items:
             href: /rest/api/aks/
           - name: Azure Local REST API reference
             href: /rest/api/stackhci/
-      - name: API reference
-        items:
-          - name: Knowledge Base Manager Service
-            href: agent-manager-api.md
-          - name: Agents Runtime Service
-            href: agents-runtime-api.md
