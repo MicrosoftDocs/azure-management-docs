@@ -20,7 +20,7 @@ The multicloud connector supports these solutions:
 
 - **Arc onboarding for Servers:** Auto-discovers Amazon EC2 instances running in AWS and virtual machines running in GCP, then installs the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview) so those machines are onboarded to Azure Arc. This simplified experience lets you use Azure management services, such as Azure Monitor, across Azure, AWS, and GCP server resources from a centralized location.
 
-- **Arc onboarding for Amazon EKS clusters (preview):** Auto-discovers Amazon Elastic Kubernetes Service (Amazon EKS) clusters in your AWS environment then installs the Azure Arc-enabled Kubernetes Agent so those machines are onboarded to Azure Arc. This lets you view and manage AWS EKS clusters alongside other Azure and Arc-enabled resources, and use supported Azure management, governance, and security services for Kubernetes workloads.
+- **Arc onboarding for Amazon EKS clusters (preview):** Auto-discovers Amazon Elastic Kubernetes Service (Amazon EKS) clusters in your AWS environment then installs the [ Azure Arc-enabled Kubernetes Agent](/azure/azure-arc/kubernetes/conceptual-agent-overview) so those machines are onboarded to Azure Arc. This lets you view and manage AWS EKS clusters alongside other Azure and Arc-enabled resources, and use supported Azure management, governance, and security services for Kubernetes workloads.
 
 - **Storage - Data management:** Reads data from Amazon Simple Storage Service (Amazon S3) in your AWS environment. This solution is used to set up the [Azure Storage Mover data connection for cloud-to-cloud migration](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json)
 
@@ -58,5 +58,6 @@ Additionally, for GCP, the **Arc onboarding** solution requires Google Cloud [
 
 - Learn how to [connect a public cloud in the Azure portal](add-public-cloud.md).
 - Learn how to [use the multicloud connector ](view-multicloud-inventory.md)**[Inventory](view-multicloud-inventory.md)**[ solution](view-multicloud-inventory.md).
-- Learn how to [use the multicloud connector ](onboard-multicloud-vms-arc.md)**[Arc onboarding](onboard-multicloud-vms-arc.md)**[ solution](onboard-multicloud-vms-arc.md).
+- Learn how to [use the multicloud connector ](onboard-multicloud-vms-arc.md)**[Arc onboarding](onboard-multicloud-vms-arc.md) for Servers**[ solution](onboard-multicloud-vms-arc.md).
+- Learn how to [use the multicloud connector ](onboard-multicloud-vms-arc.md)**[Arc onboarding](onboard-multicloud-vms-arc.md) for Kubernetes** [solution](onboard-multicloud-vms-arc.md).
 - Learn how to [use the multicloud connector ](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json)**[Storage - Data management](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json)**[ solution](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json).
