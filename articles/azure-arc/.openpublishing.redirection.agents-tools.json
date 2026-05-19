@@ -1,0 +1,169 @@
+{
+  "redirections": [
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/add-data-source.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/add-data-source",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/advanced-data-parsing.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/advanced-data-parsing",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/build-chat-solution-overview.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/build-chat-solution-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/complete-prerequisites.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/complete-prerequisites",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/configure-driver-machine.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/configure-driver-machine",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/configure-endpoint-authentication.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/configure-endpoint-authentication",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/configure-nfs-server.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/configure-nfs-server",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/delete-data.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/delete-data",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/deploy-overview.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/deploy-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/deploy.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/deploy",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/enable-gpu-aks.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/enable-gpu-aks",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/evaluate-solution.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/evaluate-solution",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/evaluation-metrics.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/evaluation-metrics",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/known-issues.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/known-issues",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/observability-metrics.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/observability-metrics",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/observability.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/observability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/overview.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-aks-cluster.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-aks-cluster",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-authentication.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-authentication",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-contributor-permission.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-contributor-permission",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-dns.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-dns",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-file-server.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-file-server",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-language-model.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-language-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-model-endpoint.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-model-endpoint",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/prepare-networking-observability.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/prepare-networking-observability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/quickstart-edge-rag.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/quickstart-edge-rag",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/release-notes.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/release-notes",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/requirements.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/requirements",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/search-types.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/search-types",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/set-up-data-query.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/set-up-data-query",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/test-end-user-app.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/test-end-user-app",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/uninstall-extension.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/uninstall-extension",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-rag/whats-new.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/whats-new",
+      "redirect_document_id": true
+    }
+  ]
+}
