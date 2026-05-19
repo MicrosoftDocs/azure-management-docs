@@ -111,7 +111,7 @@ The DaemonSet validator detects the issue within 60 seconds and sets the node to
 **How do I remove a node from Kerberos duty?**
 Remove the provisioned label: `kubectl label node <node_name> edge-rag/kerberos-provisioned-`. The DaemonSet continues to run, but the node isn't considered for new ingestion workloads once `kerberos-ready` is set to false.
 
-## Next step
+## Related content
 
-> [!div class="nextstepaction"]
-> [Set up Kerberos authentication](connect-file-share-kerberos-setup.md)
+- [Set up Kerberos authentication](connect-file-share-kerberos-setup.md)
+- [NFS with Kerberos reference](connect-file-share-kerberos-reference.md)
