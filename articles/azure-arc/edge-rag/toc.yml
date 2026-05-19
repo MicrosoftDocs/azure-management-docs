@@ -109,9 +109,9 @@ items:
         items:
           - name: Deployment parameter reference
             href: deploy-reference.md
-          - name: NFS with Kerberos connection reference
+          - name: NFS with Kerberos authentication reference
             href: connect-file-share-kerberos-reference.md
-          - name: SharePoint Server connection reference
+          - name: SharePoint Server-to-Server authentication reference
             href: connect-sharepoint-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
