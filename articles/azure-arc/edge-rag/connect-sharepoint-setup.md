@@ -526,4 +526,8 @@ If you provide server-to-server identity values during installation, they serve 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Reference and troubleshooting](connect-sharepoint-reference.md)
+> [Prepare AKS cluster](prepare-aks-cluster.md)
+
+## Related content
+
+- [SharePoint Server-to-Server connection reference and troubleshooting](connect-sharepoint-reference.md)

@@ -107,8 +107,6 @@ sudo chmod 600 /etc/krb5.keytab
 sudo chown root:root /etc/krb5.keytab
 ```
 
-Expected result: Each ingestion worker node shows domain membership and a valid machine keytab entry.
-
 ## Step 3: Install and configure Kerberos client
 
 Each worker node requires Kerberos client tools and a configuration file (`/etc/krb5.conf`) to communicate securely with your Active Directory domain.
@@ -173,8 +171,6 @@ klist
 # Clean up
 kdestroy
 ```
-
-Expected result: Kerberos ticket acquisition succeeds and returns a valid TGT.
 
 ## Step 4: Create a service principal and deploy the keytab
 
@@ -246,8 +242,6 @@ sudo kdestroy
 
 Enter the SPN value (for example, `nfs/edgerag-svc@CONTOSO.COM`) in the **Service Principal Name** field during installation.
 
-Expected result: The service principal exists in AD and each worker node can authenticate with the deployed keytab.
-
 ## Step 5: Install NFS client and enable rpc-gssd
 
 `rpc-gssd` is the kernel-level Kerberos daemon that intercepts NFS mount requests and acquires tickets by using the keytab. This daemon must run on every worker node.
@@ -290,8 +284,6 @@ ls /mnt/nfs-kerberos-test/
 sudo umount /mnt/nfs-kerberos-test
 sudo rmdir /mnt/nfs-kerberos-test
 ```
-
-Expected result: The NFS export mounts successfully with `sec=krb5p` and file listing returns expected content.
 
 If this mount fails, Agents and Tools with Foundry Local also fails. Resolve the issue before proceeding. See [Troubleshooting](connect-file-share-kerberos-reference.md#troubleshooting).
 
@@ -519,4 +511,8 @@ You're ready to continue when:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Reference and troubleshooting](connect-file-share-kerberos-reference.md)
+> [Prepare AKS cluster](prepare-aks-cluster.md)
+
+## Related content
+
+- [NFS with Kerberos connection reference](connect-file-share-kerberos-reference.md)

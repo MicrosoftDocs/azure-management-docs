@@ -25,6 +25,10 @@ items:
         items:
           - name: Requirements
             href: requirements.md
+          - name: NFS with Kerberos authentication overview
+            href: connect-file-share-kerberos-overview.md
+          - name: SharePoint Server-to-Server authentication overview
+            href: connect-sharepoint-overview.md
       - name: Deploy
         items:
           - name: Overview
@@ -42,21 +46,9 @@ items:
               - name: Verify NFS server
                 href: prepare-file-server.md
               - name: Connect NFS with Kerberos (optional)
-                items:
-                  - name: Overview
-                    href: connect-file-share-kerberos-overview.md
-                  - name: Set up Kerberos authentication
-                    href: connect-file-share-kerberos-setup.md
-                  - name: Reference and troubleshooting
-                    href: connect-file-share-kerberos-reference.md
-              - name: Connect SharePoint Server (server-to-server)
-                items:
-                  - name: Overview
-                    href: connect-sharepoint-overview.md
-                  - name: Set up server-to-server authentication
-                    href: connect-sharepoint-setup.md
-                  - name: Reference and troubleshooting
-                    href: connect-sharepoint-reference.md
+                href: connect-file-share-kerberos-setup.md
+              - name: Connect SharePoint Server server-to-server
+                href: connect-sharepoint-setup.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
               - name: Configure authentication
@@ -117,6 +109,10 @@ items:
         items:
           - name: Deployment parameter reference
             href: deploy-reference.md
+          - name: NFS with Kerberos authentication reference
+            href: connect-file-share-kerberos-reference.md
+          - name: SharePoint Server-to-Server authentication reference
+            href: connect-sharepoint-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Evaluation metrics
