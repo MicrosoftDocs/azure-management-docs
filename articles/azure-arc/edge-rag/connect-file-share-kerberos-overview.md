@@ -51,7 +51,6 @@ Complete every item before installing Agents and Tools with Foundry Local with K
 
 | # | Prerequisite | Who | Validation command |
 |---|---|---|---|
-| **Azure / Cluster** | | | |
 | 1 | Azure Local Arc-enabled Kubernetes cluster operational | Platform Admin | `kubectl get nodes`- all nodes `Ready` |
 | 2 | Active Directory domain available (with Key Distribution Center (KDC)) | AD Admin | `nslookup -type=SRV _kerberos._tcp.contoso.com` |
 | 3 | Worker nodes joined to AD domain | AD Admin | `realm list`- shows `configured: kerberos-member` |
