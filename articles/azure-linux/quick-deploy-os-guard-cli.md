@@ -1,34 +1,26 @@
 ---
-title: 'Quickstart: Deploy an Azure Linux with OS Guard (preview) AKS cluster by using the Azure CLI'
-description: Learn how to quickly create an Azure Linux with OS Guard AKS cluster using the Azure CLI.
-author: florataagen
-ms.author: florataagen
+title: "Quickstart: Deploy an Azure Linux with OS Guard (preview) AKS Cluster using the Azure CLI"
+description: Learn how to quickly deploy an Azure Linux with OS Guard (preview) AKS cluster using the Azure CLI and connect to the cluster using kubectl.
+author: kavyamsft
+ms.author: schaffererin
 ms.service: microsoft-linux
-ms.custom: references_regions, devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: quickstart
-ms.date: 09/23/2025
-# Customer intent: "As a cloud developer, I want to deploy an Azure Linux with OS Guard AKS cluster using the Azure CLI, so that I can manage and run multi-container applications efficiently in a Kubernetes environment."
+ms.date: 04/28/2026
 ---
 
-# Quickstart: Deploy an Azure Linux with OS Guard (preview) AKS cluster by using the Azure CLI
+# Quickstart: Deploy an Azure Linux with OS Guard (preview) Azure Kubernetes Service (AKS) cluster using the Azure CLI
+
+In this quickstart, you learn how to:
+
+> [!div class="checklist"]
+>
+> - Create an Azure Linux with OS Guard (preview) AKS cluster using the Azure CLI.
+> - Connect to the cluster using kubectl.
+> - Run a sample multi-container application in the cluster.
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303214)
 
-Get started with Azure Linux with OS Guard by using the Azure CLI to deploy an Azure Linux with OS Guard Container Host for AKS cluster. After installing the prerequisites, you will install the aks-preview Azure CLI extension, register the AzureLinuxOSGuardPreview feature flag, create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
-
-## Considerations and limitations
-	
-Before you begin, review the following considerations and limitations for Azure Linux with OS Guard (preview):
-	
-- Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
-- All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
-- Azure CLI and ARM templates are the only supported deployment methods for Azure Linux with OS Guard on AKS in preview. PowerShell and Terraform aren't supported.
-- [Arm64](/azure/aks/use-arm64-vms) images aren't supported with Azure Linux with OS Guard on AKS in preview.
-- `NodeImage` and `None` are the only supported [OS Upgrade channels](/azure/aks/auto-upgrade-node-os-image) for Azure Linux with OS Guard on AKS. `Unmanaged` and `SecurityPatch` are incompatible with Azure Linux with OS Guard due to the immutable /usr directory.
-- [Artifact Streaming](/azure/aks/artifact-streaming) isn't supported.
-- [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
-- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
-- [Gen 1 virtual machines (VMs)](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
+[!INCLUDE [os-guard replacement](./includes/os-guard-replacement.md)]
 
 ## Prerequisites
 
@@ -37,72 +29,84 @@ Before you begin, review the following considerations and limitations for Azure 
 
   :::image type="icon" source="~/reusable-content/ce-skilling/azure/media/cloud-shell/launch-cloud-shell-button.png" border="false" link="https://portal.azure.com/#cloudshell/":::
 
-- If you prefer to run CLI reference commands locally, [install](/cli/azure/install-azure-cli) the Azure CLI. If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see [How to run the Azure CLI in a Docker container](/cli/azure/run-azure-cli-docker).
+- If you prefer to run CLI reference commands locally, [install the Azure CLI](/cli/azure/install-azure-cli). If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see [How to run the Azure CLI in a Docker container](/cli/azure/run-azure-cli-docker).
 
-  - If you're using a local installation, sign in to the Azure CLI by using the [az login](/cli/azure/reference-index#az-login) command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see [Sign in with the Azure CLI](/cli/azure/authenticate-azure-cli).
+  - If you're using a local installation, sign in to the Azure CLI using the [`az login`](/cli/azure/reference-index#az-login) command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see [Sign in with the Azure CLI](/cli/azure/authenticate-azure-cli).
   - When you're prompted, install the Azure CLI extension on first use. For more information about extensions, see [Use extensions with the Azure CLI](/cli/azure/azure-cli-extensions-overview).
-  - Run [`az version`](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index?#az-upgrade).
+  - Run [`az version`](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [`az upgrade`](/cli/azure/reference-index?#az-upgrade).
 
-## Install the aks-preview Azure CLI extension
+[!INCLUDE [azure linux with os guard limitations](./includes/os-guard-limitations.md)]
+
+## Install the `aks-preview` Azure CLI extension
 
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
-To install the aks-preview extension, run the following command:
+Install the `aks-preview` extension using the [`az extension add`](/cli/azure/extension#az_extension_add) command.
 
 ```azurecli-interactive
 az extension add --name aks-preview
 ```
 
-Run the following command to update to the latest version of the extension released:
+Update the `aks-preview` extension to the latest version using the [`az extension update`](/cli/azure/extension#az_extension_update) command.
 
 ```azurecli-interactive
 az extension update --name aks-preview
 ```
-## Register the AzureLinuxOSGuardPreview feature flag
 
-Register the `AzureLinuxOSGuardPreview` feature flag by using the [az feature register](/cli/azure/feature#az-feature-register) command, as shown in the following example:
+## Register the `AzureLinuxOSGuardPreview` feature flag
 
-```azurecli-interactive
-az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
-```
+1. Register the `AzureLinuxOSGuardPreview` feature flag using the [`az feature register`](/cli/azure/feature#az-feature-register) command.
 
-It takes a few minutes for the status to show *Registered*. Verify the registration status by using the [az feature show](/cli/azure/feature#az-feature-show) command:
+    ```azurecli-interactive
+    az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
 
-```azurecli-interactive
-az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
-```
+    It takes a few minutes for the status to show _Registered_.
 
-When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register](/cli/azure/provider#az-provider-register) command:
+1. Verify the registration status using the [`az feature show`](/cli/azure/feature#az-feature-show) command.
 
-```azurecli-interactive
-az provider register --namespace "Microsoft.ContainerService"
+    ```azurecli-interactive
+    az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
+
+1. When the status reflects _Registered_, refresh the registration of the _Microsoft.ContainerService_ resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
+
+    ```azurecli-interactive
+    az provider register --namespace "Microsoft.ContainerService"
+    ```
+
+## Set environment variables
+
+Set the following environment variables to create unique resource names for each deployment. Replace `<your-resource-group-name>`, `<your-region>`, and `<your-cluster-name>` with your own values. You can optionally use the `openssl rand -hex 3` command to generate a random string to append to your resource group and cluster names (for example, `export RESOURCE_GROUP="myResourceGroup$RANDOM_ID"`).
+
+```bash
+# Create random string
+export RANDOM_ID="$(openssl rand -hex 3)"
+
+# Set environment variables
+export RESOURCE_GROUP="<your-resource-group-name>"
+export REGION="<your-region>"
+export CLUSTER_NAME="<your-cluster-name>"
 ```
 
 ## Create a resource group
 
-An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it is required to specify a location. This location is:
+An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group in Azure, you're required to specify a location. This location is the storage location of your resource group metadata and where your resources run in Azure if you don't specify another region when creating a resource.
 
-- The storage location of your resource group metadata.
-- Where your resources will run in Azure if you don't specify another region when creating a resource.
-
-Create a resource group using the `az group create` command.
+Create a resource group using the [`az group create`](/cli/azure/group#az_group_create) command.
 
 ```azurecli-interactive
-export RANDOM_ID="$(openssl rand -hex 3)"
-export MY_RESOURCE_GROUP_NAME="myAzureLinuxOSGuardResourceGroup$RANDOM_ID"
-export REGION="westeurope"
-
-az group create --name $MY_RESOURCE_GROUP_NAME --location $REGION
+az group create --name $RESOURCE_GROUP --location $REGION
 ```
 
-Results:
+Example output:
 <!-- expected_similarity=0.3 -->
 ```JSON
 {
-  "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/$MY_RESOURCE_GROUP_NAMExxxxxx",
+  "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/$RESOURCE_GROUPxxxxxx",
   "location": "$REGION",
   "managedBy": null,
-  "name": "$MY_RESOURCE_GROUP_NAME",
+  "name": "$RESOURCE_GROUPxxxxxx",
   "properties": {
     "provisioningState": "Succeeded"
   },
@@ -113,12 +117,10 @@ Results:
 
 ## Create an Azure Linux with OS Guard cluster
 
-Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux with OS Guard image.
+Create an AKS cluster using the [`az aks create`](/cli/azure/aks#az_aks_create) command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux with OS Guard image.
 
 ```azurecli-interactive
-export MY_AZ_CLUSTER_NAME="myAzureLinuxOSGuardCluster$RANDOM_ID"
-
-az aks create --name $MY_AZ_CLUSTER_NAME --resource-group $MY_RESOURCE_GROUP_NAME --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm 
+az aks create --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm 
 ```
 
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
@@ -127,10 +129,10 @@ After a few minutes, the command completes and returns JSON-formatted informatio
 
 To manage a Kubernetes cluster, use the Kubernetes command-line client, `kubectl`. `kubectl` is already installed if you use Azure Cloud Shell. To install `kubectl` locally, use the `az aks install-cli` command.
 
-1. Configure `kubectl` to connect to your Kubernetes cluster using the `az aks get-credentials` command. This command downloads credentials and configures the Kubernetes CLI to use them.
+1. Configure `kubectl` to connect to your Kubernetes cluster using the [`az aks get-credentials`](/cli/azure/aks#az_aks_get_credentials) command. This command downloads credentials and configures the Kubernetes CLI to use them.
 
     ```azurecli-interactive
-    az aks get-credentials --resource-group $MY_RESOURCE_GROUP_NAME --name $MY_AZ_CLUSTER_NAME
+    az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
     ```
 
 1. Verify the connection to your cluster using the `kubectl get` command. This command returns a list of the cluster nodes.
@@ -501,20 +503,26 @@ Results:
 </html>
 ```
 
-```OUTPUT
+```output
 echo "You can now visit your web server at $IP_ADDRESS"
 ```
 
 ## Delete the cluster
 
-If you no longer need them, you can clean up unnecessary resources to avoid Azure charges. You can remove the resource group, container service, and all related resources using the `az group delete` command.
+If you no longer need them, you can clean up unnecessary resources to avoid Azure charges.
 
-## Next steps
+Delete the Azure resource group and all related resources using the [`az group delete`](/cli/azure/group#az_group_delete) command.
 
-In this quickstart, you deployed an Azure Linux with OS Guard cluster. To learn more about Azure Linux with OS Guard, and walk through a complete cluster deployment and management example, continue to the Azure Linux with OS Guard tutorial. 
+```azurecli-interactive
+az group delete --name $RESOURCE_GROUP --yes --no-wait
+```
 
-> [!div class="nextstepaction"]
-> [Azure Linux OS Guard tutorial](./tutorial-azure-linux-os-guard-create-cluster.md)
+## Related content
+
+In this quickstart, you deployed an Azure Linux with OS Guard cluster. To learn more about Azure Linux with OS Guard, see the following resources:
+
+- [Azure Linux OS Guard tutorial series: Part 1](./tutorial-create-cluster-os-guard-aks.md)
+- [Overview of Azure Linux OS Guard for AKS](./os-guard-overview.md)
 
 <!-- LINKS -->
 [kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
