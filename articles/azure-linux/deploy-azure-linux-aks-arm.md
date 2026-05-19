@@ -20,7 +20,6 @@ In this quickstart, you learn how to:
 > - Create an SSH key pair.
 > - Review the ARM template.
 > - Deploy the ARM template and validate it.
-> - Deploy a sample application to the cluster.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -216,9 +215,7 @@ To add Azure Linux to an existing ARM template, you need to add `"osSKU": "Azure
 
 It takes a few minutes to create the Azure Linux Container Host cluster. Wait for the cluster to be successfully deployed before you move on to the next step.
 
-## Validate the deployment
-
-### Connect to the cluster
+## Connect to the cluster
 
 To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl](https://kubernetes.io/docs/reference/kubectl/).
 
@@ -248,155 +245,6 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl
     aks-agentpool-12345678-1   Ready    agent   6m46s   v1.12.6
     aks-agentpool-12345678-2   Ready    agent   6m45s   v1.12.6
     ```
-
-### Deploy the application
-
-A [Kubernetes manifest file](/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests) defines a cluster's desired state, such as which container images to run.
-
-In this quickstart, you use a manifest to create all objects needed to run the [Azure Vote application](https://github.com/Azure-Samples/azure-voting-app-redis). This manifest includes two Kubernetes deployments:
-
-- The sample Azure Vote Python applications.
-- A Redis instance.
-
-Two [Kubernetes Services](/azure/aks/concepts-network-services) are also created:
-
-- An internal service for the Redis instance.
-- An external service to access the Azure Vote application from the internet.
-
-1. Create a file named `azure-vote.yaml`. (If you use the Azure Cloud Shell, you can create the file using `code`, `vi`, or `nano` as if working on a virtual or physical system.)
-1. Copy in the following YAML definition:
-
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: azure-vote-back
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: azure-vote-back
-      template:
-        metadata:
-          labels:
-            app: azure-vote-back
-        spec:
-          nodeSelector:
-            "kubernetes.io/os": linux
-          containers:
-          - name: azure-vote-back
-            image: mcr.microsoft.com/oss/bitnami/redis:6.0.8
-            env:
-            - name: ALLOW_EMPTY_PASSWORD
-              value: "yes"
-            resources:
-              requests:
-                cpu: 100m
-                memory: 128Mi
-              limits:
-                cpu: 250m
-                memory: 256Mi
-            ports:
-            - containerPort: 6379
-              name: redis
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: azure-vote-back
-    spec:
-      ports:
-      - port: 6379
-      selector:
-        app: azure-vote-back
-    ---
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: azure-vote-front
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: azure-vote-front
-      template:
-        metadata:
-          labels:
-            app: azure-vote-front
-        spec:
-          nodeSelector:
-            "kubernetes.io/os": linux
-          containers:
-          - name: azure-vote-front
-            image: mcr.microsoft.com/azuredocs/azure-vote-front:v1
-            resources:
-              requests:
-                cpu: 100m
-                memory: 128Mi
-              limits:
-                cpu: 250m
-                memory: 256Mi
-            ports:
-            - containerPort: 80
-            env:
-            - name: REDIS
-              value: "azure-vote-back"
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: azure-vote-front
-    spec:
-      type: LoadBalancer
-      ports:
-      - port: 80
-      selector:
-        app: azure-vote-front
-    ```
-
-    For a breakdown of YAML manifest files, see [Deployments and YAML manifests](/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests).
-
-1. Deploy the application using the [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command and specify the name of your YAML manifest:
-
-    ```bash
-    kubectl apply -f azure-vote.yaml
-    ```
-
-    The following example resembles output showing the successfully created deployments and services:
-
-    ```output
-    deployment "azure-vote-back" created
-    service "azure-vote-back" created
-    deployment "azure-vote-front" created
-    service "azure-vote-front" created
-    ```
-
-### Test the application
-
-When the application runs, a Kubernetes service exposes the application front end to the internet. This process can take a few minutes to complete.
-
-1. Monitor progress using the [`kubectl get service`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command with the `--watch` argument.
-
-    ```bash
-    kubectl get service azure-vote-front --watch
-    ```
-
-    The **EXTERNAL-IP** output for the `azure-vote-front` service initially shows as _pending_.
-
-    ```output
-    NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
-    azure-vote-front   LoadBalancer   10.0.37.27   <pending>     80:30572/TCP   6s
-    ```
-
-1. Once the **EXTERNAL-IP** address changes from _pending_ to an actual public IP address, use `CTRL-C` to stop the `kubectl` watch process. The following example output shows a valid public IP address assigned to the service:
-
-    ```output
-    azure-vote-front   LoadBalancer   10.0.37.27   52.179.23.131   80:30572/TCP   2m
-    ```
-
-1. To see the Azure Vote app in action, open a web browser to the external IP address of your service.
-
-    :::image type="content" source="./media/azure-voting-application.png" alt-text="Screenshot of browsing to Azure Vote sample application.":::
 
 ## Delete the cluster
 
