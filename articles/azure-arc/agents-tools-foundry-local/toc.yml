@@ -104,7 +104,7 @@ items:
       - name: Responsible AI
         items: 
           - name: Transparency note
-            href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/edge-rag/TOC.json&bc=/azure/azure-arc/edge-rag/breadcrumb/toc.json 
+            href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/agents-tools-foundry-local/TOC.json&bc=/azure/azure-arc/agents-tools-foundry-local/breadcrumb/toc.json 
       - name: Reference
         items:
           - name: Deployment parameter reference
