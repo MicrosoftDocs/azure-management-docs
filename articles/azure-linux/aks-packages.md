@@ -1,37 +1,65 @@
 ---
-title: Azure Linux Container Host for Azure Kubernetes Service (AKS) Core Concepts
-description: Learn about the core concepts of the Azure Linux Container Host when used with Azure Kubernetes Service (AKS), including CVE infrastructure, feature additions, upgrades, and testing.
+title: Overview of Azure Linux Container Host Packages for Azure Kubernetes Service (AKS)
+description: TLearn about the packages included in the Azure Linux Container Host for Azure Kubernetes Service (AKS), how to view the package list for a given node image version, and how to determine the versions of packages installed in a running cluster.
 author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
-ms.topic: concept-article
+ms.topic: overview
 ms.date: 04/28/2026
 ---
 
-# Core concepts for the Azure Linux Container Host for Azure Kubernetes Service (AKS)
+# Azure Linux Container Host packages for Azure Kubernetes Service (AKS)
 
-Microsoft Azure Linux is an open-source project maintained by Microsoft, which means that Microsoft is responsible for the entire Azure Linux Container Host stack, from the Linux kernel to the Common Vulnerabilities and Exposures (CVE) infrastructure, support, and end-to-end validation.
+The Azure Linux Container Host for Azure Kubernetes Service (AKS) is based on the Microsoft Azure Linux distribution, which supports thousands of packages. The container host contains a subset of those packages based on customer operating system (OS) and Kubernetes needs. This set of curated packages is among the most requested and necessary packages to run container workloads based on feedback from customers and the open-source community.
 
-This article explains the core concepts of the Azure Linux Container Host for AKS, including how Microsoft manages CVEs, implements feature requests, performs upgrades, and validates images through testing.
+This article provides an overview of the packages included in the Azure Linux Container Host for AKS, how to view the package list for a given node image version, and how to determine the versions of packages installed in a running cluster.
 
-## CVE infrastructure
+## Azure Linux Container Host package list
 
-The Azure Linux team scans packages shipped with the Azure Linux Container Host twice daily against the [National Vulnerability Database (NVD)](https://nvd.nist.gov/) and collaborates with the [Microsoft Security Response Center (MSRC)](https://www.microsoft.com/msrc) to evaluate, patch, and publish fixes. High and critical CVEs might be released out-of-band as a package update ahead of the next node image; medium and low CVEs are rolled into the next image release.
+The Azure Linux Container Host package list includes all the needed dependencies to run an Azure Linux virtual machine (VM) and also pulls in any necessary AKS dependencies. To view the full package list for the latest Azure Linux Container Host image released by AKS, see [/release-notes/AKSAzureLinux/gen2/latest.txt](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinux/gen2/latest.txt).
 
-For the full CVE pipeline, published advisories, SLAs, and delivery models across all Azure Linux and Azure Container Linux deployment options, see [Manage CVEs on Azure Linux and Azure Container Linux](./manage-cves.md).
+Whenever AKS releases a new Azure Linux Container Host image, we update the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinux/gen2/latest.txt) with a new `latest.txt` file, which details the most up-to-date package list. You can also view previous image package lists and the historical versions of each package in the most recent image release in the GitHub repository. For each prior image release, you can find a corresponding `.txt` file with the naming convention `YYYY.MM.DD.txt`, where `YYYY.MM.DD` is the date of each previous image release.
 
-## Feature additions and upgrades
+> [!NOTE]
+> Packages on a running Azure Linux Container Host cluster might be automatically updated to their latest versions as new packages are released on [packages.microsoft.com](https://packages.microsoft.com/).
 
-Given that Microsoft owns the entire Azure Linux Container Host stack, including the CVE infrastructure and other support streams, the process of submitting a feature request is streamlined. You can communicate directly with the Microsoft team that owns the Azure Linux Container Host, which ensures an accelerated process for submitting and implementing feature requests. If you have a feature request, please file an issue on the [AKS GitHub repository](https://github.com/Azure/AKS/issues).
+### Kernel package
 
-## Testing
+One of the key benefits of the Azure Linux Container Host package set is the kernel package. We patch and update the Linux kernel package for the Azure Linux Container Host at least twice a month. This package is managed and owned by an entire Microsoft team, which ensures it's secure and contains all the latest updates for development.
 
-Before an Azure Linux node image is released for testing, it undergoes a series of Azure Linux and AKS specific tests to ensure that the image meets AKS requirements. This approach to quality testing helps catch and mitigate issues before they're deployed to your production nodes. Part of these tests are performance related, testing CPU, network, storage, memory, and cluster metrics such as cluster creation and upgrade times. This ensures that the performance of the Azure Linux Container Host doesn't regress as we upgrade the image.
+## Find cluster package versions
 
-We run Azure Linux node images and packages published to [packages.microsoft.com](https://packages.microsoft.com/azurelinux/) through a suite of tests that simulate an Azure environment, including Build Verification Tests (BVTs) that validate [AKS extensions and add-ons](/azure/aks/integrations) are supported on each release of the Azure Linux Container Host. We also test patches against the current Azure Linux node image before their release to ensure there are no regressions.
+If you have direct access to the container host, you can query packages from the host itself using the commands in [List all installed packages](#list-all-installed-packages) and [Check package installation dates](#check-package-installation-dates). If you don't have direct access to the container host, you can [work backwards from the node image version date to determine the package versions in a cluster](#determine-package-versions-from-node-image-version).
+
+### List all installed packages
+
+List all the installed packages and their versions using the following command:
+
+```console
+rpm -qa
+```
+
+### Check package installation dates
+
+Determine when individual packages were installed using the following command:
+
+```console
+cat /var/log/dnf.log
+```
+
+### Determine package versions from node image version
+
+1. Get the node image version for your cluster using the [`az aks show`](/cli/azure/aks#az-aks-show) command. Replace the `<resource-group-name>` and `<cluster-name>` placeholders with your own values.
+
+    ```azurecli-interactive
+    az aks show --resource-group <resource-group-name> --name <cluster-name> | grep nodeImageVersion
+    ```
+
+1. Check the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/master/vhdbuilder/release-notes/AKSAzureLinux/gen2) for the file that corresponds with the previously determined node image version date. In the file, the _Installed Packages Begin_ section lists all the package versions in your cluster.
 
 ## Related content
 
-This article covers some of the core Azure Linux Container Host concepts such as CVE infrastructure and testing.
+This article covers some of the core Azure Linux Container Host components such as packages. For more information on the Azure Linux Container Host concepts, see the following articles:
 
-For more information on the Azure Linux Container Host concepts, see the [Azure Linux Container Host overview](./azure-linux-overview.md).
+- [Azure Linux Container Host overview](./azure-linux-overview.md)
+- [Azure Linux Container Host for AKS core concepts](./aks-core-concepts.md)

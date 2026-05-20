@@ -27,10 +27,10 @@ The following table highlights the key features and benefits of Azure Linux:
 | ------- | ----------- |
 | **Hardened security posture** | Hardened from the kernel up with [kernel lockdown](./kernel-hardening.md), [dm-verity for verified boot](./disk-data-protection.md), [SELinux for mandatory access controls](./mandatory-access-control.md), and [FIPS 140-3 cryptographic modules](./fips-cryptography.md). Critical and high CVEs are fast-tracked with [SLA-driven patch delivery](./manage-cves.md). |
 | **Minimal footprint** | Ships only the packages required for cloud workloads, resulting in a smaller attack surface, fewer CVEs, and faster boot times and lower memory consumption. |
-| **Azure-optimized kernel** | Purpose-built [kernel](./whats-new-azure-linux-4.md) (6.18 LTS) with Hyper-V guest drivers, Azure-specific performance tuning, and [security hardening](./kernel-hardening.md) validated across Azure environments like Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), and AKS. Supports both [LTS and HWE kernel tracks](./release-cadence-lifecycle.md) for new hardware and GPU enablement. |
+| **Azure-optimized kernel** | Purpose-built [kernel](./whats-new-azure-linux-4.md) (6.18 LTS) with Hyper-V guest drivers, Azure-specific performance tuning, and [security hardening](./kernel-hardening.md) validated across Azure environments like Virtual Machines (VM) / Virtual Machine Scale Sets and AKS. Supports both [LTS and HWE kernel tracks](./release-cadence-lifecycle.md) for new hardware and GPU enablement. |
 | **Supply chain security** | Critical CVEs are fast-tracked under [SLA-driven patch delivery](./manage-cves.md) with [zero-reboot kernel livepatching](./kernel-live-patching.md). |
 | **Native Azure integration** | Ships with validated Azure agents, VM extensions, and developer tools including Microsoft Defender for Cloud, Azure Monitor, Azure CLI, and more. See the full list in [Supported Azure services](./supported-azure-services.md). |
-| **Consistent across environments** | Same operating system (OS) foundation, package set, and update mechanisms whether running on [AKS](./azure-linux-aks-overview.md), [Azure VM/VMSS](./azure-linux-vm-vmss-overview.md), or [container images](./container-images-overview.md). See the [architecture overview](./architecture.md). |
+| **Consistent across environments** | Same operating system (OS) foundation, package set, and update mechanisms whether running on [AKS](./azure-linux-aks-overview.md), [Azure VM / Virtual Machine Scale Sets](./azure-linux-vm-vmss-overview.md), or [container images](./container-images-overview.md). See the [architecture overview](./architecture.md). |
 | **Predictable lifecycle** | Clearly defined release cadence with LTS kernels maintained for four years and HWE kernels introduced annually for new hardware and GPU support. See [Release cadence and lifecycle](./release-cadence-lifecycle.md). |
 
 <!-- Every package is GPG-signed with [signed SBOMs and SLSA provenance](../4.%20security-and-compliance/14.%20supply-chain-security.md).-->
@@ -49,7 +49,7 @@ Azure Linux is available across multiple Azure environments, each optimized for 
 > [!IMPORTANT]
 > Azure Linux is open source, but Microsoft support and lifecycle commitments apply only to **Azure scenarios**. Specifically:
 >
-> - Azure Linux VM/VMSS, AKS container host, and container images are supported.
+> - Azure Linux VM / Virtual Machine Scale Sets, AKS container host, and container images are supported.
 > - Bare metal, ISO images, on-premises, and other clouds aren't supported.
 > - Customized images are supported only when built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)). Images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) aren't covered.
 

@@ -39,7 +39,7 @@ Azure Linux has three distroless images that are intended to support different a
     mcr.microsoft.com/azurelinux/distroless/minimal:4.0
     ```
 
-- `base`: This image image is primarily intended for C-based applications.
+- `base`: This image is primarily intended for C-based applications.
 
     ```bash
     mcr.microsoft.com/azurelinux/distroless/base:4.0

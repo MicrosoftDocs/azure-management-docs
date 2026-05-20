@@ -1,6 +1,6 @@
 ---
-title: Overview of Deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets (VMSS)
-description: This article provides an overview of deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets (VMSS), including supported images, VM sizes, and Trusted Launch security features.
+title: Overview of Deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets
+description: This article provides an overview of deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets, including supported images, VM sizes, and Trusted Launch security features.
 author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
@@ -9,9 +9,9 @@ ms.topic: overview
 ms.date: 04/27/2026
 ---
 
-# Deploying Azure Linux on Azure VMs and VMSS
+# Deploying Azure Linux on Azure VMs and Virtual Machine Scale Sets
 
-This article provides an overview of how to deploy Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets (VMSS).
+This article provides an overview of how to deploy Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets.
 
 ## Overview of Azure Linux
 
@@ -19,7 +19,7 @@ Azure Linux is a lightweight, security-hardened Linux distribution with a small 
 
 The core image is published to Azure Marketplace with a curated set of base packages. To customize it, add packages from [packages.microsoft.com](https://packages.microsoft.com) and VM extensions from the Azure Marketplace, or use [Image Customizer](./customize-images.md) to automate the process. Once your image is ready, store it in an Azure Compute Gallery and deploy it consistently across your environment. For more information, see [Package management](./package-management-overview.md).
 
-For a single workload, deploy Azure Linux to an individual VM. To scale out automatically based on demand, use a VMSS instead.
+For a single workload, deploy Azure Linux to an individual VM. To scale out automatically based on demand, use virtual machine scale sets instead.
 
 [!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 

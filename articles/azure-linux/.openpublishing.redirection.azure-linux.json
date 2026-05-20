@@ -33,7 +33,7 @@
         },
         {
             "source_path_from_root": "/articles/azure-linux/quickstart-azure-cli.md",
-            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-cli.md",
+            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-cli",
             "redirect_document_id": false
         },
         {

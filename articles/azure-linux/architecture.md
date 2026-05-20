@@ -52,7 +52,7 @@ The following table outlines what is and isn't supported on Azure Linux:
 | Area | Supported | Not supported |
 | ---- | --------- | ------------- |
 | **Architectures** | x86-64 (v2 minimum), ARMv8 (64-bit) | 32-bit architectures |
-| **Environments** | Azure VMs, AKS, container images | ISO images, on-premises, multi-cloud, IoT, edge devices |
+| **Environments** | Azure VMs, AKS, container images | ISO images, on-premises, multicloud, IoT, edge devices |
 | **User interface** | Text-based console, SSH | Graphical desktop environments, GUI installer |
 | **Virtualization** | KVM guests, Hyper-V | Xen |
 | **Peripheral hardware** | Azure-attached storage, networking, GPUs | Bluetooth, Wi-Fi, printers, audio/video, robotics |

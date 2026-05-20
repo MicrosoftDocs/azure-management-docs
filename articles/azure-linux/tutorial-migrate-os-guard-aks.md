@@ -290,7 +290,7 @@ Once the migration is complete on your test clusters, you should verify the foll
 
 If you experience issues during the OS SKU migration, you can roll back to your previous OS SKU. To do this, change the OS SKU field back to your previous value and resubmit the deployment, which triggers another upgrade operation and reimages the node pool to its previous OS SKU.
 
-Roll back to your previous OS SKU using the [`az aks nodepool update`](/cli/azure/aks/nodepool#az-aks-nodepool-update) command. The follow command updates the OS SKU node pool from Azure Linux with OS Guard back to Azure Linux:
+Roll back to your previous OS SKU using the [`az aks nodepool update`](/cli/azure/aks/nodepool#az-aks-nodepool-update) command. The following command updates the OS SKU node pool from Azure Linux with OS Guard back to Azure Linux:
 
 ```azurecli-interactive
 az aks nodepool update \
