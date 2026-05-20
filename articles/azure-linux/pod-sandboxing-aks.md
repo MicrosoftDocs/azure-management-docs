@@ -149,17 +149,17 @@ With Pod Sandboxing, you can deploy a mix of "normal" pods that don't utilize th
 
 1. If you want to verify the difference between the kernel of a Kata and non-Kata pod, you can spin up another workload that doesn't have the Kata runtime. For example:
 
-  ```yaml
-  kind: Pod
-  apiVersion: v1
-  metadata:
-    name: normal-pod
-  spec:
-    containers:
-    - name: non-kata
-      image: mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
-      command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
-  ```
+    ```yaml
+    kind: Pod
+    apiVersion: v1
+    metadata:
+      name: normal-pod
+    spec:
+      containers:
+      - name: non-kata
+        image: mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+    ```
 
 1. To access a container inside the AKS cluster, start a shell session using the [`kubectl exec`][kubectl-exec] command. In this example, you access the container inside _kata-pod_:
 
@@ -167,17 +167,15 @@ With Pod Sandboxing, you can deploy a mix of "normal" pods that don't utilize th
     kubectl exec -it isolated-pod -- /bin/sh
     ```
 
-   kubectl connects to your cluster, runs `/bin/sh` inside the first container within `isolated-pod`, and forwards your terminal's input and output streams to the container's process. You can also start a shell session to the container hosting the non-Kata pod to see the differences.
+    kubectl connects to your cluster, runs `/bin/sh` inside the first container within `isolated-pod`, and forwards your terminal's input and output streams to the container's process. You can also start a shell session to the container hosting the non-Kata pod to see the differences.
 
-1. After starting a shell session to the container from _kata-pod_, you can run commands to verify that the _kata_ container is running in a pod sandbox. Notice that it has a different kernel version compared to the non-Kata container outside the sandbox.
-
-   To see the kernel version, run the following command:
+1. After starting a shell session to the container from _kata-pod_, you can run commands to verify that the _kata_ container is running in a pod sandbox. Notice that it has a different kernel version compared to the non-Kata container outside the sandbox. To see the kernel version, run the following command:
 
     ```bash
     uname -r
     ```
 
-   The following example resembles output from the pod sandbox kernel:
+    The following example resembles output from the pod sandbox kernel:
 
     ```output
     [user]/# uname -r
@@ -190,13 +188,13 @@ With Pod Sandboxing, you can deploy a mix of "normal" pods that don't utilize th
     kubectl exec -it normal-pod -- /bin/bash
     ```
 
-   To see the kernel version run the following command:
+1. To see the kernel version run the following command:
 
     ```bash
     uname -r
     ```
 
-   The following example resembles output from the VM that's running _normal-pod_, which is a different kernel than the Kata pod running within the pod sandbox:
+    The following example resembles output from the VM that's running _normal-pod_, which is a different kernel than the Kata pod running within the pod sandbox:
 
     ```output
     6.6.100.mshv1-1.azl3

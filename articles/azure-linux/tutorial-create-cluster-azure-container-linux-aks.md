@@ -22,7 +22,7 @@ In this tutorial, part _one of five_, you learn how to:
 
 In later tutorials, you learn how to add an ACL node pool to an existing cluster and migrate existing nodes to ACL.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Prerequisites
 
@@ -126,4 +126,4 @@ aks-nodepool1-00000000-2            Ready    agent   10m     v1.34.0
 In this tutorial, you created and deployed an ACL cluster. In the next tutorial, you learn how to add an ACL node pool to an existing cluster.
 
 > [!div class="nextstepaction"]
-> [Add an ACL node pool](./tutorial-add-acl-node-pool.md)
+> [Add an ACL node pool](./tutorial-add-azure-container-linux-node-pool.md)

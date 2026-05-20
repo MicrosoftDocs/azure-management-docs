@@ -20,16 +20,16 @@ In this tutorial, part _two of five_, you learn how to:
 > - Add an ACL node pool to an existing cluster.
 > - Check the status of your node pools.
 
-The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 
 In later tutorials, you learn how to migrate nodes to ACL and enable telemetry to monitor your clusters.
 
 ## Prerequisites
 
-- In the previous tutorial, you created and deployed an ACL cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+- In the previous tutorial, you created and deployed an ACL cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 - Azure Container Linux requires Azure CLI version 2.86.0 or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Add an ACL node pool
 
@@ -106,4 +106,4 @@ Example output:
 In this tutorial, you added an ACL node pool to your existing cluster. In the next tutorial, you learn how to migrate existing nodes to ACL.
 
 > [!div class="nextstepaction"]
-> [Migrate to ACL](./tutorial-migrate-acl-aks.md)
+> [Migrate to ACL](./tutorial-migrate-azure-container-linux-aks.md)

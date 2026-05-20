@@ -20,7 +20,7 @@ In this tutorial, part _five of five_, you learn how to:
 > - Manually upgrade the node image on a cluster.
 > - Automatically upgrade an ACL cluster.
 
-The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 
 > [!NOTE]
 > Any upgrade operation, whether performed manually or automatically, upgrades the node image version if it's not already on the latest version. The latest version is contingent on a full AKS release, and you can determine it by visiting the [AKS release tracker](/azure/aks/release-tracker).
@@ -30,10 +30,10 @@ The commands in this tutorial use the environment variables set in [Tutorial 1: 
 
 ## Prerequisites
 
-- In previous tutorials, you created and deployed an ACL cluster. To complete this tutorial, you need an existing cluster. If you haven't completed this step and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+- In previous tutorials, you created and deployed an ACL cluster. To complete this tutorial, you need an existing cluster. If you haven't completed this step and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 - Azure Container Linux requires Azure CLI version 2.86.0 or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Manually upgrade your cluster
 

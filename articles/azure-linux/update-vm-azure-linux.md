@@ -29,10 +29,9 @@ A typical rollout looks like this:
 1. Test the new image.
 1. Roll out the image using a safe deployment practice (SDP).
 
-### Automatic OS image upgrades for VMSS
+### Automatic OS image upgrades for Virtual Machine Scale Sets
 
-If your workload runs on a Virtual Machine Scale Set (VMSS), you can opt in
-to [Automatic operating system (OS) image upgrades](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade) to roll out new image versions to your scale set without manual intervention.
+If your workload runs on a Virtual Machine Scale Set (VMSS), you can opt in to [Automatic operating system (OS) image upgrades](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade) to roll out new image versions to your scale set without manual intervention.
 
 ## Package-based updates
 

@@ -67,7 +67,7 @@ az extension update --name aks-preview
 
     ```azurecli-interactive
     az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
-    ``
+    ```
 
 1. When the status reflects _Registered_, refresh the registration of the `Microsoft.ContainerService` resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
 

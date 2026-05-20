@@ -270,7 +270,7 @@ Example output:
         }
     ```
 
-1. The following example `base.tf` Terraform template is a condensed version of a full Terraform template that deploys an AKS cluster with a node pool of `os_sku` with **Ubuntu**.
+1. The following example `base.tf` template is a condensed version of a full Terraform template that deploys an AKS cluster with a node pool of `os_sku` with **Ubuntu**.
 
     ```terraform
     resource "azurerm_kubernetes_cluster" "k8s" {

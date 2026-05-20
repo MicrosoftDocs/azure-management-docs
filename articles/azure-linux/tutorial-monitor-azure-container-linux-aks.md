@@ -19,17 +19,17 @@ In this tutorial, part _four of five_, you learn how to:
 > - Verify the agent is deployed successfully.
 > - Verify the solution is enabled.
 
-The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 
 In the next tutorial, you learn how to upgrade your ACL nodes.
 
 ## Prerequisites
 
-- In previous tutorials, you created and deployed an ACL cluster. To complete this tutorial, you need an existing cluster. If you haven't completed this step and want to follow along, start with [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+- In previous tutorials, you created and deployed an ACL cluster. To complete this tutorial, you need an existing cluster. If you haven't completed this step and want to follow along, start with [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 - If you're connecting an existing AKS cluster to a Log Analytics workspace in another subscription, you need to register the `Microsoft.ContainerService` resource provider in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 - Azure Container Linux requires Azure CLI version 2.86.0 or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Connect to your cluster
 
@@ -121,4 +121,4 @@ After a few minutes, the command completes and returns JSON-formatted informatio
 In this tutorial, you enabled telemetry and monitoring for your ACL cluster. In the next tutorial, you learn how to upgrade your ACL nodes.
 
 > [!div class="nextstepaction"]
-> [Upgrade ACL nodes](./tutorial-upgrade-acl-nodes.md)
+> [Upgrade ACL nodes](./tutorial-upgrade-azure-container-linux-nodes.md)

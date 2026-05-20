@@ -16,16 +16,16 @@ In this tutorial, part _three of five_, you migrate your existing nodes to ACL. 
 - Remove existing node pools and add new ACL node pools.
 - Perform an in-place operating system (OS) SKU migration.
 
-The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+The commands in this tutorial use the environment variables set in [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 
-If you don't have any existing nodes to migrate, skip to the [next tutorial](./tutorial-monitor-acl-aks.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade ACL nodes.
+If you don't have any existing nodes to migrate, skip to the [next tutorial](./tutorial-monitor-azure-container-linux-aks.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade ACL nodes.
 
 ## Prerequisites
 
-- In previous tutorials, you created and deployed an ACL cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-acl-aks.md).
+- In previous tutorials, you created and deployed an ACL cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with ACL for AKS](./tutorial-create-cluster-azure-container-linux-aks.md).
 - Azure Container Linux requires Azure CLI version [2.86.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Add ACL node pools and remove existing node pools
 
@@ -82,7 +82,7 @@ There are several settings that can block the OS SKU migration request. To ensur
 ### Prerequisites for in-place OS SKU migration
 
 - An existing AKS cluster with at least one Linux node pool.
-- We recommend that you verify your workloads run successfully on ACL by [deploying an ACL cluster](./quick-deploy-acl-aks-cli.md) in a development or staging environment before migrating production clusters.
+- We recommend that you verify your workloads run successfully on ACL by [deploying an ACL cluster](./quick-deploy-azure-container-linux-aks-cli.md) in a development or staging environment before migrating production clusters.
 - Ensure the migration feature is working for you in test/dev before using the process on a production cluster.
 - Ensure that your pods have enough [Pod Disruption Budget (PDB)](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
 - You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
@@ -187,4 +187,4 @@ az aks nodepool update \
 In this tutorial, you migrated existing nodes to ACL. In the next tutorial, you learn how to enable telemetry and monitoring for your ACL cluster.
 
 > [!div class="nextstepaction"]
-> [Enable telemetry and monitoring](./tutorial-monitor-acl-aks.md)
+> [Enable telemetry and monitoring](./tutorial-monitor-azure-container-linux-aks.md)
