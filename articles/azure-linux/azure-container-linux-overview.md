@@ -58,7 +58,7 @@ Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/proj
 
 ## OS migrations and upgrades with ACL
 
-AKS supports migrating existing node pools to ACL using in-place OS SKU migration or by creating new ACL node pools. For detailed migration steps, considerations, and rollback instructions, see [Migrate existing nodes to ACL](./tutorial-migrate-acl-aks.md).
+AKS supports migrating existing node pools to ACL using in-place OS SKU migration or by creating new ACL node pools. For detailed migration steps, considerations, and rollback instructions, see [Migrate existing nodes to ACL](./tutorial-migrate-azure-container-linux-aks.md).
 
 ## ACL for AKS versioning
 
@@ -85,7 +85,7 @@ Example output:
 
 To get started using ACL for AKS, see the following resources:
 
-- [Deploy an ACL cluster using the Azure CLI](./quick-deploy-acl-aks-cli.md)
-- [Deploy an ACL cluster using an ARM template](LINK NOT READY)
-- [Tutorial: Create an ACL cluster](./tutorial-create-cluster-acl-aks.md)
-- [Tutorial: Add an ACL node pool to an existing cluster](./tutorial-add-acl-node-pool.md)
+- [Deploy an ACL cluster using the Azure CLI](./quick-deploy-azure-container-linux-aks-cli.md)
+- [Deploy an ACL cluster using an ARM template](quick-deploy-azure-container-linux-aks-arm.md)
+- [Tutorial: Create an ACL cluster](./tutorial-create-cluster-azure-container-linux-aks.md)
+- [Tutorial: Add an ACL node pool to an existing cluster](./tutorial-add-azure-container-linux-node-pool.md)

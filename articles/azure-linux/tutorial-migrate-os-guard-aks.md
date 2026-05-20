@@ -18,7 +18,7 @@ ms.date: 04/28/2026
 
 In this tutorial, part _three of five_, you migrate your existing nodes to Azure Linux with OS Guard. You can migrate your existing nodes using one of the following methods:
 
-- Remove existing node pools and add new ACL node pools.
+- Remove existing node pools and add new OS Guard node pools.
 - Perform an in-place operating system (OS) SKU migration.
 
 If you don't have any existing nodes to migrate, skip to the [next tutorial](./tutorial-monitor-os-guard-aks.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade Azure Linux with OS Guard nodes.

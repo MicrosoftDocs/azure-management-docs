@@ -48,7 +48,7 @@ landingContent:
           - text: Create a cluster with Azure Linux Container Host for AKS
             url: quick-create-azure-linux-aks.md
           - text: Create a cluster with Azure Container Linux (ACL) for AKS
-            url: quick-create-acl-aks.md
+            url: quick-create-azure-container-linux-aks.md
 
   # Card 
   - title: Deployment options

@@ -25,7 +25,7 @@
         - name: Create a cluster with Azure Linux Container Host for AKS
           href: quick-create-azure-linux-aks.md
         - name: Create a cluster with Azure Container Linux (ACL) for AKS
-          href: quick-create-acl-aks.md
+          href: quick-create-azure-container-linux-aks.md
         - name: Enable Azure Linux 3.0 on AKS
           href: how-to-enable-azure-linux-3.md
 - name: Deployment options
@@ -85,21 +85,21 @@
             - name: Create an ACL for AKS cluster
               items:
                 - name: Use the Azure CLI
-                  href: quick-deploy-acl-aks-cli.md
+                  href: quick-deploy-azure-container-linux-aks-cli.md
                 - name: Use an ARM template
-                  href: quick-deploy-acl-aks-arm.md
+                  href: quick-deploy-azure-container-linux-aks-arm.md
             - name: Tutorial series
               items:
                 - name: 1 - Create an ACL for AKS cluster
-                  href: tutorial-create-cluster-acl-aks.md
+                  href: tutorial-create-cluster-azure-container-linux-aks.md
                 - name: 2 - Add an ACL node pool to your cluster
-                  href: tutorial-add-acl-node-pool.md
+                  href: tutorial-add-azure-container-linux-node-pool.md
                 - name: 3 - Migrate cluster nodes to ACL
-                  href: tutorial-migrate-acl-aks.md
+                  href: tutorial-migrate-azure-container-linux-aks.md
                 - name: 4 - Enable telemetry and monitoring
-                  href: tutorial-monitor-acl-aks.md
+                  href: tutorial-monitor-azure-container-linux-aks.md
                 - name: 5 - Upgrade cluster nodes
-                  href: tutorial-upgrade-acl-nodes.md
+                  href: tutorial-upgrade-azure-container-linux-nodes.md
             - name: How-to guides
               items:
                 - name: Toggle SELinux mode for troubleshooting
