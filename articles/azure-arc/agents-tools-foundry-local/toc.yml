@@ -85,6 +85,10 @@ items:
             href: knowledge-bases-guide.md
           - name: Knowledge sources
             href: knowledge-sources-guide.md
+      - name: Configure chat experience
+        items:
+          - name: Overview
+            href: chat-web-ui.md
       - name: Evaluate system
         href: evaluate-solution.md
       - name: Maintain
