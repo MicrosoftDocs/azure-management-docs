@@ -59,7 +59,7 @@ landingContent:
             url: deployment-options.md
           - text: Azure Linux for AKS
             url: get-started-aks.md
-          - text: Azure Linux for VMs and VMSS
+          - text: Azure Linux for Virtual Machines and Virtual Machine Scale Sets
             url: azure-linux-vm-vmss-overview.md
           - text: Azure Linux container images
             url: container-images-overview.md

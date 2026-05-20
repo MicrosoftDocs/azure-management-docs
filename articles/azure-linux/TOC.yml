@@ -126,7 +126,7 @@
                   href: tutorial-monitor-os-guard-aks.md
                 - name: 5 - Upgrade cluster nodes
                   href: tutorial-upgrade-os-guard-nodes.md
-    - name: Azure Linux for VMs and VMSS
+    - name: Azure Linux for Virtual Machines and Virtual Machine Scale Sets
       items:
         - name: Overview
           href: azure-linux-vm-vmss-overview.md
