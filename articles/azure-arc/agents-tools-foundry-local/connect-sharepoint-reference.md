@@ -57,7 +57,7 @@ kubectl get secret sharepoint-s2s-cert -n arc-rag
 |---|---|---|
 | **Pod fails to start:** `driver "secrets-store.csi.k8s.io" not found` | CSI Secrets Store Driver not installed. | Install the driver. See [Step 1](connect-sharepoint-setup.md#step-1-install-cluster-prerequisites). |
 | **CSI FailedMount:** `unauthorized_client` | `kvTenantId` doesn't match the managed identity's tenant. | Verify `sharepoint.s2s.kvTenantId` matches the tenant where the managed identity was created. If empty, it defaults to `auth.tenantId`. |
-| **CSI FailedMount:** generic auth failure | Federated credential not set up, or subject mismatch. | Rerun [Step 4](connect-sharepoint-setup.md#step-4-set-up-workload-identity-for-key-vault-access). Verify subject is `system:serviceaccount:arc-rag:edgerag-sp-sa`. |
+| **CSI FailedMount:** generic auth failure or `AADSTS700213: No matching federated identity record` | Federated credential not set up, or subject mismatch. When Kerberos is enabled, the ServiceAccount is `kerberos-ingestion-sa` not `edgerag-sp-sa`. | Rerun [Step 4](connect-sharepoint-setup.md#step-4-set-up-workload-identity-for-key-vault-access). Check which ServiceAccount the pod uses: `kubectl get pods -n arc-rag -l app=ingestion-publisher -o jsonpath='{.items[0].spec.serviceAccountName}'`. |
 | **CSI FailedMount:** timeout or network error | Key Vault has firewall or private endpoint blocking cluster. | Add cluster outbound IPs to Key Vault firewall, or configure a private endpoint. |
 | **Pod CrashLoopBackOff:** `cert.pfx not found at /certs/cert.pfx` | The CSI driver didn't sync the certificate yet, or the Kubernetes secret is missing. | Run `kubectl get secret sharepoint-s2s-cert -n arc-rag`. If missing, check CSI logs: `kubectl logs -n kube-system -l app=secrets-store-csi-driver`. |
 | **401 Unauthorized**- response has `WWW-Authenticate: NTLM` only (no `Bearer`) | SharePoint not processing OAuth tokens. | On the SharePoint server, run: `$sts = Get-SPSecurityTokenServiceConfig; $sts.AllowOAuthOverHttp = $true; $sts.AllowMetadataOverHttp = $true; $sts.Update()` |
@@ -91,6 +91,7 @@ Certificates should be rotated before expiry. The extension supports zero-downti
    ```powershell
    $newCert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2("C:\edgerag-s2s-new.cer")
    New-SPTrustedRootAuthority -Name "EdgeRAG-S2S-New" -Certificate $newCert
+   # Re-register the token issuer with the new cert
    ```
 
 1. **Upload the new PFX file to Key Vault**, overwriting the existing secret:

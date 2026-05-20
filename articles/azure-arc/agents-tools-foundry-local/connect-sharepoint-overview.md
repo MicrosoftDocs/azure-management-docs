@@ -62,7 +62,7 @@ Complete every item before installing Agents and Tools with Foundry Local with S
 | 3 | CSI Secrets Store Driver installed on the cluster | Platform Admin |
 | 4 | Workload Identity / OpenID Connect (OIDC) Issuer enabled on the cluster | Platform Admin |
 | 5 | User-assigned managed identity with Key Vault secret read access | Azure Admin |
-| 6 | Federated identity credential linking the managed identity to `edgerag-sp-sa` ServiceAccount | Azure Admin |
+| 6 | Federated identity credential linking the managed identity to the ingestion ServiceAccount (`edgerag-sp-sa`, or `kerberos-ingestion-sa` if Kerberos is enabled) | Azure Admin |
 | **Certificate** | | |
 | 7 | Self-signed certificate created (RSA 2048, SHA256) | IT Admin |
 | 8 | PFX (private key) exported and uploaded to Azure Key Vault | IT Admin |
@@ -102,7 +102,7 @@ These fields configure how the certificate is delivered from Azure Key Vault to 
 | **KV Cert Secret Name** | `sharepoint.s2s.kvCertSecretName` | Text | `edgerag-sp-s2s-cert` | Name of the secret in Key Vault that holds the PFX certificate (base64-encoded). |
 | **KV Cert Password Secret Name** | `sharepoint.s2s.kvCertPasswordSecretName` | Text | `sp-cert-password` | Name of the secret in Key Vault that holds the PFX password. |
 | **Workload Identity Client ID** | `sharepoint.s2s.workloadIdentityClientId` | Globally unique identifier (GUID) | _(empty)_ | Client ID of the user-assigned managed identity that has `get` access to the Key Vault secrets. |
-| **Key Vault Tenant ID** | `sharepoint.s2s.kvTenantId` | Globally unique identifier (GUID) | _(auto from session)_ | Microsoft Entra tenant ID where the managed identity and Key Vault reside. Usually auto-populated. Falls back to `auth.tenantId` if not specified. |
+| **Key Vault Tenant ID** | `sharepoint.s2s.kvTenantId` | Globally unique identifier (GUID) | _(auto from session)_ | Microsoft Entra tenant ID where the managed identity and Key Vault reside. This is typically your own subscription tenant, the same tenant you're logged into in the Azure portal. Usually auto-populated; rarely needs to be changed. Falls back to `auth.tenantId` if not specified. |
 
 ### Post-install fields (server-to-server identity -  optional at install time)
 

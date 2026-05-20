@@ -193,9 +193,18 @@ az role assignment create \
 
 ### Create a federated identity credential
 
-This step links the Kubernetes ServiceAccount `edgerag-sp-sa` to the managed identity, so the CSI driver can authenticate to Key Vault without storing any client secret in the cluster.
+This step links a Kubernetes ServiceAccount to the managed identity, so the CSI driver can authenticate to Key Vault without storing any client secret in the cluster.
 
-The `--subject` value must exactly match the extension's namespace and ServiceAccount in this format: `system:serviceaccount:<namespace>:<serviceaccount_name>`. This article uses `system:serviceaccount:arc-rag:edgerag-sp-sa`. If your deployment uses a different namespace, update the subject value to match it exactly. If this value doesn't match, the workload identity exchange fails and the cluster can't read Key Vault secrets.
+The ServiceAccount name depends on your configuration:
+
+| Configuration | ServiceAccount | Subject for federated credential |
+|---|---|---|
+| SharePoint S2S only | `edgerag-sp-sa` | `system:serviceaccount:arc-rag:edgerag-sp-sa` |
+| SharePoint S2S **+ Kerberos** | `kerberos-ingestion-sa` | `system:serviceaccount:arc-rag:kerberos-ingestion-sa` |
+
+When Kerberos is enabled (`kerberos.enabled=true`), the ingestion pod uses `kerberos-ingestion-sa` instead of `edgerag-sp-sa` because it needs additional cluster-scoped permissions for persistent volume and node access. The SharePoint workload identity annotations are applied to whichever ServiceAccount the pod uses.
+
+The `--subject` value must exactly match the extension's namespace and ServiceAccount in this format: `system:serviceaccount:<namespace>:<serviceaccount_name>`. If your deployment uses a different namespace, update the subject value to match it exactly. If this value doesn't match, the workload identity exchange fails and the cluster can't read Key Vault secrets.
 
 ```azurecli
 # Get the OIDC issuer URL
@@ -212,13 +221,25 @@ ISSUER_URL=$(az aks show \
 #   --query "oidcIssuerProfile.issuerUrl" -o tsv)
 
 # Create the federated credential
+# Use "edgerag-sp-sa" if SharePoint only, "kerberos-ingestion-sa" if Kerberos is also enabled
+SA_NAME="edgerag-sp-sa"  # Change to "kerberos-ingestion-sa" if Kerberos is enabled
+
 az identity federated-credential create \
   --name "edgerag-sp-credential" \
   --identity-name "edgerag-kv-identity" \
   --resource-group "<resource_group>" \
   --issuer "$ISSUER_URL" \
-  --subject "system:serviceaccount:arc-rag:edgerag-sp-sa" \
+  --subject "system:serviceaccount:arc-rag:${SA_NAME}" \
   --audience "api://AzureADTokenExchange"
+```
+
+> [!TIP]
+> If you plan to toggle Kerberos on or off, create federated credentials for **both** ServiceAccounts to avoid CSI mount failures when switching configurations.
+
+If you're unsure which ServiceAccount is in use after installation, check with:
+
+```bash
+kubectl get pods -n arc-rag -l app=ingestion-publisher -o jsonpath='{.items[0].spec.serviceAccountName}'
 ```
 
 ## Step 5: Configure SharePoint Server
