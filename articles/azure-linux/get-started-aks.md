@@ -54,10 +54,10 @@ Use ACL when you need:
 - **Consistent, automated updates**: Weekly image-based auto updates keep every node at the same OS version with the latest security patches.
 - **Strict security and compliance**: SELinux (enforcing by default) and Trusted Launch with Secure Boot (via a Unified Kernel Image) are enabled by default.
 
-To get started with ACL on AKS, see [Quickstart: Deploy an Azure Container Linux (ACL) AKS cluster using the Azure CLI](./quick-deploy-acl-aks-cli.md).
+To get started with ACL on AKS, see [Quickstart: Deploy an Azure Container Linux (ACL) AKS cluster using the Azure CLI](./quick-deploy-azure-container-linux-aks-cli.md).
 
 ## Related content
 
 - [Azure Linux Container Host overview](./azure-linux-aks-overview.md)
 - [Azure Container Linux (ACL) overview](./azure-container-linux-overview.md)
-- [Migrate existing nodes to ACL](./tutorial-migrate-acl-aks.md)
+- [Migrate existing nodes to ACL](./tutorial-migrate-azure-container-linux-aks.md)

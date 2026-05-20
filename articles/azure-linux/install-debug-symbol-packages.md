@@ -15,8 +15,7 @@ Debug symbol (`debuginfo`) RPMs contain the symbol tables that debuggers and pro
 
 This article explains where Azure Linux publishes `debuginfo` packages, how to enable the `debuginfo` repository, and how to install symbol packages on a system that needs them.
 
-> [!NOTE]
-> Azure Linux 4.0 is in **Public Preview** and is intended only for evaluation and testing. It's not suitable for production use.
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## Prerequisites
 

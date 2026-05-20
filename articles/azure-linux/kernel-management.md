@@ -236,7 +236,7 @@ The change takes effect immediately and remains in effect until the next reboot.
     kdumpctl estimate
     ```
 
-    In the output, refer to the _Recommended crashkernel_ value. FOr example, the following output shows a recommended crashkernel size of 256M:
+    In the output, refer to the _Recommended crashkernel_ value. For example, the following output shows a recommended crashkernel size of 256M:
 
     ```output
     kdump: Rebuilding /boot/initramfs-6.18.5-1.8.azl4~20260420.x86_64kdump.img

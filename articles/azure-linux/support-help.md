@@ -48,7 +48,7 @@ Submit a [GitHub issue](https://github.com/microsoft/CBL-Mariner/issues/new/choo
 
 We're hosting public community calls for Azure Linux users to get together and discuss new features, provide feedback, and learn more about how others use Azure Linux. In each session, we will feature a new demo.
 
-Azure Linux published a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for GA and public preview. This feature roadmap will be reviewed in each community call. We welcome you to leave feedback or ask questions on feature items.
+Azure Linux published a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for GA and preview. This feature roadmap will be reviewed in each community call. We welcome you to leave feedback or ask questions on feature items.
 
 The schedule for the upcoming community calls is as follows:
 

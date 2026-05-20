@@ -19,7 +19,7 @@ This article explains how you can contribute to the Azure Linux documentation by
 
 The Azure Linux documentation covers **Azure scenarios only**, which is in line with Microsoft's support and lifecycle commitments. We maintain and accept contributions for content that helps people use Azure Linux on Azure, specifically:
 
-- Guidance for Azure Linux VMs and VMSS, AKS, and container images.
+- Guidance for Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS, and container images.
 - Customizations built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)).
 
 If you see a gap, an error, or an opportunity to improve Azure-focused guidance, please share it with us.

@@ -33,7 +33,7 @@ CVE fixes are delivered differently depending on whether you run general-purpose
 
 | Deployment option | CVE fix delivery mechanism |
 | ----------------- | -------------------------- |
-| **General-purpose Azure Linux (VMs, VMSS, custom images)** | CVE fixes are delivered as package updates. Apply them with `dnf update`. For eligible kernel CVEs, you can also use [kernel livepatching](./kernel-live-patching.md) to avoid a reboot between regular kernel updates. |
+| **General-purpose Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS)** | CVE fixes are delivered as package updates. Apply them with `dnf update`. For eligible kernel CVEs, you can also use [kernel livepatching](./kernel-live-patching.md) to avoid a reboot between regular kernel updates. |
 | **Azure Linux Container Host for AKS** | CVE fixes are delivered as package updates bundled into monthly node image releases. **High and critical CVEs** might be released out-of-band as a package update before the next scheduled node image, so a fix can reach your nodes ahead of a new image. **Medium and low CVEs** are rolled into the next regular node image release. |
 | **Azure Container Linux (ACL) for AKS** | ACL is an immutable, image-based operating system (OS); individual packages aren't updated in place. Instead, CVE fixes are delivered through **weekly AKS node image releases** that include the latest security patches. The `SecurityPatch` node OS upgrade channel isn't supported on ACL — use the `NodeImage`channel to pick up security updates. For ACL details, see [Azure Container Linux overview](./azure-container-linux-overview.md). |
 

@@ -18,7 +18,7 @@ This article outlines the official support options available for Azure Linux, in
 > [!IMPORTANT]
 > Azure Linux is open source, but Microsoft support and lifecycle commitments apply only to **Azure scenarios**. Specifically:
 >
-> - Azure Linux VM/VMSS, AKS container host, and container images are supported.
+> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS container host, and container images are supported.
 > - Bare metal, ISO images, on-premises, and other clouds aren't supported.
 > - Customized images are supported only when built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)). Images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) aren't covered.
 
@@ -64,7 +64,7 @@ The schedule for the upcoming community calls is as follows:
 
 ## Stay up-to-date
 
-Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for general availability (GA) and public preview. We review this roadmap in each community call to highlight upcoming features and changes. We welcome you to leave feedback or ask questions on feature items.
+Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for general availability (GA) and preview. We review this roadmap in each community call to highlight upcoming features and changes. We welcome you to leave feedback or ask questions on feature items.
 
 ## Attributions
 

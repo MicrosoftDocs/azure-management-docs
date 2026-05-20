@@ -18,7 +18,7 @@ Azure Linux is open source and built on top of the broader Linux ecosystem. This
 > [!IMPORTANT]
 > Azure Linux contributions are scoped to **Azure Linux on Azure scenarios only**. Microsoft support and lifecycle commitments apply only to:
 >
-> - Azure Linux VM/VMSS, Azure Kubernetes Service (AKS) container host, and container images.
+> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), Azure Kubernetes Service (AKS) container host, and container images.
 > - Customizations built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)).
 >
 > Contributions targeting bare metal, ISO images, on-premises, other clouds, or images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) are out of scope.

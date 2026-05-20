@@ -12,7 +12,7 @@ ms.date: 04/28/2026
 
 In this quickstart, you use an Azure Resource Manager (ARM) template to create an Azure Kubernetes Service (AKS) cluster that runs Azure Container Linux (ACL) as the node operating system (OS). After installing the prerequisites, you create an SSH key pair, review the template, deploy the template, and connect to the cluster.
 
-[!INCLUDE [azure container linux limitations](./includes/acl-limitations.md)]
+[!INCLUDE [azure container linux limitations](./includes/azure-container-linux-limitations.md)]
 
 ## Prerequisites
 
@@ -215,5 +215,4 @@ az group delete --name myACLResourceGroup --yes --no-wait
 
 In this quickstart, you deployed an Azure Container Linux (ACL) AKS cluster using an ARM template. To learn more about ACL, see the following resources:
 
-- [What is Azure Container Linux (ACL) for Azure Kubernetes Service (AKS)?](../1.%20acl-overview.md)
-- [Deploy an ACL AKS cluster using the Azure CLI](./1.%20deploy-acl-cli.md)
+- [What is Azure Container Linux (ACL) for Azure Kubernetes Service (AKS)?](./azure-container-linux-overview.md)

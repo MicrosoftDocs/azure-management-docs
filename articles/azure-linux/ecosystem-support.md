@@ -19,7 +19,7 @@ The third party partners featured in this article have introduction guides to he
 
 The following partners have validated their solutions on Azure Linux. A partner not being listed doesn't necessarily mean their solution is incompatible. If you're a partner interested in validating your solution on Azure Linux please reach out to: AzureLinuxPartners@microsoft.com.
 
-| Partner | Category | Azure Linux Container Host | Azure Container Linux (ACL) | Azure Linux VM and VMSS |
+| Partner | Category | Azure Linux Container Host | Azure Container Linux (ACL) | Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS) |
 | ------- | -------- | -------------------------- | -------------------------- | ------------------------ |
 | [Advantech](#advantech) | DevOps | Validated ✅ | | |
 | [Akuity](#akuity) | DevOps | Validated ✅ | | |
@@ -48,8 +48,7 @@ The following partners have validated their solutions on Azure Linux. A partner 
 | [VictoriaMetrics](#victoriametrics) | DevOps, Observability, Storage, Monitoring | Validated ✅ | | |
 | [Wiz](#wiz) | Security | Validated ✅ | | |
 
-> [!NOTE]
-> Azure Linux 4.0 is now in **Public Preview** and is strictly limited to evaluation and testing purposes. It is not suitable for production use.
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## DevOps
 
@@ -264,7 +263,7 @@ Isovalent Enterprise for Cilium provides advanced network policy capabilities, i
 
 Isovalent also provides multi-cluster connectivity via Cluster Mesh, seamless networking and security across multiple clouds, including public cloud providers like AWS, Azure, and Google Cloud Platform, as well as on-premises environments. With free service-to-service communication and advanced load balancing, Isovalent makes it easy to deploy and manage complex microservices architectures.
 
-The Hubble flow observability + User Interface feature provides real-time network traffic flow and policy visualization, as well as a powerful User Interface for easy troubleshooting and network management. Tetragon provides advanced security capabilities such as protocol enforcement, IP and port allowlists, and automatic application-aware policy generation to protect against the most sophisticated threats. Tetragon is built on eBPF, enabling scaling to meet the needs of the most demanding cloud-native environments with ease.
+The Hubble flow observability + User Interface feature provides real-time network traffic flow and policy visualization, as well as a powerful User Interface for easy troubleshooting and network management. Tetragon provides advanced security capabilities such as protocol enforcement, IP and port allow lists, and automatic application-aware policy generation to protect against the most sophisticated threats. Tetragon is built on eBPF, enabling scaling to meet the needs of the most demanding cloud-native environments with ease.
 
 Isovalent provides enterprise-grade support from their experienced team of experts, ensuring that any issues are resolved in a timely and efficient manner. Additionally, professional services help organizations deploy and manage Cilium in production environments.
 

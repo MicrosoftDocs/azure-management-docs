@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create an Azure Linux Virtual Machine in the Azure Portal"
+title: "Quickstart: Create an Azure Linux Virtual Machine in the Azure portal"
 description: Learn how to quickly create an Azure Linux 4.0 virtual machine in the Azure portal and connect to it over SSH.
 author: kavyamsft
 ms.author: schaffererin
@@ -99,5 +99,5 @@ When you no longer need the VM, delete the resource group to remove all associat
 
 For more information about Azure Linux, see the following resources:
 
-- [Azure Linux VMs and VMSS in Azure](./azure-linux-vm-vmss-overview.md)
+- [Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS) in Azure](./azure-linux-vm-vmss-overview.md)
 - [Overview of Azure Linux security and compliance](./security-overview.md)

@@ -131,5 +131,5 @@ To switch SELinux from enforcing mode to permissive mode on ACL nodes, you can e
 ## Related content
 
 - [What is Azure Container Linux (ACL) for Azure Kubernetes Service (AKS)?](./azure-container-linux-overview.md)
-- [Tutorial: Add an ACL node pool to an existing cluster](./tutorial-add-acl-node-pool.md)
-- [Tutorial: Migrate existing nodes to ACL](./tutorial-migrate-acl-aks.md)
+- [Tutorial: Add an ACL node pool to an existing cluster](./tutorial-add-azure-container-linux-node-pool.md)
+- [Tutorial: Migrate existing nodes to ACL](./tutorial-migrate-azure-container-linux-aks.md)

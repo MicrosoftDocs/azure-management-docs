@@ -16,7 +16,7 @@ Azure Linux source repositories are public and follow standard open-source pull 
 > [!IMPORTANT]
 > Code contributions should target **Azure-supported scenarios**. Microsoft support and lifecycle commitments apply only to:
 >
-> - Azure Linux VM/VMSS, AKS container host, and container images.
+> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS container host, and container images.
 > - Customizations built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)).
 >
 > Changes specific to bare metal, on-premises, other clouds, or images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) belong upstream. Consider contributing to the upstream project or the [Fedora Linux Project](https://fedoraproject.org/) instead. For more information, see the [How to contribute to Azure Linux](./how-to-contribute.md).
@@ -25,7 +25,7 @@ Azure Linux source repositories are public and follow standard open-source pull 
 
 ## Before you begin
 
-**All code contributions require an issue first**. Don't open a PR without without a linked, maintainer-approved issue. PRs submitted without prior issue approval might be closed without review.
+**All code contributions require an issue first**. Don't open a PR without a linked, maintainer-approved issue. PRs submitted without prior issue approval might be closed without review.
 
 ## Contribution best practices
 

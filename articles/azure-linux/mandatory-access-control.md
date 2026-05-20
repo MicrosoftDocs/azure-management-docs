@@ -168,7 +168,7 @@ In your image configuration JSON, set the SELinux kernel command line option. Fo
 
 1. Reboot the system. The first reboot performs filesystem labeling and might take time.
 
-    If SELinux doesn't relabel pre-existing files, create an empty `/.autorelabel` file and reboot:
+    If SELinux doesn't relabel preexisting files, create an empty `/.autorelabel` file and reboot:
 
     ```bash
     sudo touch /.autorelabel && sudo reboot

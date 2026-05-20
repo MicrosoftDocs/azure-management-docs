@@ -70,7 +70,7 @@ UEFI Secure Boot signs the following components:
 
 Secure Boot is the default for Azure Linux images that are deployed on Azure VMs provisioned with [Trusted Launch](/azure/virtual-machines/trusted-launch). Trusted Launch is what enables UEFI Secure Boot and the vTPM in the guest. On non-Trusted-Launch VMs, `mokutil --sb-state` returns `SecureBoot disabled` and kernel lockdown is `none`.
 
-You can disable Secure Boot through Azure VM or VMSS provisioning flows, but doing so also disables [kernel lockdown](#kernel-lockdown).
+You can disable Secure Boot through Azure Virtual Machines (VM) or Virtual Machine Scale Sets (VMSS) provisioning flows, but doing so also disables [kernel lockdown](#kernel-lockdown).
 
 ### Custom kernel signing with MOK
 

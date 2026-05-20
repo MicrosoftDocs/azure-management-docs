@@ -108,4 +108,4 @@ az group delete --name $RESOURCE_GROUP --yes --no-wait
 To learn more about Azure Container Linux (ACL) and how it integrates with AKS, see the following resources:
 
 - [Azure Container Linux for AKS](./azure-container-linux-overview.md)
-- [Migrate existing nodes to Azure Container Linux (ACL) for AKS](./tutorial-migrate-acl-aks.md)
+- [Migrate existing nodes to Azure Container Linux (ACL) for AKS](./tutorial-migrate-azure-container-linux-aks.md)

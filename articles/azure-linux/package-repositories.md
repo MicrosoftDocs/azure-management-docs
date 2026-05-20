@@ -15,8 +15,7 @@ Azure Linux packages are published through [packages.microsoft.com](https://pack
 
 This article describes how to discover Azure Linux packages on PMC, how the Azure Linux repositories are organized, and what each repository contains.
 
-> [!NOTE]
-> Azure Linux 4.0 is in **Public Preview** and is intended only for evaluation and testing. It's not suitable for production use.
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## Discover available packages
 

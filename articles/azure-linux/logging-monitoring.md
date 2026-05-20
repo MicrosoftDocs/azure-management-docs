@@ -15,8 +15,7 @@ Azure Linux is built on [`systemd`](https://systemd.io/) and uses the systemd jo
 
 This article shows you how to view system logs through the systemd journal, find traditional application log files, and use the standard utilities for monitoring system health and performance on an Azure Linux system.
 
-> [!NOTE]
-> Azure Linux 4.0 is in **Public Preview** and is intended only for evaluation and testing. It's not suitable for production use.
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## Prerequisites
 
