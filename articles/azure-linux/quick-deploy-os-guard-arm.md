@@ -208,10 +208,7 @@ To add Azure Linux with OS Guard to an existing ARM template, you need to add th
 
 ## Deploy the template
 
-1. Select the following button to sign in to Azure and open a template:
-
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="<https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.kubernetes%2Faks-azure-linux-osguard%2Fazuredeploy.json>":::
-
+1. In the Azure Portal, select **Deploy a custom template** > **Build your own template**, and then paste the [ARM template](#review-the-template) into the template editor.
 1. Configure the template parameters in the **Custom deployment** page. For this quickstart, leave the default values for the _OS Disk Size GB_, _Agent Count_, _Agent VM Size_, _OS Type_, and _Kubernetes Version_. Provide your own values for the following template parameters:
 
     - **Subscription**: Select an Azure subscription.
