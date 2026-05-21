@@ -65,16 +65,16 @@ sections:
 
           1. Uncomment the following lines in `/etc/security/namespace.conf`:
 
-            ```text
-            /tmp     /tmp-inst/            level      root,adm
-            /var/tmp /var/tmp/tmp-inst/    level      root,adm
-            $HOME    $HOME/$USER.inst/     level
-            ```
+              ```text
+              /tmp     /tmp-inst/            level      root,adm
+              /var/tmp /var/tmp/tmp-inst/    level      root,adm
+              $HOME    $HOME/$USER.inst/     level
+              ```
 
           1. Ensure the following line exists in `/etc/pam.d/login`:
 
-            ```text
-            session    required     pam_namespace.so
-            ```
+              ```text
+              session    required     pam_namespace.so
+              ```
 
           1. Reboot the system.

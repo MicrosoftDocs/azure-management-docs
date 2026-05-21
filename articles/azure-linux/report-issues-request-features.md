@@ -16,7 +16,7 @@ This article explains how to report bugs, documentation issues, and security vul
 > [!IMPORTANT]
 > Azure Linux is open source, but Microsoft support and lifecycle commitments apply only to **Azure scenarios**. Specifically:
 >
-> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS container host, and container images are supported.
+> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets, AKS container host, and container images are supported.
 > - Bare metal, ISO images, on-premises, and other clouds aren't supported.
 > - Customized images are supported only when built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)). Images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) aren't covered.
 >
@@ -50,7 +50,7 @@ A good bug report helps maintainers reproduce and fix the problem faster. In you
 - **Steps to reproduce**: Numbered, specific steps that someone else can follow.
 - **Expected behavior** vs. **actual behavior**.
 - **Logs**: Relevant system or application logs that show the error or unexpected behavior.
-- **Environment details**: Azure service (AKS, VM, VMSS, etc.), VM size/SKU, region, networking configuration, and any custom image or package modifications.
+- **Environment details**: Azure service (AKS, VM, Virtual Machine Scale Sets, etc.), VM size/SKU, region, networking configuration, and any custom image or package modifications.
 - **Screenshots or terminal output** where helpful (paste text, not images of text).
 
 ## Exclusions from triage

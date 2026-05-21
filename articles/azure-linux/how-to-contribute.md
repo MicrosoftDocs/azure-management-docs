@@ -18,7 +18,7 @@ Azure Linux is open source and built on top of the broader Linux ecosystem. This
 > [!IMPORTANT]
 > Azure Linux contributions are scoped to **Azure Linux on Azure scenarios only**. Microsoft support and lifecycle commitments apply only to:
 >
-> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), Azure Kubernetes Service (AKS) container host, and container images.
+> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets, Azure Kubernetes Service (AKS) container host, and container images.
 > - Customizations built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)).
 >
 > Contributions targeting bare metal, ISO images, on-premises, other clouds, or images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) are out of scope.
@@ -29,7 +29,7 @@ Azure Linux is open source and built on top of the broader Linux ecosystem. This
 
 You can contribute to Azure Linux in several ways, depending on your interests and expertise:
 
-- **[Contribute to documentation](./contribute-to-docs.md)**: Fix, improve, or expand guidance for running Azure Linux on Azure, including VMs, AKS, VMSS, and container workloads.
+- **[Contribute to documentation](./contribute-to-docs.md)**: Fix, improve, or expand guidance for running Azure Linux on Azure, including VMs, AKS, Virtual Machine Scale Sets, and container workloads.
 - **[Contribute to code](./contribute-to-code.md)**: Fix bugs, improve packages, or enhance tooling across the Azure Linux distro.
 
 You can also contribute by reporting bugs, requesting new features, or providing feedback. Clear bug reports and well-articulated feature requests help the Azure Linux team identify issues and prioritize improvements effectively. For more information, see [Report issues and request features for Azure Linux](./report-issues-request-features.md) and [Azure Linux official support options](./support-options.md).
