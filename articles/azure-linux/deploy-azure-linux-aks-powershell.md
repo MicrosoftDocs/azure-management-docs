@@ -1,65 +1,66 @@
 ---
-title: 'Quickstart: Deploy an Azure Linux Container Host for an AKS cluster using Azure PowerShell'
-description: Learn how to quickly create an Azure Linux Container Host for an AKS cluster using Azure PowerShell.
-author: schaffererin
+title: "Quickstart: Deploy an Azure Linux Container Host for AKS Cluster using Azure PowerShell"
+description: Learn how to quickly deploy an Azure Linux Container Host for Azure Kubernetes Service (AKS) cluster using Azure PowerShell.
+author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
-ms.custom: devx-track-azurepowershell, linux-related-content
 ms.topic: quickstart
-ms.date: 11/20/2023
-# Customer intent: As a cloud developer, I want to quickly deploy an Azure Linux Container Host for an AKS cluster using PowerShell, so that I can manage and run multi-container applications efficiently.
+ms.date: 04/28/2026
 ---
 
-# Quickstart: Deploy an Azure Linux Container Host for an AKS cluster using Azure PowerShell
+# Quickstart: Deploy an Azure Linux Container Host for Azure Kubernetes Service (AKS) cluster using Azure PowerShell
 
-Get started with the Azure Linux Container Host by using Azure PowerShell to deploy an Azure Linux Container Host for an AKS cluster. After installing the prerequisites, you create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
+Get started with the Azure Linux Container Host by using the Azure PowerShell to deploy an Azure Linux Container Host for AKS cluster.
 
-[!INCLUDE [azure-linux-retirement](./includes/azure-linux-retirement.md)]
+In this quickstart, you learn how to:
+
+> [!div class="checklist"]
+>
+> - Install the Kubernetes CLI, `kubectl`.
+> - Create an Azure resource group.
+> - Create and deploy an Azure Linux Container Host cluster.
+> - Configure `kubectl` to connect to your Azure Linux Container Host cluster.
+> - Deploy a sample multi-container application to the cluster.
 
 ## Prerequisites
 
 - [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 - Use the PowerShell environment in [Azure Cloud Shell](/azure/cloud-shell/overview). For more information, see [Azure Cloud Shell Quickstart](/azure/cloud-shell/quickstart).
-   :::image type="icon" source="~/reusable-content/ce-skilling/azure/media/cloud-shell/launch-cloud-shell-button.png" alt-text="Button to launch the Azure Cloud Shell." border="false" link="https://shell.azure.com":::
+
+   [![Launch Cloud Shell](~/reusable-content/ce-skilling/azure/media/cloud-shell/launch-cloud-shell-button.png)](https://shell.azure.com)
+
 - If you're running PowerShell locally, install the `Az PowerShell` module and connect to your Azure account using the [`Connect-AzAccount`](/powershell/module/az.accounts/Connect-AzAccount) cmdlet. For more information about installing the Az PowerShell module, see [Install Azure PowerShell][install-azure-powershell].
 - The identity you use to create your cluster has the appropriate minimum permissions. For more details on access and identity for AKS, see [Access and identity options for Azure Kubernetes Service (AKS)](/azure/aks/concepts-identity).
 
 ## Create a resource group
 
-An [Azure resource group][azure-resource-group] is a logical group in which Azure resources are deployed and managed. When creating a resource group, you need to specify a location. This location is the storage location of your resource group metadata and where your resources run in Azure if you don't specify another region during resource creation.
+An [Azure resource group][azure-resource-group] is a logical group in which Azure resources are deployed and managed. When creating a resource group in Azure, you're required to specify a location. This location is the storage location of your resource group metadata and where your resources run in Azure if you don't specify another region when creating a resource.
 
-The following example creates resource group named *testAzureLinuxResourceGroup* in the *eastus* region.
+Create a resource group using the [`New-AzResourceGroup`][new-azresourcegroup] cmdlet. The following example creates resource group named _testAzureLinuxResourceGroup_ in the _eastus_ region:
 
-- Create a resource group using the [`New-AzResourceGroup`][new-azresourcegroup] cmdlet.
+```azurepowershell-interactive
+New-AzResourceGroup -Name testAzureLinuxResourceGroup -Location eastus
+```
 
-    ```azurepowershell-interactive
-    New-AzResourceGroup -Name testAzureLinuxResourceGroup -Location eastus
-    ```
+The following example output resembles successful creation of the resource group:
 
-    The following example output resembles successful creation of the resource group:
-
-    ```output
-    ResourceGroupName : testAzureLinuxResourceGroup
-    Location          : eastus
-    ProvisioningState : Succeeded
-    Tags              :
-    ResourceId        : /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testAzureLinuxResourceGroup
-    ```
-
-    > [!NOTE]
-    > The above example uses *eastus*, but Azure Linux Container Host clusters are available in all regions.
+```output
+ResourceGroupName : testAzureLinuxResourceGroup
+Location          : eastus
+ProvisioningState : Succeeded
+Tags              :
+ResourceId        : /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testAzureLinuxResourceGroup
+```
 
 ## Create an Azure Linux Container Host cluster
 
-The following example creates a cluster named *testAzureLinuxCluster* with one node.
+Create an AKS cluster using the [`New-AzAksCluster`][new-azakscluster] cmdlet with the `-NodeOsSKU` flag set to `AzureLinux`. The following example creates a cluster named _testAzureLinuxCluster_ with one node:
 
-- Create an AKS cluster using the [`New-AzAksCluster`][new-azakscluster] cmdlet with the `-NodeOsSKU` flag set to *AzureLinux*.
+```azurepowershell-interactive
+New-AzAksCluster -ResourceGroupName testAzureLinuxResourceGroup -Name testAzureLinuxCluster -NodeOsSKU AzureLinux
+```
 
-    ```azurepowershell-interactive
-    New-AzAksCluster -ResourceGroupName testAzureLinuxResourceGroup -Name testAzureLinuxCluster -NodeOsSKU AzureLinux
-    ```
-
-    After a few minutes, the command completes and returns JSON-formatted information about the cluster.
+After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 
 ## Connect to the cluster
 
@@ -71,15 +72,15 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl
     Install-AzAksCliTool
     ```
 
-2. Configure `kubectl` to connect to your Kubernetes cluster using the [`Import-AzAksCredential`][import-azakscredential] cmdlet. This command downloads credentials and configures the Kubernetes CLI to use them.
+1. Configure `kubectl` to connect to your Kubernetes cluster using the [`Import-AzAksCredential`][import-azakscredential] cmdlet. This command downloads credentials and configures the Kubernetes CLI to use them.
 
     ```azurepowershell-interactive
     Import-AzAksCredential -ResourceGroupName testAzureLinuxResourceGroup -Name testAzureLinuxCluster
     ```
 
-3. Verify the connection to your cluster using the [`kubectl get`][kubectl-get] command. This command returns a list of the cluster pods.
+1. Verify the connection to your cluster using the [`kubectl get`][kubectl-get] command. This command returns a list of the cluster pods.
 
-    ```azurepowershell-interactive
+    ```bash
     kubectl get pods --all-namespaces
     ```
 
@@ -332,7 +333,7 @@ To deploy the application, you use a manifest file to create all the objects req
 
 1. Deploy the application using the [kubectl apply][kubectl-apply] command and specify the name of your YAML manifest.
 
-    ```console
+    ```bash
     kubectl apply -f aks-store-quickstart.yaml
     ```
 
@@ -353,26 +354,26 @@ To deploy the application, you use a manifest file to create all the objects req
 
 When the application runs, a Kubernetes service exposes the application front end to the internet. This process can take a few minutes to complete.
 
-1. Check the status of the deployed pods using the [kubectl get pods][kubectl-get] command. Make sure all pods are `Running` before proceeding.
+1. Check the status of the deployed pods using the [`kubectl get pods`][kubectl-get] command. Make sure all pods are `Running` before proceeding.
 
-    ```console
+    ```bash
     kubectl get pods
     ```
 
-1. Check for a public IP address for the store-front application. Monitor progress using the [kubectl get service][kubectl-get] command with the `--watch` argument.
+1. Check for a public IP address for the store-front application. Monitor progress using the [`kubectl get service`][kubectl-get] command with the `--watch` argument.
 
-    ```azurecli-interactive
+    ```bash
     kubectl get service store-front --watch
     ```
 
-    The **EXTERNAL-IP** output for the `store-front` service initially shows as *pending*:
+    The **EXTERNAL-IP** output for the `store-front` service initially shows as _pending_:
 
     ```output
     NAME          TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
     store-front   LoadBalancer   10.0.100.10   <pending>     80:30025/TCP   4h4m
     ```
 
-1. Once the **EXTERNAL-IP** address changes from *pending* to an actual public IP address, use `CTRL-C` to stop the `kubectl` watch process.
+1. Once the **EXTERNAL-IP** address changes from _pending_ to an actual public IP address, use `CTRL-C` to stop the `kubectl` watch process.
 
     The following example output shows a valid public IP address assigned to the service:
 
@@ -385,20 +386,20 @@ When the application runs, a Kubernetes service exposes the application front en
 
 ## Delete the cluster
 
-If you don't plan on continuing through the following tutorials, remove the created resources to avoid incurring Azure charges.
+If you no longer need them, you can clean up unnecessary resources to avoid Azure charges.
 
-- Remove the resource group and all related resources using the [`RemoveAzResourceGroup`][remove-azresourcegroup] cmdlet.
+Delete the Azure resource group and all related resources using the [`RemoveAzResourceGroup`][remove-azresourcegroup] cmdlet.
 
-    ```azurepowershell-interactive
-    Remove-AzResourceGroup -Name testAzureLinuxResourceGroup
-    ```
+```azurepowershell-interactive
+Remove-AzResourceGroup -Name testAzureLinuxResourceGroup
+```
 
-## Next steps
+## Related content
 
-In this quickstart, you deployed an Azure Linux Container Host AKS cluster. To learn more about the Azure Linux Container Host and walk through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial.
+In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host, see the following resources:
 
-> [!div class="nextstepaction"]
-> [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
+- [Azure Linux Container Host tutorial series: Part 1](./tutorial-create-cluster-azure-linux-aks.md)
+- [Overview of the Azure Linux Container Host for Azure Kubernetes Service (AKS)](./azure-linux-aks-overview.md)
 
 <!-- LINKS - internal -->
 [install-azure-powershell]: /powershell/azure/install-az-ps
