@@ -69,6 +69,8 @@ Artifact cache currently supports the following upstream registries.
 | Google Artifact Registry (`*.pkg.dev`)                  | Supports authenticated pulls only.                     | Azure CLI                |
 | Legacy Google Container Registry (`gcr.io`)             | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
 | NVIDIA NGC Container Registry (`nvcr.io`)               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
+| Red Hat Registry (`registry.redhat.io`)                 | Supports authenticated pulls only.                     | Azure CLI                |
+| Red Hat Public Registry (`registry.access.redhat.com`)  | Supports unauthenticated pulls only.                   | Azure CLI                |
 
 ### Authentication method for Google Artifact Registry
 
