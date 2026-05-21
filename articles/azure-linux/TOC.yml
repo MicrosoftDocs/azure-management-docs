@@ -1,98 +1,232 @@
-- name: Azure Linux Container Host for AKS
+- name: Azure Linux
   href: ./index.yml
 - name: Overview
   items: 
-    - name: About the Azure Linux Container Host for AKS
-      href: intro-azure-linux.md
-    - name: About Azure Linux with OS Guard for AKS
-      href: intro-azure-linux-os-guard.md
-    - name: Support cycle for the Azure Linux Container Host for AKS
-      href: support-cycle.md
-    #- name: Supported Azure Linux versions
-    #  href: azure-linux-supported-versions.md
-- name: Quickstarts
-  items: 
-    - name: Enable Azure Linux 3.0
-      href: how-to-enable-azure-linux-3.md
-    - name: Deploy an Azure Linux Container Host Cluster
-      items:
-        - name: Use the Azure CLI
-          href: quickstart-azure-cli.md
-        - name: Use Azure PowerShell
-          href: quickstart-azure-powershell.md
-        - name: Use the ARM template
-          href: quickstart-azure-resource-manager-template.md
-        - name: Use Terraform
-          href: quickstart-terraform.md
-    - name: Deploy an Azure Linux OS Guard Cluster
-      items:
-        - name: Use the Azure CLI
-          href: quickstart-os-guard-azure-cli.md
-        - name: Use the ARM template
-          href: quickstart-os-guard-arm-template.md
-
-- name: Tutorials
+    - name: What is Azure Linux?
+      href: azure-linux-overview.md
+    - name: What's new in Azure Linux 4.0?
+      href: whats-new-azure-linux-4.md
+    - name: Architecture overview
+      href: architecture.md
+    - name: Release cadence and lifecycle
+      href: release-cadence-lifecycle.md
+    - name: Supported Azure services
+      href: supported-azure-services.md
+    - name: Ecosystem support
+      href: ecosystem-support.md
+- name: Get started
   items:
-  - name: Azure Linux Container Host 
-    items:
-      - name: 1 - Create a cluster with Azure Linux
-        href: tutorial-azure-linux-create-cluster.md
-      - name: 2 - Add an Azure Linux node pool to your existing cluster
-        href: tutorial-azure-linux-add-nodepool.md
-      - name: 3 - Migrating to Azure Linux
-        href: tutorial-azure-linux-migration.md
-      - name: 4 - Enable telemetry and monitoring
-        href: tutorial-azure-linux-telemetry-monitor.md
-      - name: 5 - Upgrade Azure Linux nodes
-        href: tutorial-azure-linux-upgrade.md
-  - name: Azure Linux with OS Guard
-    items:
-      - name: 1 - Create a cluster with Azure Linux with OS Guard
-        href: tutorial-azure-linux-os-guard-create-cluster.md
-      - name: 2 - Add an Azure Linux with OS Guard node pool to your existing cluster
-        href: tutorial-azure-linux-os-guard-add-node-pool.md
-      - name: 3 - Migrating to Azure Linux with OS Guard
-        href: tutorial-azure-linux-os-guard-migration.md
-      - name: 4 - Enable telemetry and monitoring
-        href: tutorial-azure-linux-os-guard-telemetry-monitor.md
-      - name: 5 - Upgrade Azure Linux with OS Guard nodes
-        href: tutorial-azure-linux-os-guard-upgrade.md
-- name: Concepts
-  items: 
-    - name: Core concepts
-      href: concepts-core.md
-    - name: Security
+    - name: Get started with Azure Linux
+      href: get-started-azure-linux.md
+    - name: Quickstarts
       items:
-      #  - name: Security baseline
-      #    href: concepts-security.md
-        - name: Compliance 
+        - name: Create an Azure Linux VM using the Azure portal
+          href: quick-create-vm-portal.md
+        - name: Create a cluster with Azure Linux Container Host for AKS
+          href: quick-create-azure-linux-aks.md
+        - name: Create a cluster with Azure Container Linux (ACL) for AKS
+          href: quick-create-azure-container-linux-aks.md
+        - name: Enable Azure Linux 3.0 on AKS
+          href: how-to-enable-azure-linux-3.md
+- name: Deployment options
+  items:
+    - name: Overview of Azure Linux deployment options
+      href: deployment-options.md
+    - name: Azure Linux for AKS
+      items:
+        - name: Choose your deployment option
+          href: get-started-aks.md
+        - name: Azure Linux Container Host for AKS
           items:
-            - name: CIS baseline overview
-              href: /compliance/regulatory/offering-CIS-Benchmark
-            - name: CIS Azure Linux Container Host for AKS benchmark
-              href: /azure/aks/cis-azure-linux
-    - name: Packages
-      href: concepts-packages.md
-    #- name: Certification
-    #  href: concepts-certs.md
-- name: How-to guides
-  items:
-    - name: Install certificates
-      href: how-to-install-certs.md
-    - name: Troubleshoot
+            - name: Overview
+              href: azure-linux-aks-overview.md
+            - name: Core concepts
+              href: aks-core-concepts.md
+            - name: Support lifecycle
+              href: aks-support-cycle.md
+            - name: Package list
+              href: aks-packages.md
+            - name: Pod sandboxing with AKS
+              href: pod-sandboxing-aks.md
+            - name: Create an Azure Linux Container Host for AKS cluster
+              items:
+                - name: Use the Azure CLI
+                  href: deploy-azure-linux-aks-cli.md
+                - name: Use an ARM template
+                  href: deploy-azure-linux-aks-arm.md
+                - name: Use Azure PowerShell
+                  href: deploy-azure-linux-aks-powershell.md
+                - name: Use Terraform
+                  href: deploy-azure-linux-aks-terraform.md
+            - name: Tutorial series
+              items:
+                - name: 1 - Create an Azure Linux Container Host for AKS cluster
+                  href: tutorial-create-cluster-azure-linux-aks.md
+                - name: 2 - Add an Azure Linux node pool to your cluster
+                  href: tutorial-add-azure-linux-node-pool.md
+                - name: 3 - Migrate cluster nodes to Azure Linux
+                  href: tutorial-migrate-azure-linux-aks.md
+                - name: 4 - Enable telemetry and monitoring
+                  href: tutorial-monitor-azure-linux-aks.md
+                - name: 5 - Upgrade cluster nodes
+                  href: tutorial-upgrade-azure-linux-nodes.md
+            - name: How-to guides
+              items:
+                - name: Install certificates
+                  href: install-certificates-aks.md
+                - name: Troubleshoot package upgrade issues
+                  href: troubleshoot-package-upgrade-aks.md
+                - name: Troubleshoot outdated kernel versions
+                  href: troubleshoot-kernel-version.md
+        - name: Azure Container Linux (ACL) for AKS
+          items:
+            - name: Overview
+              href: azure-container-linux-overview.md
+            - name: Create an ACL for AKS cluster
+              items:
+                - name: Use the Azure CLI
+                  href: quick-deploy-azure-container-linux-aks-cli.md
+                - name: Use an ARM template
+                  href: quick-deploy-azure-container-linux-aks-arm.md
+            - name: Tutorial series
+              items:
+                - name: 1 - Create an ACL for AKS cluster
+                  href: tutorial-create-cluster-azure-container-linux-aks.md
+                - name: 2 - Add an ACL node pool to your cluster
+                  href: tutorial-add-azure-container-linux-node-pool.md
+                - name: 3 - Migrate cluster nodes to ACL
+                  href: tutorial-migrate-azure-container-linux-aks.md
+                - name: 4 - Enable telemetry and monitoring
+                  href: tutorial-monitor-azure-container-linux-aks.md
+                - name: 5 - Upgrade cluster nodes
+                  href: tutorial-upgrade-azure-container-linux-nodes.md
+            - name: How-to guides
+              items:
+                - name: Toggle SELinux mode for troubleshooting
+                  href: selinux-toggle-troubleshoot.md
+        - name: Azure Linux with OS Guard for AKS
+          items:
+            - name: Overview
+              href: os-guard-overview.md
+            - name: Create an Azure Linux with OS Guard for AKS cluster
+              items:
+                - name: Use the Azure CLI
+                  href: quick-deploy-os-guard-cli.md
+                - name: Use an ARM template
+                  href: quick-deploy-os-guard-arm.md
+            - name: Tutorial series
+              items:
+                - name: 1 - Create an Azure Linux with OS Guard for AKS cluster
+                  href: tutorial-create-cluster-os-guard-aks.md
+                - name: 2 - Add an OS Guard node pool to your cluster
+                  href: tutorial-add-os-guard-node-pool.md
+                - name: 3 - Migrate cluster nodes to OS Guard
+                  href: tutorial-migrate-os-guard-aks.md
+                - name: 4 - Enable telemetry and monitoring
+                  href: tutorial-monitor-os-guard-aks.md
+                - name: 5 - Upgrade cluster nodes
+                  href: tutorial-upgrade-os-guard-nodes.md
+    - name: Azure Linux for Virtual Machines and Virtual Machine Scale Sets
       items:
-        - name: Package upgrade
-          href: troubleshoot-packages.md
-        - name: Kernel versioning 
-          href: troubleshoot-kernel.md
-- name: Resources 
-  items: 
-    - name: Support policies 
-      href: /azure/aks/support-policies
-    - name: Release notes
-      href: https://github.com/microsoft/CBL-Mariner/releases
-    - name: Support and help
-      href: support-help.md
-    - name: FAQ
-      href: faq.md
-  
+        - name: Overview
+          href: azure-linux-vm-vmss-overview.md
+        - name: How-to guides
+          items:
+            - name: Create an Azure Linux VM
+              href: create-vm-azure-linux-4-0.md
+            - name: Update an Azure Linux VM
+              href: update-vm-azure-linux.md
+    - name: Azure Linux container images
+      items:
+        - name: Overview
+          href: container-images-overview.md
+- name: Security and compliance
+  items:
+    - name: Security overview
+      href: security-overview.md
+    - name: Secure Boot and Trusted Boot
+      href: secure-boot-trusted-boot.md
+    - name: Kernel hardening
+      href: kernel-hardening.md
+    - name: Mandatory access control with SELinux
+      href: mandatory-access-control.md
+    - name: Network security overview
+      href: network-security-overview.md
+    - name: Identity and access management
+      href: identity-access-management.md
+    - name: Disk and data protection
+      href: disk-data-protection.md
+    - name: Logging and auditing
+      href: logging-auditing.md
+    - name: FIPS 140-3 and cryptography
+      href: fips-cryptography.md
+    - name: System crypto libraries
+      href: system-crypto-libraries.md
+    - name: Extended Berkeley Packet Filter (eBPF)
+      href: use-ebpf.md
+    - name: Kernel livepatching
+      href: kernel-live-patching.md
+    - name: Certifications and compliance
+      href: certifications-compliance.md
+    - name: Manage CVEs
+      href: manage-cves.md
+- name: System management
+  items:
+    - name: Get started with system management
+      href: get-started-system-management.md
+    - name: Manage the Azure Linux kernel
+      href: kernel-management.md
+    - name: Configure networking
+      href: configure-networking.md
+    - name: Manage storage and filesystems
+      href: storage-file-system-management.md
+    - name: Logging and monitoring
+      href: logging-monitoring.md
+    - name: Package management
+      items:
+        - name: Overview
+          href: package-management-overview.md
+        - name: Manage packages with DNF
+          href: manage-packages.md
+        - name: Package repositories
+          href: package-repositories.md
+        - name: Install debug symbol packages
+          href: install-debug-symbol-packages.md
+- name: Developer guide
+  items:
+    - name: Developer guide for Azure Linux
+      href: get-started-developer.md
+    - name: Certificate management
+      href: certificate-management.md
+    - name: Build RPM packages
+      href: build-rpm-packages.md
+    - name: Customize images with Image Customizer
+      href: customize-images.md
+- name: Learn and engage
+  items:
+    - name: Support options
+      href: support-options.md
+    - name: Report issues and request features
+      href: report-issues-request-features.md
+    - name: Curated learning resources
+      href: learning-hub.md
+    - name: Contribute to Azure Linux
+      items:
+        - name: Overview
+          href: how-to-contribute.md
+        - name: Contribute to Azure Linux documentation
+          href: contribute-to-docs.md
+        - name: Contribute to Azure Linux code
+          href: contribute-to-code.md
+    - name: Frequently asked questions (FAQ)
+      items:
+        - name: General
+          href: faq-general.yml
+        - name: Security
+          href: faq-security.yml
+        - name: Kernel
+          href: faq-kernel.yml
+        - name: Packages
+          href: faq-packages.yml
+        - name: Azure Linux on AKS
+          href: faq-aks.yml
