@@ -50,5 +50,5 @@ Each generation kept the on-disk repository format compatible, so you still see 
 
 For more information about DNF 5 and the RPM ecosystem, see the following resources:
 
-- [DNF 5 documentation](/guides/content/editing-an-existing-page): Official user and reference documentation for the DNF 5 package manager.
+- [DNF 5 documentation](https://dnf5.readthedocs.io/en/latest/index.html): Official user and reference documentation for the DNF 5 package manager.
 - [RPM software management on GitHub](https://github.com/rpm-software-management): Upstream organization that maintains DNF, RPM, and related tooling.

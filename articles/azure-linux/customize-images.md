@@ -32,7 +32,7 @@ Image Customizer also supports nested customization, so you can further customiz
 
 - **Docker** installed on your host.
 - **A base image**: Any Azure Linux image (from the Azure Marketplace or one you already maintain).
-- **A configuration file**: A YAML or JSON file that describes your modifications. For schema details, see the [Image Customizer configuration reference](https://microsoft.github.io/azure-linux-image-tools/imagecustomizer/api/configuration.html).
+- **A configuration file**: A YAML or JSON file that describes your modifications.
 
 ## Supported host systems
 
