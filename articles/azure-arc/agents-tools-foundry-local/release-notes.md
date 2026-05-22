@@ -41,10 +41,10 @@ Agents and Tools with Foundry Local helps you deploy Retrieval Augmented Generat
 | **Knowledge Base Manager API** | Manages the default knowledge base (GET, PATCH, PUT). Port 8080. |
 | **Knowledge Sources API** | Register MCP server connections as self-contained knowledge sources (two kinds: `remote_mcp` and `indexed_sources_mcp`). Port 3005. |
 | **Collections API** | Manage multiple collections for vector data with per-collection RBAC. Port 3002. |
-| **MCP Server** | Built-in MCP server with 6 search tools over Model Context Protocol. Port 8080. |
+| **MCP server** | Built-in MCP server with 6 search tools over Model Context Protocol. Port 8080. |
 | **Ingestion API** | Public REST API for programmatic document ingestion. Port 8000. |
 | **Inference API** | Public REST API for RAG chat completions and model-only queries. Port 3001. |
-| **Agentic Chat UI** | New agentic chat interface with multi-turn conversations, thread history, and streaming. |
+| **Agentic chat UI** | New agentic chat interface with multi-turn conversations, thread history, and streaming. |
 
 ## February 2026
 

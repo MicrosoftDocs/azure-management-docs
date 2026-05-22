@@ -85,6 +85,12 @@ items:
             href: knowledge-bases-guide.md
           - name: Knowledge sources
             href: knowledge-sources-guide.md
+      - name: Configure chat experience
+        items:
+          - name: Overview
+            href: chat-experience.md
+          - name: Deploy and validate Chat UI
+            href: chat-experience-deploy.md
       - name: Evaluate system
         href: evaluate-solution.md
       - name: Maintain
@@ -115,6 +121,8 @@ items:
             href: connect-sharepoint-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
+          - name: Chat UI configuration reference
+            href: chat-experience-reference.md
           - name: Evaluation metrics
             href: evaluation-metrics.md
           - name: Monitoring metrics
