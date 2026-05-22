@@ -1,5 +1,5 @@
 ---
-title: Deploy and validate Chat UI for Agents and Tools with Foundry Local
+title: Deploy and Validate Chat UI for Agents and Tools with Foundry Local
 description: Deploy chat UI as an optional component for Agents and Tools with Foundry Local, then validate routing, auth mode, and streaming behavior.
 author: cwatson-cat
 ms.author: cwatson
@@ -12,15 +12,15 @@ ai-usage: ai-assisted
 #customer intent: As a platform engineer, I want to deploy and validate chat UI as an optional component so users can chat with my configured agent.
 ---
 
-# Deploy and validate Chat UI for Agents and Tools with Foundry Local
+# Deploy and validate chat UI for Agents and Tools with Foundry Local
 
-The chat UI is an optional web front-end for Agents and Tools with Foundry Local. This article helps you deploy the chat UI workload and validate that browser requests reach `agents-runtime`.
+The chat UI is an optional web front end for Agents and Tools with Foundry Local. This article helps you deploy the chat UI workload and validate that browser requests reach `agents-runtime`.
 
 ## Prerequisites
 
 Complete the following prerequisites before you deploy the chat UI.
 
-- Review [Chat UI in Agents and Tools with Foundry Local](chat-experience.md) for the architecture and deployment context, and use [Chat UI configuration and API reference](chat-experience-reference.md) for configuration details and runtime behavior.
+- Review [Chat UI in Agents and Tools with Foundry Local](chat-experience.md) for the architecture and deployment context. Use [Chat UI configuration and API reference](chat-experience-reference.md) for configuration details and runtime behavior.
 - Deploy Agents and Tools with Foundry Local and confirm `agents-runtime` is running in the `arc-rag` namespace. For verification steps, see [Verify deployment by mode](deploy.md#verify-deployment-by-mode).
 - Complete data query setup in [Quickstart: Query your data with Agents and Tools with Foundry Local](quickstart-create-agent.md): ingest data, create and register a knowledge source, and link it to the default knowledge base.
 - For connected deployments, complete [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).
@@ -47,15 +47,15 @@ Use this `KB_ID` value for both:
 
 ### Gather required deployment values
 
-Before you set chat UI environment variables, identify the source for each value and the configuration surface where you apply it.
+Before you set chat UI environment variables, make sure you know where each value comes from and where to set it.
 
 | Value | Where to get it | Where to set it |
 |---|---|---|
-| `VITE_API_MODE=agents` | Fixed value for Agentic RAG mode. | chat UI pod environment variables (Helm values that render the chat UI deployment, or direct Kubernetes env vars). |
-| `VITE_API_URL=/runtime` | Your ingress path to `agents-runtime`. This article uses `/runtime/*` on the same host as chat UI. | chat UI pod environment variables. |
-| `VITE_AGENT_ID` | The agent identifier used by the runtime. Use the default knowledge base ID (`KB_ID`) from [Get your agent ID](#get-your-agent-id). | chat UI pod environment variables. |
-| `VITE_BASE_PATH` | Your chosen UI route path. Use `/` for root hosting or `/chat` for shared-subpath hosting. | chat UI pod environment variables. |
-| `VITE_AUTH_CLIENT_ID`, `VITE_AUTH_TENANT_ID` | Microsoft Entra app registration values from your auth setup. See [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md). | chat UI pod environment variables (connected deployments only). |
+| `VITE_API_MODE=agents` | Fixed value for Agentic RAG mode. | Chat UI pod environment variables (Helm values that render the chat UI deployment, or direct Kubernetes env vars). |
+| `VITE_API_URL=/runtime` | Your ingress path to `agents-runtime`. This article uses `/runtime/*` on the same host as chat UI. | Chat UI pod environment variables. |
+| `VITE_AGENT_ID` | The agent identifier used by the runtime. Use the default knowledge base ID (`KB_ID`) from [Get your agent ID](#get-your-agent-id). | Chat UI pod environment variables. |
+| `VITE_BASE_PATH` | Your chosen UI route path. Use `/` for root hosting or `/chat` for shared-subpath hosting. | Chat UI pod environment variables. |
+| `VITE_AUTH_CLIENT_ID`, `VITE_AUTH_TENANT_ID` | Microsoft Entra app registration values from your auth setup. See [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md). | Chat UI pod environment variables (connected deployments only). |
 
 For cluster domain and ingress host context, use the same domain that you configured during extension deployment and app registration. See [Deploy Agents and Tools with Foundry Local](deploy.md) and [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).
 
@@ -66,7 +66,7 @@ Choose one of these methods:
 - **kubectl commands:** Create and configure resources directly in the cluster without a manifest file.
 - **Kubernetes manifest:** Use a single manifest file that contains Deployment, Service, and Ingress.
 
-## Deploy Chat UI
+## Deploy chat UI
 
 In this section, you deploy the chat UI front end, configure its runtime settings, and expose it so browser requests can reach both the UI and `agents-runtime`.
 
@@ -286,7 +286,9 @@ Run the following checks:
 
 ## Troubleshoot validation failures
 
-- If chat UI loads but no data appears:
+Use these checks to identify and resolve common validation problems.
+
+- If the chat UI loads but no data appears:
 
   - Run `kubectl -n arc-rag get ingress arc-rag-ingress` and confirm the ingress exposes both the chat UI path and `/runtime`.
   - In the browser, open developer tools and select the **Network** tab. Refresh the page and confirm requests to `/runtime/threads` are sent to the expected host and path.

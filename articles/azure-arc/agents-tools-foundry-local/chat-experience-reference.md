@@ -1,6 +1,6 @@
 ---
-title: Chat UI configuration and API reference in Agents and Tools with Foundry Local
-description: Reference for Chat UI runtime configuration, environment variables, and runtime API operations in Agents and Tools with Foundry Local.
+title: Chat UI Configuration and API Reference in Agents and Tools with Foundry Local
+description: Reference for chat UI runtime configuration, environment variables, and runtime API operations in Agents and Tools with Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
@@ -9,26 +9,24 @@ ms.service: azure-arc
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 
-#customer intent: As a platform engineer, I want a complete Chat UI reference so I can configure runtime behavior and understand API usage.
+#customer intent: As a platform engineer, I want a complete chat UI reference so I can configure runtime behavior and understand API usage.
 ---
 
 # Chat UI configuration and API reference in Agents and Tools with Foundry Local
 
-Use this article as the reference for Chat UI runtime configuration in Agents and Tools with Foundry Local.
+Use this article as the reference for chat UI runtime configuration in Agents and Tools with Foundry Local.
 
 ## Configuration model
 
-All Chat UI configuration is injected through `VITE_*` environment variables at container startup.
+Set all chat UI configuration through `VITE_*` environment variables at container startup.
 
 Three layers apply in order:
 
-```text
-1. DEFAULTS (hardcoded)
-       ↓ overridden by
-2. VITE_* env vars (Helm values / Docker / kubectl set env)
-       ↓ derived after
-3. Derived values (currently only auth.enabled)
-```
+| Order | Layer | Notes |
+|---|---|---|
+| 1 | Defaults | Hardcoded baseline values |
+| 2 | `VITE_*` environment variables | Overrides defaults at startup (Helm values, Docker, or `kubectl set env`) |
+| 3 | Derived values | Computed after merge (currently only `auth.enabled`) |
 
 ## Required settings for agentic RAG mode
 
@@ -154,7 +152,7 @@ Use these settings to control the Copilot-specific layout and design mode.
 | `VITE_COPILOT_MODE` | `copilot.mode` | `canvas` | `canvas` (larger) or `default` (compact) |
 | `VITE_COPILOT_DESIGN_VERSION` | `copilot.designVersion` | `next` | Fluent UI Copilot design version |
 
-## Foundry Agents API surface used by Chat UI
+## Foundry Agents API surface used by chat UI
 
 The chat UI calls these Foundry Agents API operations during normal conversation flow.
 
@@ -173,10 +171,10 @@ Use these quick answers to resolve common chat UI deployment and configuration q
 
 | Question | Short answer |
 |---|---|
-| How do I enable Chat UI for Agents and Tools with Foundry Local? | Set `VITE_API_MODE=agents`, `VITE_API_URL`, and `VITE_AGENT_ID`. |
-| How do I host Chat UI on `/chat` instead of `/`? | Set `VITE_BASE_PATH=/chat` so the startup base URL is correct. |
+| How do I enable chat UI for Agents and Tools with Foundry Local? | Set `VITE_API_MODE=agents`, `VITE_API_URL`, and `VITE_AGENT_ID`. |
+| How do I host chat UI on `/chat` instead of `/`? | Set `VITE_BASE_PATH=/chat` so the startup base URL is correct. |
 | How do I enable Entra ID sign-in? | Set `VITE_AUTH_CLIENT_ID` and `VITE_AUTH_TENANT_ID`. |
-| How do I run disconnected without sign-in? | Omit auth values so Chat UI runs without Entra ID sign-in. |
+| How do I run disconnected without sign-in? | Omit auth values so chat UI runs without Entra ID sign-in. |
 
 ## Related content
 
