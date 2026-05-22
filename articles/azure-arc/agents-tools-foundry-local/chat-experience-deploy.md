@@ -76,21 +76,21 @@ Use this method when you want to create and configure chat UI directly from comm
 
 1. Create the chat UI deployment. Replace `<chat-ui-image>` with the container image repository for chat UI, and replace `<tag>` with the image tag or version to deploy:
 
-  ```bash
-  kubectl -n arc-rag create deployment chat-ui-frontend --image=<chat-ui-image>:<tag> --port=80
-  ```
+    ```bash
+    kubectl -n arc-rag create deployment chat-ui-frontend --image=<chat-ui-image>:<tag> --port=80
+    ```
 
 1. Set required runtime values. Replace `<agent-id>` with your default knowledge base ID (`KB_ID`):
 
-  ```bash
-  kubectl -n arc-rag set env deployment/chat-ui-frontend \
-    VITE_API_MODE=agents \
-    VITE_API_URL=/runtime \
-    VITE_AGENT_ID=<agent-id> \
-    VITE_BASE_PATH=/chat
-  ```
+    ```bash
+    kubectl -n arc-rag set env deployment/chat-ui-frontend \
+      VITE_API_MODE=agents \
+      VITE_API_URL=/runtime \
+      VITE_AGENT_ID=<agent-id> \
+      VITE_BASE_PATH=/chat
+    ```
 
-  If you host at `/`, omit `VITE_BASE_PATH`.
+    If you host at `/`, omit `VITE_BASE_PATH`.
 
 1. Create the chat UI service:
 
@@ -100,25 +100,25 @@ Use this method when you want to create and configure chat UI directly from comm
 
 1. Configure ingress routing for chat UI and runtime. Replace `<your-chat-ui-domain>` with your chat UI host name. If an ingress already exists for your environment, update that ingress instead of creating a new one.
 
-   ```bash
-   kubectl -n arc-rag create ingress arc-rag-ingress \
-     --rule="<your-chat-ui-domain>/=chat-ui-frontend:80" \
-     --rule="<your-chat-ui-domain>/runtime=agents-runtime:8081"
-   ```
+    ```bash
+    kubectl -n arc-rag create ingress arc-rag-ingress \
+      --rule="<your-chat-ui-domain>/=chat-ui-frontend:80" \
+      --rule="<your-chat-ui-domain>/runtime=agents-runtime:8081"
+    ```
 
 1. For connected deployments, set Microsoft Entra values. Replace `<entra-client-id>` and `<entra-tenant-id>` with your app registration values:
 
-  ```bash
-  kubectl -n arc-rag set env deployment/chat-ui-frontend \
-    VITE_AUTH_CLIENT_ID=<entra-client-id> \
-    VITE_AUTH_TENANT_ID=<entra-tenant-id>
-  ```
+    ```bash
+    kubectl -n arc-rag set env deployment/chat-ui-frontend \
+      VITE_AUTH_CLIENT_ID=<entra-client-id> \
+      VITE_AUTH_TENANT_ID=<entra-tenant-id>
+    ```
 
 1. For disconnected or air-gapped deployments, remove the Microsoft Entra values:
 
-  ```bash
-  kubectl -n arc-rag set env deployment/chat-ui-frontend VITE_AUTH_CLIENT_ID- VITE_AUTH_TENANT_ID-
-  ```
+    ```bash
+    kubectl -n arc-rag set env deployment/chat-ui-frontend VITE_AUTH_CLIENT_ID- VITE_AUTH_TENANT_ID-
+    ```
 
 #### [Kubernetes manifest](#tab/kubernetes-manifest)
 
