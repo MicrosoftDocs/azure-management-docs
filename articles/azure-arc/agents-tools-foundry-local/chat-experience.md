@@ -115,7 +115,7 @@ In Agents and Tools with Foundry Local, the chat UI acts as the browser-facing e
 
 This diagram shows the high-level component relationships for the chat UI deployment.
 
-:::image type="content" source="./media/chat-web-ui/architecture.png" alt-text="Diagram that shows the chat UI architecture flow from user to chat UI, agents-runtime, agent, and knowledge sources, with a return path back to the chat UI." lightbox="./media/chat-web-ui/architecture.png" border="false":::
+:::image type="content" source="./media/chat-experience/architecture.png" alt-text="Diagram that shows the chat UI architecture flow from user to chat UI, agents-runtime, agent, and knowledge sources, with a return path back to the chat UI." lightbox="./media/chat-experience/architecture.png" border="false":::
 
 The chat UI is deployed as a separate pod in the same Kubernetes namespace as `agents-runtime`, behind the same ingress. The browser loads the single-page application (SPA) from `/` (or `/chat`) and calls the backend at `/runtime/*` on the same host. No Cross-Origin Resource Sharing (CORS) configuration is required.
 
@@ -123,7 +123,7 @@ The chat UI is deployed as a separate pod in the same Kubernetes namespace as `a
 
 The following sequence shows how a user prompt moves through runtime services and streams back to the chat UI.
 
-:::image type="content" source="./media/chat-web-ui/end-to-end-chat-flow.png" alt-text="Sequence diagram of the end-to-end chat flow from user to chat UI, agents-runtime, and agent plus tools, with server-sent events streamed back to the chat UI." lightbox="./media/chat-web-ui/end-to-end-chat-flow.png" border="false":::
+:::image type="content" source="./media/chat-experience/end-to-end-chat-flow.png" alt-text="Sequence diagram of the end-to-end chat flow from user to chat UI, agents-runtime, and agent plus tools, with server-sent events streamed back to the chat UI." lightbox="./media/chat-experience/end-to-end-chat-flow.png" border="false":::
 
 ### Connected identity path
 
