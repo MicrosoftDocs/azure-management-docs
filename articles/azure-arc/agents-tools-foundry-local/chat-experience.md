@@ -96,7 +96,7 @@ To surface Chat UI, plan these configuration categories:
 - Identity mode for connected environments (Entra ID) or disconnected environments (network boundary).
 - Experience settings such as branding, sidebar behavior, prompt starters, feature toggles, and classification banner.
 
-For complete variable and API details, see [Chat UI configuration and API reference](chat-web-ui-reference.md).
+For complete variable and API details, see [Chat UI configuration and API reference](chat-experience-reference.md).
 
 ## Surface Chat UI: high-level flow
 
@@ -108,7 +108,7 @@ Use this sequence to plan Chat UI rollout without going into implementation step
 1. Apply UX and policy settings (branding, feature flags, security banner).
 1. Validate health, runtime connectivity, and streaming behavior.
 
-For step-by-step deployment and validation, see [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-web-ui-deploy.md).
+For step-by-step deployment and validation, see [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-experience-deploy.md).
 
 ## How the Chat UI fits in an Agents and Tools with Foundry Local deployment
 
@@ -134,11 +134,11 @@ In connected deployments, the browser acquires a user token through Entra ID and
 
 In disconnected or air-gapped deployments, Chat UI runs without Entra sign-in and the network boundary becomes the trust boundary.
 
-For implementation steps and required identity settings, see [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-web-ui-deploy.md) and [Chat UI configuration and API reference](chat-web-ui-reference.md).
+For implementation steps and required identity settings, see [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-experience-deploy.md) and [Chat UI configuration and API reference](chat-experience-reference.md).
 
 ## Related content
 
-- [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-web-ui-deploy.md)
-- [Chat UI configuration and API reference](chat-web-ui-reference.md)
+- [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-experience-deploy.md)
+- [Chat UI configuration and API reference](chat-experience-reference.md)
 - [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
 - [What is Agentic Retrieval Augmented Generation (RAG)?](agentic-overview.md)

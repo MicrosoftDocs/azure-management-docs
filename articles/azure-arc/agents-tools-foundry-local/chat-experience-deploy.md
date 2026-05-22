@@ -20,7 +20,7 @@ The chat UI is an optional web front-end for Agents and Tools with Foundry Local
 
 Complete the following prerequisites before you deploy the chat UI.
 
-- Review [Chat UI in Agents and Tools with Foundry Local](chat-web-ui.md) for the architecture and deployment context, and use [Chat UI configuration and API reference](chat-web-ui-reference.md) for configuration details and runtime behavior.
+- Review [Chat UI in Agents and Tools with Foundry Local](chat-experience.md) for the architecture and deployment context, and use [Chat UI configuration and API reference](chat-experience-reference.md) for configuration details and runtime behavior.
 - Deploy Agents and Tools with Foundry Local and confirm `agents-runtime` is running in the `arc-rag` namespace. For verification steps, see [Verify deployment by mode](deploy.md#verify-deployment-by-mode).
 - Complete data query setup in [Quickstart: Query your data with Agents and Tools with Foundry Local](quickstart-create-agent.md): ingest data, create and register a knowledge source, and link it to the default knowledge base.
 - For connected deployments, complete [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).
@@ -305,8 +305,8 @@ Run the following checks:
 
 ## Related content
 
-- [Chat UI in Agents and Tools in Foundry Local](chat-web-ui.md)
-- [Chat UI configuration and API reference](chat-web-ui-reference.md)
+- [Chat UI in Agents and Tools in Foundry Local](chat-experience.md)
+- [Chat UI configuration and API reference](chat-experience-reference.md)
 - [Deploy Agents and Tools with Foundry Local](deploy.md)
 - [Quickstart: Query your data with Agents and Tools with Foundry Local](quickstart-create-agent.md)
 - [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md)

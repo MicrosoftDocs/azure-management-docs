@@ -180,5 +180,5 @@ Use these quick answers to resolve common chat UI deployment and configuration q
 
 ## Related content
 
-- [How Chat UI works in Agents and Tools with Foundry Local](chat-web-ui.md)
-- [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-web-ui-deploy.md)
+- [How Chat UI works in Agents and Tools with Foundry Local](chat-experience.md)
+- [Deploy and validate Chat UI for Agents and Tools with Foundry Local](chat-experience-deploy.md)

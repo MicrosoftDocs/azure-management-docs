@@ -88,9 +88,9 @@ items:
       - name: Configure chat experience
         items:
           - name: Overview
-            href: chat-web-ui.md
+            href: chat-experience.md
           - name: Deploy and validate Chat UI
-            href: chat-web-ui-deploy.md
+            href: chat-experience-deploy.md
       - name: Evaluate system
         href: evaluate-solution.md
       - name: Maintain
@@ -122,7 +122,7 @@ items:
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Chat UI configuration reference
-            href: chat-web-ui-reference.md
+            href: chat-experience-reference.md
           - name: Evaluation metrics
             href: evaluation-metrics.md
           - name: Monitoring metrics
