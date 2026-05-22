@@ -1,0 +1,54 @@
+### YamlMime:FAQ
+metadata:
+  title: "Azure Linux Frequently Asked Questions (FAQ) - General"
+  description: Frequently asked questions about Azure Linux, including access, release cycle, source code availability, updates, and support for bare metal and GUI.
+  keywords: frequently asked questions, faq
+  ms.service: microsoft-linux
+  ms.topic: faq
+  ms.date: 04/29/20266
+title: "Azure Linux frequently asked questions (FAQ) - General"
+summary: |
+    This article provides answers to some of the most common questions about Azure Linux, including access, release cycle, source code availability, updates, and support for bare metal and GUI.
+
+sections:
+  - name: General
+    questions:
+      - question: |
+          How do I access Azure Linux?
+        answer: |
+          Azure Linux is available to all Azure customers at no extra cost. You can deploy Azure Linux using the Azure portal, Azure CLI, Azure Resource Manager (ARM) templates, or Terraform. Azure Linux images are published on the Azure Marketplace under the publisher `MicrosoftAzureLinux`. To get started, see [Get started with Azure Linux](./get-started-azure-linux.md).
+
+      - question: |
+          What is the Azure Linux release cycle?
+        answer: |
+          Azure Linux follows a predictable, security-first release cadence. Major releases ship with a new long-term support (LTS) kernel and updated core components. The LTS kernel is supported for four years from GA. Tier 1 (core operating system (OS)) packages are version-locked for the OS lifetime and receive only security backports. Tier 2 (language runtimes and frameworks) are refreshed in two windows per year (**H1**: January to June, **H2**: July to December). For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
+
+      - question: |
+          Is the source code for Azure Linux publicly available?
+        answer: |
+          Yes. Azure Linux is an open-source, Microsoft-maintained Linux distribution. The public source is available on GitHub at [microsoft/azurelinux](https://github.com/microsoft/azurelinux).
+
+      - question: |
+          How do updates work?
+        answer: |
+          Azure Linux supports two update methods:
+
+          - **Image-based updates**: Deploy the latest monthly marketplace release, which includes all current package updates.
+          - **Package-based updates**: Use `sudo dnf upgrade` to update installed packages, or configure `dnf-automatic` with a systemd timer for automatic updates. For more information, see [Package management on Azure Linux overview](./package-management-overview.md).
+
+      - question: |
+          Does Azure Linux support bare metal?
+        answer: |
+          No, Azure Linux doesn't support bare metal.
+
+      - question: |
+          Does Azure Linux support a GUI?
+        answer: |
+          No, Azure Linux doesn't support a graphical user interface (GUI).
+
+  - name: Certificates
+    questions:
+      - question: |
+          How do I add a certificate?
+        answer: |
+          For more information, see [Certificate management in Azure Linux](./certificate-management.md).
