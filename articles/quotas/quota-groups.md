@@ -4,7 +4,7 @@ description: Learn how to share quota across Azure subscriptions with Azure Quot
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 10/07/2025
+ms.date: 05/22/2026
 ---
 
 # Azure Quota Groups
@@ -36,7 +36,7 @@ Before you can use the Quota Group feature, you must:
 
 ## Limitations
 
-- Available only for Enterprise Agreement and internal subscriptions. 
+- Available only for Enterprise Agreement, Microsoft Customer Agreement, and internal subscriptions. 
 - Supports IaaS compute resources only.  
 - Available in public cloud regions only.  
 - Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the event that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
