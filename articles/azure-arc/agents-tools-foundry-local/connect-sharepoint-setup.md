@@ -474,7 +474,7 @@ After you complete this SharePoint setup, return to the [deployment prerequisite
 During deployment:
 
 - In the Azure portal, on the **Configurations** tab, turn on **SharePoint ingestion** and enter the Key Vault and workload identity values collected in this article.
-- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md#azure-cli).
+- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md?tabs=azure-cli).
 
 If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 

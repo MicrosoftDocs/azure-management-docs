@@ -472,7 +472,7 @@ After you complete this Kerberos setup, return to the [deployment prerequisites 
 During deployment:
 
 - In the Azure portal, on the **Configurations** tab, turn on **Kerberos** and enter the Kerberos SPN value from this article (for example, `nfs/<service_account>@<YOUR_REALM>`).
-- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md#azure-cli).
+- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md?tabs=azure-cli).
 
 If you don't plan to use Kerberos, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
