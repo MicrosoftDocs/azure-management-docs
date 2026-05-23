@@ -102,6 +102,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    - SharePoint ingestion only: set `enableKerberos=false` and `enableSharePoint=true`.
    - Kerberos and SharePoint ingestion: set both values to `true`.
 
+   For language model source, set `useFoundryLocal=true` only when you're using a Foundry Local model endpoint. Otherwise, set `useFoundryLocal=false`.
+
    If you enable Kerberos, complete [Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local](connect-file-share-kerberos-setup.md) first. If you enable SharePoint ingestion, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md) first.
 
 1. Set common deployment values:
@@ -118,7 +120,6 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    $k8scluster = "<Azure Kubernetes Service (AKS) Arc cluster name>"
    $extension = "microsoft.arc.rag" # do not change
    $n = "arc-rag" # do not change
-   $foundryClientId = "<foundry_app_registration_client_id>"
    ```
 
 1. Set values for the language model, deployment mode, and optional connection types:
@@ -129,6 +130,10 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    $apiModel = "<Model Name>"
    $maxTokensInK = "<Max Tokens In K (e.g. 10, 20 etc.)>"
    $layerSelection = "combined" # Options: combined, agentic, knowledge
+
+   # Foundry Local setting
+   $useFoundryLocal = "false"
+   $foundryClientId = "<foundry_app_registration_client_id>" # Required only when useFoundryLocal=true
 
    # Optional connection switches
    $enableKerberos = "false"
@@ -172,8 +177,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
        "byom.enabled=true",
        "byom.apiEndpoint=$apiEndpoint",
        "byom.apiModel=$apiModel",
-       "byom.maxTokensInK=$maxTokensInK",
-       "foundryClientId=$foundryClientId"
+       "byom.maxTokensInK=$maxTokensInK"
     )
 
     if ($enableKerberos -eq "true") {
@@ -190,6 +194,12 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
           "sharepoint.s2s.kvCertSecretName=$kvCertSecretName",
           "sharepoint.s2s.kvCertPasswordSecretName=$kvCertPasswordSecretName",
           "sharepoint.s2s.workloadIdentityClientId=$workloadIdentityClientId"
+       )
+    }
+
+    if ($useFoundryLocal -eq "true") {
+       $config += @(
+          "foundryClientId=$foundryClientId"
        )
     }
 
