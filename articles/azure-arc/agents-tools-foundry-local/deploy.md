@@ -44,9 +44,9 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
 
 
-   :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details.":::
+   :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details." lightbox="media/deploy/install-extension.png":::
 
-1. Select **Next: Configurations**.
+1. Select **Next**.
 1. On the **Configurations** tab, provide the following information:
 
    | Field | Value |
@@ -71,8 +71,9 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | LLM endpoint | Required. Enter your OpenAI-compatible endpoint URL. For example: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use your cluster-internal endpoint. |
    | Max token (K) | Required. Enter a value from 4K to 2048K. |
 
-    :::image type="content" source="media/deploy/install-extension-configurations.png" alt-text="Screenshot of the configuration tab where you select the model type and other configurations.":::
-1. Select **Next: Access**.
+   :::image type="content" source="media/deploy/install-extension-configurations.png" alt-text="Screenshot of the configuration tab where you select the model type and other configurations." Lightbox="media/deploy/install-extension-configurations.png":::
+
+1. Select **Next**.
 1. On the **Access** tab, provide the following information:
 
    | Field | Value |
@@ -83,6 +84,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    |**Access**||
    | Entra application ID|Enter the application ID from the enterprise application you registered for authentication.|
    | Entra tenant ID|Enter the tenant ID from the enterprise application you registered for authentication.|
+
+   :::image type="content" source="media/deploy/install-extension-access.png" alt-text="Screenshot of the access tab with SSL settings and Entra application fields." lightbox="media/deploy/install-extension-access.png":::
 
 1. Select **Review + create**.
 1. Review and validate the parameters you provided.
