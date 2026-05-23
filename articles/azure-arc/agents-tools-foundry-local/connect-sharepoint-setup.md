@@ -467,63 +467,16 @@ After completing all steps, you should have these values ready for installation:
 | **Realm** | `33334444-5555-6666-aaaa-bbbbccccdddd` | Step 5: `Get-SPAuthenticationRealm` |
 | **Windows SID** | `S-1-5-21-1234567890-2345678901-3456789012-1234` | Step 5: translated from AD account |
 
-## Install Agents and Tools with Foundry Local with SharePoint enabled
+## Deploy the extension with SharePoint ingestion enabled
 
-Use this section to install or update Agents and Tools with Foundry Local so SharePoint ingestion is enabled by using the certificate and identity values you collected earlier.
+After you complete this SharePoint setup, deploy the extension by using [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
-### Azure portal (recommended)
+During deployment:
 
-1. In the Azure portal, go to your cluster.
-1. Go to **Extensions** > **Add** > **Agentic RAG**.
-1. In the **Data Source Connection / Authentication** section, under **SharePoint S2S**:
+- In the Azure portal, on the **Configurations** tab, turn on **SharePoint ingestion** and enter the Key Vault and workload identity values collected in this article.
+- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md#azure-cli).
 
-   | Portal field | Enter this value |
-   |---|---|
-   | **Enable SharePoint Ingestion** | Toggle **On** |
-   | **Key Vault Name** | Your Key Vault name |
-   | **KV Cert Secret Name** | `edgerag-sp-s2s-cert` (pre-filled default) |
-   | **KV Cert Password Secret Name** | `sp-cert-password` (pre-filled default) |
-   | **Workload Identity Client ID** | Managed identity Client ID (from Step 4) |
-   | **Key Vault Tenant ID** | Usually auto-populated from your portal session |
-
-1. Optionally enter the server-to-server identity parameters (Client ID, Issuer ID, SID, Realm) -  or configure them per-datasource later in the UI.
-1. Complete the rest of the installation wizard.
-
-### Azure CLI
-
-```azurecli
-az k8s-extension create \
-  --cluster-name "<cluster_name>" \
-  --resource-group "<resource_group>" \
-  --cluster-type connectedClusters \
-  --extension-type microsoft.arc.rag \
-  --name <extension_name> \
-  --configuration-settings \
-    sharepoint.sharepointIngestionEnabled=true \
-    sharepoint.s2s.keyvaultName="<keyvault_name>" \
-    sharepoint.s2s.kvCertSecretName="edgerag-sp-s2s-cert" \
-    sharepoint.s2s.kvCertPasswordSecretName="sp-cert-password" \
-    sharepoint.s2s.workloadIdentityClientId="<managed_identity_client_id>" \
-    sharepoint.s2s.kvTenantId="<tenant_id>" \
-    sharepoint.s2s.clientId="<sharepoint_client_id>" \
-    sharepoint.s2s.issuerId="<issuer_id>" \
-    sharepoint.s2s.defaultSid="<windows_sid>" \
-    sharepoint.s2s.realm="<sharepoint_realm>"
-```
-
-You can update server-to-server identity values after install without reinstalling:
-
-```azurecli
-az k8s-extension update \
-  --cluster-name "<cluster_name>" \
-  --resource-group "<resource_group>" \
-  --cluster-type connectedClusters \
-  --name <extension_name> \
-  --configuration-settings \
-    sharepoint.s2s.clientId="<sharepoint_client_id>" \
-    sharepoint.s2s.issuerId="<issuer_id>" \
-    sharepoint.s2s.defaultSid="<windows_sid>"
-```
+If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
 ## Create a SharePoint data source
 

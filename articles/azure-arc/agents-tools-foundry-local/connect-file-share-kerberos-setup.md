@@ -4,7 +4,7 @@ description: "Learn how to configure Active Directory, Kerberos, and NFS with kr
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 05/23/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a platform administrator, I want to set up NFS with Kerberos authentication so that I can securely ingest on-premises data with Agents and Tools with Foundry Local.
@@ -465,39 +465,16 @@ chmod +x validate-kerberos-prereqs.sh
 sudo ./validate-kerberos-prereqs.sh
 ```
 
-## Install Agents and Tools with Foundry Local with Kerberos
+## Deploy the extension with Kerberos enabled
 
-When you have all the prerequisites and infrastructure configurations in place, you're ready to install Agents and Tools with Foundry Local with Kerberos authentication enabled.
+After you complete this Kerberos setup, deploy the extension by using [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
-### Azure portal (recommended)
+During deployment:
 
-1. In the Azure portal, go to your Azure Local cluster.
-1. Go to **Extensions** > **Add** > **Agentic RAG**.
-1. In the **Data Source Connection / Authentication** section:
-   - Toggle **Enable Kerberos** to **On**.
-   - Enter the **Service Principal Name (SPN)**: `nfs/<service_account>@<YOUR_REALM>` (must match the principal in the keytab deployed to nodes).
-1. Complete the rest of the installation wizard.
+- In the Azure portal, on the **Configurations** tab, turn on **Kerberos** and enter the Kerberos SPN value from this article (for example, `nfs/<service_account>@<YOUR_REALM>`).
+- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md#azure-cli).
 
-### Azure CLI
-
-```azurecli
-az k8s-extension create \
-  --name <extension_name> \
-  --cluster-name <cluster_name> \
-  --resource-group <resource_group> \
-  --cluster-type connectedClusters \
-  --extension-type microsoft.arc.rag \
-  --configuration-settings \
-    kerberos.enabled=true \
-    kerberos.spn="nfs/<service_account>@<YOUR_REALM>" \
-    kerberos.minNodes=1
-```
-
-| CLI parameter | Description | Default |
-|---|---|---|
-| `kerberos.enabled` | Enable Kerberos authentication. | `false` |
-| `kerberos.spn` | Service Principal Name (required when enabled). | _(empty)_ |
-| `kerberos.minNodes` | Minimum nodes with `kerberos-provisioned=true` label required for install to succeed. | `1` |
+If you don't plan to use Kerberos, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
 ## Confirm completion
 

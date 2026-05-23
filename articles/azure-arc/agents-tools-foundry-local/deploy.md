@@ -94,7 +94,17 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. Set the values for the parameters in the following command and then run the command.
+1. Use one base deployment script and set optional parameters only for the connection types you enable.
+
+   Before you run the script, choose one deployment path:
+
+   - Kerberos only: set `enableKerberos=true` and `enableSharePoint=false`.
+   - SharePoint ingestion only: set `enableKerberos=false` and `enableSharePoint=true`.
+   - Kerberos and SharePoint ingestion: set both values to `true`.
+
+   If you enable Kerberos, complete [Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local](connect-file-share-kerberos-setup.md) first. If you enable SharePoint ingestion, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md) first.
+
+1. Set common deployment values:
 
    ```powershell
    $gpu_enabled = "true"  # Mark it true if you have GPUs available for Agents and Tools with Foundry Local
@@ -105,12 +115,13 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    $domainName = "arcrag.contoso.com" # App redirect URI and this domain name should be the same
    $sub = "<Subscription GUID>"
    $rg = "<Resource Group name>"
-   $k8scluster = "<Azure Kubernetes Service (ASK) Arc cluster name>"
+   $k8scluster = "<Azure Kubernetes Service (AKS) Arc cluster name>"
    $extension = "microsoft.arc.rag" # do not change
    $n = "arc-rag" # do not change
+   $foundryClientId = "<foundry_app_registration_client_id>"
    ```
 
-1. Set the values for your language model and deployment mode:
+1. Set values for the language model, deployment mode, and optional connection types:
 
    ```powershell
    # BYOM is mandatory - set your model endpoint
@@ -118,6 +129,19 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    $apiModel = "<Model Name>"
    $maxTokensInK = "<Max Tokens In K (e.g. 10, 20 etc.)>"
    $layerSelection = "combined" # Options: combined, agentic, knowledge
+
+   # Optional connection switches
+   $enableKerberos = "false"
+   $enableSharePoint = "false"
+
+   # Kerberos setting (required only when enableKerberos=true)
+   $kerberosSpn = "nfs/edgerag-svc@CONTOSO.COM"
+
+   # SharePoint settings (required only when enableSharePoint=true)
+   $keyVaultName = "<Key Vault name>"
+   $kvCertSecretName = "edgerag-sp-s2s-cert"
+   $kvCertPasswordSecretName = "sp-cert-password"
+   $workloadIdentityClientId = "<Managed identity client ID>"
    ```
 
 1. Create the BYOM API key secret:
@@ -131,18 +155,53 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
    The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. You must create this secret before you install the extension. For Foundry Local, retrieve the key by running `kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator -o jsonpath="{.data.primary-key}" | base64 -d`.
 
-1. After you populate the parameter values, deploy the Azure Arc extension by running the following command:
+1. After you populate the values, build configuration settings and deploy the Azure Arc extension:
 
    ```powershell
    az provider register --namespace Microsoft.KubernetesConfiguration
-   az feature register --namespace Microsoft.KubernetesConfiguration --name extensions 
+    az feature register --namespace Microsoft.KubernetesConfiguration --name extensions
 
-   az k8s-extension create --cluster-type connectedClusters --cluster-name $k8scluster --resource-group $rg --name $localextname --extension-type $extension --debug --release-train preview --auto-upgrade $autoUpgrade `
-       --configuration-settings isManagedIdentityRequired=true --configuration-settings gpu_enabled=$gpu_enabled --configuration-settings AgentOperationTimeoutInMinutes=30 `
-       --configuration-settings auth.tenantId=$tenantId --configuration-settings auth.clientId=$appId --configuration-settings ingress.domainname=$domainName `
-       --configuration-settings layerSelection=$layerSelection `
-       --configuration-settings byom.enabled="true" --configuration-settings byom.apiEndpoint=$apiEndpoint --configuration-settings byom.apiModel=$apiModel --configuration-settings byom.maxTokensInK=$maxTokensInK `
-       --configuration-settings foundryClientId="<foundry_app_registration_client_id>"
+    $config = @(
+       "isManagedIdentityRequired=true",
+       "gpu_enabled=$gpu_enabled",
+       "AgentOperationTimeoutInMinutes=30",
+       "auth.tenantId=$tenantId",
+       "auth.clientId=$appId",
+       "ingress.domainname=$domainName",
+       "layerSelection=$layerSelection",
+       "byom.enabled=true",
+       "byom.apiEndpoint=$apiEndpoint",
+       "byom.apiModel=$apiModel",
+       "byom.maxTokensInK=$maxTokensInK",
+       "foundryClientId=$foundryClientId"
+    )
+
+    if ($enableKerberos -eq "true") {
+       $config += @(
+          "kerberos.enabled=true",
+          "kerberos.spn=$kerberosSpn"
+       )
+    }
+
+    if ($enableSharePoint -eq "true") {
+       $config += @(
+          "sharepoint.sharepointIngestionEnabled=true",
+          "sharepoint.s2s.keyvaultName=$keyVaultName",
+          "sharepoint.s2s.kvCertSecretName=$kvCertSecretName",
+          "sharepoint.s2s.kvCertPasswordSecretName=$kvCertPasswordSecretName",
+          "sharepoint.s2s.workloadIdentityClientId=$workloadIdentityClientId"
+       )
+    }
+
+    az k8s-extension create `
+       --cluster-type connectedClusters `
+       --cluster-name $k8scluster `
+       --resource-group $rg `
+       --name $localextname `
+       --extension-type $extension `
+       --release-train preview `
+       --auto-upgrade $autoUpgrade `
+       --configuration-settings $config
    ```
 
 ----
