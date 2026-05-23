@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agents and Tools with Foundry Local extens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/18/2026
+ms.date: 05/23/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -30,7 +30,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 #### [Azure portal](#tab/azure-portal)
 
 1. In the [Azure portal](https://portal.azure.com/), go to the Azure Kubernetes cluster on Azure Local. 
-1. Select **Settings** > **Extensions** > **+ Add**, and **Agentic RAG** from the list.
+1. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
 
    :::image type="content" source="media/deploy/add-cluster-extension.png" alt-text="Screenshot of the extensions you can add from the cluster with Agentic RAG highlighted." lightbox="media/deploy/add-cluster-extension.png":::
 1. On the **Basics** tab, provide the following information:
@@ -42,28 +42,47 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Deployment name | Provide a name for the deployment.                           |
    | Region          | Select the region to deploy Agents and Tools with Foundry Local.                        |
    | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
-   | RAG components | Select the components to install: **Select all** (default), **Agentic Retrieval Engine**, or **Knowledge Sources Layer**. |
+
 
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details.":::
 
-1. Select **Next: Configuration**.
-1. On the Configuration tab, provide the following information:
+1. Select **Next: Configurations**.
+1. On the **Configurations** tab, provide the following information:
 
-   | Field      | Value                                                                                           |
-   |-----------------|-------------------------------------------------------------------------------------------------|
-   | Deployment mode | Select GPU mode or CPU mode depending on your available hardware.                               |
-   |**Inference model**||
-   |Language model name|Enter the name of your language model.|
-   |LLM endpoint|Enter the URL of your OpenAI-compatible LLM endpoint. For example, for Microsoft Foundry: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use the cluster-internal endpoint from your model deployment. |
-   |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
-   |**SSL settings**||
-   |SSL CNAME           | Provide the domain name for your system. This domain name is the same as redirect URI provided during app registration.|
-   |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application. By default, Agents and Tools with Foundry Local uses a self-signed SSL certificate to store under this name in the kubernetes secret store. After installation, you can update the certificate with an official signed certificate.               |
-   |**Access**||
-   | Entra app ID    | Provide the application ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
-   | Entra tenant ID | Provide tenant ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
+   | Field | Value |
+   |---|---|
+   | **RAG settings** | |
+   | RAG components | Select the components to install: **Select all** (default), **Agentic Retrieval Engine**, or **Knowledge Sources Layer**. |
+   | **Deployment mode** | |
+   | Deployment mode | Select **GPU** or **CPU** based on your available hardware. This setting applies to the Knowledge Sources layer. |
+   | **NFS connection (data source)** | |
+   | Kerberos | Optional. Select this option if you want to connect to an NFS server by using Kerberos authentication. |
+   | Kerberos SPN | Required only when **Kerberos** is selected. Enter the SPN in the format `service/host@REALM` (for example, `nfs/edgerag-svc@CONTOSO.COM`). |
+   | **SharePoint connection (data source)** | |
+   | SharePoint ingestion | Optional. Select this option if you want to connect to SharePoint by using Key Vault authentication. |
+   | Key Vault name | Required only when **SharePoint ingestion** is selected. Enter the Azure Key Vault name. |
+   | KV cert secret name | Required only when **SharePoint ingestion** is selected. Enter the Key Vault secret name that stores the certificate. |
+   | KV cert password secret name | Required only when **SharePoint ingestion** is selected. Enter the Key Vault secret name that stores the certificate password. |
+   | Workload identity client ID | Required only when **SharePoint ingestion** is selected. Enter the workload identity client ID (GUID). |
+   | **Inference model** | |
+   | Language model source | Select **Foundry Local** or **Bring your own**. |
+   | Application ID | Required only when **Foundry Local** is selected.  |
+   | Language model name | Required. Enter your deployed language model name. |
+   | LLM endpoint | Required. Enter your OpenAI-compatible endpoint URL. For example: `https://<Foundry_Resource_Name>.openai.azure.com/openai/deployments/<model_name>/chat/completions?api-version=<API_VERSION>`. For Foundry Local on Azure Local, use your cluster-internal endpoint. |
+   | Max token (K) | Required. Enter a value from 4K to 2048K. |
 
     :::image type="content" source="media/deploy/install-extension-configurations.png" alt-text="Screenshot of the configuration tab where you select the model type and other configurations.":::
+1. Select **Next: Access**.
+1. On the **Access** tab, provide the following information:
+
+   | Field | Value |
+   |---|---|
+   |**SSL settings**||
+   |SSL CNAME|Enter the domain name for your system. The domain name should match the redirect URI used during app registration and must not include the `https://` prefix. For example, `arcrag.contoso.com`.|
+   |Kubernetes SSL secret name|Enter the name of the Kubernetes secret to store the SSL certificate. By default, Agents and Tools with Foundry Local uses a self-signed SSL certificate in this secret. After installation, you can replace it with a signed certificate.|
+   |**Access**||
+   | Entra application ID|Enter the application ID from the enterprise application you registered for authentication.|
+   | Entra tenant ID|Enter the tenant ID from the enterprise application you registered for authentication.|
 
 1. Select **Review + create**.
 1. Review and validate the parameters you provided.
