@@ -469,7 +469,7 @@ After completing all steps, you should have these values ready for installation:
 
 ## Deploy the extension with SharePoint ingestion enabled
 
-After you complete this SharePoint setup, deploy the extension by using [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
+After you complete this SharePoint setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agents and Tools with Foundry Local](deploy.md) and the SharePoint-specific values in this section.
 
 During deployment:
 
