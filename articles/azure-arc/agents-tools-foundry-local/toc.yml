@@ -25,9 +25,9 @@ items:
         items:
           - name: Requirements
             href: requirements.md
-          - name: NFS with Kerberos authentication overview
+          - name: NFS with Kerberos authentication
             href: connect-file-share-kerberos-overview.md
-          - name: SharePoint Server-to-Server authentication overview
+          - name: SharePoint Server-to-Server authentication
             href: connect-sharepoint-overview.md
       - name: Deploy
         items:
@@ -41,13 +41,13 @@ items:
                 href: prepare-contributor-permission.md
               - name: Choose language model
                 href: prepare-language-model.md
-              - name: Create your model endpoint (optional)
+              - name: Create your model endpoint
                 href: prepare-model-endpoint.md
               - name: Verify NFS server
                 href: prepare-file-server.md
               - name: Connect NFS with Kerberos (optional)
                 href: connect-file-share-kerberos-setup.md
-              - name: Connect SharePoint Server server-to-server
+              - name: Connect SharePoint Server (optional)
                 href: connect-sharepoint-setup.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
@@ -113,15 +113,15 @@ items:
             href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/agents-tools-foundry-local/TOC.json&bc=/azure/azure-arc/agents-tools-foundry-local/breadcrumb/toc.json 
       - name: Reference
         items:
-          - name: Deployment parameter reference
+          - name: Deployment parameters
             href: deploy-reference.md
-          - name: NFS with Kerberos authentication reference
+          - name: NFS with Kerberos authentication 
             href: connect-file-share-kerberos-reference.md
-          - name: SharePoint Server-to-Server authentication reference
+          - name: SharePoint Server-to-Server authentication
             href: connect-sharepoint-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
-          - name: Chat UI configuration reference
+          - name: Chat UI configuration
             href: chat-experience-reference.md
           - name: Evaluation metrics
             href: evaluation-metrics.md
