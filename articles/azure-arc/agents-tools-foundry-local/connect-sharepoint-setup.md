@@ -30,7 +30,7 @@ Estimated time: approximately 2 hours.
 
 You must install two cluster-level components before enabling SharePoint in Agents and Tools with Foundry Local.
 
-### CSI Secrets Store Driver
+### Install CSI Secrets Store Driver
 
 The CSI driver syncs your certificate from Azure Key Vault into the Kubernetes cluster as a Kubernetes secret. Without it, the ingestion pod fails to start with `driver "secrets-store.csi.k8s.io" not found`.
 
@@ -59,7 +59,7 @@ az k8s-extension create \
     secrets-store-csi-driver.syncSecret.enabled=true
 ```
 
-### Workload Identity and OIDC issuer
+### Enable Workload Identity and OIDC issuer
 
 By using Workload Identity, the CSI driver authenticates to Azure Key Vault by using a federated Kubernetes ServiceAccount. The cluster doesn't store any client secrets.
 

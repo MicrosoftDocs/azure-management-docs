@@ -52,7 +52,7 @@ This server-to-server ingestion architecture uses certificate-based trust to pro
 - **Data-source-level isolation**: Different SharePoint sites can use different identities.
 - **Token caching**: JWTs are valid for 12 hours and refresh automatically.
 
-## Prerequisites for SharePoint-enabled deployment
+## Prerequisites summary
 
 Before you deploy Agents and Tools with Foundry Local with SharePoint enabled, make sure you have:
 

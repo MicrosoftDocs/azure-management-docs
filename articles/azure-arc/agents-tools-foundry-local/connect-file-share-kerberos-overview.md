@@ -47,7 +47,7 @@ When you create an NFS data source with Kerberos authentication:
 1. **Mount**: Kubelet on the node triggers the NFS mount, and `rpc.gssd` intercepts and obtains a Kerberos ticket from the keytab.
 1. **File access**: The pod reads `/mnt/data` as a normal directory with no Kerberos code in the pod.
 
-## Prerequisites checklist
+## Prerequisites summary
 
 Before you install Agents and Tools with Foundry Local with Kerberos enabled, make sure you have:
 

@@ -313,7 +313,7 @@ Agents and Tools with Foundry Local requires you to specify the NFS server by ho
 
 Kerberos authentication depends on correct DNS resolution and time synchronization between your nodes and domain controllers.
 
-### DNS: Forward and reverse DNS resolution required
+### Verify forward and reverse DNS resolution
 
 Kerberos requires both forward and reverse DNS. Without proper DNS, ticket requests can fail.
 
@@ -332,7 +332,7 @@ nslookup <domain_controller_fqdn>
 nslookup -type=SRV _kerberos._tcp.<your_domain>
 ```
 
-### Time sync: Clock skew must be less than 5 minutes
+### Ensure clock skew is less than 5 minutes
 
 ```bash
 # Enable NTP
