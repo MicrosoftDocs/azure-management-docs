@@ -4,10 +4,10 @@ description: "Learn how to configure certificates, Azure Key Vault, Workload Ide
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
 ---
 
 # Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local
@@ -84,6 +84,37 @@ az connectedk8s update \
   --resource-group <resource_group> \
   --enable-oidc-issuer
 ```
+
+### Verify network connectivity
+
+Before you continue, verify that cluster network access meets SharePoint and Key Vault requirements.
+
+Run these checks from a shell that can access your cluster with `kubectl`:
+
+```bash
+# Set target hosts
+SHAREPOINT_HOST="<sharepoint_fqdn>"
+KEYVAULT_HOST="<keyvault_name>.vault.azure.net"
+
+# Start a temporary pod for network tests
+kubectl run netcheck --image=busybox:1.36 --restart=Never -- sleep 300
+kubectl wait --for=condition=Ready pod/netcheck --timeout=90s
+
+# 1) DNS resolution for SharePoint
+kubectl exec netcheck -- nslookup "$SHAREPOINT_HOST"
+
+# 2) Reach SharePoint on 80 or 443 (use the one your environment uses)
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 80
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 443
+
+# 3) Reach Azure Key Vault on 443
+kubectl exec netcheck -- nc -zvw5 "$KEYVAULT_HOST" 443
+
+# Clean up
+kubectl delete pod netcheck --ignore-not-found
+```
+
+If any check fails, resolve DNS, firewall, proxy, or routing issues before you continue. These checks validate that pods can resolve and connect to SharePoint and Azure Key Vault.
 
 ## Step 2: Create the certificate
 
@@ -478,24 +509,20 @@ During deployment:
 
 If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
-## Create a SharePoint data source
+## Add a SharePoint data source
 
-Use this section to add a SharePoint Server data source in the developer portal and map it to the server-to-server identity settings you configured during installation.
+After you deploy Agents and Tools with Foundry Local and can access the developer portal, add your SharePoint Server data source.
 
-1. Open the developer portal.
-1. Go to **Data Sources** > **Add new data source**.
-1. Select **SharePoint Server** as the data source type.
-1. Enter:
-   - **SharePoint URL**: Your SharePoint web application URL (for example, `http://sharepoint.contoso.com`).
-   - **Folder Path**: Server-relative path to the document library (for example, `/sites/docs/Shared Documents`).
-1. If you didn't set server-to-server identity parameters during install, expand **Authentication** and enter:
-   - **Client ID**: The GUID from Step 5.
-   - **Issuer ID**: The GUID from Step 5.
-   - **Windows SID**: The SID from Step 5.
-   - **Realm**: Leave blank for auto-discovery, or enter the realm GUID.
-1. Select **Connect & Ingest**.
+For step-by-step instructions, see [Add a data source for Agents and Tools with Foundry Local](add-data-source.md).
 
-If you provide server-to-server identity values during installation, they serve as cluster-wide defaults. You can override any of them per data source -  per data source values take precedence when nonempty. This setup allows different data sources to connect to different SharePoint sites with different identities.
+When you add a SharePoint Server data source, you might need values collected in this article:
+
+- **Client ID**
+- **Issuer ID**
+- **Windows SID**
+- **Realm**
+
+For details on how installation defaults and settings you enter for each data source work together, see [Configuration precedence](connect-sharepoint-overview.md#configuration-precedence).
 
 ## Next step
 
