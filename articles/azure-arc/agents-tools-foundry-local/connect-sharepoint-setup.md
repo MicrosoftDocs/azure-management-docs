@@ -21,7 +21,6 @@ Before you begin, make sure you have:
 - Access to a Windows machine or SharePoint server for running PowerShell in Steps 2 and 5.
 - An Azure Key Vault, an Arc-enabled Kubernetes or AKS cluster, and permissions to create or manage a user-assigned managed identity.
 - A reachable SharePoint Server Subscription Edition environment where you can run SharePoint Management Shell as a Farm Administrator.
-- The required baseline setup completed in the [prerequisites checklist](connect-sharepoint-overview.md#prerequisites-checklist).
 
 Estimated time: approximately 2 hours.
 
