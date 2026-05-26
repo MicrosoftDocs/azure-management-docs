@@ -4,10 +4,10 @@ description: "Learn how to configure certificates, Azure Key Vault, Workload Ide
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 05/18/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
 ---
 
 # Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local
@@ -21,7 +21,6 @@ Before you begin, make sure you have:
 - Access to a Windows machine or SharePoint server for running PowerShell in Steps 2 and 5.
 - An Azure Key Vault, an Arc-enabled Kubernetes or AKS cluster, and permissions to create or manage a user-assigned managed identity.
 - A reachable SharePoint Server Subscription Edition environment where you can run SharePoint Management Shell as a Farm Administrator.
-- The required baseline setup completed in the [prerequisites checklist](connect-sharepoint-overview.md#prerequisites-checklist).
 
 Estimated time: approximately 2 hours.
 
@@ -31,7 +30,7 @@ Estimated time: approximately 2 hours.
 
 You must install two cluster-level components before enabling SharePoint in Agents and Tools with Foundry Local.
 
-### CSI Secrets Store Driver
+### Install CSI Secrets Store Driver
 
 The CSI driver syncs your certificate from Azure Key Vault into the Kubernetes cluster as a Kubernetes secret. Without it, the ingestion pod fails to start with `driver "secrets-store.csi.k8s.io" not found`.
 
@@ -60,7 +59,7 @@ az k8s-extension create \
     secrets-store-csi-driver.syncSecret.enabled=true
 ```
 
-### Workload Identity and OIDC issuer
+### Enable Workload Identity and OIDC issuer
 
 By using Workload Identity, the CSI driver authenticates to Azure Key Vault by using a federated Kubernetes ServiceAccount. The cluster doesn't store any client secrets.
 
@@ -84,6 +83,37 @@ az connectedk8s update \
   --resource-group <resource_group> \
   --enable-oidc-issuer
 ```
+
+### Verify network connectivity
+
+Before you continue, verify that cluster network access meets SharePoint and Key Vault requirements.
+
+Run these checks from a shell that can access your cluster with `kubectl`:
+
+```bash
+# Set target hosts
+SHAREPOINT_HOST="<sharepoint_fqdn>"
+KEYVAULT_HOST="<keyvault_name>.vault.azure.net"
+
+# Start a temporary pod for network tests
+kubectl run netcheck --image=busybox:1.36 --restart=Never -- sleep 300
+kubectl wait --for=condition=Ready pod/netcheck --timeout=90s
+
+# 1) DNS resolution for SharePoint
+kubectl exec netcheck -- nslookup "$SHAREPOINT_HOST"
+
+# 2) Reach SharePoint on 80 or 443 (use the one your environment uses)
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 80
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 443
+
+# 3) Reach Azure Key Vault on 443
+kubectl exec netcheck -- nc -zvw5 "$KEYVAULT_HOST" 443
+
+# Clean up
+kubectl delete pod netcheck --ignore-not-found
+```
+
+If any check fails, resolve DNS, firewall, proxy, or routing issues before you continue. These checks validate that pods can resolve and connect to SharePoint and Azure Key Vault.
 
 ## Step 2: Create the certificate
 
@@ -467,82 +497,31 @@ After completing all steps, you should have these values ready for installation:
 | **Realm** | `33334444-5555-6666-aaaa-bbbbccccdddd` | Step 5: `Get-SPAuthenticationRealm` |
 | **Windows SID** | `S-1-5-21-1234567890-2345678901-3456789012-1234` | Step 5: translated from AD account |
 
-## Install Agents and Tools with Foundry Local with SharePoint enabled
+## Deploy the extension with SharePoint ingestion enabled
 
-Use this section to install or update Agents and Tools with Foundry Local so SharePoint ingestion is enabled by using the certificate and identity values you collected earlier.
+After you complete this SharePoint setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agents and Tools with Foundry Local](deploy.md) and the SharePoint-specific values in this section.
 
-### Azure portal (recommended)
+During deployment:
 
-1. In the Azure portal, go to your cluster.
-1. Go to **Extensions** > **Add** > **Agentic RAG**.
-1. In the **Data Source Connection / Authentication** section, under **SharePoint S2S**:
+- In the Azure portal, on the **Configurations** tab, turn on **SharePoint ingestion** and enter the Key Vault and workload identity values collected in this article.
+- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md?tabs=azure-cli).
 
-   | Portal field | Enter this value |
-   |---|---|
-   | **Enable SharePoint Ingestion** | Toggle **On** |
-   | **Key Vault Name** | Your Key Vault name |
-   | **KV Cert Secret Name** | `edgerag-sp-s2s-cert` (pre-filled default) |
-   | **KV Cert Password Secret Name** | `sp-cert-password` (pre-filled default) |
-   | **Workload Identity Client ID** | Managed identity Client ID (from Step 4) |
-   | **Key Vault Tenant ID** | Usually auto-populated from your portal session |
+If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
 
-1. Optionally enter the server-to-server identity parameters (Client ID, Issuer ID, SID, Realm) -  or configure them per-datasource later in the UI.
-1. Complete the rest of the installation wizard.
+## Add a SharePoint data source
 
-### Azure CLI
+After you deploy Agents and Tools with Foundry Local and can access the developer portal, add your SharePoint Server data source.
 
-```azurecli
-az k8s-extension create \
-  --cluster-name "<cluster_name>" \
-  --resource-group "<resource_group>" \
-  --cluster-type connectedClusters \
-  --extension-type microsoft.arc.rag \
-  --name <extension_name> \
-  --configuration-settings \
-    sharepoint.sharepointIngestionEnabled=true \
-    sharepoint.s2s.keyvaultName="<keyvault_name>" \
-    sharepoint.s2s.kvCertSecretName="edgerag-sp-s2s-cert" \
-    sharepoint.s2s.kvCertPasswordSecretName="sp-cert-password" \
-    sharepoint.s2s.workloadIdentityClientId="<managed_identity_client_id>" \
-    sharepoint.s2s.kvTenantId="<tenant_id>" \
-    sharepoint.s2s.clientId="<sharepoint_client_id>" \
-    sharepoint.s2s.issuerId="<issuer_id>" \
-    sharepoint.s2s.defaultSid="<windows_sid>" \
-    sharepoint.s2s.realm="<sharepoint_realm>"
-```
+For step-by-step instructions, see [Add a data source for Agents and Tools with Foundry Local](add-data-source.md).
 
-You can update server-to-server identity values after install without reinstalling:
+When you add a SharePoint Server data source, you might need values collected in this article:
 
-```azurecli
-az k8s-extension update \
-  --cluster-name "<cluster_name>" \
-  --resource-group "<resource_group>" \
-  --cluster-type connectedClusters \
-  --name <extension_name> \
-  --configuration-settings \
-    sharepoint.s2s.clientId="<sharepoint_client_id>" \
-    sharepoint.s2s.issuerId="<issuer_id>" \
-    sharepoint.s2s.defaultSid="<windows_sid>"
-```
+- **Client ID**
+- **Issuer ID**
+- **Windows SID**
+- **Realm**
 
-## Create a SharePoint data source
-
-Use this section to add a SharePoint Server data source in the developer portal and map it to the server-to-server identity settings you configured during installation.
-
-1. Open the developer portal.
-1. Go to **Data Sources** > **Add new data source**.
-1. Select **SharePoint Server** as the data source type.
-1. Enter:
-   - **SharePoint URL**: Your SharePoint web application URL (for example, `http://sharepoint.contoso.com`).
-   - **Folder Path**: Server-relative path to the document library (for example, `/sites/docs/Shared Documents`).
-1. If you didn't set server-to-server identity parameters during install, expand **Authentication** and enter:
-   - **Client ID**: The GUID from Step 5.
-   - **Issuer ID**: The GUID from Step 5.
-   - **Windows SID**: The SID from Step 5.
-   - **Realm**: Leave blank for auto-discovery, or enter the realm GUID.
-1. Select **Connect & Ingest**.
-
-If you provide server-to-server identity values during installation, they serve as cluster-wide defaults. You can override any of them per data source -  per data source values take precedence when nonempty. This setup allows different data sources to connect to different SharePoint sites with different identities.
+For details on how installation defaults and settings you enter for each data source work together, see [Configuration precedence](connect-sharepoint-overview.md#configuration-precedence).
 
 ## Next step
 

@@ -4,15 +4,15 @@ description: "Learn how to add and manage data sources for Agents and Tools with
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 04/27/2026
+ms.date: 05/25/2026
 ms.subservice: edge-rag
-#CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
+#customer intent: As a developer or data scientist, I want to add a data source to Agents and Tools with Foundry Local so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
   - build-2025
 ---
-# Add data source for Agents and Tools with Foundry Local
+# Add a data source for Agents and Tools with Foundry Local
 
-Add and configure a data source for your Agents and Tools with Foundry Local chat solution by using the developer portal. Follow the step-by-step instructions to set up data ingestion, and define indexing parameters.
+Add and configure a data source for your Agents and Tools with Foundry Local chat solution by using the developer portal. Follow these step-by-step instructions to set up data ingestion and define indexing parameters.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -24,14 +24,15 @@ Before you begin:
   - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
   - [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md)
+- If you plan to add a SharePoint Server data source and didn't configure SharePoint server-to-server identity parameters during deployment, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md). You need the following values  to add a SharePoint Server data source: Client ID, Issuer ID, Windows SID, and Realm (optional).
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Set up data ingestion
 
 To get started, create a data source by using the local developer portal.
 
-1. Go to the developer portal using the domain name provided at deployment and app registration. For example: `https://arcrag.contoso.com`.
-1. Sign in with developer credentials that have both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned. If you have the right access configured, you're automatically  redirected to the developer portal.
+1. Go to the developer portal by using the domain name provided during deployment and app registration. For example: `https://arcrag.contoso.com`.
+1. Sign in with developer credentials that have both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned. If you have the right access configured, you're automatically redirected to the developer portal.
 1. Select **Get Started**.
 1. Go to the **Data** tab.
 1. Select **Add a data source**.
@@ -40,23 +41,36 @@ To get started, create a data source by using the local developer portal.
     | Field | Value |
     |---|---|
     | Name | Name for the data ingestion |
-    | Ingestion type|Basic or advanced document parsing|
-    | Data source (read only) | Network share |
+    | Ingestion type | Basic or advanced document parsing |
+    | Data source | Network share or SharePoint Server |
+    | **Network share** | |
     | Network File Share | Path to your network file server (NFS) share |
     | User ID | NFS user ID |
     | Group ID | NFS group ID |
+    | **SharePoint Server** | |
+    | SharePoint URL | Your SharePoint web application URL (for example, `http://sharepoint.contoso.com`) |
+    | Folder Path | Server-relative path to the document library (for example, `/sites/docs/Shared Documents`) |
 
    :::image type="content" source="media/add-data-source/source-data.png" alt-text="Screenshot of the source data tab where you define the ingestion type and data source.":::
+
+1. If you selected **SharePoint Server** as the data source and didn't configure server-to-server identity parameters during deployment, expand **Authentication** and enter:
+
+    | Field | Value |
+    |---|---|
+    | Client ID | GUID from your app principal registration |
+    | Issuer ID | GUID from your trusted token issuer registration |
+    | Windows SID | SID for the service account in `S-1-5-21-...` format |
+    | Realm | Leave blank for auto-discovery, or enter the realm GUID |
 
 1. Select **Next**.
 1. On the **Vector index** tab, provide the following information:
 
     | Field | Value |
     |---|---|
-    | Collection | Select the target collection for ingested data. Choose an existing collection or use the default `edgeragapp` collection. |
+    | Collection | Select the target collection for ingested data. Choose an existing collection, or use the default `edgeragapp` collection. |
     | Schedule updates | Frequency at which your data is synced for updates |
     | Chunk size | Select the appropriate chunk size |
-    | Chunk overlap |Select the appropriate chunk overlap |
+    | Chunk overlap | Select the appropriate chunk overlap |
 
     :::image type="content" source="media/add-data-source/configure-index.png" alt-text="Screenshot of the vector index tab where you configure chunk size and overlap.":::
 

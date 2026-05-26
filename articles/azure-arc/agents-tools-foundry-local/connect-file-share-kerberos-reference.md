@@ -7,24 +7,24 @@ ms.topic: reference
 ms.date: 05/17/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agents and Tools with Foundry Local.
 ---
 
 # NFS with Kerberos reference and troubleshooting for Agents and Tools with Foundry Local
 
-This article provides verification steps, troubleshooting guidance, network requirements, operational procedures, and Helm values reference for NFS with Kerberos authentication.
+This article provides verification steps, troubleshooting guidance, network requirements, operational procedures, and a Helm values reference for NFS with Kerberos authentication.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Verification
 
-After installation, verify the Kerberos setup is working.
+After installation, verify that the Kerberos setup works.
 
 ### Check which nodes are Kerberos-ready
 
 ```bash
 kubectl get nodes -l edge-rag/kerberos-ready=true
-# Should list all your prepared nodes
+# Should list all prepared nodes
 ```
 
 ### Check for failed nodes and reasons
@@ -62,7 +62,7 @@ kubectl logs -n arc-rag -l app=kerberos-validator --tail=20
 | **Ingestion fails:** "No Kerberos-ready nodes available" | All nodes are `kerberos-ready=false`. | Check DaemonSet logs: `kubectl logs -n arc-rag -l app=kerberos-validator`. |
 | **NFS mount fails:** `access denied by server` | Reverse DNS missing for NFS server, or NFS export doesn't allow `krb5p`. | Verify: `nslookup <nfs_server_ip>` returns FQDN. Check NFS export config. |
 | **NFS mount fails when using IP address** | Kerberos requires hostname, not IP. | Use the NFS server's FQDN (for example, `nfs-server.contoso.com`). |
-| **`kinit: Keytab contains no suitable keys`** | SPN mismatch between keytab and request. | Run `klist -kt /etc/krb5.keytab` and verify SPN matches exactly. |
+| **`kinit: Keytab contains no suitable keys`** | Service principal name (SPN) mismatch between keytab and request. | Run `klist -kt /etc/krb5.keytab` and verify that the SPN matches exactly. |
 | **`Clock skew too great`** | Node time differs from KDC by more than 5 minutes. | Enable NTP: `sudo timedatectl set-ntp true`. |
 | **`rpc.gssd` not running** | Service is stopped or failed to start. | Run `sudo systemctl restart rpc-gssd`. Check `journalctl -u rpc-gssd`. |
 | **Pod stuck in `Pending`** | No nodes match the `kerberos-ready=true` affinity. | Check node labels: `kubectl get nodes --show-labels | grep kerberos`. |
@@ -90,7 +90,7 @@ nc -zv <nfs_server_fqdn> 2049      # NFS
 
 ## Keytab rotation
 
-When your AD policy requires password rotation (typically every 90 days):
+When your Active Directory (AD) policy requires password rotation (typically every 90 days):
 
 ```bash
 # 1. Generate new keytab (while old keytab is still valid)
@@ -103,19 +103,19 @@ for NODE in <node_1> <node_2> <node_3>; do
   ssh ${NODE} "sudo chmod 600 /etc/krb5.keytab && sudo chown root:root /etc/krb5.keytab"
 done
 
-# 3. Verify -  DaemonSet detects the new keytab within 60 seconds
+# 3. Verify: DaemonSet detects the new keytab within 60 seconds
 kubectl get nodes -l edge-rag/kerberos-ready=true
 ```
 
 > [!NOTE]
-> After the AD password is reset, existing Kerberos TGTs remain valid for approximately 10 hours. Deploy the new keytab within this window for uninterrupted service. Running pods don't need to restart -  `rpc.gssd` re-reads the keytab on its next `kinit`.
+> After the AD password is reset, existing Kerberos TGTs remain valid for approximately 10 hours. Deploy the new keytab within this window for uninterrupted service. Running pods don't need to restart. `rpc.gssd` reads the keytab again on its next `kinit`.
 
 ## Add new nodes
 
 When adding a new worker node to the cluster:
 
 ```bash
-# 1. Join to AD domain
+# 1. Join the AD domain
 sudo realm join <YOUR_DOMAIN> -U <admin_user>@<YOUR_DOMAIN>
 
 # 2. Install packages
@@ -144,11 +144,11 @@ kubectl label node <new_node_name> edge-rag/kerberos-provisioned=true
 
 | Helm key | Type | Default | Description |
 |---|---|---|---|
-| `kerberos.enabled` | bool | `false` | Master toggle for Kerberos NFS authentication. |
-| `kerberos.spn` | string | `""` | Service Principal Name -  required when enabled. Example: `nfs/edgerag-svc@CONTOSO.COM`. |
+| `kerberos.enabled` | bool | `false` | Primary toggle for Kerberos NFS authentication. |
+| `kerberos.spn` | string | `""` | Service principal name. Required when enabled. Example: `nfs/edgerag-svc@CONTOSO.COM`. |
 | `kerberos.minNodes` | int | `1` | Minimum nodes with `kerberos-provisioned=true` label for pre-install validation. |
 | `kerberos.checkInterval` | int | `60` | DaemonSet health check polling interval (seconds). |
-| `skipKerberosValidations` | bool | `false` | Skip DaemonSet and pre-install hook. For development and test only -  don't use in production. |
+| `skipKerberosValidations` | bool | `false` | Skip DaemonSet and pre-install hook. For development and testing only. Don't use in production. |
 
 ## Related content
 
