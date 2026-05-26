@@ -30,7 +30,7 @@ This example shows how to create a new private dashboard with an assigned name.
 
 1. Select the text in the dashboard label and enter a name that helps you easily identify the custom dashboard.
 
-    :::image type="content" source="media/azure-portal-dashboards/dashboard-name.png" alt-text="Screenshot of an empty grid with the Tile Gallery.":::
+    :::image type="content" source="media/azure-portal-dashboards/dashboard-name.png" alt-text="Screenshot of an empty grid with the Tile Gallery." lightbox="media/azure-portal-dashboards/dashboard-name.png":::
 
 1. To save the dashboard, select **Save** in the page header.
 
@@ -45,13 +45,13 @@ Now, you can edit the example dashboard you created to add, resize, and arrange 
 
 ### Add tiles from the Tile Gallery
 
-To add tiles to a dashboard by using the Tile Gallery, follow these steps.
+To add tiles to a dashboard by using the Tile Gallery, follow these steps:
 
 1. Select **Edit** from the dashboard's page header.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-edit.png" alt-text="Screenshot of dashboard highlighting the Edit option.":::
 
-1. Browse the **Tile Gallery** or use the search field to find a certain tile. Select the tile you want to add to your dashboard.
+1. Browse the **Tile Gallery** or use the search field to find a specific tile. Select the tile you want to add to your dashboard.
 
    :::image type="content" source="media/azure-portal-dashboards/dashboard-tile-gallery.png" alt-text="Screenshot of the Tile Gallery.":::
 
@@ -65,7 +65,7 @@ To change the size of a tile, or to rearrange the tiles on a dashboard, follow t
 
 1. Select **Edit** from the page header.
 
-1. Select the context menu in the upper right corner of a tile. Then, choose a tile size. Tiles that support any size also include a "handle" in the lower right corner that you can use to drag the tile to the size you want.
+1. Select the context menu in the upper right corner of a tile. Then, choose a tile size. Tiles that support any size also include a handle in the lower right corner that you can use to drag the tile to the size you want.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-tile-resize.png" alt-text="Screenshot of dashboard with tile size menu open.":::
 
@@ -131,7 +131,7 @@ To remove a tile from a dashboard, use one of the following methods:
 
 To use an existing dashboard as a template for a new dashboard, follow these steps:
 
-1. Make sure that the dashboard view is showing the dashboard that you want to copy.
+1. Make sure that the dashboard view shows the dashboard that you want to copy.
 
 1. In the page header, select ![clone icon](./media/azure-portal-dashboards/dashboard-clone.png) **Clone**.
 
@@ -143,11 +143,11 @@ When you create a dashboard, it's private by default, which means you're the onl
 
 ### Open a shared dashboard
 
-To find and open a shared dashboard, follow these steps.
+To find and open a shared dashboard, follow these steps:
 
 1. Select the arrow next to the dashboard name.
 
-1. Select from the displayed list of dashboards. If the dashboard you want to open isn't listed:
+1. Select a dashboard from the displayed list. If the dashboard you want to open isn't listed:
 
     1. Select **Browse all dashboards**.
 
@@ -163,7 +163,7 @@ To find and open a shared dashboard, follow these steps.
 
 You can delete your private dashboards, or a shared dashboard that you created or have permissions to modify.
 
-To permanently delete a private or shared dashboard, follow these steps.
+To permanently delete a private or shared dashboard, follow these steps:
 
 1. Select the dashboard you want to delete from the list next to the dashboard name.
 
