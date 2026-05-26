@@ -27,7 +27,7 @@ When you upload your CloudFormation template, more permissions are requested, ba
 
   1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template must be uploaded.
 
-- For **Arc Onboarding**, our service requires **EC2 Read & Write** access in order to install the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview). You must also meet the [additional prerequisites for the ](onboard-multicloud-vms-arc.md#prerequisites)**[Arc onboarding](onboard-multicloud-vms-arc.md#prerequisites)**[ solution](onboard-multicloud-vms-arc.md#prerequisites).
+- For **Arc EC2 Onboarding**, our service requires **EC2 Read & Write** access in order to install the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview). You must also meet the [additional prerequisites for the ](onboard-multicloud-vms-arc.md#prerequisites)**[Arc onboarding](onboard-multicloud-vms-arc.md#prerequisites)**[ solution](onboard-multicloud-vms-arc.md#prerequisites).
 
 - For **Arc EKS Onboarding**, our service requires **EKS Read & Write** access in order to install the [Arc-enabled Kubernetes agent](/azure/azure-arc/kubernetes/conceptual-agent-overview). You must also meet the [additional prerequisites for the ](onboard-multicloud-vms-arc.md#prerequisites)**[Arc onboarding](onboard-multicloud-vms-arc.md#prerequisites)**[ solution](onboard-multicloud-vms-arc.md#prerequisites).
 
