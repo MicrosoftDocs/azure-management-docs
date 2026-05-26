@@ -4,7 +4,7 @@ description: Agents (preview) in Azure Copilot lets you complete optimization ta
 author: JnHs
 ms.author: jenhayes
 ms.date: 11/18/2025
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: concept-article
 
 # Customer intent: "As an Azure Copilot user, I want to understand how to use agents to help with optimization tasks, so that I can be more successful performing tasks in  my Azure tenant."

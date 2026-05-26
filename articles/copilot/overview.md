@@ -5,7 +5,7 @@ author: JnHs
 ms.author: jenhayes
 ms.reviewer: maghan
 ms.date: 11/18/2025
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: overview
 ms.custom:
   - ignite-2023
