@@ -59,7 +59,12 @@ Once the manifests are updated in the sources, Flux will reconcile the new API v
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
-
+- source-controller: v1.6.4-19
+- kustomize-controller: v1.6.1-20
+- helm-controller: v1.3.2-11
+- notification-controller: v1.6.0-16
+- image-automation-controller: v0.41.2-19
+- image-reflector-controller: v0.35.2-15
 
 Changes in this version include:
 
@@ -74,12 +79,7 @@ Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6
 - helm-controller: v1.3.2-8
 - notification-controller: v1.6.0-13
 - image-automation-controller: v0.41.2-14
-- image-reflector-controller: v0.35.2-12- source-controller: v1.6.4-19
-- kustomize-controller: v1.6.1-20
-- helm-controller: v1.3.2-11
-- notification-controller: v1.6.0-16
-- image-automation-controller: v0.41.2-19
-- image-reflector-controller: v0.35.2-15
+- image-reflector-controller: v0.35.2-12
 
 Changes in this version include:
 
