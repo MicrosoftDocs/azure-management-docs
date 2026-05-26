@@ -16,7 +16,7 @@ For more information about quotas, see [Quotas overview](quotas-overview.md).
 
 An Azure account with the Contributor role (or another role that includes Contributor access).
 
-Only paid subscriptions can requesst quota increases. For more information on the limitations, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits#managing-limits). 
+Only paid subscriptions can request quota increases. For more information on the limitations, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits#managing-limits). 
 
 
 ## Request a quota increase
@@ -31,14 +31,14 @@ You can submit a request for a quota increase directly from **My quotas**. For t
 1. On the Overview page, select a provider, like **Compute** or **Networking**.
 1. On the **My quotas** page, under **Quota name**, select the quota you want to increase. 
 1. Depending on the provider, you'll see a **Request increase** or an **Adjustable** column. 
-   - If there is a pencil icon or **Yes** with a pencil icon, you can select the pencil icon to request an increase for that quota.
+   - If there's a pencil icon or **Yes** with a pencil icon, you can select the pencil icon to request an increase for that quota.
       
      1. The **New Quota Request** window will open.
      1. Type in the number for the new quota and then select **Submit**.
      1. Your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes.
      1. If your request isn't fulfilled, you'll see a link to create a support request. 
        
-   - If there is support request icon or **No** with a support request icon, it is considered a non-adjustable quota and will will need to create a support request to request an increase. For more information, see [Request an increase for non-adjustable quotas](per-vm-quota-requests.md#request-an-increase-for-non-adjustable-quotas).
+   - If there's support request icon or **No** with a support request icon, it's considered a non-adjustable quota and will need to create a support request to request an increase. For more information, see [Request an increase for non-adjustable quotas](per-vm-quota-requests.md#request-an-increase-for-non-adjustable-quotas).
 
 ## Next steps
 
