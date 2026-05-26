@@ -3,7 +3,7 @@ title: Responsible AI FAQ for Azure Copilot
 description: Learn how Azure Copilot uses data and what to expect.
 ms.date: 11/18/2025
 ms.topic: faq
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
