@@ -1,7 +1,7 @@
 ---
 title: What's new for Flux v(GitOps) in Azure Arc enabled Kubernetes
 description: The release notes identify important updates and improvements in the microsoft.flux extension and important notices about changes.
-ms.date: 04/30/2026
+ms.date: 05/27/2026
 ms.topic: release-notes
 ---
 
@@ -52,10 +52,43 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
-## April 2026 - `microsoft.flux` version 1.21.1
+## May 2026 - `microsoft.flux` version 1.22.1
 
 > [!IMPORTANT]
 > If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4-14
+- kustomize-controller: v1.6.1-15
+- helm-controller: v1.3.2-8
+- notification-controller: v1.6.0-13
+- image-automation-controller: v0.41.2-14
+- image-reflector-controller: v0.35.2-12
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
+
+## May 2026 - `microsoft.flux` version 1.22.1
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4-19
+- kustomize-controller: v1.6.1-20
+- helm-controller: v1.3.2-11
+- notification-controller: v1.6.0-16
+- image-automation-controller: v0.41.2-19
+- image-reflector-controller: v0.35.2-15
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
+- Made Flux extension pods compliant with pod security standards.
+- Implemented design improvements for `WaitForReconciliation` logic in `fluxconfig-agent` and `fluxconfig-controller` to address bugs where provisioning state would get stuck in `Failed` state.
+- Added support for cosign verification in `source-controller`.
+
+## April 2026 - `microsoft.flux` version 1.21.1
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
