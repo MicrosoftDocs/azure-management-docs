@@ -188,10 +188,14 @@ You can run queries using [Resource Graph Explorer](/azure/governance/resource-g
 ```kusto
 resources
 | where subscriptionId == "<subscription ID>"
-| where id contains "microsoft.awsconnector" 
-| union (awsresources | where type == "microsoft.awsconnector/ec2instances" and subscriptionId =="<subscription ID>")
-| extend awsTags= properties.awsTags, azureTags = ['tags']
-| project subscriptionId, resourceGroup, type, id, awsTags, azureTags, properties 
+| where id contains "microsoft.awsconnector"
+| union (
+    awsresources
+    | where type in~ ("microsoft.awsconnector/ec2instances", "microsoft.awsconnector/eksclusters")
+    and subscriptionId == "<subscription ID>"
+)
+| extend awsTags = properties.awsTags, azureTags = ['tags']
+| project subscriptionId, resourceGroup, type, id, awsTags, azureTags, properties
 ```
 
 ### Query for all resources under a specific connector
