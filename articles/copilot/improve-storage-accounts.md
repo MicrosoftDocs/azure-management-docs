@@ -4,7 +4,7 @@ title: Manage and migrate storage accounts using Azure Copilot
 description: Learn how Azure Copilot can improve the security posture and data resiliency of storage accounts and help with storage migration solutions
 ms.date: 11/19/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure

@@ -4,7 +4,7 @@ description: Agents (preview) in Azure Copilot helps investigate Azure Monitor a
 author: JnHs
 ms.author: jenhayes
 ms.date: 1/12/2026
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: concept-article
 
 # Customer intent: "As an Azure Copilot user, I want to understand how to use agents to help investigate Azure Monitor alerts, so that I can be more successful performing tasks in  my Azure tenant."

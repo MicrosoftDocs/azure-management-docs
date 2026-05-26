@@ -5,7 +5,7 @@ author: JnHs
 ms.author: jenhayes
 ms.reviewer: duau
 ms.date: 11/21/2025
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: how-to
 ms.collection:
   - ce-skilling-ai-copilot

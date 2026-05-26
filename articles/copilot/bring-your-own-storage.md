@@ -4,7 +4,7 @@ description: Azure Copilot gives tenant administrators the option to store conve
 author: JnHs
 ms.author: jenhayes
 ms.date: 03/10/2026
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: concept-article
 
 # Customer intent: "As an Azure tenant administrator, I want to retain Azure Copilot conversation history within my organization, so that we can review and manage Azure Copilot conversation data."

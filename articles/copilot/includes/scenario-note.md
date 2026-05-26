@@ -1,7 +1,7 @@
 ---
 author: JnHs
 ms.author: jenhayes
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - build-2024
