@@ -4,7 +4,7 @@ description: Tenant administrators can control which Azure Copilot preview featu
 author: JnHs
 ms.author: jenhayes
 ms.date: 11/18/2025
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: overview
 
 # Customer intent: "As an Azure Copilot user, I want to manage preview feature availability, so that I have control over which features are available to users in my Azure tenant."

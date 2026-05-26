@@ -3,7 +3,7 @@ title: Troubleshoot your apps faster with App Service using Azure Copilot
 description: Learn how Azure Copilot can help you troubleshoot your web apps hosted with App Service.
 ms.date: 11/24/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - build-2024
 ms.author: jenhayes
