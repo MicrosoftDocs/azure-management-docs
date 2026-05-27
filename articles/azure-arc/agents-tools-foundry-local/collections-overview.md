@@ -36,7 +36,7 @@ The collection lifecycle follows these steps:
 
 | Stage | API | Description |
 |---|---|---|
-| **Create** | `POST /edgeai/collections` | Creates the collection and provisions 4 Milvus collections + Postgres tables. |
+| **Create** | `POST /edgeai/collections` | Creates the collection and provisions four Milvus collections and Postgres tables. |
 | **Ingest** | `POST /edgeai/ingestion/jobs/{job_id}` | Ingests documents into the collection. Specify `collectionName` in the request body. |
 | **Query** | `POST /edgeai/chat/completions` | Queries the collection using RAG. Specify `data_sources[0].parameters.index_name`. |
 | **Update** | `PATCH /edgeai/collections/{name}` | Updates the collection description (name is immutable). |
@@ -60,7 +60,7 @@ Agents and Tools with Foundry Local autocreates a default collection named `edge
 
 ## Collections and RBAC
 
-When accessed through the external endpoint (ingress), collection access is controlled by JSON Web Token (JWT) roles:
+When users access collections through the external endpoint (ingress), JSON Web Token (JWT) roles control access:
 
 | Role | Access level |
 |---|---|
@@ -83,7 +83,7 @@ Collections connect to the agentic layer through knowledge sources:
 
 **Agent → Knowledge base → Knowledge source (indexed_source_ref = "my-docs") → MCP server → Collection "my-docs"**
 
-The `indexed_source_ref` field on a knowledge source refers to a *collection name* when pointing to the built-in MCP server. This is the bridge between the agentic layer and the knowledge layer.
+The `indexed_source_ref` field on a knowledge source refers to a *collection name* when pointing to the built-in MCP server. This field is the bridge between the agentic layer and the knowledge layer.
 
 ## When to use multiple collections
 

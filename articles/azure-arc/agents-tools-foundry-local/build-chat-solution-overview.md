@@ -4,7 +4,7 @@ description: "Learn about configuring the Knowledge Layer in Agents and Tools wi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/04/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agents and Tools with Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
@@ -42,7 +42,7 @@ Before ingesting data, you can optionally create a **collection** to organize yo
 
 - If you don't specify a collection, data is ingested into the default `edgeragapp` collection.
 - To create a new collection, use the [Collections API](collections-overview.md) or specify a collection name during ingestion.
-- Multiple collections let you separate data by department, tenant, or use case, with per-collection Azure RBAC.
+- Use multiple collections to separate data by department, tenant, or use case, with per-collection Azure RBAC.
 
 For more information, see [Collections overview](collections-overview.md).
 
@@ -52,7 +52,7 @@ Before you start configuring your chat solution, complete the following steps:
 
 - **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources).  Make sure all your private data is in a network file system (NFS) share that's accessible from Agents and Tools with Foundry Local. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
-  Make sure that the files aren't password protected or otherwise encrypted for the Agents and Tools with Foundry Local application to be able to access the data.
+  Make sure that the files aren't password protected or otherwise encrypted so the Agents and Tools with Foundry Local application can access the data.
 
 - **Choose the right settings for data ingestion**. Before you add a data source in Agents and Tools with Foundry Local, choose the appropriate ingestion parsing settings, chunk settings, and sync frequency.
 
