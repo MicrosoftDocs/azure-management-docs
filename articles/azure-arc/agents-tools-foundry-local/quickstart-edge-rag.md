@@ -141,14 +141,22 @@ In this section, you create an AKS cluster and configure it for Agents and Tools
 
    If prompted, select **y** to install the extension "connectedk8s".
 
-1. Install the required certificate and trust manager:
+1. Install the required certificate and trust manager as an Azure Arc extension. This installation includes the trust-manager parameters required for Foundry Local certificate handling.
 
    ```azurecli
-
-    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml --wait  
-    helm repo add jetstack https://charts.jetstack.io --force-update  
-    start-sleep -Seconds 20 
-    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait 
+   az k8s-extension create `
+     --cluster-name $k8scluster `
+     --name "azure-cert-manager" `
+     --resource-group $rg `
+     --cluster-type connectedClusters `
+     --extension-type Microsoft.CertManagement `
+     --scope cluster `
+     --release-train stable `
+     --config config.enableGatewayAPI=true `
+     --config cert-manager.crds.keep=true `
+     --config trust-manager.defaultPackage.enabled=false `
+     --config trust-manager.secretTargets.enabled=true `
+     --config trust-manager.secretTargets.authorizedSecretsAll=true
    ```
 
 ## Create node pools

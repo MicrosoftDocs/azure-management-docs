@@ -56,11 +56,11 @@ The recommended model for most use cases is **gpt-oss-20b**. For step-by-step de
 
 ### Recommended models
 
-| Use case | Recommended model |
-|---|---|
-| General (CPU clusters) | `gpt-oss-20b` |
-| GPU clusters | `gpt-oss-20b` |
-| Graph RAG and agentic flows | `gpt-oss-20b` (good quality for entity extraction and tool calling) |
+| Use case | Recommended model | Runtime |
+|---|---|---|
+| Knowledge-only (`layerSelection=knowledge`) | `gpt-oss-20b` | `vllm` or `onnx-genai` |
+| Agentic or Combined (`layerSelection=agentic` or `combined`) | `gpt-oss-20b` | `vllm` (required for tool calling) |
+| RAG and entity extraction | `gpt-oss-20b` | `vllm` |
 
 ## Set up your endpoint
 

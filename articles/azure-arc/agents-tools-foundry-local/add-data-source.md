@@ -21,7 +21,7 @@ Add and configure a data source for your Agents and Tools with Foundry Local cha
 Before you begin:
 
 - Review the following articles:
-  - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+  - [Configure the Knowledge Layer](build-chat-solution-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
   - [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md)
 - If you plan to add a SharePoint Server data source and didn't configure SharePoint server-to-server identity parameters during deployment, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md). You need the following values  to add a SharePoint Server data source: Client ID, Issuer ID, Windows SID, and Realm (optional).
@@ -41,7 +41,6 @@ To get started, create a data source by using the local developer portal.
     | Field | Value |
     |---|---|
     | Name | Name for the data ingestion |
-    | Ingestion type | Basic or advanced document parsing |
     | Data source | Network share or SharePoint Server |
     | **Network share** | |
     | Network File Share | Path to your network file server (NFS) share |
@@ -80,6 +79,9 @@ To get started, create a data source by using the local developer portal.
 
 You can also perform data ingestion programmatically using the Ingestion API. When using the API, specify the target collection with the `collectionName` parameter in the request body.
 
+> [!NOTE]
+> After you create a collection, you must create a matching app role in your Microsoft Entra ID app registration and assign it to end users. Without this step, end users can ingest data but can't query the collection. For instructions, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
+
 ## Related content
 
-- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Configure the Knowledge Layer](build-chat-solution-overview.md)

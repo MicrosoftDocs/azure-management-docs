@@ -95,6 +95,55 @@ Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you 
 1. Select users and groups and assign the **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate. Assign both roles to the developers working on the chat solution.
 1. When complete, close the **Users and groups** page.
 
+## Create app roles for collection access
+
+The `EdgeRAGEndUser` role alone doesn't grant query access. Each end user also needs an app role whose **Value** exactly matches each collection name they can query.
+
+Start with the default `edgeragapp` collection that's created when you deploy the extension. If you don't specify a collection during ingestion, data is ingested into `edgeragapp`. After deployment, create and assign one matching app role for each additional collection you add.
+
+Create and assign collection app roles for `edgeragapp` and every additional collection before end users query data. Data ingestion succeeds without these roles, but queries fail with `403 Forbidden`.
+
+### Create a collection app role
+
+1. In the [Azure portal](https://portal.azure.com), go to **Microsoft Entra ID** > **App registrations** and select your Agents and Tools app registration.
+1. On the left-hand side menu, under **Manage**, select **App roles**.
+1. Select **Create app role**.
+1. Create an app role for the default `edgeragapp` collection or a collection you create after you install the extension. Use the following values:
+
+   | Field  | Value |
+   |--------|-------|
+    | Display name | A descriptive name (for example, *Default Collection* or *Finance Docs Collection*) |
+   | Allowed member types | **Users/Groups** |
+    | Value | The **exact collection name**. For the default collection, use `edgeragapp`. This value must match the collection name used in the API. |
+    | Description | Description of the collection access (for example, *Grants query access to the default edgeragapp collection*) |
+   | Do you want to enable this app role? | Checked |
+
+1. Select **Apply**.
+1. After deployment, if you create additional collections, repeat these steps for each collection (for example, `finance-docs`).
+
+### Assign users to collection app roles
+
+1. In the Microsoft Entra ID tenant, on the left-hand side menu under **Manage**, select **Enterprise applications**.
+1. Search for and select the *EdgeRag* application.
+1. On the left-hand side menu, select **Users and groups** > **Add user/group**.
+1. Select the users or groups who need access to the collection.
+1. Select the collection app role (for example, `edgeragapp` for the default collection).
+1. Complete the assignment.
+
+### Example
+
+The following table shows an example of collection app role assignments:
+
+| Collection name | App role value | Assigned users |
+|---|---|---|
+| `edgeragapp` | `edgeragapp` | All chat end users |
+| `finance-docs` | `finance-docs` | Finance team |
+| `hr-data` | `hr-data` | HR team |
+
+At query time, a user querying `edgeragapp` must have the `edgeragapp` app role in their token. The same rule applies to each additional collection (for example, `finance-docs`). Otherwise, the request is denied with `403 Forbidden`.
+
+For more information about how collections use RBAC, see [Collections and RBAC](collections-overview.md#collections-and-rbac).
+
 ## (Optional) Register a Foundry Local application
 
 If you use Foundry Local as your model endpoint, you need a second app registration to identify the Foundry inference service. This registration provides the `foundryClientId` value used for managed identity token scope (`<client_id>/.default`).
