@@ -20,7 +20,7 @@ This article provides a high-level overview of configuring the Knowledge Layer i
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Knowledge Layer configuration in the developer portal
+## Knowledge Layer configuration
 
 As part of Agents and Tools with Foundry Local, you deploy a local developer portal on the AKS cluster. Developers can access this portal to complete the following tasks:
 
