@@ -238,7 +238,7 @@ If you encounter issues, check the following common problems and solutions:
 | Knowledge source validation status is `failed` | Check `validation_error`. Verify the MCP server URL is reachable. Update via PATCH to trigger revalidation. |
 | Run status is `failed` | Check `last_error` on the run object. Common issues: BYOM endpoint unreachable, model timeout. |
 | `401 Unauthorized` | Token expired. Reacquire: `TOKEN=$(az account get-access-token ...)` |
-| `403 Forbidden` | Missing `EdgeRAGDeveloper` role on token. Check Entra ID app role assignments. |
+| `403 Forbidden` | Missing `EdgeRAGDeveloper` role on token (for management APIs), or missing collection-specific app role (for end-user queries). Check Entra ID app role assignments. For collection access, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access). |
 | `404 Not Found` on thread/message | Thread ownership is enforced; you can only access threads you created. |
 | Ingestion job stuck in `PENDING` | Check ingestion service logs. Verify NFS path is accessible from the cluster. |
 

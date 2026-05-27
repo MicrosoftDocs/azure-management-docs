@@ -95,6 +95,52 @@ Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you 
 1. Select users and groups and assign the **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate. Assign both roles to the developers working on the chat solution.
 1. When complete, close the **Users and groups** page.
 
+## Create app roles for collection access
+
+The `EdgeRAGEndUser` role alone doesn't grant access to query collections. Each end user also needs an app role whose **Value** matches the name of each collection they should access. Without collection-specific app roles, end users receive `403 Forbidden` when querying.
+
+> [!IMPORTANT]
+> This step is required for every collection you create. Data ingestion succeeds without collection app roles, but queries fail. Administrators must create these roles and assign users before end users can query a collection.
+
+### Create a collection app role
+
+1. In the [Azure portal](https://portal.azure.com), go to **Microsoft Entra ID** > **App registrations** and select your Agents and Tools app registration.
+1. On the left-hand side menu, under **Manage**, select **App roles**.
+1. Select **Create app role** and use the following values:
+
+   | Field  | Value |
+   |--------|-------|
+   | Display name | A descriptive name (for example, *Finance Docs Collection*) |
+   | Allowed member types | **Users/Groups** |
+   | Value | The **exact collection name** (for example, `finance-docs`). This value must match the collection name used in the API. |
+   | Description | Description of the collection access (for example, *Grants query access to the finance-docs collection*) |
+   | Do you want to enable this app role? | Checked |
+
+1. Select **Apply**.
+1. Repeat for each collection that end users need to access.
+
+### Assign users to collection app roles
+
+1. In the Microsoft Entra ID tenant, on the left-hand side menu under **Manage**, select **Enterprise applications**.
+1. Search for and select the *EdgeRag* application.
+1. On the left-hand side menu, select **Users and groups** > **Add user/group**.
+1. Select the users or groups who need access to the collection.
+1. Select the collection app role (for example, `finance-docs`).
+1. Complete the assignment.
+
+### Example
+
+The following table shows an example of collection app role assignments:
+
+| Collection name | App role value | Assigned users |
+|---|---|---|
+| `finance-docs` | `finance-docs` | Finance team |
+| `hr-data` | `hr-data` | HR team |
+
+At query time, a user querying the `finance-docs` collection must have the `finance-docs` app role in their token. Otherwise, the request is denied with `403 Forbidden`.
+
+For more information about how collections use RBAC, see [Collections and RBAC](collections-overview.md#collections-and-rbac).
+
 ## (Optional) Register a Foundry Local application
 
 If you use Foundry Local as your model endpoint, you need a second app registration to identify the Foundry inference service. This registration provides the `foundryClientId` value used for managed identity token scope (`<client_id>/.default`).

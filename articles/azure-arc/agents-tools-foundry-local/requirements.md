@@ -57,6 +57,18 @@ The following table lists the minimum hardware requirements for the virtual mach
 |---|---|
 | **GPU** | 2 x GPU-enabled VMs (one for text embedding, one for image processing). Recommended sizes: Standard_NC8_A2 or Standard_NC8_A16. 3 x CPU VMs - Minimum spec: 8 vCPUs, 32 GB - Recommended size: Standard_D8s_v3. Docling (document parser) runs on CPU - no dedicated GPU required.|
 
+### Minimum cluster node capacity
+
+Agents and Tools with Foundry Local deploys 60+ pods in `combined` mode (knowledge + agentic). The following table shows the minimum worker node capacity by mode:
+
+| Mode | CPU workers | GPU workers | Total vCPU | Total RAM |
+|---|---|---|---|---|
+| `knowledge` only | 2x Standard_D8s_v3 | 0-1 | 16 | 64 GB |
+| `combined` (knowledge + agentic) | 3x Standard_D8s_v3 | 1 | 24+ | 96+ GB |
+
+> [!NOTE]
+> On Azure Local (HaaS), scale node pools with `az aksarc nodepool scale --name <pool> --node-count <N>`.
+
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 
 ### Language model requirement

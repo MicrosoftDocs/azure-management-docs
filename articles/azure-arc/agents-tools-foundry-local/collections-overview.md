@@ -70,6 +70,8 @@ When accessed through the external endpoint (ingress), collection access is cont
 > [!IMPORTANT]
 > If a user has the `EdgeRAGEndUser` role but no collection-specific role assignments, they receive `403 Forbidden` when querying any collection. Ensure users are assigned app roles matching the collection names they need to access.
 
+For step-by-step instructions on creating collection-specific app roles, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
+
 *RBAC is bypassed* when using port-forwarding or internal Dapr calls (development/testing only).
 
 ## Collections and knowledge sources

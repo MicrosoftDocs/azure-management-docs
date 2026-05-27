@@ -80,6 +80,9 @@ To get started, create a data source by using the local developer portal.
 
 You can also perform data ingestion programmatically using the Ingestion API. When using the API, specify the target collection with the `collectionName` parameter in the request body.
 
+> [!NOTE]
+> After you create a collection, you must create a matching app role in your Microsoft Entra ID app registration and assign it to end users. Without this step, end users can ingest data but can't query the collection. For instructions, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
+
 ## Related content
 
 - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)

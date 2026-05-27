@@ -40,25 +40,29 @@ From the driver machine, install and configure MetalLB for the Azure Arc Azure K
 
 1. **Install observability dependency modules**
 
-   `Microsoft.iotoperations.platform` is a simple extension that installs certificate manager and trust manager modules. Run the following command to install the extension.
+   Install the certificate manager and trust manager as an Azure Arc extension. This installation includes the trust-manager parameters required for Foundry Local certificate handling.
 
 	```powershell
 	$sub = "<Subscription GUID>"
 	$rg = "<Resource Group name>"
 	$k8scluster = "<AKS Arc cluster name>"
-	az k8s-extension create -g $rg -c $k8scluster -t connectedClusters --scope cluster --name "cert-manager" --release-namespace "cert-manager" --release-train preview --extension-type "Microsoft.iotoperations.platform" --debug
+	az k8s-extension create `
+	  --cluster-name $k8scluster `
+	  --name "azure-cert-manager" `
+	  --resource-group $rg `
+	  --cluster-type connectedClusters `
+	  --extension-type Microsoft.CertManagement `
+	  --scope cluster `
+	  --release-train stable `
+	  --config config.enableGatewayAPI=true `
+	  --config cert-manager.crds.keep=true `
+	  --config trust-manager.defaultPackage.enabled=false `
+	  --config trust-manager.secretTargets.enabled=true `
+	  --config trust-manager.secretTargets.authorizedSecretsAll=true
 	```
 
-    if the `Microsoft.iotoperations.platform` extension isn't available in your region, use following steps to install the required certificate and trust manager.
-
-	```powershell
-    # Install Cert-Manager and Trust-Manager 
-
-    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml --wait  
-    helm repo add jetstack https://charts.jetstack.io --force-update  
-    start-sleep -Seconds 20 
-    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait 
-    ```
+   > [!IMPORTANT]
+   > The `trust-manager.secretTargets.enabled` and `trust-manager.secretTargets.authorizedSecretsAll` parameters are required for Foundry Local to properly manage TLS certificates. Installing cert-manager without these parameters causes SSL certificate verification failures.
 
 ## Next step
 
