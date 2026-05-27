@@ -148,6 +148,9 @@ cat <<EOF | kubectl apply -f -
       name: selfsigned-cluster-ca     
       kind: ClusterIssuer
     privateKey:
+      algorithm: RSA
+      encoding: PKCS1
+      size: 4096
       rotationPolicy: Always       
 EOF
 ```
