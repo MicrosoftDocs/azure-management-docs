@@ -51,7 +51,7 @@ az k8s-extension create \
   --extension-type "microsoft.certmanagement" \
 ```
 
-You can add `--auto-upgrade-minor-version true` to automatically receive minor version updates, which include new features and non-breaking changes. Otherwise, you can [manually update the extension](extensions.md#upgrade-an-extension-instance) when needed to get the latest features and fixes.
+You will automatically receive minor version updates, which include new features and non-breaking changes. If you prefer to [manually update the extension](extensions.md#upgrade-an-extension-instance) when needed to get the latest features and fixes, you can add `--auto-upgrade-minor-version false`.
 
 After the Azure CLI confirms that the installation was successful, [verify that the components are running in your cluster](cert-manager-monitor-troubleshoot.md#confirm-that-pods-and-components-are-running).
 
