@@ -57,7 +57,7 @@ After the Azure CLI confirms that the installation was successful, [verify that 
 
 ### Restricted PSA environments
 
-Cert-manager for Azure Arc-enabled Kubernetes requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards (PSA) where privileged access isn't permitted, log collection into Azure can be disabled to comply with security requirements.
+Cert-manager for Azure Arc-enabled Kubernetes requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards where privileged access isn't permitted by PSA, log collection into Azure can be disabled to comply with security requirements.
 
 To disable log collection, use `--set global.telemetry.logs.enabled=false`. This prevents log volumes from being set up and removes the need for privileged access, while metrics collection continues as normal.
 
@@ -89,7 +89,7 @@ helm uninstall trust-manager -n "your namespace" --ignore-not-found
 
 After the cert-manager for Arc-enabled Kubernetes extension is deployed, configure how certificates should be issued, then request a certificate for a workload. At a high level, the steps are:
 
-1. Create an Issuer or ClusterIssuer resource to specify a Certificate Authority (CA) that will generate signed certificates. This could be a self-signed certificate authority (CA), an account registered with an Automated Certificate Management Environment (ACME) Certificate Authority server such as Let's Encrypt (or others), or a Certificate Authority whose certificate and private key are stored inside the cluster as a Kubernetes Secret.
+1. Create an Issuer or ClusterIssuer resource to specify a Certificate Authority (CA) that will generate signed certificates. This could be a self-signed CA, an account registered with an Automated Certificate Management Environment (ACME) CA server such as Let's Encrypt (or others), or a CA whose certificate and private key are stored inside the cluster as a Kubernetes Secret.
 1. Create a Certificate resource that requests a TLS certificate and includes the fields that are used to generate Certificate Signing Requests (CSRs), which are then fulfilled by the issuer type referenced on the resource for a specific domain or use.
 1. Let cert-manager fulfill the request, which results in a signed certificate and private key being stored in a Kubernetes secret that your application can use.
 1. Optionally, if your scenario requires custom trust roots across namespaces, use trust-manager to distribute the custom CA certificates cluster-wide.
