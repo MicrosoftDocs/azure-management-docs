@@ -57,7 +57,7 @@ After the Azure CLI confirms that the installation was successful, [verify that 
 
 ### Restricted PSA environments
 
-Cert-manager for Azure Arc-enabled Kubernetes requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards (PSA) where privileged access isn't permitted, log collection into Azure can be disabled to comply with security requirements.
+Cert-manager for Azure Arc-enabled Kubernetes requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards where privileged access isn't permitted by PSA, log collection into Azure can be disabled to comply with security requirements.
 
 To disable log collection, use `--set global.telemetry.logs.enabled=false`. This prevents log volumes from being set up and removes the need for privileged access, while metrics collection continues as normal.
 
