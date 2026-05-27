@@ -102,7 +102,7 @@
       },
      {
         "source_path_from_root": "/articles/azure-portal/recover-shared-deleted-dashboard.md",
-        "redirect_url": "/azure/azure-portal/dashboard-hub",
+        "redirect_url": "/azure/azure-portal-dashboards",
         "redirect_document_id": false
       },
      {
@@ -123,6 +123,11 @@
      {
         "source_path_from_root": "/articles/azure-portal/quickstart-portal-dashboard-powershell.md",
         "redirect_url": "/azure/azure-portal/azure-portal-dashboards-create-programmatically",
+        "redirect_document_id": false
+      },
+     {
+        "source_path_from_root": "/articles/azure-portal/dashboard-hub.md",
+        "redirect_url": "/azure/azure-portal/azure-portal-dashboards",
         "redirect_document_id": false
       },
       {

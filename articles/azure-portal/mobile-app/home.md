@@ -1,7 +1,7 @@
 ---
 title: Azure mobile app Home
 description: Azure mobile app Home surfaces the most essential information and the resources you use most often.
-ms.date: 01/21/2026
+ms.date: 05/26/2026
 ms.topic: concept-article
 # Customer intent: As a mobile user managing Azure resources, I want to customize my app home screen with essential display cards, so that I can quickly access and organize the tools and information I use most often.
 ---
@@ -25,7 +25,6 @@ Current card options include:
 - **Cloud Shell**: Quick access to the [Cloud Shell terminal](cloud-shell.md).
 - **Recent resources**: A list of your four most recently viewed resources, with the option to see all.
 - **Favorites**: A list of the resources you've added to your favorites, and the option to see all.
-- **Dashboards (preview)**: Access to [shared dashboards](../dashboard-hub.md).
 
 You also see the **Copilot** icon, which you can use to [launch Azure Copilot](azure-copilot.md).
 

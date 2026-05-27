@@ -3,7 +3,7 @@ title: Discover Insights About Your Azure Storage Estate with Azure Storage Disc
 description: Learn how Azure Copilot, in combination with Azure Storage Discovery, uncovers insights about your storage estate not available anywhere else.
 ms.date: 04/02/2026
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.author: fauhse
 author: fauhse
 # Customer intent: "As a storage administrator or IT leader, I want to utilize an AI assistant to understand my storage estate, improve the security posture and reduce costs of storage accounts, so that I can efficiently manage and optimize my cloud storage resources."
