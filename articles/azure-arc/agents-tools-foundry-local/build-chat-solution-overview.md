@@ -14,11 +14,13 @@ ms.custom:
 
 # Configure the Knowledge Layer for Agents and Tools with Foundry Local
 
+The Knowledge Layer is the data foundation for Agents and Tools with Foundry Local. It ingests and chunks your source content, stores vectors and metadata in collections, and retrieves relevant context at query time so responses are grounded in your organization’s data. This layer is important because it directly determines chat quality, relevance, and access control through collection-level Azure role-based access control (Azure RBAC).
+
 This article provides a high-level overview of configuring the Knowledge Layer in Agents and Tools with Foundry Local, including data ingestion, collections, and data querying.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Configuring the solution in the developer portal
+## Knowledge Layer configuration in the developer portal
 
 As part of Agents and Tools with Foundry Local, you deploy a local developer portal on the AKS cluster. Developers can access this portal to complete the following tasks:
 
@@ -40,7 +42,7 @@ Before ingesting data, you can optionally create a **collection** to organize yo
 
 - If you don't specify a collection, data is ingested into the default `edgeragapp` collection.
 - To create a new collection, use the [Collections API](collections-overview.md) or specify a collection name during ingestion.
-- Multiple collections let you separate data by department, tenant, or use case, with per-collection RBAC.
+- Multiple collections let you separate data by department, tenant, or use case, with per-collection Azure RBAC.
 
 For more information, see [Collections overview](collections-overview.md).
 
@@ -52,16 +54,15 @@ Before you start configuring your chat solution, complete the following steps:
 
   Make sure that the files aren't password protected or otherwise encrypted for the Agents and Tools with Foundry Local application to be able to access the data.
 
-- **Choose the right settings for data ingestion**. Before you add a data source in Agents and Tools with Foundry Local, choose the appropriate ingestion type, chunk settings, and sync frequency.
+- **Choose the right settings for data ingestion**. Before you add a data source in Agents and Tools with Foundry Local, choose the appropriate ingestion parsing settings, chunk settings, and sync frequency.
 
-### Ingestion type
+### Ingestion parsing
 
-When you're working with documents that include tables and charts, it's important to choose the right parsing approach during ingestion. Agents and Tools with Foundry Local gives you two options for ingestion:
+During ingestion, Agents and Tools with Foundry Local parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
 
-- **Basic**: Quickly extracts free-form text from your documents. This is the default option that's relatively fast and efficient, but it might not capture the structure of tables, charts, or images.
-- **Advanced**: Goes deeper by extracting text structure, tables, images, and other elements. It's slower than basic parsing, but you get higher accuracy and fidelity, especially for complex documents.
+Expect ingestion time to vary based on document complexity and size. Documents with richer structure usually take longer to process, but they produce higher-fidelity content for retrieval and grounding.
 
-Pick the option that best matches your needs. If you're after speed, use basic. If you need detailed, structured data, use advanced parsing. For more information, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
+For parsing details and supported behaviors, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
 
 ### Chunk settings
 
@@ -95,7 +96,6 @@ When you chunk data, consider these factors:
 You can also perform data ingestion programmatically by using the REST APIs:
 
 - [Collections API](collections-overview.md) — Create and manage collections before ingesting.
-
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
 - Create as many data ingestions as you'd like. Data is vectorized and stored in the collection you specify (or the default `edgeragapp` collection if none is specified). You can create multiple collections to organize data by domain, department, or use case.
 
@@ -110,22 +110,18 @@ A critical part of prompt engineering is providing the right system prompt and m
 - To choose the right system prompt, see [Foundry Tools - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
 - For information and guidance about choosing model and search parameters, see [Search type parameters](search-types.md#search-type-parameters).
 
-### Chatting with Agents and Tools with Foundry Local
-
-Agents and Tools with Foundry Local offers two chat experiences:
-
-- **Knowledge-based chat**: Chat with the model using your own ingested data as context. This means the model’s answers are based on your organization’s documents and data sources, so you get responses that are relevant and grounded in your latest information.
-- **Model chat**: Chat directly to the language model, without using your ingested data as context. This is helpful when you want to ask general questions, test the model’s raw capabilities, or just see how it responds without any extra information.
-
-Switch between knowledge-based chat and model chat depending on what you need.
-
 ### Data querying by using REST APIs
 
 In addition to the developer portal, you can use the REST APIs to configure the chat solution, such as providing the system message and model parameters.
 
 ### Consuming the chat endpoint
 
-After you set up data ingestion and you're satisfied with the chat solution as the prompt engineer, you can integrate the chat endpoint in downstream line-of-business applications. Alternately, end users can use the chat application provided out-of-the-box to get started quickly. For more information, see [Test the chat solution for Agents and Tools with Foundry Local](test-end-user-app.md).
+After you validate data ingestion and prompt quality, integrate the chat endpoint into your line-of-business applications, or use the out-of-the-box chat app to get started quickly. To use chat, each end user needs two Microsoft Entra app roles: EdgeRAGEndUser and a collection-specific app role whose value matches the collection name (for example, the default `edgeragapp`). If a user is missing the matching collection role, the query fails with a 403 error.
+
+For more information, see the following articles:
+
+- [Chat in Agents and Tools with Foundry Local](chat-experience.md)
+- [Test the chat solution for Agents and Tools with Foundry Local](test-end-user-app.md).
 
 If you want to integrate the chat endpoint in one of your line-of-business applications, use the  REST APIs.
 
