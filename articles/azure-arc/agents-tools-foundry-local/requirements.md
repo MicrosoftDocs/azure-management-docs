@@ -61,7 +61,7 @@ For more information, see [Resource limits, VM sizes, and regions for AKS on Win
 
 ### Language model requirement
 
-Agents and Tools with Foundry Local doesn't bundle language models. You must provide an language model endpoint that exposes an OpenAI-compatible chat completions API. The LLM runs outside the Agents and Tools with Foundry Local deployment. The LLM within the cluster consumes no GPU.
+Agents and Tools with Foundry Local doesn't bundle language models. You must provide a language model endpoint that exposes an OpenAI-compatible chat completions API. The LLM runs outside the Agents and Tools with Foundry Local deployment. The LLM within the cluster consumes no GPU.
 
 The two GPUs in the cluster are used for embedding models. Docling runs on CPU:
 

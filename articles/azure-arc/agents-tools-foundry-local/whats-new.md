@@ -44,7 +44,7 @@ Deploy exactly what you need with the new `layerSelection` parameter:
 
 **Foundry Local or BYOM endpoints required**
 
-Phi-3.5 and Mistral-7B is no longer bundled with the extension. All deployments now require a language model endpoint. Use a Foundry Local endpoint on Azure Local as the recommended option, or use an external BYOM endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry.
+Phi-3.5 and Mistral-7B are no longer bundled with the extension. All deployments now require a language model endpoint. Use a Foundry Local endpoint on Azure Local as the recommended option, or use an external BYOM endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry.
 
 **GPU Count Reduced**
 
