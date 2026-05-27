@@ -20,7 +20,13 @@ This article shows how to deploy the cert-manager for Arc-enabled Kubernetes (pr
 Before installing CME, ensure you meet the following prerequisites:
 
 - An Azure account. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- An Arc-enabled Kubernetes cluster deployed in a [supported region](cert-manager-overview.md#regional-support). For best results, use a [Kubernetes distribution that has been validated for use with cert-manager for Arc-enabled Kubernetes](cert-manager-overview.md#validated-arc-enabled-kubernetes-distributions). If you haven't already connected your cluster to Azure Arc, [follow our quickstart](quickstart-connect-cluster.md). Take note of the cluster name and Azure resource group, as you'll need these to install the extension.
+- An Arc-enabled Kubernetes cluster deployed in a [supported region](cert-manager-overview.md#regional-support). For best results, use a [Kubernetes distribution that has been validated for use with cert-manager for Arc-enabled Kubernetes](cert-manager-overview.md#validated-arc-enabled-kubernetes-distributions). If you haven't already connected your cluster to Azure Arc, [follow our quickstart](quickstart-connect-cluster.md). Set environment variables for the cluster name and Azure resource group, as you'll need these to install the extension.
+
+  ```azurecli
+  export CLUSTER_NAME="AzureArcTest1"
+  export RESOURCE_GROUP="AzureArcTest"
+  ```
+
 - The **Azure Connected Machine Resource Administrator** or an equivalent role on the cluster resource that allows you to deploy extensions.
 - The latest version of Azure CLI.
 - The latest version of the `connectedk8s` and `k8s-extension` Azure CLI extensions. Run these commands to install or upgrade the extensions:
@@ -48,7 +54,7 @@ az k8s-extension create \
   --cluster-name ${CLUSTER_NAME} \
   --cluster-type connectedClusters \
   --name "azure-cert-management" \
-  --extension-type "microsoft.certmanagement" \
+  --extension-type "microsoft.certmanagement"
 ```
 
 You will automatically receive minor version updates, which include new features and non-breaking changes. If you prefer to [manually update the extension](extensions.md#upgrade-an-extension-instance) when needed to get the latest features and fixes, you can add `--auto-upgrade-minor-version false`.
@@ -90,7 +96,7 @@ helm uninstall trust-manager -n "your namespace" --ignore-not-found
 After the cert-manager for Arc-enabled Kubernetes extension is deployed, configure how certificates should be issued, then request a certificate for a workload. At a high level, the steps are:
 
 1. Create an Issuer or ClusterIssuer resource to specify a Certificate Authority (CA) that will generate signed certificates. This could be a self-signed CA, an account registered with an Automated Certificate Management Environment (ACME) CA server such as Let's Encrypt (or others), or a CA whose certificate and private key are stored inside the cluster as a Kubernetes Secret.
-1. Create a Certificate resource that requests a TLS certificate and includes the fields that are used to generate Certificate Signing Requests (CSRs), which are then fulfilled by the issuer type referenced on the resource for a specific domain or use.
+1. Create a Certificate resource that requests a TLS certificate request and includes the fields that are used to generate Certificate Signing Requests (CSRs), which are then fulfilled by the issuer type referenced on the resource for a specific domain or use.
 1. Let cert-manager fulfill the request, which results in a signed certificate and private key being stored in a Kubernetes secret that your application can use.
 1. Optionally, if your scenario requires custom trust roots across namespaces, use trust-manager to distribute the custom CA certificates cluster-wide.
 
