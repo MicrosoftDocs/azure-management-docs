@@ -4,7 +4,7 @@ description: "Learn about the Azure Arc-enabled Kubernetes extension Agents and 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -28,12 +28,13 @@ The platform is built on three components that work together:
 | Component | What it does |
 |---|---|
 | [**Local agentic RAG**](#local-agentic-rag) | AI agent orchestration with knowledge bases, knowledge sources, and an MCP server for multistep reasoning over your data. |
-| [**Local chat experience**](#local-chat-experience) | A built-in chat UI for interacting with agents, managing conversations, and viewing citations. No custom frontend is required. |
 | [**Local knowledge sources**](#local-knowledge-sources) | Data ingestion, embedding, and retrieval pipeline that indexes your on-premises documents into searchable collections. |
+| [**Local chat experience**](#local-chat-experience) | A built-in chat UI for interacting with agents, managing conversations, and viewing citations. No custom frontend is required. |
 
 Additional platform capabilities include:
 
-- **Bring Your Own Model (BYOM)** - Connect any OpenAI-compatible language model endpoint (via Foundry Local on Azure Local or Microsoft Foundry).
+- **Foundry Local language model endpoint (recommended)** - Use a Foundry Local on Azure Local endpoint to run the language model on the same Azure Arc-connected cluster as the extension.
+- **Bring Your Own Model (BYOM)** - Connect an external language model endpoint that supports the OpenAI-compatible chat completions API, such as an endpoint deployed in Microsoft Foundry.
 - **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) running locally on two GPUs. Docling (document parser) runs on CPU.
 - **Independent deployment modes** - Deploy the full platform, or just the agentic layer or knowledge layer separately.
 - **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
@@ -57,21 +58,6 @@ You can deploy the agentic layer together with the knowledge layer or by itself.
 
 For more information, see [Agentic layer overview](agentic-overview.md).
 
-### Local chat experience
-
-Agents and Tools with Foundry Local includes a built-in chat UI that provides a ready-to-use interface for interacting with agents. The chat UI is a static React app served by nginx that communicates with the agents runtime through the Foundry Agents API.
-
-The chat experience provides:
-
-- **Conversation management** - create, rename, delete, and browse conversations in a sidebar.
-- **Streaming responses** - real-time assistant responses via Server-Sent Events (SSE).
-- **Citations and sources** - view the sources the agent used to generate each response.
-- **Authentication** - optional Entra ID integration for user sign-in, with token-based authorization handled by the backend.
-
-The chat UI handles the browser experience only. Model orchestration, tool invocation, token validation, and data scoping are handled by the agents runtime and backend services.
-
-For more information, see [Configure the Knowledge Layer](build-chat-solution-overview.md).
-
 ### Local knowledge sources
 
 The knowledge layer provides a turnkey data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
@@ -86,6 +72,21 @@ Key capabilities:
 Access is controlled through Azure RBAC to prevent unauthorized access to ingested data.
 
 For more information, see [Collections overview](collections-overview.md) and [Search types](search-types.md).
+
+### Local chat experience
+
+Agents and Tools with Foundry Local includes a built-in chat solution that provides a ready-to-use interface for interacting with agents. The chat solution is a static React app served by nginx that communicates with the agents runtime through the Foundry Agents API.
+
+The chat solution provides:
+
+- **Conversation management** - create, rename, delete, and browse conversations in a sidebar.
+- **Streaming responses** - real-time assistant responses via Server-Sent Events (SSE).
+- **Citations and sources** - view the sources the agent used to generate each response.
+- **Authentication** - optional Entra ID integration for user sign-in, with token-based authorization handled by the backend.
+
+The chat solution handles the browser experience only. Model orchestration, tool invocation, token validation, and data scoping are handled by the agents runtime and backend services.
+
+For more information, see [Chat solution in Agents and Tools with Foundry Local](chat-experience.md).
 
 ## Customer scenarios and use cases
 
@@ -129,7 +130,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local requires you to Bring Your Own Model (BYOM), an external LLM endpoint compatible with the OpenAI chat completions API. Recommended options include models deployed via Foundry Local on Azure Local or Microsoft Foundry.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local supports two language model endpoint options. The recommended option is a Foundry Local on Azure Local endpoint. This option runs on the same Azure Arc-connected cluster as the extension. You can also use an external Bring Your Own Model (BYOM) endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry.
 
 - **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
 

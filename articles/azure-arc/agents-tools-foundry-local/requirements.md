@@ -5,7 +5,7 @@ description: "Learn how to deploy Agents and Tools with Foundry Local with this 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -33,7 +33,7 @@ Before deploying Agents and Tools with Foundry Local, make sure you have the fol
 | Microsoft Entra ID  permissions |- Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).<br>- Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application. <br> <br> As part of the prerequisites tasks, you [configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).|
 | Permissions for AKS enabled by Azure Arc| Permissions to deploy [AKS Arc Kubernetes clusters](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).   As part of the prerequisites tasks, see [Verify contributor role for Agents and Tools with Foundry Local](prepare-contributor-permission.md)|
 | Transport Layer Security (TLS) termination certificate | A certificate signed by a company-specific certification authority (CA) or a well-known public CA for secure deployments. If you don't provide one, Agents and Tools with Foundry Local generates a self-signed certificate. Don't use a self-signed certificate for production environments. |
-| BYOM language model endpoint | An OpenAI-compatible chat completions endpoint for your language model. The recommended model is **GPT-OSS-20B** via [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) which requires its own GPU. See BYOM hardware requirements. Also supported: [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models. See [Create a BYOM endpoint](prepare-model-endpoint.md). |
+| language model endpoint | An OpenAI-compatible chat completions endpoint for your language model. The recommended model is **GPT-OSS-20B** via [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) which requires its own GPU. See hardware requirements. Also supported: [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models. See [Create an endpoint](prepare-model-endpoint.md). |
 
 ### On-premises resources
 
@@ -42,7 +42,7 @@ Agents and Tools with Foundry Local deployment supports the following on-premise
 | **Resource** | **Description** |
 |---|---|
 | Azure Local infrastructure* | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2504. |
-| AKS Arc cluster on Azure Local* | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance. Include at least two [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool - one for text embedding and one for image processing. Docling (document parser) runs on CPU. The LLM runs externally via your BYOM endpoint. As part of the prerequisite tasks, you [prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md). |
+| AKS Arc cluster on Azure Local* | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance. Include at least two [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool - one for text embedding and one for image processing. Docling (document parser) runs on CPU. The LLM runs externally via your endpoint. As part of the prerequisite tasks, you [prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md). |
 | Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, you can skip this requirement. The IP must be accessible from client machines. <br><br>As part of the prerequisite tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Agents and Tools with Foundry Local](prepare-networking-observability.md) <br>- [Configure DNS for Agents and Tools with Foundry Local](prepare-dns.md). |
 | Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. AUTH_SYS authentication is supported for all deployments. For disconnected on-premises deployments, Kerberos (`krb5p`) authentication and SharePoint Server with High-Trust Server-to-Server (S2S) authentication are also supported as data sources. Requires share path, NFS user ID, and group ID (for AUTH_SYS) or Kerberos service principal (for `krb5p`). **Required for combined and knowledge modes only.** Not required for agentic mode. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). For Kerberos setup, see [NFS with Kerberos authentication](connect-file-share-kerberos-overview.md). For SharePoint, see [SharePoint Server-to-Server authentication](connect-sharepoint-overview.md).|
 |Windows machine (optional)| Ease the management of the Azure Arc-enabled Kubernetes cluster on Azure Local by configuring a driver machine or local management host.<br><br>As part of the prerequisite tasks, install tools like Azure CLI, kubectl, and Helm to prepare the driver machine. For more information, see: <br><br>- [Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md)<br>- [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).|
@@ -59,9 +59,9 @@ The following table lists the minimum hardware requirements for the virtual mach
 
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 
-### BYOM language model requirement
+### Language model requirement
 
-Agents and Tools with Foundry Local doesn't bundle language models. You must provide an external LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. The LLM runs outside the Agents and Tools with Foundry Local deployment - the LLM within the cluster consumes no GPU.
+Agents and Tools with Foundry Local doesn't bundle language models. You must provide an language model endpoint that exposes an OpenAI-compatible chat completions API. The LLM runs outside the Agents and Tools with Foundry Local deployment. The LLM within the cluster consumes no GPU.
 
 The two GPUs in the cluster are used for embedding models. Docling runs on CPU:
 
@@ -71,13 +71,13 @@ The two GPUs in the cluster are used for embedding models. Docling runs on CPU:
 | GPU 2 | Image embedding model (CLIP ViT-L/14) |
 | CPU | Document parser (Docling) - no GPU required |
 
-**Recommended BYOM model:** GPT-OSS-20B via [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local). Also supported: [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models. See [Create a BYOM endpoint](prepare-model-endpoint.md).
+**Recommended model:** GPT-OSS-20B via [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local). Also supported: [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models. See [Create an endpoint](prepare-model-endpoint.md).
 
 For the best experience, deploy both the Foundry Local extension and the Agents and Tools with Foundry Local extension on the same Arc-enabled Kubernetes cluster. Foundry Local on Azure Local provides the recommended language model endpoint, while Agents and Tools with Foundry Local provides the agentic RAG platform. Install the Foundry Local extension first, then use its model endpoint URL when you deploy Agents and Tools with Foundry Local. For more information, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local).
 
-#### BYOM hardware requirements (GPT-OSS-20B via Foundry Local)
+#### Hardware requirements (GPT-OSS-20B via Foundry Local)
 
-The BYOM endpoint runs separately from Agents and Tools with Foundry Local. If you use GPT-OSS-20B with [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local), the model host requires its own GPU:
+The language model endpoint runs separately from Agents and Tools with Foundry Local. If you use GPT-OSS-20B with [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local), the model host requires its own GPU:
 
 |**Resource**| **Minimum** | **Recommended (production)** |
 |---|---|---|
@@ -96,9 +96,9 @@ Foundry Local validates GPU compatibility at deployment time and fails with a cl
 |---|---|---|---|
 | GPU-enabled VMs (embedding) | 2 | 0 | 2 |
 | CPU VMs | 3+ | 3+ | 3+ |
-| BYOM GPU (e.g., GPT-OSS-20B) | 1+ (separate from cluster) | 1+ (separate from cluster) | 1+ (separate from cluster) |
+| Language model GPU (e.g., GPT-OSS-20B) | 1+ (separate from cluster) | 1+ (separate from cluster) | 1+ (separate from cluster) |
 | NFS data source | Required | Not required | Required |
-| BYOM endpoint | Required | Required | Required |
+| Language model endpoint | Required | Required | Required |
 | Entra ID app registration | Required | Required | Required |
 
 If you plan to use a CPU-only setup, review the file size and chunking limitations. See:

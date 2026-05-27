@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agents and Tools with Foundry Local extens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/23/2026
+ms.date: 05/26/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -125,7 +125,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 1. Set values for the language model, deployment mode, and optional connection types:
 
    ```powershell
-   # BYOM is mandatory - set your model endpoint
+   #  Set your model endpoint (mandatory)
    $apiEndpoint = "<Your OpenAI-compatible LLM endpoint URI>"
    $apiModel = "<Model Name>"
    $maxTokensInK = "<Max Tokens In K (e.g. 10, 20 etc.)>"
@@ -149,16 +149,18 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    $workloadIdentityClientId = "<Managed identity client ID>"
    ```
 
-1. Create the BYOM API key secret:
+1. Create the BYOM API key secret only when language model source is **Bring your own** (`useFoundryLocal=false`):
 
    ```powershell
-   # Create the BYOM API key secret before extension installation
-   kubectl create namespace arc-rag --dry-run=client -o yaml | kubectl apply -f -
-   kubectl delete secret byom-api-key -n arc-rag --ignore-not-found
-   kubectl create secret generic byom-api-key --from-literal=BYOM_API_KEY="<your_foundry_api_key>" -n arc-rag
+   # Create the BYOM API key secret before extension installation only for BYOM endpoints
+   if ($useFoundryLocal -eq "false") {
+      kubectl create namespace arc-rag --dry-run=client -o yaml | kubectl apply -f -
+      kubectl delete secret byom-api-key -n arc-rag --ignore-not-found
+      kubectl create secret generic byom-api-key --from-literal=BYOM_API_KEY="<your_api_key>" -n arc-rag
+   }
    ```
 
-   The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. You must create this secret before you install the extension. For Foundry Local, retrieve the key by running `kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator -o jsonpath="{.data.primary-key}" | base64 -d`.
+   The BYOM API key is stored as a Kubernetes secret rather than passed as a configuration parameter. Create this secret before extension installation only when `useFoundryLocal=false`.
 
 1. After you populate the values, build configuration settings and deploy the Azure Arc extension:
 
@@ -275,12 +277,12 @@ After deployment, verify that the extension can communicate with Foundry Local:
 
 ## Bring your own language model
 
-After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
+After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
 
 ## Related content
 
 - [Deployment parameter reference and troubleshooting](deploy-reference.md)
-- [Configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
+- [Configure endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
 - [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
 - [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
