@@ -2,16 +2,13 @@
 title: Create a dashboard in the Azure portal
 description: This article describes how to create and customize a dashboard in the Azure portal.
 ms.topic: how-to
-ms.date: 10/04/2024
+ms.date: 05/26/2026
 # Customer intent: As an Azure user, I want to create and customize dashboards in the Azure portal so that I can efficiently monitor resources and facilitate quick access to tasks related to my projects and organizational roles.
 ---
 
 # Create a dashboard in the Azure portal
 
 Dashboards provide a focused and organized view of your cloud resources in the Azure portal. Use dashboards as a workspace where you can monitor resources and quickly launch tasks for day-to-day operations. For example, you can build custom dashboards based on projects, tasks, or user roles in your organization.
-
-> [!IMPORTANT]
-> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub.md).
 
 The Azure portal provides a default dashboard as a starting point. You can edit this default dashboard, and you can create and customize additional dashboards.
 
@@ -33,7 +30,7 @@ This example shows how to create a new private dashboard with an assigned name.
 
 1. Select the text in the dashboard label and enter a name that helps you easily identify the custom dashboard.
 
-    :::image type="content" source="media/azure-portal-dashboards/dashboard-name.png" alt-text="Screenshot of an empty grid with the Tile Gallery.":::
+    :::image type="content" source="media/azure-portal-dashboards/dashboard-name.png" alt-text="Screenshot of an empty grid with the Tile Gallery." lightbox="media/azure-portal-dashboards/dashboard-name.png":::
 
 1. To save the dashboard, select **Save** in the page header.
 
@@ -48,19 +45,19 @@ Now, you can edit the example dashboard you created to add, resize, and arrange 
 
 ### Add tiles from the Tile Gallery
 
-To add tiles to a dashboard by using the Tile Gallery, follow these steps.
+To add tiles to a dashboard by using the Tile Gallery, follow these steps:
 
 1. Select **Edit** from the dashboard's page header.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-edit.png" alt-text="Screenshot of dashboard highlighting the Edit option.":::
 
-1. Browse the **Tile Gallery** or use the search field to find a certain tile. Select the tile you want to add to your dashboard.
+1. Browse the **Tile Gallery** or use the search field to find a specific tile. Select the tile you want to add to your dashboard.
 
    :::image type="content" source="media/azure-portal-dashboards/dashboard-tile-gallery.png" alt-text="Screenshot of the Tile Gallery.":::
 
 1. Select **Add** to add the tile to the dashboard with a default size and location. Or, drag the tile to the grid and place it where you want. 
 
-1. Select **Save** to save your changes. You can also preview the changes without saving by selecting **Preview**. This preview mode also allows you to see how [filters](#apply-dashboard-filters) affect your tiles. From the preview screen, you can select **Save** to keep the changes, **Cancel** to remove them, or **Edit** to go back to the editing options and make further changes.
+1. Select **Save** to save your changes. You can also preview the changes without saving by selecting **Preview**. From the preview screen, select **Save** to keep the changes, **Cancel** to remove them, or **Edit** to go back to the editing options and make further changes.
 
 ### Resize or rearrange tiles
 
@@ -68,7 +65,7 @@ To change the size of a tile, or to rearrange the tiles on a dashboard, follow t
 
 1. Select **Edit** from the page header.
 
-1. Select the context menu in the upper right corner of a tile. Then, choose a tile size. Tiles that support any size also include a "handle" in the lower right corner that you can use to drag the tile to the size you want.
+1. Select the context menu in the upper right corner of a tile. Then, choose a tile size. Tiles that support any size also include a handle in the lower right corner that you can use to drag the tile to the size you want.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-tile-resize.png" alt-text="Screenshot of dashboard with tile size menu open.":::
 
@@ -96,10 +93,7 @@ You can then select whether to copy the tile to a different private or shared da
 
 ## Modify tile settings
 
-> [!IMPORTANT]
-> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub.md).
-
-Some tiles require more configuration to show the information you want. For example, the **Metrics chart** tile needs to be set up to display a metric from Azure Monitor. You can also customize tile data to override the dashboard's default time settings and filters, or to change the title and subtitle of a tile.
+Some tiles require more configuration to show the information you want. For example, the **Metrics chart** tile needs to be set up to display a metric from Azure Monitor. You can also customize tile data to override the dashboard's default time settings, or to change the title and subtitle of a tile.
 
 > [!NOTE]
 > The **Markdown** tile lets you display custom, static content on your dashboard. This content can be any information you provide, such as basic instructions, an image, a set of hyperlinks, or even contact information. For more information about using markdown tiles, see [Use a markdown tile on Azure dashboards to show custom content](azure-portal-markdown-tile.md).
@@ -124,31 +118,6 @@ To customize the tile:
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-configure-tile.png" alt-text="Screenshot of a tile that requires configuration.":::
 
-### Apply dashboard filters
-
-Near the top of your dashboard, you'll see options to set the **Auto refresh** and **Time settings** for data displayed in the dashboard, along with an option to add additional filters.
-
-:::image type="content" source="media/azure-portal-dashboards/dashboard-global-filters.png" alt-text="Screenshot showing a dashboard's global filters.":::
-
-To change how often data is refreshed, select **Auto refresh**, and then choose a new refresh interval. After you make your selection, select **Apply**.
-
-The default time settings are **UTC Time**, showing data for the **Past 24 hours**. To change this setting, select the button and choose a new time range, time granularity, and/or time zone. Then select **Apply**.
-
-To apply more filters, select **Add filter** . The options you see vary depending on the tiles in your dashboard. For example, you might see options to filter data for a specific subscription or location. In some cases, you might not see any additional filters.
-
-If you want to use a new filter option, select it, and then make your selections. The filter is then applied to your data.
-
-To remove a filter, select the **X** in its button.
-
-### Override dashboard filters for specific tiles
-
-Tiles that support filtering have a ![filter icon](./media/azure-portal-dashboards/dashboard-filter.png) filter icon in the top-left corner of the tile. These tiles allow you to override the global filters with filters specific to that tile.
-
-To override global filters, select **Configure tile settings** from the tile's context menu, or select the filter icon. Then you can change the desired filters for that tile. For example, some tiles provide an option to override the dashboard time settings at the tile level,  allowing you to select a different time span to refresh data.
-
-When you apply filters for a particular tile, the left corner of that tile changes to show a double filter icon, indicating that the data in that tile reflects its own filters.
-
-:::image type="content" source="media/azure-portal-dashboards/dashboard-filter-override.png" alt-text="Screenshot showing the icon for a tile with a filter override.":::
 
 ## Delete a tile
 
@@ -162,7 +131,7 @@ To remove a tile from a dashboard, use one of the following methods:
 
 To use an existing dashboard as a template for a new dashboard, follow these steps:
 
-1. Make sure that the dashboard view is showing the dashboard that you want to copy.
+1. Make sure that the dashboard view shows the dashboard that you want to copy.
 
 1. In the page header, select ![clone icon](./media/azure-portal-dashboards/dashboard-clone.png) **Clone**.
 
@@ -174,11 +143,11 @@ When you create a dashboard, it's private by default, which means you're the onl
 
 ### Open a shared dashboard
 
-To find and open a shared dashboard, follow these steps.
+To find and open a shared dashboard, follow these steps:
 
 1. Select the arrow next to the dashboard name.
 
-1. Select from the displayed list of dashboards. If the dashboard you want to open isn't listed:
+1. Select a dashboard from the displayed list. If the dashboard you want to open isn't listed:
 
     1. Select **Browse all dashboards**.
 
@@ -194,7 +163,7 @@ To find and open a shared dashboard, follow these steps.
 
 You can delete your private dashboards, or a shared dashboard that you created or have permissions to modify.
 
-To permanently delete a private or shared dashboard, follow these steps.
+To permanently delete a private or shared dashboard, follow these steps:
 
 1. Select the dashboard you want to delete from the list next to the dashboard name.
 
