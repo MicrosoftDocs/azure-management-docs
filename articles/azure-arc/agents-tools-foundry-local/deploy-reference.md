@@ -74,10 +74,17 @@ Use the following commands to diagnose Foundry Local issues:
 | Symptom | Cause | Resolution |
 |---|---|---|
 | Connection refused or timeout | Foundry Local not running or network policy blocking egress. | Verify Foundry pods are running. Ensure egress from `arc-rag` namespace to Foundry ingress is allowed. |
+| `SSL: CERTIFICATE_VERIFY_FAILED` | `foundryClientId` not set in extension configuration. | Set `foundryClientId` — this gates the CA bundle mount. Without it, the Foundry self-signed certificate isn't trusted. |
+| `400 Bad Request: plain HTTP sent to HTTPS port` | Using `http://` instead of `https://` in `byom.apiEndpoint`. | Change the endpoint to `https://`. Foundry Local enables TLS by default. |
+| `400 Invalid JSON in request body` | Using `onnx-genai` runtime with agentic or combined mode. | Switch to `vllm` runtime. The `onnx-genai` runtime doesn't support `tools` or `tool_choice` parameters. |
+| `401 Token validation failed` | RBAC roles not assigned for the managed identity. | Assign `Reader` + `Cognitive Services OpenAI User` + `FoundryInferenceAccess` app role. See [Configure authentication](prepare-authentication.md). |
+| `401 Entra ID authentication is not enabled` | Sending managed identity token to Foundry with `entraAuth.enabled=false`. | Either enable Microsoft Entra authentication on Foundry, or clear `FOUNDRY_CLIENT_ID` so Agents and Tools uses API key authentication. |
+| `401 Invalid API key` | API key rotated after model redeployment. | Re-read the key from the `gpt-oss-20b-api-keys` secret and update `byom-api-key` in the `arc-rag` namespace. |
 | `404 Not Found` from Foundry | Model not deployed. | Run `kubectl get mdep -n foundry-local-operator` and verify the model name matches `byom.apiModel`. |
-| `401 Unauthorized` | Invalid or missing API key. | Update the `byom-api-key` secret with the correct `fndry-pk-*` value from the Foundry deployment secret. |
 | LLM calls fail but embedding and ingestion work | Expected behavior. Embedding models are local; only LLM inference uses Foundry. | Check Foundry connectivity and model deployment status. |
 | Managed identity token acquisition fails | Microsoft Entra ID unreachable or msi-adapter not running. | Check msi-adapter sidecar logs. The request falls back to API key authentication only. |
+| Pods pending (insufficient resources) | Cluster too small for combined mode (60+ pods). | Combined mode requires at least 3x Standard_D8s_v3 (24 vCPU, 96 GB RAM) worker nodes + 1 GPU node. Scale node pools with `az aksarc nodepool scale`. |
+| Extension install: stale nginx webhook | Previous install left `ValidatingWebhookConfiguration`. | Run `kubectl delete validatingwebhookconfiguration ingress-nginx-admission` before reinstalling. |
 
 ## Foundry Local operator parameters
 

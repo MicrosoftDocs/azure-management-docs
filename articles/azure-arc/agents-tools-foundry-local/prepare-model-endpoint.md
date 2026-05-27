@@ -39,7 +39,7 @@ The following table summarizes the key properties of the Foundry Local extension
 |---|---|
 | Extension type | `Microsoft.Foundry` |
 | Default namespace | `foundry-local-operator` |
-| Inference port | `5000` (no TLS) / `8443` (TLS) |
+| Inference port | `5000` (TLS enabled by default via nginx sidecar) |
 | API format | OpenAI-compatible (`/v1/chat/completions`) |
 
 Foundry Local must be installed and operational on your cluster *before* you install the Agents and Tools with Foundry Local extension. The model endpoint URL from Foundry Local is a required parameter during Agents and Tools deployment. If Foundry Local is not set up correctly, Agents and Tools with Foundry Local fails at runtime with connection errors.
@@ -99,7 +99,8 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
      --config entraAuth.clientId="<client_id>"
    ```
 
-   If you don't have a Foundry Client ID (app registration), you can disable Microsoft Entra authentication by replacing the `entraAuth.tenantId` and `entraAuth.clientId` parameters with `--config entraAuth.enabled=false`.
+   > [!IMPORTANT]
+   > Microsoft Entra ID authentication is required for Foundry Local. You must provide a valid `entraAuth.tenantId` and `entraAuth.clientId` from an [app registration](/entra/identity-platform/quickstart-register-app). Agents and Tools with Foundry Local uses this identity for secure communication with the Foundry Local endpoint.
 
 1. Verify installation:
 
@@ -136,8 +137,11 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
        requests: { cpu: "4", memory: "32Gi" }
        limits: { cpu: "8", memory: "64Gi", gpu: 1 }
      nodeSelector:
+       # For AKS-managed GPU nodes, use:
        kubernetes.azure.com/accelerator: nvidia
        agentpool: <your_gpu_node_pool>
+       # For Azure Local (HaaS) GPU nodes, use:
+       #   nvidia.com/gpu.present: "true"
      tolerations:
        - { key: "sku", operator: "Equal", value: "gpu", effect: "NoSchedule" }
        - { key: "nvidia.com/gpu", operator: "Exists", effect: "NoSchedule" }
@@ -149,13 +153,21 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
          gpu_memory_utilization: 0.92
          max_model_len: 16384
          dtype: "bfloat16"
-         kv_cache_dtype: "fp8_e4m3"
          max_num_seqs: 128
          max_num_batched_tokens: 4096
          enforce_eager: true
    ```
 
-   The model is deployed with `endpoint.enabled: false`, which means it's accessed via internal Kubernetes service DNS rather than an external ingress. Adjust `nodeSelector` and `tolerations` to match your cluster's GPU node pool configuration.
+   The model is deployed with `endpoint.enabled: false`, which means it's accessed via internal Kubernetes service DNS rather than an external ingress. Set the `nodeSelector` based on your cluster type:
+
+   - **AKS-managed GPU nodes**: Use `kubernetes.azure.com/accelerator: nvidia` and `agentpool: <your_gpu_node_pool>`.
+   - **Azure Local (HaaS) GPU nodes**: Use `nvidia.com/gpu.present: "true"`.
+
+   > [!TIP]
+   > **KV cache quantization**: If your GPU supports SM 9.0 or later (for example, NVIDIA H100), you can enable FP8 KV cache quantization by adding `kv_cache_dtype: "fp8_e4m3"` under `vllm.preferences`. Don't use this setting on L40S, A100, or earlier GPUs.
+
+   > [!IMPORTANT]
+   > **Runtime selection**: The `vllm` runtime is **required** for `agentic` or `combined` mode because it provides full OpenAI API compatibility including tool calling (`tools`, `tool_choice`). The `onnx-genai` runtime doesn't support tool calling and returns `Invalid JSON` errors from the agentic pipeline. Use `onnx-genai` only for `knowledge`-only mode (no agentic features). The deployment mode is controlled by the `layerSelection` parameter, which you set during [extension installation](deploy.md). For details, see [Deployment parameter reference](deploy-reference.md).
 
 1. Apply the deployment:
 
@@ -181,15 +193,6 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
    kubectl port-forward svc/gpt-oss-20b -n foundry-local-operator 5000:5000
    ```
 
-1. Retrieve the API key:
-
-   ```bash
-   kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
-     -o jsonpath="{.data.primary-key}" | base64 -d
-   ```
-
-   API keys use the format `fndry-pk-<uuid>` (primary) and `fndry-sk-<uuid>` (secondary).
-
 1. Note the internal Kubernetes service URL for use during deployment:
 
    ```text
@@ -197,6 +200,11 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
    ```
 
    Use this URL as your BYOM endpoint when Foundry Local runs on the same cluster as Agents and Tools with Foundry Local.
+
+   > [!IMPORTANT]
+   > The endpoint **must** use `https://`, not `http://`. Foundry Local enables TLS on port 5000 via an nginx sidecar with a self-signed certificate. Using `http://` results in `400 Bad Request: The plain HTTP request was sent to HTTPS port`.
+   >
+   > Agents and Tools with Foundry Local trusts the Foundry CA certificate automatically when `foundryClientId` is set. The Helm chart mounts the `foundry-local-operator-ca-bundle` ConfigMap and sets `REQUESTS_CA_BUNDLE` / `SSL_CERT_FILE` environment variables. Without `foundryClientId`, HTTPS calls fail with `SSL: CERTIFICATE_VERIFY_FAILED`.
 
    If you have an external ingress configured, you can also use the external URL:
 
@@ -207,9 +215,8 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 1. Test the endpoint:
 
    ```bash
-   curl -k -X POST https://localhost:5000/v1/chat/completions \
+   curl -X POST http://localhost:5000/v1/chat/completions \
      -H "Content-Type: application/json" \
-     -H "api-key: <your-api-key>" \
      -d '{
        "model": "gpt-oss-20b",
        "messages": [
@@ -219,32 +226,33 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
      }'
    ```
 
+   Port-forwarding connects directly to the model container, bypassing the TLS and authentication sidecars. This is appropriate for local verification only. In production, Agents and Tools with Foundry Local connects to the model via the internal HTTPS service URL with Entra ID authentication handled automatically through the `foundryClientId` configuration.
+
    You should receive a JSON response with a `choices` array.
 
 ### Step 4 - Configure Agents and Tools with Foundry Local
 
-Use the model endpoint as your BYOM configuration.
+When you [deploy the Agents and Tools with Foundry Local extension](deploy.md), pass the following BYOM settings as `--configuration-settings` parameters to `az k8s-extension create`:
 
-```yaml
-byom:
-  enabled: true
-  apiEndpoint: "https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions"
-  apiModel: "gpt-oss-20b"
-  maxTokensInK: "16"
-foundryClientId: "<foundry_app_registration_client_id>"
+```
+byom.enabled=true
+byom.apiEndpoint=https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions
+byom.apiModel=gpt-oss-20b
+byom.maxTokensInK=16
+foundryClientId=<foundry_app_registration_client_id>
 ```
 
-Store the API key in a Kubernetes secret (for example, `byom-api-key`) in the namespace used by Agents and Tools with Foundry Local, following your deployment requirements.
+The `foundryClientId` parameter enables Entra ID-based authentication between Agents and Tools and the Foundry Local endpoint. No API key secret is required when using Foundry Local.
 
-After configuration, Agents and Tools with Foundry Local use the local gpt-oss-20b deployment for all language model interactions.
+After deployment, Agents and Tools with Foundry Local uses the local gpt-oss-20b deployment for all language model interactions.
 
-For optional operator parameters (such as `entraAuth.enabled` and namespace configuration) and API key rotation endpoints, see [Deployment parameter reference](deploy-reference.md#foundry-local-operator-parameters).
+For optional operator parameters and namespace configuration, see [Deployment parameter reference](deploy-reference.md#foundry-local-operator-parameters).
 
 ## Microsoft Foundry
 
 To use your own model with Agents and Tools with Foundry Local, deploy a language model and create an endpoint by using Foundry.
 
-1. Go to [Foundry](https://ai.azure.com/build/overview?wsid=/subscriptions/169db0a5-d678-473b-9020-88d11cc95c49/resourceGroups/edge-rag/providers/Microsoft.MachineLearningServices/workspaces/edgeragprojeastus2&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) and sign in with your Azure account.
+1. Go to [Foundry](https://ai.azure.com) and sign in with your Azure account.
 
 1. Create a new Foundry resource or go to an existing resource.
 
@@ -275,7 +283,10 @@ For more information, see the following articles:
 
 ## Validate your endpoint
 
-Before deploying Agents and Tools with Foundry Local, verify your endpoint works by sending a test request:
+Before deploying Agents and Tools with Foundry Local, verify your endpoint works by sending a test request.
+
+> [!NOTE]
+> The authentication header format depends on your provider. Foundry Local uses Microsoft Entra ID tokens (`Authorization: Bearer <token>`). Microsoft Foundry and Azure OpenAI use `Authorization: Bearer <api-key>`.
 
 ```bash
 curl -X POST <your-endpoint-url> \
