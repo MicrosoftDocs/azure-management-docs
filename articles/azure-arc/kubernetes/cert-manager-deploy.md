@@ -59,9 +59,9 @@ After the Azure CLI confirms that the installation was successful, [verify that 
 
 Cert-manager for Azure Arc-enabled Kubernetes requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards (PSA) where privileged access isn't permitted, log collection into Azure can be disabled to comply with security requirements.
 
-To disable log collection, use `--set global.telemetry.logs.enabled=false`. This prevents log volumes from being set up and removes the need for privileged access, while metrics collection continues as normal.
+To disable log collection, use `--configuration-settings global.telemetry.logs.enabled=false`. This prevents log volumes from being set up and removes the need for privileged access, while metrics collection continues as normal.
 
-To disable metrics collection, use `--set global.telemetry.metrics.enabled=false`.
+To disable metrics collection, use `--configuration-settings global.telemetry.metrics.enabled=false`.
 
 ## Migrate from open source cert-manager and trust-manager
 
