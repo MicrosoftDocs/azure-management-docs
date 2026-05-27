@@ -4,20 +4,20 @@ description: "Learn how to configure API-key based authentication for Agents and
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 10/29/2025
+ms.date: 05/26/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer, I want to configure API-key based authentication for Agents and Tools with Foundry Local, so that I can securely manage and access resources across local and cloud environments.
+# Customer intent: As a developer, I want to configure API-key based authentication for Agents and Tools with Foundry Local, so that I can securely manage and access resources across cloud environments.
 ---
 
 # Configure "BYOM" endpoint authentication for Agents and Tools with Foundry Local
 
-This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  If you configured Agents and Tools with Foundry Local to use your own language model instead of an Agents and Tools with Foundry Local-provided model, complete the steps in this article. 
+This article shows you how to configure API-key based authentication for any cloud-based LLM endpoints that need it. If you configured Agents and Tools with Foundry Local to use your own language model (BYOM), complete the steps in this article.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Set up API Key for authentication
+## Set up API Key for authentication (BYOM)
 
 After you install the Agents and Tools with Foundry Local extension and configure it to use your own language model, get an API key for the model.
 
@@ -56,38 +56,12 @@ After you install the Agents and Tools with Foundry Local extension and configur
    <Endpoint api key>
    ```
 
-
 1. Delete the inferencing flow pod to apply the secret change.
 
    ```powershell
    kubectl.exe delete pods -n arc-rag -l app=inferencingflow 
    ```
 
-## API key format for Foundry Local
-
-If you use Foundry Local as your model endpoint, API keys use the following format:
-
-- **Primary key**: `fndry-pk-<uuid>`
-- **Secondary key**: `fndry-sk-<uuid>`
-
-Retrieve the key from the Foundry Local deployment secret:
-
-```bash
-kubectl get secret gpt-oss-20b-api-keys -n foundry-local-operator \
-  -o jsonpath="{.data.primary-key}" | base64 -d
-```
-
-### Rotate API keys
-
-You can rotate Foundry Local API keys by using the inference service API:
-
-| Endpoint | Description |
-|---|---|
-| `GET /namespaces/<namespace>/deployments/<name>/keys` | Retrieve both primary and secondary keys. |
-| `POST /namespaces/<namespace>/deployments/<name>/keys/{primary\|secondary}/rotate` | Rotate a specific key. |
-
-After rotating a key, update the `byom-api-key` secret and restart the inferencing flow pod as described earlier in this article.
- 
 ## Related content
 
 - [Deploy the Agents and Tools with Foundry Local extension](deploy.md)

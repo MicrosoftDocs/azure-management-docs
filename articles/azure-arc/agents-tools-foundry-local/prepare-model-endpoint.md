@@ -3,7 +3,7 @@ title: Create Your Language Model Endpoint for Agents and Tools with Foundry Loc
 description: "Learn how to set up an OpenAI API-compatible endpoint for your language model to use with Agents and Tools with Foundry Local by using Foundry Local on Azure Local or Microsoft Foundry."
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
@@ -12,9 +12,9 @@ ms.subservice: edge-rag
 
 # Create your language model endpoint for Agents and Tools with Foundry Local
 
-Agents and Tools with Foundry Local requires you to provide your own language model endpoint (BYOM). Set up an OpenAI API-compatible endpoint by using one of the following methods.
+Agents and Tools with Foundry Local requires you to provide your own language model endpoint. Set up an OpenAI API-compatible endpoint by using one of the following methods.
 
-All search types (hybrid, vector, text, and hybrid multimodal) are available with your BYOM endpoint.
+All search types (hybrid, vector, text, and hybrid multimodal) are available with your language model endpoint.
 
 After you create your endpoint, use it when you [deploy the Agents and Tools with Foundry Local extension](deploy.md). The endpoint URL, model name, and max tokens are required deployment parameters.
 
@@ -112,7 +112,7 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
 
 ### Step 2 - Deploy the recommended model (gpt-oss-20b)
 
-Deploy the recommended gpt-oss-20b model to create a local inference endpoint for your BYOM configuration.
+Deploy the recommended gpt-oss-20b model to create a local inference endpoint for your language model configuration.
 
 1. Create a ModelDeployment resource:
 
@@ -196,7 +196,7 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
    https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions
    ```
 
-   Use this URL as your BYOM endpoint when Foundry Local runs on the same cluster as Agents and Tools with Foundry Local.
+   Use this URL as your language model endpoint when Foundry Local runs on the same cluster as Agents and Tools with Foundry Local.
 
    If you have an external ingress configured, you can also use the external URL:
 
@@ -223,7 +223,7 @@ Test the deployed endpoint to confirm that it accepts chat completion requests a
 
 ### Step 4 - Configure Agents and Tools with Foundry Local
 
-Use the model endpoint as your BYOM configuration.
+Use the model endpoint as your language model configuration.
 
 ```yaml
 byom:

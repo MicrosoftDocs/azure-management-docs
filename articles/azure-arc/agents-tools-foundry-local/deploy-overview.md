@@ -4,7 +4,7 @@ description: Learn about deploying Agents and Tools with Foundry Local with Azur
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/13/2026
+ms.date: 05/26/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agents and Tools with Foundry Local with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -56,8 +56,9 @@ The resources and components in the diagram form the core infrastructure for Age
   - Docling parser — running on CPU
   - Milvus vector database + PostgreSQL metadata store
 
-- **External** (customer-managed):
-  - LLM endpoint (BYOM) — Foundry Local on Azure Local or Microsoft Foundry
+- **Language model endpoint**
+  - Foundry Local on Azure Local (recommended)
+  - External Bring Your Own Model (BYOM) endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry
 
   Use a driver machine (local management host) to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Agents and Tools with Foundry Local](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
@@ -67,7 +68,7 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 When you deploy Agents and Tools with Foundry Local, set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model (BYOM - mandatory):** Agents and Tools with Foundry Local doesn't bundle language models. You must provide your own LLM endpoint (Bring Your Own Model) that exposes an OpenAI-compatible chat completions API. Recommended options: [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) or [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models.
+- **Language model endpoint (mandatory):** Agents and Tools with Foundry Local doesn't bundle language models. You must provide your own LLM endpoint that exposes an OpenAI-compatible chat completions API. The recommended option is a [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) endpoint. Or use an external Bring Your Own Model (BYOM) endpoint, such as one deployed in [Microsoft Foundry](/azure/ai-studio/concepts/model-benchmarks) for cloud-hosted models.
 - **Deployment mode:** Choose which layers to deploy by using the `layerSelection` parameter:
   - `combined` (default) — full platform with both layers
   - `agentic` — agents, knowledge bases, KT/KS, MCP server only (no GPUs required)
@@ -82,8 +83,8 @@ The deployment process for Agents and Tools with Foundry Local consists of the f
 
 | High-level step  | Description |
 |-----------------|-----------------------------------------------------------|
-| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, [set up your BYOM language model endpoint (mandatory for all deployments)](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Agents and Tools with Foundry Local. |
-| 2. Deploy the Agents and Tools with Foundry Local extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), configure your BYOM endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agents and Tools with Foundry Local extension](deploy.md). <br><br>After deployment, [configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).|
+| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, [set up your language model endpoint (mandatory for all deployments)](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Agents and Tools with Foundry Local. |
+| 2. Deploy the Agents and Tools with Foundry Local extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), add your language model endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agents and Tools with Foundry Local extension](deploy.md). <br><br>After deployment, [configure BYOM endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).|
 | 3. Validate the deployment               | After you deploy the extension, check that the Agents and Tools with Foundry Local extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure Knowledge Layer               | If you deployed in combined or knowledge mode, configure the Knowledge Layer: set up collections, add data sources, configure the user experience, and test the setup. See [Add a data source for Agents and Tools with Foundry Local](add-data-source.md), [Configure the chat solution](build-chat-solution-overview.md), and [Test the chat solution](test-end-user-app.md). |
 | 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources and link them to your default knowledge base to build intelligent assistants. See the [Query your data quickstart](quickstart-edge-rag.md). |

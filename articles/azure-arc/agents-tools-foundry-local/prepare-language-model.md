@@ -1,10 +1,10 @@
 ---
 title: Choose Your Language Model for Agents and Tools with Foundry Local
-description: "Learn how to choose a language model and understand endpoint requirements for your Agents and Tools with Foundry Local deployment using the Bring Your Own Model (BYOM) approach."
+description: "Learn how to choose a language model and understand endpoint requirements for your Agents and Tools with Foundry Local deployment."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/18/2026
+ms.date: 05/26/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 #CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agents and Tools with Foundry Local so that I can deploy and manage an AI chat solution for my edge environment.
@@ -13,13 +13,13 @@ ai-usage: ai-assisted
 
 # Choose your language model for Agents and Tools with Foundry Local
 
-Agents and Tools with Foundry Local requires an external language model (Bring Your Own Model). This article helps you choose the right model and understand the endpoint options for your deployment.
+Agents and Tools with Foundry Local requires a language model for inference. This article helps you choose the right model for your use case and understand the available deployment options.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Select a language model
 
-Agents and Tools with Foundry Local doesn't include any language models. You must provide your own LLM endpoint (BYOM) that exposes an OpenAI-compatible chat completions API. Both the Agentic Layer (for agent runs) and the Knowledge Layer (for RAG inference) use this endpoint.
+Agents and Tools with Foundry Local doesn't include any language models. You must provide your own LLM endpoint that exposes an OpenAI-compatible chat completions API. Both the agentic layer (for agent runs) and the knowledge layer (for RAG inference) use this endpoint.
 
 Work with your application development team to choose the right model for your use case.
 
@@ -64,7 +64,7 @@ The recommended model for most use cases is **gpt-oss-20b**. For step-by-step de
 
 ## Set up your endpoint
 
-After you choose a model, you need an OpenAI-compatible chat completions endpoint. Recommended methods include Foundry Local on Azure Local (recommended for production) and Microsoft Foundry for cloud-hosted models.
+After you choose a model, you need an OpenAI-compatible chat completions endpoint. Foundry Local on Azure Local is the recommended option because it runs on the same Arc-connected cluster as the extension. You can also use Microsoft Foundry for cloud-hosted models.
 
 For supported methods and step-by-step setup instructions, see [Create your language model endpoint](prepare-model-endpoint.md).
 
