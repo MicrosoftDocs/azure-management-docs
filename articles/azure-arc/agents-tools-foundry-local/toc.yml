@@ -97,8 +97,6 @@ items:
         items:
           - name: Monitor Agents and Tools with Foundry Local
             href: observability.md
-          - name: Delete data
-            href: delete-data.md
           - name: Uninstall extension
             href: uninstall-extension.md
       - name: Samples
