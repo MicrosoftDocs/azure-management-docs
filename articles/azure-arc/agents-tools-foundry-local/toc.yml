@@ -111,6 +111,22 @@ items:
         items:
           - name: Deployment parameters
             href: deploy-reference.md
+          - name: REST API references
+            items:
+              - name: Agents Runtime REST API
+                href: reference/agents-runtime-api.md
+              - name: Collections REST API
+                href: reference/collections-api-reference.md
+              - name: Inference REST API
+                href: reference/inference-api-reference.md
+              - name: Ingestion REST API
+                href: reference/ingestion-api-reference.md
+              - name: Knowledge Base Manager REST API
+                href: reference/knowledge-base-manager-api.md
+              - name: Knowledge Sources REST API
+                href: reference/knowledge-sources-api-reference.md
+              - name: MCP Server API
+                href: reference/mcp-server-api-reference.md
           - name: NFS with Kerberos authentication 
             href: connect-file-share-kerberos-reference.md
           - name: SharePoint Server-to-Server authentication
