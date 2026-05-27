@@ -19,7 +19,7 @@ Azure Linux and Azure Container Linux (ACL) share a dedicated Common Vulnerabili
 
 1. Apply the latest security updates for your [deployment option](#cve-delivery-by-deployment-option).
 1. Confirm updated package versions, changelogs, or node image versions.
-1. Use [livepatching](./kernel-live-patching.md) for eligible kernel CVEs on general-purpose Azure Linux.
+1. Use livepatching for eligible kernel CVEs on general-purpose Azure Linux.
 
 ## CVE infrastructure and SLAs
 
@@ -33,7 +33,7 @@ CVE fixes are delivered differently depending on whether you run general-purpose
 
 | Deployment option | CVE fix delivery mechanism |
 | ----------------- | -------------------------- |
-| **General-purpose Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS)** | CVE fixes are delivered as package updates. Apply them with `dnf update`. For eligible kernel CVEs, you can also use [kernel livepatching](./kernel-live-patching.md) to avoid a reboot between regular kernel updates. |
+| **General-purpose Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS)** | CVE fixes are delivered as package updates. Apply them with `dnf update`. For eligible kernel CVEs, you can also use kernel livepatching to avoid a reboot between regular kernel updates. |
 | **Azure Linux Container Host for AKS** | CVE fixes are delivered as package updates bundled into monthly node image releases. **High and critical CVEs** might be released out-of-band as a package update before the next scheduled node image, so a fix can reach your nodes ahead of a new image. **Medium and low CVEs** are rolled into the next regular node image release. |
 | **Azure Container Linux (ACL) for AKS** | ACL is an immutable, image-based operating system (OS); individual packages aren't updated in place. Instead, CVE fixes are delivered through **weekly AKS node image releases** that include the latest security patches. The `SecurityPatch` node OS upgrade channel isn't supported on ACL — use the `NodeImage`channel to pick up security updates. For ACL details, see [Azure Container Linux overview](./azure-container-linux-overview.md). |
 
@@ -53,7 +53,7 @@ On general-purpose Azure Linux, apply security updates by updating packages with
 sudo dnf update -y
 ```
 
-For kernel-level CVEs on general-purpose Azure Linux, consider [livepatching](./kernel-live-patching.md) when available.
+For kernel-level CVEs on general-purpose Azure Linux, consider livepatching when available.
 
 On Azure Container Linux, use Azure Kubernetes Service (AKS) node image upgrades on the `NodeImage` channel; don't attempt to update individual packages on the immutable OS.
 
@@ -80,5 +80,4 @@ Report suspected security vulnerabilities in Azure Linux or Azure Container Linu
 
 ## Related content
 
-- [Kernel livepatching on Azure Linux overview](./kernel-live-patching.md)
-- [FIPS 140-3 and cryptography in Azure Linux](./fips-cryptography.md)
+- [Overview of Azure Linux security features and protections](./security-overview.md)

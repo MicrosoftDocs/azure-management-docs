@@ -134,8 +134,6 @@ In integrity mode:
 - Writing to MSRs (model-specific registers) from user space is prohibited.
 - Hibernation is restricted to prevent tampering with kernel memory images.
 
-For a complete overview of the boot chain protections, including Secure Boot, UEFI validation, and the trusted boot process, see [Get started with Secure Boot and Trusted Boot in Azure Linux](./secure-boot-trusted-boot.md).
-
 ## systemd service sandboxing
 
 All default systemd services in Azure Linux use aggressive sandboxing to limit the impact of a compromised service. Each service is individually assessed for maximum sandboxing while maintaining its required functionality.
@@ -205,7 +203,5 @@ sudo dnf install <package-name>
 
 ## Related content
 
-- [Get started with Secure Boot and Trusted Boot in Azure Linux](./secure-boot-trusted-boot.md)
 - [Configure mandatory access control (MAC) in Azure Linux with SELinux and Landlock](./mandatory-access-control.md)
-- [Azure Linux network security overview](./network-security-overview.md)
 - [Logging and auditing in Azure Linux](./logging-auditing.md)
