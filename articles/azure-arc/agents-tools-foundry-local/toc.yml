@@ -89,16 +89,12 @@ items:
         items:
           - name: Overview
             href: chat-experience.md
-          - name: Deploy and validate Chat UI
-            href: chat-experience-deploy.md
       - name: Evaluate system
         href: evaluate-solution.md
       - name: Maintain
         items:
           - name: Monitor Agents and Tools with Foundry Local
             href: observability.md
-          - name: Delete data
-            href: delete-data.md
           - name: Uninstall extension
             href: uninstall-extension.md
       - name: Samples
@@ -121,8 +117,6 @@ items:
             href: connect-sharepoint-reference.md
           - name: Configure NFS server
             href: configure-nfs-server.md
-          - name: Chat UI configuration
-            href: chat-experience-reference.md
           - name: Evaluation metrics
             href: evaluation-metrics.md
           - name: Monitoring metrics
