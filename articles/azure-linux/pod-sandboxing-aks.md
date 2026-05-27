@@ -239,9 +239,9 @@ kubectl delete pod <kata-pod-name>
 [dv3-series]: /azure/virtual-machines/dv3-dsv3-series#dsv3-series
 [az-aks-nodepool-add]: /cli/azure/aks/nodepool#az-aks-nodepool-add
 [az-aks-delete]: /cli/azure/aks#az-aks-delete
-[azure-dedicated-hosts]: use-azure-dedicated-hosts.md
+[azure-dedicated-hosts]: /azure/aks/use-azure-dedicated-hosts
 [defender-for-containers]: /azure/defender-for-cloud/defender-for-containers-introduction
 [az-aks-install-cmd]: /cli/azure/aks#az-aks-install-cli
-[azurelinux-overview]: use-azure-linux.md
+[azurelinux-overview]: ./azure-linux-aks-overview.md
 [az-aks-update]: /cli/azure/aks#az-aks-update
 [kata-considerations]: /azure/aks/considerations-pod-sandboxing
