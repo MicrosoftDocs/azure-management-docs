@@ -110,7 +110,17 @@ items:
       - name: Reference
         items:
           - name: Deployment parameters
-            href: deploy-reference.md
+            href: deploy-reference.md          
+          - name: NFS with Kerberos authentication 
+            href: connect-file-share-kerberos-reference.md
+          - name: SharePoint Server-to-Server authentication
+            href: connect-sharepoint-reference.md
+          - name: Configure NFS server
+            href: configure-nfs-server.md
+          - name: Evaluation metrics
+            href: evaluation-metrics.md
+          - name: Monitoring metrics
+            href: observability-metrics.md
           - name: REST API references
             items:
               - name: Agents Runtime REST API
@@ -127,16 +137,6 @@ items:
                 href: reference/knowledge-sources-api-reference.md
               - name: MCP Server API
                 href: reference/mcp-server-api-reference.md
-          - name: NFS with Kerberos authentication 
-            href: connect-file-share-kerberos-reference.md
-          - name: SharePoint Server-to-Server authentication
-            href: connect-sharepoint-reference.md
-          - name: Configure NFS server
-            href: configure-nfs-server.md
-          - name: Evaluation metrics
-            href: evaluation-metrics.md
-          - name: Monitoring metrics
-            href: observability-metrics.md
           - name: Azure Kubernetes Service (AKS) REST API reference
             href: /rest/api/aks/
           - name: Azure Local REST API reference
