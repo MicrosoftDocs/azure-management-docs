@@ -1,23 +1,25 @@
 ---
-title: Collections REST API reference - Agents and Tools with Foundry Local
+title: Collections REST API Reference - Agents and Tools with Foundry Local
 description: REST API reference for managing data collections in Agents and Tools with Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/24/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ---
 
 # Collections REST API reference
 
-[!INCLUDE [preview-notice](../includes/preview-notice.md)]
-
 Manage collections in Agents and Tools with Foundry Local. Collections are logical groupings that organize ingested data. Each collection maps to a set of vector collections and database tables.
 
 A collection is identified by its **name** (there is no separate ID). The name is immutable after creation.
 
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
 ## API information
+
+All endpoints require the `api-version=2024-10-01-preview` query parameter.
 
 | Property | Value |
 |---|---|
@@ -26,14 +28,10 @@ A collection is identified by its **name** (there is no separate ID). The name i
 | **Port** | 3002 |
 | **Dapr App ID** | `vectordb-api-server` |
 
-> [!IMPORTANT]
-> All endpoints require the `api-version=2024-10-01-preview` query parameter.
-
----
 
 ## Access Methods
 
-The Collections API can be reached through three access methods. The access method determines whether authentication is required.
+You can reach the Collections API through three access methods. The access method determines whether authentication is required.
 
 ### External access (via ingress)
 
@@ -43,7 +41,7 @@ https://<cluster-domain>/edgeai/collections...
 
 Requires a valid JWT token (see [Authentication](#authentication)). The ingress adds the `X-External-Request` header which triggers Entra Auth sidecar validation.
 
-### Port-forwarding (for development/testing)
+### Port forwarding (for development and testing)
 
 ```bash
 kubectl port-forward deployment/vectordb-api-server-deployment 3002:3002 -n arc-rag
@@ -63,7 +61,7 @@ No `Authorization` header needed for internal Dapr calls.
 
 ## Authentication
 
-Required only for **external access** (via ingress). Port-forwarding and internal Dapr calls bypass authentication.
+Required only for **external access** (via ingress). Port forwarding and internal Dapr calls bypass authentication.
 
 All external API calls require a valid Entra ID JWT token with the `EdgeRAGDeveloper` app role.
 
@@ -76,22 +74,20 @@ TOKEN=$(az account get-access-token \
   --query accessToken -o tsv)
 ```
 
-Tokens expire after ~1 hour. If you receive a `401 Unauthorized`, acquire a fresh token.
+Tokens expire after about one hour. If you receive a `401 Unauthorized`, acquire a fresh token.
 
 ---
 
-## Collection Name Rules
+## Collection name rules
 
-- Lowercase letters, digits, and hyphens only
-- Must start and end with an alphanumeric character
-- 2–49 characters
-- Names `default` and `system` are reserved
-- The default collection `edgeragapp` is auto-created on startup and cannot be deleted
+- Use only lowercase letters, digits, and hyphens.
+- Start and end with an alphanumeric character.
+- Use 2 to 49 characters.
+- The names `default` and `system` are reserved.
+- The default collection `edgeragapp` is auto-created on startup and can't be deleted.
 
-> [!NOTE]
-> Internally, hyphens in collection names are replaced with underscores to form the `storage_prefix`, which is used for Milvus collection names and Postgres table names. For example, collection `my-docs` uses storage prefix `my_docs`, resulting in Milvus collections like `my_docs_BGE_M3`.
+Internally, the system replaces hyphens in collection names with underscores to form the `storage_prefix`. This prefix is used for Milvus collection names and Postgres table names. For example, the collection `my-docs` uses the storage prefix `my_docs`, which results in Milvus collections like `my_docs_BGE_M3`.
 
----
 
 ## Create
 
@@ -160,8 +156,8 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 
 | Code | Description |
 |---|---|
-| 201 | Created. The collection was successfully created. 4 Milvus collections are provisioned (`{prefix}_BGE_M3`, `{prefix}_CLIP_ViT_L_14`, `{prefix}_filemetadata_BGE_M3`, `{prefix}_filemetadata_CLIP_ViT_L_14`) and metadata is saved to the Dapr state store. |
-| 400 | Bad Request. Invalid name (bad characters, too short/long, or reserved name). |
+| 201 | Created. The collection was successfully created. Four Milvus collections are provisioned (`{prefix}_BGE_M3`, `{prefix}_CLIP_ViT_L_14`, `{prefix}_filemetadata_BGE_M3`, `{prefix}_filemetadata_CLIP_ViT_L_14`) and metadata is saved to the Dapr state store. |
+| 400 | Bad Request. Invalid name (bad characters, too short or long, or reserved name). |
 | 409 | Conflict. A collection with this name already exists. |
 
 ---
@@ -289,11 +285,9 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 | 200 | OK. The response contains the requested collection. |
 | 404 | Not Found. No collection with the specified name exists. |
 
----
-
 ## Update
 
-Updates a collection. Only the `description` field can be updated. The `name` is immutable after creation.
+Updates a collection. You can only update the `description` field. The `name` is immutable after creation.
 
 ### Request
 
@@ -410,11 +404,9 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 | Code | Description |
 |---|---|
 | 200 | OK. The collection and all associated resources were deleted. |
-| 409 | Conflict. The collection is `edgeragapp` (default, cannot be deleted) or active ingestion jobs are running against this collection. |
+| 409 | Conflict. The collection is `edgeragapp` (default, can't be deleted) or active ingestion jobs are running against this collection. |
 
----
-
-## See Also
+## Related content
 
 - [Collections Overview](../collections-overview.md) — Concepts, architecture, and when to use multiple collections
 - [Ingestion API Reference](ingestion-api-reference.md) — Ingest documents into collections

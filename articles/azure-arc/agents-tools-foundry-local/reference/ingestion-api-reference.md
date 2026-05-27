@@ -1,21 +1,23 @@
 ---
-title: Ingestion REST API reference - Agents and Tools with Foundry Local
+title: Ingestion REST API Reference - Agents and Tools with Foundry Local
 description: REST API reference for managing document ingestion jobs in Agents and Tools with Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/24/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ---
 
 # Ingestion REST API reference
 
+Manage ingestion jobs in Agents and Tools with Foundry Local. The ingestion API ingests documents from NFS or SharePoint data sources into a collection. The API parses, chunks, embeds, and stores documents in the collection's vector collections and database tables.
+
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
-Manage ingestion jobs in Agents and Tools with Foundry Local. The ingestion API ingests documents from NFS or SharePoint data sources into a collection. Documents are parsed, chunked, embedded, and stored in the collection's vector collections and database tables.
+## API information
 
-## API Information
+All endpoints require the `api-version=2024-10-01-preview` query parameter.
 
 | Property | Value |
 |---|---|
@@ -24,14 +26,9 @@ Manage ingestion jobs in Agents and Tools with Foundry Local. The ingestion API 
 | **Port** | 8000 |
 | **Dapr App ID** | `ingestionapi` |
 
-> [!IMPORTANT]
-> All endpoints require the `api-version=2024-10-01-preview` query parameter.
-
----
-
 ## Access Methods
 
-The Ingestion API can be reached through three access methods. The access method determines whether authentication is required.
+You can reach the Ingestion API through three access methods. The access method determines whether authentication is required.
 
 ### External access (via ingress)
 
@@ -41,7 +38,7 @@ https://<cluster-domain>/edgeai/ingestion/...
 
 Requires a valid JWT token (see [Authentication](#authentication)). The ingress adds the `X-External-Request` header which triggers Entra Auth sidecar validation.
 
-### Port-forwarding (for development/testing)
+### Port forwarding (for development and testing)
 
 ```bash
 kubectl port-forward deployment/ingestionapi-deployment 8000:8000 -n arc-rag
@@ -57,11 +54,9 @@ curl -H "dapr-app-id: ingestionapi" http://localhost:3500/edgeai/ingestion/...
 
 No `Authorization` header needed for internal Dapr calls.
 
----
-
 ## Authentication
 
-Required only for **external access** (via ingress). Port-forwarding and internal Dapr calls bypass authentication.
+Required only for **external access** (via ingress). Port forwarding and internal Dapr calls bypass authentication.
 
 All external API calls require a valid Entra ID JWT token with the `EdgeRAGDeveloper` app role.
 
@@ -74,9 +69,7 @@ TOKEN=$(az account get-access-token \
   --query accessToken -o tsv)
 ```
 
-Tokens expire after ~1 hour. If you receive a `401 Unauthorized`, acquire a fresh token.
-
----
+Tokens expire after about one hour. If you receive a `401 Unauthorized`, acquire a fresh token.
 
 ## Create
 
@@ -92,7 +85,7 @@ POST /edgeai/ingestion/jobs/{job_id}?api-version=2024-10-01-preview
 
 | Name | In | Required | Type | Description |
 |---|---|---|---|---|
-| `job_id` | path | True | String | A user-chosen name for the ingestion job (e.g., `nfs-quarterly-reports`). Reusing the same `job_id` creates a new "run" under that job. |
+| `job_id` | path | True | String | A user-chosen name for the ingestion job (for example, `nfs-quarterly-reports`). Reusing the same `job_id` creates a new "run" under that job. |
 | `api-version` | query | True | String | The API version to use. |
 
 ### Request headers
@@ -176,8 +169,7 @@ operation-location: /edgeai/ingestion/jobs/q1-ingest/runs/{run_id}?api-version=2
 }
 ```
 
-> [!NOTE]
-> `embeddingIndexName` in the response shows the sanitized storage prefix (underscores). `originalCollectionName` shows the original name you provided.
+The `embeddingIndexName` in the response shows the sanitized storage prefix with underscores. The `originalCollectionName` shows the original name you provided.
 
 ### Example: SharePoint data source
 
@@ -214,11 +206,9 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 
 | Code | Description |
 |---|---|
-| 200 | OK. The ingestion job was accepted. The `operation-location` response header contains the URI to monitor the run. |
+| 200 | OK. The service accepts the ingestion job. The `operation-location` response header contains the URI to monitor the run. |
 | 400 | Bad Request. Collection not found (`COLLECTION_NOT_FOUND`) or invalid NFS path. |
 | 422 | Unprocessable Entity. Missing required fields (Pydantic validation error). |
-
----
 
 ## List
 
@@ -282,12 +272,10 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 
 | Status | Description |
 |---|---|
-| `PENDING` | The job is queued and has not started. |
+| `PENDING` | The job is queued and hasn't started. |
 | `RUNNING` | The job is currently processing documents. |
 | `COMPLETED` | The job finished successfully. |
 | `FAILED` | The job encountered an error. |
-
----
 
 ## Get Run
 
@@ -319,11 +307,9 @@ GET /edgeai/ingestion/jobs/{job_id}/runs/{run_id}?api-version=2024-10-01-preview
 |---|---|
 | 200 | OK. The response contains detailed run info including `totalItems`, `processedItems`, `failedItems`, and `errorInfo`. |
 
----
-
 ## Delete Runs
 
-Deletes all runs for a given job. Cannot delete while jobs are in `PENDING` or `RUNNING` status.
+Deletes all runs for a given job. You can't delete runs while jobs are in `PENDING` or `RUNNING` status.
 
 ### Request
 
@@ -351,9 +337,7 @@ DELETE /edgeai/ingestion/jobs/{job_id}/runs?api-version=2024-10-01-preview
 | 200 | OK. The job runs were deleted. |
 | 409 | Conflict. Cannot delete while jobs are in `PENDING` or `RUNNING` status. |
 
----
-
-## See Also
+## Related content
 
 - [Collections API Reference](collections-api-reference.md) — Create and manage collections before ingesting
 - [Inference API Reference](inference-api-reference.md) — Query collections using RAG after ingestion

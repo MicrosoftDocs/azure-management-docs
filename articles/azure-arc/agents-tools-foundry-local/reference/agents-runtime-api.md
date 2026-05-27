@@ -1,21 +1,23 @@
 ---
-title: Agents Runtime REST API reference - Agents and Tools with Foundry Local
+title: Agents Runtime REST API Reference - Agents and Tools with Foundry Local
 description: REST API reference for the Agents Runtime Service, including threads, messages, runs, and steps.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/24/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ---
 
 # Agents Runtime REST API reference
 
+Use this reference to call the Agents Runtime REST API so you can create threads, send messages, run agents, and inspect run steps in Agents and Tools with Foundry Local.
+
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 ## Authorization
 
-All endpoints require a valid Bearer token issued by Microsoft Entra ID (Azure AD). The token is validated by the Entra Auth sidecar running alongside the service.
+All endpoints require a valid Bearer token issued by Microsoft Entra ID (Azure AD). The Entra Auth sidecar running alongside the service validates the token.
 
 ### Obtaining a Token
 
@@ -37,13 +39,13 @@ Authorization: Bearer <access_token>
 
 ### Thread Ownership
 
-The `oid` (Object ID) claim from the token identifies the user. Thread ownership is enforced — users can only access threads they created. All CRUD operations on threads, messages, runs, and steps respect this ownership boundary. No specific role is required beyond being authenticated.
+The `oid` (Object ID) claim from the token identifies the user. Thread ownership is enforced - users can only access threads they created. All CRUD operations on threads, messages, runs, and steps respect this ownership boundary. No specific role is required beyond being authenticated.
 
 ### Disabling Authentication (Development)
 
 Set `IS_AUTH_ENABLED=false` in the environment to disable authentication. When disabled, all endpoints are accessible without a token and no ownership is enforced.
 
-> **Note: Timestamps** — The Agents Runtime Service returns timestamps as Unix epoch integers (e.g., `1699012345`). The Knowledge Base Manager uses ISO 8601 datetime strings (e.g., `"2025-01-15T10:30:00Z"`).
+**Timestamps** — The Agents Runtime Service returns timestamps as Unix epoch integers (for example, `1699012345`). The Knowledge Base Manager uses ISO 8601 datetime strings (for example, `"2025-01-15T10:30:00Z"`).
 
 ## Create Thread
 
@@ -92,7 +94,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 
 | Code | Description |
 | --- | --- |
-| 201 | Created. The request was fulfilled and a new thread was created. |
+| 201 | Created. The request is fulfilled and a new thread is created. |
 | 400 | Bad Request. Validation error. |
 | 500 | Internal Server Error. |
 
@@ -203,7 +205,7 @@ HTTP/1.1 200 OK
 
 ## Get Thread
 
-Retrieves a specific thread by ID. Returns 404 if the thread does not exist or belongs to another user.
+Retrieves a specific thread by ID. Returns 404 if the thread doesn't exist or belongs to another user.
 
 ### Request
 
@@ -237,7 +239,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The response contains the requested thread. |
-| 404 | Not Found. The specified thread does not exist or belongs to another user. |
+| 404 | Not Found. The specified thread doesn't exist or belongs to another user. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -314,7 +316,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The thread was modified successfully. |
-| 404 | Not Found. The specified thread does not exist or belongs to another user. |
+| 404 | Not Found. The specified thread doesn't exist or belongs to another user. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -379,7 +381,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The thread was deleted successfully. |
-| 404 | Not Found. The specified thread does not exist or belongs to another user. |
+| 404 | Not Found. The specified thread doesn't exist or belongs to another user. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -498,7 +500,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | --- | --- |
 | 201 | Created. The request was fulfilled and a new message was created. |
 | 400 | Bad Request. Validation error. |
-| 404 | Not Found. The specified thread does not exist. |
+| 404 | Not Found. The specified thread doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -583,7 +585,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. A successful operation with the message list. |
-| 404 | Not Found. The specified thread does not exist. |
+| 404 | Not Found. The specified thread doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -686,7 +688,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The response contains the requested message. |
-| 404 | Not Found. The specified thread or message does not exist. |
+| 404 | Not Found. The specified thread or message doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -761,7 +763,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The message was deleted successfully. |
-| 404 | Not Found. The specified thread or message does not exist. |
+| 404 | Not Found. The specified thread or message doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -870,7 +872,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 
 #### Streaming Response
 
-When `stream=true`, the response is returned as Server-Sent Events (SSE) with `Content-Type: text/event-stream`.
+When you set `stream=true`, the response is returned as server-sent events (SSE) with `Content-Type: text/event-stream`.
 
 ```
 event: thread.run.created
@@ -898,9 +900,9 @@ data: [DONE]
 
 | Code | Description |
 | --- | --- |
-| 201 | Created. The run was created and execution has started (background mode). |
+| 201 | Created. The run was created and execution started (background mode). |
 | 400 | Bad Request. Validation error. |
-| 404 | Not Found. The specified thread does not exist. |
+| 404 | Not Found. The specified thread doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -973,7 +975,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The response contains the requested run. |
-| 404 | Not Found. The specified thread or run does not exist. |
+| 404 | Not Found. The specified thread or run doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -1013,7 +1015,7 @@ HTTP/1.1 200 OK
 
 ## Cancel Run
 
-Cancels a run that is in progress or queued.
+Cancels a run that's in progress or queued.
 
 ### Request
 
@@ -1048,8 +1050,8 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The run was cancelled successfully. |
-| 400 | Bad Request. The run is not in a cancellable state (must be `queued` or `in_progress`). |
-| 404 | Not Found. The specified thread or run does not exist. |
+| 400 | Bad Request. The run isn't in a cancellable state. It must be `queued` or `in_progress`. |
+| 404 | Not Found. The specified thread or run doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -1083,9 +1085,9 @@ HTTP/1.1 200 OK
 }
 ```
 
-## List Run Steps
+## List run steps
 
-Lists steps belonging to a run. Each step has a `type` field indicating the kind of action:
+Lists steps belonging to a run. Each step has a `type` field that indicates the kind of action:
 
 | Step Type | Description |
 | --- | --- |
@@ -1135,7 +1137,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. A successful operation with the step list. |
-| 404 | Not Found. The specified thread does not exist. |
+| 404 | Not Found. The specified thread doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -1247,7 +1249,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The response contains the requested run step. |
-| 404 | Not Found. The specified thread, run, or step does not exist. |
+| 404 | Not Found. The specified thread, run, or step doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type

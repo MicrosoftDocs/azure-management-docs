@@ -1,21 +1,23 @@
 ---
-title: Knowledge Base Manager REST API reference - Agents and Tools with Foundry Local
+title: Knowledge Base Manager REST API Reference - Agents and Tools with Foundry Local
 description: REST API reference for managing knowledge bases in Agents and Tools with Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/24/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ---
 
 # Knowledge Base Manager REST API reference
 
+Use this reference to call the Knowledge Base Manager REST API so you can list, get, update, and replace knowledge bases in Agents and Tools with Foundry Local.
+
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 ## Authorization
 
-All endpoints require a valid Bearer token issued by Microsoft Entra ID (Azure AD). The token is validated by the Entra Auth sidecar running alongside each service.
+All endpoints require a valid Bearer token issued by Microsoft Entra ID (Azure AD). The Entra Auth sidecar running alongside each service validates the token.
 
 ### Obtaining a Token
 
@@ -37,12 +39,12 @@ Authorization: Bearer <access_token>
 
 ### Roles
 
-The token's `roles` claim is inspected for role-based access control:
+The API inspects the token's `roles` claim for role-based access control:
 
 | Role | Access |
 | --- | --- |
-| `EdgeRAGDeveloper` | Full access — view and update knowledge bases. |
-| *(any authenticated user)* | Read-only access — list and get knowledge bases. |
+| `EdgeRAGDeveloper` | Full access - view and update knowledge bases. |
+| *(any authenticated user)* | Read-only access - list and get knowledge bases. |
 
 Write operations (update) require the **`EdgeRAGDeveloper`** role. If the caller lacks this role, the API returns `403 Forbidden`.
 
@@ -50,7 +52,7 @@ Write operations (update) require the **`EdgeRAGDeveloper`** role. If the caller
 
 Set `IS_AUTH_ENABLED=false` in the environment to disable authentication. When disabled, all endpoints are accessible without a token and no ownership is enforced.
 
-> **Note: Timestamps** — The Knowledge Base Manager returns timestamps as ISO 8601 datetime strings (e.g., `"2025-01-15T10:30:00Z"`). The Agents Runtime Service uses Unix epoch integers (e.g., `1699012345`).
+**Timestamps** - The Knowledge Base Manager returns timestamps as ISO 8601 datetime strings (for example, `"2025-01-15T10:30:00Z"`). The Agents Runtime Service uses Unix epoch integers (for example, `1699012345`).
 
 ## List Knowledge Bases
 
@@ -173,7 +175,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | Code | Description |
 | --- | --- |
 | 200 | OK. The response contains the requested knowledge base. |
-| 404 | Not Found. The specified knowledge base does not exist. |
+| 404 | Not Found. The specified knowledge base doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -210,9 +212,9 @@ HTTP/1.1 200 OK
 
 ## Update Knowledge Base
 
-Updates an existing knowledge base (partial update). Only provided fields will be updated.
+Updates an existing knowledge base (partial update). Only the provided fields are updated.
 
-> **Important:** When `knowledge_source_ids` is provided in a PATCH request, it **replaces** the entire list — it does not append. Include all desired IDs in the array. To add a new source, first read the current list, then send the full updated array. Omitting the field entirely leaves the existing list unchanged.
+> **Important:** When you provide `knowledge_source_ids` in a PATCH request, you **replace** the entire list - you don't append. Include all desired IDs in the array. To add a new source, first read the current list, then send the full updated array. If you omit the field entirely, the existing list stays unchanged.
 
 **Requires role: `EdgeRAGDeveloper`**
 
@@ -264,8 +266,8 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 | --- | --- |
 | 200 | OK. The knowledge base was updated successfully. |
 | 400 | Bad Request. Validation error. |
-| 403 | Forbidden. The caller does not have the `EdgeRAGDeveloper` role. |
-| 404 | Not Found. The specified knowledge base does not exist. |
+| 403 | Forbidden. The caller doesn't have the `EdgeRAGDeveloper` role. |
+| 404 | Not Found. The specified knowledge base doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type
@@ -303,7 +305,7 @@ HTTP/1.1 200 OK
 
 ## Replace Knowledge Base
 
-Fully replaces an existing knowledge base. All fields are overwritten with the provided values. Fields not included are reset to their defaults (e.g., `knowledge_source_ids` becomes `[]`, `description` becomes `null`).
+Fully replaces an existing knowledge base. This operation overwrites all fields with the values you provide. Fields you don't include are reset to their default values (for example, `knowledge_source_ids` becomes `[]`, and `description` becomes `null`).
 
 **Requires role: `EdgeRAGDeveloper`**
 
@@ -353,7 +355,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 
 | Name | Required | Description | Data Type |
 | --- | --- | --- | --- |
-| name | **Yes** | Name of the knowledge base (1–256 chars, non-empty). | String |
+| name | **Yes** | Name of the knowledge base (1–256 characters, non-empty). | String |
 | description | No | Description of the knowledge base (max 512 chars). Default: `null`. | String |
 | knowledge\_source\_ids | No | List of Knowledge Source IDs. Default: `[]`. | Array\[String\] |
 | metadata | No | Custom key-value metadata. Default: `null`. | Object |
@@ -364,10 +366,10 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 
 | Code | Description |
 | --- | --- |
-| 200 | OK. The knowledge base was replaced successfully. |
+| 200 | OK. The operation replaced the knowledge base. |
 | 400 | Bad Request. Validation error. |
-| 403 | Forbidden. The caller does not have the `EdgeRAGDeveloper` role. |
-| 404 | Not Found. The specified knowledge base does not exist. |
+| 403 | Forbidden. The caller doesn't have the `EdgeRAGDeveloper` role. |
+| 404 | Not Found. The specified knowledge base doesn't exist. |
 | 500 | Internal Server Error. |
 
 #### Content-Type

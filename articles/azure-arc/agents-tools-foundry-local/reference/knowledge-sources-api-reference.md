@@ -1,26 +1,26 @@
 ---
-title: Knowledge Sources REST API reference - Agents and Tools with Foundry Local
+title: Knowledge Sources REST API Reference - Agents and Tools with Foundry Local
 description: REST API reference for managing knowledge sources in Agents and Tools with Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/24/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ---
 
 # Knowledge Sources REST API reference
 
-[!INCLUDE [preview-notice](../includes/preview-notice.md)]
-
 Manage knowledge sources in Agents and Tools with Foundry Local. A knowledge source is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Knowledge sources are the units that agents and knowledge bases consume to access external knowledge.
 
-There are two kinds of knowledge sources:
+Two kinds of knowledge sources exist:
 
 - **`remote_mcp`** — An arbitrary external MCP server (any MCP-compliant endpoint).
 - **`indexed_sources_mcp`** — An `indexed-source-mcp` server connected to a specific indexed source reference.
 
-## API Information
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
+## API information
 
 | Property | Value |
 |---|---|
@@ -29,14 +29,11 @@ There are two kinds of knowledge sources:
 | **Port** | 3005 |
 | **Dapr App ID** | `knowledge-sources` |
 
-> [!IMPORTANT]
-> All endpoints use the `/edgeai/knowledgesources` prefix.
-
----
+All endpoints use the `/edgeai/knowledgesources` prefix.
 
 ## Access Methods
 
-The Knowledge Sources API can be reached through three access methods. The access method determines whether authentication is required.
+You can reach the Knowledge Sources API through three access methods. The access method determines whether authentication is required.
 
 ### External access (via ingress)
 
@@ -46,7 +43,7 @@ https://<cluster-domain>/edgeai/knowledgesources/...
 
 Requires a valid JWT token (see [Authentication](#authentication)). The ingress adds the `X-External-Request` header which triggers Entra Auth sidecar validation.
 
-### Port-forwarding (for development/testing)
+### Port forwarding (for development and testing)
 
 ```bash
 kubectl port-forward deployment/knowledgesources-deployment 3005:3005 -n arc-rag
@@ -62,11 +59,9 @@ curl -H "dapr-app-id: knowledge-sources" http://localhost:3500/edgeai/knowledges
 
 No `Authorization` header needed for internal Dapr calls.
 
----
-
 ## Authentication
 
-Required only for **external access** (via ingress). Port-forwarding and internal Dapr calls bypass authentication.
+Required only for **external access** (via ingress). Port forwarding and internal Dapr calls bypass authentication.
 
 All external API calls require a valid Entra ID JWT token with the `EdgeRAGDeveloper` app role.
 
@@ -79,13 +74,11 @@ TOKEN=$(az account get-access-token \
   --query accessToken -o tsv)
 ```
 
-Tokens expire after ~1 hour. If you receive a `401 Unauthorized`, acquire a fresh token.
-
----
+Tokens expire after about one hour. If you receive a `401 Unauthorized`, acquire a fresh token.
 
 ## Concepts
 
-### Knowledge Source
+### Knowledge source
 
 A knowledge source is a **registration of an MCP server**. It holds the connection configuration (server URL, auth type) and, for indexed-source MCPs, the reference to the specific indexed source.
 
@@ -104,28 +97,26 @@ A knowledge source is a **registration of an MCP server**. It holds the connecti
 | `microsoft_entra_id` | Forwards the caller's `Authorization` header to the MCP server. |
 | `unauthenticated` | No auth headers are forwarded to the MCP server. |
 
-### MCP Validation
+### MCP validation
 
-When a knowledge source is **created** or its connection parameters are **updated**, the service validates the MCP connection before persisting:
+When you **create** a knowledge source or **update** its connection parameters, the service validates the MCP connection before saving it:
 
 1. Extracts `server_url` from the parameters.
-2. Performs an SSRF/DNS safety check (blocks private/internal IPs).
-3. Sends a JSON-RPC `initialize` request to the MCP server (connect timeout: 5s, read timeout: 30s).
-4. Retries up to 3 times with exponential backoff (1s, 2s).
-5. If validation **succeeds**: `validation_status` is set to `active`, the record is persisted.
-6. If validation **fails**: the request is rejected with `400 Bad Request` — nothing is persisted (on create) or changed (on update).
+1. Performs an SSRF/DNS safety check (blocks private/internal IPs).
+1. Sends a JSON-RPC `initialize` request to the MCP server (connect timeout: 5 seconds, read timeout: 30 seconds).
+1. Retries up to three times with exponential backoff (1 second, 2 seconds).
+1. If validation **succeeds**: sets `validation_status` to `active` and saves the record.
+1. If validation **fails**: rejects the request with `400 Bad Request` - doesn't save anything (on create) or change anything (on update).
 
 | Status | Description |
 |---|---|
-| `unknown` | Default status. Has not been validated. |
+| `unknown` | Default status. Not validated yet. |
 | `active` | MCP `initialize` succeeded. `validated_at` is set. |
 | `failed` | Validation failed. Check `validation_error` for details. `validated_at` is set. |
 
----
-
 ## Create
 
-Creates a new knowledge source. The MCP server is validated before the record is persisted.
+Creates a new knowledge source. The service validates the MCP server before saving the record.
 
 ### Request
 
@@ -168,7 +159,7 @@ POST /edgeai/knowledgesources
 | `server_label` | False | String | Human-readable label. Defaults to `"indexed-sources-mcp-server"`. |
 
 > [!NOTE]
-> Only one of `remote_mcp_parameters` or `indexed_sources_parameters` may be provided, and it must match the `kind`.
+> Provide only one of `remote_mcp_parameters` or `indexed_sources_parameters`. The provided parameter must match the `kind`.
 
 ### Example: Remote MCP
 
@@ -426,7 +417,7 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 
 ## Update
 
-Partially updates a knowledge source. If connection parameters or `auth_type` are changed, MCP validation is re-run. If revalidation fails, no fields are updated.
+Partially updates a knowledge source. If you change connection parameters or `auth_type`, the system re-runs MCP validation. If revalidation fails, the system doesn't update any fields.
 
 ### Request
 
@@ -449,7 +440,7 @@ PATCH /edgeai/knowledgesources/{ks_id}
 
 ### Request body
 
-All fields are optional. Only provided fields are updated.
+All fields are optional. Only the fields you provide are updated.
 
 | Name | Required | Type | Description |
 |---|---|---|---|
@@ -459,8 +450,7 @@ All fields are optional. Only provided fields are updated.
 | `remote_mcp_parameters` | False | Object | Updated parameters. Only valid for `kind=remote_mcp`. Triggers MCP revalidation. |
 | `indexed_sources_parameters` | False | Object | Updated parameters. Only valid for `kind=indexed_sources_mcp`. Triggers MCP revalidation. |
 
-> [!IMPORTANT]
-> The `kind` field is immutable after creation. Supplying a parameters field that does not match the knowledge source's `kind` returns `400 Bad Request`.
+The `kind` field is immutable after creation. Supplying a parameters field that doesn't match the knowledge source's `kind` returns `400 Bad Request`.
 
 ### Example
 
@@ -495,8 +485,6 @@ Returns the full updated knowledge source object.
 | 404 | Not Found. No knowledge source with the specified ID exists. |
 | 409 | Conflict. Updated `name` conflicts with an existing knowledge source. |
 | 422 | Unprocessable Entity. Invalid field values. |
-
----
 
 ## Delete
 
@@ -542,8 +530,6 @@ No response body.
 |---|---|
 | 204 | No Content. The knowledge source was deleted. |
 | 404 | Not Found. No knowledge source with the specified ID exists. |
-
----
 
 ## Batch Delete
 
@@ -602,12 +588,10 @@ Authorization: Bearer eyJ0eX...FWSXfwtQ
 
 | Code | Description |
 |---|---|
-| 200 | OK. The matching knowledge sources were deleted. |
+| 200 | OK. The matching knowledge sources are deleted. |
 | 400 | Bad Request. No `ks_ids` provided. |
 
----
-
-## See Also
+## Related content
 
 - [Knowledge Sources Guide](../knowledge-sources-guide.md) — How-to guide for configuring knowledge sources
 - [Knowledge Bases Guide](../knowledge-bases-guide.md) — Group knowledge sources into knowledge bases
