@@ -170,7 +170,7 @@ To add your GCP public cloud to Azure, use the Azure portal to enter details and
 
    1. Select the subscription and resource group in which to create your connector resource.
    1. Enter a unique name for the connector and select a [supported region](overview.md#supported-regions).
-   1. Provide the **Project ID** and **Project Number** for the GCP project that you want to connect.
+   1. Provide the **Project ID** and **Project Number** for the GCP project that you want to connect. If you connect an organization account, provide the **Organization ID**.
    1. Select **Next**.
 
 1. On the **Solutions** page, select which solutions you'd like to use with this connector and configure them. Select **Add** to enable **[Inventory](view-multicloud-inventory.md)**, **[Arc onboarding](onboard-multicloud-vms-arc.md)**, or both.
