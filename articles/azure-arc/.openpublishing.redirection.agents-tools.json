@@ -41,7 +41,7 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/azure-arc/agents-tools-foundry-local/delete-data.md",
+      "source_path_from_root": "/articles/azure-arc/edge-rag/delete-data.md",
       "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/collections-overview",
       "redirect_document_id": false
     },
