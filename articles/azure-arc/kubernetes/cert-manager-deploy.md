@@ -106,7 +106,7 @@ The following sections walk through an example scenario to issue a self-signed c
 
 #### Create a ClusterIssuer (self-signed CA)
 
-First, set up a ClusterIssuer that uses a self-signed certificate as its CA. This ClusterIssuer will act as an internal certificate authority for the cluster, signing certificates for your workloads. The CA should be backed by RSA-generated private keys with a minimum length of 4096.
+First, set up a ClusterIssuer that uses a self-signed certificate as its CA. This ClusterIssuer will act as an internal certificate authority for the cluster, signing certificates for your workloads. The CA should be backed by RSA-generated private keys with a minimum length of 4096 bits.
 
 This example uses a self-signed certificate to demonstrate the process, which is suitable for inter-cluster communication or testing, but is not recommended for production workloads.
 
