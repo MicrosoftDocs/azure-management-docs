@@ -4,9 +4,10 @@ description: Learn how the agentic layer in Agents and Tools with Foundry Local 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/19/2026
+ms.date: 05/28/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
+# Customer intent: As a platform engineer or AI application developer, I want to understand how the agentic layer uses agents, knowledge bases, and knowledge sources so that I can design and operate grounded multistep AI interactions on my infrastructure.
 ---
 
 # The agentic layer in Agents and Tools with Foundry Local
@@ -44,13 +45,15 @@ The agents runtime executes conversations. It creates and manages:
 
 This runtime is responsible for invoking tools, interacting with the language model, and returning responses. It supports streaming responses through server-sent events (SSE).
 
-### Knowledge Base Manager
+### Knowledge Base
 
-The Knowledge Base Manager is the control plane for knowledge base configuration. Use it to manage *Knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
+The Knowledge Base manager is the control plane for knowledge base configuration. Use it to manage *Knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
 
 The system automatically provisions agents and pairs them 1:1 with a knowledge base. Changes to the knowledge base sync to the paired internal agent.
 
 Each deployment includes a default knowledge base. You can't create extra knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
+
+For more information, see [Knowledge bases in Agents and Tools with Foundry Local](knowledge-bases-guide.md).
 
 ### Knowledge sources
 
@@ -61,7 +64,9 @@ Agents and Tools with Foundry Local support two knowledge source kinds:
 - **remote_mcp** for external MCP servers.
 - **indexed_sources_mcp** for the built-in MCP server with a reference to indexed content in the knowledge layer.
 
-## How agents use knowledge
+For more information, see [Knowledge sources in Agents and Tools with Foundry Local](knowledge-sources-guide.md).
+
+## How the knowledge base works with knowledge sources
 
 The agentic layer uses a predictable sequence for knowledge access. You register knowledge sources, link them to the default knowledge base, and let the system keep the paired internal agent in sync. At runtime, users interact through threads, and each run executes the paired agent with access only to the configured knowledge sources.
 
@@ -115,7 +120,7 @@ Use the agentic layer when your solution needs one or more of these patterns:
 
 If you only need direct ingestion and RAG-style querying against indexed content, the knowledge layer by itself might be enough.
 
-## Bring your own model (BYOM)
+## Language model endpoint options
 
 Agents and Tools with Foundry Local doesn't bundle language models. You must provide your own LLM endpoint. The LLM must expose an OpenAI-compatible chat completions API.
 
@@ -128,7 +133,7 @@ Agents and Tools with Foundry Local doesn't bundle language models. You must pro
   |[Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) (Recommended)| Run models locally on your Arc-connected cluster. Both extensions are designed to work together on the same cluster. Recommended for on-premises deployments. |
   | [Microsoft Foundry](/azure/foundry/what-is-foundry) | Cloud-hosted models. Requires network connectivity from the edge. |
 
-Configure the BYOM endpoint at the cluster level during deployment by using Helm values (`byom.apiEndpoint`, `byom.apiKey`, `byom.apiModel`). All agents on the cluster currently share the same LLM endpoint.
+Configure the language model endpoint at the cluster level during deployment. For endpoints, use Helm values such as `byom.apiEndpoint`, `byom.apiKey`, and `byom.apiModel`. All agents on the cluster currently share the same LLM endpoint.
 
 ## Related content
 

@@ -45,7 +45,7 @@ items:
                 href: prepare-file-server.md
               - name: Connect NFS with Kerberos (optional)
                 href: connect-file-share-kerberos-setup.md
-              - name: Connect SharePoint Server (optional)
+              - name: Connect SharePoint Server
                 href: connect-sharepoint-setup.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
@@ -57,7 +57,7 @@ items:
                 href: prepare-dns.md
           - name: Deploy Agents and Tools with Foundry Local
             href: deploy.md
-          - name: Configure authentication for your model (optional)
+          - name: Configure authentication for BYOM
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer
         items:

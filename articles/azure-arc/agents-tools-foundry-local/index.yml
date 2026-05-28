@@ -27,34 +27,46 @@ landingContent:
           - text: What is Agents and Tools with Foundry Local?
             url: overview.md
           - text: Requirements
-            url: Requirements.md
+            url: requirements.md
       - linkListType: whats-new
         links:
           - text: What's new in Agents and Tools with Foundry Local?
             url: whats-new.md
 
   # Card (optional)
-  - title: Get started
+  - title: Evaluate the service
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Quickstart deployment
+            url: quickstart-edge-rag.md
+
+  # Card (optional)
+  - title: Deploy to production
     linkLists:
       - linkListType: deploy
         links:
+          - text: Deployment overview
+            url: deploy-overview.md
           - text: Complete prerequisites
             url: complete-prerequisites.md
           - text: Deploy Agents and Tools with Foundry Local
             url: deploy.md
 
   # Card (optional)
-  - title: Configure chat solution
+  - title: Explore key capabilities
     linkLists:
       - linkListType: concept
         links:
-          - text: Overview
+          - text: Agentic layer overview
+            url: agentic-overview.md
+          - text: Knowledge layer overview
             url: knowledge-layer-overview.md
       - linkListType: how-to-guide
         links:
           - text: Add data source
             url: add-data-source.md
-          - text: Set up the data query
+          - text: Set up data query
             url: set-up-data-query.md
-          - text: Test solution for end users
+          - text: Test chat for end users
             url: test-end-user-app.md
