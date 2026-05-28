@@ -5,15 +5,15 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 05/13/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to deploy Agents and Tools with Foundry Local on Azure Kubernetes Service so that I can assess the solution.
 ---
 
-# Quickstart: Deploy Agents and Tools with Foundry Local (Step 1 of 2)
+# Quickstart: Deploy Agents and Tools with Foundry Local
 
-In this quickstart, you deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Agents and Tools with Foundry Local for evaluation or development purposes. To deploy Agents and Tools with Foundry Local for a production environment, see [Deployment overview](deploy-overview.md).
+In this quickstart, you deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without local hardware like Azure Local. Create and configure an AKS cluster, add required node pools and extensions, and deploy the Agentic Retrieval extension. Configure the deployment to use a Foundry Local model endpoint (`gpt-oss-20b`) for language model inference and then connect to the developer portal to continue setup. This quickstart is intended for evaluation and development scenarios. For a production deployment, see [Deployment overview](deploy-overview.md).
 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
@@ -26,6 +26,10 @@ Before you begin, make sure you have:
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). If you're not using Azure Cloud Shell, see [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Agents and Tools with Foundry Local registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).
 - Application (client) ID and the directory (tenant) ID. To get these values after registering Agents and Tools with Foundry Local, see [Get app and tenant IDs](prepare-authentication.md#optional-get-app-and-tenant-ids).
+- A Foundry Local endpoint and model deployment for your language model. For setup steps, see [Set up language model endpoint for Agents and Tools with Foundry Local](prepare-model-endpoint.md#foundry-local).
+- A Foundry Local application registration client ID (`foundryClientId`) for Entra-based authentication between Agents and Tools with Foundry Local and the Foundry Local endpoint. For setup guidance, see [Register a Foundry Local application](prepare-authentication.md#optional-register-a-foundry-local-application).
+- A domain name you can use for `ingress.domainname` that matches your app registration redirect URI (for example, `arcrag.contoso.com`).
+- Sufficient AKS quota in your target region for the node pool sizes used in this article, including `Standard_NC24ads_A100_v4` for the GPU node pool.
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -81,10 +85,11 @@ In this section, you create an AKS cluster and configure it for Agents and Tools
 
    ```azurecli
     
-   # BYOM is mandatory — set your model endpoint
-   $apiEndpoint = "<Your OpenAI-compatible LLM endpoint URI>"
-   $apiModel = "<Model Name, e.g. gpt-4o>"
+   # Set your Foundry Local model endpoint
+   $apiEndpoint = "https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions"
+   $apiModel = "gpt-oss-20b"
    $maxTokensInK = "128"  # Adjust based on your model's context window
+   $foundryClientId = "<foundry_app_registration_client_id>"
 
    # Set Agents and Tools with Foundry Local extension values
    $gpu_enabled = "true" # set to false if no GPU nodes 
@@ -220,6 +225,7 @@ Complete the following steps to deploy the Agents and Tools with Foundry Local e
        --configuration-settings byom.apiEndpoint=$apiEndpoint `
        --configuration-settings byom.apiModel=$apiModel `
        --configuration-settings byom.maxTokensInK=$maxTokensInK `
+       --configuration-settings foundryClientId=$foundryClientId `
        --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz
    ```
 
@@ -277,4 +283,4 @@ az group delete `
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Query your data](quickstart-create-agent.md)
+> [Add data source](add-data-source.md)

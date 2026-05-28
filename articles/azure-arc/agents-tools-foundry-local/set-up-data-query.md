@@ -4,7 +4,7 @@ description: "Learn how to set up your data query with Agents and Tools with Fou
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 11/10/2025
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -92,6 +92,11 @@ Use the chat response details to analyze and fine-tune your model and search par
 ## Get the API endpoint
 
 When you're satisfied with the solution, select on **View the endpoint** to get the API endpoint to use in your downstream applications.
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Test the chat solution](test-end-user-app.md)
 
 ## Related content
 

@@ -4,7 +4,7 @@ description: Learn about collections, the fundamental unit of data organization 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 04/29/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
@@ -20,6 +20,7 @@ Collections are the fundamental unit of data organization in Agents and Tools wi
 A collection is a named container for vector data. When you ingest documents, they're parsed, chunked, embedded, and stored in a specific collection. When you query, you specify which collections to search.
 
 Collections provide:
+
 - **Data isolation**: Separate datasets for different use cases, departments, or tenants.
 - **Access control**: Role-based access control (RBAC) policies can be applied per collection.
 - **Independent lifecycle**: Create, ingest, query, and delete collections independently.

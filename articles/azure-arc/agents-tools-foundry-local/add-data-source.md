@@ -4,7 +4,7 @@ description: "Learn how to add and manage data sources for Agents and Tools with
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/25/2026
+ms.date: 05/27/2026
 ms.subservice: edge-rag
 #customer intent: As a developer or data scientist, I want to add a data source to Agents and Tools with Foundry Local so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
@@ -13,6 +13,8 @@ ms.custom:
 # Add a data source for Agents and Tools with Foundry Local
 
 Add and configure a data source for your Agents and Tools with Foundry Local chat solution by using the developer portal. Follow these step-by-step instructions to set up data ingestion and define indexing parameters.
+
+By default, ingested data is added to the `edgeragapp` collection unless you select an existing collection or create a new one. To let end users query data in a collection, you must assign them to the app role mapped to that collection.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -23,8 +25,9 @@ Before you begin:
 - Review the following articles:
   - [Configure the Knowledge Layer](build-chat-solution-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
-  - [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md)
-- If you plan to add a SharePoint Server data source and didn't configure SharePoint server-to-server identity parameters during deployment, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md). You need the following values  to add a SharePoint Server data source: Client ID, Issuer ID, Windows SID, and Realm (optional).
+- Decide whether to use the default `edgeragapp` collection or create a new collection for this data source. For more information, see [Collections](collections-overview.md).
+- Make sure end users are assigned to the app role for the target collection. For steps, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
+- If you plan to add a SharePoint Server data source and didn't configure SharePoint server-to-server identity parameters during deployment, complete [Set up SharePoint server-to-server authentication](connect-sharepoint-setup.md). You need the following values  to add a SharePoint Server data source: Client ID, Issuer ID, Windows SID, and Realm (optional).
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Set up data ingestion
@@ -79,8 +82,10 @@ To get started, create a data source by using the local developer portal.
 
 You can also perform data ingestion programmatically using the Ingestion API. When using the API, specify the target collection with the `collectionName` parameter in the request body.
 
-> [!NOTE]
-> After you create a collection, you must create a matching app role in your Microsoft Entra ID app registration and assign it to end users. Without this step, end users can ingest data but can't query the collection. For instructions, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
+## Next step
+
+> [!div class="nextstepaction"]
+> [Set up the data](set-up-data-query.md)
 
 ## Related content
 
