@@ -30,9 +30,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 #### [Azure portal](#tab/azure-portal)
 
 1. In the [Azure portal](https://portal.azure.com/), go to the Azure Kubernetes cluster on Azure Local. 
-1. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
-
-   :::image type="content" source="media/deploy/add-cluster-extension.png" alt-text="Screenshot of the extensions you can add from the cluster with Agentic RAG highlighted." lightbox="media/deploy/add-cluster-extension.png":::
+1. Select **Settings** > **Extensions** > **+ Add**, and **Agentic Retrieval** from the list.
+1. Select **Create**.
 1. On the **Basics** tab, provide the following information:
 
    | Field      | Value                                                        |
@@ -43,7 +42,6 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Region          | Select the region to deploy Agents and Tools with Foundry Local.                        |
    | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
 
-
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details." lightbox="media/deploy/install-extension.png":::
 
 1. Select **Next**.
@@ -51,19 +49,20 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
    | Field | Value |
    |---|---|
-   | **RAG settings** | |
-   | RAG components | Select the components to install: **Select all** (default), **Agentic Retrieval Engine**, or **Knowledge Sources Layer**. |
+   | **Capabilities** | Select one or both components to include in the deployment.|
+   | **Agentic Retrieval Engine** | Select this option to install the agentic retrieval engine. |
+   | **Knowledge sources layer** | Select this option to install the knowledge sources layer. |
    | **Deployment mode** | |
    | Deployment mode | Select **GPU** or **CPU** based on your available hardware. This setting applies to the Knowledge Sources layer. |
-   | **NFS connection (data source)** | |
-   | Kerberos | Optional. Select this option if you want to connect to an NFS server by using Kerberos authentication. |
-   | Kerberos SPN | Required only when **Kerberos** is selected. Enter the SPN in the format `service/host@REALM` (for example, `nfs/edgerag-svc@CONTOSO.COM`). |
-   | **SharePoint connection (data source)** | |
-   | SharePoint ingestion | Optional. Select this option if you want to connect to SharePoint by using Key Vault authentication. |
+   | **SharePoint Server** | |
+   | Enable SharePoint data source | Optional. If you want to connect to SharePoint by using Key Vault authentication, select this option. |
    | Key Vault name | Required only when **SharePoint ingestion** is selected. Enter the Azure Key Vault name. |
    | KV cert secret name | Required only when **SharePoint ingestion** is selected. Enter the Key Vault secret name that stores the certificate. |
    | KV cert password secret name | Required only when **SharePoint ingestion** is selected. Enter the Key Vault secret name that stores the certificate password. |
    | Workload identity client ID | Required only when **SharePoint ingestion** is selected. Enter the workload identity client ID (GUID). |
+   | **NFS kerberos authentication** | |
+   | Enable kerberos authentication | Optional. If you want to connect to an NFS server by using Kerberos authentication, select this option. |
+   | Kerberos SPN | Required only when **Kerberos** is selected. Enter the SPN in the format `service/host@REALM` (for example, `nfs/edgerag-svc@CONTOSO.COM`). |
    | **Inference model** | |
    | Language model source | Select **Foundry Local** or **Bring your own**. |
    | Application ID | Required only when **Foundry Local** is selected.  |
@@ -80,8 +79,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    |---|---|
    |**SSL settings**||
    |SSL CNAME|Enter the domain name for your system. The domain name should match the redirect URI used during app registration and must not include the `https://` prefix. For example, `arcrag.contoso.com`.|
-   |Kubernetes SSL secret name|Enter the name of the Kubernetes secret to store the SSL certificate. By default, Agents and Tools with Foundry Local uses a self-signed SSL certificate in this secret. After installation, you can replace it with a signed certificate.|
-   |**Access**||
+   |Kubernetes SSL secret name|Enter the name of the Kubernetes secret to store the SSL certificate. By default, Agentic Retrieval uses a self-signed SSL certificate in this secret. After installation, you can replace it with a signed certificate.|
+   |**Entra ID**||
    | Entra application ID|Enter the application ID from the enterprise application you registered for authentication.|
    | Entra tenant ID|Enter the tenant ID from the enterprise application you registered for authentication.|
 
