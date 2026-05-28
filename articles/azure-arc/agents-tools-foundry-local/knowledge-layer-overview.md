@@ -1,5 +1,5 @@
 ---
-title: Configure the Knowledge Layer for Agents and Tools with Foundry Local
+title: Knowledge Layer Configuration for Agents and Tools with Foundry Local
 description: "Learn about configuring the Knowledge Layer in Agents and Tools with Foundry Local, including data ingestion, collections, and data querying."
 author: cwatson-cat
 ms.author: cwatson
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Configure the Knowledge Layer for Agents and Tools with Foundry Local
+# Knowledge layer configuration for Agents and Tools with Foundry Local
 
 The Knowledge Layer is the data foundation for Agents and Tools with Foundry Local. It ingests and chunks your source content, stores vectors and metadata in collections, and retrieves relevant context at query time so responses are grounded in your organization’s data. This layer is important because it directly determines chat quality, relevance, and access control through collection-level Azure role-based access control (Azure RBAC).
 

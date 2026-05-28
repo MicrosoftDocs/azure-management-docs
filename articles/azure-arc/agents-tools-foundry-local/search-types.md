@@ -131,6 +131,6 @@ These parameters only apply to the **Knowledge-based** chat experience.
 
 - [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
 - [Deploy Agents and Tools with Foundry Local](deploy.md)
-- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Set up data query](set-up-data-query.md)
 

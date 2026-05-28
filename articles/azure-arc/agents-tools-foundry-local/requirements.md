@@ -115,7 +115,7 @@ Foundry Local validates GPU compatibility at deployment time and fails with a cl
 
 If you plan to use a CPU-only setup, review the file size and chunking limitations. See:
 - [Supported document formats and size](#supported-document-formats-and-size)
-- [Chunk settings](build-chat-solution-overview.md#chunk-settings)
+- [Chunk settings](knowledge-layer-overview.md#chunk-settings)
 
 ## Minimum software requirements
 

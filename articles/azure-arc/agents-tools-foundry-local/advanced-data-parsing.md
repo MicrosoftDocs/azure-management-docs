@@ -91,7 +91,7 @@ If you notice missing or incomplete tables, check that your source documents are
 
 ## Related content
 
-- [Configure the Knowledge Layer](build-chat-solution-overview.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Add data source for the chat solution](add-data-source.md)
 - [Set up the data query for chat solution](set-up-data-query.md)
 - [Supported data sources](requirements.md#supported-data-sources)
