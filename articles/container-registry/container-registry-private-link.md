@@ -183,7 +183,7 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 |---|---|
 | Initial private endpoint (registry endpoint + home region regional dedicated data endpoint) | 2 |
 | Each geo-replication region added | +1 (regional dedicated data endpoint) |
-| [Regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints) enabled | +1 per geo-replica |
+| [Regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) enabled | +1 per geo-replica |
 
 **Example:** A registry with 3 geo-replicas and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 regional dedicated data endpoints + 3 regional endpoints).
 
@@ -210,7 +210,7 @@ Ensure the subnet hosting your private endpoints has sufficient free IP capacity
 
 ### Regional endpoints and IP consumption
 
-If you enable [regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints), each geo-replica gets a dedicated login server URL (`myregistry.<region>.geo.azurecr.io`). For registries with private endpoints, this allocates one additional private IP per geo-replica in every associated VNet. Evaluate your subnet capacity before enabling this feature on registries with multiple replicas and many associated VNets.
+If you enable [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview), each geo-replica gets a dedicated login server URL (`myregistry.<region>.geo.azurecr.io`). For registries with private endpoints, this allocates one additional private IP per geo-replica in every associated VNet. Evaluate your subnet capacity before enabling this feature on registries with multiple replicas and many associated VNets.
 
 First, run [az network private-endpoint show][az-network-private-endpoint-show] to query the private endpoint for the network interface ID:
 
