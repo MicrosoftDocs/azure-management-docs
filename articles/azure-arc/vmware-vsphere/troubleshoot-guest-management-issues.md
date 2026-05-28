@@ -4,7 +4,7 @@ description: Learn how to troubleshoot the guest management issues for Arc-enabl
 ms.topic: reference
 ms.date: 02/10/2026
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.custom:
   - linux-related-content
   - build-2025

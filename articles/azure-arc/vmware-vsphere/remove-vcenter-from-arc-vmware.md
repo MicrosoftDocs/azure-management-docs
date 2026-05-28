@@ -7,7 +7,7 @@ author: Jeronika-MS
 ms.topic: how-to
 ms.date: 02/10/2026
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 # Customer intent: As an infrastructure admin, I want to cleanly remove my VMware vCenter environment from Azure Arc-enabled VMware vSphere.
 ms.custom:
   - build-2025

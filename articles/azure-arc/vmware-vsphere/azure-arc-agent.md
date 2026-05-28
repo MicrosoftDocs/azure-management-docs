@@ -4,7 +4,7 @@ description: Learn about Azure Arc agent
 ms.topic: concept-article
 ms.date: 02/10/2026
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS

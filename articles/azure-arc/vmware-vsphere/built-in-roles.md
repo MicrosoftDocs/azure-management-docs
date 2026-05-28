@@ -2,7 +2,7 @@
 title: Azure built-in roles for Azure Arc-enabled VMware vSphere
 description: This article lists the Azure built-in roles for Azure Arc-enabled VMware vSphere. It lists Actions, NotActions, DataActions, and NotDataActions.
 ms.services: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.topic: reference
 author: Jeronika-MS
 ms.author: v-gajeronika
