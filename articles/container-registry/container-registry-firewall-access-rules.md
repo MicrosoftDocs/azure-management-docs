@@ -27,7 +27,7 @@ To pull or push images or other artifacts to an Azure container registry, a clie
 
 If your registry is [geo-replicated](container-registry-geo-replication.md), a client might need to interact with the data endpoint in a specific region or in multiple replicated regions.
 
-* **Regional endpoint** (if enabled) — When [regional endpoints](container-registry-geo-replication.md#regional-endpoints) are enabled on a **Premium** SKU registry, each geo-replica gets a regional endpoint of the form `<registry-name>.<region>.geo.azurecr.io`. Regional endpoints allow clients to connect directly to a specific geo-replica for authentication and push/pull/delete operations, bypassing the global endpoint. If you use firewall rules, you need to allow access to the regional endpoint for each geo-replica that clients connect to.
+* **Regional endpoint** (if enabled) — When [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are enabled on a **Premium** SKU registry, each geo-replica gets a regional endpoint of the form `<registry-name>.<region>.geo.azurecr.io`. Regional endpoints allow clients to connect directly to a specific geo-replica for authentication and push/pull/delete operations, bypassing the global endpoint. If you use firewall rules, you need to allow access to the regional endpoint for each geo-replica that clients connect to.
 
 For the full list of endpoint types and FQDN patterns, see the [endpoint reference](container-registry-endpoint-reference.md).
 
@@ -39,7 +39,7 @@ For the full list of endpoint types and FQDN patterns, see the [endpoint referen
 > [!NOTE]
 > Azure Container Registry supports [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), allowing you to tightly scope client firewall rules for your registry storage. Optionally enable data endpoints in all regions where the registry is located or replicated, using the form `<registry-name>.<region>.data.azurecr.io`.
 >
-> If [regional endpoints](container-registry-geo-replication.md#regional-endpoints) are also enabled, allow access to `<registry-name>.<region>.geo.azurecr.io` for each geo-replica that clients connect to.
+> If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are also enabled, allow access to `<registry-name>.<region>.geo.azurecr.io` for each geo-replica that clients connect to.
 
 ## About Azure Container Registry FQDNs
 

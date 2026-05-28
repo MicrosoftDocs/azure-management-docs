@@ -126,7 +126,7 @@ For [geo-replicated](container-registry-geo-replication.md) registries, each geo
 
 When you pull an image from the global endpoint, ACR routes the request to the geo-replica with the best network performance profile for the client. The serving geo-replica then issues a 307 redirect for layer blob downloads to the serving geo-replica's own dedicated data endpoint. The redirect always stays within the **same region** as the serving geo-replica — a pull routed to the East US geo-replica always redirects to `contoso.eastus.data.azurecr.io`, never to a dedicated data endpoint in a different region.
 
-This also applies when using [regional endpoints](container-registry-geo-replication.md#push-pull-or-delete-images-through-geo-replica-regional-endpoints-preview). A pull from a regional endpoint (`contoso.eastus.geo.azurecr.io`) redirects layer downloads to `contoso.eastus.data.azurecr.io` — never cross-region. This means your firewall rules can be scoped per region.
+This also applies when using [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview). A pull from a regional endpoint (`contoso.eastus.geo.azurecr.io`) redirects layer downloads to `contoso.eastus.data.azurecr.io` — never cross-region. This means your firewall rules can be scoped per region.
 
 ## Enable dedicated data endpoints
 

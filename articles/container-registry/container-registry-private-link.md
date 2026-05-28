@@ -250,7 +250,7 @@ DATA_ENDPOINT_FQDN=$(az network nic show \
 
 #### Additional endpoints for geo-replicas
 
-If your registry is [geo-replicated](container-registry-geo-replication.md), query for the additional data endpoint for each registry replica. If you also enabled [regional endpoints](container-registry-geo-replication.md#regional-endpoints), query for the regional endpoint private IP as well.
+If your registry is [geo-replicated](container-registry-geo-replication.md), query for the additional data endpoint for each registry replica. If you also enabled [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview), query for the regional endpoint private IP as well.
 
 For example, querying the data endpoint in the *eastus* region:
 
@@ -267,7 +267,7 @@ GEO_REPLICA_DATA_ENDPOINT_FQDN=$(az network nic show \
   --output tsv)
 ```
 
-If [regional endpoints](container-registry-geo-replication.md#regional-endpoints) are enabled, also query the regional endpoint for each replica:
+If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are enabled, also query the regional endpoint for each replica:
 
 ```azurecli
 GEO_REPLICA_REGIONAL_ENDPOINT_PRIVATE_IP=$(az network nic show \
@@ -471,7 +471,7 @@ To resolve the registry's public FQDN to the private IP address in these scenari
 
 ### Manually configure DNS records
 
-For some scenarios, you might need to manually configure DNS records in a private zone instead of using the Azure-provided private zone. Be sure to create records for the registry endpoint, the registry's data endpoint, and the data endpoint for any additional regional replica. If [regional endpoints](container-registry-geo-replication.md#regional-endpoints) are enabled, also create records for each regional endpoint (`<registry-name>.<region>.geo.azurecr.io`). If you don't configure all records, the registry might be unreachable.
+For some scenarios, you might need to manually configure DNS records in a private zone instead of using the Azure-provided private zone. Be sure to create records for the registry endpoint, the registry's data endpoint, and the data endpoint for any additional regional replica. If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are enabled, also create records for each regional endpoint (`<registry-name>.<region>.geo.azurecr.io`). If you don't configure all records, the registry might be unreachable.
 
 > [!IMPORTANT]
 > If you later add a new replica, you need to manually add a new DNS record for the data endpoint in that region. For example, if you create a replica of *myregistry* in the northeurope location, add a record for `myregistry.northeurope.data.azurecr.io`. If regional endpoints are enabled, also add a record for `myregistry.northeurope.geo.azurecr.io`.

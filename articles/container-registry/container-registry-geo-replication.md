@@ -479,7 +479,7 @@ A `docker push` is a sequence of HTTP requests: blob uploads for each layer, the
 
 **Solutions** (in order of preference):
 
-1. **Use [regional endpoints](#push-or-pull-images-through-geo-replica-regional-endpoints-preview)** to pin the push to a single geo-replica end-to-end. Every sub-request — login, blob uploads, manifest upload — goes to the same geo-replica. This is the cleanest fix and the recommended approach for any pipeline where push/pull consistency matters.
+1. **Use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview)** to pin the push to a single geo-replica end-to-end. Every sub-request — login, blob uploads, manifest upload — goes to the same geo-replica. This is the cleanest fix and the recommended approach for any pipeline where push/pull consistency matters.
 2. **Use a short-lived DNS cache like `dnsmasq`** scoped to the duration of a single push. For Linux VMs in Azure, see [DNS name resolution options](/azure/virtual-machines/linux/azure-dns). The pin should last the push and no longer — don't run a long-lived DNS cache for the global endpoint, as it interferes with `--global-endpoint-routing false` and with health-aware failover routing.
 3. **Design publish steps to be idempotent** so retries triggered by mid-push failures are safe.
 
