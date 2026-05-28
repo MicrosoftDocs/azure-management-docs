@@ -56,7 +56,7 @@ Azure Linux spans multiple repositories. Filing in the right place helps your co
 | Azure Linux | [microsoft/azurelinux](https://github.com/microsoft/azurelinux) |
 | Azure Linux image tools | [microsoft/azure-linux-image-tools](https://github.com/microsoft/azure-linux-image-tools) |
 | Azure Linux dev tools | [microsoft/azure-linux-dev-tools](https://github.com/microsoft/azure-linux-dev-tools) |
-| Azure Linux documentation | [Contribute to Azure Linux documentation](./contribute-to-docs.md) |
+| Azure Linux documentation | [MicrosoftDocs](https://github.com/MicrosoftDocs/azure-management-docs) |
 
 ## Community expectations
 

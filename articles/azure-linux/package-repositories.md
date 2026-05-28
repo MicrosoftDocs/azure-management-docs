@@ -23,36 +23,35 @@ The supported and authoritative way to discover packages that are available for 
 
 ```bash
 dnf search <KEYWORD>
-dnf list available
+dnf list --available
 ```
 
 - **`dnf search <KEYWORD>`**: Searches package names and summaries across every enabled repository for the given keyword. Use this when you know roughly what you want (for example, `dnf search nginx`) and need to find the matching package name.
-- **`dnf list available`**: Lists every package that's available in the enabled repositories but isn't currently installed. Pipe it through `grep` or `less` to scan large result sets, for example `dnf list available | grep -i kernel`.
-
-PMC also exposes a browsable directory listing at [https://packages.microsoft.com/azurelinux/](https://packages.microsoft.com/azurelinux/) for convenience. This HTML view isn't a supported API, and you shouldn't use it for automation.
+- **`dnf list --available`**: Lists every package that's available in the enabled repositories but isn't currently installed. Pipe it through `grep` or `less` to scan large result sets, for example `dnf list --available | grep -i kernel`.
 
 ## Repository structure
 
-For each major Azure Linux release, the repositories on PMC are organized so that consumers can pin to a specific release, stage, purpose, and architecture. Within each release, repositories are nested in the following order:
+For each major Azure Linux release, the repositories on PMC are organized indicate release, stage, name, and architecture. Within each release, repositories are nested in the following order:
 
 1. **Azure Linux release version**: For example, `azurelinux/4.0`.
 1. **Release stage**: For example, `beta`.
-1. **Repository purpose**: `base`, `sdk`, `microsoft`, or `nvidia`.
+1. **Repository name**: For example, `base` or `microsoft`.`.
 1. **Target architecture**: `x86_64` or `aarch64`.
 
 ### Repository layout
 
+> [!NOTE] 
+> Additional packages are published to `/azurelinux/4.0/beta/sdk` and `azurelinux/4.0/beta/sdk/srpms`. These packages are only provided to satisfy development requirements and aren't officially supported.
+
 The repositories are structured as follows:
 
-| Repository | Purpose |
-| ---------- | ------- |
+| Repository name | Purpose |
+| --------------- | ------- |
 | `base` | Official Azure Linux distribution packages. |
-| `sdk` | Packages made available to satisfy build and development requirements. |
-| `microsoft` | Open-source software that's published by Microsoft. |
-| `nvidia` | NVIDIA and CUDA packages. |
+| `microsoft` | Supplementary software that's published by Microsoft. |
 
 > [!TIP]
-> Any component included in the `base` repository has its source package in a `/azurelinux/4.0/beta/base/srpm` repository. Any component exclusively in the `sdk` repository has its source package in the `/azurelinux/4.0/beta/sdk/srpm` repository.
+> Any component included in the `base` repository has its source package in a `/azurelinux/4.0/beta/base/srpms` repository. 
 
 ## Related content
 

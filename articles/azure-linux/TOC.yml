@@ -182,8 +182,6 @@
       href: support-options.md
     - name: Report issues and request features
       href: report-issues-request-features.md
-    - name: Curated learning resources
-      href: learning-hub.md
     - name: Contribute to Azure Linux
       items:
         - name: Overview

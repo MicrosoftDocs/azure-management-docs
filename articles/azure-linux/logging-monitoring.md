@@ -97,7 +97,7 @@ sudo tail -f /var/log/messages
 View kernel ring buffer messages directly using the following command:
 
 ```bash
-dmesg
+sudo dmesg
 ```
 
 ## Monitor system health and performance
@@ -121,7 +121,6 @@ Use the following commands to inspect memory usage, CPU usage, and running proce
 
 - `free -h`: Shows memory and swap usage in human-readable units.
 - `top`: Provides a real-time view of CPU, memory, and process activity.
-- `htop`: Provides an interactive, color-coded alternative to `top`.
 - `iostat`: Reports CPU and disk I/O statistics.
 - `vmstat`: Reports memory, CPU, and I/O statistics at fixed intervals.
 - `sar`: Collects and reports historical CPU, memory, disk, and network usage. `sar` is provided by the `sysstat` package.

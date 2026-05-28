@@ -25,13 +25,13 @@ The following table highlights the key features and benefits of Azure Linux:
 
 | Feature | Description |
 | ------- | ----------- |
-| **Hardened security posture** | Hardened from the kernel up with kernel lockdown, dm-verity for verified boot, SELinux for mandatory access controls, and FIPS 140-3 cryptographic modules. Critical and high CVEs are fast-tracked with [SLA-driven patch delivery](./manage-cves.md). |
+| **Hardened security posture** | Hardened from the kernel up with kernel lockdown, dm-verity for verified boot, SELinux for mandatory access controls, and FIPS 140-3 cryptographic modules. |
 | **Minimal footprint** | Ships only the packages required for cloud workloads, resulting in a smaller attack surface, fewer CVEs, and faster boot times and lower memory consumption. |
-| **Azure-optimized kernel** | Purpose-built [kernel](./whats-new-azure-linux-4.md) (6.18 LTS) with Hyper-V guest drivers, Azure-specific performance tuning, and security hardening validated across Azure environments like Virtual Machines (VM) / Virtual Machine Scale Sets and AKS. Supports both [LTS and HWE kernel tracks](./release-cadence-lifecycle.md) for new hardware and GPU enablement. |
-| **Supply chain security** | Critical CVEs are fast-tracked under [SLA-driven patch delivery](./manage-cves.md) with zero-reboot kernel livepatching. |
+| **Azure-optimized kernel** | Purpose-built [kernel](./whats-new-azure-linux-4.md) (6.18 LTS) with Hyper-V guest drivers, Azure-specific performance tuning, and security hardening validated across Azure environments like Virtual Machines (VM) / Virtual Machine Scale Sets and AKS. |
+| **Supply chain security** | Critical CVEs are fast-tracked under [SLA-driven patch delivery](./manage-cves.md). |
 | **Native Azure integration** | Ships with validated Azure agents, VM extensions, and developer tools including Microsoft Defender for Cloud, Azure Monitor, Azure CLI, and more. See the full list in [Supported Azure services](./supported-azure-services.md). |
 | **Consistent across environments** | Same operating system (OS) foundation, package set, and update mechanisms whether running on [AKS](./azure-linux-aks-overview.md), [Azure VM / Virtual Machine Scale Sets](./azure-linux-vm-vmss-overview.md), or [container images](./container-images-overview.md). See the [architecture overview](./architecture.md). |
-| **Predictable lifecycle** | Clearly defined release cadence with LTS kernels maintained for four years and HWE kernels introduced annually for new hardware and GPU support. See [Release cadence and lifecycle](./release-cadence-lifecycle.md). |
+| **Predictable lifecycle** | Follows a lifecycle model designed to balance stability, security, and access to modern Linux capabilities. See [Release cadence and lifecycle](./release-cadence-lifecycle.md). |
 
 <!-- Every package is GPG-signed with [signed SBOMs and SLSA provenance](../4.%20security-and-compliance/14.%20supply-chain-security.md).-->
 
@@ -56,12 +56,6 @@ Azure Linux is available across multiple Azure environments, each optimized for 
 ## Azure Linux release notes
 
 Each Azure Linux release includes security updates, package upgrades, and bug fixes. See the  [Azure Linux release notes](https://github.com/microsoft/azurelinux/releases) on GitHub for more information.
-
-## Azure Linux 4.0
-
-| Release | Release notes |
-| ------- | ------------- |
-| 4.0 Preview 1 (June 2026) | [Release notes](https://github.com/microsoft/azurelinux/releases/tag/4.0-preview.1) |
 
 ## Related content
 

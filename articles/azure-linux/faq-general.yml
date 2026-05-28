@@ -21,7 +21,7 @@ sections:
       - question: |
           What is the Azure Linux release cycle?
         answer: |
-          Azure Linux follows a predictable, security-first release cadence. Major releases ship with a new long-term support (LTS) kernel and updated core components. The LTS kernel is supported for four years from GA. Tier 1 (core operating system (OS)) packages are version-locked for the OS lifetime and receive only security backports. Tier 2 (language runtimes and frameworks) are refreshed in two windows per year (**H1**: January to June, **H2**: July to December). For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
+          Azure Linux follows a predictable, security-first release cadence. Major releases ship with a new long-term support (LTS) kernel and updated core components. For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
 
       - question: |
           Is the source code for Azure Linux publicly available?

@@ -75,7 +75,7 @@ Once VEX advisories are published for Azure Linux and ACL, scanners that consume
 
 ## Report a security issue
 
-Report suspected security vulnerabilities in Azure Linux or Azure Container Linux to the [Microsoft Security Response Center (MSRC)](https://www.microsoft.com/msrc). Don't file security issues on the public issue tracker.
+Report suspected security vulnerabilities in Azure Linux or Azure Container Linux to the [Microsoft Security Response Center (MSRC)](https://msrc.microsoft.com/create-report). Please do not report security vulnerabilities through public GitHub issues.
 
 ## Related content
 

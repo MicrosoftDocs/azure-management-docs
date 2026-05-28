@@ -45,6 +45,9 @@ sudo systemctl start systemd-networkd
 
 ### Stop the `systemd-networkd` service
 
+> [!NOTE]
+> This action shuts down all networking within the VM, immediately terminating the active SSH session and leaving the VM completely unreachable by any standard means, aside from access through the serial console.
+
 Stop the `systemd-networkd` service using the following command:
 
 ```bash
@@ -184,6 +187,6 @@ ip route
 For more information, see the following upstream resources:
 
 - [`systemd.network` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.network.html): Full reference for the options that you can set in a `.network` configuration file.
-- [`systemd-networkd` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.network.html#): Overview of the `systemd-networkd` service, including how it discovers and applies configuration files.
+- [`systemd-networkd` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd-networkd.html): Overview of the `systemd-networkd` service, including how it discovers and applies configuration files.
 - [`networkctl(1)` man page](https://www.freedesktop.org/software/systemd/man/latest/networkctl.html): Full command-line reference for the `networkctl` tool.
 - [`journalctl(1)` man page](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html#): Full command-line reference for the `journalctl` tool that reads systemd service logs.

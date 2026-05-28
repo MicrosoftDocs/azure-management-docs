@@ -23,9 +23,7 @@ The following table summarizes the core security principles that guide the desig
 | ------------------ | ----------------------------- |
 | Secure by default | Minimal package set, key-only SSH authentication, firewalld enabled |
 | Defense in depth | SELinux mandatory access control, network hardening |
-| Least privilege | SELinux policies, systemd service sandboxing, kernel capability restrictions |
-
-:::image type="content" source="./media/security.png" alt-text="Screenshot of a diagram of the Azure Linux security model components." lightbox="./media/security.png":::
+| Least privilege | SELinux policies, kernel capability restrictions |
 
 ## Core security features
 
@@ -36,13 +34,11 @@ The following table summarizes the core security principles that guide the desig
 - **No external network connections by default**: firewalld denies all inbound traffic except SSH.
 - **Key-only SSH authentication**: Password authentication is disabled.
 - **Package integrity**: All packages and repository metadata are GPG-signed.
-- **systemd service sandboxing**: Default services use aggressive sandboxing directives.
 
 ### Runtime protections
 
 - **SELinux:** In Enforcing mode. Targeted policy with pre-labeled packages.
 - **eBPF hardening**: Unprivileged BPF disabled, interpreter disabled in favor of JIT.
-- **systemd sandboxing**: PrivateTmp, NoNewPrivileges, capability restrictions.
 
 ### Network security
 
