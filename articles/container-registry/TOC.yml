@@ -31,77 +31,23 @@
       href: container-registry-java-quickstart.md
     - name: Get started with Azure Container Registry using Terraform
       href: container-registry-get-started-terraform.md
-  - name: Tutorials
+  - name: Features
     expanded: false
     items:
-    - name: Encrypt a registry with customer managed key
-      items:
-      - name: Customer managed keys - Overview
-        href: tutorial-customer-managed-keys.md
-      - name: Enable Customer managed key on your registry 
-        href: tutorial-enable-customer-managed-keys.md
-      - name: Rotate or revoke a Customer managed key
-        href: tutorial-rotate-revoke-customer-managed-keys.md
-      - name: Troubleshoot
-        href: tutorial-troubleshoot-customer-managed-keys.md
-  - name: Samples
-    items:
-    - name: Azure Resource Graph queries
-      href: ./resource-graph-samples.md
-  - name: Concepts
-    expanded: false
-    items:
-    - name: Security
-      items:
-      - name: Security controls by Azure Policy
-        displayName: regulatory, compliance, standards, domains
-        href: ./security-controls-policy.md
-      - name: Security baseline
-        href: /security/benchmark/azure/baselines/container-registry-security-baseline?toc=/azure/container-registry/TOC.json
-    - name: Reliability
-      items:
-      - name: Reliability in Azure Container Registry
-        href: /azure/reliability/reliability-container-registry?toc=/azure/container-registry/TOC.json&bc=/azure/container-registry/breadcrumb/toc.json
-      - name: Zone-redundant registries
-        href: zone-redundancy.md
-    - name: Container registry tiers and limits
+    - name: SKU features and limits
       href: container-registry-skus.md
-    - name: Registries, repositories, and images
-      href: container-registry-concepts.md
-    - name: Image storage
-      href: container-registry-storage.md
-    - name: Content formats
-      href: container-registry-image-formats.md
-    - name: Tag and version images
-      href: container-registry-image-tag-version.md
-    - name: Connected registry
+    - name: Registry concepts
       items:
-      - name: About connected registry
-        href: intro-connected-registry.md
-      - name: Create connected registry
-        href: quickstart-create-connected-registry.md
-      - name: Deploy connected registry to Azure Arc
-        href: quickstart-connected-registry-arc-cli.md
-      - name: Secure deployment options
-        href: tutorial-connected-registry-arc.md
-      - name: Pull images from connected registry
-        href: pull-images-from-connected-registry.md
-      - name: Troubleshoot connected registry
-        href: troubleshoot-connected-registry-arc.md
-    - name: Artifact streaming
-      href: container-registry-artifact-streaming.md
-    - name: Geo-replication
-      href: container-registry-geo-replication.md
-    - name: Registry best practices
-      href: container-registry-best-practices.md
-    - name: Multi-arch images
-      href: push-multi-architecture-images.md
-      displayName: multi-architecture
-    - name: Manage public images
-      href: buffer-gate-public-content.md
-  - name: How-to guides
-    expanded: false
-    items:
+      - name: Registries, repositories, and images
+        href: container-registry-concepts.md
+      - name: Image storage
+        href: container-registry-storage.md
+      - name: Content formats
+        href: container-registry-image-formats.md
+      - name: Tag and version images
+        href: container-registry-image-tag-version.md
+      - name: Registry best practices
+        href: container-registry-best-practices.md
     - name: Registry operations
       items:
       - name: Push and pull an image
@@ -110,10 +56,33 @@
         href: container-registry-helm-repos.md
       - name: Manage artifacts with ORAS
         href: container-registry-manage-artifact.md
+      - name: Multi-arch images
+        href: push-multi-architecture-images.md
+        displayName: multi-architecture
       - name: View repositories
         href: container-registry-repositories.md
+      - name: Lock container images
+        href: container-registry-image-lock.md
+      - name: Delete container images
+        items:
+        - name: Delete image data - CLI
+          href: container-registry-delete.md
+        - name: Soft delete policy
+          href: container-registry-soft-delete-policy.md
+        - name: Retention policy for untagged manifests (preview)
+          href: container-registry-retention-policy.md
+        - name: Automatically purge tags and manifests (preview)
+          href: container-registry-auto-purge.md
+      - name: Use ACR webhooks
+        href: container-registry-webhook.md
+    - name: Import, caching, and promotion
+      items:
       - name: Import container images
         href: container-registry-import-images.md
+      - name: Manage public images
+        href: buffer-gate-public-content.md
+      - name: Disable export
+        href: data-loss-prevention.md
       - name: Cache images from upstream registries
         items:
         - name: Overview
@@ -138,24 +107,6 @@
           href: container-registry-transfer-arm-template.md
         - name: Troubleshooting
           href: container-registry-transfer-troubleshooting.md
-      - name: Protect registry data
-        items:
-        - name: Lock container images
-          href: container-registry-image-lock.md
-        - name: Disable export
-          href: data-loss-prevention.md
-      - name: Delete container images
-        items:
-        - name: Delete image data - CLI
-          href: container-registry-delete.md
-        - name: Soft delete policy
-          href: container-registry-soft-delete-policy.md
-        - name: Retention policy for untagged manifests (preview)
-          href: container-registry-retention-policy.md
-        - name: Automatically purge tags and manifests (preview)
-          href: container-registry-auto-purge.md
-      - name: Use ACR webhooks
-        href: container-registry-webhook.md
     - name: Authentication and authorization
       items:
       - name: Authentication
@@ -210,14 +161,30 @@
       - name: Access behind a firewall
         displayName: rules, firewall rules, dedicated data endpoint
         href: container-registry-firewall-access-rules.md
-      - name: Mitigate data exfiltration
+      - name: Dedicated data endpoints
         displayName: dedicated data endpoints, endpoint, data endpoint
         href: container-registry-dedicated-data-endpoints.md
       - name: Restrict access using service endpoint (preview)
         href: container-registry-vnet.md
       - name: Allow access by trusted services
         href: allow-access-trusted-services.md
-    - name: Registries and other Azure services
+      - name: Endpoint reference
+        href: container-registry-endpoint-reference.md
+    - name: High availability and reliability
+      items:
+      - name: Reliability in Azure Container Registry
+        href: /azure/reliability/reliability-container-registry?toc=/azure/container-registry/TOC.json&bc=/azure/container-registry/breadcrumb/toc.json
+      - name: Zone-redundant registries
+        href: zone-redundancy.md
+      - name: Geo-replication
+        href: container-registry-geo-replication.md
+      - name: Monitor Container Registry
+        href: monitor-container-registry.md
+      - name: Configure Service Health alerts for Azure Container Registry
+        href: set-container-registry-service-health-alerts.md
+      - name: Artifact streaming
+        href: container-registry-artifact-streaming.md
+    - name: Integrations
       expanded: false
       items:
         - name: Azure Container Instances
@@ -226,48 +193,73 @@
           href: /azure/aks/tutorial-kubernetes-prepare-app
         - name: Service Fabric
           href: /azure/service-fabric/service-fabric-tutorial-create-container-images
-    - name: Signing and verification
+        - name: Azure Resource Graph queries
+          href: ./resource-graph-samples.md
+    - name: Security
       items:
-      - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
-        href: overview-sign-verify-artifacts.md
-      - name: Sign container images with Notation and Artifact Signing
-        href: container-registry-tutorial-sign-verify-notation-artifact-signing.md
-      - name: Sign container images in GitHub workflow with Notation and Artifact Signing
-        href: container-registry-tutorial-github-sign-notation-artifact-signing.md
-      - name: Verify container images in GitHub workflow with Notation and Artifact Signing
-        href: container-registry-tutorial-github-verify-notation-artifact-signing.md
-      - name: Sign container images with Notation and AKV using a self-signed certificate
-        href: container-registry-tutorial-sign-build-push.md
-      - name: Sign container images with Notation and AKV using a CA issued certificate
-        href: container-registry-tutorial-sign-trusted-ca.md
-      - name: Validate container image signatures in AKS with Ratify and Azure Policy
-        href: container-registry-tutorial-verify-with-ratify-aks.md
-      - name: Content trust
-        href: container-registry-content-trust.md
-        displayName: dct, docker content trust
-      - name: Transition from DCT to Notary Project
-        href: container-registry-content-trust-deprecation.md
-        displayName: docker content trust, content, trust
-    - name: Vulnerability management and patching
-      items:
-      - name: Continuous patching concepts
-        href: key-concept-continuous-patching.md
-      - name: Set up continuous patching
-        href: how-to-continuous-patching.md
-    - name: Monitor and Service Health
-      expanded: false
-      items:
-        - name: Monitor Container Registry
-          href: monitor-container-registry.md
-        - name: Configure Service Health alerts for Azure Container Registry
-          href: set-container-registry-service-health-alerts.md
+      - name: Compliance and governance
+        items:
+        - name: Security baseline
+          href: /security/benchmark/azure/baselines/container-registry-security-baseline?toc=/azure/container-registry/TOC.json
+        - name: Security controls by Azure Policy
+          displayName: regulatory, compliance, standards, domains
+          href: ./security-controls-policy.md
         - name: Audit compliance using Azure Policy
           href: container-registry-azure-policy.md
-        - name: Scan container images
-          expanded: false
-          items:
-          - name: Scan with Microsoft Defender for Cloud
-            href: scan-images-defender.md
+      - name: Encryption
+        items:
+        - name: Customer managed keys - Overview
+          href: tutorial-customer-managed-keys.md
+        - name: Enable Customer managed key on your registry 
+          href: tutorial-enable-customer-managed-keys.md
+        - name: Rotate or revoke a Customer managed key
+          href: tutorial-rotate-revoke-customer-managed-keys.md
+        - name: Troubleshoot
+          href: tutorial-troubleshoot-customer-managed-keys.md
+      - name: Signing and verification
+        items:
+        - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
+          href: overview-sign-verify-artifacts.md
+        - name: Sign container images with Notation and Artifact Signing
+          href: container-registry-tutorial-sign-verify-notation-artifact-signing.md
+        - name: Sign container images in GitHub workflow with Notation and Artifact Signing
+          href: container-registry-tutorial-github-sign-notation-artifact-signing.md
+        - name: Verify container images in GitHub workflow with Notation and Artifact Signing
+          href: container-registry-tutorial-github-verify-notation-artifact-signing.md
+        - name: Sign container images with Notation and AKV using a self-signed certificate
+          href: container-registry-tutorial-sign-build-push.md
+        - name: Sign container images with Notation and AKV using a CA issued certificate
+          href: container-registry-tutorial-sign-trusted-ca.md
+        - name: Validate container image signatures in AKS with Ratify and Azure Policy
+          href: container-registry-tutorial-verify-with-ratify-aks.md
+        - name: Content trust
+          href: container-registry-content-trust.md
+          displayName: dct, docker content trust
+        - name: Transition from DCT to Notary Project
+          href: container-registry-content-trust-deprecation.md
+          displayName: docker content trust, content, trust
+      - name: Vulnerability management, scanning, and patching
+        items:
+        - name: Scan with Microsoft Defender for Cloud
+          href: scan-images-defender.md
+        - name: Continuous patching concepts
+          href: key-concept-continuous-patching.md
+        - name: Set up continuous patching
+          href: how-to-continuous-patching.md
+    - name: Connected registry
+      items:
+      - name: About connected registry
+        href: intro-connected-registry.md
+      - name: Create connected registry
+        href: quickstart-create-connected-registry.md
+      - name: Deploy connected registry to Azure Arc
+        href: quickstart-connected-registry-arc-cli.md
+      - name: Secure deployment options
+        href: tutorial-connected-registry-arc.md
+      - name: Pull images from connected registry
+        href: pull-images-from-connected-registry.md
+      - name: Troubleshoot connected registry
+        href: troubleshoot-connected-registry-arc.md
 - name: Tasks
   expanded: false
   items:
