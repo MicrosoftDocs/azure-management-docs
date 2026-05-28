@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/26/2026
+ms.date: 05/28/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ms.custom:
@@ -92,7 +92,7 @@ This release of Edge RAG introduces several new features, enhancements, and impr
 Find the most relevant information with the new deep search model. Deep search uses production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. Edge RAG now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Agents and Tools with Foundry Local](search-types.md).
 
 **High-fidelity parsing**  
-Choose between basic text extraction or advanced parsing to capture tables, images, and more. By using advanced parsing, Edge RAG offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md#planning-data-ingestion) and  [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
+Choose between basic text extraction or advanced parsing to capture tables, images, and more. By using advanced parsing, Edge RAG offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
 
 **Performance and scale**  
 Experience up to 5× faster query performance for hybrid search and 100× faster ingestion of live-streamed images from the previous Edge RAG extension version `0.1.5`.
@@ -103,7 +103,7 @@ Edge RAG now offers a more powerful and flexible search and chat experience, mak
 
 - Use hybrid multimodal search to retrieve images and deliver responses with rich visual content. For more information, see [Search types in Agents and Tools with Foundry Local](search-types.md).
 - Enjoy markdown-formatted responses that support images and rich text for responses that are easier to read and interpret.
-- Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information, see [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md#data-query).
+- Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information, see [Knowledge layer configuration](knowledge-layer-overview.md#data-query).
 
 **Preview support for disconnected scenarios**
 

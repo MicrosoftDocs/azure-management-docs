@@ -284,6 +284,6 @@ After deploying the Agents and Tools with Foundry Local extension, complete the 
 - [Deployment parameter reference and troubleshooting](deploy-reference.md)
 - [Configure endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
-- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
 - [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)

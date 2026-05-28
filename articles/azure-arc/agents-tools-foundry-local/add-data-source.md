@@ -23,7 +23,7 @@ By default, ingested data is added to the `edgeragapp` collection unless you sel
 Before you begin:
 
 - Review the following articles:
-  - [Configure the Knowledge Layer](build-chat-solution-overview.md)
+  - [Knowledge layer configuration](knowledge-layer-overview.md)
   - [Supported data sources](requirements.md#supported-data-sources)
 - Decide whether to use the default `edgeragapp` collection or create a new collection for this data source. For more information, see [Collections](collections-overview.md).
 - Make sure end users are assigned to the app role for the target collection. For steps, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
@@ -89,4 +89,4 @@ You can also perform data ingestion programmatically using the Ingestion API. Wh
 
 ## Related content
 
-- [Configure the Knowledge Layer](build-chat-solution-overview.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)

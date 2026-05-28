@@ -24,7 +24,7 @@ Before you begin:
 
 - Make sure you are in **Knowledge-based** chat mode.
 - Review [Search types in Agents and Tools with Foundry Local](search-types.md) to understand the available search types and when to use them.
-- Review [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
+- Review [Knowledge layer configuration](knowledge-layer-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
 - [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
 - To access the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
@@ -101,5 +101,5 @@ When you're satisfied with the solution, select on **View the endpoint** to get 
 ## Related content
 
 -[Search types in Agents and Tools with Foundry Local](search-types.md)
-- [Configuring the chat solution for Agents and Tools with Foundry Local](build-chat-solution-overview.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Add data source for chat solution in Agents and Tools with Foundry Local](add-data-source.md)

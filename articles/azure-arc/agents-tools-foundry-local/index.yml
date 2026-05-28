@@ -49,7 +49,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Overview
-            url: build-chat-solution-overview.md
+            url: knowledge-layer-overview.md
       - linkListType: how-to-guide
         links:
           - text: Add data source
