@@ -64,7 +64,7 @@ Complete the following steps to set up your NFS server to use with Agents and To
      sudo exportfs -a
     ```
 
-1. Start and Enable the NFS Server Service**
+1. Start and Enable the NFS Server Service.
 
    ```bash
    sudo systemctl restart nfs-kernel-server 

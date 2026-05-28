@@ -24,9 +24,9 @@ The following configuration parameters are used when you install the Agents and 
 |---|---|---|
 | `byom.enabled` | Yes | Always `true`. BYOM is the only language model path. |
 | `byom.apiEndpoint` | Yes | Full endpoint URL. For Foundry Local: `https://gpt-oss-20b.foundry-local-operator.svc.cluster.local:5000/v1/chat/completions`. For Microsoft Foundry: `https://<resource>.cognitiveservices.azure.com/openai/deployments/<model>/chat/completions?api-version=<version>`. |
-| `byom.apiModel` | Yes | Model name to send in requests (for example, `gpt-oss-20b`). |
+| `byom.apiModel` | Conditional | Not required for Foundry Local endpoints. Model name to send in requests (for example, `gpt-oss-20b`). |
 | `byom.maxTokensInK` | Yes | Maximum tokens in thousands (for example, `16`). |
-| `foundryClientId` | Conditional | Required only when using a Foundry Local model source with `useFoundryLocal=true`. Not required for non-Foundry Local BYOM endpoints. |
+| `foundryClientId` | Conditional | Required only when using a Foundry Local model source with `useFoundryLocal=true`. Not required for non-Foundry Local endpoints. |
 | `auth.tenantId` | Yes | Microsoft Entra ID tenant ID. |
 | `auth.clientId` | Yes | Agents and Tools app registration client ID. |
 | `isManagedIdentityRequired` | Yes | Always `true`. Enables managed identity token acquisition. |
