@@ -17,10 +17,8 @@ items:
             href: known-issues.md
       - name: Quickstarts
         items:
-          - name: Step 1 - Deploy Agents and Tools
+          - name: Deploy Agents and Tools
             href: quickstart-edge-rag.md
-          - name: Step 2 - Query your data
-            href: quickstart-create-agent.md
       - name: Plan
         items:
           - name: Requirements
