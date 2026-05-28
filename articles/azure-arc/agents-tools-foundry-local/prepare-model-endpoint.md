@@ -107,7 +107,23 @@ Install the required Kubernetes extensions so your cluster can host and run Foun
    kubectl get crd | grep foundry
    ```
 
-   Expected output: five pods in `Running` or `Completed` status, and four Foundry Local custom resource definitions registered.
+   Expected output: five pods in `Running` or `Completed` status, and four Foundry Local custom resource definitions (CRDs) registered:
+
+   ```output
+   inferenceservices.foundrylocal.azure.com
+   modeldeployments.foundrylocal.azure.com
+   models.foundrylocal.azure.com
+   storemodels.foundrylocal.azure.com
+   ```
+
+   > [!WARNING]
+   > Don't proceed to Step 2 until all four CRDs are present. The `ModelDeployment` CRD is installed via a Helm pre-install hook that can fail silently. If `modeldeployments` is missing, extract and apply it manually:
+   >
+   > ```bash
+   > helm get hooks inference-operator -n foundry-local-operator > /tmp/hooks.yaml
+   > # Extract the ModelDeployment CRD YAML from the hooks output, save to a file, then:
+   > kubectl apply -f /tmp/modeldeployment-crd.yaml
+   > ```
 
 ### Step 2 - Deploy the recommended model (gpt-oss-20b)
 
@@ -178,11 +194,19 @@ Deploy the recommended gpt-oss-20b model to create a local inference endpoint fo
    kubectl get modeldeployment gpt-oss-20b -n foundry-local-operator
    ```
 
-   Wait until the status is **Running**.
+   Wait until the status is **Running**. GPU model deployment typically takes 10-30 minutes depending on model size and whether the image is cached.
 
 ### Step 3 - Verify the model endpoint
 
 Test the deployed endpoint to confirm that it accepts chat completion requests and returns a valid response.
+
+1. Discover the model service endpoint dynamically:
+
+   ```bash
+   kubectl get svc <model-name> -n foundry-local-operator -o jsonpath='https://{.metadata.name}.{.metadata.namespace}.svc.cluster.local:{.spec.ports[0].port}'
+   ```
+
+   Service names vary by model deployment. Use this command to confirm the correct service name before proceeding.
 
 1. Port-forward the model service:
 

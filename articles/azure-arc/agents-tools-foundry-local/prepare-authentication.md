@@ -155,6 +155,44 @@ If you use Foundry Local as your model endpoint, you need a second app registrat
 
 For instructions on creating the Foundry Local app registration, see [Configure authentication for Foundry Local](/azure/azure-sovereign-clouds/private/foundry-local/how-to-configure-authentication).
 
+> [!IMPORTANT]
+> **`foundryClientId` and `byom-api-key` are mutually exclusive.** When `foundryClientId` is set, Agents and Tools uses managed identity token authentication exclusively. No API key secret is needed, and if one exists it's ignored. When `foundryClientId` is not set, a `byom-api-key` Kubernetes secret is required. Choose one authentication method per deployment.
+
+## Foundry inference authentication layers
+
+When you use managed identity authentication (`foundryClientId`), the Foundry inference service requires three separate role assignment layers. Each layer guards a different hop in the request chain, and all three are mandatory. Skipping any layer results in 401 or 403 errors.
+
+### Request flow
+
+When Agents and Tools calls the Foundry Local endpoint with a managed identity token, the request passes through three authorization checks:
+
+1. **Layer 1 - Entra App Role**: The Foundry app registration validates that the caller's managed identity has the `FoundryInferenceAccess` app role. Without it, the token is valid but missing the required `roles` claim.
+1. **Layer 2 - ARM Reader**: The Foundry inference pod queries Azure Resource Manager (ARM) to verify the caller's role assignments. The Connected Cluster's managed identity needs `Reader` on its own cluster resource for this lookup to succeed.
+1. **Layer 3 - Azure RBAC**: ARM checks that the caller has the required Azure roles (`Cognitive Services OpenAI User` and `Reader`) at the subscription or resource group level.
+
+### Layer summary
+
+| Layer | Who | Role | Purpose | Without it |
+|-------|-----|------|---------|------------|
+| **1 - Entra App Role** | Agents and Tools MI &rarr; Foundry app registration | `FoundryInferenceAccess` app role | App-level gate: is this service allowed to call Foundry? | 401 - token valid but no app role |
+| **2 - ARM Reader** | Connected Cluster MI &rarr; ARM | `Reader` on the cluster resource | Foundry pod needs to read ARM role assignments to validate callers | 401 - ARM lookup fails |
+| **3 - Azure RBAC** | Agents and Tools MI + Foundry MI &rarr; ARM | `Cognitive Services OpenAI User` + `Reader` | Resource-level authorization for model inference | 403 - ARM denies the authorization check |
+
+> [!IMPORTANT]
+> Azure RBAC roles alone are not enough. The Foundry authentication sidecar validates Entra ID app roles (not Azure RBAC). Without the `FoundryInferenceAccess` app role assignment, managed identity tokens are valid but missing the `roles` claim, causing authentication failures.
+
+### When to assign each layer
+
+Role assignments require a principal ID that only exists after the resource that creates the managed identity is deployed. Assign each layer as soon as the relevant identity exists:
+
+| Deployment step | What it creates | What you can assign after |
+|-----------------|----------------|--------------------------|
+| `az connectedk8s connect` | Connected Cluster MI | **Layer 2** - ARM Reader for the cluster MI |
+| `az k8s-extension create` (inference-operator) | Foundry operator MI | **Layer 3** - Reader for the Foundry operator MI |
+| `az k8s-extension create` (Agents and Tools) | Extension MI | **Layer 1** - Entra App Role + **Layer 3** - Cognitive Services OpenAI User and Reader for Extension MI |
+
+You can also defer all role assignments until after all extensions are installed and assign them together.
+
 ## Configure Azure RBAC role assignments
 
 Configure Azure role assignments so that the Agents and Tools extension's managed identity can call the Foundry inference endpoint, and the Foundry operator can perform ARM RBAC validation.
@@ -196,6 +234,18 @@ FOUNDRY_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_nam
 EXTENSION_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_name> \
     -t connectedClusters --name <extension_name> --query "identity.principalId" -o tsv)
 ```
+
+> [!IMPORTANT]
+> **Role assignments take time to propagate.** Azure RBAC and Entra app role assignments can take 5 to 30 minutes to propagate across Azure's infrastructure. If you still get 401 or 403 errors after assigning roles, wait 10-15 minutes and then restart the affected pods:
+>
+> ```bash
+> kubectl -n arc-rag delete azureclusteridentityrequests --all
+> kubectl -n arc-rag rollout restart deployment \
+>     inferencingflow-deployment agents-runtime-deployment \
+>     agents-manager-deployment
+> ```
+>
+> Don't re-run the role assignment commands. The assignments are recorded immediately, but downstream services might not see them until propagation completes.
 
 ## (Optional) Get app and tenant IDs
 
