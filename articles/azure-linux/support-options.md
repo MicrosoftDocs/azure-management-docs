@@ -43,7 +43,7 @@ For bug reports, documentation improvements, and feature requests, see [Report i
 
 ## Security vulnerabilities
 
-**Please don't report security vulnerabilities through public GitHub issues**. Follow the guidance under [Manage CVEs](./manage-cves.md/#report-a-security-issue).
+**Please don't report security vulnerabilities through public GitHub issues**. Follow the guidance under [Manage CVEs](./manage-cves.md#report-a-security-issue).
 
 ## Join our Azure Linux community calls
 
