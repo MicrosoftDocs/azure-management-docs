@@ -30,7 +30,7 @@ Each `.repo` file in that directory is a plain-text configuration file that tell
 
 ## Compatibility symlinks for legacy commands
 
-Azure Linux ships compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF 4), `microdnf`, `tdnf`) all dispatch to DNF5:
+Azure Linux ships compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF4), `microdnf`, `tdnf`) all dispatch to DNF5:
 
 ```text
 lrwxrwxrwx.  1 root root       4  yum -> dnf5
@@ -40,7 +40,7 @@ lrwxrwxrwx.  1 root root       4  dnf -> dnf5
 lrwxrwxrwx.  1 root root       4  tdnf -> dnf5
 ```
 
-The common subcommands all work through the symlinks. Edge cases that depended on DNF 4 internals or `microdnf`-specific behavior might not. For details on what changed, see the following resources:
+The common subcommands all work through the symlinks. Edge cases that depended on DNF4 internals or `microdnf`-specific behavior might not. For details on what changed, see the following resources:
 
 - [Changes between DNF and DNF5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html)
 - [Migrating to DNF5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html)

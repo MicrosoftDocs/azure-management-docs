@@ -40,9 +40,6 @@ For each major Azure Linux release, the repositories on PMC are organized indica
 
 ### Repository layout
 
-> [!NOTE] 
-> Additional packages are published to `/azurelinux/4.0/beta/sdk` and `azurelinux/4.0/beta/sdk/srpms`. These packages are only provided to satisfy development requirements and aren't officially supported.
-
 The repositories are structured as follows:
 
 | Repository name | Purpose |
@@ -51,7 +48,10 @@ The repositories are structured as follows:
 | `microsoft` | Supplementary software that's published by Microsoft. |
 
 > [!TIP]
-> Any component included in the `base` repository has its source package in a `/azurelinux/4.0/beta/base/srpms` repository. 
+> Any component included in the `base` repository has its source package in a `/azurelinux/4.0/beta/base/srpms` repository.
+
+> [!NOTE]
+> Additional packages are published to `/azurelinux/4.0/beta/sdk` and `azurelinux/4.0/beta/sdk/srpms`. These packages are only provided to satisfy development requirements and aren't officially supported.
 
 ## Related content
 
