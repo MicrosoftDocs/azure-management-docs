@@ -63,16 +63,14 @@
         href: container-registry-repositories.md
       - name: Lock container images
         href: container-registry-image-lock.md
-      - name: Delete container images
-        items:
-        - name: Delete image data - CLI
-          href: container-registry-delete.md
-        - name: Soft delete policy
-          href: container-registry-soft-delete-policy.md
-        - name: Retention policy for untagged manifests (preview)
-          href: container-registry-retention-policy.md
-        - name: Automatically purge tags and manifests (preview)
-          href: container-registry-auto-purge.md
+      - name: Delete image data - CLI
+        href: container-registry-delete.md
+      - name: Soft delete policy
+        href: container-registry-soft-delete-policy.md
+      - name: Retention policy for untagged manifests (preview)
+        href: container-registry-retention-policy.md
+      - name: Automatically purge tags and manifests (preview)
+        href: container-registry-auto-purge.md
       - name: Use ACR webhooks
         href: container-registry-webhook.md
     - name: Import, caching, and promotion
