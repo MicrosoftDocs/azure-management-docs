@@ -63,7 +63,7 @@ Set up a private endpoint when you create a registry, or add a private endpoint 
     |Integrate with private DNS zone |Select **Yes**. |
     |Private DNS Zone |Select *(New) privatelink.azurecr.io* |
 
-   :::image type="content" source="media/container-registry-private-endpoints/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
+   :::image type="content" source="media/private-endpoints/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
 
 1. Select **OK**.
 1. Configure the remaining registry settings, and then select **Review + create**. Your registry is created with the private endpoint.

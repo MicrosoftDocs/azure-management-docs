@@ -154,7 +154,7 @@ To manage geo-replicas, your identity needs these permissions:
    - **Gray hexagons**: Unavailable regions
 4. Select a green hexagon, then select **Create**.
 
-:::image type="content" source="media/container-registry-geo-replication/registry-geo-map.png" alt-text="Screenshot of the geo-replication map in the Azure portal." lightbox="media/container-registry-geo-replication/registry-geo-map.png":::
+:::image type="content" source="media/geo-replication/registry-geo-map.png" alt-text="Screenshot of the geo-replication map in the Azure portal." lightbox="media/geo-replication/registry-geo-map.png":::
 
 ### Azure CLI
 
@@ -183,7 +183,7 @@ When you push, pull, or delete through the global endpoint, ACR routes the reque
 - However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests might be routed elsewhere.
 - ACR manages this routing. You don't control which geo-replica handles a specific request.
 
-:::image type="content" source="media/container-registry-geo-replication/geo-rep-global-endpoint.png" alt-text="Diagram showing the global endpoint request flow: a client connects to myregistry.azurecr.io, Azure-managed routing selects the geo-replica with the best network performance profile, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
+:::image type="content" source="media/geo-replication/geo-replica-global-endpoint.png" alt-text="Diagram showing the global endpoint request flow: a client connects to myregistry.azurecr.io, Azure-managed routing selects the geo-replica with the best network performance profile, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
 ### Using the global endpoint
 
@@ -299,7 +299,7 @@ Layer blob downloads (the actual container image layers) still follow your regis
 
 The following diagram illustrates the regional endpoint request flow:
 
-:::image type="content" source="media/container-registry-geo-replication/geo-rep-regional-endpoint.png" alt-text="Diagram showing the regional endpoint request flow: a client connects to myregistry.region.geo.azurecr.io, the request goes directly to the specific regional geo-replica, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
+:::image type="content" source="media/geo-replication/geo-replica-regional-endpoint.png" alt-text="Diagram showing the regional endpoint request flow: a client connects to myregistry.region.geo.azurecr.io, the request goes directly to the specific regional geo-replica, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
 ### Regional endpoints prerequisites
 

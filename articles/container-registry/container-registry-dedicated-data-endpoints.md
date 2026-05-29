@@ -38,11 +38,11 @@ Without dedicated data endpoints, the login server issues a 307 redirect for lay
 
 **Using the global endpoint (Azure-managed routing):**
 
-:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-without-global.png" alt-text="Diagram showing the request flow without dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
+:::image type="content" source="media/dedicated-data-endpoints/without-dedicated-data-endpoints-global-endpoint.png" alt-text="Diagram showing the request flow without dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
 
 **Using a regional endpoint (client-specified routing):**
 
-:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-without-regional.png" alt-text="Diagram showing the request flow without dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
+:::image type="content" source="media/dedicated-data-endpoints/without-dedicated-data-endpoints-regional-endpoint.png" alt-text="Diagram showing the request flow without dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
 
 In both cases, to allow these downloads through a firewall, you must permit `*.blob.core.windows.net` — a broad wildcard that covers all Azure storage accounts, not just your registry's storage.
 
@@ -52,11 +52,11 @@ With dedicated data endpoints enabled, the login server issues a 307 redirect fo
 
 **Using the global endpoint (Azure-managed routing):**
 
-:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-with-global.png" alt-text="Diagram showing the request flow with dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
+:::image type="content" source="media/dedicated-data-endpoints/dedicated-data-endpoints-with-global-endpoint.png" alt-text="Diagram showing the request flow with dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
 
 **Using a regional endpoint (client-specified routing):**
 
-:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-with-regional.png" alt-text="Diagram showing the request flow with dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
+:::image type="content" source="media/dedicated-data-endpoints/dedicated-data-endpoints-with-regional-endpoint.png" alt-text="Diagram showing the request flow with dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
 
 Each geo-replica gets its own dedicated data endpoint using the pattern `[registry].[region].data.azurecr.io`. Your firewall rules can be scoped to these specific endpoints instead of a broad wildcard.
 
