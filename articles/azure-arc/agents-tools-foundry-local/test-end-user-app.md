@@ -25,7 +25,7 @@ Before you begin:
 
 - Decide which collection your end users should query (for example, the default `edgeragapp` collection).
 - Make sure each end user is assigned to the app role for the target collection. For setup steps, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
-- To access chat, users must have the **EdgeRAGEndUser** role in Microsoft Entra. For more information see, [Create app roles for Agentic Retrieval](prepare-authentication.md#create-app-roles-for-agents-and-tools-with-foundry-local).
+- To access chat, users must have the **EdgeRAGEndUser** role in Microsoft Entra. For more information see, [Create app roles for Agentic Retrieval](prepare-authentication.md#create-app-roles-for-agentic-retrieval).
 
 ## Verify end-user query results in chat
 
