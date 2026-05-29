@@ -1,6 +1,6 @@
 ---
-title: Deploy the Agents and Tools with Foundry Local Extension
-description: "Learn how to deploy the Agents and Tools with Foundry Local extension by using either Azure CLI or the Azure portal."
+title: Deploy the Agentic Retrieval in Foundry Local Extension
+description: "Learn how to deploy the Agentic Retrieval in Foundry Local extension by using either Azure CLI or the Azure portal."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,23 +9,23 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer Intent: As a cloud administrator or developer, I want to deploy the Agents and Tools with Foundry Local extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
+# Customer Intent: As a cloud administrator or developer, I want to deploy the Agentic Retrieval in Foundry Local extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
 ---
-# Deploy the extension for Agents and Tools with Foundry Local
+# Deploy the extension for Agentic Retrieval in Foundry Local
 
-After you complete the prerequisite steps, complete the steps in this article to deploy the Agents and Tools with Foundry Local extension.
+After you complete the prerequisite steps, complete the steps in this article to deploy the Agentic Retrieval extension.
 
-To try Agents and Tools with Foundry Local without the need for local hardware, see [Quickstart: Install Agents and Tools with Foundry Local](quickstart-edge-rag.md).
+To try Agentic Retrieval without the need for local hardware, see [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites
 
-Before you begin, [complete the deployment prerequisites for Agents and Tools with Foundry Local](complete-prerequisites.md).
+Before you begin, [complete the deployment prerequisites for Agentic Retrieval](complete-prerequisites.md).
 
 ## Deploy the extension
 
-Deploy Agents and Tools with Foundry Local by using either the Azure portal or Azure CLI.
+Deploy Agentic Retrieval by using either the Azure portal or Azure CLI.
 
 #### [Azure portal](#tab/azure-portal)
 
@@ -39,8 +39,8 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
    | Subscription    | Select the subscription that contains your Azure Kubernetes Service (AKS) cluster on Azure Local. |
    | Resource group  | Select the resource group that contains your AKS Arc cluster. |
    | Deployment name | Provide a name for the deployment.                           |
-   | Region          | Select the region to deploy Agents and Tools with Foundry Local.                        |
-   | Cluster         | Select the cluster that you want to deploy Agents and Tools with Foundry Local to.      |
+   | Region          | Select the region to deploy Agentic Retrieval.                        |
+   | Cluster         | Select the cluster that you want to deploy Agentic Retrieval to.      |
 
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details." lightbox="media/deploy/install-extension.png":::
 
@@ -88,7 +88,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
 1. Select **Review + create**.
 1. Review and validate the parameters you provided.
-1. Select **Create** to complete the Agents and Tools with Foundry Local deployment.
+1. Select **Create** to complete the Agentic Retrieval deployment.
 1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagnostics** are listed.
 
 #### [Azure CLI](#tab/azure-cli)
@@ -103,12 +103,12 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
    For language model source, set `useFoundryLocal=true` only when you're using a Foundry Local model endpoint. Otherwise, set `useFoundryLocal=false`.
 
-   If you enable Kerberos, complete [Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local](connect-file-share-kerberos-setup.md) first. If you enable SharePoint ingestion, complete [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md) first.
+   If you enable Kerberos, complete [Set up NFS with Kerberos authentication for Agentic Retrieval](connect-file-share-kerberos-setup.md) first. If you enable SharePoint ingestion, complete [Set up SharePoint server-to-server authentication for Agentic Retrieval](connect-sharepoint-setup.md) first.
 
 1. Set common deployment values:
 
    ```powershell
-   $gpu_enabled = "true"  # Mark it true if you have GPUs available for Agents and Tools with Foundry Local
+   $gpu_enabled = "true"  # Mark it true if you have GPUs available for Agentic Retrieval
    $localextname = "edgeragdemo" # Once used do not change
    $autoUpgrade = "false"
    $tenantId = "<App Tenant ID>" # App registrations -> Your app -> Overview on Azure portal
@@ -217,7 +217,7 @@ Deploy Agents and Tools with Foundry Local by using either the Azure portal or A
 
 ----
 
-The Agents and Tools with Foundry Local extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
+The Agentic Retrieval extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
 
 ## Verify deployment by mode
 
@@ -276,13 +276,13 @@ After deployment, verify that the extension can communicate with Foundry Local:
 
 ## Bring your own language model
 
-After deploying the Agents and Tools with Foundry Local extension, complete the steps in [Configure endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md).
+After deploying the Agentic Retrieval extension, complete the steps in [Configure endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md).
 
 ## Related content
 
 - [Deployment parameter reference and troubleshooting](deploy-reference.md)
-- [Configure endpoint authentication for Agents and Tools with Foundry Local](configure-endpoint-authentication.md)
+- [Configure endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md)
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
 - [Knowledge layer configuration](knowledge-layer-overview.md)
-- [Add data source for the chat solution in Agents and Tools with Foundry Local](add-data-source.md)
+- [Add data source for the chat solution in Agentic Retrieval](add-data-source.md)
 - [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)

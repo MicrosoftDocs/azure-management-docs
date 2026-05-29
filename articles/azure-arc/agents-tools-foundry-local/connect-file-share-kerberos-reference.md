@@ -1,5 +1,5 @@
 ---
-title: NFS with Kerberos Reference and Troubleshooting for Agents and Tools with Foundry Local
+title: NFS with Kerberos Reference and Troubleshooting for Agentic Retrieval in Foundry Local
 description: "Verification steps, troubleshooting guide, network requirements, keytab rotation, and Helm values reference for NFS with Kerberos authentication."
 author: cwatson-cat
 ms.author: cwatson
@@ -7,10 +7,10 @@ ms.topic: reference
 ms.date: 05/17/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agentic Retrieval in Foundry Local.
 ---
 
-# NFS with Kerberos reference and troubleshooting for Agents and Tools with Foundry Local
+# NFS with Kerberos reference and troubleshooting for Agentic Retrieval in Foundry Local
 
 This article provides verification steps, troubleshooting guidance, network requirements, operational procedures, and a Helm values reference for NFS with Kerberos authentication.
 

@@ -1,6 +1,6 @@
 ---
-title: Collections REST API Reference - Agents and Tools with Foundry Local
-description: REST API reference for managing data collections in Agents and Tools with Foundry Local.
+title: Collections REST API Reference - Agentic Retrieval in Foundry Local
+description: REST API reference for managing data collections in Agentic Retrieval in Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Collections REST API reference
 
-Manage collections in Agents and Tools with Foundry Local. Collections are logical groupings that organize ingested data. Each collection maps to a set of vector collections and database tables.
+Manage collections in Agentic Retrieval in Foundry Local. Collections are logical groupings that organize ingested data. Each collection maps to a set of vector collections and database tables.
 
 A collection is identified by its **name** (there is no separate ID). The name is immutable after creation.
 

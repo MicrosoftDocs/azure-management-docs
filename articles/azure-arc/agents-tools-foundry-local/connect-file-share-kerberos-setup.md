@@ -1,18 +1,18 @@
 ---
-title: Set Up NFS with Kerberos Authentication for Agents and Tools with Foundry Local
-description: "Learn how to configure Active Directory, Kerberos, and NFS with krb5p encryption for on-premises data ingestion with Agents and Tools with Foundry Local."
+title: Set Up NFS with Kerberos Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure Active Directory, Kerberos, and NFS with krb5p encryption for on-premises data ingestion with Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a platform administrator, I want to set up NFS with Kerberos authentication so that I can securely ingest on-premises data with Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to set up NFS with Kerberos authentication so that I can securely ingest on-premises data with Agentic Retrieval in Foundry Local.
 ---
 
-# Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local
+# Set up NFS with Kerberos authentication for Agentic Retrieval in Foundry Local
 
-This article shows how to configure NFS with Kerberos (`krb5p`) authentication for ingestion workloads in Agents and Tools with Foundry Local.
+This article shows how to configure NFS with Kerberos (`krb5p`) authentication for ingestion workloads in Agentic Retrieval.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -288,7 +288,7 @@ sudo umount /mnt/nfs-kerberos-test
 sudo rmdir /mnt/nfs-kerberos-test
 ```
 
-If this mount fails, deployment of Agents and Tools with Foundry Local can't continue. Resolve the issue before you continue. For help, see [Troubleshooting](connect-file-share-kerberos-reference.md#troubleshooting).
+If this mount fails, deployment of Agentic Retrieval can't continue. Resolve the issue before you continue. For help, see [Troubleshooting](connect-file-share-kerberos-reference.md#troubleshooting).
 
 ### NFS server requirements
 
@@ -307,7 +307,7 @@ Example NFS server export (`/etc/exports`):
 /exports/data  *.contoso.com(ro,sync,sec=krb5p,no_subtree_check)
 ```
 
-Agents and Tools with Foundry Local requires you to specify the NFS server by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS, so using an IP address causes authentication to fail.
+Agentic Retrieval requires you to specify the NFS server by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS, so using an IP address causes authentication to fail.
 
 ## Step 7: Configure DNS and time sync
 
@@ -360,7 +360,7 @@ kubectl get nodes -l edge-rag/kerberos-provisioned=true
 
 ### Understand the three-label system
 
-Agents and Tools with Foundry Local uses three distinct node labels for Kerberos:
+Agentic Retrieval uses three distinct node labels for Kerberos:
 
 | Label | Set by | Meaning |
 |---|---|---|
@@ -372,11 +372,11 @@ The `provisioned` label is your assertion. The `ready` label is the system's cur
 
 ## Step 9: Run the validation script
 
-Run this script on each prepared node before you install Agents and Tools with Foundry Local.
+Run this script on each prepared node before you install Agentic Retrieval.
 
 ```bash
 #!/bin/bash
-# Agents and Tools with Foundry Local: Kerberos prerequisites validation
+# Agentic Retrieval: Kerberos prerequisites validation
 set -euo pipefail
 
 RED='\033[0;31m'
@@ -470,14 +470,14 @@ sudo ./validate-kerberos-prereqs.sh
 
 ## Deploy the extension with Kerberos enabled
 
-After you complete this Kerberos setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agents and Tools with Foundry Local](deploy.md) and the Kerberos-specific values in this section.
+After you complete this Kerberos setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agentic Retrieval](deploy.md) and the Kerberos-specific values in this section.
 
 During deployment:
 
 - In the Azure portal, on the **Configurations** tab, turn on **Kerberos** and enter the Kerberos SPN value from this article (for example, `nfs/<service_account>@<YOUR_REALM>`).
-- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md?tabs=azure-cli).
+- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agentic Retrieval](deploy.md?tabs=azure-cli).
 
-If you don't plan to use Kerberos, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
+If you don't plan to use Kerberos, skip this article and continue with the standard deployment flow in [Deploy the extension for Agentic Retrieval](deploy.md).
 
 ## Confirm completion
 

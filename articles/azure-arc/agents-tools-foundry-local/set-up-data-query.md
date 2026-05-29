@@ -1,6 +1,6 @@
 ---
-title: Set up the Data Query for Agents and Tools with Foundry Local Chat Solution
-description: "Learn how to set up your data query with Agents and Tools with Foundry Local to configure model settings and create effective AI-driven chat solutions."
+title: Set up the Data Query for Agentic Retrieval in Foundry Local Chat Solution
+description: "Learn how to set up your data query with Agentic Retrieval in Foundry Local to configure model settings and create effective AI-driven chat solutions."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -9,12 +9,12 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer, I want to set up the data query and configure model settings for the Agents and Tools with Foundry Local chat solution, so that I can create effective AI-driven chat experiences tailored to my application's requirements.
+# Customer intent: As a developer, I want to set up the data query and configure model settings for the Agentic Retrieval in Foundry Local chat solution, so that I can create effective AI-driven chat experiences tailored to my application's requirements.
 ---
 
-# Set up the data query for chat solution in Agents and Tools with Foundry Local
+# Set up the data query for chat solution in Agentic Retrieval in Foundry Local
 
-Configure data queries and model settings for your Agents and Tools with Foundry Local chat solution to optimize your chat results. Adjust search types, tune model parameters, and refine your chat experience in the Agents and Tools with Foundry Local developer portal.
+Configure data queries and model settings for your Agentic Retrieval chat solution to optimize your chat results. Adjust search types, tune model parameters, and refine your chat experience in the Agentic Retrieval developer portal.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -61,10 +61,10 @@ Next, test the chat endpoint.
 
 1. In the chat window, enter a question that uses a simple question and answer format. Queries that require summarization across multiple documents might not return accurate answers.
 
-   Be aware that with Agents and Tools with Foundry Local extension version 0.1.5 and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
+   Be aware that with Agentic Retrieval extension version 0.1.5 and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
 
 1. (Optional) To see how the language model responds without using your ingested data, switch the chat mode to **Model-only** and enter your question. Switch back to **Knowledge-base** chat to keep refining your solution with your ingested data.
-1. (Optional) [Test the end user experience by using the chat solution app for Agents and Tools with Foundry Local](test-end-user-app.md).
+1. (Optional) [Test the end user experience by using the chat solution app for Agentic Retrieval](test-end-user-app.md).
 
 ## View details to refine settings
 
@@ -101,6 +101,6 @@ When you're satisfied with the solution, select on **View the endpoint** to get 
 
 ## Related content
 
-- [Search types in Agents and Tools with Foundry Local](search-types.md)
+- [Search types in Agentic Retrieval](search-types.md)
 - [Knowledge layer configuration](knowledge-layer-overview.md)
-- [Add data source for chat solution in Agents and Tools with Foundry Local](add-data-source.md)
+- [Add data source for chat solution in Agentic Retrieval](add-data-source.md)

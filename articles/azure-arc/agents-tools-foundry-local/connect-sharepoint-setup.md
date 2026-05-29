@@ -1,16 +1,16 @@
 ---
-title: Set Up SharePoint Server-to-Server Authentication for Agents and Tools with Foundry Local
-description: "Learn how to configure certificates, Azure Key Vault, Workload Identity, and SharePoint Server for server-to-server authentication with Agents and Tools with Foundry Local."
+title: Set Up SharePoint Server-to-Server Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure certificates, Azure Key Vault, Workload Identity, and SharePoint Server for server-to-server authentication with Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agentic Retrieval in Foundry Local.
 ---
 
-# Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local
+# Set up SharePoint server-to-server authentication for Agentic Retrieval in Foundry Local
 
 This article provides a step-by-step guide for setting up SharePoint Server High-Trust Server-to-Server (S2S) authentication.
 
@@ -28,7 +28,7 @@ Estimated time: approximately 2 hours.
 
 ## Step 1: Install cluster prerequisites
 
-You must install two cluster-level components before enabling SharePoint in Agents and Tools with Foundry Local.
+You must install two cluster-level components before enabling SharePoint in Agentic Retrieval.
 
 ### Install CSI Secrets Store Driver
 
@@ -449,7 +449,7 @@ Write-Output "================================================"
 ```
 
 
-If Agents and Tools with Foundry Local needs to access multiple SharePoint site collections, run `Register-SPAppPrincipal` and `Set-SPAppPrincipalPermission` for each site.
+If Agentic Retrieval needs to access multiple SharePoint site collections, run `Register-SPAppPrincipal` and `Set-SPAppPrincipalPermission` for each site.
 
 ### Create user profile and get Windows SID
 
@@ -499,20 +499,20 @@ After completing all steps, you should have these values ready for installation:
 
 ## Deploy the extension with SharePoint ingestion enabled
 
-After you complete this SharePoint setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agents and Tools with Foundry Local](deploy.md) and the SharePoint-specific values in this section.
+After you complete this SharePoint setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agentic Retrieval](deploy.md) and the SharePoint-specific values in this section.
 
 During deployment:
 
 - In the Azure portal, on the **Configurations** tab, turn on **SharePoint ingestion** and enter the Key Vault and workload identity values collected in this article.
-- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md?tabs=azure-cli).
+- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agentic Retrieval](deploy.md?tabs=azure-cli).
 
-If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agents and Tools with Foundry Local](deploy.md).
+If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agentic Retrieval](deploy.md).
 
 ## Add a SharePoint data source
 
-After you deploy Agents and Tools with Foundry Local and can access the developer portal, add your SharePoint Server data source.
+After you deploy Agentic Retrieval and can access the developer portal, add your SharePoint Server data source.
 
-For step-by-step instructions, see [Add a data source for Agents and Tools with Foundry Local](add-data-source.md).
+For step-by-step instructions, see [Add a data source for Agentic Retrieval](add-data-source.md).
 
 When you add a SharePoint Server data source, you might need values collected in this article:
 

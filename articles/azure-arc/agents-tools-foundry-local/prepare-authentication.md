@@ -1,18 +1,18 @@
 ---
-title: Configure Authentication for Agents and Tools with Foundry Local
-description: "Learn how to configure authentication for Agents and Tools with Foundry Local deployment in Azure, including app registration, roles, and user assignments."
+title: Configure Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure authentication for Agentic Retrieval in Foundry Local deployment in Azure, including app registration, roles, and user assignments."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 5/18/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Agents and Tools with Foundry Local so that I can securely connect to and manage the chat solution.
+#CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Agentic Retrieval in Foundry Local so that I can securely connect to and manage the chat solution.
 ---
 
-# Configure authentication for Agents and Tools with Foundry Local
+# Configure authentication for Agentic Retrieval in Foundry Local
 
-For your Agents and Tools with Foundry Local deployment, register an application, create app roles, and assign users or groups in Microsoft Entra ID. This article is part of the [deployment prerequisites checklist](complete-prerequisites.md) and also a prerequisite of [Quickstart: Install Agents and Tools with Foundry Local](quickstart-edge-rag.md).
+For your Agentic Retrieval deployment, register an application, create app roles, and assign users or groups in Microsoft Entra ID. This article is part of the [deployment prerequisites checklist](complete-prerequisites.md) and also a prerequisite of [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md).
 
 You might need to work with your Microsoft Entra or cloud administrator to configure authentication.
 
@@ -29,7 +29,7 @@ Before you begin, make sure you have:
 
 ## Register an application in Microsoft Entra ID
 
-Create and configure an application registration for Agents and Tools with Foundry Local in your Microsoft Entra ID tenant.
+Create and configure an application registration for Agentic Retrieval in your Microsoft Entra ID tenant.
 
 1. In the [Azure portal](https://portal.azure.com/), go to **Microsoft Entra ID**.
 1. Go to the appropriate tenant and select **Manage** > **App registrations**.
@@ -63,9 +63,9 @@ Create and configure an application registration for Agents and Tools with Found
 
 1. Select **Configure**.
 
-## Create app roles for Agents and Tools with Foundry Local
+## Create app roles for Agentic Retrieval
 
-Within the Agents and Tools with Foundry Local app registration, create app roles for AI application developers and end users of the chat endpoint.
+Within the Agentic Retrieval app registration, create app roles for AI application developers and end users of the chat endpoint.
 
 1. In the app registration, on the left-hand side menu, under **Manage**, select **App roles**.
 1. Create two app roles. One for *EdgeRAGDeveloper* and another for *EdgeRAGEndUser*. Use the appropriate values listed in the table that follows the image.
@@ -85,7 +85,7 @@ Within the Agents and Tools with Foundry Local app registration, create app role
 
 ## Assign users or groups to roles
 
-Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you created for Agents and Tools with Foundry Local.
+Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you created for Agentic Retrieval.
 
 1. In the Microsoft Entra ID tenant, on the left-hand side menu under **Manage**, select **Enterprise applications**.
 1. Search for and select the *EdgeRag* application you created.
@@ -249,10 +249,10 @@ EXTENSION_PRINCIPAL_ID=$(az k8s-extension show -g <resource_group> -c <cluster_n
 
 ## (Optional) Get app and tenant IDs
 
-If you plan to use the [quickstart](quickstart-edge-rag.md) or want to deploy Agents and Tools with Foundry Local by using the command line, get the application ID for the registration you created and the tenant ID.
+If you plan to use the [quickstart](quickstart-edge-rag.md) or want to deploy Agentic Retrieval by using the command line, get the application ID for the registration you created and the tenant ID.
 
 1. In the [Azure portal](https://portal.azure.com/), search for **app registration**.
-1. Select the Agents and Tools with Foundry Local registration you created.
+1. Select the Agentic Retrieval registration you created.
 1. Copy the **Application (client) ID** and **Directory (tenant) ID**.
 1. Paste the values to an app like Windows Notepad to use later.
 

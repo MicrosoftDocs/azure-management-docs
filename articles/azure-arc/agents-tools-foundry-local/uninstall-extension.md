@@ -1,6 +1,6 @@
 ---
-title: Uninstall Agents and Tools with Foundry Local Extension
-description: "Learn how to uninstall the Agents and Tools with Foundry Local extension by using Azure PowerShell or the Azure portal and remove the associated namespace step by step."
+title: Uninstall Agentic Retrieval in Foundry Local Extension
+description: "Learn how to uninstall the Agentic Retrieval in Foundry Local extension by using Azure PowerShell or the Azure portal and remove the associated namespace step by step."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -8,16 +8,16 @@ ms.date: 05/13/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a Kubernetes cluster administrator, I want to uninstall the Agents and Tools with Foundry Local extension so that I can remove the extension and clean up the associated namespace from my cluster.
+# Customer intent: As a Kubernetes cluster administrator, I want to uninstall the Agentic Retrieval in Foundry Local extension so that I can remove the extension and clean up the associated namespace from my cluster.
 ---
 
-# Uninstall extension for Agents and Tools with Foundry Local
+# Uninstall extension for Agentic Retrieval in Foundry Local
 
-This article covers how to remove the Agents and Tools with Foundry Local extension and delete the associated namespace from your cluster.
+This article covers how to remove the Agentic Retrieval extension and delete the associated namespace from your cluster.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Delete the Agents and Tools with Foundry Local Extension
+## Delete the Agentic Retrieval Extension
 
 Delete the extension by using Azure PowerShell or from the Azure portal.
 
@@ -52,7 +52,7 @@ Delete the extension by using Azure PowerShell or from the Azure portal.
 
 ----
 
-Make sure the Agents and Tools with Foundry Local extension is successfully deleted and is no longer in the list of extensions on the cluster.
+Make sure the Agentic Retrieval extension is successfully deleted and is no longer in the list of extensions on the cluster.
 
 ## Delete the namespace
 
@@ -64,5 +64,5 @@ kubectl delete namespace arc-rag
 
 ## Related content
 
-- [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md)
-- [Deploy the Agents and Tools with Foundry Local extension](deploy.md)
+- [Complete Agentic Retrieval deployment prerequisites](complete-prerequisites.md)
+- [Deploy the Agentic Retrieval extension](deploy.md)

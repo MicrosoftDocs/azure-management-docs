@@ -1,7 +1,7 @@
 ---
 
-title: Metrics for Evaluating the Agents and Tools with Foundry Local System
-description: "Learn how to evaluate the Agents and Tools with Foundry Local system using metrics like correctness, relevancy, precision, and recall for optimal performance."
+title: Metrics for Evaluating the Agentic Retrieval in Foundry Local System
+description: "Learn how to evaluate the Agentic Retrieval in Foundry Local system using metrics like correctness, relevancy, precision, and recall for optimal performance."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
@@ -10,12 +10,12 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer Intent:  As a developer or data scientist, I want to understand the metrics for evaluating the Agents and Tools with Foundry Local system so that I can assess the quality and performance of generated responses and retrieval processes effectively.
+# Customer Intent:  As a developer or data scientist, I want to understand the metrics for evaluating the Agentic Retrieval in Foundry Local system so that I can assess the quality and performance of generated responses and retrieval processes effectively.
 ---
 
-# Metrics for evaluating the Agents and Tools with Foundry Local system
+# Metrics for evaluating the Agentic Retrieval in Foundry Local system
 
-This article lists the metrics used when you evaluate the system of Agents and Tools with Foundry Local. For more information, see [Evaluate the Agents and Tools with Foundry Local system](evaluate-solution.md)
+This article lists the metrics used when you evaluate the system of Agentic Retrieval. For more information, see [Evaluate the Agentic Retrieval system](evaluate-solution.md)
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -44,4 +44,4 @@ The following metrics for evaluate the retrieval performance.
 
 ## Related content
 
-[Evaluate the Agents and Tools with Foundry Local system](evaluate-solution.md)
+[Evaluate the Agentic Retrieval system](evaluate-solution.md)

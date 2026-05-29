@@ -1,25 +1,25 @@
 ---
-title: Choose Your Language Model for Agents and Tools with Foundry Local
-description: "Learn how to choose a language model and understand endpoint requirements for your Agents and Tools with Foundry Local deployment."
+title: Choose Your Language Model for Agentic Retrieval in Foundry Local
+description: "Learn how to choose a language model and understand endpoint requirements for your Agentic Retrieval in Foundry Local deployment."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/26/2026
 ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agents and Tools with Foundry Local so that I can deploy and manage an AI chat solution for my edge environment.
+#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Agentic Retrieval in Foundry Local so that I can deploy and manage an AI chat solution for my edge environment.
 
 ---
 
-# Choose your language model for Agents and Tools with Foundry Local
+# Choose your language model for Agentic Retrieval in Foundry Local
 
-Agents and Tools with Foundry Local requires a language model for inference. This article helps you choose the right model for your use case and understand the available deployment options.
+Agentic Retrieval requires a language model for inference. This article helps you choose the right model for your use case and understand the available deployment options.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Select a language model
 
-Agents and Tools with Foundry Local doesn't include any language models. You must provide your own LLM endpoint that exposes an OpenAI-compatible chat completions API. Both the agentic layer (for agent runs) and the knowledge layer (for RAG inference) use this endpoint.
+Agentic Retrieval doesn't include any language models. You must provide your own LLM endpoint that exposes an OpenAI-compatible chat completions API. Both the agentic layer (for agent runs) and the knowledge layer (for RAG inference) use this endpoint.
 
 Work with your application development team to choose the right model for your use case.
 
@@ -71,5 +71,5 @@ For supported methods and step-by-step setup instructions, see [Create your lang
 ## Next steps
 
 - [Create your language model endpoint](prepare-model-endpoint.md) — set up your LLM endpoint.
-- [Deploy the Agents and Tools with Foundry Local extension](deploy.md) — use the endpoint during deployment.
+- [Deploy the Agentic Retrieval extension](deploy.md) — use the endpoint during deployment.
 - [Configure BYOM endpoint authentication](configure-endpoint-authentication.md) — set up authentication after deployment.

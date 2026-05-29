@@ -1,20 +1,20 @@
 ---
-title: Network File System (NFS) with Kerberos authentication overview for Agents and Tools with Foundry Local
-description: "Learn about Network File System (NFS) data source connectivity with Kerberos (krb5p) authentication for disconnected on-premises deployments of Agents and Tools with Foundry Local."
+title: Network File System (NFS) with Kerberos authentication overview for Agentic Retrieval in Foundry Local
+description: "Learn about Network File System (NFS) data source connectivity with Kerberos (krb5p) authentication for disconnected on-premises deployments of Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a platform administrator, I want to understand how NFS with Kerberos authentication works with Agents and Tools with Foundry Local so that I can securely connect on-premises file shares in disconnected environments.
+#customer intent: As a platform administrator, I want to understand how NFS with Kerberos authentication works with Agentic Retrieval in Foundry Local so that I can securely connect on-premises file shares in disconnected environments.
 ---
 
-# Network File System (NFS) with Kerberos authentication overview for Agents and Tools with Foundry Local
+# Network File System (NFS) with Kerberos authentication overview for Agentic Retrieval in Foundry Local
 
-Agents and Tools with Foundry Local can ingest documents from an on-premises Network File System (NFS) file share by using Kerberos authentication (`krb5p`). Instead of passing a UID/GID to access files, Agents and Tools with Foundry Local uses your Active Directory infrastructure to authenticate securely, with full encryption of data in transit.
+Agentic Retrieval can ingest documents from an on-premises Network File System (NFS) file share by using Kerberos authentication (`krb5p`). Instead of passing a UID/GID to access files, Agentic Retrieval uses your Active Directory infrastructure to authenticate securely, with full encryption of data in transit.
 
-This article applies to Agents and Tools with Foundry Local on Azure Local (Arc-enabled Kubernetes).
+This article applies to Agentic Retrieval on Azure Local (Arc-enabled Kubernetes).
 
 This article explains the Kerberos architecture, ingestion flow, prerequisite scope, and portal configuration fields so that you can plan a production-ready deployment.
 
@@ -49,7 +49,7 @@ When you create an NFS data source with Kerberos authentication:
 
 ## Prerequisites summary
 
-Before you install Agents and Tools with Foundry Local with Kerberos enabled, make sure you have:
+Before you install Agentic Retrieval with Kerberos enabled, make sure you have:
 
 - A healthy Azure Local Arc-enabled Kubernetes cluster with worker nodes ready for ingestion.
 - Active Directory, DNS, and NTP configured for Kerberos workloads.
@@ -57,11 +57,11 @@ Before you install Agents and Tools with Foundry Local with Kerberos enabled, ma
 - Keytab and SPN configuration completed for both worker nodes and the NFS server.
 - Network connectivity from worker nodes to domain controllers, DNS, NTP, and NFS server endpoints.
 
-For full setup steps and command-level validation, see [Set up NFS with Kerberos authentication for Agents and Tools with Foundry Local](connect-file-share-kerberos-setup.md).
+For full setup steps and command-level validation, see [Set up NFS with Kerberos authentication for Agentic Retrieval](connect-file-share-kerberos-setup.md).
 
 ## Portal field reference
 
-When you install Agents and Tools with Foundry Local via the Azure portal, the **Data Source Connection / Authentication** section includes the following Kerberos fields:
+When you install Agentic Retrieval via the Azure portal, the **Data Source Connection / Authentication** section includes the following Kerberos fields:
 
 | Portal field | Helm key | Type | Default | Description |
 |---|---|---|---|---|
@@ -70,7 +70,7 @@ When you install Agents and Tools with Foundry Local via the Azure portal, the *
 
 The SPN field is required when Kerberos is enabled. The installation fails with a template error if left empty.
 
-When you set `kerberos.enabled` to `true`, Agents and Tools with Foundry Local:
+When you set `kerberos.enabled` to `true`, Agentic Retrieval:
 
 1. Deploys a Kerberos Validator DaemonSet on every node (health checks every 60 seconds).
 1. Runs a preinstall validation hook (checks for labeled nodes).

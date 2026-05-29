@@ -1,6 +1,6 @@
 ---
-title: Manage the Knowledge Base in Agents and Tools with Foundry Local
-description: Learn how to manage the default knowledge base in Agents and Tools with Foundry Local, which groups knowledge sources and defines what data the system can access.
+title: Manage the Knowledge Base in Agentic Retrieval in Foundry Local
+description: Learn how to manage the default knowledge base in Agentic Retrieval in Foundry Local, which groups knowledge sources and defines what data the system can access.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
@@ -10,9 +10,9 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# Manage the knowledge base in Agents and Tools with Foundry Local
+# Manage the knowledge base in Agentic Retrieval in Foundry Local
 
-This article explains how to manage your knowledge base in Agents and Tools with Foundry Local. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what data the system can access when processing user queries.
+This article explains how to manage your knowledge base in Agentic Retrieval. A *knowledge base* is a configuration and boundary object that groups one or more *knowledge sources* together. It defines what data the system can access when processing user queries.
 
 Each deployment includes a default knowledge base that is automatically provisioned. Changes to the knowledge base are automatically synced to its paired internal agent.
 
@@ -23,7 +23,7 @@ Each deployment includes a default knowledge base that is automatically provisio
 
 ## Prerequisites
 
-- Deploy Agents and Tools with Foundry Local in combined or agentic mode.
+- Deploy Agentic Retrieval in combined or agentic mode.
 
 - Create at least one knowledge source. See [Configure a knowledge source](knowledge-sources-guide.md).
 
@@ -136,6 +136,6 @@ The response includes cursor-based pagination with `after` and `before` paramete
 ## Related content
 
 - [Configure a knowledge source](knowledge-sources-guide.md)
-- [The agentic layer in Agents and Tools with Foundry Local](agentic-overview.md)
-- [Quickstart: Query your data with Agents and Tools with Foundry Local](quickstart-edge-rag.md)
+- [The agentic layer in Agentic Retrieval](agentic-overview.md)
+- [Quickstart: Query your data with Agentic Retrieval](quickstart-edge-rag.md)
 <!-- - [Knowledge Base Manager API reference](APIs/knowledge-base-manager-api.md) -->

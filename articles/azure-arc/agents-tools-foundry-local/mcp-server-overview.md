@@ -1,6 +1,6 @@
 ---
-title: MCP Server Overview for Agents and Tools with Foundry Local
-description: Learn about the Model Context Protocol (MCP) server in Agents and Tools with Foundry Local, including built-in search tools, connection methods, and how to register external MCP servers.
+title: MCP Server Overview for Agentic Retrieval in Foundry Local
+description: Learn about the Model Context Protocol (MCP) server in Agentic Retrieval in Foundry Local, including built-in search tools, connection methods, and how to register external MCP servers.
 author: cwatson-cat
 ms.author: cwatson
 ms.date: 05/29/2026
@@ -9,9 +9,9 @@ ms.subservice: edge-rag
 ai-usage: ai-generated
 ---
 
-# MCP server in Agents and Tools with Foundry Local
+# MCP server in Agentic Retrieval in Foundry Local
 
-The Agents and Tools with Foundry Local platform includes a built-in Model Context Protocol (MCP) server that exposes RAG retrieval capabilities as tools. Any MCP-compatible AI agent or client can connect to search your ingested collections.
+The Agentic Retrieval platform includes a built-in Model Context Protocol (MCP) server that exposes RAG retrieval capabilities as tools. Any MCP-compatible AI agent or client can connect to search your ingested collections.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -24,7 +24,7 @@ MCP is an open standard for connecting AI agents to external tools and data sour
 
 This plug-and-play architecture allows agents to connect to new data sources without code modifications. You simply register a new MCP server.
 
-## Agents and Tools with Foundry Local's MCP server implementation
+## Agentic Retrieval's MCP server implementation
 
 The built-in MCP server `indexed-sources-mcp-server` runs on port 8080 and exposes search tools that query your ingested collections. It also supports consuming external MCP servers by registering them as knowledge sources, allowing agents to access tools and data from any MCP-compatible service.
 
@@ -125,7 +125,7 @@ kubectl port-forward deployment/indexed-sources-mcp-server-deployment 8080:8080 
 
 ## Register external MCP servers
 
-Agents and Tools with Foundry Local agents can connect to *external* MCP servers by registering them as knowledge sources with `kind: remote_mcp`. This registration allows agents to access tools and data from any MCP-compatible service.
+Agentic Retrieval agents can connect to *external* MCP servers by registering them as knowledge sources with `kind: remote_mcp`. This registration allows agents to access tools and data from any MCP-compatible service.
 
 Use the following command to create a knowledge source for the external MCP server:
 

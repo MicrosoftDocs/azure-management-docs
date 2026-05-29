@@ -1,6 +1,6 @@
 ---
-title: Metrics Available For Monitoring Agents and Tools with Foundry Local
-description: "Learn about the metrics you can use to monitor Agents and Tools with Foundry Local to track API performance, ingestion rates, and processing times for optimal system performance."
+title: Metrics Available For Monitoring Agentic Retrieval in Foundry Local
+description: "Learn about the metrics you can use to monitor Agentic Retrieval in Foundry Local to track API performance, ingestion rates, and processing times for optimal system performance."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
@@ -8,12 +8,12 @@ ms.date: 05/13/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a cloud administrator or DevOps engineer, I want to utilize the available metrics for Agents and Tools with Foundry Local to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and swiftly address any issues in my infrastructure.
+# Customer intent: As a cloud administrator or DevOps engineer, I want to utilize the available metrics for Agentic Retrieval in Foundry Local to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and swiftly address any issues in my infrastructure.
 ---
 
-# Metrics available for monitoring Agents and Tools with Foundry Local
+# Metrics available for monitoring Agentic Retrieval in Foundry Local
 
-The following table lists the metrics available for Agents and Tools with Foundry Local.
+The following table lists the metrics available for Agentic Retrieval.
 
 | Metric Name | Description |
 |---|---|
@@ -47,4 +47,4 @@ The following table lists the metrics available for Agents and Tools with Foundr
 
 ## Related content
 
-[Monitor Agents and Tools with Foundry Local](observability.md)
+[Monitor Agentic Retrieval](observability.md)

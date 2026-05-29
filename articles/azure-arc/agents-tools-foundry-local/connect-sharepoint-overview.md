@@ -1,24 +1,24 @@
 ---
-title: SharePoint Server-to-Server Authentication Overview for Agents and Tools with Foundry Local
-description: "Learn about SharePoint Server on-premises connectivity with High-Trust Server-to-Server (S2S) authentication for Agents and Tools with Foundry Local."
+title: SharePoint Server-to-Server Authentication Overview for Agentic Retrieval in Foundry Local
+description: "Learn about SharePoint Server on-premises connectivity with High-Trust Server-to-Server (S2S) authentication for Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a platform administrator, I want to understand how SharePoint server-to-server authentication works with Agents and Tools with Foundry Local so that I can securely connect on-premises SharePoint data.
+#customer intent: As a platform administrator, I want to understand how SharePoint server-to-server authentication works with Agentic Retrieval in Foundry Local so that I can securely connect on-premises SharePoint data.
 ---
 
-# SharePoint server-to-server authentication overview for Agents and Tools with Foundry Local
+# SharePoint server-to-server authentication overview for Agentic Retrieval in Foundry Local
 
-Agents and Tools with Foundry Local uses High-Trust Server-to-Server (S2S) authentication to connect to SharePoint Server on-premises. Instead of storing a username and password, the extension signs a JSON Web Token (JWT) with a certificate private key, and SharePoint validates it by using the registered public key.
+Agentic Retrieval uses High-Trust Server-to-Server (S2S) authentication to connect to SharePoint Server on-premises. Instead of storing a username and password, the extension signs a JSON Web Token (JWT) with a certificate private key, and SharePoint validates it by using the registered public key.
 
 If you need to ingest SharePoint content in restricted or disconnected environments, this approach helps you avoid stored credentials and external token dependencies while keeping authentication available.
 
 This article explains the authentication architecture, trust components, and configuration model so that you can plan a secure SharePoint connection for your environment.
 
-This article applies if you run Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) or Azure Local (Arc-enabled Kubernetes) and connect to SharePoint Server Subscription Edition (on-premises).
+This article applies if you run Agentic Retrieval on Azure Kubernetes Service (AKS) or Azure Local (Arc-enabled Kubernetes) and connect to SharePoint Server Subscription Edition (on-premises).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -38,7 +38,7 @@ The following table shows the one-time setup tasks you complete and the certific
 
 ## Architecture
 
-The SharePoint server-to-server ingestion architecture for Agents and Tools with Foundry Local uses certificate-based trust to authenticate requests without stored credentials or an external token service. Azure Key Vault stores the PFX certificate and password, the CSI Secrets Store Driver syncs them into Kubernetes, and the ingestion pod signs JWTs locally. SharePoint Server validates the token by using the trusted public key and then returns documents.
+The SharePoint server-to-server ingestion architecture for Agentic Retrieval uses certificate-based trust to authenticate requests without stored credentials or an external token service. Azure Key Vault stores the PFX certificate and password, the CSI Secrets Store Driver syncs them into Kubernetes, and the ingestion pod signs JWTs locally. SharePoint Server validates the token by using the trusted public key and then returns documents.
 
 :::image type="content" source="media/connect-sharepoint-overview/sharepoint-architecture.png" alt-text="Architecture diagram showing certificate-based SharePoint authentication flow through Azure Key Vault, Kubernetes, and SharePoint Server." lightbox="media/connect-sharepoint-overview/sharepoint-architecture.png" border="false":::
 
@@ -54,7 +54,7 @@ This server-to-server ingestion architecture uses certificate-based trust to pro
 
 ## Prerequisites summary
 
-Before you deploy Agents and Tools with Foundry Local with SharePoint enabled, make sure you have:
+Before you deploy Agentic Retrieval with SharePoint enabled, make sure you have:
 
 - A working AKS or Arc-enabled Kubernetes cluster.
 - Access to Azure Key Vault.
@@ -62,11 +62,11 @@ Before you deploy Agents and Tools with Foundry Local with SharePoint enabled, m
 - Required certificate, identity, and trust configuration completed.
 - Network connectivity from cluster pods to SharePoint and Azure Key Vault.
 
-For full setup steps and step-by-step validation, see [Set up SharePoint server-to-server authentication for Agents and Tools with Foundry Local](connect-sharepoint-setup.md).
+For full setup steps and step-by-step validation, see [Set up SharePoint server-to-server authentication for Agentic Retrieval](connect-sharepoint-setup.md).
 
 ## SharePoint configuration fields
 
-When you install Agents and Tools with Foundry Local in the Azure portal, the **Data Source Connection / Authentication** section includes the following SharePoint fields.
+When you install Agentic Retrieval in the Azure portal, the **Data Source Connection / Authentication** section includes the following SharePoint fields.
 
 ### Certificate delivery and Key Vault access fields
 
