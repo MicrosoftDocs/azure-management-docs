@@ -203,6 +203,14 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
+## Agentic Retrieval in Foundry Local (preview)
+
+- **Supported distributions**: AKS enabled by Azure Arc
+
+Agentic Retrieval in Foundry Local is an Azure Arc-enabled Kubernetes extension and part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It provides an agentic Retrieval-Augmented Generation (RAG) platform at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data. Agentic Retrieval is supported on Azure Local and in disconnected environments.
+
+For more information, see [What is Agents and Tools with Foundry Local?](../agents-tools-foundry-local/overview.md).
+
 ## Argo CD (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
@@ -225,6 +233,16 @@ For more information, see [Tutorial: Deploy applications using GitOps with Argo 
 For more information, see [Tutorial: Deploy applications using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 
 The [most recent version of the Flux v2 extension](flux-gitops-release-notes.md) and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
+
+## Foundry Local on Azure Local (preview)
+
+- **Supported distributions**: AKS enabled by Azure Arc
+
+Foundry Local on Azure Local brings AI inference to your Azure Local environment. Deploy and run AI models on an Arc-enabled Kubernetes cluster with Kubernetes-native operations. Foundry Local supports generative AI inference (chat and text generation) through OpenAI-compatible request patterns, predictive AI inference, and multi-model serving. It supports both CPU and GPU-backed deployments, and secures endpoints with API keys, Microsoft Entra ID authentication, and TLS.
+
+Foundry Local on Azure Local can also be deployed in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager (included in the expansion pack), and authentication integrates with the local Active Directory infrastructure.
+
+For more information, see [What is Foundry Local on Azure Local?](/azure/private/foundry-local/what-is-foundry-local-on-azure-local).
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
@@ -255,14 +273,6 @@ For more information, see [What is Azure Container Storage enabled by Azure Arc?
 Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
 
 For more information, see [Connected registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
-
-## Edge RAG Preview enabled by Azure Arc
-
-- **Supported distributions**: AKS enabled by Azure Arc
-
-Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG). RAG is an industry-standard architecture that augments the capabilities of a language model with private data. With Edge RAG, build custom chat assistants and derive insights from your private data.
-
-For more information, see [What is Edge RAG?](../edge-rag/overview.md)
 
 ## Cert-manager for Arc-enabled Kubernetes (preview)
 
