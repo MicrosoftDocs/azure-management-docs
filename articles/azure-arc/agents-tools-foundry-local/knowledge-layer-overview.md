@@ -4,7 +4,7 @@ description: "Learn about configuring the Knowledge Layer in Agents and Tools wi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/27/2026
+ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agents and Tools with Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
@@ -109,6 +109,15 @@ A critical part of prompt engineering is providing the right system prompt and m
 
 - To choose the right system prompt, see [Foundry Tools - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
 - For information and guidance about choosing model and search parameters, see [Search type parameters](search-types.md#search-type-parameters).
+
+### Testing queries in the chat playground
+
+Agentic Retrieval offers two chat experiences in the chat playground:
+
+- **Knowledge-base**: Chat with the model using your own ingested data as context. This means the model’s answers are based on your organization’s documents and data sources, so you get responses that are relevant and grounded in your latest information.
+- **Model-only**: Chat directly to the language model, without using your ingested data as context. This is helpful when you want to ask general questions, test the model’s raw capabilities, or just see how it responds without any extra information.
+
+Switch between knowledge-based chat and model chat depending on what you need.
 
 ### Data querying by using REST APIs
 

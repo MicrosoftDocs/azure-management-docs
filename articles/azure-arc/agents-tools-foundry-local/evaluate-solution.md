@@ -4,7 +4,7 @@ description: "Learn how to evaluate the functionality of the RAG system after yo
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/05/2025
+ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -13,7 +13,7 @@ ms.custom:
 ---
 # Evaluate the Agents and Tools with Foundry Local system
 
-Evaluate the system, models, and datasets within Agents and Tools with Foundry Local. There are two types of evaluations: baseline, and automatic.
+Evaluate the system, models, and datasets within Agents and Tools with Foundry Local. There are three types of evaluations: baseline, automatic, and manual.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -48,8 +48,6 @@ To run a baseline check:
 1. Select **Run**.
 
 1. Review the evaluation status.
-
-   :::image type="content" source="media/evaluate-solution/evaluation-status.png" alt-text="A screenshot showing the evaluation status page in the developer portal, displaying the progress and details of the baseline check.":::
 
 1. When the evaluation is completed, select the name to see the results.
 
@@ -88,13 +86,8 @@ The automatic evaluation evaluates the quality of the RAG system by using your o
 
    :::image type="content" source="media/evaluate-solution/evaluation-status-automated.png" alt-text="Screenshot shows the results of an automatic evaluation, including metrics and evaluation details.":::
 
-1. After the evaluation completes, review the results by selecting on the evaluation name.
-
-   :::image type="content" source="media/evaluate-solution/evaluation-results.png" alt-text="Screenshot of the evaluation results page in the developer portal, displaying metrics, and performance analysis for the RAG system." lightbox="media/evaluate-solution/evaluation-results.png" :::
-
+1. After the evaluation completes, review the results by selecting the evaluation name.
 1. Review the evaluation details and metrics.
-
-   :::image type="content" source="media/evaluate-solution/evaluation-details.png" alt-text="Screenshot of the evaluation details page in the developer portal, showing metrics, configurations, and detailed analysis for the RAG system." lightbox="media/evaluate-solution/evaluation-details.png":::
 
 ## Related content
 

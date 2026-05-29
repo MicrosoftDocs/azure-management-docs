@@ -87,10 +87,10 @@ items:
         items:
           - name: Overview
             href: chat-experience.md
-      - name: Evaluate system
-        href: evaluate-solution.md
       - name: Maintain
         items:
+          - name: Evaluate system
+            href: evaluate-solution.md
           - name: Monitor Agents and Tools with Foundry Local
             href: observability.md
           - name: Uninstall extension

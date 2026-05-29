@@ -4,7 +4,7 @@ description: "Configuration parameters, environment variables, and troubleshooti
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
-ms.date: 05/18/2026
+ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a platform administrator, I want a reference for deployment parameters and troubleshooting so that I can configure and maintain Agents and Tools with Foundry Local.

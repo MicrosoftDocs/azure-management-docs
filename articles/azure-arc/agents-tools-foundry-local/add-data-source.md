@@ -4,7 +4,7 @@ description: "Learn how to add and manage data sources for Agents and Tools with
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/27/2026
+ms.date: 05/29/2026
 ms.subservice: edge-rag
 #customer intent: As a developer or data scientist, I want to add a data source to Agents and Tools with Foundry Local so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
@@ -51,9 +51,9 @@ To get started, create a data source by using the local developer portal.
     | Group ID | NFS group ID |
     | **SharePoint Server** | |
     | SharePoint URL | Your SharePoint web application URL (for example, `http://sharepoint.contoso.com`) |
-    | Folder Path | Server-relative path to the document library (for example, `/sites/docs/Shared Documents`) |
+    | Folder path | Server-relative path to the document library (for example, `/sites/docs/Shared Documents`) |
 
-   :::image type="content" source="media/add-data-source/source-data.png" alt-text="Screenshot of the source data tab where you define the ingestion type and data source.":::
+   :::image type="content" source="media/add-data-source/source-data.png" alt-text="Screenshot of the source data tab where you define the ingestion type and data source." lightbox="media/add-data-source/source-data.png":::
 
 1. If you selected **SharePoint Server** as the data source and didn't configure server-to-server identity parameters during deployment, expand **Authentication** and enter:
 
@@ -69,7 +69,7 @@ To get started, create a data source by using the local developer portal.
 
     | Field | Value |
     |---|---|
-    | Collection | Select the target collection for ingested data. Choose an existing collection, or use the default `edgeragapp` collection. |
+    | Collection | If you have more than one collection set up, select the target collection for ingested data. Choose an existing collection, or use the default `edgeragapp` collection. |
     | Schedule updates | Frequency at which your data is synced for updates |
     | Chunk size | Select the appropriate chunk size |
     | Chunk overlap | Select the appropriate chunk overlap |
