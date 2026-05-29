@@ -183,18 +183,7 @@ When you push, pull, or delete through the global endpoint, ACR routes the reque
 - However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests may be routed elsewhere.
 - This routing is managed by ACR—you don't control which geo-replica handles a specific request.
 
-```
-Client
-  │
-  ▼
-myregistry.azurecr.io (global endpoint: auth and data plane APIs)
-  │
-  ▼ Azure-managed routing
-Geo-replica with best network performance profile
-  │
-  ▼ 307 redirect
-Geo-replica's data endpoint (blob storage or dedicated data endpoint)
-```
+:::image type="content" source="media/container-registry-geo-replication/geo-rep-global-endpoint.png" alt-text="Diagram showing the global endpoint request flow: a client connects to myregistry.azurecr.io, Azure-managed routing selects the geo-replica with the best network performance profile, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
 ### Using the global endpoint
 
@@ -310,18 +299,7 @@ Layer blob downloads (the actual container image layers) still follow your regis
 
 The following diagram illustrates the regional endpoint request flow:
 
-```
-Client
-  │
-  ▼
-myregistry.<region-name>.geo.azurecr.io (regional endpoint: auth and data plane APIs)
-  │
-  ▼ Direct to specific geo-replica
-Specific regional geo-replica
-  │
-  ▼ 307 redirect
-Geo-replica's data endpoint (blob storage or dedicated data endpoint)
-```
+:::image type="content" source="media/container-registry-geo-replication/geo-rep-regional-endpoint.png" alt-text="Diagram showing the regional endpoint request flow: a client connects to myregistry.region.geo.azurecr.io, the request goes directly to the specific regional geo-replica, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
 ### Regional endpoints prerequisites
 

@@ -45,7 +45,7 @@ For the full list of endpoint types and FQDN patterns, see the [endpoint referen
 
 Azure Container Registry uses two FQDNs: the login URL and the data endpoint.
 
-* Both the login URL and the data endpoint are accessible from within the virtual network, using private IP's by enabling a private link.
+* Both the login URL and the data endpoint are accessible from within the virtual network, using private IPs by enabling a private link.
 * A registry that doesn't use data endpoints must access data from an endpoint of the form `*.blob.core.windows.net`. This doesn't provide the required isolation when configuring firewall rules.
 * A registry with a private link enabled gets the dedicated data endpoint automatically.
 * One dedicated data endpoint is created per region for a registry.

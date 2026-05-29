@@ -38,33 +38,11 @@ Without dedicated data endpoints, the login server issues a 307 redirect for lay
 
 **Using the global endpoint (Azure-managed routing):**
 
-```
-Client
-  │
-  ▼
-contoso.azurecr.io (global endpoint: auth and data plane APIs)
-  │
-  ▼ Azure-managed routing
-Geo-replica with best network performance profile
-  │
-  ▼ 307 redirect
-*.blob.core.windows.net (layer blob downloads)
-```
+:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-without-global.png" alt-text="Diagram showing the request flow without dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
 
 **Using a regional endpoint (client-specified routing):**
 
-```
-Client
-  │
-  ▼
-contoso.eastus.geo.azurecr.io (regional endpoint: auth and data plane APIs)
-  │
-  ▼ Direct to specific geo-replica
-East US geo-replica
-  │
-  ▼ 307 redirect
-*.blob.core.windows.net (layer blob downloads)
-```
+:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-without-regional.png" alt-text="Diagram showing the request flow without dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to *.blob.core.windows.net for layer blob downloads.":::
 
 In both cases, to allow these downloads through a firewall, you must permit `*.blob.core.windows.net` — a broad wildcard that covers all Azure storage accounts, not just your registry's storage.
 
@@ -74,33 +52,11 @@ With dedicated data endpoints enabled, the login server issues a 307 redirect fo
 
 **Using the global endpoint (Azure-managed routing):**
 
-```
-Client
-  │
-  ▼
-contoso.azurecr.io (global endpoint: auth and data plane APIs)
-  │
-  ▼ Azure-managed routing
-Geo-replica with best network performance profile
-  │
-  ▼ 307 redirect
-contoso.eastus.data.azurecr.io (layer blob downloads, same region as serving geo-replica)
-```
+:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-with-global.png" alt-text="Diagram showing the request flow with dedicated data endpoints using the global endpoint: a client connects to contoso.azurecr.io, Azure-managed routing selects the best geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
 
 **Using a regional endpoint (client-specified routing):**
 
-```
-Client
-  │
-  ▼
-contoso.eastus.geo.azurecr.io (regional endpoint: auth and data plane APIs)
-  │
-  ▼ Direct to specific geo-replica
-East US geo-replica
-  │
-  ▼ 307 redirect
-contoso.eastus.data.azurecr.io (layer blob downloads, always same region)
-```
+:::image type="content" source="media/container-registry-dedicated-data-endpoints/dde-with-regional.png" alt-text="Diagram showing the request flow with dedicated data endpoints using a regional endpoint: a client connects to contoso.eastus.geo.azurecr.io, the request goes directly to the East US geo-replica, and the geo-replica issues a 307 redirect to contoso.eastus.data.azurecr.io for layer blob downloads.":::
 
 Each geo-replica gets its own dedicated data endpoint using the pattern `[registry].[region].data.azurecr.io`. Your firewall rules can be scoped to these specific endpoints instead of a broad wildcard.
 
