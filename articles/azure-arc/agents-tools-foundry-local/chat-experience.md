@@ -1,6 +1,6 @@
 ---
-title: How chat works in Agents and Tools with Foundry Local
-description: Learn what chat is in Agents and Tools with Foundry Local, what users can do with it, and the default local URL.
+title: How chat works in Agentic Retrieval in Foundry Local
+description: Learn what chat is in Agentic Retrieval in Foundry Local, what users can do with it, and the default local URL.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
@@ -9,12 +9,12 @@ ms.service: azure-arc
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 
-#customer intent: As a platform engineer or solution architect, I want to understand the built-in chat in Agents and Tools with Foundry Local so that I can help users get started quickly.
+#customer intent: As a platform engineer or solution architect, I want to understand the built-in chat in Agentic Retrieval in Foundry Local so that I can help users get started quickly.
 ---
 
-# How chat works in Agents and Tools with Foundry Local
+# How chat works in Agentic Retrieval in Foundry Local
 
-In this article, *chat* is the built-in user chat interface in Agents and Tools with Foundry Local.
+In this article, *chat* is the built-in user chat interface in Agentic Retrieval.
 
 Chat helps users ask questions over their content and get grounded answers with citations.
 
@@ -32,7 +32,7 @@ When users open chat, they can:
 
 ## Chat in combined and agentic deployments
 
-If you deploy Agents and Tools with Foundry Local in combined or agentic deployments, you get chat alongside the developer portal chat at `/user`.
+If you deploy Agentic Retrieval in combined or agentic deployments, you get chat alongside the developer portal chat at `/user`.
 
 Chat provides:
 
@@ -63,7 +63,7 @@ If a user has `EdgeRAGEndUser` but no matching collection role, chat requests ca
 
 For setup steps, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
 
-## How chat fits in Agents and Tools with Foundry Local
+## How chat fits in Agentic Retrieval
 
 Chat is the user-facing entry point. Users type questions in chat, then backend runtime services retrieve content and generate grounded answers.
 
@@ -87,6 +87,6 @@ In disconnected or air-gapped deployments, chat runs without Entra sign-in, and 
 
 ## Related content
 
-- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
-- [Test the chat solution for Agents and Tools with Foundry Local](test-end-user-app.md)
+- [Deployment overview for Agentic Retrieval](deploy-overview.md)
+- [Test the chat solution for Agentic Retrieval](test-end-user-app.md)
 - [What is Agentic Retrieval Augmented Generation (RAG)?](agentic-overview.md)

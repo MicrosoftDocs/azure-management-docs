@@ -1,6 +1,6 @@
 ---
-title: Knowledge Sources REST API Reference - Agents and Tools with Foundry Local
-description: REST API reference for managing knowledge sources in Agents and Tools with Foundry Local.
+title: Knowledge Sources REST API Reference - Agentic Retrieval in Foundry Local
+description: REST API reference for managing knowledge sources in Agentic Retrieval in Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Knowledge Sources REST API reference
 
-Manage knowledge sources in Agents and Tools with Foundry Local. A knowledge source is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Knowledge sources are the units that agents and knowledge bases consume to access external knowledge.
+Manage knowledge sources in Agentic Retrieval in Foundry Local. A knowledge source is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Knowledge sources are the units that agents and knowledge bases consume to access external knowledge.
 
 Two kinds of knowledge sources exist:
 

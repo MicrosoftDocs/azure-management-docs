@@ -1,11 +1,11 @@
 ### YamlMime:Landing
 
 title: Agents and Tools with Foundry Local documentation # < 60 chars
-summary: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).  # < 160 chars
+summary: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension providing agentic RAG at the edge.  # < 160 chars
 
 metadata:
   title: Agents and Tools with Foundry Local Documentation
-  description: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).
+  description: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension used to search on-premises data with generative AI.
   ms.topic: landing-page
   author: cwatson-cat
   ms.author: cwatson

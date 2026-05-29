@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Deploy Agents and Tools with Foundry Local on Azure Kubernetes Service"
-description: "Learn how to deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware."
+title: "Quickstart: Deploy Agentic Retrieval in Foundry Local on Azure Kubernetes Service"
+description: "Learn how to deploy Agentic Retrieval in Foundry Local on Azure Kubernetes Service (AKS) without the need for local hardware."
 author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
@@ -8,12 +8,12 @@ ms.topic: quickstart
 ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#customer intent: As a user, I want to deploy Agents and Tools with Foundry Local on Azure Kubernetes Service so that I can assess the solution.
+#customer intent: As a user, I want to deploy Agentic Retrieval in Foundry Local on Azure Kubernetes Service so that I can assess the solution.
 ---
 
-# Quickstart: Deploy Agents and Tools with Foundry Local
+# Quickstart: Deploy Agentic Retrieval in Foundry Local
 
-In this quickstart, you deploy Agents and Tools with Foundry Local on Azure Kubernetes Service (AKS) without local hardware like Azure Local. Create and configure an AKS cluster, add required node pools and extensions, and deploy the Agentic Retrieval extension. Configure the deployment to use a Foundry Local model endpoint (`gpt-oss-20b`) for language model inference and then connect to the developer portal to continue setup. This quickstart is intended for evaluation and development scenarios. For a production deployment, see [Deployment overview](deploy-overview.md).
+In this quickstart, you deploy Agentic Retrieval on Azure Kubernetes Service (AKS) without local hardware like Azure Local. Create and configure an AKS cluster, add required node pools and extensions, and deploy the Agentic Retrieval extension. Configure the deployment to use a Foundry Local model endpoint (`gpt-oss-20b`) for language model inference and then connect to the developer portal to continue setup. This quickstart is intended for evaluation and development scenarios. For a production deployment, see [Deployment overview](deploy-overview.md).
 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
@@ -24,10 +24,10 @@ Before you begin, make sure you have:
 
 - An active Azure subscription. If you don't have a service subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). If you're not using Azure Cloud Shell, see [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
-- Agents and Tools with Foundry Local registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Agents and Tools with Foundry Local](prepare-authentication.md).
-- Application (client) ID and the directory (tenant) ID. To get these values after registering Agents and Tools with Foundry Local, see [Get app and tenant IDs](prepare-authentication.md#optional-get-app-and-tenant-ids).
-- A Foundry Local endpoint and model deployment for your language model. For setup steps, see [Set up language model endpoint for Agents and Tools with Foundry Local](prepare-model-endpoint.md#foundry-local).
-- A Foundry Local application registration client ID (`foundryClientId`) for Entra-based authentication between Agents and Tools with Foundry Local and the Foundry Local endpoint. For setup guidance, see [Register a Foundry Local application](prepare-authentication.md#optional-register-a-foundry-local-application).
+- Agentic Retrieval registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Agentic Retrieval](prepare-authentication.md).
+- Application (client) ID and the directory (tenant) ID. To get these values after registering Agentic Retrieval, see [Get app and tenant IDs](prepare-authentication.md#optional-get-app-and-tenant-ids).
+- A Foundry Local endpoint and model deployment for your language model. For setup steps, see [Set up language model endpoint for Agentic Retrieval](prepare-model-endpoint.md#foundry-local).
+- A Foundry Local application registration client ID (`foundryClientId`) for Entra-based authentication between Agentic Retrieval and the Foundry Local endpoint. For setup guidance, see [Register a Foundry Local application](prepare-authentication.md#optional-register-a-foundry-local-application).
 - A domain name you can use for `ingress.domainname` that matches your app registration redirect URI (for example, `arcrag.contoso.com`).
 - Sufficient AKS quota in your target region for the node pool sizes used in this article, including `Standard_NC24ads_A100_v4` for the GPU node pool.
 
@@ -56,7 +56,7 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
 
 ## Create resource group
 
-Create a resource group to hold the AKS cluster, node pool, and Agents and Tools with Foundry Local resources.
+Create a resource group to hold the AKS cluster, node pool, and Agentic Retrieval resources.
 
 ```azurecli
 $rg = "edge-rag-aks-rg" 
@@ -68,7 +68,7 @@ az group create `
 
 ## Create and configure an AKS cluster
 
-In this section, you create an AKS cluster and configure it for Agents and Tools with Foundry Local deployment. The steps include setting up the cluster, connecting it to Azure Arc, and preparing it with the necessary extensions and GPU support.
+In this section, you create an AKS cluster and configure it for Agentic Retrieval deployment. The steps include setting up the cluster, connecting it to Azure Arc, and preparing it with the necessary extensions and GPU support.
 
 1. Create an AKS cluster:
 
@@ -81,7 +81,7 @@ In this section, you create an AKS cluster and configure it for Agents and Tools
       --generate-ssh-keys
    ```
 
-1. Set the rest of the following values as needed and then run the command. If you created the application registration for Agents and Tools with Foundry Local in a different tenant from the AKS cluster, set the values for `$entraAppId` and `$entraTenantId` by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
+1. Set the rest of the following values as needed and then run the command. If you created the application registration for Agentic Retrieval in a different tenant from the AKS cluster, set the values for `$entraAppId` and `$entraTenantId` by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
 
    ```azurecli
     
@@ -91,7 +91,7 @@ In this section, you create an AKS cluster and configure it for Agents and Tools
    $maxTokensInK = "128"  # Adjust based on your model's context window
    $foundryClientId = "<foundry_app_registration_client_id>"
 
-   # Set Agents and Tools with Foundry Local extension values
+   # Set Agentic Retrieval extension values
    $gpu_enabled = "true" # set to false if no GPU nodes 
    $localextname = "edgeragdemo"  
    $autoUpgrade = "false" 
@@ -166,7 +166,7 @@ In this section, you create an AKS cluster and configure it for Agents and Tools
 
 ## Create node pools
 
-Add dedicated GPU and CPU node pools to your AKS cluster to support Agents and Tools with Foundry Local.
+Add dedicated GPU and CPU node pools to your AKS cluster to support Agentic Retrieval.
 
 If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
 
@@ -200,11 +200,11 @@ If you get an error message when you try to create the node pools, you might nee
        --mode User
     ```
 
-## Deploy Agents and Tools with Foundry Local on AKS
+## Deploy Agentic Retrieval on AKS
 
-Complete the following steps to deploy the Agents and Tools with Foundry Local extension onto your AKS cluster.
+Complete the following steps to deploy the Agentic Retrieval extension onto your AKS cluster.
 
-1. Deploy the Agents and Tools with Foundry Local extension by running the following command:
+1. Deploy the Agentic Retrieval extension by running the following command:
 
    ```azurecli
    az k8s-extension create `
@@ -249,7 +249,7 @@ Complete the following steps to deploy the Agents and Tools with Foundry Local e
 
 ## Connect to the developer portal
 
-Update your host file on your local machine to connect to the developer portal for Agents and Tools with Foundry Local.
+Update your host file on your local machine to connect to the developer portal for Agentic Retrieval.
 
 1. On your local machine, open Notepad in Administrator mode. 
 1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the "hosts" file, set the extension type to **All files**.
@@ -261,17 +261,17 @@ Update your host file on your local machine to connect to the developer portal f
    For example:
 
    ```markdown
-   # Agents and Tools with Foundry Local developer portal
+   # Agentic Retrieval developer portal
    172.16.0.0 arcrag.contoso.com
    ```
 
 1. Save the file.
-1. Go to the developer portal for Agents and Tools with Foundry Local by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
+1. Go to the developer portal for Agentic Retrieval by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
 1. Select **Get started**. Then, follow the next steps at the end of this article to add a data source and set up the data query.
 
 ## (Optional) Clean up resources 
 
-If you're done trying out Agents and Tools with Foundry Local, remove the resources created in this quickstart by running the following command:
+If you're done trying out Agentic Retrieval, remove the resources created in this quickstart by running the following command:
 
 ```azurecli
 az group delete `

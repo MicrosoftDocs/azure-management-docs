@@ -1,5 +1,5 @@
 ---
-title: Agents Runtime REST API Reference - Agents and Tools with Foundry Local
+title: Agents Runtime REST API Reference - Agentic Retrieval in Foundry Local
 description: REST API reference for the Agents Runtime Service, including threads, messages, runs, and steps.
 author: cwatson-cat
 ms.author: cwatson
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Agents Runtime REST API reference
 
-Use this reference to call the Agents Runtime REST API so you can create threads, send messages, run agents, and inspect run steps in Agents and Tools with Foundry Local.
+Use this reference to call the Agents Runtime REST API so you can create threads, send messages, run agents, and inspect run steps in Agentic Retrieval in Foundry Local.
 
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 

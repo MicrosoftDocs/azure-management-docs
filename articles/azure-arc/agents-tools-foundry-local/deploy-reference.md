@@ -1,24 +1,24 @@
 ---
-title: Deployment Parameter Reference for Agents and Tools with Foundry Local
-description: "Configuration parameters, environment variables, and troubleshooting reference for deploying Agents and Tools with Foundry Local."
+title: Deployment Parameter Reference for Agentic Retrieval in Foundry Local
+description: "Configuration parameters, environment variables, and troubleshooting reference for deploying Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
 ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want a reference for deployment parameters and troubleshooting so that I can configure and maintain Agents and Tools with Foundry Local.
+#CustomerIntent: As a platform administrator, I want a reference for deployment parameters and troubleshooting so that I can configure and maintain Agentic Retrieval in Foundry Local.
 ---
 
-# Deployment parameter reference for Agents and Tools with Foundry Local
+# Deployment parameter reference for Agentic Retrieval in Foundry Local
 
-This article provides the configuration parameter reference, environment variables, and troubleshooting guidance for deploying Agents and Tools with Foundry Local.
+This article provides the configuration parameter reference, environment variables, and troubleshooting guidance for deploying Agentic Retrieval.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Configuration parameters
 
-The following configuration parameters are used when you install the Agents and Tools with Foundry Local extension:
+The following configuration parameters are used when you install the Agentic Retrieval extension:
 
 | Parameter | Required | Description |
 |---|---|---|
@@ -106,6 +106,6 @@ You can retrieve and rotate API keys by using the Foundry Local inference servic
 
 ## Related content
 
-- [Deploy Agents and Tools with Foundry Local](deploy.md)
+- [Deploy Agentic Retrieval](deploy.md)
 - [Configure BYOM endpoint authentication](configure-endpoint-authentication.md)
 - [Create a BYOM endpoint](prepare-model-endpoint.md)

@@ -1,5 +1,5 @@
 ---
-title: Inference REST API Reference - Agents and Tools with Foundry Local
+title: Inference REST API Reference - Agentic Retrieval in Foundry Local
 description: REST API reference for querying collections using RAG or querying the language model directly.
 author: cwatson-cat
 ms.author: cwatson

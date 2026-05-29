@@ -1,6 +1,6 @@
 ---
-title: Knowledge Base Manager REST API Reference - Agents and Tools with Foundry Local
-description: REST API reference for managing knowledge bases in Agents and Tools with Foundry Local.
+title: Knowledge Base Manager REST API Reference - Agentic Retrieval in Foundry Local
+description: REST API reference for managing knowledge bases in Agentic Retrieval in Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Knowledge Base Manager REST API reference
 
-Use this reference to call the Knowledge Base Manager REST API so you can list, get, update, and replace knowledge bases in Agents and Tools with Foundry Local.
+Use this reference to call the Knowledge Base Manager REST API so you can list, get, update, and replace knowledge bases in Agentic Retrieval in Foundry Local.
 
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 

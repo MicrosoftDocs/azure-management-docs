@@ -1,28 +1,28 @@
 ---
-title: Knowledge Layer Configuration for Agents and Tools with Foundry Local
-description: "Learn about configuring the Knowledge Layer in Agents and Tools with Foundry Local, including data ingestion, collections, and data querying."
+title: Knowledge Layer Configuration for Agentic Retrieval in Foundry Local
+description: "Learn about configuring the Knowledge Layer in Agentic Retrieval in Foundry Local, including data ingestion, collections, and data querying."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agents and Tools with Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
+#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agentic Retrieval in Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
 ms.custom:
   - build-2025
 ---
 
-# Knowledge layer configuration for Agents and Tools with Foundry Local
+# Knowledge layer configuration for Agentic Retrieval in Foundry Local
 
-The Knowledge Layer is the data foundation for Agents and Tools with Foundry Local. It ingests and chunks your source content, stores vectors and metadata in collections, and retrieves relevant context at query time so responses are grounded in your organization’s data. This layer is important because it directly determines chat quality, relevance, and access control through collection-level Azure role-based access control (Azure RBAC).
+The Knowledge Layer is the data foundation for Agentic Retrieval. It ingests and chunks your source content, stores vectors and metadata in collections, and retrieves relevant context at query time so responses are grounded in your organization’s data. This layer is important because it directly determines chat quality, relevance, and access control through collection-level Azure role-based access control (Azure RBAC).
 
-This article provides a high-level overview of configuring the Knowledge Layer in Agents and Tools with Foundry Local, including data ingestion, collections, and data querying.
+This article provides a high-level overview of configuring the Knowledge Layer in Agentic Retrieval, including data ingestion, collections, and data querying.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Knowledge Layer configuration
 
-As part of Agents and Tools with Foundry Local, you deploy a local developer portal on the AKS cluster. Developers can access this portal to complete the following tasks:
+As part of Agentic Retrieval, you deploy a local developer portal on the AKS cluster. Developers can access this portal to complete the following tasks:
 
 - **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
 - **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
@@ -50,23 +50,23 @@ For more information, see [Collections overview](collections-overview.md).
 
 Before you start configuring your chat solution, complete the following steps:
 
-- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources).  Make sure all your private data is in a network file system (NFS) share that's accessible from Agents and Tools with Foundry Local. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
+- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources).  Make sure all your private data is in a network file system (NFS) share that's accessible from Agentic Retrieval. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
-  Make sure that the files aren't password protected or otherwise encrypted so the Agents and Tools with Foundry Local application can access the data.
+  Make sure that the files aren't password protected or otherwise encrypted so the Agentic Retrieval application can access the data.
 
-- **Choose the right settings for data ingestion**. Before you add a data source in Agents and Tools with Foundry Local, choose the appropriate ingestion parsing settings, chunk settings, and sync frequency.
+- **Choose the right settings for data ingestion**. Before you add a data source in Agentic Retrieval, choose the appropriate ingestion parsing settings, chunk settings, and sync frequency.
 
 ### Ingestion parsing
 
-During ingestion, Agents and Tools with Foundry Local parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
+During ingestion, Agentic Retrieval parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
 
 Expect ingestion time to vary based on document complexity and size. Documents with richer structure usually take longer to process, but they produce higher-fidelity content for retrieval and grounding.
 
-For parsing details and supported behaviors, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
+For parsing details and supported behaviors, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).
 
 ### Chunk settings
 
-Before you add a data source in Agents and Tools with Foundry Local, choose the appropriate chunk size, chunk overlap, and sync frequency. Here's some high-level guidance to help you select the right chunk settings for your data, as provided by Azure:
+Before you add a data source in Agentic Retrieval, choose the appropriate chunk size, chunk overlap, and sync frequency. Here's some high-level guidance to help you select the right chunk settings for your data, as provided by Azure:
 
 - **Chunk size**: Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words) and allows for some overlap (for example, 10-15% of the content). This approach can produce good chunks as input for embedding vector generators.
 
@@ -101,7 +101,7 @@ You can also perform data ingestion programmatically by using the REST APIs:
 
 ## Data query
 
-In Agents and Tools with Foundry Local, setting up a data query means you create a system prompt, adjust model settings for your needs, and check that the solution works as expected.
+In Agentic Retrieval, setting up a data query means you create a system prompt, adjust model settings for your needs, and check that the solution works as expected.
 
 ### Choosing the right prompt and model parameters
 
@@ -129,8 +129,8 @@ After you validate data ingestion and prompt quality, integrate the chat endpoin
 
 For more information, see the following articles:
 
-- [Chat in Agents and Tools with Foundry Local](chat-experience.md)
-- [Test the chat solution for Agents and Tools with Foundry Local](test-end-user-app.md).
+- [Chat in Agentic Retrieval](chat-experience.md)
+- [Test the chat solution for Agentic Retrieval](test-end-user-app.md).
 
 If you want to integrate the chat endpoint in one of your line-of-business applications, use the  REST APIs.
 

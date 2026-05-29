@@ -1,16 +1,16 @@
 ---
-title: SharePoint Server-to-Server Reference and Troubleshooting for Agents and Tools with Foundry Local
-description: "Verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agents and Tools with Foundry Local."
+title: SharePoint Server-to-Server Reference and Troubleshooting for Agentic Retrieval in Foundry Local
+description: "Verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
 ms.date: 05/17/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a platform administrator, I want to verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agents and Tools with Foundry Local.
+#CustomerIntent: As a platform administrator, I want to verify, troubleshoot, and maintain SharePoint server-to-server authentication for Agentic Retrieval in Foundry Local.
 ---
 
-# SharePoint server-to-server reference and troubleshooting for Agents and Tools with Foundry Local
+# SharePoint server-to-server reference and troubleshooting for Agentic Retrieval in Foundry Local
 
 Use this reference to verify your SharePoint Server-to-Server (S2S) setup, diagnose issues, manage certificates, and review Helm values.
 

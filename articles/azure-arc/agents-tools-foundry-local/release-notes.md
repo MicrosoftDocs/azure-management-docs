@@ -1,7 +1,7 @@
 ---
-title: Release Notes for Agents and Tools with Foundry Local
+title: Release Notes for Agentic Retrieval in Foundry Local
 ms.reviewer: cwatson
-description: "Discover the latest updates and features for Agents and Tools with Foundry Local."
+description: "Discover the latest updates and features for Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
@@ -9,13 +9,13 @@ ms.topic: "release-notes"
 ms.date: 05/04/2026
 ai-usage: ai-generated
 
-#customer intent: As an IT admin, I want to understand the new features in the latest Agents and Tools with Foundry Local release so that I can plan updates for my organization.
+#customer intent: As an IT admin, I want to understand the new features in the latest Agentic Retrieval in Foundry Local release so that I can plan updates for my organization.
 
 ---
 
-# Release notes for Agents and Tools with Foundry Local
+# Release notes for Agentic Retrieval in Foundry Local
 
-Agents and Tools with Foundry Local helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agents and Tools with Foundry Local in your organization.
+Agentic Retrieval helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic Retrieval in your organization.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -27,7 +27,7 @@ Agents and Tools with Foundry Local helps you deploy Retrieval Augmented Generat
 
 | Change | Details |
 |---|---|
-| **Product renamed** | Edge RAG enabled by Azure Arc is now Agents and Tools with Foundry Local. The Azure extension type remains `microsoft.arc.rag`. |
+| **Product renamed** | Edge RAG enabled by Azure Arc is now Agentic Retrieval. The Azure extension type remains `microsoft.arc.rag`. |
 | **SLM models removed** | Phi-3.5 and Mistral-7B models are no longer bundled. Bring Your Own Model (BYOM) is the only model path. You must provide an external LLM endpoint. |
 | **GPU count reduced** | 4 → **2 GPUs** required. GPUs are used for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14). Docling (document parser) now runs on CPU. The LLM runs externally via BYOM. |
 | **BYOM is now mandatory** | The model endpoint step is no longer optional. All deployments require an OpenAI-compatible LLM endpoint. |
@@ -89,12 +89,12 @@ The following table summarizes the updates included in this release.
 
 | Capability                | Description |
 |---------------------------|---------|
-| Data ingestion  | - Improved parsing for documents, including tables and charts.<br>- Added new ingestion type options for high-fidelity document processing.  <br></br>For more information, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md)|
-|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Knowledge layer configuration](knowledge-layer-overview.md) and [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).|
+| Data ingestion  | - Improved parsing for documents, including tables and charts.<br>- Added new ingestion type options for high-fidelity document processing.  <br></br>For more information, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md)|
+|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Knowledge layer configuration](knowledge-layer-overview.md) and [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).|
 |Performance enhancements | From previous release version: <br>- Achieved a 5× faster query performance for hybrid search.<br>- Delivered 100× faster ingestion of live-streamed images. |
-|Preview support for disconnected scenarios|Agents and Tools with Foundry Local supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).|
+|Preview support for disconnected scenarios|Agentic Retrieval supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).|
 
-For more information, see [What's new in Agents and Tools with Foundry Local](whats-new.md).
+For more information, see [What's new in Agentic Retrieval](whats-new.md).
 
 ## July 2025
 
@@ -118,5 +118,5 @@ See the related blog posts:
 
 ## Related content
 
-- [What you need for Agents and Tools with Foundry Local ](requirements.md)
-- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
+- [What you need for Agentic Retrieval ](requirements.md)
+- [Deployment overview for Agentic Retrieval](deploy-overview.md)

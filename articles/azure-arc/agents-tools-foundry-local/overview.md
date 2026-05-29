@@ -1,6 +1,6 @@
 ---
 title: Agents and Tools with Foundry Local Overview
-description: "Learn about the Azure Arc-enabled Kubernetes extension Agents and Tools with Foundry Local used to search on-premises data with generative AI."
+description: "Learn about Agentic Retrieval in Foundry Local, the Azure Arc-enabled Kubernetes extension in the Agents and Tools with Foundry Local platform, used to search on-premises data with generative AI."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
@@ -9,15 +9,17 @@ ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a business decision maker, I want to evaluate the Agents and Tools with Foundry Local solution for on-premises data retrieval, so that I can determine if it aligns with our regulatory compliance and AI application needs while enhancing insights and decision-making processes.
+# Customer intent: As a business decision maker, I want to evaluate Agentic Retrieval in Foundry Local for on-premises data retrieval, so that I can determine if it aligns with our regulatory compliance and AI application needs while enhancing insights and decision-making processes.
 ---
 # What is Agents and Tools with Foundry Local?
 
-Agents and Tools with Foundry Local is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) that provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
+Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and grounding capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc.
+
+Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-Agents and Tools with Foundry Local is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
+Agentic Retrieval in Foundry Local is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
 
 For more information, see [Azure Arc](/azure/azure-arc/overview), [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/), and [Azure Arc extensions](/azure/azure-arc/kubernetes/conceptual-extensions). 
 
@@ -37,7 +39,7 @@ Additional platform capabilities include:
 - **Bring Your Own Model (BYOM)** - Connect an external language model endpoint that supports the OpenAI-compatible chat completions API, such as an endpoint deployed in Microsoft Foundry.
 - **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) running locally on two GPUs. Docling (document parser) runs on CPU.
 - **Independent deployment modes** - Deploy the full platform, or just the agentic layer or knowledge layer separately.
-- **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agents and Tools with Foundry Local isn't a visual language model (VLM).
+- **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agentic Retrieval in Foundry Local isn't a visual language model (VLM).
 
 ## Key components
 
@@ -75,7 +77,7 @@ For more information, see [Collections overview](collections-overview.md) and [S
 
 ### Local chat experience
 
-Agents and Tools with Foundry Local includes a built-in chat solution that provides a ready-to-use interface for interacting with agents. The chat solution is a static React app served by nginx that communicates with the agents runtime through the Foundry Agents API.
+Agentic Retrieval in Foundry Local includes a built-in chat solution that provides a ready-to-use interface for interacting with agents. The chat solution is a static React app served by nginx that communicates with the agents runtime through the Foundry Agents API.
 
 The chat solution provides:
 
@@ -86,13 +88,13 @@ The chat solution provides:
 
 The chat solution handles the browser experience only. Model orchestration, tool invocation, token validation, and data scoping are handled by the agents runtime and backend services.
 
-For more information, see [Chat solution in Agents and Tools with Foundry Local](chat-experience.md).
+For more information, see [Chat solution in Agentic Retrieval in Foundry Local](chat-experience.md).
 
 ## Customer scenarios and use cases
 
 Customers across verticals like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside of the hyperscale cloud. Customers want to use generative AI applications to get insights from this on-premises data.
 
-Agents and Tools with Foundry Local supports Q&A capabilities and multistep agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
+Agentic Retrieval in Foundry Local supports Q&A capabilities and multistep agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
 
 - A government customer wants to derive insights from sensitive on-premises data to enable quicker decision making, summarize large datasets, create training materials, and more.
 
@@ -104,9 +106,9 @@ Agents and Tools with Foundry Local supports Q&A capabilities and multistep agen
 
 - An energy company wants to connect agents to multiple external data sources (SCADA systems, maintenance logs, weather data) via MCP servers, without ingesting all data locally.
 
-## Why Agents and Tools with Foundry Local?
+## Why Agentic Retrieval in Foundry Local?
 
-Use Agents and Tools with Foundry Local to:
+Use Agentic Retrieval in Foundry Local to:
 
 - **Build intelligent agents** that orchestrate across multiple knowledge sources, tools, and external services by using the built-in MCP server and knowledge base framework.
 - **Reduce time to market** by using a turnkey experience that accelerates the development and deployment of AI applications on local data. 
@@ -116,7 +118,7 @@ Use Agents and Tools with Foundry Local to:
 
 ## Key concepts
 
-Review the following key concepts for Agents and Tools with Foundry Local:
+Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Chunking** splits large documents into smaller, manageable text blocks (chunks).
   - Chunk size: Chunking divides large documents into smaller units, with settings like chunk size (for example, 1000-2000 characters) and chunk overlap (for example, 100-500 characters) controlling their granularity and continuity. Smaller chunks improve retrieval precision but might lose context, while larger chunks ensure comprehensive context at the cost of precision.
@@ -130,17 +132,17 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Inferencing** refers to the process of using a trained model to generate predictions or outputs based on new input data. In language models, inferencing involves tasks like completing text, answering questions, or generating summaries.
 
-- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agents and Tools with Foundry Local supports two language model endpoint options. The recommended option is a Foundry Local on Azure Local endpoint. This option runs on the same Azure Arc-connected cluster as the extension. You can also use an external Bring Your Own Model (BYOM) endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry.
+- **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Agentic Retrieval in Foundry Local supports two language model endpoint options. The recommended option is a Foundry Local on Azure Local endpoint. This option runs on the same Azure Arc-connected cluster as the extension. You can also use an external Bring Your Own Model (BYOM) endpoint that supports an OpenAI-compatible chat completions API, such as one deployed in Microsoft Foundry.
 
-- **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
+- **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Agentic Retrieval in Foundry Local](search-types.md#search-type-parameters).
 
 - **Query** is the input provided to a language model to elicit a response or perform a specific task. It can be a question, a prompt, or a set of instructions, depending on the use case.
 
 - **Retrieval Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
 
-- **Search parameters** are settings that control how Agents and Tools with Foundry Local retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Agents and Tools with Foundry Local](search-types.md#search-type-parameters).
+- **Search parameters** are settings that control how Agentic Retrieval in Foundry Local retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Agentic Retrieval in Foundry Local](search-types.md#search-type-parameters).
 
-- **Search type**: A search type is the method Agents and Tools with Foundry Local uses to find and rank information from your indexed data. It determines how the system retrieves relevant content to answer user questions, such as by matching keywords, using semantic similarity, or combining multiple approaches. Agents and Tools with Foundry Local supports several search methods for retrieving information, including full text search, hybrid search, hybrid multimodal search, and vector search. For more information, see [Types of search in Agents and Tools with Foundry Local](search-types.md).
+- **Search type**: A search type is the method Agentic Retrieval in Foundry Local uses to find and rank information from your indexed data. It determines how the system retrieves relevant content to answer user questions, such as by matching keywords, using semantic similarity, or combining multiple approaches. Agentic Retrieval in Foundry Local supports several search methods for retrieving information, including full text search, hybrid search, hybrid multimodal search, and vector search. For more information, see [Types of search in Agentic Retrieval in Foundry Local](search-types.md).
 
 - **System prompt** are predefined instructions or messages provided to a language model at the start of a conversation or task to influence its behavior. These prompts define the model's role, tone, or task-specific context. For example, "You're a helpful assistant" or "Provide concise technical explanations." By shaping the initial context, system prompts ensure that the model generates responses aligned with the desired objective or persona.
 
@@ -156,7 +158,7 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 - **Collection** is a logical grouping of ingested vector data. Each collection maps to Milvus vector collections and Postgres tables, and can be independently created, queried, and deleted.
 
-- **MCP (Model Context Protocol)** is an open protocol for connecting AI agents to external tools and data sources. Agents and Tools with Foundry Local includes a built-in MCP server with 6 search tools and can also connect to external MCP servers.
+- **MCP (Model Context Protocol)** is an open protocol for connecting AI agents to external tools and data sources. Agentic Retrieval in Foundry Local includes a built-in MCP server with 6 search tools and can also connect to external MCP servers.
 
 - **Thread** is a conversation session between a user and an agent. Threads contain ordered messages and are scoped to a single user.
 
@@ -166,26 +168,26 @@ Review the following key concepts for Agents and Tools with Foundry Local:
 
 ## Compare with AI services in Azure
 
-Agents and Tools with Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
+Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
 In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions. Customers need to bring their data and applications to Azure infrastructure.
 
-Agents and Tools with Foundry Local provides local developer UI experiences that align to Foundry experiences.
+Agentic Retrieval in Foundry Local provides local developer UI experiences that align to Foundry experiences.
 
 ## Data on-premises versus cloud
 
-Agents and Tools with Foundry Local sends only system metadata and organizational identifiable information like subscription ID and cluster names to Microsoft. All customer content, including ingested documents, embeddings, agent configurations, and conversation threads, always stays in the on-premises infrastructure within the network boundaries defined by customers.
+Agentic Retrieval in Foundry Local sends only system metadata and organizational identifiable information like subscription ID and cluster names to Microsoft. All customer content, including ingested documents, embeddings, agent configurations, and conversation threads, always stays in the on-premises infrastructure within the network boundaries defined by customers.
 
 ## User roles
 
-The Agents and Tools with Foundry Local solution has four distinct user roles:
+The Agentic Retrieval in Foundry Local solution has four distinct user roles:
 
-- **Lifecycle management of the extension**: Users manage the lifecycle of the Agents and Tools with Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
+- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
 - **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
 - **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
 - **Agentic Layer administration**: Users configure and manage knowledge bases and knowledge sources by using the Knowledge Base Manager API. This role includes registering MCP servers as knowledge sources, updating the default knowledge base, and linking knowledge sources to it. Requires the `EdgeRAGDeveloper` Entra ID role.
 
 ## Related content
 
-- [What you need for Agents and Tools with Foundry Local](requirements.md)
+- [What you need for Agentic Retrieval in Foundry Local](requirements.md)
 - [Arc Jumpstart](https://jumpstart.azure.com/)

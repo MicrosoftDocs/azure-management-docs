@@ -1,6 +1,6 @@
 ---
-title: Configure "BYOM" Endpoint Authentication for Agents and Tools with Foundry Local
-description: "Learn how to configure API-key based authentication for Agents and Tools with Foundry Local to securely manage and access resources across environments."
+title: Configure "BYOM" Endpoint Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure API-key based authentication for Agentic Retrieval in Foundry Local to securely manage and access resources across environments."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -8,12 +8,12 @@ ms.date: 05/26/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer, I want to configure API-key based authentication for Agents and Tools with Foundry Local, so that I can securely manage and access resources across cloud environments.
+# Customer intent: As a developer, I want to configure API-key based authentication for Agentic Retrieval in Foundry Local, so that I can securely manage and access resources across cloud environments.
 ---
 
-# Configure "BYOM" endpoint authentication for Agents and Tools with Foundry Local
+# Configure "BYOM" endpoint authentication for Agentic Retrieval in Foundry Local
 
-This article shows you how to configure API-key based authentication for any cloud-based LLM endpoints that need it. If you configured Agents and Tools with Foundry Local to use your own language model (BYOM), complete the steps in this article.
+This article shows you how to configure API-key based authentication for any cloud-based LLM endpoints that need it. If you configured Agentic Retrieval to use your own language model (BYOM), complete the steps in this article.
 
 > [!NOTE]
 > This article applies only when using BYOM (cloud) endpoints (`useFoundryLocal=false`). If you use Foundry Local with `foundryClientId`, authentication is handled via managed identity and no API key configuration is needed. For managed identity setup, see [Configure authentication](prepare-authentication.md).
@@ -22,7 +22,7 @@ This article shows you how to configure API-key based authentication for any clo
 
 ## Set up API Key for authentication (BYOM)
 
-After you install the Agents and Tools with Foundry Local extension and configure it to use your own language model, get an API key for the model.
+After you install the Agentic Retrieval extension and configure it to use your own language model, get an API key for the model.
 
 1. In your Azure Local node, get the "bring your own model" (BYOM) secret that was created during the extension installation.
 
@@ -67,4 +67,4 @@ After you install the Agents and Tools with Foundry Local extension and configur
 
 ## Related content
 
-- [Deploy the Agents and Tools with Foundry Local extension](deploy.md)
+- [Deploy the Agentic Retrieval extension](deploy.md)

@@ -1,20 +1,20 @@
 ---
-title: Types of Search in Agents and Tools with Foundry Local
-description: Learn about search types, their options, and how they're used in Agents and Tools with Foundry Local deployments.
+title: Types of Search in Agentic Retrieval in Foundry Local
+description: Learn about search types, their options, and how they're used in Agentic Retrieval in Foundry Local deployments.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/04/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
-#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agents and Tools with Foundry Local so I can choose and configure the right search type for my deployment.
+#CustomerIntent: As a cloud administrator or developer, I want to understand search types in Agentic Retrieval in Foundry Local so I can choose and configure the right search type for my deployment.
 ---
 
-# Search types in Agents and Tools with Foundry Local
+# Search types in Agentic Retrieval in Foundry Local
 
-A search method or type, like full text, vector, or hybrid, controls how Agents and Tools with Foundry Local retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
+A search method or type, like full text, vector, or hybrid, controls how Agentic Retrieval retrieves and ranks results from your indexed data. It shapes the way users interact with your solution and the quality of the answers they get.
 
-You select a search type when you configure your data query settings in the Agents and Tools with Foundry Local developer portal. All search types are available with your BYOM language model endpoint.
+You select a search type when you configure your data query settings in the Agentic Retrieval developer portal. All search types are available with your BYOM language model endpoint.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -31,19 +31,19 @@ Your choice of search type affects:
 
 ## Available search types
 
-The following definitions describe each search type available in Agents and Tools with Foundry Local, so you can understand how they work and choose the best option for your scenario.
+The following definitions describe each search type available in Agentic Retrieval, so you can understand how they work and choose the best option for your scenario.
 
 - **Full text search**: A search method that scans and matches the entire body of text in documents, by using keywords, phrases, or boolean queries to find relevant chunks in the supplied documents.
 
 - **Hybrid search**: Combines both full-text search (keyword-based) and vector search (semantic similarity) to retrieve the most relevant documents. It uses the precision of keyword matching and the depth of semantic understanding for improved retrieval accuracy.
 
-- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Agents and Tools with Foundry Local to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
+- **Hybrid multimodal search**: Combines full-text and vector search across both text and image data, allowing Agentic Retrieval to retrieve and rank results from multiple data types in a single query. Unlike hybrid search, which works only with text, by using both keyword and semantic similarity, hybrid multimodal search extends this approach to include images. This approach enables richer, more comprehensive answers that draw from both textual, and visual content.
 
 - **Vector search**: A search method that finds relevant documents by comparing the semantic similarity between vector embeddings of the user's query and precomputed embeddings of documents, typically using cosine similarity or other distance metrics in a vector space.
 
 ## Compare search types
 
-Agents and Tools with Foundry Local supports several search types. The following table summarizes each search type, best use cases, and performance considerations:
+Agentic Retrieval supports several search types. The following table summarizes each search type, best use cases, and performance considerations:
 
 | Search type               | What it does      | Best use cases       | Performance notes                                                                                  |
 |--------------------------|------------------|-----------------|---------------------|
@@ -55,7 +55,7 @@ Agents and Tools with Foundry Local supports several search types. The following
 
 ## Search type availability by deployment
 
-All search types are available with Agents and Tools with Foundry Local, since all deployments use BYOM:
+All search types are available with Agentic Retrieval, since all deployments use BYOM:
 
 | Search type | Available |
 |---|---|
@@ -66,12 +66,12 @@ All search types are available with Agents and Tools with Foundry Local, since a
 
 For more information about deploying with a language model, see:
 
-- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
-- [Deploy the extension for Agents and Tools with Foundry Local](deploy.md)
+- [Deployment overview for Agentic Retrieval](deploy-overview.md)
+- [Deploy the extension for Agentic Retrieval](deploy.md)
 
 ## How to select a search type
 
-Select the search type in the Agents and Tools with Foundry Local developer portal when you configure your data query settings. Some parameters might differ by search type and model.
+Select the search type in the Agentic Retrieval developer portal when you configure your data query settings. Some parameters might differ by search type and model.
 
 ## Collection-scoped search
 
@@ -95,7 +95,7 @@ Each search type offers different performance characteristics. Consider these po
 
 ## Tips for choosing a search type
 
-Use these tips to help you select the best search type for your Agents and Tools with Foundry Local deployment and scenario:
+Use these tips to help you select the best search type for your Agentic Retrieval deployment and scenario:
 
 - Pick the search type that matches your data and user needs.
 - Hybrid search is a good default for most scenarios.
@@ -104,7 +104,7 @@ Use these tips to help you select the best search type for your Agents and Tools
 
 ## Search type parameters
 
-The following tables list and describe all parameters you can configure for each search type in Agents and Tools with Foundry Local. Not all parameters are available for every search type or deployment. The Agents and Tools with Foundry Local developer portal shows only the options that apply to your selected search type and model.
+The following tables list and describe all parameters you can configure for each search type in Agentic Retrieval. Not all parameters are available for every search type or deployment. The Agentic Retrieval developer portal shows only the options that apply to your selected search type and model.
 
 ### Model parameters
 
@@ -117,7 +117,7 @@ The following model parameters are available for text, vector, hybrid, and hybri
 
 ### Search parameters
 
-The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Agents and Tools with Foundry Local retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
+The following search parameters are available for text, vector, hybrid, and hybrid multimodal search types. While model parameters control how the language model generates answers, these search parameters let you fine-tune how Agentic Retrieval retrieves, filters, and ranks documents from your indexed data. These parameters help you optimize the relevance and precision of the information sent to the model for each query.
 
 These parameters only apply to the **Knowledge-based** chat experience.
 
@@ -129,8 +129,8 @@ These parameters only apply to the **Knowledge-based** chat experience.
 
 ## Related content
 
-- [Deployment overview for Agents and Tools with Foundry Local](deploy-overview.md)
-- [Deploy Agents and Tools with Foundry Local](deploy.md)
+- [Deployment overview for Agentic Retrieval](deploy-overview.md)
+- [Deploy Agentic Retrieval](deploy.md)
 - [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Set up data query](set-up-data-query.md)
 

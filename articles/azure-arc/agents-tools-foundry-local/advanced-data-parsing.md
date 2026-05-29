@@ -1,23 +1,23 @@
 ---
-title: Data parsing for Agents and Tools with Foundry Local
-description: "Learn how data parsing in Agents and Tools with Foundry Local extracts structured data, tables, and images for more accurate search and chat results."
+title: Data parsing for Agentic Retrieval in Foundry Local
+description: "Learn how data parsing in Agentic Retrieval in Foundry Local extracts structured data, tables, and images for more accurate search and chat results."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a solution architect or data engineer, I want to understand data parsing in Agents and Tools with Foundry Local so that I can extract structured information, tables, and images from complex documents for accurate, context-rich search and chat experiences.
+#CustomerIntent: As a solution architect or data engineer, I want to understand data parsing in Agentic Retrieval in Foundry Local so that I can extract structured information, tables, and images from complex documents for accurate, context-rich search and chat experiences.
 ---
-# Data parsing for Agents and Tools with Foundry Local
+# Data parsing for Agentic Retrieval in Foundry Local
 
-Agents and Tools with Foundry Local uses advanced data parsing to help you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how data parsing works, what it extracts, and how to optimize your content for better retrieval results.
+Agentic Retrieval uses advanced data parsing to help you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how data parsing works, what it extracts, and how to optimize your content for better retrieval results.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Key capabilities
 
-Data parsing in Agents and Tools with Foundry Local provides the following capabilities:
+Data parsing in Agentic Retrieval provides the following capabilities:
 
 - **Enhanced document understanding**: Extracts headings, tables, images, and formatting for richer context.
 - **Semantic chunking**: Splits text into meaningful sections, preserving context and document hierarchy.

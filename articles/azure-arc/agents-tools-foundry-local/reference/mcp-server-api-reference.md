@@ -1,5 +1,5 @@
 ---
-title: MCP Server API reference - Agents and Tools with Foundry Local
+title: MCP Server API reference - Agentic Retrieval in Foundry Local
 description: API reference for the MCP server that exposes RAG retrieval capabilities as tools over Model Context Protocol.
 author: cwatson-cat
 ms.author: cwatson

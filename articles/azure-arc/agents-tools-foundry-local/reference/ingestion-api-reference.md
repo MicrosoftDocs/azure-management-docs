@@ -1,6 +1,6 @@
 ---
-title: Ingestion REST API Reference - Agents and Tools with Foundry Local
-description: REST API reference for managing document ingestion jobs in Agents and Tools with Foundry Local.
+title: Ingestion REST API Reference - Agentic Retrieval in Foundry Local
+description: REST API reference for managing document ingestion jobs in Agentic Retrieval in Foundry Local.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Ingestion REST API reference
 
-Manage ingestion jobs in Agents and Tools with Foundry Local. The ingestion API ingests documents from NFS or SharePoint data sources into a collection. The API parses, chunks, embeds, and stores documents in the collection's vector collections and database tables.
+Manage ingestion jobs in Agentic Retrieval in Foundry Local. The ingestion API ingests documents from NFS or SharePoint data sources into a collection. The API parses, chunks, embeds, and stores documents in the collection's vector collections and database tables.
 
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 

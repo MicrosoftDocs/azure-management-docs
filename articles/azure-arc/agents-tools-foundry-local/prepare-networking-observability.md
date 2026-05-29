@@ -1,22 +1,22 @@
 ---
-title: Install Networking and Observability Components for Agents and Tools with Foundry Local
-description: "Learn how to install and configure networking and observability components for Agents and Tools with Foundry Local deployment, including MetalLB and monitoring tools."
+title: Install Networking and Observability Components for Agentic Retrieval in Foundry Local
+description: "Learn how to install and configure networking and observability components for Agentic Retrieval in Foundry Local deployment, including MetalLB and monitoring tools."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/20/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a cloud administrator, I want to prepare networking and observability for Agents and Tools with Foundry Local so that I can ensure secure connectivity and effective monitoring of my chat solution.
+#CustomerIntent: As a cloud administrator, I want to prepare networking and observability for Agentic Retrieval in Foundry Local so that I can ensure secure connectivity and effective monitoring of my chat solution.
 ---
 
-# Install networking and observability components for Agents and Tools with Foundry Local
+# Install networking and observability components for Agentic Retrieval in Foundry Local
 
-For your Agents and Tools with Foundry Local deployment, install networking and observability components by configuring MetalLB and setting up certificate and trust managers. This article is part of the deployment prerequisites checklist.
+For your Agentic Retrieval deployment, install networking and observability components by configuring MetalLB and setting up certificate and trust managers. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Install components for Agents and Tools with Foundry Local
+## Install components for Agentic Retrieval
 
 From the driver machine, install and configure MetalLB for the Azure Arc Azure Kubernetes Service (AKS) cluster and the observability dependency modules.
 

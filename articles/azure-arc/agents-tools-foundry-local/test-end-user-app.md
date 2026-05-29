@@ -1,6 +1,6 @@
 ---
-title: Test the End-User Query Experience in Agents and Tools with Foundry Local
-description: "Learn how to test the end user experience of the Agents and Tools with Foundry Local chat solution to evaluate AI-powered search in hybrid or multicloud environments."
+title: Test the End-User Query Experience in Agentic Retrieval in Foundry Local
+description: "Learn how to test the end user experience of the Agentic Retrieval in Foundry Local chat solution to evaluate AI-powered search in hybrid or multicloud environments."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
@@ -8,14 +8,14 @@ ms.date: 05/28/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a developer or IT administrator, I want to test chat in Agents and Tools with Foundry Local by using the provided application so that I can assess AI-powered search performance and user experience.
+# Customer intent: As a developer or IT administrator, I want to test chat in Agentic Retrieval in Foundry Local by using the provided application so that I can assess AI-powered search performance and user experience.
 ---
 
-# Test the end-user query experience in Agents and Tools with Foundry Local
+# Test the end-user query experience in Agentic Retrieval in Foundry Local
 
-After you configure the Knowledge Layer (or the full Agents and Tools with Foundry Local platform), test the solution by using the built-in chat applications.
+After you configure the Knowledge Layer (or the full Agentic Retrieval platform), test the solution by using the built-in chat applications.
 
-To learn more about chat behavior, end user access requirements, and architecture, see [How chat works in Agents and Tools with Foundry Local](chat-experience.md).
+To learn more about chat behavior, end user access requirements, and architecture, see [How chat works in Agentic Retrieval](chat-experience.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -25,7 +25,7 @@ Before you begin:
 
 - Decide which collection your end users should query (for example, the default `edgeragapp` collection).
 - Make sure each end user is assigned to the app role for the target collection. For setup steps, see [Create app roles for collection access](prepare-authentication.md#create-app-roles-for-collection-access).
-- To access chat, users must have the **EdgeRAGEndUser** role in Microsoft Entra. For more information see, [Create app roles for Agents and Tools with Foundry Local](prepare-authentication.md#create-app-roles-for-agents-and-tools-with-foundry-local).
+- To access chat, users must have the **EdgeRAGEndUser** role in Microsoft Entra. For more information see, [Create app roles for Agentic Retrieval](prepare-authentication.md#create-app-roles-for-agentic-retrieval).
 
 ## Verify end-user query results in chat
 

@@ -1,18 +1,18 @@
 ---
-title: Add a Data Source for Agents and Tools with Foundry Local
-description: "Learn how to add and manage data sources for Agents and Tools with Foundry Local chat solutions, including setup, and ingestion processes."
+title: Add a Data Source for Agentic Retrieval in Foundry Local
+description: "Learn how to add and manage data sources for Agentic Retrieval in Foundry Local chat solutions, including setup, and ingestion processes."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 05/29/2026
 ms.subservice: edge-rag
-#customer intent: As a developer or data scientist, I want to add a data source to Agents and Tools with Foundry Local so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
+#customer intent: As a developer or data scientist, I want to add a data source to Agentic Retrieval in Foundry Local so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
   - build-2025
 ---
-# Add a data source for Agents and Tools with Foundry Local
+# Add a data source for Agentic Retrieval in Foundry Local
 
-Add and configure a data source for your Agents and Tools with Foundry Local chat solution by using the developer portal. Follow these step-by-step instructions to set up data ingestion and define indexing parameters.
+Add and configure a data source for your Agentic Retrieval chat solution by using the developer portal. Follow these step-by-step instructions to set up data ingestion and define indexing parameters.
 
 By default, ingested data is added to the `edgeragapp` collection unless you select an existing collection or create a new one. To let end users query data in a collection, you must assign them to the app role mapped to that collection.
 
