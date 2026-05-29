@@ -101,6 +101,6 @@ When you're satisfied with the solution, select on **View the endpoint** to get 
 
 ## Related content
 
--[Search types in Agents and Tools with Foundry Local](search-types.md)
+- [Search types in Agents and Tools with Foundry Local](search-types.md)
 - [Knowledge layer configuration](knowledge-layer-overview.md)
 - [Add data source for chat solution in Agents and Tools with Foundry Local](add-data-source.md)
