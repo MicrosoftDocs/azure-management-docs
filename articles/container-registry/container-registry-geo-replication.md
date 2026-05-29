@@ -349,7 +349,7 @@ Regional endpoints are enabled at the registry level and apply to every geo-repl
 Regional endpoints support the same authentication methods as the global endpoint: Microsoft Entra ID (formerly Azure Active Directory), service principals, managed identities, and admin credentials.
 
 > [!IMPORTANT]
-> **Re-authenticate when switching endpoints.** Each global endpoint and each regional endpoint is its own authenticated surface. If you switch from the global endpoint to a regional endpoint, or from one regional endpoint to another, you must re-authenticate. Use `az acr login`, fresh SDK auth, or — for AKS — the [Kubernetes ACR credential provider](/azure/aks/cluster-container-registry-integration), which handles re-auth automatically when the endpoint changes.
+> **Re-authenticate when switching endpoints.** ACR tokens work across both global and regional endpoints. However, container tools like Docker and containerd store credentials per hostname, so switching from the global endpoint to a regional endpoint (or between regional endpoints) requires a new `az acr login` for that hostname. For AKS, the [Kubernetes ACR credential provider](/azure/aks/cluster-container-registry-integration) handles this automatically when the endpoint changes.
 
 **Sign in to a specific regional endpoint:**
 
