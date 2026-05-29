@@ -1,9 +1,9 @@
 ---
-title: Agents and Tools with Foundry Local MCP Server Overview
+title: MCP Server Overview for Agents and Tools with Foundry Local
 description: Learn about the Model Context Protocol (MCP) server in Agents and Tools with Foundry Local, including built-in search tools, connection methods, and how to register external MCP servers.
 author: cwatson-cat
 ms.author: cwatson
-ms.date: 04/30/2026
+ms.date: 05/29/2026
 ms.topic: concept-article
 ms.subservice: edge-rag
 ai-usage: ai-generated
