@@ -185,7 +185,7 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 | Each geo-replication region added | +1 (regional dedicated data endpoint) |
 | [Regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) enabled | +1 per geo-replica |
 
-**Example:** A registry with 3 geo-replicas and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 regional dedicated data endpoints + 3 regional endpoints).
+**Example:** A registry with 3 geo-replicas (1 home + 2 added regions) and regional endpoints enabled consumes **7 private IPs** per VNet that has a private endpoint to the registry: 2 initial + 2 regional dedicated data endpoints + 3 regional endpoints. Without regional endpoints, the same registry requires **4 private IPs**: 2 initial + 2 regional dedicated data endpoints.
 
 ### Geo-replication and subnet capacity
 

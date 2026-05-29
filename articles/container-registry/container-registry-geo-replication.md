@@ -519,6 +519,7 @@ This usually arises when the identity creating a geo-replica for a private endpo
 
 - To resolve, manually delete the geo-replica that got stuck in the provisioning state.
 - Afterwards, ensure the identity has the permission `Microsoft.Network/privateEndpoints/privateLinkServiceProxies/write` before creating a geo-replica.
+- Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error does not identify which subnet or VNet is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-link.md).
 
 ## Related content
 
