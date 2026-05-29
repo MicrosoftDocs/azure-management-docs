@@ -40,7 +40,7 @@ ACR uses **eventual consistency**.
 
 - After you push or delete an image in any geo-replica, ACR eventually replicates the change to all geo-replicas in the background.
 - Replication time depends on image size. A pushed image or tag may not be immediately available for pull in other geo-replicas if large volumes of images or large image sizes are pushed. Similarly, a deleted image or tag may still be available for pull in other geo-replicas until the deletion propagates.
-- The time it takes to create an additional geo-replica scales with the total size of the registry.
+- The time it takes to create an additional geo-replica scales with the total size of the registry. When creating a new geo-replica, existing geo-replicas continue serving push, pull, and delete traffic normally — there is no restricted state or degradation window while the new geo-replica catches up in the background.
 - Until replication eventually completes in the background, a geo-replica may not have the latest content or metadata. You can use [webhooks](container-registry-webhook.md) to receive notifications when replication for a specific pushed image completes in each geo-replica.
 
 > [!IMPORTANT]
@@ -49,6 +49,7 @@ ACR uses **eventual consistency**.
 > - **Push-then-immediate-pull-cross-region** — Pushing an image to one geo-replica and immediately pulling it from a different geo-replica can fail with `manifest unknown` until replication catches up. This commonly affects CI/CD pipelines where a CI runner pushes an image and pods across multiple regions immediately attempt to pull it.
 > - **Tag overwrite races** — Pushing `myapp:v1`, then re-pushing `myapp:v1` shortly after with a different digest (same tag, different content), can leave different geo-replicas resolving the same tag to different digests during the replication window.
 > - **Delete propagation** — Deleting a tag or repository in one region takes time to propagate. Pulls from geo-replicas where the delete hasn't yet propagated can still return the deleted content.
+> - **Mid-push failover scatter** — A multi-layer push that spans a health-aware failover boundary or a DNS bouncing event can land layers on one geo-replica and the manifest on another, surfacing as manifest validation errors or `blob unknown` on subsequent pulls. See [Push fails with manifest errors](#push-fails-with-manifest-errors) for mitigations.
 >
 > **Mitigations:**
 > - Build retry logic into pulls that immediately follow a cross-region push — either retry with backoff or check replication status before pulling.
@@ -62,6 +63,33 @@ Geo-replication improves data plane availability by keeping images in multiple r
 
 > [!NOTE]
 > If your registry uses a [customer-managed key](tutorial-enable-customer-managed-keys.md), review the [key vault failover and redundancy guidance](/azure/key-vault/general/disaster-recovery-guidance) for maximum resilience.
+
+### Health-aware failover
+
+ACR automatically monitors the health of each geo-replica and reroutes global endpoint traffic away from geo-replicas that can't reliably serve requests. This is called **health-aware failover**. ACR routes global endpoint traffic based on ACR service health and Azure regional infrastructure health.
+
+- **Automatic and per-registry**: Health is evaluated on a per-registry basis, not per-region. If a degradation affects only a subset of registries in a region, only those registries are rerouted — other registries in the same region continue to be served locally with no unnecessary latency penalty.
+- **Timing**: End-to-end rerouting is on the order of minutes — fast enough to catch real regional degradation, slow enough to ride out transient errors that resolve on their own. DNS TTL may add additional propagation delay before all clients switch to the new region.
+- **No customer action required**: There is no customer-invocable trigger. Health-aware failover is fully platform-managed.
+- **Failback is automatic**: Once a geo-replica's regional health evaluation passes again, such as when regional ACR or Azure infrastructure recovers, the global endpoint is able to resume routing traffic to the geo-replica in the recovered Azure region.
+- **Not triggered by throttling**: Health-aware failover is DNS-based and responds to regional ACR service health and Azure infrastructure health. It does **not** reroute traffic based on HTTP 429 (throttling) responses. If a geo-replica is throttling your requests but the region's infrastructure is healthy, the global endpoint continues routing you to that geo-replica. To manage throttling, use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview) to spread workloads across multiple geo-replicas for better capacity distribution.
+
+**Scope of health-aware failover:**
+
+Health-aware failover applies only to operations against the **global endpoint** (`myregistry.azurecr.io`). It does **not** apply to:
+
+- **Regional endpoints** — When you use a regional endpoint (`myregistry.<region>.geo.azurecr.io`), you're talking directly to one specific geo-replica. If that region degrades, there is no automatic reroute. Implement client-side failover by switching to a different regional endpoint.
+- **Dedicated data endpoints** — Once a registry endpoint redirects you to a dedicated data endpoint for a layer download, you stay on that region's data endpoint for the duration of the download. The region is decided up front by whichever registry endpoint served the blob-location call.
+
+**Throttling during failover:**
+
+Throttling limits on API operations are **per-replica**. During a health-aware failover, traffic that was spread across multiple geo-replicas can shift heavily onto whichever geo-replicas remain in the global endpoint's routing pool. Capacity plan to have at least **two or three** geo-replicas so that traffic can spread across multiple healthy geo-replicas during a failover. Registries with only two regions can hit per-replica throttling limits more easily when one region is unavailable. To mitigate, use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview) to spread workloads across multiple geo-replicas and plan per-replica capacity.
+
+**How to confirm a failover:**
+
+- **Azure portal**: Navigate to your registry and select **Resource health** under the **Help** section to see platform-side degradation signals.
+- **Azure CLI**: Check replication status with `az acr replication list --registry myregistry --output table`. Geo-replicas experiencing issues show a status other than `online`.
+- **Azure Monitor**: Platform metrics are collected automatically. Enable [Diagnostic Settings](monitor-container-registry.md) for resource logs to get detailed telemetry.
 
 ### Home region outage behavior
 
@@ -90,7 +118,7 @@ Azure Container Registry service tiers and limits apply to each geo-replica inde
 Certain service tier limits have the following special consideration:
 
 - **Storage limits**: Storage limits for your service tier are shared across all geo-replicas. For example, if you push a 1 GiB image and it replicates to 5 geo-replicas, only 1 GiB counts toward your tier's maximum storage limits.
-- **API rate limits**: Throttling limits on API operations, such as the number of reads and writes per minute, are geo-replica-specific.
+- **API rate limits**: Throttling limits on API operations, such as the number of reads and writes per minute, are geo-replica-specific. Use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview) to spread workloads across multiple geo-replicas for better capacity distribution and to avoid concentrating all traffic on a single geo-replica.
 
 For more information on service tiers and limits, see [ACR service tiers](container-registry-skus.md).
 
