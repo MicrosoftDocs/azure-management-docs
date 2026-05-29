@@ -16,7 +16,7 @@ Enabling geo-replication for an Azure Container Registry (ACR) creates geo-repli
 With geo-replication:
 
 - **Manage one registry**: Maintain a single set of credentials, role assignments, networking rules, and registry configuration across all geo-replicas.
-- **Use one global endpoint**: Reference `myregistry.azurecr.io/myimage:tag` in all your builds and deployments. Azure routes requests to the geo-replica with the best network performance profile for the client, which is usually the closest geo-replica. However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests may be routed elsewhere.
+- **Use one global endpoint**: Reference `myregistry.azurecr.io/myimage:tag` in all your builds and deployments. Azure routes requests to the geo-replica with the best network performance profile for the client, which is usually the closest geo-replica. However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests might be routed elsewhere.
 - **Automatic syncing**: Push tags and digests once; ACR replicates content and metadata to all geo-replicas.
 
 Geo-replication requires the [Premium SKU](container-registry-skus.md).
@@ -39,16 +39,16 @@ ACR geo-replication uses an **active-active** model.
 ACR uses **eventual consistency**.
 
 - After you push or delete an image in any geo-replica, ACR eventually replicates the change to all geo-replicas in the background.
-- Replication time depends on image size. A pushed image or tag may not be immediately available for pull in other geo-replicas if large volumes of images or large image sizes are pushed. Similarly, a deleted image or tag may still be available for pull in other geo-replicas until the deletion propagates.
-- The time it takes to create an additional geo-replica scales with the total size of the registry. When creating a new geo-replica, existing geo-replicas continue serving push, pull, and delete traffic normally — there is no restricted state or degradation window while the new geo-replica catches up in the background.
-- Until replication eventually completes in the background, a geo-replica may not have the latest content or metadata. You can use [webhooks](container-registry-webhook.md) to receive notifications when replication for a specific pushed image completes in each geo-replica.
+- Replication time depends on image size. A pushed image or tag might not be immediately available for pull in other geo-replicas if large volumes of images or large image sizes are pushed. Similarly, a deleted image or tag might still be available for pull in other geo-replicas until the deletion propagates.
+- The time it takes to create a new geo-replica scales with the total size of the registry. When creating a new geo-replica, existing geo-replicas continue serving push, pull, and delete traffic normally. There's no restricted state or degradation window while the new geo-replica catches up in the background.
+- Until replication eventually completes in the background, a geo-replica might not have the latest content or metadata. You can use [webhooks](container-registry-webhook.md) to receive notifications when replication for a specific pushed image completes in each geo-replica.
 
 > [!IMPORTANT]
 > **Eventual consistency failure modes to plan for:**
 >
 > - **Push-then-immediate-pull-cross-region** — Pushing an image to one geo-replica and immediately pulling it from a different geo-replica can fail with `manifest unknown` until replication catches up. This commonly affects CI/CD pipelines where a CI runner pushes an image and pods across multiple regions immediately attempt to pull it.
 > - **Tag overwrite races** — Pushing `myapp:v1`, then re-pushing `myapp:v1` shortly after with a different digest (same tag, different content), can leave different geo-replicas resolving the same tag to different digests during the replication window.
-> - **Delete propagation** — Deleting a tag or repository in one region takes time to propagate. Pulls from geo-replicas where the delete hasn't yet propagated can still return the deleted content.
+> - **Delete propagation** — Deleting a tag or repository in one region takes time to propagate. Pulls from geo-replicas where the delete hasn't propagated yet can still return the deleted content.
 > - **Mid-push failover scatter** — A multi-layer push that spans a health-aware failover boundary or a DNS bouncing event can land layers on one geo-replica and the manifest on another, surfacing as manifest validation errors or `blob unknown` on subsequent pulls. See [Push fails with manifest errors](#push-fails-with-manifest-errors) for mitigations.
 >
 > **Mitigations:**
@@ -69,8 +69,8 @@ Geo-replication improves data plane availability by keeping images in multiple r
 ACR automatically monitors the health of each geo-replica and reroutes global endpoint traffic away from geo-replicas that can't reliably serve requests. This is called **health-aware failover**. ACR routes global endpoint traffic based on ACR service health and Azure regional infrastructure health.
 
 - **Automatic and per-registry**: Health is evaluated on a per-registry basis, not per-region. If a degradation affects only a subset of registries in a region, only those registries are rerouted — other registries in the same region continue to be served locally with no unnecessary latency penalty.
-- **Timing**: End-to-end rerouting is on the order of minutes — fast enough to catch real regional degradation, slow enough to ride out transient errors that resolve on their own. DNS TTL may add additional propagation delay before all clients switch to the new region.
-- **No customer action required**: There is no customer-invocable trigger. Health-aware failover is fully platform-managed.
+- **Timing**: End-to-end rerouting is on the order of minutes, fast enough to catch real regional degradation and slow enough to ride out transient errors that resolve on their own. DNS TTL might add propagation delay before all clients switch to the new region.
+- **No customer action required**: There's no customer-invocable trigger. Health-aware failover is fully platform-managed.
 - **Failback is automatic**: Once a geo-replica's regional health evaluation passes again, such as when regional ACR or Azure infrastructure recovers, the global endpoint is able to resume routing traffic to the geo-replica in the recovered Azure region.
 - **Not triggered by throttling**: Health-aware failover is DNS-based and responds to regional ACR service health and Azure infrastructure health. It does **not** reroute traffic based on HTTP 429 (throttling) responses. If a geo-replica is throttling your requests but the region's infrastructure is healthy, the global endpoint continues routing you to that geo-replica. To manage throttling, use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview) to spread workloads across multiple geo-replicas for better capacity distribution.
 
@@ -78,8 +78,8 @@ ACR automatically monitors the health of each geo-replica and reroutes global en
 
 Health-aware failover applies only to operations against the **global endpoint** (`myregistry.azurecr.io`). It does **not** apply to:
 
-- **Regional endpoints** — When you use a regional endpoint (`myregistry.<region>.geo.azurecr.io`), you're talking directly to one specific geo-replica. If that region degrades, there is no automatic reroute. Implement client-side failover by switching to a different regional endpoint.
-- **Dedicated data endpoints** — Once a registry endpoint redirects you to a dedicated data endpoint for a layer download, you stay on that region's data endpoint for the duration of the download. The region is decided up front by whichever registry endpoint served the blob-location call.
+- **Regional endpoints** — When you use a regional endpoint (`myregistry.<region>.geo.azurecr.io`), you're talking directly to one specific geo-replica. If that region degrades, ACR doesn't automatically reroute. Implement client-side failover by switching to a different regional endpoint.
+- **Dedicated data endpoints** — Once a registry endpoint redirects you to a dedicated data endpoint for a layer download, you stay on that region's data endpoint throughout the download. The region is decided up front by whichever registry endpoint served the blob-location call.
 
 **Throttling during failover:**
 
@@ -93,15 +93,15 @@ Throttling limits on API operations are **per-replica**. During a health-aware f
 
 ### Home region outage behavior
 
-The home region is the region where you originally created the registry. It hosts the registry's control plane, which manages registry configuration. The home region is fixed at creation and cannot be changed afterward. To move a registry to a different home region, see [Relocate Azure Container Registry](/azure/azure-resource-manager/management/relocation/relocation-container-registry), which describes a redeployment procedure (creating a new registry), not an in-place change.
+The home region is the region where you originally created the registry. It hosts the registry's control plane, which manages registry configuration. The home region is fixed at creation and can't be changed afterward. To move a registry to a different home region, see [Relocate Azure Container Registry](/azure/azure-resource-manager/management/relocation/relocation-container-registry), which describes a redeployment procedure (creating a new registry), not an in-place change.
 
-If the home region becomes unavailable, the impact is limited to control plane (management) operations. All data plane operations continue to work through the remaining geo-replicas.
+If the home region becomes unavailable, the effect is limited to control plane (management) operations. All data plane operations continue to work through the remaining geo-replicas.
 
 **What continues to work during a home region outage:**
 
 - **Image push, pull, and delete** — Clients can push, pull, and delete images from any available geo-replica using the global endpoint (`myregistry.azurecr.io`) or any available regional endpoint (`myregistry.<region>.geo.azurecr.io`). ACR automatically routes global endpoint requests to a healthy geo-replica.
-- **Authentication** — All authentication methods continue to function, including Microsoft Entra ID (formerly Azure Active Directory), service principals, managed identities, and repository-scoped tokens. Clients can authenticate to any available geo-replica without needing to change credentials, tokens, or registry URLs.
-- **Webhook delivery** — Webhooks configured for available geo-replicas continue to fire. Note that a single push results in webhook events from the receiving geo-replica plus additional events from each geo-replica as replication completes. Webhook consumers should be designed to handle multiple events per pushed image and deduplicate as needed.
+- **Authentication** — All authentication methods continue to function, including Microsoft Entra ID, service principals, managed identities, and repository-scoped tokens. Clients can authenticate to any available geo-replica without needing to change credentials, tokens, or registry URLs.
+- **Webhook delivery** — Webhooks configured for available geo-replicas continue to fire. A single push results in webhook events from the receiving geo-replica plus events from each geo-replica as replication completes. Webhook consumers should be designed to handle multiple events per pushed image and deduplicate as needed.
 - **Regional endpoints** — If regional endpoints are enabled, they continue working independently. Clients can talk directly to specific geo-replicas using regional endpoint URLs.
 
 **What is unavailable during a home region outage:**
@@ -180,8 +180,8 @@ After configuring geo-replication, you can push, pull, or delete content in your
 When you push, pull, or delete through the global endpoint, ACR routes the request to the geo-replica with the best network performance profile for the client.
 
 - The geo-replica with the best network performance profile from the client is usually the closest geo-replica.
-- However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests may be routed elsewhere.
-- This routing is managed by ACR—you don't control which geo-replica handles a specific request.
+- However, if the client is equidistant to multiple geo-replicas or the closest geo-replica is unavailable, requests might be routed elsewhere.
+- ACR manages this routing. You don't control which geo-replica handles a specific request.
 
 :::image type="content" source="media/container-registry-geo-replication/geo-rep-global-endpoint.png" alt-text="Diagram showing the global endpoint request flow: a client connects to myregistry.azurecr.io, Azure-managed routing selects the geo-replica with the best network performance profile, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
@@ -235,7 +235,7 @@ spec:
 You can exclude a geo-replica from global endpoint routing by disabling the `--global-endpoint-routing` setting for a specific geo-replica. This is useful for maintenance or troubleshooting, or when you know a specific geo-replica or Azure region is experiencing degradation. You can even disable global endpoint routing for the home region geo-replica — the home region is only used for control plane operations, and its data plane traffic can be safely excluded from global routing. For more information on what the home region controls, see [Home region outage behavior](#home-region-outage-behavior).
 
 - When the `--global-endpoint-routing` setting for a specific geo-replica is set to `false`, ACR stops routing requests to that specific geo-replica for requests that go to the global endpoint.
-- Data continues syncing **bidirectionally** with a geo-replica even if global endpoint routing is disabled for that specific geo-replica. This is intentional — every image pushed to the registry from any region while the geo-replica is excluded from global routing is still replicated to it. When you re-enable the geo-replica, it is immediately ready to serve traffic with no catch-up window.
+- Data continues syncing **bidirectionally** with a geo-replica even if global endpoint routing is disabled for that specific geo-replica. Every image pushed to the registry from any region while the geo-replica is excluded from global routing is still replicated to it. When you re-enable the geo-replica, it's immediately ready to serve traffic with no catch-up window.
 - As such, storage quota and costs continue accruing for that geo-replica.
 - If regional endpoints are enabled, the geo-replica's regional endpoint URL (`myregistry.<region-name>.geo.azurecr.io`) continues to work even while global endpoint routing is disabled. `--global-endpoint-routing` controls only the geo-replica's participation in **global** endpoint routing.
 
@@ -250,13 +250,13 @@ az acr replication update --registry myregistry --name eastus \
 ```
 
 > [!NOTE]
-> In Azure CLI 2.86.0 and later, the `--region-endpoint-enabled` flag has been renamed to `--global-endpoint-routing`. The old flag name is deprecated and will be removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
+> In Azure CLI 2.86.0 and later, `--region-endpoint-enabled` was renamed to `--global-endpoint-routing`. The old flag name is deprecated and is removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
 
 > [!IMPORTANT]
 > **Don't run a long-lived DNS cache for the global endpoint.** When you disable global endpoint routing for a geo-replica, ACR purges DNS records server-side on a fast path. However, if clients run their own long-lived DNS cache for the global endpoint, those clients continue resolving to the disabled geo-replica until the client cache expires. A long-lived cache makes `--global-endpoint-routing false` appear not to take effect from the client's perspective.
 
 > [!TIP]
-> **You may optionally use a short-lived DNS cache for pushes to the global endpoint.** A short-lived DNS pin scoped to the duration of a single push helps ensure push consistency by keeping all layers and the manifest going to the same geo-replica. This also avoids DNS bouncing, which can cause manifest errors — see [Troubleshooting](#push-fails-with-manifest-errors).
+> **You can optionally use a short-lived DNS cache for pushes to the global endpoint.** A short-lived DNS pin scoped to the duration of a single push helps ensure push consistency by keeping all layers and the manifest going to the same geo-replica. This also avoids DNS bouncing, which can cause manifest errors — see [Troubleshooting](#push-fails-with-manifest-errors).
 
 ## Regional endpoints of a geo-replicated registry (Preview)
 
@@ -276,10 +276,10 @@ Use regional endpoints when you need:
 | **Capacity planning** | Know exactly which replica serves each workload so you can plan per-replica capacity and avoid throttling. |
 
 > [!IMPORTANT]
-> **Health-aware failover does not apply to regional endpoints.** When you use a regional endpoint, you're talking directly to one specific geo-replica. If that region degrades, there is no automatic reroute. Health-aware failover applies only to operations against the global endpoint (`myregistry.azurecr.io`). See the **Client-side failover** scenario in the table above.
+> **Health-aware failover doesn't apply to regional endpoints.** When you use a regional endpoint, you're talking directly to one specific geo-replica. If that region degrades, ACR doesn't automatically reroute. Health-aware failover applies only to operations against the global endpoint (`myregistry.azurecr.io`). See the **Client-side failover** scenario in the preceding table.
 
 > [!NOTE]
-> **Throttling is per-replica, not per-registry.** When you pin workloads to a single regional endpoint, you concentrate all traffic on that one geo-replica. If all your clusters use the same regional endpoint, you may hit that geo-replica's per-region throttling limits at peak. To mitigate, spread workloads across multiple regional endpoints for better capacity distribution, or use the global endpoint for workloads that don't need explicit pinning.
+> **Throttling is per-replica, not per-registry.** When you pin workloads to a single regional endpoint, you concentrate all traffic on that one geo-replica. If all your clusters use the same regional endpoint, you might hit that geo-replica's per-region throttling limits at peak. To mitigate, spread workloads across multiple regional endpoints for better capacity distribution, or use the global endpoint for workloads that don't need explicit pinning.
 
 ### Regional endpoints coexist with global endpoints
 
@@ -352,7 +352,7 @@ Regional endpoints are enabled at the registry level and apply to every geo-repl
 
 #### Authenticate and use regional endpoints
 
-Regional endpoints support the same authentication methods as the global endpoint: Microsoft Entra ID (formerly Azure Active Directory), service principals, managed identities, and admin credentials.
+Regional endpoints support the same authentication methods as the global endpoint: Microsoft Entra ID, service principals, managed identities, and admin credentials.
 
 > [!IMPORTANT]
 > **Re-authenticate when switching endpoints.** ACR tokens work across both global and regional endpoints. However, container tools like Docker and containerd store credentials per hostname, so switching from the global endpoint to a regional endpoint (or between regional endpoints) requires a new `az acr login` for that hostname. For AKS, the [Kubernetes ACR credential provider](/azure/aks/cluster-container-registry-integration) handles this automatically when the endpoint changes.
@@ -378,7 +378,7 @@ docker pull myregistry.eastus.geo.azurecr.io/myapp:v1
 
 #### Use regional endpoints embedded in deployment manifests
 
-You can specify regional endpoints directly in Kubernetes deployment manifests if you need to pin co-location. This ensures clusters in specific regions always pull from their co-located replica, providing predictable routing and reduced latency.
+You can specify regional endpoints directly in Kubernetes deployment manifests if you need to pin workloads to specific regions. This ensures clusters in specific regions always pull from their colocated replica, providing predictable routing and reduced latency.
 
 **East US cluster deployment:**
 
@@ -416,7 +416,7 @@ For information about authenticating Azure Kubernetes Service (AKS) with ACR, se
 
 #### Use regional endpoints with DNS-based routing without changing deployment manifests
 
-If you don't want to maintain different deployment manifests per region, you can keep all manifests pointing to the global endpoint (`myregistry.azurecr.io`) and use software-defined networking or a regional traffic manager to resolve the global endpoint to the appropriate regional endpoint based on the originating region's traffic. This achieves the same co-location goals as regional endpoints — predictable routing and reduced latency — without embedding region-specific URLs in your deployment manifests.
+If you don't want to maintain different deployment manifests per region, you can keep all manifests pointing to the global endpoint (`myregistry.azurecr.io`) and use software-defined networking or a regional traffic manager to resolve the global endpoint to the appropriate regional endpoint based on the originating region's traffic. This achieves the same colocation goals as regional endpoints (predictable routing and reduced latency) without embedding region-specific URLs in your deployment manifests.
 
 For information about authenticating Azure Kubernetes Service (AKS) with ACR, see [Authenticate with Azure Container Registry from Azure Kubernetes Service](/azure/container-registry/container-registry-auth-aks).
 
@@ -435,7 +435,7 @@ az acr import \
 
 #### Firewall rules
 
-If you are using [ACR firewall rules](container-registry-firewall-access-rules.md) or custom firewalls with regional endpoints, configure your firewall rules to allow access to:
+If you're using [ACR firewall rules](container-registry-firewall-access-rules.md) or custom firewalls with regional endpoints, configure your firewall rules to allow access to:
 
 | Endpoint | Purpose |
 |----------|---------|
@@ -481,23 +481,23 @@ For a complete reference of all registry endpoint types, URL formats, and the CL
 
 ### Push fails with manifest errors
 
-A `docker push` is a sequence of HTTP requests: blob uploads for each layer, then a manifest upload that references those layers by digest. Some Linux DNS resolvers don't cache responses consistently. If there are several geo-replicas in nearby regions, DNS may resolve to different replicas during a single push (DNS bouncing), causing the pushed manifest to reference layers that were pushed to a different geo-replica. Because replication is eventually consistent, the manifest can land on a replica that doesn't yet have the layers it references, and the manifest validation fails.
+A `docker push` is a sequence of HTTP requests: blob uploads for each layer, then a manifest upload that references those layers by digest. Some Linux DNS resolvers don't cache responses consistently. If there are several geo-replicas in nearby regions, DNS might resolve to different replicas during a single push (DNS bouncing), causing the pushed manifest to reference layers that were pushed to a different geo-replica. Because replication is eventually consistent, the manifest can land on a replica that doesn't yet have the layers it references, and the manifest validation fails.
 
 **Solutions** (in order of preference):
 
-1. **Use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview)** to pin the push to a single geo-replica end-to-end. Every sub-request — login, blob uploads, manifest upload — goes to the same geo-replica. This is the cleanest fix and the recommended approach for any pipeline where push/pull consistency matters.
+1. **Use [regional endpoints](#regional-endpoints-of-a-geo-replicated-registry-preview)** to pin the push to a single geo-replica end-to-end. Every subrequest (sign-in, blob uploads, manifest upload) goes to the same geo-replica. This is the cleanest fix and the recommended approach for any pipeline where push/pull consistency matters.
 2. **Use a short-lived DNS cache like `dnsmasq`** scoped to the duration of a single push. For Linux VMs in Azure, see [DNS name resolution options](/azure/virtual-machines/linux/azure-dns). The pin should last the push and no longer — don't run a long-lived DNS cache for the global endpoint, as it interferes with `--global-endpoint-routing false` and with health-aware failover routing.
 3. **Design publish steps to be idempotent** so retries triggered by mid-push failures are safe.
 
 ### Geo-replica creation stuck for private endpoint-enabled registries
 
-This usually arises when the identity creating a geo-replica for a private endpoint-enabled registry does not have sufficient permissions to create private endpoint networking resources.
+This issue usually arises when the identity creating a geo-replica for a private endpoint-enabled registry doesn't have sufficient permissions to create private endpoint networking resources.
 
 **Solution**:
 
 - To resolve, manually delete the geo-replica that got stuck in the provisioning state.
 - Afterwards, ensure the identity has the permission `Microsoft.Network/privateEndpoints/privateLinkServiceProxies/write` before creating a geo-replica.
-- Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected VNet does not have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error does not identify which subnet or VNet is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-link.md).
+- Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected virtual network doesn't have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error doesn't identify which subnet or virtual network is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-link.md).
 
 ## Related content
 
