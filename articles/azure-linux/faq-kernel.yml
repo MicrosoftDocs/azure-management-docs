@@ -16,9 +16,7 @@ sections:
       - question: |
           How is the kernel version selected for a given Azure Linux release?
         answer: |
-          The kernel version selected is the current long-term support (LTS) kernel at the time of the Azure Linux major release. For example, Azure Linux 4.0 ships with the LTS kernel version 6.18. The LTS kernel is supported for four years from GA and receives monthly CVE backports with fast-track patches for _Critical_ and _High_ severity issues.
-
-          Azure Linux also offers a Hardware Enablement (HWE) kernel for workloads that need new hardware support or GPU enablement. The HWE kernel has a shorter lifecycle of approximately 14 months. For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
+          The kernel version selected is the current long-term support (LTS) kernel at the time of the Azure Linux major release. For example, Azure Linux 4.0 ships with the LTS kernel version 6.18. For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
 
       - question: |
           What is the kernel versioning convention?
@@ -34,13 +32,6 @@ sections:
           You can check your running kernel version using the `uname -r` command.
 
       - question: |
-          How do I manage kernel modules?
-        answer: |
-          Azure Linux enables kernel lockdown in integrity mode when Secure Boot is active, which prevents loading unsigned kernel modules. For development, you can disable lockdown by removing `lockdown=integrity` from the kernel boot parameters in `/boot/grub2/grub.cfg` and rebooting. For production, sign your kernel modules. 
-
-          For more information, see [Manage the Azure Linux kernel](./kernel-management.md).
-
-      - question: |
           What are the recommended sizing and placement guidelines for /var/crash when using kdump?
         answer: |
           A kdump vmcore is a snapshot of the system’s physical memory at the time of a crash, and its size can be close to the total installed RAM.
@@ -51,8 +42,3 @@ sections:
           - Size the dedicated data disk to at least equal to the system’s total physical memory.
           - Mount the dedicated data disk to /var/crash.
           - Avoid using temporary disks (such as /mnt or /mnt/resource), as they aren't persistent in Azure.
-
-      - question: |
-          How do I export a kernel dump for debugging (for example, after a kernel oops)?
-        answer: |
-          Azure Watson provides this functionality and is enabled on Azure Linux.

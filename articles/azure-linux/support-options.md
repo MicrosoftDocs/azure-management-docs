@@ -43,7 +43,7 @@ For bug reports, documentation improvements, and feature requests, see [Report i
 
 ## Security vulnerabilities
 
-You must privately report any security vulnerabilities you discover in Azure Linux rather than opening a public GitHub issue. For more information, see [Azure Linux security overview](./security-overview.md).
+**Please don't report security vulnerabilities through public GitHub issues**. Follow the guidance under [Manage CVEs](./manage-cves.md#report-a-security-issue).
 
 ## Join our Azure Linux community calls
 

@@ -99,8 +99,6 @@ landingContent:
         links:
           - text: General
             url: faq-general.yml
-          - text: Security
-            url: faq-security.yml
           - text: Kernel
             url: faq-kernel.yml
           - text: Packages

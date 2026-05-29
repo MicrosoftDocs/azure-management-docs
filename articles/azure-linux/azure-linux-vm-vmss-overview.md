@@ -1,6 +1,6 @@
 ---
 title: Overview of Deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets
-description: This article provides an overview of deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets, including supported images, VM sizes, and Trusted Launch security features.
+description: This article provides an overview of deploying Azure Linux on Azure Virtual Machines (VMs) and Virtual Machine Scale Sets, including supported images and VM sizes.
 author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
@@ -60,18 +60,6 @@ Azure Linux runs on a broad range of Azure VM sizes, including:
 - Storage Optimized (L-series)
 - ARM64 SKU (v5 Ampere and v6 Cobalt)
 - GPU (NVIDIA v100, T4, NC A100 V4, NDasr A100 V4, NDm A100 V4, NCads H100 V5, ND-H100-v5, ND-H200-v5, ND GB200-v6)
-
-## Trusted Launch VMs
-
-Azure Linux Gen2 images support Trusted Launch security features that protect your workloads against advanced and persistent attacks:
-
-- **Secure Boot**: Protects OS against boot-kits and rootkits.
-- **vTPM**: Serves as a dedicated secure vault for keys and measurements, enabling attestation by measuring the entire boot chain of your VM.
-- **Guest VM Attestation**: Enables proactive attestation and monitoring the boot integrity of your VMs.
-
-Trusted Launch provides advanced security to Guest OS preventing boot-kits/rootkits (like unsigned driver or kernel modification) to be introduced into boot-chain. **From a workload perspective, there should be no functional difference**.
-
-For more information on Trusted Launch, see [Trusted Launch for Azure virtual machines](/azure/virtual-machines/trusted-launch).
 
 ## Disk size
 

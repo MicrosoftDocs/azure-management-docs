@@ -19,11 +19,6 @@ sections:
           Use `mock` or `azldev` to build custom RPMs for Azure Linux. You can then include your custom RPMs in a custom image using Image Customizer. For more information, see [Build RPMs for Azure Linux](./build-rpm-packages.md) and [Customize images with Image Customizer](./customize-images.md).
 
       - question: |
-          Some packages (CNCF, Kubernetes) have a more aggressive release cycle. Do you have plans for more frequent upgrades?
-        answer: |
-          Azure Linux uses different upgrade models depending on the package category. Tier 2 packages (language runtimes, frameworks, CNCF tooling) are refreshed in two windows per year (H1 and H2). Between windows, only _Critical_ and _High_ CVE patches are applied. For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
-
-      - question: |
           Are packages ever bumped to take non-CVE bug fixes?
         answer: |
           The preferred approach remains backporting. However, bug fixes and other business-driven justifications are valid reasons to upgrade a package outside of CVE remediation.
@@ -41,11 +36,7 @@ sections:
       - question: |
           Where can I find debug symbol packages for Azure Linux?
         answer: |
-          Debuginfo packages for Azure Linux are published in a separate repository under `packages.microsoft.com`. For Azure Linux 4.0, they're available at `https://packages.microsoft.com/azurelinux/4.0/prod/base/debuginfo/<arch>/`.
-
-          Debuginfo packages aren't enabled by default. You can enable the debuginfo repository using the `dnf install azurelinux-repos-debuginfo` command. After enabling the repository, you can install packages. Debuginfo packages are identified as `<PACKAGE_NAME>-debuginfo`. For example, to install the debuginfo packages for `openssl` and `curl`, you can use the `dnf install openssl-debuginfo` and `dnf install curl-debuginfo` commands.
-
-          For more information, see [Install debug symbol packages on Azure Linux](./install-debug-symbol-packages.md).
+          Debuginfo packages for Azure Linux are published in a separate repository under `packages.microsoft.com`. For more information, see [Install debug symbol packages on Azure Linux](./install-debug-symbol-packages.md).
 
       - question: |
           How do I find packages, and how can I identify which package provides a specific file or binary?
@@ -55,4 +46,4 @@ sections:
           - `dnf search`: Finds packages related to a keyword.
           - `dnf provides`: Identifies which package supplies a specific file or binary.
 
-          For more information, see [Manage Azure Linux packages with DNF 5](./manage-packages.md).
+          For more information, see [Manage Azure Linux packages with DNF5](./manage-packages.md).

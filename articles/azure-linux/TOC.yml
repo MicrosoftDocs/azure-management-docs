@@ -26,8 +26,6 @@
           href: quick-create-azure-linux-aks.md
         - name: Create a cluster with Azure Container Linux (ACL) for AKS
           href: quick-create-azure-container-linux-aks.md
-        - name: Enable Azure Linux 3.0 on AKS
-          href: how-to-enable-azure-linux-3.md
 - name: Deployment options
   items:
     - name: Overview of Azure Linux deployment options
@@ -144,30 +142,6 @@
   items:
     - name: Security overview
       href: security-overview.md
-    - name: Secure Boot and Trusted Boot
-      href: secure-boot-trusted-boot.md
-    - name: Kernel hardening
-      href: kernel-hardening.md
-    - name: Mandatory access control with SELinux
-      href: mandatory-access-control.md
-    - name: Network security overview
-      href: network-security-overview.md
-    - name: Identity and access management
-      href: identity-access-management.md
-    - name: Disk and data protection
-      href: disk-data-protection.md
-    - name: Logging and auditing
-      href: logging-auditing.md
-    - name: FIPS 140-3 and cryptography
-      href: fips-cryptography.md
-    - name: System crypto libraries
-      href: system-crypto-libraries.md
-    - name: Extended Berkeley Packet Filter (eBPF)
-      href: use-ebpf.md
-    - name: Kernel livepatching
-      href: kernel-live-patching.md
-    - name: Certifications and compliance
-      href: certifications-compliance.md
     - name: Manage CVEs
       href: manage-cves.md
 - name: System management
@@ -208,8 +182,6 @@
       href: support-options.md
     - name: Report issues and request features
       href: report-issues-request-features.md
-    - name: Curated learning resources
-      href: learning-hub.md
     - name: Contribute to Azure Linux
       items:
         - name: Overview
@@ -222,8 +194,6 @@
       items:
         - name: General
           href: faq-general.yml
-        - name: Security
-          href: faq-security.yml
         - name: Kernel
           href: faq-kernel.yml
         - name: Packages

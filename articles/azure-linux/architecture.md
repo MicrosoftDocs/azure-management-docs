@@ -37,7 +37,7 @@ This layer provides the minimal root filesystem: `systemd` for service managemen
 
 ### User-space packages layer
 
-Language runtimes (Python, Go, Rust, Node.js), container tooling, and application dependencies live here. Tier 1 packages are locked for stability. Tier 2 packages are updated twice a year through H1/H2 update windows. See [Release cadence and lifecycle](./release-cadence-lifecycle.md) for the full tier model.
+Language runtimes (Python, Go, Rust, Node.js), container tooling, and application dependencies live here. Tier 1 packages are locked for stability. Tier 2 packages are updated on a predictable cadence. For more information, see [Release cadence and lifecycle](./release-cadence-lifecycle.md).
 
 ### Workload layer
 
@@ -80,7 +80,7 @@ The following table summarizes the default networking components in Azure Linux 
 
 ## Storage defaults
 
-Azure Linux storage defaults are tuned for Azure-attached disks and the Hyper-V hypervisor underneath every Azure VM. The filesystem, boot loader, and clock source are chosen for predictable performance and compatibility with Azure platform features such as snapshots, managed disks, and Trusted Launch.
+Azure Linux storage defaults are tuned for Azure-attached disks and the Hyper-V hypervisor underneath every Azure VM. The filesystem, boot loader, and clock source are chosen for predictable performance and compatibility with Azure platform features such as snapshots and managed disks.
 
 The following table summarizes the default storage settings in Azure Linux and the alternatives that are available if you need to override the defaults for a specific scenario:
 
@@ -97,29 +97,16 @@ Azure Linux is hardened at every layer, from the kernel up through the supply ch
 
 ### Mandatory access control
 
-Mandatory access control (MAC) confines processes to the access they actually need, even when they run as root. Azure Linux uses SELinux as its sole MAC framework.
+Mandatory access control (MAC) confines processes to the access they actually need, even when they run as root.
 
-The following table summarizes the MAC settings in Azure Linux:
+Azure Linux 4.0 preview enables SELinux in enforcing mode as its MAC framework.
 
-| Setting | Value |
-| ------- | ----- |
-| **MAC framework** | Only SELinux is supported. AppArmor is not supported. |
-| **Preview mode** | Permissive |
-| **GA mode** | Enforcing |
-| **Landlock** | Compiled in. Enforcing only for Azure Container Linux. |
+### Secure Boot
 
-### Secure Boot and trusted boot
+Secure Boot ensures only signed bootloaders and kernels run. Kernel lockdown protects the running kernel and disables loading untrusted kernel modules at runtime.
 
-Secure Boot ensures only signed bootloaders and kernels run, and trusted boot extends that chain of trust to the TPM so you can attest to a system's boot state.
-
-The following table summarizes the Secure Boot and trusted boot settings in Azure Linux:
-
-| Setting | Value |
-| ------- | ----- |
-| **Secure Boot** | Mandatory for all images. |
-| **Signed components** | shim, GRUB, kernel, systemd‑boot. |
-| **Kernel lockdown** | Tied to Secure Boot state. |
-| **Measured boot** | Supported via TPM 2.0. |
+> [!NOTE]
+> Azure Linux 4.0 is now in **preview** and its components aren't yet signed for Secure Boot.
 
 ### Kernel and system hardening
 
@@ -132,7 +119,6 @@ The following table summarizes the kernel and system hardening capabilities in A
 | **ASLR** | Strong address space layout randomization enabled. |
 | **Stack protection** | Compiler‑level stack protections applied to all packages. |
 | **Syscall restrictions** | Default seccomp profiles and syscall filtering. |
-| **Service sandboxing** | Aggressive systemd service sandboxing with restricted capabilities. |
 | **Minimal base image** | Reduced attack surface through minimal package set. |
 
 ### Cryptography
@@ -147,43 +133,16 @@ The following table summarizes the cryptography settings in Azure Linux:
 | **Crypto policies** | Fedora crypto‑policies adopted for consistent algorithm selection. |
 | **Post‑quantum** | ML‑KEM planned, aligned with Fedora and RHEL roadmap. |
 
-### Identity and access
-
-Azure Linux integrates with Microsoft Entra ID and traditional directory services so you can manage logins centrally instead of per-host.
-
-The following table summarizes the identity and access settings in Azure Linux:
-
-| Setting | Value |
-| ------- | ----- |
-| **Entra ID SSH** | Works out of the box on Azure VMs. |
-| **Default SSH auth** | Key‑based only. Password authentication disabled by default. |
-| **Hybrid identity** | SSSD and realmd included for Active Directory and Entra ID domain join. |
-
 ### Logging and auditing
-
-Azure Linux ships with audit and journal logging configured to a CIS baseline so you have a forensic record without extra setup.
 
 The following table summarizes the logging and auditing settings in Azure Linux:
 
 | Setting | Value |
 | ------- | ----- |
-| **Audit daemon** | auditd enabled (CIS Level 2 baseline). |
+| **Audit daemon** | auditd enabled. |
 | **Journal storage** | Persistent journald storage. |
-| **Monitoring** | Azure Monitor agent integration supported. |
-
-### Supply chain security
-
-Every artifact you receive — packages, repositories, and images — is signed and accompanied by provenance data so you can verify what you're running.
-
-The following table summarizes the supply chain security capabilities in Azure Linux:
-
-| Capability | Description |
-| ---------- | ----------- |
-| **Package signing** | All packages and repositories are cryptographically signed. |
-| **SBOMs** | Software Bills of Materials published and signed for every release. |
-| **Build provenance** | Target SLSA Level 3 for build integrity and auditability. |
 
 ## Related content
 
-- To learn more about Azure Linux, see the [Azure Linux Container Host overview](./azure-linux-overview.md).
+- To learn more about Azure Linux, see the [Azure Linux overview](./azure-linux-overview.md).
 - To plan your update strategy, review the [Release cadence and lifecycle](./release-cadence-lifecycle.md).

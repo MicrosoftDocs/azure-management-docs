@@ -1,6 +1,6 @@
 ---
-title: Manage Azure Linux Packages with DNF 5
-description: Learn how to use DNF 5 to install, upgrade, and remove packages on Azure Linux, including handling repository configuration, caching, and install-only packages like the kernel.
+title: Manage Azure Linux Packages with DNF5
+description: Learn how to use DNF5 to install, upgrade, and remove packages on Azure Linux, including handling repository configuration, caching, and install-only packages like the kernel.
 author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
@@ -9,12 +9,12 @@ ms.topic: how-to
 ms.date: 04/27/2026
 ---
 
-# Manage Azure Linux packages with DNF 5
+# Manage Azure Linux packages with DNF5
 
 This article covers common package management tasks on Azure Linux, including:
 
 - Where repository configuration lives.
-- How legacy package-manager commands map to DNF 5.
+- How legacy package-manager commands map to DNF5.
 - How DNF caches metadata and resolves packages.
 - How kernels and other install-only packages are handled.
 - How to enable unattended updates.
@@ -24,13 +24,13 @@ This article covers common package management tasks on Azure Linux, including:
 
 ## Repository configuration
 
-DNF 5 reads repository definitions from `/etc/yum.repos.d/`. The directory name is preserved from YUM for compatibility; DNF 5 reads from this directory.
+DNF5 reads repository definitions from `/etc/yum.repos.d/`. The directory name is preserved from YUM for compatibility; DNF5 reads from this directory.
 
 Each `.repo` file in that directory is a plain-text configuration file that tells DNF where to find packages, whether to verify them with GPG, and whether the repository is enabled by default. The main DNF configuration file is `/etc/dnf/dnf.conf`, which controls global behavior such as cache settings, the install-only limit, and proxy configuration.
 
 ## Compatibility symlinks for legacy commands
 
-Azure Linux ships compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF 4), `microdnf`, `tdnf`) all dispatch to DNF 5:
+Azure Linux ships compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF4), `microdnf`, `tdnf`) all dispatch to DNF5:
 
 ```text
 lrwxrwxrwx.  1 root root       4  yum -> dnf5
@@ -40,15 +40,15 @@ lrwxrwxrwx.  1 root root       4  dnf -> dnf5
 lrwxrwxrwx.  1 root root       4  tdnf -> dnf5
 ```
 
-The common subcommands all work through the symlinks. Edge cases that depended on DNF 4 internals or `microdnf`-specific behavior might not. For details on what changed, see the following resources:
+The common subcommands all work through the symlinks. Edge cases that depended on DNF4 internals or `microdnf`-specific behavior might not. For details on what changed, see the following resources:
 
-- [Changes between DNF and DNF 5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html)
-- [Migrating to DNF 5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html)
+- [Changes between DNF and DNF5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html)
+- [Migrating to DNF5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html)
 - [Changes in DNF CLI compared to YUM](https://dnf.readthedocs.io/en/latest/cli_vs_yum.html)
 
-## How DNF 5 resolves packages
+## How DNF5 resolves packages
 
-When you run a DNF command, DNF 5 performs the following steps to determine what packages to install, upgrade, or remove:
+When you run a DNF command, DNF5 performs the following steps to determine what packages to install, upgrade, or remove:
 
 1. Loads every `.repo` file in `/etc/yum.repos.d/` and selects the repositories marked as enabled.
 1. Refreshes repository metadata, caching it locally under `/var/cache/libdnf5`. Cached metadata includes the package list, version and dependency information, checksums, and signatures.
@@ -60,7 +60,7 @@ The `/var/cache/libdnf5` cache exists so DNF doesn't have to re-download metadat
 
 ## Install-only packages and multiple installed versions
 
-Some packages, most notably the kernel, are installed side by side rather than upgraded in place. DNF 5 controls this through two settings in `/etc/dnf/dnf.conf`:
+Some packages, most notably the kernel, are installed side by side rather than upgraded in place. DNF5 controls this through two settings in `/etc/dnf/dnf.conf`:
 
 - **`installonlypkgs`**: List of package names that are never upgraded in place. Kernel packages are the canonical entry.
 - **`installonly_limit`**: Maximum number of versions of an install-only package that might coexist on the system. The default is `3`.
@@ -87,23 +87,23 @@ Install `dnf-automatic` using the following command:
 sudo dnf install -y dnf-automatic
 ```
 
-### Enable the `dnf-automatic` timer
+### Enable the `dnf5-automatic` timer
 
-Enable the `dnf-automatic` timer immediately and across reboots using the following command:
+Enable the `dnf5-automatic` timer immediately and across reboots using the following command:
 
 ```bash
-sudo systemctl enable --now dnf-automatic.timer
+sudo systemctl enable --now dnf5-automatic.timer
 ```
 
 - `enable` configures the timer to start at boot.
 - `--now` starts the timer in the current session.
 
-### Check status of the `dnf-automatic` timer
+### Check status of the `dnf5-automatic` timer
 
 Check that the timer is active and see when it last ran using the following command:
 
 ```bash
-systemctl status dnf-automatic.timer
+systemctl status dnf5-automatic.timer
 ```
 
 Typical output looks like the following example:
@@ -119,7 +119,7 @@ Typical output looks like the following example:
 
 `Active: active (waiting)` is expected: the underlying service is a one-shot that runs only when the timer fires, then exits. The `Trigger:` line shows the next scheduled run.
 
-### List the next scheduled run of the `dnf-automatic` timer
+### List the next scheduled run of the `dnf5-automatic` timer
 
 List the next run alongside any other timers using the following command:
 
@@ -136,10 +136,6 @@ Fri 2026-03-27 06:34:18 UTC  15h -         - dnf5-automatic.timer dnf5-automatic
 1 timers listed.
 Pass --all to see loaded but inactive timers, too.
 ```
-
-### Configure `dnf-automatic`
-
-Edit `/etc/dnf/automatic.conf` to control whether updates are only downloaded, applied automatically, or limited to security-only updates.
 
 ## Frequently used DNF commands
 
@@ -278,6 +274,6 @@ Nothing to do.
 
 ## Related content
 
-- [DNF 5 package management utility](https://dnf5.readthedocs.io/en/latest/dnf5.8.html): Full command-line reference for `dnf5`.
-- [Changes between DNF and DNF 5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html): What changed from DNF 4, including removed commands and behavior differences.
-- [Migrating to DNF 5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html): Guidance for moving scripts and automation from DNF 4 to DNF 5.
+- [DNF5 package management utility](https://dnf5.readthedocs.io/en/latest/dnf5.8.html): Full command-line reference for `dnf5`.
+- [Changes between DNF and DNF5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html): What changed from DNF4, including removed commands and behavior differences.
+- [Migrating to DNF5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html): Guidance for moving scripts and automation from DNF4 to DNF5.

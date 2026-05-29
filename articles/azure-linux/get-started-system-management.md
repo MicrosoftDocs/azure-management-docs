@@ -23,10 +23,10 @@ This article provides an overview of the core operational tasks for running and 
 | [Network configuration](./configure-networking.md) | Managing network interfaces, DHCP, static IPs, and advanced features such as VLANs, bridges, and bonded interfaces with systemd-networkd |
 | [Storage and filesystems](./storage-file-system-management.md) | Disk management, partition configuration, filesystem selection, and mount options for Azure Linux deployments |
 | [Logging and monitoring](./logging-monitoring.md) | System logging with journald, Azure Monitor integration, and monitoring tools for visibility and troubleshooting |
-| [Package management](./package-management-overview.md) | DNF 5 package manager, repository configuration, RPM packages, and dependency resolution for keeping your system current and secure |
+| [Package management](./package-management-overview.md) | DNF5 package manager, repository configuration, RPM packages, and dependency resolution for keeping your system current and secure |
 
 ## Related content
 
 - **New to Azure Linux system management?** Start with [Manage the Azure Linux kernel](./kernel-management.md) to understand the foundation, then work through [Configure networking on Azure Linux](./configure-networking.md) for connectivity basics.
 - **Deploying at scale?** [Logging and monitoring on Azure Linux](./logging-monitoring.md) covers integration with Azure Monitor and observability best practices.
-- **Need to manage packages?** [Manage Azure Linux packages with DNF 5](./manage-packages.md) covers DNF 5 commands and repository configuration.
+- **Need to manage packages?** [Manage Azure Linux packages with DNF5](./manage-packages.md) covers DNF5 commands and repository configuration.

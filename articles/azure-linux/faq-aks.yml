@@ -26,7 +26,7 @@ sections:
       - question: |
           What certifications does Azure Linux on AKS have?
         answer: |
-          Azure Linux passes all CIS level 1 benchmarks and offers a FIPS image. For more information, see [FIPS 140-3 and cryptography in Azure Linux](./fips-cryptography.md).
+          Azure Linux passes all CIS level 1 benchmarks and offers a FIPS image.
 
       - question: |
           How does Microsoft notify AKS users of new Azure Linux versions?

@@ -227,13 +227,13 @@ The change takes effect immediately and remains in effect until the next reboot.
 1. Install kdump-utils and makedumpfile packages using the following command:
 
     ```bash
-    dnf install -y kdump-utils makedumpfile
+    sudo dnf install -y kdump-utils makedumpfile
     ```
 
 1. Determine the recommended crash kernel size to add using the following command:
 
     ```bash
-    kdumpctl estimate
+    sudo kdumpctl estimate
     ```
 
     In the output, refer to the _Recommended crashkernel_ value. For example, the following output shows a recommended crashkernel size of 256M:

@@ -27,10 +27,10 @@ This article explains where Azure Linux publishes `debuginfo` packages, how to e
 Azure Linux publishes `debuginfo` RPMs to [packages.microsoft.com](https://packages.microsoft.com/) (PMC) in a dedicated location, organized by release version, release stage, and architecture. For Azure Linux 4.0, the layout is:
 
 ```text
-https://packages.microsoft.com/azurelinux/4.0/<STAGE>/sdk/debuginfo/<ARCH>/
+https://packages.microsoft.com/azurelinux/4.0/<STAGE>/base/debuginfo/<ARCH>/
 ```
 
-- **`<STAGE>`** is `prod` for production-validated symbols or `preview` for symbols that match preview packages.
+- **`<STAGE>`** is `beta` for packages in Azure Linux preview.
 - **`<ARCH>`** is the target architecture, such as `x86_64` or `aarch64`.
 
 The version, stage, and architecture must match the system the symbols will be loaded on. Mismatched `debuginfo` packages don't resolve symbols correctly.
@@ -40,14 +40,7 @@ The version, stage, and architecture must match the system the symbols will be l
 1. To install `debuginfo` packages, configure DNF to read from the Azure Linux `debuginfo` repository for your release and architecture:
 
     ```bash
-    dnf install azurelinux-repos-debuginfo
-    ```
-
-1. After the repository is in place, refresh the cached metadata so DNF picks up the new repository:
-
-    ```bash
-    sudo dnf clean all
-    sudo dnf makecache
+    sudo dnf5 config-manager --set-enabled azurelinux-base-debuginfo.enabled=1
     ```
 
 1. Confirm that the `debuginfo` repository is enabled using the following command:
