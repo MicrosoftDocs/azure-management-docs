@@ -60,6 +60,9 @@ To get started, configure the inference model settings for your chat solution.
 Next, test the chat endpoint.
 
 1. In the chat window, enter a question that uses a simple question and answer format. Queries that require summarization across multiple documents might not return accurate answers.
+
+   Be aware that with Agents and Tools with Foundry Local extension version 0.1.5 and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
+
 1. (Optional) To see how the language model responds without using your ingested data, switch the chat mode to **Model-only** and enter your question. Switch back to **Knowledge-base** chat to keep refining your solution with your ingested data.
 1. (Optional) [Test the end user experience by using the chat solution app for Agents and Tools with Foundry Local](test-end-user-app.md).
 
