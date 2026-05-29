@@ -3,11 +3,6 @@
 - name: Container registries
   expanded: true
   items:
-  - name: Overview
-    expanded: true
-    items:
-    - name: About Container Registry
-      href: container-registry-intro.md
   - name: Quickstarts
     expanded: false
     items:
@@ -31,11 +26,13 @@
       href: container-registry-java-quickstart.md
     - name: Get started with Azure Container Registry using Terraform
       href: container-registry-get-started-terraform.md
-  - name: SKU features and limits
-    href: container-registry-skus.md
   - name: Registry concepts
     expanded: false
     items:
+    - name: About Container Registry
+      href: container-registry-intro.md
+    - name: SKU features and limits
+      href: container-registry-skus.md
     - name: Registries, repositories, and images
       href: container-registry-concepts.md
     - name: Image storage
@@ -79,8 +76,6 @@
       href: container-registry-import-images.md
     - name: Manage public images
       href: buffer-gate-public-content.md
-    - name: Disable export
-      href: data-loss-prevention.md
     - name: Artifact cache overview
       href: artifact-cache-overview.md
     - name: Enable artifact cache - CLI
@@ -101,7 +96,7 @@
       href: container-registry-transfer-arm-template.md
     - name: Troubleshoot transfer artifacts
       href: container-registry-transfer-troubleshooting.md
-  - name: Authentication and authorization
+  - name: Authentication
     expanded: false
     items:
     - name: Authentication overview
@@ -129,6 +124,9 @@
     - name: Configure registry for ACR-scoped Microsoft Entra authentication
       displayName: arm, disable, audience tokens
       href: container-registry-disable-authentication-as-arm.md
+  - name: Authorization and RBAC
+    expanded: false
+    items:
     - name: RBAC overview
       href: container-registry-rbac-built-in-roles-overview.md
       displayName: permission, authorization, role, assign, entra, rbac, built-in
@@ -186,7 +184,7 @@
       href: /azure/service-fabric/service-fabric-tutorial-create-container-images
     - name: Azure Resource Graph queries
       href: ./resource-graph-samples.md
-  - name: Security
+  - name: Security and compliance
     expanded: false
     items:
     - name: Security baseline
@@ -196,6 +194,8 @@
       href: ./security-controls-policy.md
     - name: Audit compliance using Azure Policy
       href: container-registry-azure-policy.md
+    - name: Disable export
+      href: data-loss-prevention.md
     - name: Customer managed keys - Overview
       href: tutorial-customer-managed-keys.md
     - name: Enable Customer managed key on your registry
@@ -204,6 +204,15 @@
       href: tutorial-rotate-revoke-customer-managed-keys.md
     - name: Troubleshoot customer managed keys
       href: tutorial-troubleshoot-customer-managed-keys.md
+    - name: Scan with Microsoft Defender for Cloud
+      href: scan-images-defender.md
+    - name: Continuous patching concepts
+      href: key-concept-continuous-patching.md
+    - name: Set up continuous patching
+      href: how-to-continuous-patching.md
+  - name: Image signing and verification
+    expanded: false
+    items:
     - name: Signing and verification overview
       href: overview-sign-verify-artifacts.md
     - name: Sign container images with Notation and Artifact Signing
@@ -224,12 +233,6 @@
     - name: Transition from DCT to Notary Project
       href: container-registry-content-trust-deprecation.md
       displayName: docker content trust, content, trust
-    - name: Scan with Microsoft Defender for Cloud
-      href: scan-images-defender.md
-    - name: Continuous patching concepts
-      href: key-concept-continuous-patching.md
-    - name: Set up continuous patching
-      href: how-to-continuous-patching.md
   - name: Connected registry
     expanded: false
     items:
