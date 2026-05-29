@@ -272,12 +272,12 @@ If [regional endpoints](container-registry-geo-replication.md#regional-endpoints
 ```azurecli
 GEO_REPLICA_REGIONAL_ENDPOINT_PRIVATE_IP=$(az network nic show \
   --ids $NETWORK_INTERFACE_ID \
-  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_regionEndpoint_$REPLICA_LOCATION'].privateIPAddress" \
+  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_$REPLICA_LOCATION'].privateIPAddress" \
   --output tsv)
 
 GEO_REPLICA_REGIONAL_ENDPOINT_FQDN=$(az network nic show \
   --ids $NETWORK_INTERFACE_ID \
-  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_regionEndpoint_$REPLICA_LOCATION'].privateLinkConnectionProperties.fqdns" \
+  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_$REPLICA_LOCATION'].privateLinkConnectionProperties.fqdns" \
   --output tsv)
 ```
 
