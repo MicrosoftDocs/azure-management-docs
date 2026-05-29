@@ -16,7 +16,7 @@ Service tags help set rules to allow or deny traffic to a specific Azure service
 
 Microsoft manages the address prefixes that a service tag encompasses. Microsoft automatically updates a service tag as addresses change, to minimize the complexity of frequent updates to network security rules.
 
-When you configure a firewall for a registry, Azure Container Registry serves the requests on the IP addresses for its service tags. For the scenarios mentioned in [Firewall access rules](container-registry-firewall-access-rules.md), you can configure the firewall outbound rule to allow access to Azure Container Registry IP addresses for service tags.
+When you configure a firewall for a registry, Azure Container Registry serves the requests on the IP addresses for its service tags. For the scenarios mentioned in [Firewall access rules](container-registry-firewall-rules.md), you can configure the firewall outbound rule to allow access to Azure Container Registry IP addresses for service tags.
 
 ## Image import
 
@@ -24,7 +24,7 @@ Azure Container Registry sends requests to the external registry service through
 
 Azure ensures that these IP ranges are updated automatically. Establishing this security protocol is crucial for upholding the registry's integrity and ensuring its availability.
 
-To configure network security rules and allow traffic from the `AzureContainerRegistry` service tag for image import in Azure Container Registry, see [About registry endpoints](container-registry-firewall-access-rules.md#about-registry-endpoints). For detailed steps and guidance on how to use the service tag during image import, see [Import container images to a container registry](container-registry-import-images.md).
+To configure network security rules and allow traffic from the `AzureContainerRegistry` service tag for image import in Azure Container Registry, see [About registry endpoints](container-registry-firewall-rules.md#about-registry-endpoints). For detailed steps and guidance on how to use the service tag during image import, see [Import container images to a container registry](container-registry-import-images.md).
 
 ## Webhooks
 
@@ -42,7 +42,7 @@ When you're using Azure Container Registry tasks, such as when you're building c
 
 During the execution of tasks, Azure Container Registry sends requests to external resources through the IP addresses for service tags. If an external resource runs behind a firewall, it requires an inbound rule to allow these IP addresses. Applying these inbound rules is a common practice to help ensure security and proper access management in cloud environments.
 
-To learn more about Azure Container Registry tasks, see [Automate container image builds and maintenance with Azure Container Registry tasks](container-registry-tasks-overview.md). To learn how to use a service tag to set up firewall access rules for Azure Container Registry tasks, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+To learn more about Azure Container Registry tasks, see [Automate container image builds and maintenance with Azure Container Registry tasks](container-registry-tasks-overview.md). To learn how to use a service tag to set up firewall access rules for Azure Container Registry tasks, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 
 ## Best practices
 

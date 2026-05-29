@@ -51,7 +51,7 @@ If you're experiencing problems using an Azure Kubernetes Service with an integr
 
 ### Configure client firewall access
 
-To access a registry from behind a client firewall or proxy server, configure firewall rules to access the registry's public REST and data endpoints. If [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) are enabled, you need rules to access:
+To access a registry from behind a client firewall or proxy server, configure firewall rules to access the registry's public REST and data endpoints. If [dedicated data endpoints](container-registry-firewall-rules.md#enable-dedicated-data-endpoints) are enabled, you need rules to access:
 
 * REST endpoint: `<registryname>.azurecr.io`
 * Data endpoint(s): `<registry-name>.<region>.data.azurecr.io`
@@ -64,7 +64,7 @@ Registry resource logs in the ContainerRegistryLoginEvents table may help diagno
 
 Related links:
 
-* [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md)
+* [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md)
 * [HTTP/HTTPS proxy configuration](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
 * [Geo-replication in Azure Container Registry](container-registry-geo-replication.md)
 * [Monitor Azure Container Registry](monitor-service.md)
@@ -78,7 +78,7 @@ If the registry is configured for a virtual network with a service endpoint, dis
 Related links:
 
 * [Configure public IP network rules](container-registry-access-selected-networks.md)
-* [Connect privately to an Azure container registry using Azure Private Link](container-registry-private-link.md)
+* [Connect privately to an Azure container registry using Azure Private Link](container-registry-private-endpoints.md)
 * [Restrict access to a container registry using a service endpoint in an Azure virtual network](container-registry-vnet.md)
 
 
@@ -90,7 +90,7 @@ If a private endpoint is configured, confirm that DNS resolves the registry's pu
 
   * Run the [az acr check-health](/cli/azure/acr#az-acr-check-health) command with the `--vnet` parameter to confirm the DNS routing to the private endpoint in the virtual network.
   * Use a network utility such as `dig` or `nslookup` for DNS lookup. 
-  * Ensure that [DNS records are configured](container-registry-private-link.md#dns-configuration-options) for the registry FQDN and for each of the data endpoint FQDNs. 
+  * Ensure that [DNS records are configured](container-registry-private-endpoints.md#dns-configuration-options) for the registry FQDN and for each of the data endpoint FQDNs. 
 
 Review NSG rules and service tags used to limit traffic from other resources in the network to the registry. 
 
@@ -102,7 +102,7 @@ If Azure Firewall or a similar solution is configured in the network, check that
 
 Related links:
 
-* [Connect privately to an Azure container registry using Azure Private Link](container-registry-private-link.md)
+* [Connect privately to an Azure container registry using Azure Private Link](container-registry-private-endpoints.md)
 * [Troubleshoot Azure Private Endpoint connectivity problems](/azure/private-link/troubleshoot-private-endpoint-connectivity)
 * [Restrict access to a container registry using a service endpoint in an Azure virtual network](container-registry-vnet.md)
 * [Required outbound network rules and FQDNs for AKS clusters](/azure/aks/outbound-rules-control-egress#required-outbound-network-rules-and-fqdns-for-aks-clusters)

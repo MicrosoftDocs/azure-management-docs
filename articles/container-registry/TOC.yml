@@ -143,12 +143,12 @@
     expanded: false
     items:
     - name: Restrict access using private endpoint
-      href: container-registry-private-link.md
+      href: container-registry-private-endpoints.md
     - name: Configure public registry access
       href: container-registry-access-selected-networks.md
     - name: Access behind a firewall
       displayName: rules, firewall rules, dedicated data endpoint
-      href: container-registry-firewall-access-rules.md
+      href: container-registry-firewall-rules.md
     - name: Dedicated data endpoints
       displayName: dedicated data endpoints, endpoint, data endpoint
       href: container-registry-dedicated-data-endpoints.md

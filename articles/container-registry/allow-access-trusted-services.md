@@ -19,13 +19,13 @@ Use the Azure Cloud Shell or a local installation of the Azure CLI to run the co
 ## Limitations
 
 * Certain registry access scenarios with trusted services require a [managed identity for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Except where noted that a user-assigned managed identity is supported, only a system-assigned identity can be used.
-* Allowing trusted services doesn't apply to a container registry configured with a [service endpoint](container-registry-vnet.md). The feature only affects registries that are restricted with a [private endpoint](container-registry-private-link.md) or that have [public IP access rules](container-registry-access-selected-networks.md) applied.
+* Allowing trusted services doesn't apply to a container registry configured with a [service endpoint](container-registry-vnet.md). The feature only affects registries that are restricted with a [private endpoint](container-registry-private-endpoints.md) or that have [public IP access rules](container-registry-access-selected-networks.md) applied.
 
 ## About trusted services
 
 Azure Container Registry has a layered security model that supports multiple network configurations to restrict access to a registry. These configurations include:
 
-* [Private endpoint with Azure Private Link](container-registry-private-link.md). When configured, a registry's private endpoint is accessible only to resources within the virtual network, using private IP addresses.  
+* [Private endpoint with Azure Private Link](container-registry-private-endpoints.md). When configured, a registry's private endpoint is accessible only to resources within the virtual network, using private IP addresses.  
 * [Registry firewall rules](container-registry-access-selected-networks.md), which allow access to the registry's public endpoint only from specific public IP addresses or address ranges. You can also configure the firewall to block all access to the public endpoint when using private endpoints.
 
 When you deploy a registry in a virtual network or configure it with firewall rules, it denies access to users or services from outside those sources.
@@ -90,5 +90,5 @@ Here's a typical workflow to enable an instance of a trusted service to access a
 
 ## Next steps
 
-* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
+* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-endpoints.md).
 * To set up registry firewall rules, see [Configure public IP network rules](container-registry-access-selected-networks.md).

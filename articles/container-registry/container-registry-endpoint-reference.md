@@ -89,4 +89,4 @@ Example output for a registry with regional endpoints and dedicated data endpoin
 
 - [Geo-replication in Azure Container Registry](container-registry-geo-replication.md)
 - [Dedicated data endpoints in Azure Container Registry](container-registry-dedicated-data-endpoints.md)
-- [Access a registry behind a firewall](container-registry-firewall-access-rules.md)
+- [Access a registry behind a firewall](container-registry-firewall-rules.md)

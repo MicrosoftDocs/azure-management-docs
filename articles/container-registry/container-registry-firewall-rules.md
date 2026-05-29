@@ -13,7 +13,7 @@ ms.date: 02/24/2026
 
 This article explains how to configure rules on your firewall to allow access to an Azure container registry. For example, an Azure IoT Edge device behind a firewall or proxy server might need to access a container registry to pull a container image. Or, a locked-down server in an on-premises network might need access to push an image.
 
-To configure inbound network access to a container registry only within an Azure virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
+To configure inbound network access to a container registry only within an Azure virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-endpoints.md).
 
 ## About registry endpoints
 
@@ -149,7 +149,7 @@ To access Microsoft Container Registry (MCR) from behind a firewall, see the gui
 
 * Learn about [Azure best practices for network security](/azure/security/fundamentals/network-best-practices).
 * Learn more about [security groups](/azure/virtual-network/network-security-groups-overview) in an Azure virtual network.
-* Learn more about setting up [Private Link](container-registry-private-link.md) for a container registry.
+* Learn more about setting up [Private Link](container-registry-private-endpoints.md) for a container registry.
 * Learn more about [dedicated data endpoints](https://azure.microsoft.com/blog/azure-container-registry-mitigating-data-exfiltration-with-dedicated-data-endpoints/) for Azure Container Registry.
 * See the [endpoint reference](container-registry-endpoint-reference.md) for a complete list of registry endpoint types and FQDN patterns.
 

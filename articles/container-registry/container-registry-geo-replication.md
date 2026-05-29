@@ -435,7 +435,7 @@ az acr import \
 
 #### Firewall rules
 
-If you're using [ACR firewall rules](container-registry-firewall-access-rules.md) or custom firewalls with regional endpoints, configure your firewall rules to allow access to:
+If you're using [ACR firewall rules](container-registry-firewall-rules.md) or custom firewalls with regional endpoints, configure your firewall rules to allow access to:
 
 | Endpoint | Purpose |
 |----------|---------|
@@ -446,7 +446,7 @@ If you're using [ACR firewall rules](container-registry-firewall-access-rules.md
 
 #### Private endpoints
 
-When a [private endpoint](container-registry-private-link.md) is created for a registry inside a virtual network, the private endpoint resource exposes several virtual network private IPs that cover **all** of the registry's endpoint surfaces — the global endpoint, every regional endpoint (if regional endpoints are enabled), and every dedicated data endpoint (automatically enabled when a private endpoint is configured).
+When a [private endpoint](container-registry-private-endpoints.md) is created for a registry inside a virtual network, the private endpoint resource exposes several virtual network private IPs that cover **all** of the registry's endpoint surfaces — the global endpoint, every regional endpoint (if regional endpoints are enabled), and every dedicated data endpoint (automatically enabled when a private endpoint is configured).
 
 Each endpoint surface consumes one private IP address from the virtual network subnet. Plan your subnet sizing accordingly:
 
@@ -456,7 +456,7 @@ Each endpoint surface consumes one private IP address from the virtual network s
 
 **Example**: A registry with 3 geo-replicas and regional endpoints enabled requires 1 (global) + 3 (data) + 3 (regional) = **7 private IP addresses** per private endpoint resource. Without regional endpoints, the same registry requires 1 + 3 = **4 private IP addresses**.
 
-With many geo-replicas, private endpoint creation can fail if the subnet runs out of available IPs. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-link.md).
+With many geo-replicas, private endpoint creation can fail if the subnet runs out of available IPs. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-endpoints.md).
 
 #### Dedicated data endpoints
 
@@ -497,13 +497,13 @@ This issue usually arises when the identity creating a geo-replica for a private
 
 - To resolve, manually delete the geo-replica that got stuck in the provisioning state.
 - Afterwards, ensure the identity has the permission `Microsoft.Network/privateEndpoints/privateLinkServiceProxies/write` before creating a geo-replica.
-- Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected virtual network doesn't have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error doesn't identify which subnet or virtual network is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-link.md).
+- Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected virtual network doesn't have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error doesn't identify which subnet or virtual network is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-endpoints.md).
 
 ## Related content
 
 - [ACR SKUs and service tiers](container-registry-skus.md)
 - [Endpoint reference](container-registry-endpoint-reference.md)
 - [Webhooks](container-registry-webhook.md)
-- [Private endpoints](container-registry-private-link.md)
+- [Private endpoints](container-registry-private-endpoints.md)
 - [Dedicated data endpoints](container-registry-dedicated-data-endpoints.md)
-- [Configure firewall access rules](container-registry-firewall-access-rules.md)
+- [Configure firewall access rules](container-registry-firewall-rules.md)

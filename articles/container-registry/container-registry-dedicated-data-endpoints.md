@@ -142,7 +142,7 @@ This example output shows the full endpoint schema, including dedicated data end
 }
 ```
 
-After you set up dedicated data endpoints for your registry, you can enable client firewall access rules for the data endpoints. Enable data endpoint access rules for all required registry regions. For more information, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+After you set up dedicated data endpoints for your registry, you can enable client firewall access rules for the data endpoints. Enable data endpoint access rules for all required registry regions. For more information, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 
 ## Restricting network access to data endpoints
 
@@ -150,9 +150,9 @@ After enabling dedicated data endpoints, you can restrict how clients reach thos
 
 ### Azure private endpoints (virtual network)
 
-[Azure private endpoints](container-registry-private-link.md) are the most secure way to control network access from clients in a virtual network to the registry. When private endpoints are configured, both the login server (global endpoint and regional endpoints) and data endpoints are accessible from within the virtual network using private IPs assigned to a private endpoint resource in the virtual network. Customers can also [disable public network access](container-registry-private-link.md#disable-public-access-to-a-registry) on the registry, ensuring that dedicated data endpoints are only reachable through the private endpoint.
+[Azure private endpoints](container-registry-private-endpoints.md) are the most secure way to control network access from clients in a virtual network to the registry. When private endpoints are configured, both the login server (global endpoint and regional endpoints) and data endpoints are accessible from within the virtual network using private IPs assigned to a private endpoint resource in the virtual network. Customers can also [disable public network access](container-registry-private-endpoints.md#disable-public-access-to-a-registry) on the registry, ensuring that dedicated data endpoints are only reachable through the private endpoint.
 
-If a registry has at least one private endpoint configured, dedicated data endpoints are automatically enabled. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-link.md).
+If a registry has at least one private endpoint configured, dedicated data endpoints are automatically enabled. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-endpoints.md).
 
 #### Private endpoint IP address considerations
 
@@ -162,11 +162,11 @@ Each private endpoint resource consumes private IP addresses from the virtual ne
 - **1 IP per geo-replica** for dedicated data endpoints (`myregistry.<region>.data.azurecr.io`) — automatically enabled when a private endpoint is configured
 - **1 IP per geo-replica** for regional endpoints (`myregistry.<region>.geo.azurecr.io`) — only if regional endpoints are enabled on the registry
 
-For example, a registry with 3 geo-replicas and regional endpoints enabled requires 1 (global) + 3 (data) + 3 (regional) = **7 private IP addresses** per private endpoint resource. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-link.md).
+For example, a registry with 3 geo-replicas and regional endpoints enabled requires 1 (global) + 3 (data) + 3 (regional) = **7 private IP addresses** per private endpoint resource. For more information, see [Connect privately to a registry from a virtual network using private endpoints](container-registry-private-endpoints.md).
 
 ### Client firewall rules
 
-If private endpoints aren't an option, configure your client firewall rules to allow access to the dedicated data endpoints for each required registry region. For more information, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+If private endpoints aren't an option, configure your client firewall rules to allow access to the dedicated data endpoints for each required registry region. For more information, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 
 ## Next steps
 

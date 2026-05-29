@@ -63,7 +63,7 @@ Set up a private endpoint when you create a registry, or add a private endpoint 
     |Integrate with private DNS zone |Select **Yes**. |
     |Private DNS Zone |Select *(New) privatelink.azurecr.io* |
 
-   :::image type="content" source="media/container-registry-private-link/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
+   :::image type="content" source="media/container-registry-private-endpoints/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
 
 1. Select **OK**.
 1. Configure the remaining registry settings, and then select **Review + create**. Your registry is created with the private endpoint.
@@ -175,7 +175,7 @@ For a complete list of registry endpoint types and their FQDN patterns, see the 
 
 ## Plan subnet IP capacity for private endpoints
 
-Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
+Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
 
 ### IP address consumption per feature
 
@@ -368,7 +368,7 @@ az acr update --name $REGISTRY_NAME --public-network-enabled false
 Consider the following options to execute the `az acr build` successfully.
 
 * Assign a [dedicated agent pool](./tasks-agent-pools.md).
-* If agent pool isn't available in your region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (`AzureContainerRegistry` service tag) for outbound requests. You can add these IPs to the firewall allowed list.
+* If agent pool isn't available in your region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (`AzureContainerRegistry` service tag) for outbound requests. You can add these IPs to the firewall allowed list.
 
 ## Disable access to a container registry by using a service endpoint
 
@@ -509,7 +509,7 @@ az group delete --name $RESOURCE_GROUP
 
 * To learn more about Private Link, see the [Azure Private Link](/azure/private-link/private-link-overview) documentation.
 * To verify DNS settings in the virtual network that route to a private endpoint, run the [az acr check-health](/cli/azure/acr#az-acr-check-health) command with the `--vnet` parameter. For more information, see [Check the health of an Azure container registry](container-registry-check-health.md).
-* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 * For a complete list of registry endpoint types and their FQDN patterns, see the [endpoint reference](container-registry-endpoint-reference.md).
 * [Troubleshoot Azure Private Endpoint connectivity problems](/azure/private-link/troubleshoot-private-endpoint-connectivity).
 * If you need to deploy Azure Container Instances that can pull images from an ACR through a private endpoint, see [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi).
