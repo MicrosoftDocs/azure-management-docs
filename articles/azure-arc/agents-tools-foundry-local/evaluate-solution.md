@@ -86,7 +86,7 @@ The automatic evaluation evaluates the quality of the RAG system by using your o
 
    :::image type="content" source="media/evaluate-solution/evaluation-status-automated.png" alt-text="Screenshot shows the results of an automatic evaluation, including metrics and evaluation details.":::
 
-1. After the evaluation completes, review the results by selecting on the evaluation name.
+1. After the evaluation completes, review the results by selecting the evaluation name.
 1. Review the evaluation details and metrics.
 
 ## Related content
