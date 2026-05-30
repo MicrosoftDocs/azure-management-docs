@@ -4,7 +4,7 @@ description: Learn about deploying Agentic Retrieval in Foundry Local with Azure
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/26/2026
+ms.date: 05/30/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agentic Retrieval in Foundry Local with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -22,8 +22,8 @@ To try Agentic Retrieval without the need for local hardware, see [Quickstart: I
 
 The following diagram shows the key components and architecture you have after you prepare your environment and deploy Agentic Retrieval. It includes Azure resources, on-premises infrastructure, and integration points.
 
-<!-- Art Library Source# ConceptArt-0-000-95 -->
-:::image type="content" source="media/deploy-overview/deployment-components.svg" alt-text="Diagram that shows the Agentic Retrieval deployment architecture, including Azure resources, on-premises infrastructure, and integration points." border="false":::
+<!-- Art Library Source# ConceptArt-0-000-2175 -->
+:::image type="content" source="media/deploy-overview/agentic-retrieval-deployment-components.svg" alt-text="Diagram that shows the Agentic Retrieval deployment architecture, including Azure resources, on-premises infrastructure, and integration points." border="false":::
 
 The resources and components in the diagram form the core infrastructure for Agentic Retrieval:
 
