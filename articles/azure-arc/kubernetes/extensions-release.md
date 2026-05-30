@@ -250,13 +250,13 @@ For more information, see [What is Foundry Local on Azure Local?](/azure/private
 
 For more information, see [Dapr extension for AKS and Azure Arc-enabled Kubernetes](/azure/aks/dapr).
 
-## Azure AI Video Indexer
+## Azure AI Video Indexer enabled by Arc
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters.
+- **Supported distributions**: AKS enabled by Azure Arc, any Arc-enabled Kubernetes environment.
 
-Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devices. The solution is designed to run on an Azure Stack Edge profile, which is a heavy edge device. The solution supports many video formats, including MP4 and other common formats. It supports several languages in all basic audio-related models.
+Azure AI Video Indexer enabled by Arc is an Azure Arc extension that runs video and audio analysis and generative AI on edge devices. It transcribes spoken content in more than 35 source languages, performs object detection, scene and shot detection, key frame extraction, and text summarization using included language models. The extension supports many video formats including MP4, AVI, MKV, and MOV. Azure AI Video Indexer enabled by Arc keeps all media processing on-premises — no customer data is sent to the cloud. Control plane information is sent to Azure for billing and monitoring.
 
-For more information, see [Try Azure AI Video Indexer enabled by Azure Arc](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-quickstart).
+For more information, see [What is Azure AI Video Indexer enabled by Arc?](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-overview).
 
 ## Azure Container Storage enabled by Azure Arc
 
