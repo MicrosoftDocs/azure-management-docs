@@ -37,7 +37,7 @@ For more information, see [Tutorial: Deploy applications using GitOps with Argo 
 
 ## Azure AI Video Indexer enabled by Arc
 
-- **Supported distributions**: AKS enabled by Azure Arc, any Arc-enabled Kubernetes environment.
+- **Supported distributions**: AKS enabled by Azure Arc
 
 Azure AI Video Indexer enabled by Arc is an Azure Arc extension that runs video and audio analysis and generative AI on edge devices. It provides real-time video analysis with live AI insights, including built-in people and vehicle detection, custom object and situation detection using text descriptions and example images, and specialized AI agents for retail operations, customer service, sales recommendations, and security monitoring. The extension also supports uploaded file indexing with transcription in more than 35 source languages, scene and shot detection, key frame extraction, and AI-generated video summaries. Azure AI Video Indexer enabled by Arc keeps all media processing on-premises — no customer data is sent to the cloud.
 
