@@ -18,7 +18,7 @@ The following extensions are currently available to use with Azure Arc-enabled K
 
 - **Supported distributions**: AKS enabled by Azure Arc
 
-Agentic Retrieval in Foundry Local is an Azure Arc-enabled Kubernetes extension and part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It provides an agentic Retrieval-Augmented Generation (RAG) platform at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data. Agentic Retrieval is supported on Azure Local and in disconnected environments.
+Agentic Retrieval in Foundry Local is an Azure Arc-enabled Kubernetes extension that supports Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It provides an agentic retrieval-augmented generation (RAG) platform at the edge. The platform combines a knowledge layer (document ingestion, embeddings, and vector search) with an agentic layer (AI agents, knowledge orchestration, and an MCP server) to create intelligent, multistep assistants grounded in private on-premises data. Agentic Retrieval is supported on Azure Local and in disconnected environments.
 
 For more information, see [What is Agents and Tools with Foundry Local?](../agents-tools-foundry-local/overview.md).
 
@@ -35,11 +35,11 @@ For more information, see [Tutorial: Deploy applications using GitOps with Argo 
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
-## Azure AI Video Indexer enabled by Arc
+## Azure AI Video Indexer enabled by Azure Arc
 
 - **Supported distributions**: AKS enabled by Azure Arc
 
-Azure AI Video Indexer enabled by Arc is an Azure Arc extension that runs video and audio analysis and generative AI on edge devices. It provides real-time video analysis with live AI insights, including built-in people and vehicle detection, custom object and situation detection using text descriptions and example images, and specialized AI agents for retail operations, customer service, sales recommendations, and security monitoring. The extension also supports uploaded file indexing with transcription in more than 35 source languages, scene and shot detection, key frame extraction, and AI-generated video summaries. Azure AI Video Indexer enabled by Arc keeps all media processing on-premises — no customer data is sent to the cloud.
+Azure AI Video Indexer enabled by Azure Arc is an Azure Arc extension that runs video and audio analysis, including generative AI, on edge devices. It provides real-time video analysis with live AI insights, including built-in people and vehicle detection, custom object and situation detection based on text descriptions and example images, and specialized AI agents for retail operations, customer service, sales recommendations, and security monitoring. The extension also supports uploaded file indexing with transcription in more than 35 source languages, scene and shot detection, keyframe extraction, and AI-generated video summaries. All media processing stays on-premises, and no customer data is sent to the cloud.
 
 For more information, see [What is Azure AI Video Indexer enabled by Arc?](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-overview).
 
@@ -261,9 +261,9 @@ The [most recent version of the Flux v2 extension](flux-gitops-release-notes.md)
 
 - **Supported distributions**: AKS enabled by Azure Arc
 
-Foundry Local on Azure Local brings AI inference to your Azure Local environment. Deploy and run AI models on an Arc-enabled Kubernetes cluster with Kubernetes-native operations. Foundry Local supports generative AI inference (chat and text generation) through OpenAI-compatible request patterns, predictive AI inference, and multi-model serving. It supports both CPU and GPU-backed deployments, and secures endpoints with API keys, Microsoft Entra ID authentication, and TLS.
+Foundry Local on Azure Local brings AI inference to Azure Local environments. Deploy and run AI models on an Arc-enabled Kubernetes cluster by using Kubernetes-native operations. Foundry Local supports generative AI inference (chat and text generation) through OpenAI-compatible request patterns, predictive AI inference, and multi-model serving. It supports CPU- and GPU-backed deployments and secures endpoints by using API keys, Microsoft Entra ID authentication, and TLS.
 
-Foundry Local on Azure Local can also be deployed in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager (included in the expansion pack), and authentication integrates with the local Active Directory infrastructure.
+You can also deploy Foundry Local on Azure Local in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager, and authentication integrates with local Active Directory infrastructure.
 
 For more information, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local).
 
