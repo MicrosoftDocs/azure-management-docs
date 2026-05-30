@@ -265,7 +265,7 @@ Foundry Local on Azure Local brings AI inference to your Azure Local environment
 
 Foundry Local on Azure Local can also be deployed in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager (included in the expansion pack), and authentication integrates with the local Active Directory infrastructure.
 
-For more information, see [What is Foundry Local on Azure Local?](/azure/private/foundry-local/what-is-foundry-local-on-azure-local).
+For more information, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local).
 
 ## Microsoft Defender for Containers
 
