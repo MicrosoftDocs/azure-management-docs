@@ -224,6 +224,42 @@ For more information, see [Tutorial: Deploy applications using GitOps with Argo 
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
+## Azure AI Video Indexer enabled by Arc
+
+- **Supported distributions**: AKS enabled by Azure Arc, any Arc-enabled Kubernetes environment.
+
+Azure AI Video Indexer enabled by Arc is an Azure Arc extension that runs video and audio analysis and generative AI on edge devices. It transcribes spoken content in more than 35 source languages, performs object detection, scene and shot detection, key frame extraction, and text summarization using included language models. The extension supports many video formats including MP4, AVI, MKV, and MOV. Azure AI Video Indexer enabled by Arc keeps all media processing on-premises — no customer data is sent to the cloud. Control plane information is sent to Azure for billing and monitoring.
+
+For more information, see [What is Azure AI Video Indexer enabled by Arc?](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-overview).
+
+## Azure Container Storage enabled by Azure Arc
+
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
+
+[Azure Container Storage enabled by Azure Arc](../container-storage/index.yml) is a first-party storage system that's designed for Azure Arc-connected Kubernetes clusters. You can deploy Azure Container Storage enabled by Azure Arc to write files to a 'ReadWriteMany' persistent volume claim (PVC), where they're transferred to Azure Blob Storage. Azure Container Storage enabled by Azure Arc offers a range of features to support Azure IoT operations and other Azure Arc features.
+
+For more information, see [What is Azure Container Storage enabled by Azure Arc?](../container-storage/overview.md).
+
+## Cert-manager for Arc-enabled Kubernetes (preview)
+
+The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
+
+For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md)
+
+## Connected registry on Azure Arc-enabled Kubernetes
+
+- **Supported distributions**: AKS enabled by Azure Arc, Kubernetes by using the kind tool.
+
+Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
+
+For more information, see [Connected registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
+
+## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
+
+[Dapr](https://dapr.io/) is a portable, event-driven runtime that simplifies building resilient, stateless, and stateful applications that run in the cloud and edge and embrace the diversity of languages and developer frameworks. The Dapr extension eliminates the overhead of downloading Dapr tooling and manually installing and managing the runtime on your clusters.
+
+For more information, see [Dapr extension for AKS and Azure Arc-enabled Kubernetes](/azure/aks/dapr).
+
 ## Flux (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
@@ -243,42 +279,6 @@ Foundry Local on Azure Local brings AI inference to your Azure Local environment
 Foundry Local on Azure Local can also be deployed in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager (included in the expansion pack), and authentication integrates with the local Active Directory infrastructure.
 
 For more information, see [What is Foundry Local on Azure Local?](/azure/private/foundry-local/what-is-foundry-local-on-azure-local).
-
-## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
-
-[Dapr](https://dapr.io/) is a portable, event-driven runtime that simplifies building resilient, stateless, and stateful applications that run in the cloud and edge and embrace the diversity of languages and developer frameworks. The Dapr extension eliminates the overhead of downloading Dapr tooling and manually installing and managing the runtime on your clusters.
-
-For more information, see [Dapr extension for AKS and Azure Arc-enabled Kubernetes](/azure/aks/dapr).
-
-## Azure AI Video Indexer enabled by Arc
-
-- **Supported distributions**: AKS enabled by Azure Arc, any Arc-enabled Kubernetes environment.
-
-Azure AI Video Indexer enabled by Arc is an Azure Arc extension that runs video and audio analysis and generative AI on edge devices. It transcribes spoken content in more than 35 source languages, performs object detection, scene and shot detection, key frame extraction, and text summarization using included language models. The extension supports many video formats including MP4, AVI, MKV, and MOV. Azure AI Video Indexer enabled by Arc keeps all media processing on-premises — no customer data is sent to the cloud. Control plane information is sent to Azure for billing and monitoring.
-
-For more information, see [What is Azure AI Video Indexer enabled by Arc?](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-overview).
-
-## Azure Container Storage enabled by Azure Arc
-
-- **Supported distributions**: All CNCF-certified Kubernetes clusters.
-
-[Azure Container Storage enabled by Azure Arc](../container-storage/index.yml) is a first-party storage system that's designed for Azure Arc-connected Kubernetes clusters. You can deploy Azure Container Storage enabled by Azure Arc to write files to a 'ReadWriteMany' persistent volume claim (PVC), where they're transferred to Azure Blob Storage. Azure Container Storage enabled by Azure Arc offers a range of features to support Azure IoT operations and other Azure Arc features.
-
-For more information, see [What is Azure Container Storage enabled by Azure Arc?](../container-storage/overview.md).
-
-## Connected registry on Azure Arc-enabled Kubernetes
-
-- **Supported distributions**: AKS enabled by Azure Arc, Kubernetes by using the kind tool.
-
-Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
-
-For more information, see [Connected registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
-
-## Cert-manager for Arc-enabled Kubernetes (preview)
-
-The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
-
-For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md)
 
 ## Related content
 
