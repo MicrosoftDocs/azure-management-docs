@@ -4,7 +4,7 @@ description: "Read about the known issues and fixed issues with Agentic Retrieva
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/04/2026
+ms.date: 06/01/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
@@ -26,7 +26,6 @@ The following table lists the known issues in this release.
 |---------|---------|
 |Automatic evaluation|If you run an automatic evaluation without adding a data source, you receive an error like: "Failed to calculate automatic metrics. Both "answer" and "context must be non-empty strings." To work around this issue, [add a data source](add-data-source.md) before you run an evaluation.|
 |Chat feedback    | End users of the chat solution can submit feedback about the chat, but the AI Application Developers/Prompt Engineers that set up the chat solution don't have an easy UI-based way to analyze the feedback. |
-|Chat history | With Agentic Retrieval extension version 0.1.5 and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat. |
 | Chat UI | Dollar amounts in agent responses (e.g., `$100`) may be rendered as LaTeX mathematical expressions in the agentic chat UI. **Workaround:** Configure agent instructions to format currency without the `$` symbol (e.g., "100 USD"), or use the API directly. |
 | Agent behavior | In some cases, the agent might perform arithmetic operations on numerical data from the knowledge base instead of directly quoting the source values. **Workaround:** Add explicit instructions to the agent: "Always quote numerical values exactly as they appear in the source documents. Don't perform calculations unless explicitly asked." |
 | Agent configuration | When an agent has no knowledge base or the knowledge base has no connected knowledge sources, the system doesn't display a user-facing warning. The agent responds without grounding, which might produce hallucinated answers. **Workaround:** Ensure all agents have a knowledge base with at least one knowledge source. |
@@ -34,8 +33,6 @@ The following table lists the known issues in this release.
 | Knowledge Sources | The `indexed_source_ref` field refers to a **collection name** when pointing to the built-in MCP server, not a tool name. This field is documented in the Knowledge Sources API Reference but might cause confusion. |
 | Knowledge Base PATCH | When updating a knowledge base by using PATCH, the `knowledge_source_ids` field **replaces** the entire list. It doesn't append. **Workaround:** Read the current list first, then include all desired IDs in the PATCH request. |
 | API timestamps | The Knowledge Base Manager returns timestamps as ISO 8601 strings (for example, `"2025-01-15T10:30:00Z"`), while the Agents Runtime uses Unix epoch integers (for example, `1699012345`). Ensure your client handles both formats. |
-
-The chat history limitation applies to the legacy `/user` chat endpoint (Inference API). The new agentic chat interface supports full multithread conversations with persistent thread history via the Agents Runtime.
 
 ## Security considerations
 

@@ -4,7 +4,7 @@ description: "Learn how to test the end user experience of the Agentic Retrieval
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/28/2026
+ms.date: 06/01/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
@@ -29,9 +29,9 @@ Before you begin:
 
 ## Verify end-user query results in chat
 
-To try the built-in chat for end users, start from the default local chat endpoint.
+To try the built-in chat for end users, start from the registered URL for your Agentic Retrieval app and use the `/chat` path.
 
-1. Go to `http://localhost:5173`.
+1. Go to your registered app URL with `/chat` appended (for example, `https://arcrag.contoso.com/chat`).
 1. Sign in by using the end user credentials that have the **EdgeRAGEndUser** role assigned. If you have the right access configured, you're automatically redirected to the chat portal.
 1. Start using chat by entering a query, then enter a follow-up query in the same conversation.
 1. Confirm that responses include citations and that conversation history is visible.
