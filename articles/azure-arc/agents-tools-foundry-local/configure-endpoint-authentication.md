@@ -15,8 +15,7 @@ ms.custom:
 
 This article shows you how to configure API-key based authentication for any cloud-based LLM endpoints that need it. If you configured Agentic Retrieval to use your own language model (BYOM), complete the steps in this article.
 
-> [!NOTE]
-> This article applies only when using BYOM (cloud) endpoints (`useFoundryLocal=false`). If you use Foundry Local with `foundryClientId`, authentication is handled via managed identity and no API key configuration is needed. For managed identity setup, see [Configure authentication](prepare-authentication.md).
+This article applies only when using BYOM (cloud) endpoints (`useFoundryLocal=false`). If you use Foundry Local with `foundryClientId`, authentication is handled via managed identity and no API key configuration is needed. For managed identity role assignments after deployment, see [Configure Foundry Local inference authentication for Agentic Retrieval](configure-foundry-inference-authentication.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 

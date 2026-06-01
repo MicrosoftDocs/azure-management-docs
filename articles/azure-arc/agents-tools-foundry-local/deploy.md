@@ -274,9 +274,12 @@ After deployment, verify that the extension can communicate with Foundry Local:
      }'
    ```
 
-## Bring your own language model
+## Configure post-deployment authentication
 
-After deploying the Agentic Retrieval extension, complete the steps in [Configure endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md).
+After deploying the Agentic Retrieval extension, complete the authentication task that matches your language model source:
+
+- If you installed the Foundry Local on Azure Local Azure Arc extension and deployed the Agentic Retrieval extension with `foundryClientId` (Foundry Local), complete [Configure Foundry Local inference authentication for Agentic Retrieval](configure-foundry-inference-authentication.md).
+- If you deployed the extension for BYOM (`useFoundryLocal=false`), complete [Configure BYOM endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md).
 
 ## Related content
 

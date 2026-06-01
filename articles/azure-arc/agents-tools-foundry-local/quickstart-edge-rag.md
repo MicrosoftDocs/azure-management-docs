@@ -247,6 +247,42 @@ Complete the following steps to deploy the Agentic Retrieval extension onto your
       ipMode: VIP 
    ```
 
+## Assign required roles for Foundry Local
+
+If you use `foundryClientId`, run the following commands after deployment to assign required roles at connected cluster scope.
+
+```azurecli
+# Set connected cluster scope (least privilege)
+$SCOPE = $(az connectedk8s show -g $rg -n $k8scluster --query "id" -o tsv)
+
+# Get managed identity principal IDs
+$FOUNDRY_PRINCIPAL_ID = $(az k8s-extension show -g $rg -c $k8scluster `
+   -t connectedClusters --name inference-operator --query "identity.principalId" -o tsv)
+$EXTENSION_PRINCIPAL_ID = $(az k8s-extension show -g $rg -c $k8scluster `
+   -t connectedClusters --name $localextname --query "identity.principalId" -o tsv)
+
+# 1. Reader role for Foundry operator identity
+az role assignment create `
+   --assignee-object-id $FOUNDRY_PRINCIPAL_ID `
+   --role "Reader" `
+   --scope $SCOPE `
+   --assignee-principal-type ServicePrincipal
+
+# 2. Cognitive Services OpenAI User role for Agents and Tools identity
+az role assignment create `
+   --assignee-object-id $EXTENSION_PRINCIPAL_ID `
+   --role "Cognitive Services OpenAI User" `
+   --scope $SCOPE `
+   --assignee-principal-type ServicePrincipal
+
+# 3. Reader role for Agents and Tools identity
+az role assignment create `
+   --assignee-object-id $EXTENSION_PRINCIPAL_ID `
+   --role "Reader" `
+   --scope $SCOPE `
+   --assignee-principal-type ServicePrincipal
+```
+
 ## Connect to the developer portal
 
 Update your host file on your local machine to connect to the developer portal for Agentic Retrieval.
