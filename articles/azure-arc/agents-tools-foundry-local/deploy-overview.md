@@ -4,7 +4,7 @@ description: Learn about deploying Agentic Retrieval in Foundry Local with Azure
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/30/2026
+ms.date: 06/01/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agentic Retrieval in Foundry Local with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -77,6 +77,42 @@ When you deploy Agentic Retrieval, set several configuration options to tailor t
 - **Access and authentication:** Set up the Microsoft Entra app ID and assign roles to users and groups.
 - **Data source configuration:** Make sure your data source, an NFS share, is reachable and contains the required files in supported formats.
 
+If you use Foundry Local managed identity authentication (`foundryClientId`), include the following authorization configuration in your deployment plan.
+
+### Foundry Local inference authentication layers
+
+When you use managed identity authentication (`foundryClientId`), Foundry Local inference requires three role assignment layers. Each layer protects a different hop in the request chain, and all three are required.
+
+#### Request flow
+
+When Agents and Tools calls the Foundry Local endpoint with a managed identity token, the request passes through three authorization checks:
+
+- **Layer 1 - Entra app role**: The Foundry app registration validates that the caller's managed identity has the `FoundryInferenceAccess` app role. Without it, the token is valid but missing the required `roles` claim.
+- **Layer 2 - ARM Reader**: The Foundry inference pod queries Azure Resource Manager (ARM) to verify the caller's role assignments. The connected cluster managed identity needs `Reader` on its own cluster resource for this lookup to succeed.
+- **Layer 3 - Azure RBAC**: ARM checks that the caller has the required Azure roles (`Cognitive Services OpenAI User` and `Reader`) at the subscription or resource group level.
+
+#### Layer summary
+
+| Layer | Who | Role | Purpose | Without it |
+|-------|-----|------|---------|------------|
+| **1 - Entra app role** | Agents and Tools managed identity &rarr; Foundry app registration | `FoundryInferenceAccess` app role | App-level gate for calling Foundry Local. | `401` token valid but no app role |
+| **2 - ARM Reader** | Connected cluster managed identity &rarr; ARM | `Reader` on the cluster resource | Foundry pod reads ARM role assignments to validate callers. | `401` ARM lookup fails |
+| **3 - Azure RBAC** | Agents and Tools + Foundry managed identities &rarr; ARM | `Cognitive Services OpenAI User` + `Reader` | Resource-level authorization for model inference. | `403` ARM denies authorization |
+
+#### Assign each layer after identity creation
+
+Role assignments require principal IDs that exist only after the resources are deployed. Assign each layer as soon as the relevant identity exists:
+
+| Deployment step | What it creates | What you can assign after |
+|-----------------|----------------|--------------------------|
+| `az connectedk8s connect` | Connected cluster managed identity | **Layer 2**: ARM `Reader` for the cluster managed identity |
+| `az k8s-extension create` (inference-operator) | Foundry operator managed identity | **Layer 3**: `Reader` for the Foundry operator managed identity |
+| `az k8s-extension create` (Agents and Tools) | Agents and Tools extension managed identity | **Layer 1**: Entra app role and **Layer 3**: `Cognitive Services OpenAI User` and `Reader` |
+
+You can also defer all role assignments until after all extensions are installed and assign them together. For role assignment steps, see [Configure Foundry Local inference authentication for Agentic Retrieval](configure-foundry-inference-authentication.md).
+
+Azure RBAC roles alone aren't enough. The Foundry authentication sidecar validates Microsoft Entra ID app roles, not only Azure RBAC. Without the `FoundryInferenceAccess` app role assignment, managed identity tokens are valid but missing the `roles` claim.
+
 ## Deployment process for Agentic Retrieval
 
 The deployment process for Agentic Retrieval consists of the following high-level steps:
@@ -84,7 +120,7 @@ The deployment process for Agentic Retrieval consists of the following high-leve
 | High-level step  | Description |
 |-----------------|-----------------------------------------------------------|
 | 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, [set up your language model endpoint (mandatory for all deployments)](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Agentic Retrieval. |
-| 2. Deploy the Agentic Retrieval extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), add your language model endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agentic Retrieval extension](deploy.md). <br><br>After deployment, [configure BYOM endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md).|
+| 2. Deploy the Agentic Retrieval extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Choose your deployment mode (Agentic, Knowledge, or Combined), add your language model endpoint, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Agentic Retrieval extension](deploy.md). <br><br>After deployment, configure authentication based on your language model source: [Configure Foundry Local inference authentication for Agentic Retrieval](configure-foundry-inference-authentication.md) when you use `foundryClientId`, or [configure BYOM endpoint authentication for Agentic Retrieval](configure-endpoint-authentication.md) when you use BYOM.|
 | 3. Validate the deployment               | After you deploy the extension, check that the Agentic Retrieval extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure knowledge layer         | If you deployed in combined or knowledge mode, configure the knowledge layer: set up collections or use the default collection, add data sources, and test the setup. See [Knowledge layer configuration](knowledge-layer-overview.md), [Add a data source](add-data-source.md), and [Test the end-user query experience](test-end-user-app.md). |
 | 5. Configure agents (optional) | If you deployed in combined or agentic mode, create knowledge sources and link them to your default knowledge base to build intelligent assistants. See the [Query your data quickstart](quickstart-edge-rag.md). |
