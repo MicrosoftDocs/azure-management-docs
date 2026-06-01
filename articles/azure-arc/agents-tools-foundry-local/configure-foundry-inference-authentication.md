@@ -31,9 +31,7 @@ For background on how these authorization checks work, see [Foundry Local infere
 
 ## Assign the Foundry app role (Layer 1)
 
-Assign the `FoundryInferenceAccess` app role in your Foundry Local app registration to the Agents and Tools extension managed identity.
-
-Assign this role after the Agents and Tools extension is deployed, when the extension managed identity principal ID exists.
+After you deploy the Agents and Tools extension and its managed identity principal ID exists, assign the `FoundryInferenceAccess` app role in your Foundry Local app registration to the extension managed identity.
 
 For detailed app role assignment steps, see [Configure authentication for Foundry Local](/azure/azure-sovereign-clouds/private/foundry-local/how-to-configure-authentication).
 

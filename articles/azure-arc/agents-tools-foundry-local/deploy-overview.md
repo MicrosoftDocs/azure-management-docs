@@ -77,11 +77,12 @@ When you deploy Agentic Retrieval, set several configuration options to tailor t
 - **Access and authentication:** Set up the Microsoft Entra app ID and assign roles to users and groups.
 - **Data source configuration:** Make sure your data source, an NFS share, is reachable and contains the required files in supported formats.
 
-If you use Foundry Local managed identity authentication (`foundryClientId`), include the following authorization configuration in your deployment plan.
+If you connect Agentic Retrieval to Foundry Local using managed identity (foundryClientId), plan to set up the roles in the following section.
 
-### Foundry Local inference authentication layers
+### Required roles for Foundry Local inference
 
-When you use managed identity authentication (`foundryClientId`), Foundry Local inference requires three role assignment layers. Each layer protects a different hop in the request chain, and all three are required.
+If you deploy the Agentic Retrieval extension to use a Foundry Local endpoint (`foundryClientId`), assign the following three roles before you test chat or run inference traffic. These roles let each part of the request pass security checks, and if one is missing, requests can fail with `401` or `403` errors.
+This authorization model applies only when you use Foundry Local with `foundryClientId`. It doesn't apply to BYOM API key authentication.
 
 #### Request flow
 
@@ -99,7 +100,7 @@ When Agents and Tools calls the Foundry Local endpoint with a managed identity t
 | **2 - ARM Reader** | Connected cluster managed identity &rarr; ARM | `Reader` on the cluster resource | Foundry pod reads ARM role assignments to validate callers. | `401` ARM lookup fails |
 | **3 - Azure RBAC** | Agents and Tools + Foundry managed identities &rarr; ARM | `Cognitive Services OpenAI User` + `Reader` | Resource-level authorization for model inference. | `403` ARM denies authorization |
 
-#### Assign each layer after identity creation
+#### Identity-based role assignment timing
 
 Role assignments require principal IDs that exist only after the resources are deployed. Assign each layer as soon as the relevant identity exists:
 
