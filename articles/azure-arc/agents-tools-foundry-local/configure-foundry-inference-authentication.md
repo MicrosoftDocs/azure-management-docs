@@ -27,7 +27,7 @@ Before you begin, make sure you:
 - Have permissions to create Azure role assignments (`Owner` or `User Access Administrator`) on your target scope.
 - Permissions to assign app roles in Microsoft Entra ID for the Foundry Local app registration.
 
-For background on how these authorization checks work, see [Foundry Local inference authentication layers](deploy-overview.md#foundry-local-inference-authentication-layers).
+For background on how these authorization checks work, see [Required roles for Foundry Local inference](deploy-overview.md#required-roles-for-foundry-local-inference).
 
 ## Assign the Foundry app role (Layer 1)
 
