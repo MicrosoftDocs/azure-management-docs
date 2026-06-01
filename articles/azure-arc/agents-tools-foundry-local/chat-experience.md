@@ -1,10 +1,10 @@
 ---
 title: How chat works in Agentic Retrieval in Foundry Local
-description: Learn what chat is in Agentic Retrieval in Foundry Local, what users can do with it, and the default local URL.
+description: Learn what chat is in Agentic Retrieval in Foundry Local, what users can do with it, and how users access chat.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/28/2026
+ms.date: 06/01/2026
 ms.service: azure-arc
 ms.subservice: edge-rag
 ai-usage: ai-assisted
@@ -18,7 +18,7 @@ In this article, *chat* is the built-in user chat interface in Agentic Retrieval
 
 Chat helps users ask questions over their content and get grounded answers with citations.
 
-This article explains chat in combined and agentic deployments of the Agentic Retrieval in Foundry Local extension. You learn what users can do in chat, how chat differs from the developer portal `/user` path, and how access control and runtime flow work.
+This article explains chat in combined and agentic deployments of the Agentic Retrieval in Foundry Local extension. You learn what users can do in chat, how users access chat, and how access control and runtime flow work.
 
 ## What users can do in chat
 
@@ -32,7 +32,7 @@ When users open chat, they can:
 
 ## Chat in combined and agentic deployments
 
-If you deploy Agentic Retrieval in combined or agentic deployments, you get chat alongside the developer portal chat at `/user`.
+If you deploy Agentic Retrieval in combined or agentic deployments, end users access chat from the registered URL for your Agentic Retrieval app by using the `/chat` path.
 
 Chat provides:
 
@@ -41,15 +41,11 @@ Chat provides:
 - Streaming responses through Server-Sent Events (SSE).
 - Run-step visibility so users can see the tools and knowledge sources the agent used.
 
-The `/user` chat path queries the knowledge layer directly through the Inference API.
+Chat routes requests through agents, which can call knowledge bases and MCP tools before generating a response.
 
-Chat routes requests through agents, which can call knowledge bases and MCP tools before generating a response. You can use both interfaces at the same time.
+## Chat URL for end users
 
-## Default local URL for chat
-
-The default local chat endpoint is `http://localhost:5173`.
-
-Use this endpoint when you run chat locally.
+Use the registered URL for your Agentic Retrieval app with `/chat` appended. For example: `https://arcrag.contoso.com/chat`.
 
 ## Collection access and RBAC for chat
 

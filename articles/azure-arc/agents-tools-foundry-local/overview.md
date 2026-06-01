@@ -1,5 +1,5 @@
 ---
-title: Agents and Tools with Foundry Local Overview
+title: Agentic Retrieval and Agents and Tools with Foundry Local Overview
 description: "Learn about Agentic Retrieval in Foundry Local, the Azure Arc-enabled Kubernetes extension in the Agents and Tools with Foundry Local platform, used to search on-premises data with generative AI."
 author: cwatson-cat
 ms.author: cwatson
@@ -11,7 +11,7 @@ ms.custom:
   - build-2025
 # Customer intent: As a business decision maker, I want to evaluate Agentic Retrieval in Foundry Local for on-premises data retrieval, so that I can determine if it aligns with our regulatory compliance and AI application needs while enhancing insights and decision-making processes.
 ---
-# What is Agents and Tools with Foundry Local?
+# What is Agentic Retrieval in Agents and Tools with Foundry Local?
 
 Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and grounding capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc.
 
