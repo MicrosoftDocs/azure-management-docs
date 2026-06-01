@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 05/04/2026
+ms.date: 06/1/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Agentic Retrieval in Foundry Local release so that I can plan updates for my organization.
@@ -21,7 +21,7 @@ Agentic Retrieval helps you deploy Retrieval Augmented Generation (RAG) solution
 
 ## June 2026
 
-**Extension version**: `0.9.0` [Preview]
+**Extension version**: `0.9.3` [Preview]
 
 ### Changes
 
