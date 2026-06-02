@@ -20,7 +20,7 @@ The following extensions are currently available to use with Azure Arc-enabled K
 
 Agentic Retrieval in Foundry Local is an Azure Arc-enabled Kubernetes extension that supports Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It provides an agentic retrieval-augmented generation (RAG) platform at the edge. The platform combines a knowledge layer (document ingestion, embeddings, and vector search) with an agentic layer (AI agents, knowledge orchestration, and an MCP server) to create intelligent, multistep assistants grounded in private on-premises data. Agentic Retrieval is supported on Azure Local and in disconnected environments.
 
-For more information, see [What is Agents and Tools with Foundry Local?](../agents-tools-foundry-local/overview.md).
+For more information, see [ Agentic Retrieval in Agents and Tools with Foundry Local](../agents-tools-foundry-local/overview.md).
 
 ## Argo CD (GitOps)
 
