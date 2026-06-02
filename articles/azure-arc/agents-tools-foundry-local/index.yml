@@ -1,0 +1,72 @@
+### YamlMime:Landing
+
+title: Agents and Tools with Foundry Local documentation # < 60 chars
+summary: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension providing agentic RAG at the edge.  # < 160 chars
+
+metadata:
+  title: Agents and Tools with Foundry Local Documentation
+  description: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension used to search on-premises data with generative AI.
+  ms.topic: landing-page
+  author: cwatson-cat
+  ms.author: cwatson
+  ms.date: 05/06/2026
+  ms.service: azure-arc
+  ms.custom: build-2025
+  ms.subservice: edge-rag
+  
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+  # Card (optional)
+  - title: About Agents and Tools with Foundry Local
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Agents and Tools with Foundry Local?
+            url: overview.md
+          - text: Requirements
+            url: requirements.md
+      - linkListType: whats-new
+        links:
+          - text: What's new in Agents and Tools with Foundry Local?
+            url: whats-new.md
+
+  # Card (optional)
+  - title: Evaluate the service
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Quickstart deployment
+            url: quickstart-edge-rag.md
+
+  # Card (optional)
+  - title: Deploy to production
+    linkLists:
+      - linkListType: deploy
+        links:
+          - text: Deployment overview
+            url: deploy-overview.md
+          - text: Complete prerequisites
+            url: complete-prerequisites.md
+          - text: Deploy Agents and Tools with Foundry Local
+            url: deploy.md
+
+  # Card (optional)
+  - title: Explore key capabilities
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Agentic layer overview
+            url: agentic-overview.md
+          - text: Knowledge layer overview
+            url: knowledge-layer-overview.md
+      - linkListType: how-to-guide
+        links:
+          - text: Add data source
+            url: add-data-source.md
+          - text: Set up data query
+            url: set-up-data-query.md
+          - text: Test chat for end users
+            url: test-end-user-app.md
