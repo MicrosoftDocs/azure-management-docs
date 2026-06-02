@@ -55,7 +55,8 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.5.0 (June 2025)
 
-- Support version: n-2
+- Support version: past 6 months, unsupported
+
 - Appliance: 1.5.0
 - CLI extension: 1.5.0
 - Kubernetes: 1.30.4
