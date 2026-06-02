@@ -21,7 +21,7 @@ Azure Container Registry offers three **Pricing Plan** options: Basic, Standard,
 | --- | ----------- |
 | **Basic** | A cost-optimized entry point for developers learning about Azure Container Registry. Basic registries have most of the same capabilities as Standard and Premium registries, such as Microsoft Entra [authentication integration](container-registry-authentication.md#individual-login-with-azure-ad), [image deletion][container-registry-delete], and [webhooks][container-registry-webhook]. However, the included storage and image throughput are most appropriate for lower usage scenarios, and some features aren't available. |
 | **Standard** | Standard registries offer the same capabilities as Basic, with increased included storage and image throughput. Standard registries satisfy the needs of many production scenarios. |
-| **Premium** | Premium registries provide the highest amount of included storage and concurrent operations, enabling high-volume scenarios. In addition to higher image throughput, Premium adds features such as [geo-replication][container-registry-geo-replication] for high availability through managing a single registry across multiple regions, [private link with private endpoints](container-registry-private-link.md) to restrict access to the registry, and higher API concurrency and bandwidth throughput for large-scale concurrent deployments. |
+| **Premium** | Premium registries provide the highest amount of included storage and concurrent operations, enabling high-volume scenarios. In addition to higher image throughput, Premium adds features such as [geo-replication][container-registry-geo-replication] for high availability through managing a single registry across multiple regions, [private link with private endpoints](container-registry-private-endpoints.md) to restrict access to the registry, and higher API concurrency and bandwidth throughput for large-scale concurrent deployments. |
 
 Each SKU includes a specific amount of free storage, with additional storage available at a per-GB rate. Each SKU also has a different maximum storage limit.
 
@@ -92,7 +92,7 @@ Depending on your registry's SKU, usage information includes some or all of the 
 * Storage consumed in bytes
 * Number of [webhooks](container-registry-webhook.md)
 * Number of [geo-replications](container-registry-geo-replication.md) (includes the home replica)
-* Number of [private endpoints](container-registry-private-link.md)
+* Number of [private endpoints](container-registry-private-endpoints.md)
 * Number of [IP access rules](container-registry-access-selected-networks.md)
 * Number of [virtual network rules](container-registry-vnet.md)
 

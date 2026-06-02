@@ -13,7 +13,7 @@ ms.date: 02/28/2025
 
 An Azure container registry by default accepts connections over the internet from hosts on any network. This article shows how to configure your container registry to allow access from only specific public IP addresses or address ranges. It provides equivalent steps using the Azure CLI and Azure portal.
 
-IP network rules are configured on the public registry endpoint. IP network rules don't apply to private endpoints configured with [Private Link](container-registry-private-link.md).
+IP network rules are configured on the public registry endpoint. IP network rules don't apply to private endpoints configured with [Private Link](container-registry-private-endpoints.md).
 
 Configuring IP access rules is available in the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md).
 
@@ -62,7 +62,7 @@ az acr network-rule add \
 
 ## Disable public network access
 
-Optionally, disable the public endpoint on the registry. Disabling the public endpoint overrides all firewall configurations. For example, you might want to disable public access to a registry secured in a virtual network using [Private Link](container-registry-private-link.md).
+Optionally, disable the public endpoint on the registry. Disabling the public endpoint overrides all firewall configurations. For example, you might want to disable public access to a registry secured in a virtual network using [Private Link](container-registry-private-endpoints.md).
 
 > [!NOTE]
 > If the registry is set up in a virtual network with a [service endpoint](container-registry-vnet.md), disabling access to the registry's public endpoint also disables access to the registry within the virtual network.
@@ -130,8 +130,8 @@ To allow the AKS cluster to access the registry, use one of these options:
 
 ## Next steps
 
-* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
-* To set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-endpoints.md).
+* To set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 * For more troubleshooting guidance, see [Troubleshoot network issues with registry](container-registry-troubleshoot-access.md).
 
 [az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az-acr-network-rule-add

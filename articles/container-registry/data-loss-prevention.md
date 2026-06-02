@@ -24,7 +24,7 @@ Export policy is a property introduced in API version **2021-06-01-preview** for
 
 ## Prerequisites
 
-* A Premium container registry configured with a [private endpoint](container-registry-private-link.md).
+* A Premium container registry configured with a [private endpoint](container-registry-private-endpoints.md).
 
 [!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 

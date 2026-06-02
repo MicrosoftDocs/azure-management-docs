@@ -1,8 +1,8 @@
 ---
 title: Filesystem Behavior
 description: Learn about the filesystem interface and behavior around shared filesystems and filesystems undergoing mirror syncs 
-author: adamschwab
-ms.author: adschwab
+author: sethmanheim
+ms.author: sethm
 ms.reviewer: stevenpepin
 ms.date: 03/10/2026
 ms.topic: concept-article
