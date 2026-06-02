@@ -1,0 +1,498 @@
+---
+title: Set Up NFS with Kerberos Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure Active Directory, Kerberos, and NFS with krb5p encryption for on-premises data ingestion with Agentic Retrieval in Foundry Local."
+author: cwatson-cat
+ms.author: cwatson
+ms.topic: how-to
+ms.date: 05/25/2026
+ai-usage: ai-assisted
+ms.subservice: edge-rag
+#customer intent: As a platform administrator, I want to set up NFS with Kerberos authentication so that I can securely ingest on-premises data with Agentic Retrieval in Foundry Local.
+---
+
+# Set up NFS with Kerberos authentication for Agentic Retrieval in Foundry Local
+
+This article shows how to configure NFS with Kerberos (`krb5p`) authentication for ingestion workloads in Agentic Retrieval.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An Azure Local cluster deployed and operational.
+- An Arc-enabled Kubernetes cluster connected to Azure.
+- At least one available worker node for Kerberos workloads.
+- Active Directory Domain Services (AD DS), including a key distribution center (KDC).
+- An NFS server configured for NFSv4.1 (or later) with `sec=krb5p` export options.
+- Required network paths and ports open between worker nodes, domain controllers, DNS/NTP services, and the NFS server. For details, see [Network requirements](connect-file-share-kerberos-reference.md#network-requirements).
+- Reviewed the [NFS with Kerberos authentication overview](connect-file-share-kerberos-overview.md).
+
+## Step 1: Verify your Azure Local cluster
+
+Verify cluster connectivity and node readiness before you configure Kerberos.
+
+```bash
+# Verify cluster nodes
+kubectl get nodes
+# All worker nodes should show STATUS: Ready
+
+# Verify Arc connection
+az connectedk8s show \
+  --name <cluster_name> \
+  --resource-group <resource_group> \
+  -o table
+```
+
+New or replaced nodes don't automatically have Kerberos prerequisites (keytab, `rpc.gssd`, domain join). Use a fixed node pool for Kerberos workloads. If you need autoscaling, see [Add new nodes](connect-file-share-kerberos-reference.md#add-new-nodes).
+
+## Step 2: Join worker nodes to Active Directory
+
+Join all Kubernetes worker nodes that run NFS ingestion to your Active Directory domain.
+
+### Install required packages
+
+```bash
+# Ubuntu / Debian
+sudo apt update && sudo apt install -y realmd sssd sssd-tools adcli packagekit
+
+# RHEL / CentOS
+sudo yum install -y realmd sssd sssd-tools adcli oddjob oddjob-mkhomedir
+```
+
+### Discover and join the domain
+
+```bash
+# Discover the domain
+sudo realm discover <YOUR_DOMAIN>
+
+# Join the domain (prompts for AD admin credentials)
+sudo realm join --verbose <YOUR_DOMAIN> -U <admin_user>@<YOUR_DOMAIN>
+```
+
+### Verify domain join
+
+```bash
+# Verify membership
+realm list
+# Expected output includes:
+#   configured: kerberos-member
+
+# Verify SSSD is running
+sudo systemctl status sssd
+
+# Verify machine keytab was created
+sudo klist -kt /etc/krb5.keytab
+# Should list host/<hostname>@<YOUR_DOMAIN> entries
+```
+
+### Alternative: Manually create a machine SPN (without full domain join)
+
+If full domain join isn't possible, create a machine SPN manually on the domain controller.
+
+```powershell
+# On Windows Domain Controller (PowerShell)
+New-ADComputer -Name "<NODE_NAME>" -SamAccountName "<NODE_NAME>$" `
+  -Path "OU=Kubernetes,DC=contoso,DC=com"
+
+setspn -A nfs/<node_fqdn> <NODE_NAME>
+
+ktpass /out <node_name>.keytab `
+  /princ host/<node_fqdn>@<YOUR_REALM> `
+  /mapuser <NODE_NAME>$ /pass * `
+  /crypto AES256-SHA1 /ptype KRB5_NT_PRINCIPAL
+```
+
+```bash
+# On the Linux node, copy the keytab
+sudo scp <admin_user>@<domain_controller>:/path/<node_name>.keytab /etc/krb5.keytab
+sudo chmod 600 /etc/krb5.keytab
+sudo chown root:root /etc/krb5.keytab
+```
+
+## Step 3: Install and configure Kerberos client
+
+Each worker node requires Kerberos client tools and a configuration file (`/etc/krb5.conf`) to communicate securely with your Active Directory domain.
+
+### Install packages
+
+```bash
+# Ubuntu / Debian
+sudo apt update && sudo apt install -y krb5-user libpam-krb5
+
+# RHEL / CentOS
+sudo yum install -y krb5-workstation krb5-libs
+```
+
+### Configure /etc/krb5.conf
+
+Create or edit `/etc/krb5.conf` on every worker node:
+
+```ini
+[libdefaults]
+    default_realm = <YOUR_REALM>
+    dns_lookup_kdc = true
+    dns_lookup_realm = true
+    ticket_lifetime = 24h
+    renew_lifetime = 7d
+    forwardable = true
+    rdns = true
+
+[realms]
+    <YOUR_REALM> = {
+        kdc = <kdc_server_1>
+        kdc = <kdc_server_2>
+        admin_server = <kdc_server_1>
+        default_domain = <your_domain_lowercase>
+    }
+
+[domain_realm]
+    .<your_domain_lowercase> = <YOUR_REALM>
+    <your_domain_lowercase> = <YOUR_REALM>
+```
+
+Replace the placeholders with your values:
+
+| Placeholder | Example |
+|---|---|
+| `<YOUR_REALM>` (uppercase) | `CORP.EXAMPLE.COM` |
+| `<kdc_server_1>` | `ad-dc1.corp.example.com` |
+| `<kdc_server_2>` | `ad-dc2.corp.example.com` (optional, for HA) |
+| `<your_domain_lowercase>` | `corp.example.com` |
+
+### Validate Kerberos configuration
+
+```bash
+# Test KDC reachability
+kinit <admin_user>@<YOUR_REALM>
+# Enter password when prompted
+
+# Verify ticket
+klist
+# Should show: krbtgt/<YOUR_REALM>@<YOUR_REALM>
+
+# Clean up
+kdestroy
+```
+
+## Step 4: Create a service principal and deploy the keytab
+
+Create the AD service principal and distribute its keytab to each ingestion worker node.
+
+1. Create the service principal in AD.
+1. Deploy the keytab to all worker nodes.
+1. Verify keytab-based authentication on each node.
+
+### Create the service principal in AD
+
+**Option A: Use kadmin (Linux)**
+
+```bash
+sudo kadmin -p <admin_user>@<YOUR_REALM> <<EOF
+addprinc -randkey nfs/<service_account>@<YOUR_REALM>
+ktadd -k /tmp/edgerag-nfs.keytab nfs/<service_account>@<YOUR_REALM>
+EOF
+```
+
+**Option B: Use PowerShell (Windows domain controller)**
+
+```powershell
+# Create service account
+New-ADUser -Name "<service_account_name>" `
+  -UserPrincipalName "<service_account_name>@<your_domain>" `
+  -PasswordNeverExpires $true `
+  -CannotChangePassword $true `
+  -Enabled $true `
+  -AccountPassword (ConvertTo-SecureString "<temp_password>" -AsPlainText -Force)
+
+# Create SPN
+setspn -A nfs/<service_account> <service_account_name>
+
+# Export keytab
+ktpass /out edgerag-nfs.keytab `
+  /princ nfs/<service_account>@<YOUR_REALM> `
+  /mapuser <service_account_name>@<your_domain> `
+  /pass * `
+  /crypto AES256-SHA1 `
+  /ptype KRB5_NT_PRINCIPAL
+```
+
+### Deploy keytab to all worker nodes
+
+```bash
+for NODE in <node_1> <node_2> <node_3>; do
+  echo "Deploying keytab to $NODE..."
+  scp /tmp/edgerag-nfs.keytab ${NODE}:/etc/krb5.keytab
+  ssh ${NODE} "sudo chmod 600 /etc/krb5.keytab && sudo chown root:root /etc/krb5.keytab"
+  echo "  Done."
+done
+```
+
+### Verify keytab on each node
+
+```bash
+# List principals in keytab
+sudo klist -kt /etc/krb5.keytab
+
+# Test non-interactive authentication
+sudo kinit -kt /etc/krb5.keytab nfs/<service_account>@<YOUR_REALM>
+sudo klist
+# Should show valid TGT
+
+# Clean up
+sudo kdestroy
+```
+
+Enter the SPN value (for example, `nfs/edgerag-svc@CONTOSO.COM`) in the **Service Principal Name** field during installation.
+
+## Step 5: Install NFS client and enable rpc-gssd
+
+`rpc-gssd` is the kernel-level Kerberos daemon that intercepts NFS mount requests and acquires tickets by using the keytab. It must run on every worker node.
+
+```bash
+# Install NFS client
+sudo apt install -y nfs-common       # Ubuntu / Debian
+sudo yum install -y nfs-utils        # RHEL / CentOS
+
+# Enable and start rpc-gssd
+sudo systemctl enable rpc-gssd
+sudo systemctl start rpc-gssd
+
+# Verify
+sudo systemctl status rpc-gssd
+# Should show: active (running)
+```
+
+## Step 6: Validate NFS Kerberos mount
+
+Test an NFS mount with Kerberos to verify that the full authentication chain works.
+
+```bash
+# Create a test mount point
+sudo mkdir -p /mnt/nfs-kerberos-test
+
+# Mount with Kerberos
+sudo mount -t nfs4 -o sec=krb5p,vers=4.1 \
+  <nfs_server_fqdn>:<export_path> \
+  /mnt/nfs-kerberos-test
+
+# Verify mount options
+mount | grep nfs-kerberos-test
+# Expected: ... type nfs4 (... sec=krb5p ...)
+
+# Test file access
+ls /mnt/nfs-kerberos-test/
+
+# Clean up
+sudo umount /mnt/nfs-kerberos-test
+sudo rmdir /mnt/nfs-kerberos-test
+```
+
+If this mount fails, deployment of Agentic Retrieval can't continue. Resolve the issue before you continue. For help, see [Troubleshooting](connect-file-share-kerberos-reference.md#troubleshooting).
+
+### NFS server requirements
+
+Your NFS server must be configured to accept Kerberos-authenticated clients.
+
+| Requirement | Details |
+|---|---|
+| NFSv4.1 or later | Required for Kerberos (NFSv3 doesn't support it). |
+| `sec=krb5p` in export options | The export must allow `krb5p` security mode. |
+| NFS server has its own SPN in AD | For example, `nfs/nfs-server@<YOUR_REALM>`. |
+| Proper NFSv4 ID mapping | Should match client configuration. |
+
+Example NFS server export (`/etc/exports`):
+
+```
+/exports/data  *.contoso.com(ro,sync,sec=krb5p,no_subtree_check)
+```
+
+Agentic Retrieval requires you to specify the NFS server by hostname (not IP address). Kerberos SPN construction by `rpc.gssd` relies on DNS, so using an IP address causes authentication to fail.
+
+## Step 7: Configure DNS and time sync
+
+Kerberos authentication depends on correct DNS resolution and time synchronization between your nodes and domain controllers.
+
+### Verify forward and reverse DNS resolution
+
+Kerberos requires both forward and reverse DNS. Without proper DNS, ticket requests can fail.
+
+```bash
+# Forward lookup for the NFS server
+nslookup <nfs_server_fqdn>
+
+# Reverse lookup for the NFS server (required for Kerberos)
+nslookup <nfs_server_ip>
+# Must return the FQDN
+
+# Forward lookup for domain controllers
+nslookup <domain_controller_fqdn>
+
+# KDC SRV records
+nslookup -type=SRV _kerberos._tcp.<your_domain>
+```
+
+### Ensure clock skew is less than 5 minutes
+
+```bash
+# Enable NTP
+sudo timedatectl set-ntp true
+
+# Verify
+timedatectl status
+# NTP synchronized: yes
+
+# Check offset
+chronyc tracking   # or: ntpq -p
+```
+
+## Step 8: Label worker nodes
+
+Label each prepared worker node so pre-install validation can target Kerberos-ready infrastructure.
+
+```bash
+# Label each prepared node
+kubectl label node <node_name> edge-rag/kerberos-provisioned=true
+
+# Verify
+kubectl get nodes -l edge-rag/kerberos-provisioned=true
+```
+
+### Understand the three-label system
+
+Agentic Retrieval uses three distinct node labels for Kerberos:
+
+| Label | Set by | Meaning |
+|---|---|---|
+| `edge-rag/kerberos-provisioned=true` | You (manual `kubectl label`) | Your assertion that you prepared this node with `krb5.conf`, keytab, and `rpc.gssd`. |
+| `edge-rag/kerberos-ready=true` or `false` | DaemonSet (automatic, every 60 seconds) | System verification that Kerberos prerequisites are currently healthy on this node. |
+| `edge-rag/kerberos-reason=<REASON>` | DaemonSet (automatic) | If `ready=false`, the specific failure reason (for example, `KRB5_CONF_MISSING`, `KEYTAB_MISSING`, `KDC_UNREACHABLE`). |
+
+The `provisioned` label is your assertion. The `ready` label is the system's current verification. Ingestion pods schedule only on nodes where `kerberos-ready=true`.
+
+## Step 9: Run the validation script
+
+Run this script on each prepared node before you install Agentic Retrieval.
+
+```bash
+#!/bin/bash
+# Agentic Retrieval: Kerberos prerequisites validation
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+PASS=0
+FAIL=0
+WARN=0
+
+check() {
+    local description="$1"
+    local command="$2"
+    local required="${3:-true}"
+
+    if eval "$command" &>/dev/null; then
+        echo -e "  ${GREEN}[PASS]${NC} $description"
+        PASS=$((PASS + 1))
+    elif [ "$required" = "true" ]; then
+        echo -e "  ${RED}[FAIL]${NC} $description"
+        FAIL=$((FAIL + 1))
+    else
+        echo -e "  ${YELLOW}[WARN]${NC} $description (optional)"
+        WARN=$((WARN + 1))
+    fi
+}
+
+echo "============================================================"
+echo "  Kerberos prerequisites validation"
+echo "  Node: $(hostname -f)"
+echo "  Date: $(date -Iseconds)"
+echo "============================================================"
+echo ""
+
+echo "1. Domain and identity"
+check "Domain joined (realm list)" "realm list 2>/dev/null | grep -qi 'configured: kerberos-member'"
+check "SSSD service running" "systemctl is-active sssd"
+check "Machine hostname resolvable" "nslookup $(hostname -f)"
+echo ""
+
+echo "2. Kerberos configuration"
+check "/etc/krb5.conf exists" "test -f /etc/krb5.conf"
+check "/etc/krb5.conf has default_realm" "grep -q 'default_realm' /etc/krb5.conf"
+check "/etc/krb5.keytab exists" "test -f /etc/krb5.keytab"
+check "/etc/krb5.keytab is non-empty" "test -s /etc/krb5.keytab"
+check "Keytab readable (klist -kt)" "klist -kt /etc/krb5.keytab"
+check "kinit with keytab succeeds" \
+  "kinit -kt /etc/krb5.keytab \$(klist -kt /etc/krb5.keytab 2>/dev/null | tail -1 | awk '{print \$NF}') && kdestroy"
+echo ""
+
+echo "3. NFS services"
+check "nfs-common/nfs-utils installed" \
+  "dpkg -l nfs-common 2>/dev/null | grep -q '^ii' || rpm -q nfs-utils 2>/dev/null"
+check "rpc-gssd enabled" "systemctl is-enabled rpc-gssd"
+check "rpc-gssd running" "systemctl is-active rpc-gssd"
+echo ""
+
+echo "4. DNS resolution"
+REALM=$(grep 'default_realm' /etc/krb5.conf 2>/dev/null | awk '{print $NF}' | tr -d ' ')
+DOMAIN=$(echo "$REALM" | tr '[:upper:]' '[:lower:]')
+check "KDC SRV record resolvable" "nslookup -type=SRV _kerberos._tcp.$DOMAIN"
+check "KDC hostname resolvable" \
+  "grep 'kdc' /etc/krb5.conf | head -1 | awk -F= '{print \$2}' | xargs nslookup"
+echo ""
+
+echo "5. Time synchronization"
+check "NTP synchronized" \
+  "timedatectl status 2>/dev/null | grep -qi 'synchronized: yes\|ntp.*active'"
+echo ""
+
+echo "============================================================"
+echo -e "  Results: ${GREEN}$PASS passed${NC}, ${RED}$FAIL failed${NC}, ${YELLOW}$WARN warnings${NC}"
+if [ $FAIL -eq 0 ]; then
+    echo -e "  ${GREEN}[PASS] Node is ready for Kerberos installation${NC}"
+    echo ""
+    echo "  Next step: apply the label (if not already set):"
+    echo "    kubectl label node $(hostname) edge-rag/kerberos-provisioned=true"
+else
+    echo -e "  ${RED}[FAIL] Node has $FAIL failing checks; resolve them before installation${NC}"
+fi
+echo "============================================================"
+```
+
+Save the script as `validate-kerberos-prereqs.sh` and run it on each node:
+
+```bash
+chmod +x validate-kerberos-prereqs.sh
+sudo ./validate-kerberos-prereqs.sh
+```
+
+## Deploy the extension with Kerberos enabled
+
+After you complete this Kerberos setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agentic Retrieval](deploy.md) and the Kerberos-specific values in this section.
+
+During deployment:
+
+- In the Azure portal, on the **Configurations** tab, turn on **Kerberos** and enter the Kerberos SPN value from this article (for example, `nfs/<service_account>@<YOUR_REALM>`).
+- In Azure CLI, set `enableKerberos="true"` and provide `kerberosSpn` in the CLI script in [Deploy the extension for Agentic Retrieval](deploy.md?tabs=azure-cli).
+
+If you don't plan to use Kerberos, skip this article and continue with the standard deployment flow in [Deploy the extension for Agentic Retrieval](deploy.md).
+
+## Confirm completion
+
+You're ready to continue when:
+
+- Nodes intended for ingestion are labeled `edge-rag/kerberos-provisioned=true`.
+- Kerberos client and keytab validation pass on each worker node.
+- A test NFS mount succeeds with `sec=krb5p`.
+- You applied Kerberos-enabled installation settings successfully.
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Prepare AKS cluster](prepare-aks-cluster.md)
+
+## Related content
+
+- [NFS with Kerberos connection reference](connect-file-share-kerberos-reference.md)

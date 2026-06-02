@@ -1,0 +1,49 @@
+### YamlMime:FAQ
+metadata:
+  title: "Azure Linux Frequently Asked Questions (FAQ) - Packages"
+  description: Frequently asked questions about Azure Linux packages, including how to add packages, upgrade models, and debug symbol packages.
+  keywords: frequently asked questions, faq
+  ms.service: microsoft-linux
+  ms.topic: faq
+  ms.date: 04/29/2026
+title: "Azure Linux frequently asked questions (FAQ) - Packages"
+summary: |
+    This article provides answers to some of the most common questions about Azure Linux packages, including how to add packages, upgrade models, and debug symbol packages.
+
+sections:
+  - name: Ignored
+    questions:
+      - question: |
+          A package I need isn't available in Azure Linux. How do I add it?
+        answer: |
+          Use `mock` or `azldev` to build custom RPMs for Azure Linux. You can then include your custom RPMs in a custom image using Image Customizer. For more information, see [Build RPMs for Azure Linux](./build-rpm-packages.md) and [Customize images with Image Customizer](./customize-images.md).
+
+      - question: |
+          Are packages ever bumped to take non-CVE bug fixes?
+        answer: |
+          The preferred approach remains backporting. However, bug fixes and other business-driven justifications are valid reasons to upgrade a package outside of CVE remediation.
+
+      - question: |
+          What is the requirement for a patch to land on Azure Linux?
+        answer: |
+          Like other Linux distributions, Azure Linux prefers that changes to open-source projects are merged upstream first. We take upgrades or patches only if they're accepted by the upstream maintainers. Under critical situations with reasonable business justification, a hotfix patch can be discussed.
+
+      - question: |
+          What is the Azure Linux package repository structure?
+        answer: |
+          For more information, see [Azure Linux package repositories overview](./package-repositories.md).
+
+      - question: |
+          Where can I find debug symbol packages for Azure Linux?
+        answer: |
+          Debuginfo packages for Azure Linux are published in a separate repository under `packages.microsoft.com`. For more information, see [Install debug symbol packages on Azure Linux](./install-debug-symbol-packages.md).
+
+      - question: |
+          How do I find packages, and how can I identify which package provides a specific file or binary?
+        answer: |
+          Use DNF commands such as:
+
+          - `dnf search`: Finds packages related to a keyword.
+          - `dnf provides`: Identifies which package supplies a specific file or binary.
+
+          For more information, see [Manage Azure Linux packages with DNF5](./manage-packages.md).
