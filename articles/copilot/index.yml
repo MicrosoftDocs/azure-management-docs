@@ -7,7 +7,7 @@ brand: azure
 metadata:
   title: Azure Copilot
   description: Manage operations from cloud to edge with an AI assistant.
-  ms.service: azure-copilot
+  ms.service: copilot-in-azure
   ms.author: rayoflores
   ms.custom:
     - ignite-2023
@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 11/18/2025
+  ms.date: 05/18/2026
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -142,10 +142,6 @@ additionalContent:
         - title: Copilot learning hub
           summary: Get started on your Copilot learning journey.
           url: /copilot/
-        # Card
-        - title: Azure Copilot with AI Shell
-          summary: Access Azure Copilot from your CLI.
-          url: ./ai-shell-overview.md
         # Card
         - title: Azure Copilot with the Azure mobile app
           summary: Use Azure Copilot on your mobile device.

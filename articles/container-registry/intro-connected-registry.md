@@ -92,7 +92,7 @@ Update sync tokens, passwords, or scope maps as needed by using [az acr token](/
 A sync token accesses the endpoint of the parent registry, which is either another connected registry endpoint or the cloud registry itself. When scoped to access the cloud registry, the sync token needs to reach two registry endpoints:
 
 - The fully qualified login server name, such as `contoso.azurecr.io`. This endpoint is used for authentication.
-- A fully qualified regional [data endpoint](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for the cloud registry, such as `contoso.westus2.data.azurecr.io`. This endpoint is used to exchange messages with the connected registry for synchronization purposes. 
+- A fully qualified regional [data endpoint](container-registry-firewall-rules.md#enable-dedicated-data-endpoints) for the cloud registry, such as `contoso.westus2.data.azurecr.io`. This endpoint is used to exchange messages with the connected registry for synchronization purposes. 
 
 ## Current limitations
 

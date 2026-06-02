@@ -3,7 +3,7 @@ title: Execute commands using Azure Copilot
 description: Learn about scenarios where Azure Copilot can help you perform tasks.
 ms.date: 11/18/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.author: jenhayes
 author: JnHs
 # Customer intent: As an Azure user, I want to execute commands using natural language prompts, so that I can efficiently manage my resources without manual navigation in the portal.
@@ -48,4 +48,3 @@ You can also specify the resource name in your prompt. When you say things like 
 
 - Explore [capabilities](capabilities.md) of Azure Copilot.
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Azure Copilot.
-- Learn how to use Azure Copilot with [AI Shell](ai-shell-overview.md). 

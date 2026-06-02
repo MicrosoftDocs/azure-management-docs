@@ -40,7 +40,6 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnect
 |Reduced network bandwidth for policy assignment requests.|✓|✓|Improvement|
 |**Azcmagent**|**1.64**|**1.64**||
 |Added Arc Gateway bypass list support so configured FQDNs skip the gateway and use the customer's enterprise proxy (or direct connection) instead.|✓|✓|Feature|
-|Added a backup file for localconfig.json to improve reliability, mirroring the agentconfig.json backup introduced in 1.62.|✓|✓|Improvement|
 |Added Ubuntu Pro subscription status to detected properties.||✓|Feature|
 |Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures when intermediates aren't cached.|✓||Improvement|
 |HIMDS now refreshes its regional endpoint and retries the heartbeat when the service returns a 421 response.|✓|✓|Improvement|

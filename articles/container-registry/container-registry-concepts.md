@@ -17,7 +17,7 @@ This article introduces the key concepts of container registries, repositories, 
 
 ## Registry
 
-A container *registry* is a service that stores and distributes container images and related artifacts. Docker Hub is an example of a public container registry that serves as a general catalog of Docker container images. Azure Container Registry provides you with direct control of your container content, with integrated authentication, [geo-replication](container-registry-geo-replication.md) supporting global distribution and reliability for network-close deployments, [virtual network configuration with Private Link](container-registry-private-link.md), [tag locking](container-registry-image-lock.md), and many other enhanced features.
+A container *registry* is a service that stores and distributes container images and related artifacts. Docker Hub is an example of a public container registry that serves as a general catalog of Docker container images. Azure Container Registry provides you with direct control of your container content, with integrated authentication, [geo-replication](container-registry-geo-replication.md) supporting global distribution and reliability for network-close deployments, [virtual network configuration with Private Link](container-registry-private-endpoints.md), [tag locking](container-registry-image-lock.md), and many other enhanced features.
 
 In addition to Docker-compatible container images, Azure Container Registry supports a range of [content artifacts](container-registry-image-formats.md) including Helm charts and Open Container Initiative (OCI) image formats.
 

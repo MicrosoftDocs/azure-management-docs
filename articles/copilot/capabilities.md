@@ -3,7 +3,7 @@ title:  Azure Copilot capabilities
 description: Learn about the things you can do with Azure Copilot.
 ms.date: 12/12/2025
 ms.topic: concept-article
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
-# Customer intent: As an Azure user, I want to utilize AI-driven assistance in Azure operations, so that I can optimize my app management, enhance troubleshooting, and efficiently navigate Azure services for improved performance and insights. 
+# Customer intent: As an Azure user, I want to utilize AI-driven assistance in Azure operations, so that I can optimize my app management, enhance troubleshooting, and efficiently navigate Azure services for improved performance and insights.
 ---
 
 # Azure Copilot capabilities
@@ -133,4 +133,3 @@ Keep in mind these general current limitations:
 
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Azure Copilot.
 - Learn about [managing access to Azure Copilot](manage-access.md) in your organization.
-- Learn how to use Azure Copilot with [AI Shell](ai-shell-overview.md) or [in the Azure mobile app](/azure/azure-portal/mobile-app/azure-copilot).
