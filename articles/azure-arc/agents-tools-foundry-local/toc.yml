@@ -1,0 +1,143 @@
+items:
+  - name: Agents and Tools with Foundry Local
+    href: index.yml
+    items:
+      - name: Overview
+        expanded: true
+        items:
+          - name: What is Agents and Tools with Foundry Local?
+            href: overview.md
+          - name: Agentic layer overview
+            href: agentic-overview.md
+          - name: What's new
+            href: whats-new.md
+          - name: Release notes
+            href: release-notes.md
+          - name: Known issues
+            href: known-issues.md
+      - name: Quickstarts
+        items:
+          - name: Deploy Agents and Tools
+            href: quickstart-edge-rag.md
+      - name: Plan
+        items:
+          - name: Requirements
+            href: requirements.md
+          - name: NFS with Kerberos authentication
+            href: connect-file-share-kerberos-overview.md
+          - name: SharePoint Server-to-Server authentication
+            href: connect-sharepoint-overview.md
+      - name: Deploy
+        items:
+          - name: Overview
+            href: deploy-overview.md
+          - name: Complete prerequisites
+            items:
+              - name: Checklist
+                href: complete-prerequisites.md
+              - name: Verify contributor role
+                href: prepare-contributor-permission.md
+              - name: Choose language model
+                href: prepare-language-model.md
+              - name: Create your model endpoint
+                href: prepare-model-endpoint.md
+              - name: Verify NFS server
+                href: prepare-file-server.md
+              - name: Connect NFS with Kerberos (optional)
+                href: connect-file-share-kerberos-setup.md
+              - name: Connect SharePoint Server
+                href: connect-sharepoint-setup.md
+              - name: Prepare AKS cluster
+                href: prepare-aks-cluster.md
+              - name: Configure authentication
+                href: prepare-authentication.md
+              - name: Install networking components
+                href: prepare-networking-observability.md
+              - name: Configure DNS
+                href: prepare-dns.md
+          - name: Deploy Agents and Tools with Foundry Local
+            href: deploy.md
+          - name: Configure Foundry Local inference authentication
+            href: configure-foundry-inference-authentication.md
+          - name: Configure authentication for BYOM
+            href: configure-endpoint-authentication.md
+      - name: Configure knowledge layer
+        items:
+          - name: Overview
+            href: knowledge-layer-overview.md
+          - name: Data collections
+            href: collections-overview.md
+          - name: Advanced data parsing
+            href: advanced-data-parsing.md
+          - name: Add data source
+            href: add-data-source.md
+          - name: Search types
+            href: search-types.md
+          - name: Set up the data query
+            href: set-up-data-query.md
+          - name: Test end user app
+            href: test-end-user-app.md
+      - name: Configure agents
+        items:
+          - name: Agent knowledge connectivity
+            href: mcp-server-overview.md
+          - name: Knowledge bases
+            href: knowledge-bases-guide.md
+          - name: Knowledge sources
+            href: knowledge-sources-guide.md
+      - name: Configure chat experience
+        items:
+          - name: Overview
+            href: chat-experience.md
+      - name: Maintain
+        items:
+          - name: Evaluate system
+            href: evaluate-solution.md
+          - name: Monitor Agents and Tools with Foundry Local
+            href: observability.md
+          - name: Uninstall extension
+            href: uninstall-extension.md
+      - name: Samples
+        items:
+          - name: Enable GPU on AKS
+            href: enable-gpu-aks.md
+          - name: Configure driver machine
+            href: configure-driver-machine.md
+      - name: Responsible AI
+        items: 
+          - name: Transparency note
+            href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/agents-tools-foundry-local/TOC.json&bc=/azure/azure-arc/agents-tools-foundry-local/breadcrumb/toc.json 
+      - name: Reference
+        items:
+          - name: Deployment parameters
+            href: deploy-reference.md          
+          - name: NFS with Kerberos authentication 
+            href: connect-file-share-kerberos-reference.md
+          - name: SharePoint Server-to-Server authentication
+            href: connect-sharepoint-reference.md
+          - name: Configure NFS server
+            href: configure-nfs-server.md
+          - name: Evaluation metrics
+            href: evaluation-metrics.md
+          - name: Monitoring metrics
+            href: observability-metrics.md
+          - name: REST API references
+            items:
+              - name: Agents Runtime REST API
+                href: reference/agents-runtime-api.md
+              - name: Collections REST API
+                href: reference/collections-api-reference.md
+              - name: Inference REST API
+                href: reference/inference-api-reference.md
+              - name: Ingestion REST API
+                href: reference/ingestion-api-reference.md
+              - name: Knowledge Base Manager REST API
+                href: reference/knowledge-base-manager-api.md
+              - name: Knowledge Sources REST API
+                href: reference/knowledge-sources-api-reference.md
+              - name: MCP Server API
+                href: reference/mcp-server-api-reference.md
+          - name: Azure Kubernetes Service (AKS) REST API reference
+            href: /rest/api/aks/
+          - name: Azure Local REST API reference
+            href: /rest/api/stackhci/

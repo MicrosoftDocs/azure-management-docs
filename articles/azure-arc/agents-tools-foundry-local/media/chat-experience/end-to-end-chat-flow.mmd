@@ -1,0 +1,31 @@
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#0078d4',
+  'primaryBorderColor': '#005a9e',
+  'primaryTextColor': '#ffffff',
+  'actorBkg': '#005a9e',
+  'actorBorder': '#005a9e',
+  'actorTextColor': '#ffffff',
+  'lineColor': '#0078d4',
+  'signalColor': '#0078d4',
+  'signalTextColor': '#1b1b1b',
+  'labelBoxBkgColor': '#50e6ff',
+  'labelBoxBorderColor': '#0078d4',
+  'noteBkgColor': '#e6f2fb',
+  'noteTextColor': '#1b1b1b'
+}}}%%
+sequenceDiagram
+    actor User
+    participant UI as Chat UI
+    participant Runtime as agents-runtime
+    participant Agent as Agent + tools
+
+    User->>UI: Open /chat
+    UI->>Runtime: GET /threads
+    Runtime-->>UI: Thread list
+    User->>UI: Send prompt
+    UI->>Runtime: POST /threads/{id}/messages
+    UI->>Runtime: POST /threads/{id}/runs?stream=true
+    Runtime->>Agent: Run agent
+    Agent-->>Runtime: Tool output and answer deltas
+    Runtime-->>UI: Server-sent events
+    UI-->>User: Render streaming answer and citations

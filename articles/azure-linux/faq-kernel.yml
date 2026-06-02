@@ -1,0 +1,44 @@
+### YamlMime:FAQ
+metadata:
+  title: "Azure Linux Frequently Asked Questions (FAQ) - Kernel"
+  description: Frequently asked questions about the Azure Linux kernel, including how to select a kernel version, manage kernel modules, and export kernel dumps for debugging.
+  keywords: frequently asked questions, faq
+  ms.service: microsoft-linux
+  ms.topic: faq
+  ms.date: 04/29/20266
+title: "Azure Linux frequently asked questions (FAQ) - Kernel"
+summary: |
+    This article provides answers to some of the most common questions about the Azure Linux kernel, including how to select a kernel version, manage kernel modules, and export kernel dumps for debugging.
+
+sections:
+  - name: Ignored
+    questions:
+      - question: |
+          How is the kernel version selected for a given Azure Linux release?
+        answer: |
+          The kernel version selected is the current long-term support (LTS) kernel at the time of the Azure Linux major release. For example, Azure Linux 4.0 ships with the LTS kernel version 6.18. For more information, see [Azure Linux release cadence and lifecycle](./release-cadence-lifecycle.md).
+
+      - question: |
+          What is the kernel versioning convention?
+        answer: |
+          Azure Linux kernel versions follow the format `Major.Minor.Patch.Integration-Release.alN`, where:
+
+          - **Major.Minor** is the upstream LTS kernel version (for example, 6.18).
+          - **Patch** is the upstream LTS patch number from `kernel.org`.
+          - **Integration** is the internal integration number for updates on top of the upstream LTS release.
+          - **Release** is the RPM package release number, used when the RPM packaging definition is updated.
+          - **alN** indicates the Azure Linux version (for example, `al4` for Azure Linux 4.0).
+
+          You can check your running kernel version using the `uname -r` command.
+
+      - question: |
+          What are the recommended sizing and placement guidelines for /var/crash when using kdump?
+        answer: |
+          A kdump vmcore is a snapshot of the system’s physical memory at the time of a crash, and its size can be close to the total installed RAM.
+
+          In Azure Linux, vmcore files are stored by default on the operating system (OS) disk under /var/crash. Storing vmcore files there can rapidly consume available space, potentially leading to disk exhaustion and affecting overall system stability. To avoid this, we recommend the following best practices for /var/crash:
+
+          - Provision a dedicated data disk crash dumps instead of relying on the OS disk.
+          - Size the dedicated data disk to at least equal to the system’s total physical memory.
+          - Mount the dedicated data disk to /var/crash.
+          - Avoid using temporary disks (such as /mnt or /mnt/resource), as they aren't persistent in Azure.
