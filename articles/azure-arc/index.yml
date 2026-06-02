@@ -180,8 +180,8 @@ additionalContent:
           summary: Use Arc sites to represent your on-premises environments and see centralized monitoring information across your edge infrastructure.
           url: /azure/azure-arc/site-manager/
         # Card
-        - title: Edge RAG Preview enabled by Azure Arc
-          summary: Search on-premises data with generative AI, using Retrieval Augmented Generation.
+        - title: Agentic Retrieval in Foundry Local
+          summary: Search on-premises data with generative AI using an agentic Retrieval-Augmented Generation (RAG) platform at the edge.
           url: /azure/azure-arc/agents-tools-foundry-local/
         # Card
         - title: Azure Container Storage enabled by Azure Arc
