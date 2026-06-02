@@ -34,5 +34,5 @@ Microsoft Defender for Cloud can scan images in a publicly accessible container 
 ## Next steps
 
 * Learn more about registry access by [trusted services](allow-access-trusted-services.md).
-* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
+* To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-endpoints.md).
 * To set up registry firewall rules, see [Configure public IP network rules](container-registry-access-selected-networks.md).

@@ -104,6 +104,16 @@
       "source_path": "articles/azure-arc/workload-orchestration/tutorial-service-group-scenario-4.md",
       "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/container-registry/container-registry-firewall-access-rules.md",
+      "redirect_url": "/azure/container-registry/container-registry-firewall-rules",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/container-registry/container-registry-private-link.md",
+      "redirect_url": "/azure/container-registry/container-registry-private-endpoints",
+      "redirect_document_id": true
     }
   ]
 }

@@ -63,7 +63,7 @@ Set up a private endpoint when you create a registry, or add a private endpoint 
     |Integrate with private DNS zone |Select **Yes**. |
     |Private DNS Zone |Select *(New) privatelink.azurecr.io* |
 
-   :::image type="content" source="media/container-registry-private-link/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
+   :::image type="content" source="media/private-endpoints/private-link-create-portal.png" alt-text="Screenshot showing the options to create a private endpoint for a new Azure container registry.":::
 
 1. Select **OK**.
 1. Configure the remaining registry settings, and then select **Review + create**. Your registry is created with the private endpoint.
@@ -163,11 +163,19 @@ az network private-endpoint create \
 
 ### Get endpoint IP configuration
 
-To configure DNS records, get the IP configuration of the private endpoint. In this example, the private endpoint's network interface connects to two private IP addresses for the container registry: one for the registry itself, and one for the registry's data endpoint. If your registry is geo-replicated, each replica has an additional IP address.
+To configure DNS records, get the IP configuration of the private endpoint. The private endpoint's network interface connects to one or more private IP addresses for the container registry, depending on registry features:
+
+- **Global endpoint** — 1 private IP address for the registry itself (`myregistry.azurecr.io`).
+- **Dedicated data endpoints** — 1 private IP address per geo-replica for the data endpoint (for example, `myregistry.westus2.data.azurecr.io`). Dedicated data endpoints are automatically enabled when you configure a private endpoint.
+- **Regional endpoints** (if enabled) — 1 additional private IP address per geo-replica for the regional endpoint (for example, `myregistry.westus2.geo.azurecr.io`). Regional endpoints are only available in the **Premium** SKU when you enable them with `az acr update --regional-endpoints Enabled`.
+
+For example, a registry with three geo-replicas and regional endpoints enabled requires **7 private IP addresses**: 1 global + 3 data + 3 regional. Without regional endpoints, the same registry requires **4 private IP addresses**: 1 global + 3 data.
+
+For a complete list of registry endpoint types and their FQDN patterns, see the [endpoint reference](container-registry-endpoint-reference.md).
 
 ## Plan subnet IP capacity for private endpoints
 
-Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
+Each ACR private endpoint network interface consumes private IP addresses from its subnet. The number of IPs grows with geo-replication and regional endpoints. Registries with private endpoints automatically get [dedicated data endpoints](container-registry-firewall-rules.md#enable-dedicated-data-endpoints), so each geo-replica has its own regional dedicated data endpoint that consumes a private IP. Plan your subnet size before enabling these features to avoid provisioning failures.
 
 ### IP address consumption per feature
 
@@ -175,9 +183,9 @@ Each ACR private endpoint network interface consumes private IP addresses from i
 |---|---|
 | Initial private endpoint (registry endpoint + home region regional dedicated data endpoint) | 2 |
 | Each geo-replication region added | +1 (regional dedicated data endpoint) |
-| [Regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints) enabled | +1 per geo-replica |
+| [Regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) enabled | +1 per geo-replica |
 
-**Example:** A registry with 3 geo-replicas and regional endpoints enabled consumes **8 private IPs** per VNet that has a private endpoint to the registry (2 initial + 3 regional dedicated data endpoints + 3 regional endpoints).
+**Example:** A registry with 3 geo-replicas (1 home + 2 added regions) and regional endpoints enabled consumes **7 private IPs** per VNet that has a private endpoint to the registry: 2 initial + 2 regional dedicated data endpoints + 3 regional endpoints. Without regional endpoints, the same registry requires **4 private IPs**: 2 initial + 2 regional dedicated data endpoints.
 
 ### Geo-replication and subnet capacity
 
@@ -202,7 +210,7 @@ Ensure the subnet hosting your private endpoints has sufficient free IP capacity
 
 ### Regional endpoints and IP consumption
 
-If you enable [regional endpoints](container-registry-geo-replication.md#push-or-pull-images-through-geo-replica-regional-endpoints), each geo-replica gets a dedicated login server URL (`myregistry.<region>.geo.azurecr.io`). For registries with private endpoints, this allocates one additional private IP per geo-replica in every associated VNet. Evaluate your subnet capacity before enabling this feature on registries with multiple replicas and many associated VNets.
+If you enable [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview), each geo-replica gets a dedicated login server URL (`myregistry.<region>.geo.azurecr.io`). For registries with private endpoints, this allocates one additional private IP per geo-replica in every associated VNet. Evaluate your subnet capacity before enabling this feature on registries with multiple replicas and many associated VNets.
 
 First, run [az network private-endpoint show][az-network-private-endpoint-show] to query the private endpoint for the network interface ID:
 
@@ -242,7 +250,9 @@ DATA_ENDPOINT_FQDN=$(az network nic show \
 
 #### Additional endpoints for geo-replicas
 
-If your registry is [geo-replicated](container-registry-geo-replication.md), query for the additional data endpoint for each registry replica. For example, in the *eastus* region:
+If your registry is [geo-replicated](container-registry-geo-replication.md), query for the additional data endpoint for each registry replica. If you also enabled [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview), query for the regional endpoint private IP as well.
+
+For example, querying the data endpoint in the *eastus* region:
 
 ```azurecli
 REPLICA_LOCATION=eastus
@@ -256,6 +266,23 @@ GEO_REPLICA_DATA_ENDPOINT_FQDN=$(az network nic show \
   --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_data_$REPLICA_LOCATION'].privateLinkConnectionProperties.fqdns" \
   --output tsv)
 ```
+
+If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are enabled, also query the regional endpoint for each replica:
+
+```azurecli
+GEO_REPLICA_REGIONAL_ENDPOINT_PRIVATE_IP=$(az network nic show \
+  --ids $NETWORK_INTERFACE_ID \
+  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_$REPLICA_LOCATION'].privateIPAddress" \
+  --output tsv)
+
+GEO_REPLICA_REGIONAL_ENDPOINT_FQDN=$(az network nic show \
+  --ids $NETWORK_INTERFACE_ID \
+  --query "ipConfigurations[?privateLinkConnectionProperties.requiredMemberName=='registry_$REPLICA_LOCATION'].privateLinkConnectionProperties.fqdns" \
+  --output tsv)
+```
+
+> [!TIP]
+> Run `az acr show-endpoints --name <registry-name>` to see all endpoint FQDNs for your registry, including regional endpoints. For details, see the [endpoint reference](container-registry-endpoint-reference.md).
 
 When you add a new geo-replication, a private endpoint connection is pending. To approve a private endpoint connection that you configured manually, run [az acr private-endpoint-connection approve][az-acr-private-endpoint-connection-approve].
 
@@ -341,7 +368,7 @@ az acr update --name $REGISTRY_NAME --public-network-enabled false
 Consider the following options to execute the `az acr build` successfully.
 
 * Assign a [dedicated agent pool](./tasks-agent-pools.md).
-* If agent pool isn't available in your region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (`AzureContainerRegistry` service tag) for outbound requests. You can add these IPs to the firewall allowed list.
+* If agent pool isn't available in your region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (`AzureContainerRegistry` service tag) for outbound requests. You can add these IPs to the firewall allowed list.
 
 ## Disable access to a container registry by using a service endpoint
 
@@ -444,10 +471,10 @@ To resolve the registry's public FQDN to the private IP address in these scenari
 
 ### Manually configure DNS records
 
-For some scenarios, you might need to manually configure DNS records in a private zone instead of using the Azure-provided private zone. Be sure to create records for the registry endpoint, the registry's data endpoint, and the data endpoint for any additional regional replica. If you don't configure all records, the registry might be unreachable.
+For some scenarios, you might need to manually configure DNS records in a private zone instead of using the Azure-provided private zone. Be sure to create records for the registry endpoint, the registry's data endpoint, and the data endpoint for any additional regional replica. If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are enabled, also create records for each regional endpoint (`<registry-name>.<region>.geo.azurecr.io`). If you don't configure all records, the registry might be unreachable.
 
 > [!IMPORTANT]
-> If you later add a new replica, you need to manually add a new DNS record for the data endpoint in that region. For example, if you create a replica of *myregistry* in the northeurope location, add a record for `myregistry.northeurope.data.azurecr.io`.
+> If you later add a new replica, you need to manually add a new DNS record for the data endpoint in that region. For example, if you create a replica of *myregistry* in the northeurope location, add a record for `myregistry.northeurope.data.azurecr.io`. If regional endpoints are enabled, also add a record for `myregistry.northeurope.geo.azurecr.io`.
 
 The FQDNs and private IP addresses that you need to create DNS records are associated with the private endpoint's network interface. You can get this information by using the Azure portal or Azure CLI.
 
@@ -458,12 +485,13 @@ After creating DNS records, make sure that the registry FQDNs resolve properly t
 
 ## Pull from a registry with private link enabled
 
-To pull content from a registry with private link enabled, clients must allow access to the registry REST endpoint and all regional data endpoints. The client proxy or firewall must allow access to:
+To pull content from a registry with private link enabled, clients must allow access to the registry REST endpoint and all data endpoints. The client proxy or firewall must allow access to:
 
-- REST endpoint: `{REGISTRY_NAME}.azurecr.io`
-- Data endpoints: `{REGISTRY_NAME}.{REGISTRY_LOCATION}.data.azurecr.io`
+- **Global endpoint**: `{REGISTRY_NAME}.azurecr.io`
+- **Data endpoints**: `{REGISTRY_NAME}.{REGISTRY_LOCATION}.data.azurecr.io`
+- **Regional endpoints** (if enabled): `{REGISTRY_NAME}.{REGISTRY_LOCATION}.geo.azurecr.io`
 
-For a geo-replicated registry, you must configure access to the data endpoint for each regional replica.
+For a geo-replicated registry, you must configure access to the data endpoint (and the regional endpoint, if enabled) for each geo-replica. For the full list of endpoint types, see the [endpoint reference](container-registry-endpoint-reference.md).
 
 Update the routing configuration for the client proxy and client firewall with the data endpoints to handle the pull requests successfully. A client proxy provides central traffic control to [outbound requests][outbound-connection]. To handle local traffic, a client proxy isn't required. You can add endpoints into the `noProxy` section to bypass the proxy. For more information, see [HTTP proxy support in AKS](/azure/aks/http-proxy).
 
@@ -481,7 +509,8 @@ az group delete --name $RESOURCE_GROUP
 
 * To learn more about Private Link, see the [Azure Private Link](/azure/private-link/private-link-overview) documentation.
 * To verify DNS settings in the virtual network that route to a private endpoint, run the [az acr check-health](/cli/azure/acr#az-acr-check-health) command with the `--vnet` parameter. For more information, see [Check the health of an Azure container registry](container-registry-check-health.md).
-* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
+* For a complete list of registry endpoint types and their FQDN patterns, see the [endpoint reference](container-registry-endpoint-reference.md).
 * [Troubleshoot Azure Private Endpoint connectivity problems](/azure/private-link/troubleshoot-private-endpoint-connectivity).
 * If you need to deploy Azure Container Instances that can pull images from an ACR through a private endpoint, see [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi).
 
