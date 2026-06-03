@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - build-2025
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS

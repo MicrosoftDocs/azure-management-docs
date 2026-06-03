@@ -4,7 +4,7 @@ description: Enable additional capabilities on Arc-enabled Server machines by li
 ms.topic: how-to
 ms.date: 02/10/2026
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
