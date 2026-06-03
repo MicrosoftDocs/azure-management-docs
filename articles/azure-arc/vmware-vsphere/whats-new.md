@@ -8,7 +8,7 @@ author: Jeronika-MS
 ms.date: 02/10/2026
 ms.topic: whats-new
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.custom: references_regions
 ---
 

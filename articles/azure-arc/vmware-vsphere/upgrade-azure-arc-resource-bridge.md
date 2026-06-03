@@ -2,7 +2,7 @@
 title: Upgrade the Azure Arc resource bridge associated with VMware vSphere environment
 description: This article describes how to upgrade the Azure Arc resource bridge associated with your VMware vSphere environment.
 ms.service: azure-arc
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
