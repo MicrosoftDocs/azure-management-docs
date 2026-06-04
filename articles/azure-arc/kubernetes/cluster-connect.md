@@ -1,6 +1,6 @@
 ---
-title: "Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters."
-ms.date: 01/24/2025
+title: "Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters"
+ms.date: 06/04/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes clusters from anywhere without requiring any inbound port to be enabled on the firewall."
@@ -118,7 +118,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - For a Microsoft Entra group account:
 
      ```azurepowershell
-     $AAD_ENTITY_ID = (az ad signed-in-user show --query id -o tsv)
+     $AAD_ENTITY_ID = (az ad group show --group <group-name> --query id -o tsv)
      ```
 
    - For a Microsoft Entra single user account:
@@ -162,33 +162,33 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Create a ClusterRoleBinding to [grant this service account the appropriate permissions on the cluster](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding). If you used a different namespace in the first command, substitute it here for `default`.
 
-    ```console
-    kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
-    ```
+   ```console
+   kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
+   ```
 
 1. Create a service account token:
 
-    ```console
-    kubectl apply -f - <<EOF
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: demo-user-secret
-      annotations:
-        kubernetes.io/service-account.name: demo-user
-    type: kubernetes.io/service-account-token
-    EOF
-    ```
+   ```console
+   kubectl apply -f - <<EOF
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: demo-user-secret
+     annotations:
+       kubernetes.io/service-account.name: demo-user
+   type: kubernetes.io/service-account-token
+   EOF
+   ```
 
-    ```console
-    TOKEN=$(kubectl get secret demo-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
-    ```
+   ```console
+   TOKEN=$(kubectl get secret demo-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
+   ```
 
-1. Get the token to output to console
-  
-     ```console
-     echo $TOKEN
-     ```
+1. Get the token to output to console.
+
+   ```console
+   echo $TOKEN
+   ```
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
@@ -200,37 +200,37 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Create a ClusterRoleBinding or RoleBinding to [grant this service account the appropriate permissions on the cluster](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding). If you used a different namespace in the first command, substitute it here for `default`.
 
-    ```console
-    kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
-    ```
+   ```console
+   kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
+   ```
 
 1. Create a service account token. Create a `demo-user-secret.yaml` file with the following content:
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: demo-user-secret
-      annotations:
-        kubernetes.io/service-account.name: demo-user
-    type: kubernetes.io/service-account-token
-    ```
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: demo-user-secret
+     annotations:
+       kubernetes.io/service-account.name: demo-user
+   type: kubernetes.io/service-account-token
+   ```
 
    Then run these commands:
 
-    ```console
-    kubectl apply -f demo-user-secret.yaml
-    ```
+   ```console
+   kubectl apply -f demo-user-secret.yaml
+   ```
 
-    ```console
-    $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
-    ```
+   ```console
+   $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
+   ```
 
 1. Get the token to output to console.
-  
-     ```console
-     echo $TOKEN
-     ```
+
+   ```console
+   echo $TOKEN
+   ```
 
 ---
 
@@ -259,8 +259,8 @@ Now you can access the cluster from a different client. Run the following steps 
 
 1. In a different shell session, use `kubectl` to send requests to the cluster. For example, run the following command:
 
-   ```powershell
-   kubectl get pods -default
+   ```console
+   kubectl get pods -n default
    ```
 
 If the connection is working properly, you see a response from the cluster containing the list of all pods under the `default` namespace.
