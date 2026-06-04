@@ -14,7 +14,7 @@ With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes c
 Access to the API server of the Azure Arc-enabled Kubernetes cluster enables the following scenarios:
 
 - Interactive debugging and troubleshooting.
-- Cluster access to Azure services for [custom locations](custom-locations.md) and other resources created on top of it.
+- Cluster access to Azure services for [custom locations](custom-locations.md) and other resources created on the cluster.
 
 Before you begin, review the [conceptual overview of the cluster connect feature](conceptual-cluster-connect.md).
 
@@ -23,7 +23,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An existing Azure Arc-enabled Kubernetes connected cluster.
-  - If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).
+  - If you haven't connected a cluster yet, use the [quickstart](quickstart-connect-cluster.md).
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
   
 - Enable the [network requirements for Arc-enabled Kubernetes](network-requirements.md), including all endpoints listed as required for cluster connect.
@@ -44,7 +44,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
   az extension update --name connectedk8s
   ```
 
-- Replace the placeholders and run the below command to set the environment variables used in this document:
+- Replace the placeholders and run the following command to set the environment variables:
 
   ```azurecli
   CLUSTER_NAME=<cluster-name>
@@ -56,7 +56,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 
 - Install [the latest version of Azure PowerShell](/powershell/azure/install-azure-powershell).
 
-- Replace the placeholders and run the below command to set the environment variables used in this document:
+- Replace the placeholders and run the following command to set the environment variables:
 
   ```azurepowershell
   $CLUSTER_NAME = <cluster-name>
@@ -78,7 +78,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. Get the `objectId` associated with your Microsoft Entra entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra entity.
+1. Get the `objectId` associated with your Microsoft Entra ID entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra ID entity.
 
    - For a Microsoft Entra group account:
 
@@ -106,7 +106,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
       kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
       ```
 
-   - If you use Azure RBAC for authorization checks on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra entity. For example:
+   - If you use Azure RBAC for authorization checks on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurecli
      az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
@@ -115,7 +115,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-1. Get the `objectId` associated with your Microsoft Entra entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra entity.
+1. Get the `objectId` associated with your Microsoft Entra ID entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra ID entity.
 
    - For a Microsoft Entra group account:
 
@@ -143,7 +143,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
      kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
      ```
 
-   - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra entity. For example:
+   - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurepowershell
      az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
@@ -191,7 +191,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    TOKEN=$(kubectl get secret demo-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
    ```
 
-1. Get the token to output to console.
+1. Output the token to the console:
 
    ```console
    echo $TOKEN
@@ -233,7 +233,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
    ```
 
-1. Get the token to output to console.
+1. Output the token to the console:
 
    ```console
    echo $TOKEN
@@ -247,7 +247,7 @@ After you set up authentication on the cluster, use the following steps from any
 
 1. Sign in using either Microsoft Entra ID authentication or service account token authentication.
 
-1. Get the cluster connect `kubeconfig` needed to communicate with the cluster from anywhere (even outside the firewall surrounding the cluster), based on the authentication option used:
+1. Get the cluster connect `kubeconfig` that you use to communicate with the cluster from anywhere (even outside the firewall), based on your authentication option:
 
    - For Microsoft Entra ID authentication:
 
@@ -272,7 +272,7 @@ After you set up authentication on the cluster, use the following steps from any
    kubectl get pods -n default
    ```
 
-If the connection is working properly, you see a response from the cluster containing the list of all pods under the `default` namespace.
+If the connection works properly, the response lists all pods in the `default` namespace.
 
 ## Known limitations
 
@@ -282,7 +282,7 @@ If you sign in to Azure CLI with a Microsoft Entra ID service principal before r
 
 `Overage claim (users with more than 200 group membership) for SPN is currently not supported. For troubleshooting, please refer to aka.ms/overageclaimtroubleshoot`
 
-This is a known limitation. To get past this error:
+To work around this limitation:
 
 1. Create a [service principal](/cli/azure/create-an-azure-service-principal-azure-cli), which is less likely to be a member of more than 200 groups.
 1. [Sign in](/cli/azure/create-an-azure-service-principal-azure-cli#sign-in-using-a-service-principal) to Azure CLI with the service principal before running the `az connectedk8s proxy` command.
