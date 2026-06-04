@@ -68,11 +68,13 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 
 ## Set up authentication
 
-On the existing Arc-enabled cluster, create the ClusterRoleBinding with either Microsoft Entra authentication or service account token.
+On the existing Arc-enabled cluster, create the ClusterRoleBinding with either Microsoft Entra ID authentication or service account token.
+
+### Microsoft Entra ID authentication
 
 <a name='azure-active-directory-authentication-option'></a>
 
-### Microsoft Entra authentication option
+<a name='microsoft-entra-authentication-option'></a>
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -98,7 +100,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your cluster for direct access, you can create one mapped to the Microsoft Entra ID entity that needs to access this cluster. For example:
 
       ```console
       kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
@@ -135,7 +137,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your cluster for direct access, you can create one mapped to the Microsoft Entra ID entity that needs to access this cluster. For example:
 
      ```console
      kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
@@ -150,11 +152,16 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 ---
 
-### Service account token authentication option
+<a name='service-account-token-authentication-option'></a>
+
+### Service account token authentication
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+> [!NOTE]
+> The commands in this tab assume a Bash-compatible shell (Linux, macOS, or Windows Subsystem for Linux). For Windows PowerShell, use the **Azure PowerShell** tab.
+
+1. With the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -192,7 +199,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+1. With the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -236,21 +243,23 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 ## Access your cluster from a client device
 
-Now you can access the cluster from a different client. Run the following steps on another client device.
+After you set up authentication on the cluster, use the following steps from any client device to open a cluster connect proxy and run `kubectl` commands against the Azure Arc-enabled Kubernetes cluster.
 
-1. Sign in using either Microsoft Entra authentication or service account token authentication.
+1. Sign in using either Microsoft Entra ID authentication or service account token authentication.
 
 1. Get the cluster connect `kubeconfig` needed to communicate with the cluster from anywhere (even outside the firewall surrounding the cluster), based on the authentication option used:
 
-   - For Microsoft Entra authentication:
+   - For Microsoft Entra ID authentication:
 
      ```azurecli
+     # Microsoft Entra ID authentication
      az connectedk8s proxy -n $CLUSTER_NAME -g $RESOURCE_GROUP
      ```
 
    - For service account token authentication:
 
      ```azurecli
+     # Service account token authentication
      az connectedk8s proxy -n $CLUSTER_NAME -g $RESOURCE_GROUP --token $TOKEN
      ```
 
@@ -267,7 +276,9 @@ If the connection is working properly, you see a response from the cluster conta
 
 ## Known limitations
 
-When making requests to the Kubernetes cluster, if the Microsoft Entra service principal used is a part of more than 200 groups, you might see the following error:
+The following limitation applies when you use cluster connect to access an Azure Arc-enabled Kubernetes cluster.
+
+If you sign in to Azure CLI with a Microsoft Entra ID service principal before running `az connectedk8s proxy`, and that service principal is a member of more than 200 groups, you might see the following error:
 
 `Overage claim (users with more than 200 group membership) for SPN is currently not supported. For troubleshooting, please refer to aka.ms/overageclaimtroubleshoot`
 
@@ -278,6 +289,6 @@ This is a known limitation. To get past this error:
 
 ## Next steps
 
-- Set up [Microsoft Entra RBAC](azure-rbac.md) on your clusters.
+- Set up [Microsoft Entra ID RBAC](azure-rbac.md) on your clusters.
 - Deploy and manage [cluster extensions](extensions.md).
 - Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
