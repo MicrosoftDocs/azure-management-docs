@@ -30,7 +30,7 @@ The following table summarizes the key differences between Azure Linux Container
 | **Boot requirements** | Standard AKS virtual machine (VM) sizes | Trusted Launch with Secure Boot and vTPM required (Generation 2 VMs only) |
 | **Architecture support** | AMD64 and ARM64 | AMD64 and ARM64 |
 | **GPU support** | All NVIDIA GPU AMD64 VM sizes on AKS | All NVIDIA GPU AMD64 VM sizes on AKS |
-| **FIPS support** | Supported | Not yet supported |
+| **FIPS support** | Supported | Supported |
 | **Pod Sandboxing** | Supported | Not supported |
 | **Artifact Streaming** | Supported | Not yet supported |
 | **Confidential VMs** | Supported | Not yet supported |
