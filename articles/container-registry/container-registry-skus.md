@@ -63,26 +63,6 @@ The following request rate limits are enforced for each SKU:
 | ListReferrers | Per identity per registry | 250 r/m | 1,000 r/m |
 | OAuth | Per registry | 10,000 r/m | 20,000 r/m |
 
-#### Per-registry and per-identity limits
-
-* **Per registry** limits apply to the combined request rate from all clients and identities to a single registry.
-* **Per identity per registry** limits apply to the request rate from a single identity to a single registry. Per identity limits prevent a single client, such as a vulnerability scanner or a misconfigured deployment, from consuming a registry's entire request capacity. Per identity per registry limits are tracked separately for each registry, so an identity that authenticates to multiple registries isn't throttled across those registries together.
-* For a registry that has [unauthenticated anonymous pull access](anonymous-pull-access.md) enabled, all **anonymous (unauthenticated) requests** are throttled together as a single identity for that single registry.
-* **OAuth** authentication and authorization requests are throttled per registry only, without separate per identity per registry limits.
-
-#### Requests that count against multiple limits
-
-Some requests count against more than one operation category, and a request is throttled if *any* applicable limit is exceeded. For example, a request to list the referrers of a manifest is both a ListReferrers request and a DataplaneRead request, and it consumes capacity from both limits. If your registry has already exhausted its DataplaneRead limit, referrers requests are also throttled, even if the ListReferrers limit hasn't been reached. Likewise, a high rate of referrers requests reduces the DataplaneRead capacity that remains for other read operations, such as image pulls.
-
-#### How rate limits are enforced
-
-Rate limits are enforced by using a token bucket algorithm. Each operation category has a bucket of request capacity that refills continuously at the rate shown in the preceding table. This approach is designed to tolerate bursty workloads:
-
-* **Short bursts above the steady rate are allowed.** A spike of requests, such as a large-scale deployment pulling images across many nodes at the same time, succeeds as long as capacity remains in the bucket.
-* **Sustained traffic must stay at or below the limit.** If a burst empties the bucket, subsequent requests are rejected with `429 Too Many Requests` until capacity refills, which can result in requests being throttled for up to a full minute after a large burst.
-
-When you receive a `429` response, honor the `Retry-After` header and implement retry logic with exponential backoff. For more mitigation guidance, see [Throttling and bandwidth constraints](#throttling-and-bandwidth-constraints).
-
 > [!NOTE]
 > You can increase some limits listed in this table by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). For example, you can request an increase to private endpoint limits, image push and pull performance due to throttling or bandwidth constraints, or general storage limits.
 
