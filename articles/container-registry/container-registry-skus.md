@@ -33,6 +33,56 @@ The following table details the features and registry limits of the Basic, Stand
 
 [!INCLUDE [container-instances-limits](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-limits.md)]
 
+ACR also has the following image pull and push performance limits.
+
+### API request rate limits
+
+In addition to the storage and feature limits in the preceding table, Azure Container Registry enforces request rate limits on registry APIs. Rate limits are measured in requests per minute (r/m) and are determined by your registry's SKU. When your request rate exceeds a limit, the registry returns an HTTP `429 Too Many Requests` error. The response includes a `Retry-After` header that indicates how long to wait before retrying.
+
+Requests are throttled in the following operation categories. Each category is defined by the HTTP methods used by the registry's data plane APIs:
+
+| Operation category | HTTP methods | Examples |
+| --- | --- | --- |
+| **DataplaneRead** | GET, HEAD, OPTIONS | Getting (pulling) image manifests and layers. Getting layer blob location. Listing manifests, repositories, and tags. Checking the existence of a digest or tag. Other read operations. |
+| **DataplaneWrite** | PUT, PATCH, POST | Pushing image manifests and layers. Pushing tags. Other write operations. |
+| **DataplaneDelete** | DELETE | Deleting images, manifests, and tags. |
+| **OAuth** | Authentication (AuthN) and authorization (AuthZ) | Authentication requests that clients make when logging in to a registry login server, such as exchanging from a Microsoft Entra ID access token, a registry admin token, or a non-Microsoft Entra scope mapped token, to a registry refresh token. Authorization requests that clients make before push, pull, and other registry data plane operations, such as exchanging from a registry refresh token to a scoped registry access token. |
+| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. |
+
+The following request rate limits are enforced for each SKU:
+
+| Operation | Scope | Basic and Standard | Premium |
+| --- | --- | --- | --- |
+| DataplaneRead | Per registry | 10,000 r/m | 20,000 r/m |
+| DataplaneRead | Per identity per registry | 5,000 r/m | 10,000 r/m |
+| DataplaneWrite | Per registry | 2,000 r/m | 4,000 r/m |
+| DataplaneWrite | Per identity per registry | 1,000 r/m | 2,000 r/m |
+| DataplaneDelete | Per registry | 1,000 r/m | 4,000 r/m |
+| DataplaneDelete | Per identity per registry | 500 r/m | 2,000 r/m |
+| ListReferrers | Per registry | 500 r/m | 2,000 r/m |
+| ListReferrers | Per identity per registry | 250 r/m | 1,000 r/m |
+| OAuth | Per registry | 10,000 r/m | 20,000 r/m |
+
+#### Per-registry and per-identity limits
+
+* **Per registry** limits apply to the combined request rate from all clients and identities to a single registry.
+* **Per identity per registry** limits apply to the request rate from a single identity to a single registry. Per identity limits prevent a single client, such as a vulnerability scanner or a misconfigured deployment, from consuming a registry's entire request capacity. Per identity per registry limits are tracked separately for each registry, so an identity that authenticates to multiple registries isn't throttled across those registries together.
+* For a registry that has [unauthenticated anonymous pull access](anonymous-pull-access.md) enabled, all **anonymous (unauthenticated) requests** are throttled together as a single identity for that single registry.
+* **OAuth** authentication and authorization requests are throttled per registry only, without separate per identity per registry limits.
+
+#### Requests that count against multiple limits
+
+Some requests count against more than one operation category, and a request is throttled if *any* applicable limit is exceeded. For example, a request to list the referrers of a manifest is both a ListReferrers request and a DataplaneRead request, and it consumes capacity from both limits. If your registry has already exhausted its DataplaneRead limit, referrers requests are also throttled, even if the ListReferrers limit hasn't been reached. Likewise, a high rate of referrers requests reduces the DataplaneRead capacity that remains for other read operations, such as image pulls.
+
+#### How rate limits are enforced
+
+Rate limits are enforced by using a token bucket algorithm. Each operation category has a bucket of request capacity that refills continuously at the rate shown in the preceding table. This approach is designed to tolerate bursty workloads:
+
+* **Short bursts above the steady rate are allowed.** A spike of requests, such as a large-scale deployment pulling images across many nodes at the same time, succeeds as long as capacity remains in the bucket.
+* **Sustained traffic must stay at or below the limit.** If a burst empties the bucket, subsequent requests are rejected with `429 Too Many Requests` until capacity refills, which can result in requests being throttled for up to a full minute after a large burst.
+
+When you receive a `429` response, honor the `Retry-After` header and implement retry logic with exponential backoff. For more mitigation guidance, see [Throttling and bandwidth constraints](#throttling-and-bandwidth-constraints).
+
 > [!NOTE]
 > You can increase some limits listed in this table by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). For example, you can request an increase to private endpoint limits, image push and pull performance due to throttling or bandwidth constraints, or general storage limits.
 
