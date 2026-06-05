@@ -47,6 +47,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 - **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
 - **Permissions**: Grants control plane access to create, configure, and manage registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
+    - authenticate and login to the registry using `az` CLI via the `az acr login` command
+    - run other `az` CLI commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
     - Create, update, view, list, and delete registries (including [registry SKUs](container-registry-skus.md))
     - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
@@ -66,6 +68,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 - **Use case**: Ideal for auditors, monitoring systems, and vulnerability scanners that only need to view registries, audit registry authentication mechanisms, audit registry network access configurations, and view registry policies—without needing permissions to push/pull images or assign roles.
 - **Permissions**: Grants control plane access to view and list registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
+    - authenticate and login to the registry using `az` CLI via the `az acr login` command
+    - run other `az` CLI commands on a registry that read registry control plane configuration (take note that this role does not grant control plane permissions needed to run certain `az` CLI commands that update or delete registry configuration, and does not grant data plane permissions needed to run certain `az` CLI commands)
     - View and list registries (including [registry SKUs](container-registry-skus.md))
     - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
@@ -120,6 +124,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 - **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
 - **Permissions**: Grants control plane access to create, configure, and manage registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
+    - authenticate and login to the registry using `az` CLI via the `az acr login` command
+    - run other `az` CLI commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
     - Create, update, view, list, and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
     - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
@@ -139,6 +145,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 - **Use case**: Ideal for auditors, monitoring systems, and vulnerability scanners that only need to view registries, audit registry authentication mechanisms, audit registry network access configurations, and view registry policies—without needing permissions to push/pull images or assign roles.
 - **Permissions**: Grants control plane access to view and list registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
+    - authenticate and login to the registry using `az` CLI via the `az acr login` command
+    - run other `az` CLI commands on a registry that read registry control plane configuration (take note that this role does not grant control plane permissions needed to run certain `az` CLI commands that update or delete registry configuration, and does not grant data plane permissions needed to run certain `az` CLI commands)
     - View and list registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
     - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
