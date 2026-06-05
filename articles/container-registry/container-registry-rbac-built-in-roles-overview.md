@@ -100,7 +100,7 @@ The following list describes common container registry scenarios and their recom
   - For signing images with [Docker Content Trust (DCT)](container-registry-content-trust.md):
     - Signing images with DCT for ABAC-enabled registries isn't supported.
 
-- **Scenario: Developers and command line scripts that use `az` CLI to authenticate and login to the registry (via the `az acr login` command), as well as to run other `az` CLI commands on a registry.** Take note that identities that only need image pull, push, or delete permissions do not need the following role. This scenario is strictly about clarifying the role that grants permissions to enable running `az` CLI on a registry, including `az acr login` and other `az` commands on a registry. Take note that this role also grants permissions to create, update, or delete ACR registries, as well as granting control plane permissions to maange registry configuration (see below).
+- **Scenario: Developers and command line scripts that use `az` CLI to authenticate and login to the registry (via the `az acr login` command), as well as to run other `az` CLI control plane commands on a registry.** Take note that identities that only need image pull, push, or delete permissions do not need the following role. This scenario is strictly about clarifying the role that grants permissions to enable running `az` CLI on a registry, including `az acr login` and other `az` CLI control plane commands on a registry. Take note that this role also grants permissions to create, update, or delete ACR registries, as well as granting control plane permissions to maange registry configuration (see below).
   - Role: `Container Registry Contributor and Data Access Configuration Administrator`
   - ABAC support: This role doesn't support Microsoft Entra ABAC conditions as the role is scoped to the registry level, granting permissions to authenticate to the registry using `az` CLI (via the `az acr login` command) and manage control plane settings and configurations for the entire registry.
 
@@ -109,7 +109,7 @@ The following list describes common container registry scenarios and their recom
   - Permissions:
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
       - authenticate and login to the registry using `az` CLI via the `az acr login` command
-      - run other `az` CLI commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
+      - run other `az` CLI control plane commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
       - configure ([geo-replications](container-registry-geo-replication.md)),
@@ -184,7 +184,7 @@ The following list describes common container registry scenarios and their recom
     - Permissions: Sign images in the registry with [Docker Content Trust (DCT)](container-registry-content-trust.md).
     - Note: Docker Content Trust is being [deprecated](container-registry-content-trust-deprecation.md).
 
-- **Scenario: Developers and command line scripts that use `az` CLI to authenticate and login to the registry (via the `az acr login` command), as well as to run other `az` CLI commands on a registry.** Take note that identities that only need image pull, push, or delete permissions do not need the following role. This scenario is strictly about clarifying the role that grants permissions to enable running `az` CLI on a registry, including `az acr login` and other `az` commands on a registry. Take note that this role also grants permissions to create, update, or delete ACR registries, as well as granting control plane permissions to maange registry configuration (see below).
+- **Scenario: Developers and command line scripts that use `az` CLI to authenticate and login to the registry (via the `az acr login` command), as well as to run other `az` CLI control plane commands on a registry.** Take note that identities that only need image pull, push, or delete permissions do not need the following role. This scenario is strictly about clarifying the role that grants permissions to enable running `az` CLI on a registry, including `az acr login` and other `az` CLI control plane commands on a registry. Take note that this role also grants permissions to create, update, or delete ACR registries, as well as granting control plane permissions to maange registry configuration (see below).
   - Role: `Container Registry Contributor and Data Access Configuration Administrator`
 
 - **Scenario: Pipelines, identities, and developers that need to create, update, or _delete_ ACR registries**
@@ -192,7 +192,7 @@ The following list describes common container registry scenarios and their recom
   - Permissions:
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
       - authenticate and login to the registry using `az` CLI via the `az acr login` command
-      - run other `az` CLI commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
+      - run other `az` CLI control plane commands on a registry that read, update, or delete registry control plane configuration (take note that this role does not grant data plane permissions needed to run certain `az` CLI commands)
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
       - configure ([geo-replications](container-registry-geo-replication.md)),
