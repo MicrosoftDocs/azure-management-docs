@@ -33,36 +33,6 @@ The following table details the features and registry limits of the Basic, Stand
 
 [!INCLUDE [container-instances-limits](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-limits.md)]
 
-ACR also has the following image pull and push performance limits.
-
-### API request rate limits
-
-In addition to the storage and feature limits in the preceding table, Azure Container Registry enforces request rate limits on registry APIs. Rate limits are measured in requests per minute (r/m) and are determined by your registry's SKU. When your request rate exceeds a limit, the registry returns an HTTP `429 Too Many Requests` error. The response includes a `Retry-After` header that indicates how long to wait before retrying.
-
-Requests are throttled in the following operation categories. Each category is defined by the HTTP methods used by the registry's data plane APIs:
-
-| Operation category | HTTP methods | Examples |
-| --- | --- | --- |
-| **DataplaneRead** | GET, HEAD, OPTIONS | Getting (pulling) image manifests and layers. Getting layer blob location. Listing manifests, repositories, and tags. Checking the existence of a digest or tag. Other read operations. |
-| **DataplaneWrite** | PUT, PATCH, POST | Pushing image manifests and layers. Pushing tags. Other write operations. |
-| **DataplaneDelete** | DELETE | Deleting images, manifests, and tags. |
-| **OAuth** | Authentication (AuthN) and authorization (AuthZ) | Authentication requests that clients make when logging in to a registry login server, such as exchanging from a Microsoft Entra ID access token, a registry admin token, or a non-Microsoft Entra scope mapped token, to a registry refresh token. Authorization requests that clients make before push, pull, and other registry data plane operations, such as exchanging from a registry refresh token to a scoped registry access token. |
-| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. |
-
-The following request rate limits are enforced for each SKU:
-
-| Operation | Scope | Basic and Standard | Premium |
-| --- | --- | --- | --- |
-| DataplaneRead | Per registry | 10,000 r/m | 20,000 r/m |
-| DataplaneRead | Per identity per registry | 5,000 r/m | 10,000 r/m |
-| DataplaneWrite | Per registry | 2,000 r/m | 4,000 r/m |
-| DataplaneWrite | Per identity per registry | 1,000 r/m | 2,000 r/m |
-| DataplaneDelete | Per registry | 1,000 r/m | 4,000 r/m |
-| DataplaneDelete | Per identity per registry | 500 r/m | 2,000 r/m |
-| ListReferrers | Per registry | 500 r/m | 2,000 r/m |
-| ListReferrers | Per identity per registry | 250 r/m | 1,000 r/m |
-| OAuth | Per registry | 10,000 r/m | 20,000 r/m |
-
 > [!NOTE]
 > You can increase some limits listed in this table by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). For example, you can request an increase to private endpoint limits, image push and pull performance due to throttling or bandwidth constraints, or general storage limits.
 
