@@ -23,8 +23,6 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
-> [!IMPORTANT]
-> Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
 
 ## Version 1.64 - May 2026 
 
@@ -47,6 +45,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnect
 |Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
 |Updated Configuration UI to paginate Resource Graph subscription queries so all inherited subscriptions are returned.|✓||Improvement|
 |Added ESU eligibility to azcmagent show output.|✓|✓|Feature|
+|Reverted custom cipher-suite enforcement.|✓||Improvement|
 
 ## Version 1.63 - April 2026
 
