@@ -109,6 +109,7 @@ The following list describes common container registry scenarios and their recom
   - Permissions:
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
       - authenticate and login to the registry using `az` CLI via the `az acr login` command
+      - run other `az` CLI commands on a registry
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
       - configure ([geo-replications](container-registry-geo-replication.md)),
@@ -190,6 +191,8 @@ The following list describes common container registry scenarios and their recom
   - Role: `Container Registry Contributor and Data Access Configuration Administrator`
   - Permissions:
     - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
+      - authenticate and login to the registry using `az` CLI via the `az acr login` command
+      - run other `az` CLI commands on a registry
       - configure [registry SKUs](container-registry-skus.md)
       - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
       - configure ([geo-replications](container-registry-geo-replication.md)),
