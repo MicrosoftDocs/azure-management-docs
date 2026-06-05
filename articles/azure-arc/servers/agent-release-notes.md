@@ -45,6 +45,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnect
 |Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
 |Updated Configuration UI to paginate Resource Graph subscription queries so all inherited subscriptions are returned.|✓||Improvement|
 |Added ESU eligibility to azcmagent show output.|✓|✓|Feature|
+|Updated Go to 1.25.9, reverted custom cipher-suite enforcement, and updated dependencies to address CVEs.|✓|✓|Improvement|
 
 ## Version 1.63 - April 2026
 
