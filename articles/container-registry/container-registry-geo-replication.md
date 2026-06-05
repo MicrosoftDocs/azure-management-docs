@@ -301,6 +301,9 @@ The following diagram illustrates the regional endpoint request flow:
 
 :::image type="content" source="media/geo-replication/geo-replica-regional-endpoint.png" alt-text="Diagram showing the regional endpoint request flow: a client connects to myregistry.region.geo.azurecr.io, the request goes directly to the specific regional geo-replica, and the geo-replica issues a 307 redirect to its data endpoint for blob downloads.":::
 
+> [!NOTE]
+> Images and tags pushed to a geo-replica via the regional endpoint will still be propagated to all other geo-replicas under eventual consistency.
+
 ### Regional endpoints prerequisites
 
 - **Premium SKU** — Regional endpoints are available exclusively on [Premium](container-registry-skus.md) tier registries.
@@ -363,7 +366,7 @@ Regional endpoints support the same authentication methods as the global endpoin
 az acr login --name myregistry --endpoint eastus
 ```
 
-**Tag and push an image to a regional endpoint:**
+**Tag and push an image to a regional endpoint. Images and tags pushed to a geo-replica via the regional endpoint will still be propagated to all other geo-replicas under eventual consistency.**
 
 ```bash
 docker tag myapp:v1 myregistry.eastus.geo.azurecr.io/myapp:v1

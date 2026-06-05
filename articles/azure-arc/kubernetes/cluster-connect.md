@@ -1,6 +1,6 @@
 ---
-title: "Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters."
-ms.date: 01/24/2025
+title: "Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters"
+ms.date: 06/04/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes clusters from anywhere without requiring any inbound port to be enabled on the firewall."
@@ -14,7 +14,7 @@ With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes c
 Access to the API server of the Azure Arc-enabled Kubernetes cluster enables the following scenarios:
 
 - Interactive debugging and troubleshooting.
-- Cluster access to Azure services for [custom locations](custom-locations.md) and other resources created on top of it.
+- Cluster access to Azure services for [custom locations](custom-locations.md) and other resources created on the cluster.
 
 Before you begin, review the [conceptual overview of the cluster connect feature](conceptual-cluster-connect.md).
 
@@ -23,7 +23,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An existing Azure Arc-enabled Kubernetes connected cluster.
-  - If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).
+  - If you haven't connected a cluster yet, use the [quickstart](quickstart-connect-cluster.md).
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
   
 - Enable the [network requirements for Arc-enabled Kubernetes](network-requirements.md), including all endpoints listed as required for cluster connect.
@@ -44,7 +44,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
   az extension update --name connectedk8s
   ```
 
-- Replace the placeholders and run the below command to set the environment variables used in this document:
+- Replace the placeholders and run the following command to set the environment variables:
 
   ```azurecli
   CLUSTER_NAME=<cluster-name>
@@ -56,7 +56,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 
 - Install [the latest version of Azure PowerShell](/powershell/azure/install-azure-powershell).
 
-- Replace the placeholders and run the below command to set the environment variables used in this document:
+- Replace the placeholders and run the following command to set the environment variables:
 
   ```azurepowershell
   $CLUSTER_NAME = <cluster-name>
@@ -68,15 +68,17 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 
 ## Set up authentication
 
-On the existing Arc-enabled cluster, create the ClusterRoleBinding with either Microsoft Entra authentication or service account token.
+On the existing Arc-enabled cluster, create the ClusterRoleBinding with either Microsoft Entra ID authentication or service account token.
+
+### Microsoft Entra ID authentication
 
 <a name='azure-active-directory-authentication-option'></a>
 
-### Microsoft Entra authentication option
+<a name='microsoft-entra-authentication-option'></a>
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. Get the `objectId` associated with your Microsoft Entra entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra entity.
+1. Get the `objectId` associated with your Microsoft Entra ID entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra ID entity.
 
    - For a Microsoft Entra group account:
 
@@ -98,13 +100,13 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use Kubernetes native ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your cluster for direct access, you can create one mapped to the Microsoft Entra ID entity that needs to access this cluster. For example:
 
       ```console
       kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
       ```
 
-   - If you use Azure RBAC for authorization checks on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra entity. For example:
+   - If you use Azure RBAC for authorization checks on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurecli
      az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
@@ -113,12 +115,12 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-1. Get the `objectId` associated with your Microsoft Entra entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra entity.
+1. Get the `objectId` associated with your Microsoft Entra ID entity. For single user accounts, get the user principal name (UPN) associated with your Microsoft Entra ID entity.
 
    - For a Microsoft Entra group account:
 
      ```azurepowershell
-     $AAD_ENTITY_ID = (az ad signed-in-user show --query id -o tsv)
+     $AAD_ENTITY_ID = (az ad group show --group <group-name> --query id -o tsv)
      ```
 
    - For a Microsoft Entra single user account:
@@ -135,13 +137,13 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Authorize the entity with appropriate permissions.
 
-   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `kube-apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
+   - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your cluster for direct access, you can create one mapped to the Microsoft Entra ID entity that needs to access this cluster. For example:
 
      ```console
      kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
      ```
 
-   - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra entity. For example:
+   - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurepowershell
      az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
@@ -150,11 +152,16 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 ---
 
-### Service account token authentication option
+<a name='service-account-token-authentication-option'></a>
+
+### Service account token authentication
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+> [!NOTE]
+> The commands in this tab assume a Bash-compatible shell (Linux, macOS, or Windows Subsystem for Linux). For Windows PowerShell, use the **Azure PowerShell** tab.
+
+1. With the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -162,37 +169,37 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Create a ClusterRoleBinding to [grant this service account the appropriate permissions on the cluster](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding). If you used a different namespace in the first command, substitute it here for `default`.
 
-    ```console
-    kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
-    ```
+   ```console
+   kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
+   ```
 
 1. Create a service account token:
 
-    ```console
-    kubectl apply -f - <<EOF
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: demo-user-secret
-      annotations:
-        kubernetes.io/service-account.name: demo-user
-    type: kubernetes.io/service-account-token
-    EOF
-    ```
+   ```console
+   kubectl apply -f - <<EOF
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: demo-user-secret
+     annotations:
+       kubernetes.io/service-account.name: demo-user
+   type: kubernetes.io/service-account-token
+   EOF
+   ```
 
-    ```console
-    TOKEN=$(kubectl get secret demo-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
-    ```
+   ```console
+   TOKEN=$(kubectl get secret demo-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
+   ```
 
-1. Get the token to output to console
-  
-     ```console
-     echo $TOKEN
-     ```
+1. Output the token to the console:
+
+   ```console
+   echo $TOKEN
+   ```
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-1. With the `kubeconfig` file pointing to the `kube-apiserver` of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
+1. With the `kubeconfig` file pointing to the Kubernetes API server (`kube-apiserver`) of your Kubernetes cluster, run this command to create a service account. This example creates the service account in the default namespace, but you can substitute any other namespace for `default`.
 
    ```console
    kubectl create serviceaccount demo-user -n default
@@ -200,57 +207,59 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 1. Create a ClusterRoleBinding or RoleBinding to [grant this service account the appropriate permissions on the cluster](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding). If you used a different namespace in the first command, substitute it here for `default`.
 
-    ```console
-    kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
-    ```
+   ```console
+   kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --serviceaccount default:demo-user
+   ```
 
 1. Create a service account token. Create a `demo-user-secret.yaml` file with the following content:
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: demo-user-secret
-      annotations:
-        kubernetes.io/service-account.name: demo-user
-    type: kubernetes.io/service-account-token
-    ```
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: demo-user-secret
+     annotations:
+       kubernetes.io/service-account.name: demo-user
+   type: kubernetes.io/service-account-token
+   ```
 
    Then run these commands:
 
-    ```console
-    kubectl apply -f demo-user-secret.yaml
-    ```
+   ```console
+   kubectl apply -f demo-user-secret.yaml
+   ```
 
-    ```console
-    $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
-    ```
+   ```console
+   $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
+   ```
 
-1. Get the token to output to console.
-  
-     ```console
-     echo $TOKEN
-     ```
+1. Output the token to the console:
+
+   ```console
+   echo $TOKEN
+   ```
 
 ---
 
 ## Access your cluster from a client device
 
-Now you can access the cluster from a different client. Run the following steps on another client device.
+After you set up authentication on the cluster, use the following steps from any client device to open a cluster connect proxy and run `kubectl` commands against the Azure Arc-enabled Kubernetes cluster.
 
-1. Sign in using either Microsoft Entra authentication or service account token authentication.
+1. Sign in using either Microsoft Entra ID authentication or service account token authentication.
 
-1. Get the cluster connect `kubeconfig` needed to communicate with the cluster from anywhere (even outside the firewall surrounding the cluster), based on the authentication option used:
+1. Get the cluster connect `kubeconfig` that you use to communicate with the cluster from anywhere (even outside the firewall), based on your authentication option:
 
-   - For Microsoft Entra authentication:
+   - For Microsoft Entra ID authentication:
 
      ```azurecli
+     # Microsoft Entra ID authentication
      az connectedk8s proxy -n $CLUSTER_NAME -g $RESOURCE_GROUP
      ```
 
    - For service account token authentication:
 
      ```azurecli
+     # Service account token authentication
      az connectedk8s proxy -n $CLUSTER_NAME -g $RESOURCE_GROUP --token $TOKEN
      ```
 
@@ -259,25 +268,27 @@ Now you can access the cluster from a different client. Run the following steps 
 
 1. In a different shell session, use `kubectl` to send requests to the cluster. For example, run the following command:
 
-   ```powershell
-   kubectl get pods -default
+   ```console
+   kubectl get pods -n default
    ```
 
-If the connection is working properly, you see a response from the cluster containing the list of all pods under the `default` namespace.
+If the connection works properly, the response lists all pods in the `default` namespace.
 
 ## Known limitations
 
-When making requests to the Kubernetes cluster, if the Microsoft Entra service principal used is a part of more than 200 groups, you might see the following error:
+The following limitation applies when you use cluster connect to access an Azure Arc-enabled Kubernetes cluster.
+
+If you sign in to Azure CLI with a Microsoft Entra ID service principal before running `az connectedk8s proxy`, and that service principal is a member of more than 200 groups, you might see the following error:
 
 `Overage claim (users with more than 200 group membership) for SPN is currently not supported. For troubleshooting, please refer to aka.ms/overageclaimtroubleshoot`
 
-This is a known limitation. To get past this error:
+To work around this limitation:
 
 1. Create a [service principal](/cli/azure/create-an-azure-service-principal-azure-cli), which is less likely to be a member of more than 200 groups.
 1. [Sign in](/cli/azure/create-an-azure-service-principal-azure-cli#sign-in-using-a-service-principal) to Azure CLI with the service principal before running the `az connectedk8s proxy` command.
 
 ## Next steps
 
-- Set up [Microsoft Entra RBAC](azure-rbac.md) on your clusters.
+- Set up [Microsoft Entra ID RBAC](azure-rbac.md) on your clusters.
 - Deploy and manage [cluster extensions](extensions.md).
 - Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
