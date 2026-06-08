@@ -6,7 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 03/25/2026
 ms.service: azure-container-registry
-# Customer intent: "As an IT administrator, I want to manage role assignments and permissions for an Azure Container Registry, so that I can ensure appropriate access control and security for containers and related resources."
+# Customer intent: "As an IT administrator, I want to manage role assignments and permissions for an Azure Container Registry, so that I can ensure appropriate access control and security for container images and related resources."
 ---
 
 # Azure Container Registry Microsoft Entra permissions and role assignments overview
