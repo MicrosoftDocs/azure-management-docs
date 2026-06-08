@@ -13,7 +13,7 @@ Protecting your data is essential for maintaining confidentiality, integrity, an
 
 Keep secret values (passwords, keys, etc.) in a vault, such as [Azure Key Vault](/azure/key-vault/general/overview). It's good practice for such secrets never to leave the vault, and to be used only for signing/crypto operations inside the vault itself. However, for on-premises clusters, you may not be able to reliably maintain your cloud connection to this vault and hence maintain your ability always to use secrets when they're needed. 
 
-If so, consider using the [Azure Key Vault Secret Store extension for Kubernetes (preview)](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE"). This extension can help automatically synchronize selected secrets from an Azure Key Vault and store them for offline use in the Kubernetes secrets store of an Azure Arc-enabled Kubernetes cluster. 
+If so, consider using the [Azure Key Vault Secret Store extension for Kubernetes](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE"). This extension can help automatically synchronize selected secrets from an Azure Key Vault and store them for offline use in the Kubernetes secrets store of an Azure Arc-enabled Kubernetes cluster. 
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -40,7 +40,7 @@ In addition to helping protect your workload data at rest, it’s also important
 
 Plan how you would recover from a loss of your cluster. If you’re using AKS enabled by Azure Arc on Azure Local or other high-availability options, then it can help protect against regular hardware failures. But it’s still possible that the cluster can be lost due to an incident that impacts your whole site or to a cyberattack.
 
-A starting point is to aim for all your configuration and data to be sourced from, and synchronized back to, the cloud. This synchronization means that reinstating your cluster is like initial activation. Consider configuring your cluster using [GitOps with Flux](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2?tabs=azure-cli), synchronizing your Azure Key Vault secrets using the [Secret Store extension (preview)](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s), and synchronizing your data using [Azure Container Storage (preview)](/azure/azure-arc/container-storage/overview).
+A starting point is to aim for all your configuration and data to be sourced from, and synchronized back to, the cloud. This synchronization means that reinstating your cluster is like initial activation. Consider configuring your cluster using [GitOps with Flux](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2?tabs=azure-cli), synchronizing your Azure Key Vault secrets using the [Secret Store extension](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s), and synchronizing your data using [Azure Container Storage (preview)](/azure/azure-arc/container-storage/overview).
 
 Alternatively, you may still need to consider using a dedicated cluster backup solution such as [Velero](https://velero.io/). Such as solution could be necessary if the only copy of some of your data is stored in your cluster or if you require extra protection.
 
