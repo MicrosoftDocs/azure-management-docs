@@ -6,7 +6,7 @@ metadata:
   ms.author: sethm
   ms.topic: faq
   ms.service: azure-arc
-  ms.subservice: azure-arc-container-storage
+  ms.subservice: azure-container-storage-azure-arc
   ms.date: 03/18/2026
   ms.custom: references-regions
 
