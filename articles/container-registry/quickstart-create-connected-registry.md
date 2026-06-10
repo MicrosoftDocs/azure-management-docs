@@ -29,7 +29,7 @@ Even if you use the Azure portal to create your connected registry resource, the
 
 ## Enable the dedicated data endpoint for the cloud registry
 
-Enable the [dedicated data endpoint](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for the Azure container registry in the cloud. This step is necessary to allow the connected registry to communicate with the cloud registry.
+Enable the [dedicated data endpoint](container-registry-firewall-rules.md#enable-dedicated-data-endpoints) for the Azure container registry in the cloud. This step is necessary to allow the connected registry to communicate with the cloud registry.
 
 ### [Azure portal](#tab/azure-portal)
 

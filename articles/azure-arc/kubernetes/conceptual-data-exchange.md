@@ -1,6 +1,6 @@
 ---
 title: "Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure"
-ms.date: 10/11/2024
+ms.date: 06/04/2026
 ms.topic: concept-article
 description: "The scenarios enabled by Azure Arc-enabled Kubernetes involve exchange of desired state configurations, metadata, and other scenario specific operational data."
 # Customer intent: As a cloud administrator, I want to understand the data exchange between Azure Arc-enabled Kubernetes clusters and Azure, so that I can effectively monitor, manage, and optimize the infrastructure and configurations in my hybrid cloud environment.
@@ -8,7 +8,7 @@ description: "The scenarios enabled by Azure Arc-enabled Kubernetes involve exch
 
 # Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure
 
-Azure Arc-enabled Kubernetes scenarios involve exchange of desired state configurations, metadata, and other scenario specific operational data between the Azure Arc-enabled Kubernetes cluster environment and Azure service. For all types of data, the [Azure Arc agents](conceptual-agent-overview.md) initiate outbound communication to Azure services, so they only require only egress access to endpoints listed in the [network prerequisites](network-requirements.md). Enabling inbound ports on firewall isn't required for the Azure Arc agents.
+Azure Arc-enabled Kubernetes scenarios involve exchange of desired state configurations, metadata, and other scenario specific operational data between the Azure Arc-enabled Kubernetes cluster environment and Azure service. For all types of data, the [Azure Arc agents](conceptual-agent-overview.md) initiate outbound communication to Azure services, so they require only egress access to endpoints listed in the [network prerequisites](network-requirements.md). Enabling inbound ports on firewall isn't required for the Azure Arc agents.
 
 The following table describes the data exchanged between these environments for different scenarios.
 

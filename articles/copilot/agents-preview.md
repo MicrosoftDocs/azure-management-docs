@@ -4,7 +4,7 @@ description: Agents (preview) in Azure Copilot provides an agentic, multi-modal 
 author: JnHs
 ms.author: jenhayes
 ms.date: 03/10/2026
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.topic: overview
 
 # Customer intent: "As an Azure Copilot user, I want to access preview features, so that users in my Azure tenant can use agents and new Copilot experiences."

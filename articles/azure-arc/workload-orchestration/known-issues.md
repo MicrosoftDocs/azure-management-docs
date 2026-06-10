@@ -27,7 +27,7 @@ This issue affects Azure CLI version 2.70.0 and occurs when using the `az custom
    - Select your subscription and resource group
    - Enter a name for your custom location
    - Select your Arc-enabled cluster
-   - Select the appropriate extension (either `microsoft.testsymphonyex` or `microsoft.workloadorchestreation`)
+   - Select the appropriate extension (either `microsoft.testsymphonyex` or `microsoft.workloadorchestration`)
    - Specify your namespace (the same value you use in the script)
 1. Complete the creation process. 
 

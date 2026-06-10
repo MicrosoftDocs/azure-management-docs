@@ -11,7 +11,7 @@ ms.date: 03/09/2026
 Upgrades the Azure Connected Machine agent to the latest version, or to a specified version.
 
 > [!NOTE]
-> This command is only supported for machines that are already running version 1.62 or later of the Azure Connected Machine agent. If your machine is running an older version, follow the [manual upgrade instructions](manage-agent.md#upgrade-the-agent).
+> This command is only supported for machines that are already running version 1.62 or later of the Azure Connected Machine agent. If your machine is running an older version, follow the [manual upgrade instructions](manage-agent.md).
 
 ## Usage
 

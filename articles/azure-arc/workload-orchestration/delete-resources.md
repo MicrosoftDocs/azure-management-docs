@@ -13,34 +13,27 @@ ms.custom:
 
 # Delete resources in workload orchestration
 
-This article details how to delete or uninstall any workload orchestration resources in Azure. You can delete resources such as targets, solution templates, schema, and configuration templates.
+This article details how to delete or uninstall any workload orchestration resources in Azure, and its cascading impact on other dependent resources, if any.
 
-IT users can delete resources using the Azure CLI. For more information about workload orchestration, see [Prepare your environment for workload orchestration](initial-setup-environment.md).
+## Delete all resources
 
-## Prerequisites
-
-- Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
+Deleting a resource group results in deletion of all Azure resources within the same.
 
 ## Uninstall a solution
 
 Any installed solution can be uninstalled from a target using the following command:
 
-#### [Bash](#tab/bash)
+### [Bash](#tab/bash)
 
 ```bash
 az workload-orchestration target uninstall --resource-group "$rg"  --target-name "$targetName" --solution-template-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName"
 ```
 
-#### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration target uninstall --resource-group $rg --target-name $targetName --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName
 ```
-
-***
-
-> [!NOTE]
-> In a shared application scenario, uninstalling a dependent app also removes its dependency. However, if the dependency is already uninstalled, the Workload Orchestration portal throws an error as it is unable to find the dependency to remove.
 
 ***
 
@@ -81,14 +74,16 @@ az workload-orchestration target delete --subscription $subId --resource-group $
 
 Target deletion automatically uninstalls all running workloads (instances, solutions, namespaces, and the target itself) from the cluster. The corresponding cloud resources (Target, TargetSolution, TargetSolutionVersion and Instances) are also deleted successfully.
 
+A deleted target can be recreated with the same name successfully. Once the target is re-linked to the relevant common config templates, users can once again start deploying solutions post re-configuring the parameter values.
+
 > [!NOTE]
-> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the arguement `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster will not be impacted.
+> Target deletion without the --force-delete flag fails when underlying cluster is in the *stopped* state, due to cluster connectivity issues. Add the argument `--force-delete true` to successfully delete the target along with all associated cloud resources. Workloads running on the cluster won't be impacted.
 
 ***
 
 ## Delete a solution template version
 
-Delete solution template version across all targets even if it's deployed, using the following command:
+Delete solution template version across all targets using the following command:
 
 ### [Bash](#tab/bash)
 
@@ -103,7 +98,7 @@ az workload-orchestration solution-template remove-version --subscription $subId
 ```
 ***
 
-The deletion succeeds even if the solution template version is being reference by a target solution version, which remains unaffected.
+The deletion succeeds even if the solution template version is being referenced by a target solution version. The solution version remains unaffected.
 You can verify the deletion of the solution template version by listing all revisions of a solution deployed on a target.
 
 ### [Bash](#tab/bash)
@@ -117,11 +112,6 @@ az workload-orchestration target solution-revision-list --target-name "$childNam
 ```powershell
 az workload-orchestration target solution-revision-list --target-name $childName --resource-group $rg --solution-template-name "<solution-version-id>"
 ```
-
-***
-
-> [!NOTE]
-> The argument --solution-template-name currently accepts solution-version-id, obtained after running `az workload-orchestration target review`, as its value. This will be updated in subsequent release.
 
 ***
 
@@ -143,7 +133,9 @@ az workload-orchestration solution-template delete --subscription $subId --resou
 
 ***
 
-Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically.
+Deletion of solution template succeeds even if deployed instances refer to its solution template version. All associated solution template versions also get deleted automatically. Any solutions already reviewed or published, referring to the deleted solution template, can still be deployed. No running workloads are impacted.
+
+Any deleted solution template can be recreated successfully with the same name, referencing the same or a different schema. However, solution parameters need to be re-configured to deploy solutions based on the template.
 
 ***
 
@@ -163,9 +155,12 @@ az workload-orchestration schema delete --subscription "$subId" --resource-group
 az workload-orchestration schema delete --subscription $subId --resource-group $rg --schema-name $schemaName
 ```
 
+Deleting a schema removes all associated schema versions, and any solution templates referencing the schema can't be reviewed.
+
+
 ***
 
-### Delete a configuration template
+## Delete a configuration template
 
 Delete a configuration template and all its versions using the following command:
 
@@ -183,45 +178,6 @@ az workload-orchestration config-template delete --subscription $subId --resourc
 
 ***
 
-### Delete a Context
-
-### [Bash](#tab/bash)
-
-```bash
-az workload-orchestration context delete --resource-group "$rg" -n "$contextName"
-```
-
-### [PowerShell](#tab/powershell)
-
-```powershell
-az workload-orchestration context delete --resource-group $rg -n $contextName
-```
-***
-
-Context deletion succeeds even if targets are created within it. All associated site references are deleted, while the cluster and targets are unaffected. Any context related operation that is triggered while deletion or is already in progress will fail.
-
+Deleting a configuration template removes all its versions and associated hierarchy linkages. A deleted template can be recreated successfully with the same name, referencing the same or a different schema. However, it needs to be linked to hierarchies or targets and configured again. If the recreated configuration template references a different schema and a solution template inherits that schema, the `az workload-orchestration target review` command is expected to fail since the schema properties changed.
 
 ***
-
-### Delete a Custom Location
-
-### [Bash](#tab/bash)
-
-```bash
-az customlocation delete --resource-group "$rg" -n "$customLocationName"
-```
-
-### [PowerShell](#tab/powershell)
-
-```powershell
-az customlocation delete --resource-group $rg -n $customLocationName
-```
-***
-
-All targets associated to the custom location also get deleted, and no new targets can be created. Solution revisions in Review state can be published but not deployed. Deployed solutions remain unaffected but cannot be uninstalled as the cluster is no longer connected to workload orchestration.
-
-***
-
-## Delete existing resources in a resource group 
-
-To delete all resources created with workload orchestration in a resource group, see [Clean-up script](clean-up-script.md). This script allows you to clean up resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions.

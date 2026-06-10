@@ -7,7 +7,7 @@ ms.service: azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.subservice: azure-arc-vmware-vsphere
+ms.subservice: vmware-vsphere-azure-arc
 ---
 
 # Create custom roles with Azure Arc-enabled VMware vSphere

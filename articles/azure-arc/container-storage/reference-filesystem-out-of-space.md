@@ -1,8 +1,8 @@
 ---
 title: Filesystem Out of Space Behavior
 description: Learn about the filesystem interface and behavior around what happens when the underlying filesystem becomes full
-author: adamschwab
-ms.author: adschwab
+author: sethmanheim
+ms.author: sethm
 ms.reviewer: stevenpepin
 ms.date: 03/10/2026
 ms.topic: concept-article

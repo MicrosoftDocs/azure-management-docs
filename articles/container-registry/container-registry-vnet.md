@@ -17,7 +17,7 @@ ms.service: azure-container-registry
 This article shows how to configure a container registry service endpoint (preview) in a virtual network. 
 
 > [!IMPORTANT]
-> Azure Container Registry now supports [Azure Private Link](container-registry-private-link.md), enabling private endpoints from a virtual network to be placed on a registry. We recommend using private endpoints instead of service endpoints in most network scenarios. Private endpoints are accessible from within the virtual network, using private IP addresses.
+> Azure Container Registry now supports [Azure Private Link](container-registry-private-endpoints.md), enabling private endpoints from a virtual network to be placed on a registry. We recommend using private endpoints instead of service endpoints in most network scenarios. Private endpoints are accessible from within the virtual network, using private IP addresses.
 > The container registry doesn't support enabling both private link and service endpoint features configured from a virtual network. Run the list and remove the [network rules](container-registry-vnet.md#remove-network-rules) as required.
 
 Configuring a registry service endpoint is available in the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container SKU features and limits](container-registry-skus.md). Each Premium registry supports a maximum of 100 virtual network rules.
@@ -181,8 +181,8 @@ az group delete --name myResourceGroup
 
 ## Related content
 
-* To restrict access to a registry by using a private endpoint in a virtual network, see [Connect privately to an Azure container registry by using Azure Private Link](container-registry-private-link.md).
-* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
+* To restrict access to a registry by using a private endpoint in a virtual network, see [Connect privately to an Azure container registry by using Azure Private Link](container-registry-private-endpoints.md).
+* If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-rules.md).
 
 <!-- LINKS - Internal -->
 [azure-cli]: /cli/azure/install-azure-cli

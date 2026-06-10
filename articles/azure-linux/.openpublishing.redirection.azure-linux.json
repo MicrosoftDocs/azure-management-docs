@@ -1,3 +1,140 @@
 {
-    "redirections": []
+    "redirections": [
+
+        {
+            "source_path_from_root": "/articles/azure-linux/concepts-core.md",
+            "redirect_url": "/azure/azure-linux/aks-core-concepts",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/concepts-packages.md",
+            "redirect_url": "/azure/azure-linux/aks-packages",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/faq.md",
+            "redirect_url": "/azure/azure-linux/faq-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/how-to-install-certs.md",
+            "redirect_url": "/azure/azure-linux/install-certificates-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/intro-azure-linux.md",
+            "redirect_url": "/azure/azure-linux/azure-linux-aks-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/intro-azure-linux-os-guard.md",
+            "redirect_url": "/azure/azure-linux/os-guard-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-azure-cli.md",
+            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-cli",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-azure-powershell.md",
+            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-powershell",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-azure-resource-manager-template.md",
+            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-arm",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-os-guard-arm-template.md",
+            "redirect_url": "/azure/azure-linux/quick-deploy-os-guard-arm",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-os-guard-azure-cli.md",
+            "redirect_url": "/azure/azure-linux/quick-deploy-os-guard-cli",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/quickstart-terraform.md",
+            "redirect_url": "/azure/azure-linux/deploy-azure-linux-aks-terraform",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/support-cycle.md",
+            "redirect_url": "/azure/azure-linux/aks-support-lifecycle",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/support-help.md",
+            "redirect_url": "/azure/azure-linux/support-options",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/troubleshoot-kernel.md",
+            "redirect_url": "/azure/azure-linux/troubleshoot-kernel-version",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/troubleshoot-packages.md",
+            "redirect_url": "/azure/azure-linux/troubleshoot-package-upgrade-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-create-cluster.md",
+            "redirect_url": "/azure/azure-linux/tutorial-create-cluster-azure-linux-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-add-nodepool.md",
+            "redirect_url": "/azure/azure-linux/tutorial-add-azure-linux-node-pool",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-migration.md",
+            "redirect_url": "/azure/azure-linux/tutorial-migrate-azure-linux-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-os-guard-add-node-pool.md",
+            "redirect_url": "/azure/azure-linux/tutorial-add-os-guard-node-pool",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-os-guard-create-cluster.md",
+            "redirect_url": "/azure/azure-linux/tutorial-create-cluster-os-guard-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-os-guard-migration.md",
+            "redirect_url": "/azure/azure-linux/tutorial-migrate-os-guard-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-os-guard-telemetry-monitor.md",
+            "redirect_url": "/azure/azure-linux/tutorial-monitor-os-guard-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-os-guard-upgrade.md",
+            "redirect_url": "/azure/azure-linux/tutorial-upgrade-os-guard-nodes",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-telemetry-monitor.md",
+            "redirect_url": "/azure/azure-linux/tutorial-monitor-azure-linux-aks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/tutorial-azure-linux-upgrade.md",
+            "redirect_url": "/azure/azure-linux/tutorial-upgrade-azure-linux-nodes",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/how-to-enable-azure-linux-3.md",
+            "redirect_url": "/azure/azure-linux/get-started-azure-linux",
+            "redirect_document_id": false
+        }
+     ]
 }

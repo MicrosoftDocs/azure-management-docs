@@ -3,7 +3,7 @@ title: "Azure Arc-enabled data services validation"
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 11/30/2025
+ms.date: 04/08/2026
 ms.topic: concept-article
 author: MikeRayMSFT
 ms.author: mikeray
@@ -83,8 +83,7 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 |-----|-----|-----|-----|
 |[Portworx Enterprise 3.3.1.1](https://www.purestorage.com/products/cloud-native-applications/portworx.html)<br /> [Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/purestoragemarketplaceadmin.portworx-enterprise?tab=overview) |1.31.9    | 1.39.0_2025-05-13    | 16.0.5564.41214 |
 |[Portworx Enterprise 3.1](https://www.purestorage.com/products/cloud-native-applications/portworx.html)|1.28.7|1.30.0_2024-06-11|16.0.5349.20214|
-|Portworx Enterprise 2.7    1.22.5 |1.20.7 |1.1.0_2021-11-02 |15.0.2148.140 |
-|Portworx Enterprise 2.9 |1.22.5 |1.1.0_2021-11-02 |15.0.2195.191 |
+
 
 ### Red Hat
 
@@ -109,6 +108,7 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 
 |Solution and version | Kubernetes version | Azure Arc-enabled data services version | SQL engine version |
 |-----|-----|-----|-----|
+|[Wind River Cloud Platform 26.03](https://www.windriver.com/products/cloud-platform)|1.34.1|1.44.0_2026-02-10|17.0.429.2218|
 |[Wind River Cloud Platform 25.09](https://www.windriver.com/products/cloud-platform)|1.32.2|1.41.0_2025-09-09|17.0.429.2218|
 |[Wind River Cloud Platform 24.09](https://www.windriver.com/products/cloud-platform)|1.30.6|1.37.0_2025-03-11|16.0.5564|
 |[Wind River Cloud Platform 22.12](https://www.windriver.com/products/cloud-platform)|1.24.4|1.26.0_2023-12-12|16.0.5100.7246|
@@ -118,7 +118,6 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 The Sonobuoy Azure Arc-enabled data services plug-in automates the provisioning and testing of Azure Arc-enabled data services on a Kubernetes cluster.
 
 ### Prerequisites
-v1.22.5+vmware.1
 
 - [Azure Data CLI (`azdata`)](/sql/azdata/install/deploy-install-azdata)
 - [kubectl](https://kubernetes.io/docs/home/)
@@ -147,9 +146,6 @@ More tests will be added in future releases of Azure Arc-enabled data services.
 - [Plan an Azure Arc-enabled data services deployment](plan-azure-arc-data-services.md)
 - [Create a data controller - indirectly connected with the CLI](create-data-controller-indirect-cli.md)
 - To create a directly connected data controller, start with [Prerequisites to deploy the data controller in direct connectivity mode](create-data-controller-direct-prerequisites.md).
-
-
-
 
 
 

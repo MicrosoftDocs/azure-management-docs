@@ -11,6 +11,56 @@ ms.date: 06/01/2025
 
 This article provides troubleshooting guidance for common issues encountered when using workload orchestration in Azure Arc.
 
+## Troubleshoot Kubernetes cluster
+
+This section covers common issues related to setting up an Arc-enabled Kubernetes cluster for workload orchestration. The Azure CLI extension of workload orchestration offers a troubleshooting command to create a support bundle that captures cluster checks, resource snapshots, and container logs pertaining to a Kubernetes cluster of any provider, all packaged into a readable zip file. The same command can be used for self-diagnosis or shared with the support team for quick resolution. 
+Common error causes that are diagnosed as part of this process include:
+
+- Kubernetes cluster is not Arc-enabled.
+- Error in installing workload orchestration extension.
+- Cluster nodes are not in healthy state or do not meet minimum processing and memory requirements.
+- No pods or resource quotas are available in the workload orchestration namespace.
+- Cert manager extension and other prerequisites are not installed.
+- Unauthorized policy engines or proxy settings are enabled on the cluster.
+
+### Steps for troubleshooting
+
+You need to connect to the concerned cluster prior to running the troubleshooting command.
+
+```powershell
+# For AKS cluster
+az aks get-credentials --resource-group $rg --name $clusterName --overwrite-existing
+
+# For non-AKS cluster
+kubectl config get-contexts
+kubectl config use-context <your-cluster-context>
+
+# Verify connection
+kubectl cluster-info
+```
+
+Run the support bundle creation command
+
+```powershell
+az workload-orchestration support create-bundle
+```
+
+To generate the output in a custom directory with a custom name, run:
+```powershell
+az workload-orchestration support create-bundle --output-dir <directory path> --bundle-name <bundle name>
+```
+
+To run checks on specific cluster namespaces, you can use the `--namespaces` argument, followed by the list of desired namespaces. For example:
+```powershell
+az workload-orchestration support create-bundle --namespaces kube-system workloadorchestration
+```
+
+To only run cluster checks and skip generating logs, use:
+```powershell
+az workload-orchestration support create-bundle --skip-logs
+```
+
+
 ## Troubleshoot staging
 
 The section troubleshoots issues related to [staging resources before deployment](how-to-stage.md) in workload orchestration.
@@ -22,7 +72,7 @@ Description: The local edge storage is nearing capacity or runs out of available
 Solution: To resolve this issue, you can free up space on the local edge storage by removing unnecessary files. Run the following command:
 
 ```powershell
-az acr scope-map update -n $$connectedRegistryName -r $ acrName --remove-repo $unwanted_repo_name metadata/read content/read
+az acr scope-map update -n $connectedRegistryName -r $acrName --remove-repo $unwanted_repo_name metadata/read content/read
 ```
 
 ### Issue: Missing or expired authentication token 
@@ -37,7 +87,7 @@ Solution: To resolve this issue, try to uninstall and reinstall the connected re
     az aks show --resource-group $resourceGroup --name $arcCluster --query "networkProfile.serviceCidr" 
     ```
 
-1. Check which IP ranges are in used by the connected registry service.
+1. Check which IP ranges are in use by the connected registry service.
 
     ```powershell
     kubectl get services -A 
@@ -52,7 +102,7 @@ Solution: To resolve this issue, try to uninstall and reinstall the connected re
 1. Configure the connection string for the connected registry to sync with ACR.  
 
     ```powershell
-    connectionString = az acr connected-registry get-settings --name $connectedRegistryName --registry $acrName --parent-protocol https --generate-password 1 --query ACR_REGISTRY_CONNECTION_STRING --subscription $subId --output tsv --yes
+    $connectionString = az acr connected-registry get-settings --name $connectedRegistryName --registry $acrName --parent-protocol https --generate-password 1 --query ACR_REGISTRY_CONNECTION_STRING --subscription $subId --output tsv --yes
     ```
 
 1. Remove carriage return characters.
@@ -134,7 +184,7 @@ az workload-orchestration target publish --resource-group $rg --target-name $tar
 
 Description: Deployment error says it can't find the correct images or image file is corrupted. 
 
-Solution: To resolve this issue, check the ImageUri/repository uri in your solution template helm values and make sure it's the correct value. If you are sure your template is correct, go to the edge cluster and follow these steps to check if the image staged in local is correct.
+Solution: To resolve this issue, check the ImageUri/repository uri in your solution template helm values and make sure it's the correct value. If you are sure your template is correct, go to the edge cluster and follow these steps to check if the image staged locally is correct.
 
 1. Inspect the image in local storage.
 
@@ -155,7 +205,7 @@ Description: The connected registry IP address isn't resolvable, which can happe
 Solution: To resolve this issue, check if you installed connected registry correctly. Run the following command to check the status of the connected registry service.
 
 ```powershell
-Kubectl get service –n connected-registry 
+kubectl get service –n connected-registry 
 ```
 
 ### Issue: ACR resource ID configuration error
@@ -166,7 +216,7 @@ Solution: To resolve this issue, fix your solution template input.
 
 ## Troubleshoot service groups 
 
-For [service group](service-group.md) related resources, only the user who created the resource can fetch/GET that resources due to [RBAC limitations](rbac-guide.md).
+For service group related resources, only the user who created the resource can fetch/GET that resources due to [RBAC limitations](rbac-guide.md).
 
 To fetch service groups, run the following command.
 

@@ -9,15 +9,15 @@ ms.custom: template-how-to, devx-track-ansible
 
 # Connect machines to Azure Arc at scale with Ansible
  
-This article shows how to connect Linux and Windows machines to Azure Arc at scale using the Azure Arc Ansible role included in the [azure.azcollection](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/). The Azure Arc Ansible role automates installation of the Azure Connected Machine agent and registers each target machine with Azure Arc. This enables consistent, repeatable onboarding across large environments without requiring interactive login or manual installation steps. 
+This article shows how to connect Linux and Windows machines to Azure Arc at scale using the [Azure Arc onboarding role](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/) included in the Ansible Galaxy [azure.azcollection](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/). The Azure Arc onboarding role automates installation of the Azure Connected Machine agent and registers each target machine with Azure Arc. This enables consistent, repeatable onboarding across large environments without requiring interactive login or manual installation steps. 
 
-The Azure Arc Ansible role can be used with Ansible Core or Ansible Automation Platform (AAP). This article covers both options and explains how to use each to onboard machines to Azure Arc at scale. 
+The [Azure Arc onboarding role](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/) can be used with Ansible Core or Ansible Automation Platform (AAP). This article covers both options and explains how to use each to onboard machines to Azure Arc at scale. 
 
 ## Overview 
-The **azure_arc role** installs the Azure Connected Machine agent and registers each host with Azure Arc in the specified resource group and subscription. Once registered, the machine appears in Azure as an Arc-enabled server and can be managed using Azure services such as Azure Policy, Update Manager, and Monitor. The Azure Arc Ansible role is used to onboard machines to Azure Arc. It does not discover machines automatically or replace Azure Policy–based management after onboarding. 
+The [**azure_arc role**](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/) installs the Azure Connected Machine agent and registers each host with Azure Arc in the specified resource group and subscription. Once registered, the machine appears in Azure as an Arc-enabled server and can be managed using Azure services such as Azure Policy, Update Manager, and Monitor. The Azure Arc Ansible role is used to onboard machines to Azure Arc. It does not discover machines automatically or replace Azure Policy–based management after onboarding. 
 
 ## Prerequisites 
-Before using the Azure Arc Ansible role, ensure the following requirements are met: 
+Before using the [Azure Arc onboarding role](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/), ensure the following requirements are met: 
 
 ### Azure permissions 
 The identity used by Ansible (Azure CLI user, service principal, or managed identity) must be assigned **the Azure Connected Machine Onboarding role** at the subscription or resource group scope.
@@ -27,12 +27,12 @@ In addition, the subscription must have the following [resource providers regist
 - Microsoft.GuestConfiguration 
 
 ### Ansible prerequisites 
-Before running the Azure Arc Ansible role, ensure:
+Before running the Azure Arc onboarding role, ensure:
 - Network connectivity from the machines you’d like to Arc-enable to the required Azure Arc URLs. Review and address applicable [network requirements](network-requirements.md). To reduce the number of Azure Arc URLs that must be allowlisted in your network or firewall from ~20 URLs to ~7 URLs, you can [use the Arc gateway](arc-gateway.md). 
 - The account that Ansible uses to connect to target machines must have administrator permissions to install software and manage system services (for example, root or sudo access on Linux).
 
 ## Role variables
-The Azure Arc role supports the following variables:
+The [Azure Arc onboarding role](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/) supports the following variables:
 
 | Variable | Description |
 |---|---|
@@ -46,7 +46,7 @@ The Azure Arc role supports the following variables:
 
 ## Authentication options
  
-The Azure Arc role supports multiple authentication methods for automation scenarios. This article covers the most common options, including Azure CLI–based authentication and managed identity.
+The [Azure Arc onboarding role](https://galaxy.ansible.com/ui/repo/published/azure/azcollection/content/role/azure_arc/) supports multiple authentication methods for automation scenarios. This article covers the most common options, including Azure CLI–based authentication and managed identity.
 
 ## Azure CLI credentials
  

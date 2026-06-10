@@ -3,7 +3,7 @@ title: Manage an Azure support request
 description: Learn about viewing support requests and how to send messages, upload files, and manage options.
 tags: billing
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 06/02/2026
 # Customer intent: As an Azure user, I want to manage my support requests effectively, so that I can efficiently communicate with support engineers and ensure timely resolution of issues.
 ---
 
@@ -36,7 +36,7 @@ To provide additional details about your request after you submit it, send a mes
 
 ## Change the severity level of a support request
 
-Follow these steps if you need to change the severity level of an existing support request.
+Follow these steps to change the severity level of an existing support request.
 
 > [!NOTE]
 > The maximum severity level depends on your [support plan](https://azure.microsoft.com/support/plans). In some cases, you can't change the severity level.
@@ -58,7 +58,7 @@ Follow these steps if you need to change the severity level of an existing suppo
 
 ## Allow collection of advanced diagnostic information
 
-When you create a support request, you select **Yes** or **No** in the **Advanced diagnostic information** section. This option determines whether Azure support can gather [diagnostic information](https://azure.microsoft.com/support/legal/support-diagnostic-information-collection/) such as [log files](how-to-create-azure-support-request.md#advanced-diagnostic-information-logs) from your Azure resources that can potentially help resolve your issue. Azure support can only access advanced diagnostic information if you create your case through the Azure portal and grant permission to allow it.
+When you create a support request, select **Yes** or **No** in the **Advanced diagnostic information** section. This option determines whether Azure support can gather [diagnostic information](https://azure.microsoft.com/support/legal/support-diagnostic-information-collection/) such as [log files](how-to-create-azure-support-request.md#advanced-diagnostic-information-logs) from your Azure resources that can potentially help resolve your issue. Azure support can only access advanced diagnostic information if you create your case through the Azure portal and grant permission to allow it.
 
 To change your **Advanced diagnostic information** selection after creating the request:
 
@@ -95,7 +95,7 @@ Select **Close request** to close a support request. When prompted, select **Clo
 Select **Reopen request** to reopen a closed support request. When prompted, select **Reopen request** to confirm. Your support request is active again, and a support engineer is assigned to it.
 
 > [!NOTE]
-> You can generally view and reopen closed support requests for 13 months. After that time, they might be removed, making them unavailable to view or reopen.
+> The period of time during which you can view and reopen closed support requests depends on the type of problem. If you no longer see a previous request but still need help with the issue, open a new request.
 
 ## Get help with a support request
 

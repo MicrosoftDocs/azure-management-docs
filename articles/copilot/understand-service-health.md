@@ -3,7 +3,7 @@ title: Understand service health events and status using Azure Copilot
 description: Learn about scenarios where Azure Copilot can provide information about service health events.
 ms.date: 11/18/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure

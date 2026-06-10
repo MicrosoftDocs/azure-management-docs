@@ -3,7 +3,7 @@ title:  Create Kubernetes YAML files for AKS clusters using Azure Copilot
 description: Learn how Azure Copilot can help you create Kubernetes YAML files for you to customize and use.
 ms.date: 11/24/2025
 ms.topic: how-to
-ms.service: copilot-for-azure
+ms.service: azure-copilot
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure

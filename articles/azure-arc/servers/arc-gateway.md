@@ -309,7 +309,7 @@ To determine how many gateway resources you need per Azure region for multiple r
 
   Where:
 
-  - **Servers** = total standalone servers + provisioned virtual machines (on Azure Local)
+- **Servers** = total standalone servers + provisioned virtual machines (on Azure Local)
   - **Kubernetes clusters** = total standalone Kubernetes clusters + Azure Kubernetes Service Azure Arc clusters (on Azure Local)
   - **Azure Local instances** = total Azure Local deployments
 
@@ -337,7 +337,7 @@ To determine how many gateway resources you need per Azure region for multiple r
   | West Europe     | 2,500   | 120          | 25                    | 2500/20 + 120/10 + 25/10                   | 139.5 |  
   | Southeast Asia  | 900     | 30           | 8                     | 900/20 + 30/10 + 8/10                      | 48.8  |
   
-  - The East US score is >100. Three Azure Arc gateway resources are needed to support the load in this region.
+- The East US score is >100. Three Azure Arc gateway resources are needed to support the load in this region.
   - The West Europe score is >100. Two Azure Arc gateway resources are needed to support the load in this region.  
   - The Southeast Asia score is <100. One Azure Arc gateway resource is needed to support the load in this region.
 
@@ -366,8 +366,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 - Azure Monitor Agent:
 
   - `<log-analytics-workspace-id>.ods.opinsights.azure.com`
-  - `<data-collection-endpoint>.<virtual-machine-region>.ingest.monitor.azure.com`
-
+    
 - Azure Key Vault certificate sync:
 
   - `<vault-name>.vault.azure.net`

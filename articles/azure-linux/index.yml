@@ -1,108 +1,107 @@
 ### YamlMime:Landing
 
-title: Microsoft Azure Linux Container Host for AKS
-summary: The Azure Linux Container Host for AKS provides reliability and consistency from cloud to edge. Learn how to use the Azure Linux Container Host with these quickstarts, tutorials, and how-to guides.
+title: Microsoft Azure Linux
+summary: Azure Linux is a Microsoft-maintained, open-source Linux distribution built for Azure that provides a lightweight, security-hardened operating system for virtual machines (VMs), containers, and Kubernetes clusters running on Azure infrastructure.
 
 metadata:
-  title: Azure Linux Container Host for AKS documentation
-  description: Learn about Azure Linux Container Host to use the container-optimized OS in your AKS clusters.
+  title: Azure Linux documentation
+  description: Learn about Azure Linux, a Microsoft-maintained, open-source Linux distribution built for Azure.
   ms.service: microsoft-linux
   ms.topic: landing-page
-  author: suhuruli
-  ms.author: suhuruli
-  ms.date: 10/07/2025
+  author: schaffererin
+  ms.author: schaffererin
+  ms.date: 05/15/2026
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
-# Start card title with a verb
   # Card 
-  - title: About Azure Linux Container Host for AKS
+  - title: About Azure Linux
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure Linux Container Host for AKS?
-            url: intro-azure-linux.md
-      #- linkListType: whats-new
-      #  links:
-       #   - text: Azure Linux 2.0
-       #     url: azure-linux-supported-versions.md#azure-linux-20
-      - linkListType: concept
+          - text: What is Azure Linux?
+            url: azure-linux-overview.md
+          - text: Architecture overview
+            url: architecture.md
+          - text: Release cadence and lifecycle
+            url: release-cadence-lifecycle.md
+          - text: Supported Azure services
+            url: supported-azure-services.md
+      - linkListType: whats-new
         links:
-          - text: Core concepts
-            url: concepts-core.md
-          #- text: Security
-          #  url: concepts-security.md
-          - text: Packages
-            url: concepts-packages.md
-          #- text: Certification
-          #  url: concepts-certs.md
-          #- text: Azure Linux versions
-           # url: azure-linux-supported-versions.md
+          - text: What's new in Azure Linux 4.0?
+            url: whats-new-azure-linux-4.md
 
   # Card 
-  - title: About Azure Linux with OS Guard (Preview) for AKS
+  - title: Get started
+    linkLists:
+      - linkListType: get-started
+        links:
+          - text: Get started guide
+            url: get-started-azure-linux.md
+      - linkListType: quickstart
+        links:
+          - text: Create an Azure Linux VM using the Azure portal
+            url: quick-create-vm-portal.md
+          - text: Create a cluster with Azure Linux Container Host for AKS
+            url: quick-create-azure-linux-aks.md
+          - text: Create a cluster with Azure Container Linux (ACL) for AKS
+            url: quick-create-azure-container-linux-aks.md
+
+  # Card 
+  - title: Deployment options
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure Linux with OS Guard for AKS?
-            url: intro-azure-linux-os-guard.md
-      - linkListType: quickstart
-        links:
-          - text: Azure CLI
-            url: quickstart-os-guard-azure-cli.md
-          - text: ARM template
-            url: quickstart-os-guard-arm-template.md
-
-
-  # Card 
-  - title: Create an Azure Linux cluster in 5 minutes
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Azure CLI
-            url: quickstart-azure-cli.md
-          - text: ARM template
-            url: quickstart-azure-resource-manager-template.md
-          - text: Terraform
-            url: quickstart-terraform.md
+          - text: Overview of Azure Linux deployment options
+            url: deployment-options.md
+          - text: Azure Linux for AKS
+            url: get-started-aks.md
+          - text: Azure Linux for Virtual Machines and Virtual Machine Scale Sets
+            url: azure-linux-vm-vmss-overview.md
+          - text: Azure Linux container images
+            url: container-images-overview.md
 
   # Card
-  - title: Deploy, manage, and update applications
+  - title: Support and troubleshooting
     linkLists:
-      - linkListType: tutorial
+      - linkListType: overview
         links:
-          - text: 1. Create a cluster with Azure Linux
-            url: tutorial-azure-linux-create-cluster.md
-          - text: 2. Add an Azure Linux node pool to your existing cluster
-            url: tutorial-azure-linux-add-nodepool.md
-          - text: 3. Migrating to Azure Linux
-            url: tutorial-azure-linux-migration.md
-          - text: 4. Enable telemetry and monitoring
-            url: tutorial-azure-linux-telemetry-monitor.md
-          - text: 5. Upgrade Azure Linux nodes
-            url: tutorial-azure-linux-upgrade.md
-
+          - text: Support options
+            url: support-options.md
+          - text: Report issues and request features
+            url: report-issues-request-features.md
+      - linkListType: how-to-guide
+        links:
+          - text: Troubleshoot package upgrade issues
+            url: troubleshoot-package-upgrade-aks.md
+          - text: Troubleshoot outdated kernel versions
+            url: troubleshoot-kernel-version.md
+  
   # Card
-  - title: Troubleshooting
+  - title: Contribute to Azure Linux
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Package upgrade issues
-            url: troubleshoot-packages.md
-          - text: Kernel versioning issues 
-            url: troubleshoot-kernel.md
+          - text: Contribution best practices
+            url: how-to-contribute.md
+          - text: Contribute to documentation
+            url: contribute-to-docs.md
+          - text: Contribute to code
+            url: contribute-to-code.md
 
   # Card
-  - title: Get help
+  - title: Frequently asked questions (FAQ)
     linkLists:
       - linkListType: reference
         links:
-          - text: Support
-            url: /azure/aks/support-policies
-          - text: Release notes
-            url: https://github.com/microsoft/CBL-Mariner/releases
-          - text: FAQ
-            url: faq.md
-
+          - text: General
+            url: faq-general.yml
+          - text: Kernel
+            url: faq-kernel.yml
+          - text: Packages
+            url: faq-packages.yml
+          - text: Azure Linux on AKS
+            url: faq-aks.yml

@@ -10,7 +10,7 @@ ms.custom: references_regions
 # What's new with Azure Connected Machine agent
 
 > [!WARNING]
-> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
+> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#enable-automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
 The Azure Connected Machine agent receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about:
 
@@ -23,8 +23,51 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
-> [!IMPORTANT]
-> Starting from version 1.56 of the Connected Machine agent for Windows (excluding Windows Server 2012 and Windows Server 2012 R2), you must configure cipher suites for at least one of the recommended TLS versions. For more information, see [Windows TLS configuration issues](troubleshoot-networking.md#windows-tls-configuration-issues).
+
+## Version 1.64 - May 2026 
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature|Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**   |**1.29.109.0**|**1.26.110.0**||
+|Updated OpenSSL from 3.6.1 to 3.6.2.|✓|✓|Improvement|
+|Updated bundled PowerShell version from 7.4.14 to 7.4.15.|✓||Improvement|
+|Fixed security baseline customization report failing with invalid JSON due to long configuration parameter values.|✓|✓|Bug Fix|
+|Fixed compliance reporting for unknown Linux distributions in security baseline assignments to correctly report as non-compliant.||✓|Bug Fix|
+|Reduced network bandwidth for policy assignment requests.|✓|✓|Improvement|
+|**Azcmagent**|**1.64**|**1.64**||
+|Added Arc Gateway bypass list support so configured FQDNs skip the gateway and use the customer's enterprise proxy (or direct connection) instead.|✓|✓|Feature|
+|Added Ubuntu Pro subscription status to detected properties.||✓|Feature|
+|Windows install script now extracts intermediate certificates from the MSI Authenticode signature to avoid validation failures when intermediates aren't cached.|✓||Improvement|
+|HIMDS now refreshes its regional endpoint and retries the heartbeat when the service returns a 421 response.|✓|✓|Improvement|
+|Fixed an issue where agentconfig.json was unnecessarily read before onboarding, and added retry logic when saving the agent certificate to the cert store.|✓||Bug Fix|
+|Fixed agent version stamping when binaries are replaced during auto-upgrade and removed false positives from the upgrade launcher script.|✓||Bug Fix|
+|Updated Configuration UI to paginate Resource Graph subscription queries so all inherited subscriptions are returned.|✓||Improvement|
+|Added ESU eligibility to azcmagent show output.|✓|✓|Feature|
+|Reverted custom cipher-suite enforcement.|✓||Improvement|
+
+## Version 1.63 - April 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.63/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+|**Guest Config**   |**1.29.107.0**|**1.26.108.0**||
+|Fixed extension package signing validation to match the expected catalog or signature file by name, preventing validation failures when multiple signing files are present.|✓|✓|Bug Fix|
+|Fixed status file parsing errors during Run Command extension install recovery.|✓|✓|Bug Fix|
+|Added early failure with a clear error message when the extension install path has the noexec mount flag set.||✓|Improvement|
+|Improved HIMDS token path handling for environments with symlinked directories.||✓|Improvement|
+|Stopped unnecessary error messages from heartbeat scripts appearing in /var/log/messages.||✓|Improvement|
+|Updated bundled PowerShell version from 7.4.13 to 7.4.14.|✓|✓|Improvement|
+|Improved compliance reporting for security baseline policy assignments.|✓|✓|Improvement|
+|Addressed CVE-2026-2673 ||✓|Bug Fix|
+|**Azcmagent**|**1.63**|**1.63**||
+|Added TLS cipher suite validation to azcmagent check command.|✓|✓|Feature|
+|Arc proxy now uses SSL endpoint for communication with HIMDS.|✓|✓|Feature|
+|Added BIOS serial number to detected properties.|✓||Feature|
+|Added retry logic for heartbeat and cloud config retrieval on 5xx server errors.|✓|✓|Improvement|
+|Increased timeout for identity requests.|✓|✓|Improvement|
 
 ## Version 1.62 - March 2026
 
@@ -64,12 +107,12 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnect
 |Added option to disable automatic upgrades locally.|✓|✓|Feature|
 |Added MSI signature verification to the Windows installation script for enhanced security.|✓||Improvement|
 |Fixed a bug in the Linux install script where the wrong package manager was invoked on some distributions.||✓|Bug Fix|
-|Fix bug where serial number is not detected by `azcmagent connect` command, causing certificate-based authentication to fail.|✓||Bug Fix|
+|Fix bug where serial number isn't detected by `azcmagent connect` command, causing certificate-based authentication to fail.|✓||Bug Fix|
 |Fix bug causing installation to fail on machines with .NET < 4.5.1.|✓||Bug Fix|
 
 ### Known issues
 
-On Windows, if a user downgrades the Azure Arc agent from version 1.61 to any earlier version, the agent may become disconnected.
+On Windows, if a user downgrades the Azure Arc agent from version 1.61 to any earlier version, the agent might become disconnected.
 
 To restore connectivity, a change must be made to the agent configuration file. Please use one of the following methods to edit permissions on the agentconfig.json:
 
@@ -152,58 +195,11 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.57/AzureConnect
 
 ### Known Issues
 
-If the Windows installer is launched by double-clicking (followed by the UAC prompt), it may fail to configure the Arc services properly. To ensure successful installation, please use one of the following methods:
+If the Windows installer is launched by double-clicking (followed by the UAC prompt), it might fail to configure the Arc services properly. To ensure successful installation, please use one of the following methods:
 
 - **Right-click** the installer and select **Run as administrator**, or
 
 - Execute the installer using `msiexec` from an **elevated PowerShell or Command Prompt**.
-
-## Version 1.56 - September 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-| Feature| Windows |Linux|Change Type|
-| -------- | -------- | -------- | -------- |
-| **Guest Config**   | **1.29.99.0**   |**1.26.94.0**||
-|Increased timeout when retrieving data from HIMDS on Azure Local servers.| ✓ |✓|Bug Fix|
-|**Azcmagent**|**1.56.03167.2465**|**1.56.03167.593**||
-|Added support for ARM64 Debian 12.||✓|New Distro Support|
-|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓|Security, Bug Fix|
-|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓||Security, Bug Fix|
-|Enforces minimum-required TLS cipher-suite enablement.|✓||Security, Bug Fix|
-|Removed requests concerning the Arc gateway feature for ALDO (Azure Local Disconnected Operations).|✓ |✓ |Bug Fix|
-|Increased token acquisition timeout.|✓ |✓ |Bug Fix|
-|HIMDS now reports 'service stop' only after cleanup tasks complete.|✓ ||Bug Fix|
-
-## Version 1.55 - August 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Improved logic to accurately detect whether the server is Azure Local.
-
-- Arc proxy no longer requests tokens from HIMDS unless explicitly enabled.
-
-- [Windows Only] Minor accessibility improvements to the GUI application.
-
-## Version 1.54 - July 2025
-
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Fixed issues related to double-free memory errors and updating policy compliance status.
-
-- [Linux Only] Updated Boost on Linux to resolve service start issues caused by compatibility problems.
-
-- [Linux Only] Corrected Arc proxy log file permission during upgrade.
-
-- [Windows Only] Updated local PATH environment variable to resolve service install/delete errors.
-
-### New features and enhancements
-
-- Added support for managed identity-based custom policy downloads.
 
 > [!NOTE]
 > This article contains updates covering the past six months. For earlier releases, see [Archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md)

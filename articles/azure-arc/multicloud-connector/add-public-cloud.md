@@ -27,7 +27,9 @@ When you upload your CloudFormation template, more permissions are requested, ba
 
   1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template must be uploaded.
 
-- For **Arc Onboarding**, our service requires **EC2 Write** access in order to install the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview). You must also meet the [additional prerequisites for the **Arc onboarding** solution](onboard-multicloud-vms-arc.md#prerequisites).
+- For **Arc EC2 Onboarding**, our service requires **EC2 Read & Write** access in order to install the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview). You must also meet the [additional prerequisites for the ](onboard-multicloud-vms-arc.md#prerequisites)**[Arc onboarding](onboard-multicloud-vms-arc.md#prerequisites)**[ solution](onboard-multicloud-vms-arc.md#prerequisites).
+
+- For **Arc EKS Onboarding**, our service requires **EKS Read & Write** access in order to install the [Arc-enabled Kubernetes agent](/azure/azure-arc/kubernetes/conceptual-agent-overview). You must also meet the [additional prerequisites for the ](onboard-multicloud-vms-arc.md#prerequisites)**[Arc onboarding](onboard-multicloud-vms-arc.md#prerequisites)**[ solution](onboard-multicloud-vms-arc.md#prerequisites).
 
 ### [GCP](#tab/gcp)
 
@@ -90,14 +92,15 @@ To add your AWS public cloud to Azure, use the Azure portal to enter details and
       1. When you have finished making selections, select **Save** to return to the **Solutions** page.
 
    - For **Arc onboarding**:
-
-      1. For connectivity, public endpoints will be used by default. You can optionally update your **Connectivity method** to use a proxy server or gateway by providing those details.
+   
+      1. For connectivity, public endpoints will be used by default. You can optionally update your **Connectivity method** to use a proxy server or Arc gateway by providing those details.
+            
       1. Choose whether or not to enable periodic sync. By default, this option is enabled so that the connector scans your AWS account regularly. If you uncheck the box, your AWS account is scanned only once.
       1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account is scanned.
       1. Choose whether or not to enable **Include all supported AWS regions**. By selecting this option, all current and future AWS regions are scanned.
-      1. Choose which regions to scan for EC2 instances in your AWS account. By default, all available regions are selected. If you selected **Include all supported AWS regions**, all regions must be selected.
-      1. Choose to filter for EC2 instances by AWS tag. If you enter a tag value here, only EC2 instances that contain that tag are onboarded to Arc. By leaving this value empty, all EC2 Instances discovered are onboarded to Arc.
-
+      1. Choose which regions to scan for EC2 or EKS instances in your AWS account. By default, all available regions are selected. If you selected **Include all supported AWS regions**, all regions must be selected.
+      1. Choose to filter for EC2 or EKS instances by AWS tag. If you enter a tag value here, only EC2 or EKS instances that contain that tag are onboarded to Arc. By leaving this value empty, all EC2 or EKS Instances discovered are onboarded to Arc.
+            
    - For **Storage - Data management**, you must first add **Inventory** with the S3 service selected. No other settings are required.
 
 1. On the **Authentication template** page, download the CloudFormation template that you'll upload to AWS. This template is created based on the information you provided in **Basics** and the solutions you selected. You can [upload the template](#upload-cloudformation-template-to-aws) right away, or wait until you finish adding your public cloud.
@@ -153,7 +156,7 @@ If your AWS account is an organization account, you also need to create a StackS
 
    1. Otherwise, leave the other options set to their default settings and select **Next**.
 1. In **Configure stack options**, leave the options set to their default settings and select **Next**.
-1. In **Set deployment options**, enter the ID for the AWS account where the StackSet will be deployed, and select any AWS region to deploy the stack. Leave the other options set to their default settings and select **Next**.
+1. In **Set deployment options**, enter the ID for the AWS account where the StackSet will be deployed, and select any AWS region to deploy the stack. Optionally, you can choose to **Deploy to organizational units (OUs)** in the **Deployment Targets** section if you prefer the connector to only scan accounts associated with specific OUs. Leave the other options set to their default settings and select **Next**.
 1. In **Review**, confirm that the information is correct, select the acknowledgment checkbox, and then select **Submit**.
 
 ### [GCP](#tab/gcp)
@@ -167,7 +170,7 @@ To add your GCP public cloud to Azure, use the Azure portal to enter details and
 
    1. Select the subscription and resource group in which to create your connector resource.
    1. Enter a unique name for the connector and select a [supported region](overview.md#supported-regions).
-   1. Provide the **Project ID** and **Project Number** for the GCP project that you want to connect.
+   1. Provide the **Project ID** and **Project Number** for the GCP project that you want to connect. If you connect an organization account, provide the **Organization ID**.
    1. Select **Next**.
 
 1. On the **Solutions** page, select which solutions you'd like to use with this connector and configure them. Select **Add** to enable **[Inventory](view-multicloud-inventory.md)**, **[Arc onboarding](onboard-multicloud-vms-arc.md)**, or both.

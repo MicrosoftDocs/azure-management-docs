@@ -45,7 +45,7 @@ You authenticate to a registry by using the Azure CLI or the standard `docker lo
 
 [Control access](container-registry-authentication.md) to a container registry by using an Azure identity, a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals), or a provided admin account. Use [Azure role-based access control (RBAC)](container-registry-rbac-built-in-roles-directory-reference.md) to assign specific registry permissions to users or systems.
 
-Security features of the Premium service tier include [content trust](container-registry-content-trust.md) for image tag signing, and [private endpoints (preview)](container-registry-private-link.md) to restrict access to the registry. Microsoft Defender for Cloud optionally integrates with Azure Container Registry to [scan images](/azure/container-registry/scan-images-defender) whenever you push an image to a registry.
+Security features of the Premium service tier include [content trust](container-registry-content-trust.md) for image tag signing, and [private endpoints (preview)](container-registry-private-endpoints.md) to restrict access to the registry. Microsoft Defender for Cloud optionally integrates with Azure Container Registry to [scan images](/azure/container-registry/scan-images-defender) whenever you push an image to a registry.
 
 ## Related content
 

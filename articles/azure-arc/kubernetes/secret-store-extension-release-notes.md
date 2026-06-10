@@ -1,14 +1,43 @@
 ---
 title: What's new for AKV Secret Store extension
 description: The release notes identify important updates and improvements in the Azure Key Vault Secret Store extension.
-ms.date: 08/01/2025
+ms.date: 05/26/2026
 ms.topic: release-notes
 ---
 
-# Release notes
-Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
+# Azure Key Vault Secret Store extension release notes
+Updates and improvements to the Azure Key Vault Secret Store extension are listed here.
+
+## May 2026
+### 1.5.0
+ - Security updates to internal components:
+   - Updated Go to 1.26.2.
+   - Updated kubectl container image to v1.36.0-3.
+   - Updated AKV CSI Provider container image to v1.8.1-1.
+   - Bumped `sigs.k8s.io/secrets-store-csi-driver` to v1.6.0.
+   - Bumped `sigs.k8s.io/controller-runtime` to v0.24.0.
+   - Bumped `github.com/Azure/azure-sdk-for-go/sdk/azidentity` to v1.13.1.
+
+## April 2026
+### 1.4.1
+ - Security updates to internal components:
+   - Updated Go to 1.26.1.
+   - Updated kubectl container image to v1.35.3-1 to address CVEs in base image.
+   - Updated AKV CSI Provider container image to v1.7.2-6 to address CVEs in base image.
+   - Bumped `helm.sh/helm/v3` to v3.20.2 to address security advisories.
+   - Bumped `go.opentelemetry.io/otel/sdk` to v1.43.0 to address security advisories.
+   - Bumped `google.golang.org/grpc` to v1.79.3 to address security advisories.
 
 ## March 2026
+### 1.4.0
+ - Added a `kubectl.image.tag` Helm value to configure the kubectl image tag, alongside `repository` and `digest`. Both tag and digest are now provided for provider and kubectl images.
+ - Further refined ownership checks to prevent `AKVSync` resources from overwriting existing `SecretSync` or `SecretProviderClass` resources when using TLS certificates.
+ - Reinstated support for Kubernetes versions prior to 1.30, which was unintentionally dropped in 1.3.0, by making the new Validating Admission Policies (VAPs) conditional.
+ - Security updates to internal components:
+   - Updated kubectl container image to v1.35.1-1.
+   - Updated AKV CSI Provider container image to v1.7.2-5.
+   - Bumped `sigs.k8s.io/secrets-store-csi-driver` to v1.5.6, `helm.sh/helm/v3` to v3.20.0, `golang.org/x/crypto` to v0.48.0, and `google.golang.org/protobuf` to v1.36.11.
+
 ### 1.3.0
  - Added ownership checks to prevent AKVSync resources from overwriting existing SecretSync or SecretProviderClass resources.
  - Security updates to internal components:
