@@ -23,9 +23,11 @@ When a new version of the `microsoft.flux` extension is released, it can take se
 Several upstream Flux APIs that were retired by the Flux project are removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
 
 > [!CAUTION]
-> If you don't update your sources to remove references to deprecated APIs, you might experience disruptions in Flux functionality and see error messages such as:
+> If you don't update your sources to remove references to deprecated APIs, you might experience disruptions in Flux functionality and see error messages referencing a removed kind/API, such as:
 >
 > `Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
+>
+> `Error Signature: no matches for kind "HelmRelease" in version "source.toolkit.fluxcd.io/v1beta1"
 
 The following Flux APIs have been removed:
 
