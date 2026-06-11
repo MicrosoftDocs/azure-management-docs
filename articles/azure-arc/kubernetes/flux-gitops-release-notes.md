@@ -16,6 +16,8 @@ The [most recent version of the Flux (GitOps) extension](flux-gitops-release-not
 
 When a new version of the `microsoft.flux` extension is released, it can take several days for the new version to become available in all regions.
 
+<a name='deprecation-and-removal-notice-upcoming-changes-to-microsoftflux-extension'></a>
+
 ## Deprecation and removal notice: Changes to `microsoft.flux` extension
 
 Several upstream Flux APIs that were retired by the Flux project are removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
