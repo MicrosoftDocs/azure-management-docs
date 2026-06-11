@@ -10,7 +10,7 @@ ms.topic: release-notes
 The Flux (GitOps) extension is updated on an ongoing basis. This article provides information about the most recent releases of the extension.
 
 > [!IMPORTANT]
-> To ensure continued compatibility and avoid disruptions, update your sources to [remove references to deprecated APIs](#deprecation-and-removal-notice-upcoming-changes-to-microsoftflux-extension) and ensure that clusters are running the latest version of the extension.
+> To ensure continued compatibility and avoid errors, update your sources to [remove references to deprecated APIs](#deprecation-and-removal-notice-changes-to-microsoftflux-extension) and ensure that clusters are running the latest version of the extension.
 
 The [most recent version of the Flux (GitOps) extension](flux-gitops-release-notes.md) and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
@@ -18,16 +18,11 @@ When a new version of the `microsoft.flux` extension is released, it can take se
 
 ## Deprecation and removal notice: Changes to `microsoft.flux` extension
 
-Several upstream Flux APIs that have been retired by the Flux project have been removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
+Several upstream Flux APIs that were retired by the Flux project are removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
 
-> [!IMPORTANT]
-> If you don't update your sources to remove references to deprecated APIs, you may experience disruptions in Flux functionality, and see error messages about these APIs, such as:
->
->`Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
->
->`Error Signature: no matches for kind "Kustomization" in version "source.toolkit.fluxcd.io/v1beta1"`
->
-> To resolve these errors, update your sources to remove references to deprecated APIs and upgrade your clusters by taking the required action described in this section.
+If you don't update your sources to remove references to deprecated APIs, you might experience disruptions in Flux functionality and see error messages such as:
+
+`Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
 
 The following Flux APIs have been removed:
 
