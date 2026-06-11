@@ -1,6 +1,6 @@
 ---
-title: What's new for Flux v(GitOps) in Azure Arc enabled Kubernetes
-description: The release notes identify important updates and improvements in the microsoft.flux extension and important notices about changes.
+title: What's new for Flux (GitOps) in Azure Arc enabled Kubernetes
+description: Learn about supported versions of the microsoft.flux extension, along with important changes and improvements.
 ms.date: 06/11/2026
 ms.topic: release-notes
 ---
