@@ -1,6 +1,6 @@
 ---
 ms.service: azure-arc
-ms.subservice: azure-arc-container-storage
+ms.subservice: azure-container-storage-azure-arc
 ms.topic: include
 ms.date: 03/12/2025
 author: sethmanheim
