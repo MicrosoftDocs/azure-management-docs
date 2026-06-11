@@ -24,6 +24,25 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
 
+## Version 1.65 - June 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.65/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature|Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**   |**1.29.111.0**|**1.26.112.0**||
+|Strengthened TLS certificate validation to address CVE-2026-47632.|✓|✓|Security Fix|
+|Fixed a crash that could occur while checking extensions for updates.|✓|✓|Bug Fix|
+|Increased extension package download/unzip size limits to 2 GB.|✓|✓|Bug Fix|
+|Fixed a crash related to a heap memory corruption error that could occur on service shutdown.||✓|Bug Fix|
+| **Azcmagent**|**1.65**|**1.65**||
+|Added backup file for localconfig.json.|✓|✓|Feature|
+|Added warnings to help page for azcmagent disconnect and azcmagent remove extension commands.|✓|✓|Improvement|
+|Increased VM application download timeout to 30 minutes.|✓|✓|Bug Fix|
+|Added quotes to arguments in auto-upgrade script.||✓|Bug Fix|
+|Fixed Linux install script to not recreate repository if package already exists.||✓|Bug Fix|
+|Fixed Linux install script to use proxy correctly.||✓|Bug Fix|
+
 ## Version 1.64 - May 2026 
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.64/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
@@ -86,8 +105,8 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.62/AzureConnect
 |Fixed relay URL, which is used in SSH and WAC scenarios.|✓|✓|Bug Fix|
 |Fixed IPv6 detection when setting up SSL endpoint.|✓|✓|Bug Fix|
 |Added `azcmagent upgrade` CLI command for upgrading the Azure Connected Machine agent|✓|✓|Feature|
-|New `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in private preview.|✓|✓|Feature|
-|Added `azcmagent check tpm` to verify TPM-backed Identity readiness. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in private preview.|✓|✓|Feature|
+|New `--identity-key-store` flag for `azcmagent connect` to enable TPM-backed Identity. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in preview.|✓|✓|Feature|
+|Added `azcmagent check tpm` to verify TPM-backed Identity readiness. Reserved for future use, see [aka.ms/arc-tpm-backed-identity/preview](https://aka.ms/arc-tpm-backed-identity/preview) to participate in preview.|✓|✓|Feature|
 
 ## Version 1.61 - February 2026
 
