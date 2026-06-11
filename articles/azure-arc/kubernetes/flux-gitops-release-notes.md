@@ -35,7 +35,7 @@ The following Flux APIs have been removed:
 
 For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
-**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources and upgrade your clusters to use `microsoft.flux` version 1.23.0, which introduces the Flux 2.7 API version. If your clusters aren't already running version 1.21.0 or higher, you must upgrade to that version first, rather than upgrading directly to version 1.23.0.
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources and upgrade your clusters to use `microsoft.flux` version 1.23.0, which introduces the Flux 2.7 API version. If your clusters are running 1.20.4 or lower, upgrade them to an interim version (1.21.0 - 1.22.2) first, and then upgrade to version 1.23.0.
 
 Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
 
@@ -78,9 +78,6 @@ Changes in this version include:
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
 
 ## May 2026 - `microsoft.flux` version 1.22.2
-
-> [!IMPORTANT]
-> Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to version 1.23.0, which includes the Flux 2.7 API version.
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
