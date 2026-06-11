@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 11/20/2024
+ms.date: 06/11/2026
 # Customer intent: As a cloud architect, I want to understand the network requirements for Azure services across different environments, so that I can ensure proper configuration and compliance for our cloud infrastructure.
 ---
 
