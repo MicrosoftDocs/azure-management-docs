@@ -27,7 +27,7 @@ Several upstream Flux APIs that were retired by the Flux project are removed in 
 >
 > `Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
 >
-> `Error Signature: no matches for kind "HelmRelease" in version "source.toolkit.fluxcd.io/v1beta1"`
+> `Error Signature: no matches for kind "HelmRelease" in version "source.toolkit.fluxcd.io/v2beta1"`
 
 The following Flux APIs have been removed:
 
