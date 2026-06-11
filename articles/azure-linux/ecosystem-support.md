@@ -31,7 +31,7 @@ The following partners have validated their solutions on Azure Linux. A partner 
 | [Dynatrace](#dynatrace) | Observability | Validated ✅ | | |
 | [Elastic](#elastic) | Observability, Security | Validated ✅ | Validated ✅ | |
 | [Hashicorp](#hashicorp) | DevOps | Validated ✅ | | |
-| [Isovalent](#isovalent) | Networking, Observability, Security | Validated ✅ | | |
+| [Isovalent](#isovalent) | Networking, Observability, Security | Validated ✅ | Validated ✅ | |
 | [Kong](#kong) | DevOps, Security | Validated ✅ | | |
 | [Kubecost](#kubecost) | DevOps, Observability | Validated ✅ | | |
 | [NetApp](#netapp) | DevOps | Validated ✅ | | |
@@ -43,7 +43,7 @@ The following partners have validated their solutions on Azure Linux. A partner 
 | [Tetrate](#tetrate) | Networking, Security | Validated ✅ | | |
 | [Tigera](#tigera-inc) | Networking, Observability, Security | Validated ✅ | | |
 | [TrendAI](#trendai) | Security | Validated ✅ | | |
-| [Upwind](#upwind) | Security | Validated ✅ | | |
+| [Upwind](#upwind) | Security | Validated ✅ | Validated ✅ | |
 | [Veeam](#veeam) | Storage | Validated ✅ | | |
 | [VictoriaMetrics](#victoriametrics) | DevOps, Observability, Storage, Monitoring | Validated ✅ | | |
 | [Wiz](#wiz) | Security | Validated ✅ | | |
