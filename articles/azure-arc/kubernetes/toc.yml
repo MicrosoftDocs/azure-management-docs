@@ -163,6 +163,9 @@
         href: secret-store-extension-reference.md
       - name: Release notes
         href: secret-store-extension-release-notes.md
+      - name: Migrate from AKV Secrets Provider
+        displayName: migration, akv, csi
+        href: secret-store-extension-migration.md
       - name: Access secrets without local copies
         displayName: akv, cert
         href: tutorial-akv-secrets-provider.md
