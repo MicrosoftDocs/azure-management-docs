@@ -228,11 +228,15 @@
       },
       "ms.collection": {
         "articles/copilot/*.md": "ce-skilling-ai-copilot",
-        "articles/copilot/*.yml": "ce-skilling-ai-copilot"
+        "articles/copilot/*.yml": "ce-skilling-ai-copilot",
+        "articles/azure-arc/agents-tools-foundry-local/**/*.md": "ce-skilling-ai-copilot",
+        "articles/azure-arc/agents-tools-foundry-local/**/*.yml": "ce-skilling-ai-copilot"
       },
       "ms.update-cycle": {
         "articles/copilot/*.md": "180-days",
-        "articles/copilot/*.yml": "180-days"
+        "articles/copilot/*.yml": "180-days",
+        "articles/azure-arc/agents-tools-foundry-local/**/*.md": "180-days",
+        "articles/azure-arc/agents-tools-foundry-local/**/*.yml": "180-days"
       },
       "ms.service": {
         "articles/azure-arc/**/*.md": "azure-arc",
@@ -245,7 +249,7 @@
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
         "articles/azure-arc/servers/**/*.md": "servers-azure-arc",
         "articles/azure-arc/container-storage/**/*.md": "azure-container-storage-azure-arc",
-        "articles/azure-arc/workload-orchestration/**/*.md": "workload-orchestration"        
+        "articles/azure-arc/workload-orchestration/**/*.md": "workload-orchestration"
       },
       "searchScope": {
         "articles/azure-arc/**/*.md": [
