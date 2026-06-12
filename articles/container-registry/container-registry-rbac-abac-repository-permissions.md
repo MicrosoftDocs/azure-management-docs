@@ -2,8 +2,8 @@
 title: Azure attribute-based access control (Azure ABAC) repository permissions in Azure Container Registry
 description: Use Azure ABAC to manage repository permissions for an Azure Container Registry.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 12/11/2025
 ms.service: azure-container-registry
 # Customer intent: As a container registry administrator, I want to configure attribute-based access control (ABAC) with role assignments in Azure Container Registry so that I can manage repository permissions more granularly and enhance security for my organization's container images.

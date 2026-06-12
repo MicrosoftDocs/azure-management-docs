@@ -2,11 +2,11 @@
 title: include file
 description: include file
 services: container-registry
-author: rayoef
+author: KumudD
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 02/11/2026
-ms.author: rayoflores
+ms.author: kumud
 ms.custom: include file
 # Customer intent: "As a DevOps engineer, I want to understand the implications of disabling public network access in a container registry, so that I can configure my environment properly while ensuring that critical services can still access it."
 ---

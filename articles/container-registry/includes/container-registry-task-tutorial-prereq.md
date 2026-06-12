@@ -1,9 +1,9 @@
 ---
-author: rayoef
+author: KumudD
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 02/09/2026
-ms.author: rayoflores
+ms.author: kumud
 # Customer intent: "As a developer, I want to create a personal access token for GitHub so that I can enable ACR Tasks to automatically trigger workflows on commits to my repository."
 ---
 ## Prerequisites

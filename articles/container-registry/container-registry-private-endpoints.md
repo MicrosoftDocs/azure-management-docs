@@ -2,8 +2,8 @@
 title: Set Up Private Endpoint with Private Link for ACR 
 description: Set up a private endpoint on a container registry and enable access over a private link in a local virtual network.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 02/11/2026
 ms.service: azure-container-registry
 ms.custom:

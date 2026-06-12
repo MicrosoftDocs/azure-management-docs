@@ -1,7 +1,7 @@
 ---
 title: Connected Registry in Azure Container Registry
 description: Use the connected registry of Azure Container Registry to help speed up access to registry artifacts. on-premises or remote.
-ms.author: rayoflores
+ms.author: kumud
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 05/20/2025

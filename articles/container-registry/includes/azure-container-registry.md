@@ -2,8 +2,8 @@
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/07/2022
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 # Customer intent: "As a security analyst, I want to view vulnerability assessment results for container images, so that I can ensure all security issues are identified and resolved in our container registry."
 ---
 
