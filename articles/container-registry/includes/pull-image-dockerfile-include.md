@@ -1,9 +1,9 @@
 ---
-author: rayoef
+author: KumudD
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 05/21/2021
-ms.author: rayoflores
+ms.author: kumud
 # Customer intent: "As a developer, I want to import and manage public container images in a private registry, so that I can enhance the reliability and security of my containerized applications."
 ---
 > [!NOTE]

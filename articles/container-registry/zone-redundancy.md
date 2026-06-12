@@ -2,8 +2,8 @@
 title: Zone redundancy in Azure Container Registry
 description: Learn about zone redundancy in Azure Container Registry and how it protects your registries automatically.
 ms.topic: concept-article
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 03/25/2026
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry

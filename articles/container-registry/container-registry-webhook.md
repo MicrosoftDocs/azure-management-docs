@@ -2,8 +2,8 @@
 title: Using Webhooks to Respond to Registry Actions in Azure
 description: Learn how to use webhooks to trigger events when push or pull actions occur in your registry repositories.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom:

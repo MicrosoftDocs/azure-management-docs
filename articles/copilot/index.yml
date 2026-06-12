@@ -8,7 +8,7 @@ metadata:
   title: Azure Copilot
   description: Manage operations from cloud to edge with an AI assistant.
   ms.service: copilot-in-azure
-  ms.author: rayoflores
+  ms.author: kumud
   ms.custom:
     - ignite-2023
     - ignite-2023-copilotinAzure
