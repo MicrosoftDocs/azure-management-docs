@@ -2,8 +2,8 @@
 title: Dedicated data endpoints for Azure Container Registry
 description: Learn how dedicated data endpoints in Azure Container Registry enable scoped firewall rules and mitigate data exfiltration risks for container image layer downloads.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.service: azure-container-registry
 ms.date: 05/27/2026
 # Customer intent: As a security specialist, I want to implement dedicated data endpoints in Azure Container Registry, so that I can minimize data exfiltration risks and ensure secure access to storage resources.

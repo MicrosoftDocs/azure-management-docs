@@ -2,12 +2,12 @@
 title: include file
 description: include file
 services: container-registry
-author: rayoef
+author: KumudD
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 02/09/2026
-ms.author: rayoflores
+ms.author: kumud
 ms.custom: include file, devx-track-azurecli
 # Customer intent: As a cloud administrator, I want to create and configure a service principal for my container registry, so that I can securely manage access and permissions for my applications and services.
 ---

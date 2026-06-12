@@ -1,8 +1,8 @@
 ---
 title: Secure Deployment Options for the Connected Registry Extension
 description: "Learn to secure the connected registry Arc extension deployment with HTTPS, TLS, optional no TLS, BYOC certificate, and trust distribution."
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.service: azure-container-registry
 ms.topic: how-to  #Don't change.
 ms.date: 05/20/2025

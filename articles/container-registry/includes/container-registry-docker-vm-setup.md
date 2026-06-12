@@ -1,9 +1,9 @@
 ---
-author: rayoef
+author: KumudD
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 02/11/2026
-ms.author: rayoflores
+ms.author: kumud
 # Customer intent: As a cloud developer, I want to create a Docker-enabled Ubuntu virtual machine with Azure CLI, so that I can easily access my Azure container registry for testing and development purposes.
 ---
 ## Create a Docker-enabled virtual machine

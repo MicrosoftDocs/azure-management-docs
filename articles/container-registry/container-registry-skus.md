@@ -2,8 +2,8 @@
 title: Azure Container Registry SKU Features and Limits
 description: Learn about the features and limits in various SKUs of Azure Container Registry.
 ms.topic: concept-article
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 03/25/2026
 ms.service: azure-container-registry
 # Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."

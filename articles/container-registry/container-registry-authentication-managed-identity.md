@@ -3,9 +3,9 @@ title: Managed Identity Authentication for ACR
 description: Provide access to images in your Azure container registry by using a user-assigned or system-assigned managed Azure identity.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell, linux-related-content
-author: rayoef
+author: KumudD
 ms.service: azure-container-registry
-ms.author: rayoflores
+ms.author: kumud
 ms.date: 02/03/2026
 
 # Customer intent: As a developer, I want to configure managed identities for authenticating to Azure Container Registry, so that I can securely access images without having to manage sensitive credentials.

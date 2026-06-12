@@ -1,8 +1,8 @@
 ---
 title: "Deploy the Connected Registry Arc Extension"
 description: "Learn how to deploy the connected registry extension to an Arc-enabled Kubernetes cluster using Azure CLI with secure-by-default settings for efficient and secure container workload operations."
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.date: 01/23/2026
