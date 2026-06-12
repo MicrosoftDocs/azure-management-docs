@@ -1,7 +1,7 @@
 ---
-title: What's new for Flux v(GitOps) in Azure Arc enabled Kubernetes
-description: The release notes identify important updates and improvements in the microsoft.flux extension and important notices about changes.
-ms.date: 05/27/2026
+title: What's new for Flux (GitOps) in Azure Arc enabled Kubernetes
+description: Learn about supported versions of the microsoft.flux extension, along with important changes and improvements.
+ms.date: 06/11/2026
 ms.topic: release-notes
 ---
 
@@ -10,17 +10,26 @@ ms.topic: release-notes
 The Flux (GitOps) extension is updated on an ongoing basis. This article provides information about the most recent releases of the extension.
 
 > [!IMPORTANT]
-> To ensure continued compatibility and avoid disruptions, update your sources to [remove references to deprecated APIs](#deprecation-and-removal-notice-upcoming-changes-to-microsoftflux-extension) and ensure that clusters are running the latest version of the extension.
+> To ensure continued compatibility and avoid errors, update your sources to [remove references to deprecated APIs](#deprecation-and-removal-notice-changes-to-microsoftflux-extension) and ensure that clusters are running the latest version of the extension.
 
 The [most recent version of the Flux (GitOps) extension](flux-gitops-release-notes.md) and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
 When a new version of the `microsoft.flux` extension is released, it can take several days for the new version to become available in all regions.
 
-## Deprecation and removal notice: Upcoming changes to `microsoft.flux` extension
+<a name='deprecation-and-removal-notice-upcoming-changes-to-microsoftflux-extension'></a>
 
-Several upstream Flux APIs that have been retired by the Flux project will be removed in upcoming releases of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
+## Deprecation and removal notice: Changes to `microsoft.flux` extension
 
-The following Flux APIs are being deprecated and will be removed:
+Several upstream Flux APIs that were retired by the Flux project are removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
+
+> [!CAUTION]
+> If you don't update your sources to remove references to deprecated APIs, you might experience disruptions in Flux functionality and see error messages referencing a removed kind/API, such as:
+>
+> `Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
+>
+> `Error Signature: no matches for kind "HelmRelease" in version "source.toolkit.fluxcd.io/v2beta1"`
+
+The following Flux APIs have been removed:
 
 - Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
 - Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
@@ -30,7 +39,7 @@ The following Flux APIs are being deprecated and will be removed:
 
 For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
-**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources. Ensure that all clusters are upgraded to use `microsoft.flux` version 1.21.0 so that they will be able to upgrade to the upcoming release that introduces the Flux 2.7 API version.
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources and upgrade your clusters to use `microsoft.flux` version 1.23.0, which introduces the Flux 2.7 API version. If your clusters are running 1.20.4 or lower, upgrade them to an interim version (1.21.0 - 1.22.2) first, and then upgrade to version 1.23.0.
 
 Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
 
@@ -52,10 +61,27 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
-## May 2026 - `microsoft.flux` version 1.22.2
+## June 2026 - `microsoft.flux` version 1.23.0
 
 > [!IMPORTANT]
-> If you don't have automatic extensions upgraded on your cluster, we strongly recommend upgrading manually to this version as soon as possible. Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to an upcoming extension release that will include the Flux 2.7 API version.
+> Clusters must be running version 1.21.0 or higher in order to subsequently upgrade to version 1.23.0, which includes the Flux 2.7 API version.
+
+Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7.5)
+
+- source-controller: v1.7.4-10
+- kustomize-controller: v1.7.3-9
+- helm-controller: v1.4.5-8
+- notification-controller: v1.7.5-7
+- image-automation-controller: v1.0.4-9
+- image-reflector-controller: v1.0.4-6
+
+Changes in this version include:
+
+- Flux extension updates to v2.7.5 with new CRDs and controllers. A number of API versions have been removed. For more information, see the [API removal notice](#deprecation-and-removal-notice-changes-to-microsoftflux-extension).
+- Allow configuring Flux controllers' Helm cache, index, and jitter interval percentage.
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller` `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller` and `helm-controller` by updating the Go packages and base images.
+
+## May 2026 - `microsoft.flux` version 1.22.2
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
