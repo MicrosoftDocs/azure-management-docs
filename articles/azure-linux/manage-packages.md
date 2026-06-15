@@ -136,6 +136,9 @@ Fri 2026-03-27 06:34:18 UTC  15h -         - dnf5-automatic.timer dnf5-automatic
 1 timers listed.
 Pass --all to see loaded but inactive timers, too.
 ```
+### Optional configuration of `dnf-automatic`
+
+You can configure automatic update behavior by adding the `/etc/dnf/automatic.conf` file. This file controls whether updates are only downloaded, automatically applied, or restricted to security‑only updates. For full configuration details, see the [dnf5‑automatic documentation](https://dnf5.readthedocs.io/en/stable/dnf5_plugins/automatic.8.html)
 
 ## Frequently used DNF commands
 
@@ -168,12 +171,10 @@ Example output:
 
 ```output
 Updating and loading repositories:
+ Azure Linux 4.0 - x86_64 - Microsoft                        100% |   7.6 KiB/s |   4.8 KiB |  00m01s
 Repositories loaded.
 Matched fields: name (exact)
- lsof.x86_64                    A utility which lists open files on a Linux/UNIX system
-Matched fields: name, summary
- lsof-debuginfo.x86_64           Debug information for package lsof
- lsof-debugsource.x86_64         Debug sources for package lsof
+ lsof.x86_64   A utility which lists open files on a Linux/UNIX system
 ```
 
 ### `dnf provides`

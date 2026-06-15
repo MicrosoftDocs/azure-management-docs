@@ -32,10 +32,8 @@ df -T /
 
 The following example shows typical output on an Azure Linux VM that uses ext4 for the root filesystem:
 
-```output
 Filesystem     Type 1K-blocks    Used Available Use% Mounted on
 /dev/sda2      ext4  30681648 1870824  27231892   7% /
-```
 
 The `Type` column shows the filesystem type, and the `Mounted on` column confirms that the filesystem is mounted at `/`.
 

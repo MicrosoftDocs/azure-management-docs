@@ -40,7 +40,7 @@ This article explains how to report bugs, documentation issues, and security vul
 ## How to write a good bug report
 
 > [!IMPORTANT]
-> When you open a bug report on GitHub, a pre-filled issue template guide you through these fields. Use the template to provide all the requested information. Please fill it out completely. Incomplete reports might be closed.
+> When you open a bug report on GitHub, a pre-filled issue template will guide you through these fields. Use the template to provide all the requested information. Please fill it out completely. Incomplete reports might be closed.
 >
 > The smaller and more self-contained your reproduction case is, the faster it can be triaged. Try to isolate the issue from unrelated configuration or dependencies.
 
