@@ -20,6 +20,7 @@ With geo-replication:
 - **Automatic syncing**: Push tags and digests once; ACR replicates content and metadata to all geo-replicas.
 
 Geo-replication requires the [Premium SKU](container-registry-skus.md).
+Geo-replication is not supported for registries that use a private endpoint configured with a static IP address.
 
 > [!NOTE]
 > - To copy images between separate registries, see [Import container images](container-registry-import-images.md).
