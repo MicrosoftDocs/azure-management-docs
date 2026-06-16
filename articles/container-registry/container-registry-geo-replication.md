@@ -502,6 +502,35 @@ This issue usually arises when the identity creating a geo-replica for a private
 - Afterwards, ensure the identity has the permission `Microsoft.Network/privateEndpoints/privateLinkServiceProxies/write` before creating a geo-replica.
 - Also verify that every private endpoint subnet connected to the registry has free IP capacity. If **any** subnet across any connected virtual network doesn't have enough free IPs, the replication provisioning fails and rolls back. The replica appears briefly in a `Creating` state and then is removed. The resulting error doesn't identify which subnet or virtual network is exhausted. For subnet sizing guidance, see [Connect privately to a registry using private endpoints](container-registry-private-endpoints.md).
 
+### Geo-replica creation fails on registries with a static-IP private endpoint
+
+Adding a geo-replica fails when the registry's private endpoint is configured with **static** private IP allocation.
+
+Each geo-replica has its own dedicated data endpoint, which is exposed on the private endpoint as a member with the group ID `registry` and a member name of `registry_data_<region>`. When you add a new geo-replica, ACR requests the private endpoint add the member for the new region's data endpoint. A private endpoint configured with dynamic IP allocation provisions the new member's IP automatically. A private endpoint configured with static IP allocation has a fixed set of IP configurations defined at creation time and doesn't auto-add the new member, so replica creation fails with an error similar to:
+
+```
+Failed to replicate private endpoint. Private Endpoint <id> contains static ipconfigurations:
+[... GroupId: registry, MemberName: registry_data_<existing-region> ...] and it's missing these
+membernames/groupids requested by Private Link service [GroupId: registry, MemberName:
+registry_data_<new-region>, IpVersion: IPv4]. Private Endpoint needs to be reconfigured with
+missing memberNames.
+```
+
+To check the allocation method of a registry's private endpoint, inspect the `PrivateIPAllocationMethod` of its IP configurations:
+
+```azurecli
+az network private-endpoint show \
+  --name <private-endpoint-name> \
+  --resource-group <resource-group-name> \
+  --query "networkInterfaces[].ipConfigurations[].{Name:name, PrivateIPAddress:privateIPAddress, PrivateIPAllocationMethod:privateIPAllocationMethod}" \
+  --output table
+```
+
+**Solutions:**
+
+- **Use dynamic IP allocation** for the private endpoint if you expect to add geo-replicas later. With dynamic allocation, ACR provisions the data endpoint member for each new region automatically. This is the recommended approach.
+- **Create the private endpoint after all geo-replicas exist** if static IP allocation is required. Add every geo-replica first, then create the static-IP private endpoint so its IP configuration includes a member for every existing region's data endpoint. After a static-IP private endpoint is created this way, you can't add further geo-replicas without reconfiguring the private endpoint to add the new member.
+
 ## Related content
 
 - [ACR SKUs and service tiers](container-registry-skus.md)
