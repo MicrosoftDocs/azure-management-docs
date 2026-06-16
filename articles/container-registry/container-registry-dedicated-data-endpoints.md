@@ -89,7 +89,7 @@ This also applies when using [regional endpoints](container-registry-geo-replica
 > [!NOTE]
 > If you previously configured client firewall access to the existing `*.blob.core.windows.net` endpoints, switching to dedicated data endpoints impacts client connectivity, causing pull failures. To ensure clients have consistent access, add the new data endpoint rules to the client firewall rules. Once completed, enable dedicated data endpoints for your registries using the Azure CLI or other tools.
 >
-> During image pulls, if dedicated data endpoints are enabled, ACR gives the client a temporary download link each time it needs to fetch an image layer. This link points to the dedicated data endpoint and is valid for 20 minutes, providing a secure, short-lived URL for downloading the layer. After 20 minutes, the link expires, and the client simply requests a new one if it needs to download another layer when pulling images.
+> During image pulls, if dedicated data endpoints are enabled, ACR gives the client a temporary download link each time it needs to fetch an image layer. This link points to the dedicated data endpoint and is valid for at least 20 minutes and up to 30 minutes, providing a secure, short-lived URL for downloading the layer. After the link expires, the client simply requests a new one if it needs to download another layer when pulling images.
 
 You can enable dedicated data endpoints using the Azure portal or the Azure CLI. The data endpoints follow a regional pattern, `<registry-name>.<region>.data.azurecr.io`. In a geo-replicated registry, enabling data endpoints enables endpoints in all replica regions.
 
