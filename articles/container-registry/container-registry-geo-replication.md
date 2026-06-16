@@ -516,13 +516,16 @@ registry_data_<new-region>, IpVersion: IPv4]. Private Endpoint needs to be recon
 missing memberNames.
 ```
 
-To check the allocation method of a registry's private endpoint, inspect the `PrivateIPAllocationMethod` of its IP configurations:
+To check the allocation method of a registry's private endpoint, inspect the `PrivateIPAllocationMethod` of the IP configurations on the private endpoint's network interface. The private endpoint references a network interface that holds these IP configurations, so first get the network interface ID, then inspect its IP configurations:
 
 ```azurecli
-az network private-endpoint show \
+nicId=$(az network private-endpoint show \
   --name <private-endpoint-name> \
   --resource-group <resource-group-name> \
-  --query "networkInterfaces[].ipConfigurations[].{Name:name, PrivateIPAddress:privateIPAddress, PrivateIPAllocationMethod:privateIPAllocationMethod}" \
+  --query "networkInterfaces[0].id" --output tsv)
+
+az network nic show --ids "$nicId" \
+  --query "ipConfigurations[].{Name:name, PrivateIPAddress:privateIPAddress, PrivateIPAllocationMethod:privateIPAllocationMethod}" \
   --output table
 ```
 
