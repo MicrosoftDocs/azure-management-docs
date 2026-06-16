@@ -8,7 +8,7 @@ ms.topic: concept-article
 
 # Windows Server Management enabled by Azure Arc
 
-Windows Server Management enabled by Azure Arc offers customers with Windows Server licenses that have active Software Assurances or Windows Server licenses that are active subscription licenses the following key benefits:
+Windows Server Management enabled by Azure Arc offers customers with Windows Server licenses that have active Software Assurances or Windows Server licenses that are active subscription licenses the following key benefits.
 
 |Benefit  |Supported Operating Systems  |Description  |
 |---------|---------|---------|
@@ -48,6 +48,9 @@ To be exempt from billing for these services, customers need to explicitly attes
 Customer invoices reflect both the complementary benefits included and the enrollment in these benefits through attestation or through Windows Server pay-as-you-go.  
 
 Customers that aren't attesting or enrolled through Windows Server pay-as-you-go can purchase Azure Update Manager, Azure Change Tracking and Inventory, and Azure Machine Configuration for their Azure Arc-enabled servers. The other services aren't available through Azure Arc for non-SA and non-pay-as-you-go customers.
+
+> [!Note]
+> [Windows Server hotpatching](/windows-server/get-started/enable-hotpatch-azure-arc-enabled-servers) is another service powered by Azure Arc. It is not subject to license and billing requirements listed in this article. Instead, Hotpatch is available to all customers running Windows Server 2025 when they Arc-enable their servers. 
 
 ## Requirements
 
