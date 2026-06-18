@@ -8,8 +8,6 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
 # Customer intent: As a developer, I want to use AI-assisted tools to generate and explain API Management policies, so that I can efficiently create complex policies without needing to understand all the underlying code.
 ---
 

@@ -2,11 +2,9 @@
 title: include file
 description: include file
 services: lighthouse
-author: JnHs
 ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 01/20/2026
-ms.author: jenhayes
 # Customer intent: As a service provider, I want to use samples to deploy Azure Policy to delegated subscriptions, so that I can ensure compliance and effective governance across the customer resources that I manage.
 ---
 

@@ -9,8 +9,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As a cloud administrator, I want to utilize an AI assistant to migrate data to Azure and effectively manage and improve storage accounts, so that I can efficiently manage and optimize our cloud storage resources."
 ---
 

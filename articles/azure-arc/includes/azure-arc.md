@@ -2,8 +2,6 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 12/19/2024
-author: JnHS
-ms.author: jenhayes
 # Customer intent: "As a cloud administrator, I want to retrieve the list of enabled resource types for Azure Arc-enabled custom locations, so that I can manage and utilize those resources effectively in our hybrid cloud environment."
 ---
 

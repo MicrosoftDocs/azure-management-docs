@@ -1,8 +1,7 @@
 ---
 title: Azure Copilot Overview
 description: Azure Copilot is an AI-powered tool that helps you do more with Azure.
-author: JnHs
-ms.author: jenhayes
+
 ms.reviewer: maghan
 ms.date: 05/27/2026
 ms.service: azure-copilot

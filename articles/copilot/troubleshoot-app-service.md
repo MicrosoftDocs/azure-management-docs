@@ -6,8 +6,7 @@ ms.topic: how-to
 ms.service: azure-copilot
 ms.custom:
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a cloud app developer, I want to use an AI-driven tool to assist with troubleshooting, so that I can identify and resolve issues faster and improve my application's performance.
 ---
 
