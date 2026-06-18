@@ -9,8 +9,7 @@ ms.custom:
   - ignite-2023-copilotinAzure
   - build-2024
   - ignite-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As a cloud developer, I want to generate and customize Kubernetes YAML files for AKS clusters using an AI assistant, so that I can streamline the deployment process and focus on building my applications."
 ---
 

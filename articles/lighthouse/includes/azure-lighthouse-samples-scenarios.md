@@ -2,11 +2,9 @@
 title: include file
 description: include file
 services: lighthouse
-author: JnHs
 ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 01/20/2026
-ms.author: jenhayes
 # Customer intent: As a service provider managing resources for multiple customers, I want to implement cross-tenant management solutions using deployment templates, so that I can efficiently create and configure resources across different Azure tenants.
 ---
 

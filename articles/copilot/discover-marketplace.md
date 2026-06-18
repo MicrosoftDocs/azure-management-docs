@@ -4,8 +4,7 @@ description: Learn how Azure Copilot helps you find the right Azure Marketplace 
 ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As a cloud user, I want to use natural language queries to find relevant Azure Marketplace solutions, so that I can quickly identify and implement the tools that meet my needs without manually filtering through extensive options."
 ---
 

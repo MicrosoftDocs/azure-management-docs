@@ -4,8 +4,7 @@ description: Learn how Azure Copilot can help you understand and use Azure Load 
 ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As an network administrator, I want to get recommendations for the appropriate load balancer type in Azure, so that I can configure the best solution for my networking requirements and ensure future compliance with upcoming changes."
 ---
 

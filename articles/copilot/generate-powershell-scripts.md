@@ -6,8 +6,7 @@ ms.topic: how-to
 ms.service: azure-copilot
 ms.custom:
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As a cloud developer, I want to generate PowerShell scripts using an AI assistant, so that I can automate resource management tasks in Azure more efficiently."
 ---
 

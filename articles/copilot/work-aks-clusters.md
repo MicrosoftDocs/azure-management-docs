@@ -7,8 +7,7 @@ ms.service: azure-copilot
 ms.custom:
   - build-2024
   - ignite-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a Kubernetes administrator, I want to use AI assistance to manage and configure my AKS clusters effectively, so that I can enhance my efficiency and streamline operations without needing to navigate complex interfaces.
 ---
 

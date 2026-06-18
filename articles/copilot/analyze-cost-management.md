@@ -9,8 +9,6 @@ ms.custom:
   - ignite-2023-copilotinAzure
   - build-2024
   - ignite-2024
-ms.author: jenhayes
-author: JnHs
 # Customer intent: "As a cloud cost manager, I want to analyze and estimate our cloud expenses using natural language prompts, so that I can optimize our costs and make informed budget decisions."
 ---
 

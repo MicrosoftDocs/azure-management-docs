@@ -8,8 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a cloud administrator, I want to use natural language prompts to generate Azure Resource Graph queries, so that I can efficiently access and manage my Azure resources without needing deep familiarity with query languages.
 ---
 
