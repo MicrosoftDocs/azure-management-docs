@@ -1,8 +1,7 @@
 ---
 title: Design, troubleshoot, and secure networks with Azure Copilot
 description: Learn how Azure Copilot can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
-author: JnHs
-ms.author: jenhayes
+
 ms.reviewer: duau
 ms.date: 11/21/2025
 ms.service: azure-copilot

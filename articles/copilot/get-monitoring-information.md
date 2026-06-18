@@ -8,8 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 ms.collection: ce-skilling-ai-copilot
 # Customer intent: As a cloud operations manager, I want to query Azure Monitor metrics, logs, and alerts using AI assistance, so that I can quickly gather insights and make informed decisions about resource performance and issues.
 ---

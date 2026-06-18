@@ -2,11 +2,9 @@
 title: include file
 description: include file
 services: lighthouse
-author: JnHs
 ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 01/20/2026
-ms.author: jenhayes
 # Customer intent: "As a service provider, I want to set up alerts for customer resources that I manage through Azure Lighthouse, so that I can stay informed about changes and activities across subscriptions."
 ---
 

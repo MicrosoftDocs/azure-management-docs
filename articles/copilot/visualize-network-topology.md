@@ -4,8 +4,7 @@ description: Use Azure Copilot to visualize specific networking resources or you
 ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a network administrator, I want to visualize my network topology and specific resources, so that I can better understand relationships, troubleshoot issues, and optimize performance across my Azure environment.
 ---
 

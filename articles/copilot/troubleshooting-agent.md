@@ -1,8 +1,7 @@
 ---
 title: Troubleshooting agent capabilities in Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot lets you get troubleshooting help using intelligent agent capabilities.
-author: JnHs
-ms.author: jenhayes
+
 ms.date: 11/18/2025
 ms.service: azure-copilot
 ms.topic: concept-article

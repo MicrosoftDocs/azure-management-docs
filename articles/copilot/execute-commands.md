@@ -4,8 +4,7 @@ description: Learn about scenarios where Azure Copilot can help you perform task
 ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As an Azure user, I want to execute commands using natural language prompts, so that I can efficiently manage my resources without manual navigation in the portal.
 ---
 

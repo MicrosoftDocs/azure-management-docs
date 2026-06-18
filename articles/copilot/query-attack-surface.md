@@ -8,8 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a security analyst, I want to use natural language queries with my organization's attack surface data, so that I can easily extract contextual insights and improve my understanding of potential vulnerabilities without needing advanced querying skills.
 ---
 

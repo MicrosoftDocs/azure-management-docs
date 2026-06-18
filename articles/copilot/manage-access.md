@@ -4,8 +4,7 @@ description: Learn how administrators can manage user access to Azure Copilot.
 ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 ms.custom:
   - build-2024
   - copilot-learning-hub

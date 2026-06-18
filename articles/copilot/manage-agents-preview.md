@@ -1,8 +1,7 @@
 ---
 title: Manage access to Agents (preview) in Azure Copilot
 description: Tenant administrators can control which Azure Copilot preview features are available to users in their Azure tenant.
-author: JnHs
-ms.author: jenhayes
+
 ms.date: 11/18/2025
 ms.service: azure-copilot
 ms.topic: overview
