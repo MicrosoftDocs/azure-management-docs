@@ -4,7 +4,7 @@ description: Import container images to an Azure container registry by using Azu
 ms.topic: how-to
 author: KumudD
 ms.author: kumud
-ms.date: 10/31/2023
+ms.date: 06/17/2026
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 # Customer intent: As a developer, I want to import container images into an Azure container registry using APIs, so that I can manage my images without needing to use Docker commands or install Docker locally.
@@ -12,26 +12,26 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Import container images to a container registry
 
-You can easily import (copy) container images to an Azure container registry, without using Docker commands. For example, import images from a development registry to a production registry, or copy base images from a public registry.
+You can easily import (copy) container images to an Azure container registry without using Docker commands. For example, you can import images from a development registry to a production registry, or copy base images from a public registry.
 
 Azure Container Registry handles many common scenarios to copy images and other artifacts from an existing registry:
 
-* Import images from a public registry
+* Import images from a public registry.
 
-* Import images or OCI artifacts including Helm 3 charts from another Azure container registry, in the same, or a different Azure subscription or tenant
+* Import images or OCI artifacts, including Helm 3 charts, from another Azure container registry in the same Azure subscription, Azure tenant, or across subscriptions and tenants.
 
-* Import from a non-Azure private container registry
+* Import images from a non-Azure private container registry.
 
-Image import into an Azure container registry has the following benefits over using Docker CLI commands:
+Importing images into an Azure container registry has the following benefits compared to using Docker CLI commands:
 
-* If your client environment doesn't need a local Docker installation, you can Import any container image, regardless of the supported OS type.
+* If your client environment doesn't need a local Docker installation, you can import any container image, regardless of the supported OS type.
 
 * If you import multi-architecture images (such as official Docker images), images for all architectures and platforms specified in the manifest list get copied.
 
 * If you have access to the target registry, you don't require the registry's public endpoint.
 
 > [!IMPORTANT]
->* Importing images requires the external registry support  [RFC 7233](https://www.rfc-editor.org/rfc/rfc7233#section-2.3). We recommend using a registry that supports RFC 7233 ranges while using az acr import command with the registry URI to avoid failures.
+> Importing images requires external registry support [RFC 7233](https://www.rfc-editor.org/rfc/rfc7233#section-2.3). To avoid failures, use a registry that supports RFC 7233 ranges while using the `az acr import` command with the registry URI.
 
 ## Limitations
 
@@ -39,18 +39,18 @@ Image import into an Azure container registry has the following benefits over us
 
 ### [Azure CLI](#tab/azure-cli)
 
-To import container images, this article requires that you run the Azure CLI in Azure Cloud Shell or locally (version 2.0.55 or later recommended). Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI][azure-cli].
+To import container images, run the Azure CLI in Azure Cloud Shell or locally.
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-To import container images, this article requires that you run Azure PowerShell in Azure Cloud Shell or locally (version 5.9.0 or later recommended). Run `Get-InstalledModule -Name Az` to find the version. If you need to install or upgrade, see [Install the Azure Az PowerShell module][install-the-azure-az-powershell-module].
+To import container images, run Azure PowerShell in Azure Cloud Shell or locally.
 
 ---
 
 [!INCLUDE [container-registry-geo-replication-include](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-geo-replication-include.md)]
 
 > [!IMPORTANT]
-> Import to or from a network-restricted Azure container registry requires the restricted registry to [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network. By default, the setting is enabled, allowing import. If the setting isn't enabled in a newly created registry with a private endpoint or with registry firewall rules, import will fail.
+> To import to or from a network-restricted Azure container registry, the restricted registry must [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network. By default, the setting is enabled, so import works. If you create a registry with a private endpoint or with registry firewall rules and don't enable the setting, import fails.
 
 ## Prerequisites
 
@@ -66,12 +66,14 @@ If you don't already have an Azure container registry, create a registry. For st
 
 To import an image to an Azure Container Registry, your identity must have permissions to trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role). See [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
-## Import from a public registry
+## Import container images from a public registry
 
 > [!IMPORTANT]
-> To import from a public registry to a network-restricted Azure container registry requires the restricted registry to [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network.By default, the setting is enabled, allowing import. If the setting isn't enabled in a newly created registry with a private endpoint or with registry firewall rules, import will fail.
+> To import from a public registry to a network-restricted Azure container registry, the restricted registry must [**allow access by trusted services**](allow-access-trusted-services.md) to bypass the network. By default, this setting is enabled, so import works. If you disable this setting in a newly created registry with a private endpoint or with registry firewall rules, import fails.
 
-### Import from Docker Hub
+<a name='import-from-docker-hub'></a>
+
+### Import container images from Docker Hub
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -101,14 +103,14 @@ az acr import \
    --repository hello-world
 ```
 
-If you have a [Docker Hub account](https://www.docker.com/pricing), we recommend that you use the credentials when importing an image from Docker Hub. Pass the Docker Hub user name and the password or a [personal access token](https://docs.docker.com/docker-hub/access-tokens/) as parameters to `az acr import`. The following example imports a public image from the `tensorflow` repository in Docker Hub, using Docker Hub credentials:
+If you have a [Docker Hub account](https://www.docker.com/pricing), use the credentials when importing an image from Docker Hub. Pass the Docker Hub user name and the password or a [personal access token](https://docs.docker.com/docker-hub/access-tokens/) as parameters to `az acr import`. The following example imports a public image from the `tensorflow` repository in Docker Hub, using Docker Hub credentials:
 
 ```azurecli
 az acr import \
   --name myregistry \
   --source docker.io/tensorflow/tensorflow:latest-gpu \
-  --image tensorflow:latest-gpu
-  --username <Docker Hub user name>
+  --image tensorflow:latest-gpu \
+  --username <Docker Hub user name> \
   --password <Docker Hub token>
 ```
 
@@ -126,7 +128,7 @@ You can verify that multiple manifests are associated with this image by running
 Get-AzContainerRegistryManifest -RepositoryName library/hello-world -RegistryName myregistry
 ```
 
-If you have a [Docker Hub account](https://www.docker.com/pricing), we recommend that you use the credentials when importing an image from Docker Hub. Pass the Docker Hub user name and the password or a [personal access token](https://docs.docker.com/docker-hub/access-tokens/) as parameters to `Import-AzContainerRegistryImage`. The following example imports a public image from the `tensorflow` repository in Docker Hub, using Docker Hub credentials:
+If you have a [Docker Hub account](https://www.docker.com/pricing), use the credentials when importing an image from Docker Hub. Pass the Docker Hub user name and the password or a [personal access token](https://docs.docker.com/docker-hub/access-tokens/) as parameters to `Import-AzContainerRegistryImage`. The following example imports a public image from the `tensorflow` repository in Docker Hub, using Docker Hub credentials:
 
 ```azurepowershell
 Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri docker.io -SourceImage tensorflow/tensorflow:latest-gpu -Username <Docker Hub user name> -Password <Docker Hub token>
@@ -134,7 +136,7 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ---
 
-### Import from Microsoft Container Registry
+### Import container images from Microsoft Container Registry
 
 For example, import the `ltsc2022` Windows Server Core image from the `windows` repository in Microsoft Container Registry.
 
@@ -155,19 +157,19 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ---
 
-## Import from an Azure container registry in the same AD tenant
+## Import container images from an Azure container registry in the same Microsoft Entra tenant
 
-You can import an image from an Azure container registry in the same AD tenant using integrated Microsoft Entra permissions.
+You can import an image from an Azure container registry in the same Microsoft Entra tenant by using integrated Microsoft Entra permissions.
 
 * Your identity must have permissions to view and pull images, tags, and OCI referrers from the source registry (`Container Registry Data Importer and Data Reader` role assigned on the source registry).
 * Your identity must also have permissions to both read images and trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role assigned on the target registry).
-* The registry can be in the same or a different Azure subscription in the same Active Directory tenant.
+* The registry can be in the same or a different Azure subscription in the same Microsoft Entra tenant.
 
 * [Public access](container-registry-access-selected-networks.md#disable-public-network-access) to the source registry is disabled. If public access is disabled, specify the source registry by resource ID instead of by registry login server name.
 
 * The source registry and/or the target registry with a private endpoint or registry firewall rules must ensure the restricted registry [allows trusted services](allow-access-trusted-services.md) to access the network.
 
-### Import from a registry in the same subscription
+### Import container images from a registry in the same subscription
 
 For example, import the `aci-helloworld:latest` image from a source registry *mysourceregistry* to *myregistry* in the same Azure subscription.
 
@@ -175,7 +177,7 @@ For example, import the `aci-helloworld:latest` image from a source registry *my
 
 The following example imports the `aci-helloworld:latest` image to *myregistry* from a source registry *mysourceregistry* in which access to the registry's public endpoint is disabled. Supply the resource ID of the source registry with the `--registry` parameter. Notice that the `--source` parameter specifies only the source repository and tag, not the registry login server name.
 
-Note that the `--registry <source-registry-resource-id>` flag is needed to utilize Entra identity authentication to the source registry.
+To use Microsoft Entra identity authentication to the source registry, include the `--registry <source-registry-resource-id>` flag.
 
 ```azurecli
 az acr import \
@@ -189,7 +191,7 @@ az acr import \
 
 The following example imports the `aci-helloworld:latest` image to *myregistry* from a source registry *mysourceregistry* in which access to the registry's public endpoint is disabled. Supply the resource ID of the source registry with the `-SourceRegistryResourceId` parameter. Notice that the `-SourceImage` parameter specifies only the source repository and tag, not the registry login server name.
 
-Note that the `-SourceRegistryResourceId <source-registry-resource-id>` flag is needed to utilize Entra identity authentication to the source registry.
+To use Entra identity authentication to the source registry, include the `-SourceRegistryResourceId <source-registry-resource-id>` flag.
 
 ```azurepowershell
 Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryResourceId '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sourceResourceGroup/providers/Microsoft.ContainerRegistry/registries/mysourceregistry' -SourceImage aci-helloworld:latest
@@ -197,14 +199,14 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ---
 
-### Import from a registry in a different subscription
+### Import container images from a registry in a different subscription
 
 > [!NOTE]
 > To import an image from one registry to another, the source and target registries must ensure that both regions are registered for Azure Container Registry (ACR) under the subscription’s resource providers.
 
 ### [Azure CLI](#tab/azure-cli)
 
-In the following example, *mysourceregistry* is in a different subscription from *myregistry* in the same Active Directory tenant. Supply the resource ID of the source registry with the `--registry` parameter. Notice that the `--source` parameter specifies only the source repository and tag, not the registry login server name.
+In the following example, *mysourceregistry* is in a different subscription from *myregistry* in the same tenant. Supply the resource ID of the source registry by using the `--registry` parameter. The `--source` parameter specifies only the source repository and tag, not the registry login server name.
 
 ```azurecli
 az acr import \
@@ -216,7 +218,7 @@ az acr import \
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-In the following example, *mysourceregistry* is in a different subscription from *myregistry* in the same Active Directory tenant. Supply the resource ID of the source registry with the `--registry` parameter. Notice that the `--source` parameter specifies only the source repository and tag, not the registry login server name.
+In the following example, *mysourceregistry* is in a different subscription from *myregistry* in the same tenant. Supply the resource ID of the source registry by using the `-SourceRegistryResourceId` parameter. The `-SourceImage` parameter specifies only the source repository and tag, not the registry login server name.
 
 ```azurepowershell
 Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryResourceId '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sourceResourceGroup/providers/Microsoft.ContainerRegistry/registries/mysourceregistry' -SourceImage aci-helloworld:latest
@@ -224,20 +226,19 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ---
 
-### Import from a registry using service principal credentials
+### Import container images from a registry by using service principal credentials
 
-To import from a registry that you can't access using integrated Active Directory permissions, you can use service principal credentials (if available) to the source registry. Supply the appID and password of a Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has the correct role assignment access to the source registry.
-* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+To import from a registry that you can't access by using integrated Active Directory permissions, use service principal credentials (if available) for the source registry. Enter the appID and password of a Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has the correct role assignment access to the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) is assigned.
 
 Using a service principal is useful for build systems and other unattended systems that need to import images to your registry.
-
 
 ### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
 az acr import \
   --name myregistry \
-  --source sourceregistry.azurecr.io/sourcerrepo:tag \
+  --source sourceregistry.azurecr.io/sourcerepo:tag \
   --image targetimage:tag \
   --username <SP_App_ID> \
   --password <SP_Passwd>
@@ -246,28 +247,28 @@ az acr import \
 ### [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerrepo:tag -Username <SP_App_ID> -Password <SP_Passwd>
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerepo:tag -Username <SP_App_ID> -Password <SP_Passwd>
 ```
 
 ---
 
-## Import from an Azure container registry in a different AD tenant
+## Import container images from an Azure container registry in a different tenant
 
-To import from an Azure container registry in a different Microsoft Entra tenant, specify the source registry by login server name, and provide credentials that enable pull access to the registry. 
+To import images from an Azure container registry in a different Microsoft Entra tenant, specify the source registry by login server name, and provide credentials that enable pull access to the registry.
 
-* Cross-tenant import over public access disabled registry is not supported.   
+Cross-tenant import isn't supported over public access disabled registry.
 
 ### Cross-tenant import with username and password
 
 For example, use a [non-Microsoft Entra repository-scoped token](container-registry-token-based-repository-permissions.md) and password, or the appID and password of a Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has correct role assignments to the source registry.
-* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been assigned on the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) is assigned on the source registry.
 
 ### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
 az acr import \
   --name myregistry \
-  --source sourceregistry.azurecr.io/sourcerrepo:tag \
+  --source sourceregistry.azurecr.io/sourcerepo:tag \
   --image targetimage:tag \
   --username <SP_App_ID> \
   --password <SP_Passwd>
@@ -276,16 +277,14 @@ az acr import \
 ### [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerrepo:tag -Username <SP_App_ID> -Password <SP_Passwd>
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerepo:tag -Username <SP_App_ID> -Password <SP_Passwd>
 ```
 
 ---
 
 ### Cross-tenant import with access token
 
-* Cross-tenant import over public access disabled registry is not supported.      
-
-To access the source registry using an identity in the source tenant that has registry permissions, you can get an access token:
+To access the source registry by using an identity in the source tenant that has registry permissions, get an access token:
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -297,14 +296,14 @@ az login --identity --username <identity_ID>
 az account get-access-token
 ```
 
-In the target tenant, pass the access token as a password to the `az acr import` command. The source registry specifies the login server name. Notice that no username is needed in this command:
+In the target tenant, pass the access token as a password to the `az acr import` command. The source registry specifies the login server name. No username is needed in this command:
 
 ```azurecli
 az acr import \
   --name myregistry \
-  --source sourceregistry.azurecr.io/sourcerrepo:tag \
+  --source sourceregistry.azurecr.io/sourcerepo:tag \
   --image targetimage:tag \
-  --password <access-token>
+  --password ($token|ConvertFrom-Json).accessToken
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -317,15 +316,15 @@ Connect-AzAccount -Identity -AccountId <identity_ID>
 Get-AzAccessToken
 ```
 
-In the target tenant, pass the access token as a password to the `Import-AzContainerRegistryImage` cmdlet. The source registry specifies login server name. Notice that no username is needed in this command:
+In the target tenant, pass the access token as a password to the `Import-AzContainerRegistryImage` cmdlet. The source registry specifies the login server name. No username is needed in this command:
 
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerrepo:tag -Password <access-token>
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri sourceregistry.azurecr.io -SourceImage sourcerepo:tag -Password <access-token>
 ```
 
 ---
 
-## Import from a non-Azure private container registry
+## Import container images from a non-Azure private container registry
 
 Import an image from a non-Azure private registry by specifying credentials that enable pull access to the registry. For example, pull an image from a private Docker registry:
 
@@ -341,37 +340,31 @@ az acr import \
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
+
 ```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri docker.io/sourcerepo -SourceImage sourcerrepo:tag -Username <username> -Password <password>
+Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri docker.io/sourcerepo -SourceImage sourcerepo:tag -Username <username> -Password <password>
 ```
+
 > [!NOTE]
-> If you're importing from a non-Azure private registry with IP rules, [follow these steps.](container-registry-access-selected-networks.md) 
-
-### Troubleshoot Import Container Images
-
-#### Symptoms and Causes
-- `The remote server may not be RFC 7233 compliant`
-  - The [distribution-spec](https://github.com/opencontainers/distribution-spec/blob/main/spec.md) allows range header form of `Range: bytes=<start>-<end>`. However, the remote server may not be RFC 7233 compliant.
-- `Unexpected response status code`
-  - Get an unexpected response status code from source repository when doing range query.
-- `Unexpected length of body in response`
-  - The received content length does not match the size expected. Expected size is decided by blob size and range header.
+> If you're importing from a non-Azure private registry with IP rules, [follow these steps.](container-registry-access-selected-networks.md)
 
 ---
+
+## Troubleshoot problems with container image imports
+
+If you see an error when importing an image, review the following table for more information.
+
+| Error message | Explanation |
+|---|---|
+| `The remote server may not be RFC 7233 compliant` | The [distribution-spec](https://github.com/opencontainers/distribution-spec/blob/main/spec.md) allows range header form of `Range: bytes=<start>-<end>`. However, the remote server might not be RFC 7233 compliant. |
+| `Unexpected response status code` | An unexpected response status code was retrieved from the source repository when doing range query. |
+| `Unexpected length of body in response` | The received content length doesn't match the expected size. The expected size is decided by blob size and range header. |
 
 ## Next steps
 
 In this article, you learned about importing container images to an Azure container registry from a public registry or another private registry.
 
-### [Azure CLI](#tab/azure-cli)
-
-* For additional image import options, see the [az acr import][az-acr-import] command reference.
-
-### [Azure PowerShell](#tab/azure-powershell)
-
-* For additional image import options, see the [Import-AzContainerRegistryImage][import-azcontainerregistryimage] cmdlet reference.
-
----
+* For additional image import options, see the [az acr import][az-acr-import] or  [Import-AzContainerRegistryImage][import-azcontainerregistryimage]  reference.
 
 * Image import can help you move content to a container registry in a different Azure region, subscription, or Microsoft Entra tenant. For more information, see [Manually move a container registry to another region](manual-regional-move.md).
 
