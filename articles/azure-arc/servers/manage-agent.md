@@ -147,10 +147,10 @@ The following table describes additional methods supported to perform agent upgr
 
 | Operating system | Upgrade method |
 |------------------|----------------|
-| Windows | Manually<br> Microsoft Update |
-| Ubuntu | [apt](https://help.ubuntu.com/lts/serverguide/apt.html) |
-| Red Hat/Oracle Linux/Amazon Linux | [yum](https://access.redhat.com/articles/yum-cheat-sheet) |
-| SUSE Linux Enterprise Server | [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3) |
+| Windows | Manually<br> Microsoft Update<br> Azure Update Manager (AUM) |
+|Linux | [apt](https://help.ubuntu.com/lts/serverguide/apt.html)<br> [yum](https://access.redhat.com/articles/yum-cheat-sheet)<br> [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3)<br> Azure Update Manager (AUM) |
+
+
 
 ### [Windows](#tab/windows)
 

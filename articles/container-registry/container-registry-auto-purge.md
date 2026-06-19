@@ -4,8 +4,8 @@ description: Use the `acr purge` command (preview) to delete multiple tags and m
 ms.topic: how-to
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
-author: rayoef
-ms.author: rayoflores
+author: KumudD
+ms.author: kumud
 ms.date: 02/26/2026
 # Customer intent: As a developer, I want to efficiently purge old or unnecessary images from my container registry, so that I can maintain an organized and optimally performing storage environment.
 ---

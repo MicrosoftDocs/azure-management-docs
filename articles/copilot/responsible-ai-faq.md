@@ -8,8 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
+
 hideEdit: true
 # Customer intent: As an Azure user, I want to understand how Azure Copilot uses my data and the reliability of its responses, so that I can effectively manage and optimize my Azure environment while ensuring data privacy and security.
 ---

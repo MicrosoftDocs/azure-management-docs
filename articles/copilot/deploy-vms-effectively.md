@@ -9,8 +9,7 @@ ms.custom:
   - ignite-2023-copilotinAzure
   - build-2024
   - ignite-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a cloud administrator, I want to deploy and manage cost-efficient and scalable virtual machines using guided assistance, so that I can optimize resource allocation and ensure high availability for my workloads.
 ---
 

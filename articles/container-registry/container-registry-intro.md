@@ -1,10 +1,10 @@
 ---
 title: Introduction to Azure Container Registry
 description: Get basic information about the Azure service that provides cloud-based, managed container registries.
-author: rayoef
+author: KumudD
 ms.topic: overview
 ms.date: 02/11/2026
-ms.author: rayoflores
+ms.author: kumud
 ms.service: azure-container-registry
 ms.custom: mvc
 # Customer intent: "As a developer managing containerized applications, I want to leverage a managed container registry service, so that I can efficiently store, build, and deploy container images within my development and deployment workflows."

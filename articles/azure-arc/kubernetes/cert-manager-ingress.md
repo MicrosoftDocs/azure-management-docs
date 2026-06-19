@@ -67,7 +67,7 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
 
    If you use an out-of-tree [issuer](https://cert-manager.io/docs/configuration/issuers/), you also need to install the issuer, and add `cert-manager.io/issuer-*` annotations to identify it.
 
-   Ensure that the gateway resource [includes a `tls` section](https://gateway-api.sigs.k8s.io/reference/spec/#listenertlsconfig) for each traffic type that it listens for. This section provides the secret name where cert-manager stores the certificate, and optional configuration for extended TLS support.
+   Ensure that the gateway resource [includes a `tls` section](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listenertlsconfig) for each traffic type that it listens for. This section provides the secret name where cert-manager stores the certificate, and optional configuration for extended TLS support.
 
    The following example gateway resource includes annotations that trigger cert-manager to create certificates for this gateway, provided that you installed the Gateway API CRDs.
 
@@ -174,4 +174,4 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
 
 ## End-to-end setups for Gateway and Ingress APIs
 
-This article shows how to integrate cert-manager for Azure Arc-enabled Kubernetes integration with the Gateway and Ingress APIs, and how to verify the certificates cert-manager produces. For more information, see the cert-manager documentation, such as [Securing NGINX-ingress](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/), and the [Gateway API](https://gateway-api.sigs.k8s.io/concepts/api-overview/) and [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/) documentation.
+This article shows how to integrate cert-manager for Azure Arc-enabled Kubernetes integration with the Gateway and Ingress APIs, and how to verify the certificates cert-manager produces. For more information, see the cert-manager documentation, such as [Securing NGINX-ingress](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/), and the [Gateway API](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/) and [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/) documentation.

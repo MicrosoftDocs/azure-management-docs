@@ -1,7 +1,7 @@
 ---
 title: Configure Registry Acceptance of Microsoft Entra Authentication Scopes
 description: Configure Azure Container Registry to accept ARM-scoped Microsoft Entra authentication (broad) or ACR-scoped Microsoft Entra authentication (narrow) for enhanced security.
-ms.author: rayoflores
+ms.author: kumud
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
 ms.topic: how-to

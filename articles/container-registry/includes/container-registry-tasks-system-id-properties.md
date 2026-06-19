@@ -2,12 +2,12 @@
 title: include file
 description: include file
 services: container-registry
-author: rayoef
+author: KumudD
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/06/2020
-ms.author: rayoflores
+ms.author: kumud
 ms.custom: include file
 # Customer intent: "As a cloud administrator, I want to retrieve the principal ID of a system-assigned identity from Azure Container Registry tasks, so that I can use it for subsequent command executions and manage access effectively."
 ---

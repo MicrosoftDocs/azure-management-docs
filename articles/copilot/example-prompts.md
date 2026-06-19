@@ -4,8 +4,7 @@ description: View example prompts that you can try out with Azure Copilot.
 ms.date: 11/21/2025
 ms.topic: concept-article
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: "As an Azure user, I want to experiment with prompts for Copilot so that I can effectively manage and optimize my Azure environment."
 ---
 

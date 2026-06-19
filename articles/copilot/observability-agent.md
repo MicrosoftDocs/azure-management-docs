@@ -1,8 +1,7 @@
 ---
 title: Observability agent capabilities in Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot helps investigate Azure Monitor alerts and provide observability using intelligent agent capabilities.
-author: JnHs
-ms.author: jenhayes
+
 ms.date: 1/12/2026
 ms.service: azure-copilot
 ms.topic: concept-article

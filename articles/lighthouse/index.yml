@@ -8,8 +8,8 @@ metadata:
   description: Azure Lighthouse lets service providers manage Azure resources in multiple customer tenants, with enhanced automation, scalability, and governance.
   ms.service: azure-lighthouse
   ms.topic: landing-page
-  author: JnHs
-  ms.author: jenhayes
+  author: fossygirl
+  ms.author: carols
   ms.date: 01/20/2026
   
 landingContent:

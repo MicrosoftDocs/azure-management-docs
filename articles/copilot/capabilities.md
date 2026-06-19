@@ -9,8 +9,7 @@ ms.custom:
   - ignite-2023-copilotinAzure
   - build-2024
   - ignite-2024
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As an Azure user, I want to utilize AI-driven assistance in Azure operations, so that I can optimize my app management, enhance troubleshooting, and efficiently navigate Azure services for improved performance and insights.
 ---
 

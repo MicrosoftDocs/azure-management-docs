@@ -1,6 +1,4 @@
 ---
-author: JnHs
-ms.author: jenhayes
 ms.service: azure-copilot
 ms.custom:
   - ignite-2023

@@ -4,8 +4,7 @@ description: Learn how to use Azure Copilot to help troubleshoot issues with dis
 ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: azure-copilot
-ms.author: jenhayes
-author: JnHs
+
 # Customer intent: As a cloud administrator, I want to analyze disk performance issues using an AI tool, so that I can identify and resolve bottlenecks impacting my virtual machines and applications efficiently.
 ---
 
