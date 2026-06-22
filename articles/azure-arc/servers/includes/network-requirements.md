@@ -149,21 +149,22 @@ The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdatase
 
 The Azure Connected Machine Agent is designed to have light bandwidth requirements for most scenarios. The exact bandwidth requirements will depend on your configuration. 
 
-In normal operation, the agent will make the following regular requests.
+In normal operation, the agent will make the following regular requests. All connections are outbound.
 
-- One persistent websocket connection, used to deliver notifications to the server when changes are made in the cloud.
+- For notifications, one persistent websocket connection, requiring ~
 - One heartbeat request every 5 minutes. This will be <64KB
-- One extension status check every X minutes
+- For Machine Configuration, one status check every 15 minutes. This will be < 100KB.
+- For VM extensions, **TBD**
 - Diagnostic Telemetry. Up to 1 message every 30 minutes, with a maximum size of 64KB.
 
-When VM extensions or VM applications are installed or upgraded on the Azure Arc-enabled Server, the extension package must be downloaded from Microsoft's CDN endpoint. 
+When **Machine Configurations** are assigned to the server, each configuration must be downloaded initially (up to 1MB per assignment), then a status update (up to 200KB, but for most configurations much smaller) every 15 minutes.
+
+When **VM extensions or VM applications** are installed or upgraded on the Azure Arc-enabled Server, the extension package must be downloaded from Microsoft's CDN endpoint. 
 Extension packages can be up to 2GB in maximum size but most are significantly smaller. This download occurs when a customer installs or updates an extension on a server, either manually or via extension auto-upgrade.
 
 Once installed, each extension will have different bandwidth requirements, which may also depend on how they have been configured. See the documentation for each solution for its bandwidth requirements.
 
 For Azure Monitor, see [Azure Monitor Usage and Costs](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/cost-usage#estimate-azure-monitor-usage-and-costs) 
-
-
 
 |Platform/Language | Support | More information |
 | --- | --- | --- |
