@@ -145,6 +145,26 @@ For more information, see [Windows TLS configuration issues](../troubleshoot-net
 
 The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` support only TLS 1.2 and 1.3. Only Windows Server 2012 R2 and later have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
+### Bandwidth requirements
+
+The Azure Connected Machine Agent is designed to have light bandwidth requirements for most scenarios. The exact bandwidth requirements will depend on your configuration. 
+
+In normal operation, the agent will make the following regular requests.
+
+- One persistent websocket connection, used to deliver notifications to the server when changes are made in the cloud.
+- One heartbeat request every 5 minutes. This will be <64KB
+- One extension status check every X minutes
+- Diagnostic Telemetry. Up to 1 message every 30 minutes, with a maximum size of 64KB.
+
+When VM extensions or VM applications are installed or upgraded on the Azure Arc-enabled Server, the extension package must be downloaded from Microsoft's CDN endpoint. 
+Extension packages can be up to 2GB in maximum size but most are significantly smaller. This download occurs when a customer installs or updates an extension on a server, either manually or via extension auto-upgrade.
+
+Once installed, each extension will have different bandwidth requirements, which may also depend on how they have been configured. See the documentation for each solution for its bandwidth requirements.
+
+For Azure Monitor, see [Azure Monitor Usage and Costs](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/cost-usage#estimate-azure-monitor-usage-and-costs) 
+
+
+
 |Platform/Language | Support | More information |
 | --- | --- | --- |
 |Linux | Linux distributions tend to rely on [OpenSSL](https://www.openssl.org) for TLS 1.2 support. | Check the [OpenSSL Changelog](https://www.openssl.org/news/changelog.html) to confirm that your version of OpenSSL is supported.|
