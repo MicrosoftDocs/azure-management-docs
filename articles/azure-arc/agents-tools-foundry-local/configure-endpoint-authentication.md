@@ -67,3 +67,4 @@ After you install the Agentic Retrieval extension and configure it to use your o
 ## Related content
 
 - [Deploy the Agentic Retrieval extension](deploy.md)
+- [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md)

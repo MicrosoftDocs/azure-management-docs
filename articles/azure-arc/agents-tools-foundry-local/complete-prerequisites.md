@@ -14,7 +14,7 @@ ms.custom:
 
 # Deployment prerequisites checklist for Agentic Retrieval in Foundry Local
 
-Complete the following steps to prepare for your Agentic Retrieval deployment. 
+Complete the following steps to prepare for your Agentic Retrieval deployment. If your Azure Local environment uses disconnected operations, see [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md), which covers prerequisites and installation in a single article.
 
 To try Agentic Retrieval without the need for local hardware, see [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md).
 
