@@ -52,6 +52,8 @@ landingContent:
             url: complete-prerequisites.md
           - text: Deploy Agents and Tools with Foundry Local
             url: deploy.md
+          - text: Install for disconnected operations on Azure Local
+            url: disconnected-operations/deploy-disconnected.md
 
   # Card (optional)
   - title: Explore key capabilities

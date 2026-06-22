@@ -133,6 +133,7 @@ Don't rerun the role assignment commands. The assignments are recorded immediate
 ## Related content
 
 - [Deploy the extension for Agentic Retrieval in Foundry Local](deploy.md)
+- [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md)
 - [Configure authentication for Agentic Retrieval in Foundry Local](prepare-authentication.md)
 - [Configure authentication for BYOM](configure-endpoint-authentication.md)
 - [Deployment parameter reference and troubleshooting](deploy-reference.md)
