@@ -12,7 +12,7 @@ ms.subservice: edge-rag
 
 # Configure authentication for Agentic Retrieval in Foundry Local
 
-For your Agentic Retrieval deployment, register an application, create app roles, and assign users or groups in Microsoft Entra ID. This article is part of the [deployment prerequisites checklist](complete-prerequisites.md) and also a prerequisite of [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md).
+For your Agentic Retrieval deployment, register an application, create app roles, and assign users or groups in Microsoft Entra ID. This article is part of the [deployment prerequisites checklist](complete-prerequisites.md) and also a prerequisite of [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md). If your environment uses disconnected operations, app registration and role assignment must be done from the CLI. See [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md).
 
 You might need to work with your Microsoft Entra or cloud administrator to configure authentication.
 
