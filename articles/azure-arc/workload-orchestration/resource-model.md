@@ -3,7 +3,7 @@ title: Workload orchestration resource model
 description: Understand the resource model of workload orchestration, including context, hierarchy, and target, and how they define deployment topology.
 author: nathmanish
 ms.author: nathmanish
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/10/2026
 # Customer intent: As a platform engineer, I want to understand the resource model of workload orchestration, so that I can model environments, organize infrastructure, and deploy workloads effectively.
 ---
