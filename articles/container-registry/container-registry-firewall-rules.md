@@ -5,7 +5,7 @@ ms.topic: how-to
 author: KumudD
 ms.author: kumud
 ms.service: azure-container-registry
-ms.date: 02/24/2026
+ms.date: 06/15/2026
 # Customer intent: As a network administrator, I want to configure firewall rules for Azure Container Registry access, so that I can ensure secure and reliable communication for pulling and pushing container images from devices behind a firewall.
 ---
 
@@ -40,6 +40,8 @@ For the full list of endpoint types and FQDN patterns, see the [endpoint referen
 > Azure Container Registry supports [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), allowing you to tightly scope client firewall rules for your registry storage. Optionally enable data endpoints in all regions where the registry is located or replicated, using the form `<registry-name>.<region>.data.azurecr.io`.
 >
 > If [regional endpoints](container-registry-geo-replication.md#regional-endpoints-of-a-geo-replicated-registry-preview) are also enabled, allow access to `<registry-name>.<region>.geo.azurecr.io` for each geo-replica that clients connect to.
+>
+> If [IPv6 dual-stack endpoints](container-registry-ipv6-dual-stack.md) are enabled, registry endpoints resolve over both IPv4 and IPv6. Firewall rules based on the FQDNs above continue to work unchanged. If you allow access by IP address ranges instead of FQDNs, account for IPv6 traffic in your rules.
 
 ## About Azure Container Registry FQDNs
 
