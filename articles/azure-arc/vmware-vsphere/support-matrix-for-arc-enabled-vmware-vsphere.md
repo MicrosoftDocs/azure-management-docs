@@ -58,7 +58,7 @@ The following firewall URL exceptions are needed for the Azure Arc resource brid
 
 ## Designated IP ranges for Arc resource bridge
 
-The IP ranges you assign to your VMware vSphere environment and to the Arc resource bridge configuration (IP address prefix, control plane IP, appliance VM IPs, DNS servers, proxy servers, and vSphere ESXi hosts) must not overlap with the IP ranges reserved by the Arc resource bridge. For the reserved ranges, see [Designated IP ranges for Arc resource bridge](/azure/azure-arc/resource-bridge/network-requirements#designated-ip-ranges-for-arc-resource-bridge).
+The IP ranges you assign to your VMware vSphere environment and to the Arc resource bridge configuration (IP address prefix, control plane IP, appliance VM IPs, DNS servers, proxy servers, and vSphere ESXi hosts) must not overlap with the IP ranges reserved by the Arc resource bridge. To review the reserved IP ranges, see [Designated IP ranges for Arc resource bridge](/azure/azure-arc/resource-bridge/network-requirements#designated-ip-ranges-for-arc-resource-bridge).
 
 ## VMware vSphere network requirements 
 
