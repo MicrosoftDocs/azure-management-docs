@@ -4,9 +4,8 @@ description: Tutorial to deploy a system-managed keytab Active Directory connect
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-author: MikeRayMSFT
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 10/11/2022
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to deploy an Active Directory connector in system-managed keytab mode, so that I can enable Active Directory authentication for SQL Managed Instances using Azure Arc without manual keytab management.

@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 05/27/2022
 ms.topic: how-to
 # Customer intent: "As a cloud administrator managing Azure Arc-enabled data services, I want to upload usage data to Azure in indirect mode, so that I can ensure accurate resource billing and maintain optimal functionality of my data controller."

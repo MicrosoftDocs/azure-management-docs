@@ -3,7 +3,7 @@ title: Restore the AdventureWorks Sample Database into SQL Managed Instance
 description: Restore the AdventureWorks sample database into SQL Managed Instance
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray, randolphwest
+ms.reviewer: randolphwest
 ms.date: 03/16/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi

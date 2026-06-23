@@ -4,9 +4,8 @@ description: Tutorial to deploy a customer-managed keytab Active Directory (AD) 
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-author: MikeRayMSFT
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 10/11/2022
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to deploy an Active Directory connector in customer-managed keytab mode, so that I can enable Active Directory authentication for SQL Managed Instances managed by Azure Arc.

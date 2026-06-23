@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to troubleshoot Azure Arc-enabled data services issues, so that I can ensure proper log uploads, upgrade processes, and resource management for optimal performance and reliability of my data controllers.

@@ -1,8 +1,8 @@
 ---
 title: Quickstart - Deploy Azure Arc-enabled data services - directly connected mode - Azure portal
 description: Demonstrates how to deploy Azure Arc-enabled data services from beginning, including a Kubernetes cluster. Finishes with an instance of Azure SQL Managed Instance.
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi

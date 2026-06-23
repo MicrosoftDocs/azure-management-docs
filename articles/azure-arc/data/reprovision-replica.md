@@ -5,9 +5,8 @@ services: sql-database
 ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.topic: concept-article
-author: MikeRayMSFT 
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 10/05/2022
 # Customer intent: "As a database administrator, I want to reprovision a broken SQL Managed Instance replica using command-line tools, so that I can restore service continuity and ensure data availability for my applications."
 ---

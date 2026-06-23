@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: anatripathi-git
 ms.author: anatripathi
-ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: concept-article
 # Customer intent: "As a system administrator, I want to understand the connectivity modes available for Azure Arc-enabled data services, so that I can choose the appropriate configuration for my infrastructure based on business policies and compliance requirements."

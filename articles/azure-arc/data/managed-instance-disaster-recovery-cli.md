@@ -7,7 +7,6 @@ ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 08/02/2023
 ms.topic: concept-article
 # Customer intent: As a database administrator, I want to configure a failover group for SQL Managed Instances using the CLI, so that I can ensure seamless disaster recovery and maintain business continuity in case of site failures.

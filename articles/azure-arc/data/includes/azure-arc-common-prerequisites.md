@@ -1,9 +1,9 @@
 ---
-author: MikeRayMSFT
+author: MashaMSFT
 ms.service: azure-arc
 ms.topic: include
 ms.date: 07/30/2021
-ms.author: mikeray
+ms.author: mathoma
 # Customer intent: "As a data engineer, I want to set up an Azure Arc data controller with the necessary tools, so that I can manage and deploy data services across hybrid environments."
 ---
 

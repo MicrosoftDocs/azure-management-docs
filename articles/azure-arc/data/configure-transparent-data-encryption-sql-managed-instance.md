@@ -1,12 +1,11 @@
 ---
 title: Turn on transparent data encryption in SQL Managed Instance enabled by Azure Arc (preview)
 description: How-to guide to turn on transparent data encryption in an SQL Managed Instance enabled by Azure Arc (preview)
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-ms.reviewer: mikeray
 ms.topic: how-to
 ms.date: 06/06/2023
 ms.custom: template-how-to, devx-track-azurecli

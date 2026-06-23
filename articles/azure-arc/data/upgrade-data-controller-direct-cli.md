@@ -7,7 +7,6 @@ ms.subservice: azure-arc-data
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
 # Customer intent: "As a cloud administrator, I want to upgrade the Azure Arc-enabled data controller using the CLI, so that I can ensure the latest features and improvements are applied without causing downtime for the data services."

@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: overview
 # Customer intent: As a database administrator, I want to deploy SQL Managed Instances on my preferred infrastructure using Azure Arc, so that I can migrate my SQL Server applications with minimal changes while ensuring data sovereignty and reducing management overhead.

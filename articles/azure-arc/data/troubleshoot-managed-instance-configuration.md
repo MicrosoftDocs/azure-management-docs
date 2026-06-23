@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot configuration - SQL Managed Instance enabled by Azure Arc
 description: Describes how to troubleshoot configuration. Includes steps to provide configuration files for SQL Managed Instance enabled by Azure Arc Azure Arc-enabled data services
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.topic: troubleshooting-general 
 ms.date: 04/10/2023
 # Customer intent: As a database administrator, I want to override configuration files for SQL Managed Instance using Kubernetes ConfigMaps, so that I can customize settings that are not directly modifiable through the standard resource specification.

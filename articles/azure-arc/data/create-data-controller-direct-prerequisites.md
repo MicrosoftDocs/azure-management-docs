@@ -3,7 +3,6 @@ title: Prerequisites | Direct connect mode
 description: Prerequisites to deploy the data controller in direct connect mode. 
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data

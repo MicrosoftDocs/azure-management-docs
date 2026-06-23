@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 05/27/2022
 ms.topic: how-to
 # Customer intent: As a database administrator, I want to enable automatic upgrades for Azure SQL Managed Instances, so that I can simplify the management process and ensure my instances are always up-to-date without manual intervention.

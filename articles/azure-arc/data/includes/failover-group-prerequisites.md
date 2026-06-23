@@ -1,6 +1,6 @@
 ---
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 ms.topic: include

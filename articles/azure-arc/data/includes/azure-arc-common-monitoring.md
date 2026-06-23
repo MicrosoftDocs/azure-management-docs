@@ -1,9 +1,9 @@
 ---
-author: MikeRayMSFT
+author: MashaMSFT
 ms.service: azure-arc
 ms.topic: include
 ms.date: 09/05/2020
-ms.author: mikeray
+ms.author: mathoma
 # Customer intent: "As a data analyst, I want to utilize various monitoring and visualization tools, so that I can effectively analyze and present resource inventory, usage data, and billing information for informed decision-making."
 ---
 

@@ -3,7 +3,6 @@ title: Azure Arc-enabled data services - release versions
 description: A log of versions by release date for Azure Arc-enabled data services
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
