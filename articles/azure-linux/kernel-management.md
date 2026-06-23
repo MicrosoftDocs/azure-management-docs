@@ -205,7 +205,7 @@ The change takes effect immediately and remains in effect until the next reboot.
 
 ### Set a persistent kernel parameter
 
-1. Make a kernel parameter change persist across reboots, add the parameter to `/etc/sysctl.conf` in the following form:
+1. Make a kernel parameter change persist across reboots, add the parameter to `/etc/sysctl.d/99-example.conf` in the following form:
 
     ```text
     <SYSCTL_PARAMETER>=<VALUE>
@@ -214,10 +214,10 @@ The change takes effect immediately and remains in effect until the next reboot.
 1. Apply the updated configuration without rebooting using the following command:
 
     ```bash
-    sudo sysctl -p
+    sudo sysctl --system
     ```
 
-    After `sysctl -p` runs successfully, the new value is applied to the running kernel and is also reapplied automatically each time the system starts.
+    After `sudo sysctl --system` runs successfully, the new value is applied to the running kernel and is also reapplied automatically each time the system starts.
 
 ## Enable kdump
 
