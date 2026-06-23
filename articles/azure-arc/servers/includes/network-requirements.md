@@ -145,29 +145,32 @@ For more information, see [Windows TLS configuration issues](../troubleshoot-net
 
 The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` support only TLS 1.2 and 1.3. Only Windows Server 2012 R2 and later have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
+|Platform/Language | Support | More information |
+| --- | --- | --- |
+|Linux | Linux distributions tend to rely on [OpenSSL](https://www.openssl.org) for TLS 1.2 support. | Check the [OpenSSL Changelog](https://www.openssl.org/news/changelog.html) to confirm that your version of OpenSSL is supported.|
+| Windows Server 2012 R2 and later | Supported and enabled by default. | Confirm that you're still using the [default settings](/windows-server/security/tls/tls-registry-settings).|
+| Windows Server 2012 | Partially supported. *Not recommended.*| Some endpoints still work, but other endpoints require TLS 1.2 or later, which isn't available on Windows Server 2012.|
+
 ### Bandwidth requirements
 
 The Azure Connected Machine agent is designed to have light bandwidth requirements for most scenarios. The exact bandwidth requirements depend on your configuration.
 
 In normal operation, the agent will make the following regular requests. All connections are outbound.
 
-- For notifications, one persistent websocket connection, requiring ~
+- For notifications, one persistent websocket connection, requiring minimal bandwidth.
 - One heartbeat request every 5 minutes (less than 64 KB).
 - For Machine Configuration, one status check every 15 minutes (less than 100 KB).
-- For VM extensions, **TBD**
+- For VM extensions, one status check every 5 minutes (less than 100KB)
 - Diagnostic telemetry messages. A maximum of one message every 30 minutes, with a maximum size of 64 KB.
 
 When **Machine Configurations** are assigned to the server, each configuration must be downloaded initially (up to 1 MB per assignment), then a status update (up to 200 KB, but for most configurations much smaller) every 15 minutes.
 
 When **VM extensions or VM applications** are installed or upgraded on an Azure Arc-enabled server, the extension package must be downloaded from Microsoft's CDN endpoint.
-Extension packages can be up to 2 GB, but most are significantly smaller. This download occurs when you install or update an extension on a server, either manually or via extension auto-upgrade.
+Extension packages can be up to 2 GB, but most are significantly smaller. This download occurs when you install or update an extension on a server, either manually or via extension auto-upgrade. 
+Once installed a status update (up to 100KB, but for most extensions much smaller) every 15 minutes.
 
 Installed extensions have their own bandwidth requirements, which might also depend on how they have been configured. For more information, see the documentation for each extension.
 
 For Azure Monitor, see [Azure Monitor cost and usage](/azure/azure-monitor/fundamentals/cost-usage).
 
-|Platform/Language | Support | More information |
-| --- | --- | --- |
-|Linux | Linux distributions tend to rely on [OpenSSL](https://www.openssl.org) for TLS 1.2 support. | Check the [OpenSSL Changelog](https://www.openssl.org/news/changelog.html) to confirm that your version of OpenSSL is supported.|
-| Windows Server 2012 R2 and later | Supported and enabled by default. | Confirm that you're still using the [default settings](/windows-server/security/tls/tls-registry-settings).|
-| Windows Server 2012 | Partially supported. *Not recommended.*| Some endpoints still work, but other endpoints require TLS 1.2 or later, which isn't available on Windows Server 2012.|
+
