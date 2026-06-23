@@ -47,7 +47,7 @@ For bug reports, documentation improvements, and feature requests, see [Report i
 
 ## Join our Azure Linux community calls
 
-Azure Linux hosts monthly community calls where you can get help from our product and support teams.
+Azure Linux team hosts monthly community calls where you can get help from our product and support teams.
 
 The Azure Linux community calls are for Azure Linux users to get together and discuss new features, provide feedback, and learn more about how others use Azure Linux. In each session, we feature a new demo.
 
