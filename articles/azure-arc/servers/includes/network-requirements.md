@@ -147,24 +147,24 @@ The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdatase
 
 ### Bandwidth requirements
 
-The Azure Connected Machine Agent is designed to have light bandwidth requirements for most scenarios. The exact bandwidth requirements depend on your configuration. 
+The Azure Connected Machine agent is designed to have light bandwidth requirements for most scenarios. The exact bandwidth requirements depend on your configuration.
 
 In normal operation, the agent will make the following regular requests. All connections are outbound.
 
 - For notifications, one persistent websocket connection, requiring ~
-- One heartbeat request every 5 minutes (less than 64KB).
-- For Machine Configuration, one status check every 15 minutes. This will be < 100KB.
+- One heartbeat request every 5 minutes (less than 64 KB).
+- For Machine Configuration, one status check every 15 minutes (less than 100 KB).
 - For VM extensions, **TBD**
 - Diagnostic telemetry messages. A maximum of one message every 30 minutes, with a maximum size of 64 KB.
 
-When **Machine Configurations** are assigned to the server, each configuration must be downloaded initially (up to 1MB per assignment), then a status update (up to 200KB, but for most configurations much smaller) every 15 minutes.
+When **Machine Configurations** are assigned to the server, each configuration must be downloaded initially (up to 1 MB per assignment), then a status update (up to 200 KB, but for most configurations much smaller) every 15 minutes.
 
-When **VM extensions or VM applications** are installed or upgraded on the Azure Arc-enabled Server, the extension package must be downloaded from Microsoft's CDN endpoint. 
+When **VM extensions or VM applications** are installed or upgraded on an Azure Arc-enabled server, the extension package must be downloaded from Microsoft's CDN endpoint.
 Extension packages can be up to 2 GB, but most are significantly smaller. This download occurs when you install or update an extension on a server, either manually or via extension auto-upgrade.
 
 Installed extensions have their own bandwidth requirements, which might also depend on how they have been configured. For more information, see the documentation for each extension.
 
-For Azure Monitor, see [Azure Monitor cost and usage](/azure/azure-monitor/fundamentals/cost-usages).
+For Azure Monitor, see [Azure Monitor cost and usage](/azure/azure-monitor/fundamentals/cost-usage).
 
 |Platform/Language | Support | More information |
 | --- | --- | --- |
