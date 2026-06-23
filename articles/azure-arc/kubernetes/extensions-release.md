@@ -191,14 +191,14 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 ### Azure Policy Extension Release Notes
 
-#### 1.18.0
+#### 1.18.1
 
 Introducing Validating Admission Policy (VAP) generation. Validating Admission Policies are Kubernetes-native validating policy resources that are evaluated in-process, allowing for reduced latency and fail-close evaluation. Azure Policies that contain Common Expression Language (CEL) will automatically generate VAPs  for Kubernetes version 1.30+
 
 Security improvements.
- - Released: May 2026
- - Policy Image: v1.15.5
- - Gatekeeper Image: v3.22.1-1
+ - Released: Jun 2026
+ - Policy Image: v1.15.5-1
+ - Gatekeeper Image: v3.22.2-1
 
 #### 1.17.1
 
