@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 02/25/2026
+ms.date: 06/05/2026
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -425,7 +425,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
 
 1. Navigate to your cluster in the Azure portal.
 1. From the service menu, under **Settings**, select **GitOps**.
-1. Select **Create**.
+1. Select **Create Flux configuration**.
 1. In the **Basics** section:
 
    1. Enter a name for the configuration.
