@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 08/02/2023
 ms.topic: concept-article
 # Customer intent: "As a database administrator, I want to configure disaster recovery for SQL Managed Instance using Azure failover groups so that I can ensure high availability and minimize downtime for my applications."

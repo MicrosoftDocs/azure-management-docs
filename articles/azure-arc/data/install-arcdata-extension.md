@@ -7,7 +7,6 @@ ms.subservice: azure-arc-data
 ms.custom: devx-track-azurecli
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
 # Customer intent: As a cloud developer, I want to install the `arcdata` extension for the Azure CLI, so that I can manage Azure Arc-enabled data services efficiently.

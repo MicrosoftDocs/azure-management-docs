@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 04/16/2024
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to update the service principal credentials in the data controller, so that I can ensure secure access and functionality after changes in authentication values.

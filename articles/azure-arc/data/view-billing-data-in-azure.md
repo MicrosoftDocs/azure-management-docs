@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to upload billing data to Azure and access it via the Azure portal, so that I can effectively monitor and analyze the costs associated with my Azure Arc-enabled data services.

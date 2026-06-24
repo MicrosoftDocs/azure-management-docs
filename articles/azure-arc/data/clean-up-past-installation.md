@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 ms.date: 07/11/2022
 ms.topic: how-to
 # Customer intent: "As a DevOps engineer managing Azure Arc resources, I want to remove residual resources from deleted data controllers, so that I can maintain a clean and efficient cluster environment."

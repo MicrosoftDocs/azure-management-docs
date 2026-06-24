@@ -8,8 +8,8 @@ metadata:
   ms.subservice: azure-arc-data
   ms.topic: faq
   ms.date: 11/22/2022
-  ms.author: mikeray
-  author: MikeRayMSFT
+  ms.author: mathoma
+  author: MashaMSFT
 title: Azure Arc-enabled data services FAQ
 summary: |
   This article lists frequently asked questions and answers for Azure Arc-enabled data services.
