@@ -521,18 +521,18 @@ az role assignment create \
 
 #### Step 3: Wait for cached credentials to expire and refresh on all clients
 
-Clients that authenticate to your registry—such as Azure Kubernetes Service (AKS) nodes (kubelet), Docker, and CI/CD agents—cache the credentials (tokens) that they obtain from the registry. A cached credential reflects the permissions that were in effect when the client obtained it. Adding the new ABAC-enabled role assignments in the previous step doesn't update credentials that clients have already cached.
+Clients that authenticate to your registry—such as Azure Kubernetes Service (AKS) nodes (kubelet), Docker, and CI/CD agents—cache the credentials (tokens) that they obtain from the registry. A cached credential reflects the permissions that were in effect when the client obtained it. Adding the new ABAC-enabled role assignments in the previous step doesn't update credentials that clients already cached.
 
 After you assign the equivalent ABAC-enabled roles, wait for every client's cached credentials to expire and refresh **before** you switch the registry to ABAC-enabled mode. Clients that refresh their credentials while the equivalent ABAC-enabled roles are already assigned continue to have uninterrupted access after the switch.
 
 > [!WARNING]
-> If you switch the registry to ABAC-enabled mode while clients still hold credentials that they cached under RBAC-only mode, those clients can fail to pull or push images until their cached credentials expire and refresh—**even though you've already assigned the equivalent ABAC-enabled roles**. Assigning the equivalent ABAC-enabled roles alongside the legacy roles isn't enough on its own, because it doesn't update credentials that clients already cached. Depending on the client, cached credentials can remain in use for an extended period. For example, AKS clusters can cache registry pull credentials for up to approximately 60 minutes, so affected clusters might experience image pull failures for that duration.
+> If you switch the registry to ABAC-enabled mode while clients still hold credentials that they cached under RBAC-only mode, those clients can fail to pull or push images until their cached credentials expire and refresh—**even though you already assigned the equivalent ABAC-enabled roles**. Assigning the equivalent ABAC-enabled roles alongside the legacy roles isn't enough on its own, because it doesn't update credentials that clients already cached. Depending on the client, cached credentials can remain in use for an extended period. For example, AKS clusters can cache registry pull credentials for up to approximately 60 minutes, so affected clusters might experience image pull failures for that duration.
 
 The exact cache lifetime depends on the client. To force an immediate credential refresh instead of waiting for the natural expiry, restart the client or its credential provider (for example, restart kubelet on the affected AKS nodes). Forcing a refresh is disruptive, so where possible, wait for credentials to expire and refresh on their own.
 
 #### Step 4: Switch the registry to ABAC-enabled mode
 
-After you've assigned the equivalent ABAC-enabled roles to all existing identities and waited for cached credentials to refresh on all clients, transition the registry to ABAC-enabled mode.
+After you assign the equivalent ABAC-enabled roles to all existing identities and wait for cached credentials to refresh on all clients, transition the registry to ABAC-enabled mode.
 
 ##### [Azure portal](#tab/azure-portal)
 
