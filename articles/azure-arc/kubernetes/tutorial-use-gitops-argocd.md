@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps"
 description: "This tutorial shows how to use GitOps with Argo CD in Azure Arc and AKS clusters."
-ms.date: 03/23/2026
+ms.date: 06/03/2026
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -233,7 +233,7 @@ The Bicep template can be created using this command:
 
 `ssoApplicationClientId` is the application (client) ID of the Microsoft Entra app registration used for OIDC SSO authentication to the Argo CD UI. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of `ssoApplicationClientId`.
 
-`url` is the public IP of the Argo CD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the Argo CD UI after deployment.
+`url` is the public IP of the Argo CD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. If so, the ingress rule needs to be added to the Argo CD UI after deployment. The ingress capability requires the [application routing add-on](/azure/aks/app-routing-gateway-api) and is only supported for AKS clusters.
 
 `oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoApplicationClientId-above>` with the same value as `ssoApplicationClientId`.
 
@@ -251,12 +251,33 @@ To set up new workload identity credentials, follow these steps:
    # For source-controller
    az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject 
    ```
-   
+
 1. Be sure to provide proper permissions for workload identity for the resource that you want argocd or image-reflector controller or argocd-repo-server to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ## Connect to private ACR registries or ACR repositories using workload identity
 
 To utilize the private ACR registry or ACR repositories, follow the instructions in the official Argo CD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity). The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in that guide were completed by the extension with the Bicep deployment and can be skipped.
+
+## Enable Argo CD in the Azure portal
+
+You can enable Argo CD in the Azure portal to view application status and sync status, and to access the Argo CD UI. To enable Argo CD in the Azure portal, follow these steps:
+
+1. Go to your cluster in the Azure portal.
+1. From the service menu, under **Settings**, select **GitOps**.
+1. Select **Enable Argo CD (Preview)**.
+1. In the **Basics** section:
+
+   1. Set the namespace where Argo CD runs. By default, the namespace is `argocd`.
+   1. If desired, enable Redis High Availability (HA). This option requires at least 4 nodes in the cluster.
+   1. Optionally add any additional namespaces to be observed.
+   1. For AKS clusters only, optionally enable single sign on (SSO) so that users can sign in using Microsoft Entra ID, specifying an **Application** and one or more **Groups** to allow access to the Argo CD UI.
+   1. If desired, enable workload identity to let Argo CD access Azure services securely without storing secrets. To do so, select the **Enable Workload Identity** box and specify a managed identity and an Azure Container Registry from which to pull application manifests or container artifacts.
+
+   :::image type="content" source="media/tutorial-use-gitops-argocd/enable-argo-cd-portal.png" alt-text="Screenshot showing the Basics tab with options to enable Argo CD on a cluster in the Azure portal.":::
+
+1. Select **Next** to continue.
+1. For AKS clusters that have enabled the [application routing add-on](/azure/aks/app-routing-gateway-api), the **Ingress** tab lets you create an Ingress resource to route traffic to a service. If desired, select **Enable Ingress** and enter your Ingress name, certificate details, and domain name. Select **Next** to continue.
+1. In the **Review + Deploy** section, review your settings, then select **Deploy** to enable Argo CD on your cluster.
 
 ## Access the Argo CD UI
 
@@ -265,6 +286,10 @@ If there's no existing ingress controller for the AKS cluster, then the Argo CD 
 ```bash
 kubectl -n argocd expose service argocd-server --type LoadBalancer --name argocd-server-lb --port 80 --target-port 8080
 ```
+
+To access the Argo CD UI from the Azure portal, go to your cluster. In the service menu, under **Settings**, select **GitOps**. Then, select the link shown for **Argo CD UI**.
+
+:::image type="content" source="media/tutorial-use-gitops-argocd/argo-cd-ui-portal.png" alt-text="Screenshot showing the link to access the Argo CD UI in the Azure portal.":::
 
 ## Deploy Argo CD application
 
