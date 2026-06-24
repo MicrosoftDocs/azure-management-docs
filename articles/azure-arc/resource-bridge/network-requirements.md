@@ -28,7 +28,7 @@ Arc resource bridge communicates outbound securely to Azure Arc over TCP port 44
 When deploying Arc resource bridge, specific IP ranges are reserved exclusively for the Kubernetes pods and services within the appliance VM. These internal IP ranges must not overlap with any configuration inputs for the resource bridge, such as IP address prefix, control plane IP, appliance VM IPs, DNS servers, proxy servers, or vSphere ESXi hosts. For details on the Arc resource bridge configuration, refer to the [system requirements](system-requirements.md#ip-address-prefix-subnet-requirements). 
 
 > [!NOTE]
-> Designated IP ranges within the resource bridge don’t affect Azure resources. However, they **must not overlap** with any IP ranges in the AVS environment or the Arc-enabled VMware environment (including management and workload networks).
+> Designated IP ranges within the resource bridge don't affect Azure resources. However, they **must not overlap** with any IP ranges in the AVS environment or the Arc-enabled VMware environment (including management and workload networks).
 
 |      **Service**       |    **Designated IP range**    |  
 | ----------------------- | ---------------------------- |
