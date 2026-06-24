@@ -3,7 +3,7 @@ title: Workload orchestration configuration model
 description: Understand the configuration model of workload orchestration, including schema, solution templates, and hierarchy configuration templates, and how configuration is applied across environments.
 author: nathmanish
 ms.author: nathmanish
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/10/2026
 # Customer intent: As a platform engineer, I want to understand the configuration model of workload orchestration, so that I can define, reuse, and apply configurations consistently across deployments.
 ---

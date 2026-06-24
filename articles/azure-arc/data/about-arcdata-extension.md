@@ -2,8 +2,8 @@
 title: Reference for `az arcdata` extension
 titleSuffix: Azure Arc-enabled data services
 description: Reference article for `az arcdata` commands.
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.reviewer: seanw
 ms.date: 06/17/2022
 ms.topic: reference

@@ -5,7 +5,7 @@ ms.topic: how-to
 author: KumudD
 ms.author: kumud
 ms.service: azure-container-registry
-ms.date: 05/27/2026
+ms.date: 06/15/2026
 # Customer intent: As a security specialist, I want to implement dedicated data endpoints in Azure Container Registry, so that I can minimize data exfiltration risks and ensure secure access to storage resources.
 ---
 # Dedicated data endpoints in Azure Container Registry
@@ -16,6 +16,8 @@ Dedicated data endpoints in Azure Container Registry provide scoped, registry-sp
 > Dedicated data endpoints are only used during layer blob **downloads** (pulls). When uploading blobs during pushes, they go via the login server (global endpoint or regional endpoint), not the dedicated data endpoint.
 
 The dedicated data endpoints feature is available for registries in the **Premium** [service tier](container-registry-skus.md).
+
+Dedicated data endpoints are also a prerequisite for [IPv6 dual-stack endpoints](container-registry-ipv6-dual-stack.md). A registry must have dedicated data endpoints enabled before its endpoint protocol can be set to `IPv4AndIPv6`.
 
 ## How container image downloads work: login server and 307 redirect to data endpoints
 
@@ -171,4 +173,5 @@ If private endpoints aren't an option, configure your client firewall rules to a
 ## Next steps
 
 * Learn about [geo-replication](container-registry-geo-replication.md) and how dedicated data endpoints work with regional endpoints.
+* Learn how to enable [IPv6 dual-stack endpoints](container-registry-ipv6-dual-stack.md), which build on dedicated data endpoints.
 * See the [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md) for a complete list of endpoint types, URL formats, and CLI flags.

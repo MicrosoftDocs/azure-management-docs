@@ -7,7 +7,6 @@ ms.subservice: azure-arc-data
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 05/27/2022
 ms.topic: how-to
 # Customer intent: "As a data engineer, I want to upload logs from Azure Arc-enabled data services to Azure Monitor, so that I can monitor and analyze the performance and health of my data services in a centralized location."

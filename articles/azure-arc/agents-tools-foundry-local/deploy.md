@@ -13,7 +13,7 @@ ms.custom:
 ---
 # Deploy the extension for Agentic Retrieval in Foundry Local
 
-After you complete the prerequisite steps, complete the steps in this article to deploy the Agentic Retrieval extension.
+After you complete the prerequisite steps, complete the steps in this article to deploy the Agentic Retrieval extension. If your Azure Local environment uses disconnected operations, see [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md) instead.
 
 To try Agentic Retrieval without the need for local hardware, see [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md).
 

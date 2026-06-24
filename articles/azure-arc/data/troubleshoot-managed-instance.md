@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot connection to failover group - SQL Managed Instance enabled by Azure Arc
 description: Describes how to troubleshoot issues with connections to failover group resources in Azure Arc-enabled data services
-author: MikeRayMSFT
-ms.author: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.topic: troubleshooting-general 
 ms.date: 03/15/2023
 # Customer intent: "As a database administrator, I want to troubleshoot connection issues with SQL Managed Instances in Azure Arc failover groups, so that I can ensure high availability and maintain proper synchronization between replicas."

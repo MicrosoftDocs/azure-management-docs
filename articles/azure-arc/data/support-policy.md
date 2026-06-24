@@ -5,7 +5,6 @@ ms.date: "08/08/2022"
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.reviewer: "MikeRayMSFT"
 ms.topic: concept-article
 author: "dnethi"
 ms.author: "dinethi"

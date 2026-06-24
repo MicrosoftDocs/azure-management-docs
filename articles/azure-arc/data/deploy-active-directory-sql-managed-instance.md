@@ -4,9 +4,8 @@ description: Learn how to deploy SQL Managed Instance enabled by Azure Arc with 
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-author: MikeRayMSFT
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 10/11/2022
 ms.topic: how-to
 ms.custom: sfi-ropc-nochange
