@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: how-to
 # Customer intent: As a Kubernetes administrator managing Azure Arc-enabled SQL instances, I want to resize persistent volume claims, so that I can accommodate increased storage needs for data, logs, and backups without downtime.

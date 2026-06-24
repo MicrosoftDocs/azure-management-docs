@@ -1,9 +1,9 @@
 ---
-author: MikeRayMSFT
+author: MashaMSFT
 ms.service: azure-arc
 ms.topic: include
 ms.date: 11/03/2021
-ms.author: mikeray
+ms.author: mathoma
 # Customer intent: "As a cloud administrator, I want to customize script parameters by replacing placeholder values, so that I can execute the script successfully in my environment."
 ---
 

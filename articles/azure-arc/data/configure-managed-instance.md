@@ -3,7 +3,7 @@ title: Configure SQL Managed Instance enabled by Azure Arc
 description: Configure SQL Managed Instance enabled by Azure Arc.
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray, randolphwest
+ms.reviewer: randolphwest
 ms.date: 12/05/2023
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi

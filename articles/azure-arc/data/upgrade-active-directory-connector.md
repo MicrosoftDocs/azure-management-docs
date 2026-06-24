@@ -4,9 +4,8 @@ description: The article describes how to upgrade an active directory connector 
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-author: MikeRayMSFT
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 10/11/2022
 ms.topic: how-to
 # Customer intent: As a system administrator managing Active Directory connectors, I want to upgrade the connector for Azure SQL Managed Instances, so that I can ensure compatibility and maintain the functionality of our Azure Arc deployment.

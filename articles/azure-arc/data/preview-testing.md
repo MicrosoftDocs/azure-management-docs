@@ -3,7 +3,6 @@ title: Azure Arc-enabled data services - Pre-release testing
 description: Experience pre-release versions of Azure Arc-enabled data services
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data

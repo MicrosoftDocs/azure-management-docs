@@ -4,7 +4,6 @@ titleSuffix: Deploy SQL Managed Instance enabled by Azure Arc with high availabi
 description: Learn how to deploy SQL Managed Instance enabled by Azure Arc with high availability.
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: concept-article
 services: azure-arc

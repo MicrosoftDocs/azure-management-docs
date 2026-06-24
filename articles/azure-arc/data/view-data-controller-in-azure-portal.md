@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to view the Azure Arc data controller resource in the Azure portal, so that I can monitor and manage my Kubernetes cluster usage data, metrics, and logs effectively.

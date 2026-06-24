@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
 # Customer intent: As a database administrator, I want to migrate a database from SQL Server to a SQL Managed Instance using Azure Arc, so that I can take advantage of cloud capabilities while maintaining my existing database environment.

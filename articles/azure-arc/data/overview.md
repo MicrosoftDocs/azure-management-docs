@@ -4,7 +4,6 @@ description: Describes Azure Arc-enabled data services
 ms.custom: references_regions
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data

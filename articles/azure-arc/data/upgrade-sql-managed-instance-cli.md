@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
 # Customer intent: "As a database administrator managing Azure SQL Managed Instances through Azure Arc, I want to upgrade the managed instance using the CLI, so that I can ensure my database deployment is up-to-date with the latest features and security enhancements."
