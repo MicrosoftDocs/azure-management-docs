@@ -14,7 +14,7 @@ ms.date: 06/15/2026
 Azure Container Registry supports an IPv6 dual-stack endpoint protocol in preview. When the endpoint protocol of a registry is set to `IPv4AndIPv6`, the registry's endpoints are reachable over both IPv4 and IPv6, so clients on IPv4-only, dual-stack, and IPv6-capable networks can authenticate, push, and pull against the same registry.
 
 > [!IMPORTANT]
-> IPv6 dual-stack endpoints are currently in PREVIEW. This preview enables IPv6 for the registry's public endpoints only (the login server, dedicated data endpoints, and regional endpoints). IPv6 over [private endpoints](container-registry-private-endpoints.md) isn't supported yet and is planned for general availability; private endpoint traffic continues to use IPv4.
+> IPv6 dual-stack endpoints are currently in preview. This preview enables IPv6 for the registry's public endpoints only (the login server, dedicated data endpoints, and regional endpoints). IPv6 over [private endpoints](container-registry-private-endpoints.md) isn't supported; private endpoint traffic continues to use IPv4. [ACR Tasks](container-registry-tasks-overview.md) isn't supported on a registry that has IPv6 dual-stack enabled. Tasks don't work when the endpoint protocol is set to `IPv4AndIPv6`, including quick builds (with `az acr build`) and quick task runs (with `az acr run`).
 
 ## Why IPv6 dual-stack endpoints
 
@@ -97,7 +97,8 @@ For more information, see [Configure rules to access an Azure container registry
 | [Dedicated data endpoints](container-registry-dedicated-data-endpoints.md) | Required. The service rejects `IPv4AndIPv6` unless `dataEndpointEnabled` is `true`. |
 | [SKU](container-registry-skus.md) | Premium SKU is required, because dedicated data endpoints are a Premium feature. |
 | [Geo-replication](container-registry-geo-replication.md) | The endpoint protocol is a registry-level setting. In a geo-replicated registry, dedicated data endpoints exist in every replica region. |
-| [Private endpoints](container-registry-private-endpoints.md) | The `endpointProtocol` setting applies to the registry's public endpoints. IPv6 over private endpoints isn't part of this preview; it's planned for general availability. |
+| [Private endpoints](container-registry-private-endpoints.md) | The `endpointProtocol` setting applies to the registry's public endpoints. IPv6 over private endpoints isn't part of this preview. |
+| [ACR Tasks](container-registry-tasks-overview.md) | Not supported. Tasks don't work when the endpoint protocol is set to `IPv4AndIPv6`, including quick builds (with `az acr build`) and quick task runs (with `az acr run`). |
 
 ## Next steps
 
