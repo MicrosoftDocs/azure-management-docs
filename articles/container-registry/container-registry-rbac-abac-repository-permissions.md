@@ -31,7 +31,7 @@ You can configure the **Role assignment permissions mode** when creating your re
 If you change the setting for an existing registry, be sure to understand the effects on existing role assignments and tasks as described in the following sections.
 
 > [!NOTE]
-> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`. Additionally, if you previously participated in the private preview of this feature, you might have installed a custom private preview extension to manage ACR ABAC. This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
+> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`. Additionally, if you previously participated in the preview of this feature, you might have installed a custom preview extension to manage ACR ABAC. This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
 
 ### Effect on existing role assignments
 
