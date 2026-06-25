@@ -474,7 +474,7 @@ If you have an existing registry using RBAC-only mode (**RBAC Registry Permissio
 
 ### Recommended transition plan
 
-Follow these steps to migrate an existing registry from RBAC-only mode to ABAC-enabled mode while minimizing disruption to existing identities:
+Switching modes briefly disrupts clients that cached credentials under RBAC-only mode until those clients refresh, which can take from minutes to hours depending on how each client is configured. Follow these steps to migrate an existing registry from RBAC-only mode to ABAC-enabled mode with minimal disruption to existing identities:
 
 #### Step 1: Keep the registry in RBAC-only mode
 
@@ -524,7 +524,7 @@ az role assignment create \
 After you assign the equivalent ABAC-enabled roles to all existing identities, transition the registry to ABAC-enabled mode. Before you switch, allow a few minutes for the new role assignments to propagate through Azure RBAC.
 
 > [!WARNING]
-> Switching to ABAC-enabled mode invalidates the registry credentials that clients obtained while the registry was in RBAC-only mode. The registry binds each credential to the role assignment permissions mode that was in effect when the credential was issued, so a credential issued in RBAC-only mode is rejected with an authentication error (HTTP `401`) after the switch, **even for identities that already have equivalent ABAC-enabled role assignments**. Affected clients can't pull or push images until they obtain a new credential while the registry is in ABAC-enabled mode.
+> Switching to ABAC-enabled mode invalidates the registry credentials that clients obtained while the registry was in RBAC-only mode. The registry binds each credential to the role assignment permissions mode that was in effect when the credential was issued, so a credential issued in RBAC-only mode is rejected with an authentication error (HTTP `401`) after the switch, **even for identities that already have equivalent ABAC-enabled role assignments**. Affected clients can't pull or push images until they refresh and obtain a new credential while the registry is in ABAC-enabled mode. This disruption is expected; it lasts until each client refreshes its cached credential, which can take from a few minutes to several hours depending on how the client is configured.
 >
 > Refreshing credentials before the switch doesn't prevent this, because any credential obtained while the registry is still in RBAC-only mode is invalidated by the switch. Refresh cached credentials on all clients immediately after the switch, as described in the next step.
 
@@ -546,8 +546,8 @@ Immediately after you switch the registry to ABAC-enabled mode, refresh the regi
 
 Refresh credentials in one of the following ways:
 
-- **Force an immediate refresh (recommended to minimize disruption).** Restart the client or its credential provider so that it requests a new credential right away. For example, on Azure Kubernetes Service (AKS), restart kubelet on the affected nodes, or replace the nodes, so that they obtain new credentials while the registry is in ABAC-enabled mode.
-- **Wait for the cached credentials to expire.** If you don't force a refresh, each client recovers on its own when its cached credential expires and it requests a new one. The credential cache lifetime is determined and configured by each client platform (for example, AKS), not by the registry, so affected clients can fail to pull or push images for up to that cache lifetime after the switch.
+- **Force an immediate refresh (recommended to minimize disruption).** Restart the client or its credential provider so that it requests a new credential right away. For example, on Azure Kubernetes Service (AKS), restart kubelet on the affected nodes, or replace the nodes, so that they obtain new credentials while the registry is in ABAC-enabled mode. Restarting your workloads (for example, restarting pods) doesn't refresh the credential, because the credential is cached by the client's credential provider rather than by the workload.
+- **Wait for the cached credentials to expire.** If you don't force a refresh, each client recovers on its own when its cached credential expires and it requests a new one. The credential cache lifetime is determined and configured by each client platform (for example, AKS), not by the registry, so affected clients can fail to pull or push images for as long as that cache lifetime after the switch, which is often from a few minutes to several hours depending on the client's configuration.
 
 To reduce the effect of this window, validate the entire sequence in a preproduction environment that mirrors your production registries and clients before you perform the migration in production.
 
