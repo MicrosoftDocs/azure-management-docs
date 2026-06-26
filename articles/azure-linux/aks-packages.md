@@ -16,9 +16,9 @@ This article provides an overview of the packages included in the Azure Linux Co
 
 ## Azure Linux Container Host package list
 
-The Azure Linux Container Host package list includes all the needed dependencies to run an Azure Linux virtual machine (VM) and also pulls in any necessary AKS dependencies. To view the full package list for the latest Azure Linux Container Host image released by AKS, see [/release-notes/AKSAzureLinux/gen2/latest.txt](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinux/gen2/latest.txt).
+The Azure Linux Container Host package list includes all the needed dependencies to run an Azure Linux virtual machine (VM) and also pulls in any necessary AKS dependencies. To view the full package list for the latest Azure Linux Container Host image released by AKS, see [/release-notes/AKSAzureLinuxV3/gen2/latest.txt](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinuxV3/gen2/latest.txt).
 
-Whenever AKS releases a new Azure Linux Container Host image, we update the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinux/gen2/latest.txt) with a new `latest.txt` file, which details the most up-to-date package list. You can also view previous image package lists and the historical versions of each package in the most recent image release in the GitHub repository. For each prior image release, you can find a corresponding `.txt` file with the naming convention `YYYY.MM.DD.txt`, where `YYYY.MM.DD` is the date of each previous image release.
+Whenever AKS releases a new Azure Linux Container Host image, we update the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinuxV3/gen2/latest.txt) with a new `latest.txt` file, which details the most up-to-date package list. You can also view previous image package lists and the historical versions of each package in the most recent image release in the GitHub repository. For each prior image release, you can find a corresponding `.txt` file with the naming convention `YYYY.MM.DD.txt`, where `YYYY.MM.DD` is the date of each previous image release.
 
 > [!NOTE]
 > Packages on a running Azure Linux Container Host cluster might be automatically updated to their latest versions as new packages are released on [packages.microsoft.com](https://packages.microsoft.com/).
@@ -55,7 +55,7 @@ cat /var/log/dnf.log
     az aks show --resource-group <resource-group-name> --name <cluster-name> | grep nodeImageVersion
     ```
 
-1. Check the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/master/vhdbuilder/release-notes/AKSAzureLinux/gen2) for the file that corresponds with the previously determined node image version date. In the file, the _Installed Packages Begin_ section lists all the package versions in your cluster.
+1. Check the [AKS Azure Linux release notes folder](https://github.com/Azure/AgentBaker/blob/main/vhdbuilder/release-notes/AKSAzureLinuxV3/gen2) for the file that corresponds with the previously determined node image version date. In the file, the _Installed Packages Begin_ section lists all the package versions in your cluster.
 
 ## Related content
 
