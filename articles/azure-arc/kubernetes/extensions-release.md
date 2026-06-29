@@ -267,6 +267,19 @@ You can also deploy Foundry Local on Azure Local in disconnected environments. I
 
 For more information, see [What is Foundry Local on Azure Local?](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local).
 
+## Inspektor Gadget (preview)
+
+- **Supported distributions**: AKS
+
+[Inspektor Gadget](https://inspektor-gadget.io/) is a framework that makes it easy to monitor, troubleshoot, and secure workloads running on Linux and Kubernetes. It consists of tools (*Gadgets*) that leverage [eBPF](https://ebpf.io/) programs. Their primary goal is to gather low-level kernel data to provide insights into specific system scenarios. The Inspektor Gadget framework manages the association of the collected data by using high-level references, such as Kubernetes resources. This integration ensures that a seamless connection exists between low-level insights and their corresponding high-level context. The integration streamlines the troubleshooting process and the collection of relevant information.
+
+For more information, see [Capture real-time system insights from an AKS cluster with Inspektor Gadget](/troubleshoot/azure/azure-kubernetes/logs/capture-system-insights-from-aks)
+
+> [!IMPORTANT]
+> Inspektor Gadget for Azure Arc-enabled Kubernetes is currently in public preview.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 ## Microsoft Defender for Containers
 
 - **Supported distributions**: AKS enabled by Azure Arc, Cluster API Azure, Azure Red Hat OpenShift, Red Hat OpenShift (version 4.6 or later), Google Kubernetes Engine Standard, Amazon Elastic Kubernetes Service, VMware Tanzu Kubernetes Grid, Rancher Kubernetes Engine, and Canonical Kubernetes Distribution.
