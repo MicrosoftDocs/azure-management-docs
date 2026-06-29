@@ -31,7 +31,7 @@ You can configure the **Role assignment permissions mode** when creating your re
 If you change the setting for an existing registry, be sure to understand the effects on existing role assignments and tasks as described in the following sections.
 
 > [!NOTE]
-> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`. Additionally, if you previously participated in the private preview of this feature, you might have installed a custom private preview extension to manage ACR ABAC. This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
+> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`. Additionally, if you previously participated in the preview of this feature, you might have installed a custom preview extension to manage ACR ABAC. This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
 
 ### Effect on existing role assignments
 
@@ -470,11 +470,11 @@ To run a Quick Task without any source registry access, use `az acr build` or `a
 If you have an existing registry using RBAC-only mode (**RBAC Registry Permissions**), you should migrate to ABAC-enabled mode (**RBAC Registry + ABAC Repository Permissions**). Enabling ABAC doesn't require you to use ABAC conditions—you can assign ABAC-enabled roles without conditions to grant registry-wide permissions equivalent to the legacy roles.
 
 > [!CAUTION]
-> **Switching an existing registry to ABAC-enabled mode without first assigning equivalent ABAC-enabled roles risks cutting off access for existing identities.** Legacy ACR roles such as `AcrPull`, `AcrPush`, and `AcrDelete` are not honored in ABAC-enabled registries. You must follow the recommended transition plan below to avoid access disruptions.
+> **Switching an existing registry to ABAC-enabled mode without first assigning equivalent ABAC-enabled roles risks cutting off access for existing identities.** Legacy ACR roles such as `AcrPull`, `AcrPush`, and `AcrDelete` aren't honored in ABAC-enabled registries. Follow the recommended transition plan in the next section to minimize access disruptions.
 
 ### Recommended transition plan
 
-Follow these steps to safely migrate an existing registry from RBAC-only mode to ABAC-enabled mode without interrupting access for existing identities:
+Switching modes briefly disrupts clients that cached credentials under RBAC-only mode until those clients refresh, which can take from minutes to hours depending on how each client is configured. Follow these steps to migrate an existing registry from RBAC-only mode to ABAC-enabled mode with minimal disruption to existing identities:
 
 #### Step 1: Keep the registry in RBAC-only mode
 
@@ -521,7 +521,12 @@ az role assignment create \
 
 #### Step 3: Switch the registry to ABAC-enabled mode
 
-After you've assigned the equivalent ABAC-enabled roles to all existing identities, transition the registry to ABAC-enabled mode.
+After you assign the equivalent ABAC-enabled roles to all existing identities, transition the registry to ABAC-enabled mode. Before you switch, allow a few minutes for the new role assignments to propagate through Azure RBAC.
+
+> [!WARNING]
+> Switching to ABAC-enabled mode invalidates the registry credentials that clients obtained while the registry was in RBAC-only mode. The registry binds each credential to the role assignment permissions mode that was in effect when the credential was issued, so a credential issued in RBAC-only mode is rejected with an authentication error (HTTP `401`) after the switch, **even for identities that already have equivalent ABAC-enabled role assignments**. Affected clients can't pull or push images until they refresh and obtain a new credential while the registry is in ABAC-enabled mode. This disruption is expected; it lasts until each client refreshes its cached credential, which can take from a few minutes to several hours depending on how the client is configured.
+>
+> Refreshing credentials before the switch doesn't prevent this problem, because any credential obtained while the registry is still in RBAC-only mode is invalidated by the switch. Refresh cached credentials on all clients immediately after the switch, as described in the next step.
 
 ##### [Azure portal](#tab/azure-portal)
 
@@ -535,7 +540,18 @@ az acr update --name <registry-name> --resource-group <resource-group> --role-as
 
 ---
 
-#### Step 4: Confirm uninterrupted access
+#### Step 4: Refresh cached credentials on all clients
+
+Immediately after you switch the registry to ABAC-enabled mode, refresh the registry credentials that your clients cached so they obtain new credentials that are valid in ABAC-enabled mode. Until a client refreshes, it keeps using the credential that it cached under RBAC-only mode, which the registry now rejects.
+
+Refresh credentials in one of the following ways:
+
+- **Force an immediate refresh (recommended to minimize disruption).** Restart the client or its credential provider so that it requests a new credential right away. For example, on Azure Kubernetes Service (AKS), restart kubelet on the affected nodes, or replace the nodes, so that they obtain new credentials while the registry is in ABAC-enabled mode. Restarting your workloads (for example, restarting pods) doesn't refresh the credential, because the credential is cached by the client's credential provider rather than by the workload.
+- **Wait for the cached credentials to expire.** If you don't force a refresh, each client recovers on its own when its cached credential expires and it requests a new one. Each client platform (for example, AKS) determines and configures the credential cache lifetime, not the registry. As a result, affected clients can fail to pull or push images for as long as that cache lifetime after the switch. This period often ranges from a few minutes to several hours depending on the client's configuration.
+
+To reduce the effect of this window, validate the entire sequence in a preproduction environment that mirrors your production registries and clients before you perform the migration in production.
+
+#### Step 5: Confirm access with the ABAC-enabled roles
 
 Before removing any legacy role assignments, verify that all identities continue to have the expected access with the new ABAC-enabled roles. For example:
 
@@ -545,7 +561,7 @@ Before removing any legacy role assignments, verify that all identities continue
 
 If any identity loses access, check the role assignments and verify that the correct ABAC-enabled role is assigned before proceeding.
 
-#### Step 5: Remove the legacy role assignments
+#### Step 6: Remove the legacy role assignments
 
 After you've confirmed the ABAC-enabled roles are correctly assigned and the registry is in ABAC-enabled mode, remove the legacy role assignments (for example, `AcrPull`, `AcrPush`, `AcrDelete`) to clean up.
 
@@ -559,7 +575,7 @@ az role assignment delete \
   --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.ContainerRegistry/registries/<registry-name>
 ```
 
-#### Step 6: Validate that identities have uninterrupted access
+#### Step 7: Validate access with only the ABAC-enabled roles
 
 After removing the legacy role assignments, perform a final validation to confirm that all identities still have the expected access using only the ABAC-enabled roles.
 
