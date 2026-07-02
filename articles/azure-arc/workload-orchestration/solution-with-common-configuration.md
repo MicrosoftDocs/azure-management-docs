@@ -24,7 +24,7 @@ In this guide, you create a basic solution with common configurations using the 
 
 ## Define the variables
 
-Create the template and schema files by referring to *common-config.yaml*, *common-schema.yaml, and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+Create the template and schema files by referring to *common-config.yaml*, *common-schema.yaml, and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 
 ### [Bash](#tab/bash)
 
