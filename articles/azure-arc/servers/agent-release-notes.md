@@ -37,7 +37,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.66/AzureConnect
 |Fixed a failure loop following an extension upgrade by re-extracting the package when its handler manifest is missing.|✓|✓|Bug Fix|
 |Added retries when removing an extension folder that is temporarily locked by another process.|✓|✓|Improvement|
 |Fixed Run Command cleanup so a failed package download can be removed and the command reinstalled.|✓|✓|Bug Fix|
-|Fixed TLS certificate validation failures that could occur when a required root certificate was not already present in the local certificate store.|✓||Bug Fix|
+|Fixed TLS certificate validation failures that could occur when a required root certificate wasn't already present in the local certificate store.|✓||Bug Fix|
 |Fixed a memory spike in the Machine Configuration agent that occurred on every refresh cycle.|✓||Bug Fix|
 | **Azcmagent** | **1.66** | **1.66** ||
 |Save install script for downgrade to a unique path in the agent directory instead of a fixed path in TEMP.|✓||Security Fix|
