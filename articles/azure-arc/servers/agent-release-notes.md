@@ -31,7 +31,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.66/AzureConnect
 | **Guest Config** | **1.29.114.0** | **1.26.115.0** ||
 |Updated OpenSSL from 3.6.2 to 3.6.3.|✓|✓|Improvement|
 |Improved reliability of extension state file writes when the agent is interrupted while saving them.|✓|✓|Improvement|
-|Improved the error message shown when a pre-existing extension directory cannot be removed prior to installation.|✓|✓|Improvement|
+|Improved the error message shown when a pre-existing extension directory can't be removed prior to installation.|✓|✓|Improvement|
 |Reduced verbose agent logging.|✓|✓|Improvement|
 |Partially extracted extension package folders are now cleaned up when extraction fails.|✓|✓|Bug Fix|
 |Fixed a failure loop following an extension upgrade by re-extracting the package when its handler manifest is missing.|✓|✓|Bug Fix|
