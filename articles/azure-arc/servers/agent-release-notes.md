@@ -23,6 +23,32 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
+## Version 1.66 - July 2026
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.66/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature|Windows|Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config** | **1.29.114.0** | **1.26.115.0** ||
+|Updated OpenSSL from 3.6.2 to 3.6.3.|✓|✓|Improvement|
+|Improved reliability of extension state file writes when the agent is interrupted while saving them.|✓|✓|Improvement|
+|Improved the error message shown when a pre-existing extension directory cannot be removed prior to installation.|✓|✓|Improvement|
+|Reduced verbose agent logging.|✓|✓|Improvement|
+|Partially extracted extension package folders are now cleaned up when extraction fails.|✓|✓|Bug Fix|
+|Fixed a failure loop following an extension upgrade by re-extracting the package when its handler manifest is missing.|✓|✓|Bug Fix|
+|Added retries when removing an extension folder that is temporarily locked by another process.|✓|✓|Improvement|
+|Fixed Run Command cleanup so a failed package download can be removed and the command reinstalled.|✓|✓|Bug Fix|
+|Fixed TLS certificate validation failures that could occur when a required root certificate was not already present in the local certificate store.|✓||Bug Fix|
+|Fixed a memory spike in the Machine Configuration agent that occurred on every refresh cycle.|✓||Bug Fix|
+| **Azcmagent** | **1.66** | **1.66** ||
+|Save install script for downgrade to a unique path in the agent directory instead of a fixed path in TEMP.|✓||Security Fix|
+|Redacted credentials embedded in proxy URLs from error messages.|✓|✓|Security Fix|
+|Fixed unexpected EOF errors when streaming VM application packages.|✓|✓|Bug Fix|
+|Blocked use of the repair tool when the agent is installed via the Windows MSI installer.|✓||Security Fix|
+|HIMDS token endpoint now honors the `bypass_cache` query parameter so callers can request a guaranteed fresh token.|✓|✓|Bug Fix|
+|Arc proxy now omits entries in the gateway bypass list.|✓|✓|Bug Fix|
+|Fixed ESU license validation by forwarding the full intermediate certificate chain.|✓||Bug Fix|
+|Updated MSAL to 1.7 to fix a localhost loopback redirect issue during interactive authentication.|✓||Bug Fix|
+
 
 ## Version 1.65 - June 2026
 
