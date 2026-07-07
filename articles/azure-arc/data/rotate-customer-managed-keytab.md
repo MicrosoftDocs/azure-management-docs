@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: patelr3
 ms.author: ravpate
-ms.reviewer: mikeray
 ms.date: 05/05/2023
 ms.topic: how-to
 ms.custom: sfi-image-nochange

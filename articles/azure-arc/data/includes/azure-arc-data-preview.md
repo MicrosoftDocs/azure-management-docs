@@ -1,9 +1,9 @@
 ---
-author: MikeRayMSFT
+author: MashaMSFT
 ms.service: azure-arc
 ms.topic: include
 ms.date: 04/25/2021
-ms.author: mikeray
+ms.author: mathoma
 # Customer intent: "As an IT professional evaluating preview features, I want to understand the capabilities of Azure Arc, so that I can assess its relevance to our multi-cloud management strategy."
 ---
 > [!NOTE]

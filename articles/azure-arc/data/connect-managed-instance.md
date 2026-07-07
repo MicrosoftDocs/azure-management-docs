@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 01/21/2025
 ms.topic: how-to
 ai-usage: ai-assisted

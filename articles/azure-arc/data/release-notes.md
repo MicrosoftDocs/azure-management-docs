@@ -3,7 +3,6 @@ title: Azure Arc-enabled data services - Release notes
 description: This article provides highlights for the latest release, and a history of features introduced in previous releases.
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data

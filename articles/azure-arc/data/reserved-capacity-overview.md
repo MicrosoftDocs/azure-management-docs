@@ -7,7 +7,6 @@ ms.subservice: azure-arc-sql-mi
 ms.topic: concept-article
 author: pochiraju
 ms.author: rajpo
-ms.reviewer: mikeray
 ms.date: 10/27/2021
 # Customer intent: As a cloud cost manager, I want to purchase reserved capacity for SQL Managed Instance enabled by Azure Arc, so that I can reduce my expenses through significant discounts by committing to longer-term usage.
 ---

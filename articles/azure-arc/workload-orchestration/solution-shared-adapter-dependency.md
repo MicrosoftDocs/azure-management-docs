@@ -83,7 +83,7 @@ configs:
 
 ## Define the variables for solution templating
 
-Create the template and schema YAML files by referring to *shared-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+Create the template and schema YAML files by referring to *shared-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 
 ### [Bash](#tab/bash)
 
@@ -165,7 +165,7 @@ $app2Version = "1.0.1"
 
 ### [Bash](#tab/bash)
 
-1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. Look up the custom location details.
 
     ```bash
@@ -197,7 +197,7 @@ $app2Version = "1.0.1"
 
 ### [PowerShell](#tab/powershell)
 
-1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. Look up the custom location details.
 
     ```powershell
@@ -250,7 +250,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [Bash](#tab/bash)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the previous step.
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
@@ -261,7 +261,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the previous step.
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
@@ -328,7 +328,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [Bash](#tab/bash)
 
-1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 1. Create the FSAD solution template using the following command:
 
@@ -340,7 +340,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
+1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 1. Create the FSAD solution template using the following command:
 

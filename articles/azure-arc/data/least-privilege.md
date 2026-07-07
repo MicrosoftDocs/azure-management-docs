@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 author: twright-msft
 ms.author: twright
-ms.reviewer: mikeray
 ms.date: 11/07/2021
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to manage Azure Arc-enabled data services with least privilege access, so that I can enhance security while performing necessary deployments and configurations without granting excessive permissions to users and service accounts.

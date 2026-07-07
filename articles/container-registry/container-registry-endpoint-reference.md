@@ -5,7 +5,7 @@ author: johnsonshi
 ms.topic: reference
 ms.author: johsh
 ms.service: azure-container-registry
-ms.date: 05/27/2026
+ms.date: 06/15/2026
 # Customer intent: "As a developer or network administrator, I want to understand all endpoint types for Azure Container Registry and the CLI flags that control them."
 ---
 
@@ -70,6 +70,7 @@ Example output for a registry with regional endpoints and dedicated data endpoin
 | `--regional-endpoints` | Registry-level (on `az acr create` or `az acr update`) | Enables dedicated regional endpoint URLs (`myregistry.<region>.geo.azurecr.io`) for **all** geo-replicas. |
 | `--global-endpoint-routing` | Per-geo-replica (on `az acr replication create` or `az acr replication update`) | Controls whether the **global endpoint** (`myregistry.azurecr.io`) routes traffic to a specific geo-replica. Set to `false` to temporarily exclude a geo-replica from global endpoint routing (for maintenance or troubleshooting). Data continues syncing regardless of this setting. See [Temporarily exclude a geo-replica from global endpoint routing](container-registry-geo-replication.md#temporarily-exclude-a-geo-replica-from-global-endpoint-routing). |
 | `--data-endpoint-enabled` | Registry-level (on `az acr create` or `az acr update`) | Enables dedicated data endpoints (`myregistry.<region>.data.azurecr.io`) for layer blob downloads. Auto-enabled when at least one private endpoint is configured. See [Dedicated data endpoints](container-registry-dedicated-data-endpoints.md). |
+| `--endpoint-protocol` | Registry-level (on `az acr update`) | Sets the endpoint protocol of the registry to `IPv4` (default) or `IPv4AndIPv6` (dual stack). Setting `IPv4AndIPv6` requires dedicated data endpoints to be enabled (`--data-endpoint-enabled true`). Requires Azure CLI 2.87.0 or later. See [IPv6 dual-stack endpoints](container-registry-ipv6-dual-stack.md). |
 
 ### Relationship between `--regional-endpoints` and `--global-endpoint-routing`
 
@@ -84,9 +85,11 @@ Example output for a registry with regional endpoints and dedicated data endpoin
 - Use `--regional-endpoints` at the registry level to **enable dedicated regional URLs** for direct access to specific geo-replicas.
 - Use `--global-endpoint-routing` on a specific geo-replica to **control global endpoint routing** to that geo-replica.
 - Use `--data-endpoint-enabled` at the registry level to **enable dedicated data endpoints** for scoped layer blob downloads.
+- Use `--endpoint-protocol` at the registry level to **set the endpoint protocol** to `IPv4` or `IPv4AndIPv6` (dual stack).
 
 ## Related content
 
 - [Geo-replication in Azure Container Registry](container-registry-geo-replication.md)
 - [Dedicated data endpoints in Azure Container Registry](container-registry-dedicated-data-endpoints.md)
+- [IPv6 dual-stack endpoints in Azure Container Registry](container-registry-ipv6-dual-stack.md)
 - [Access a registry behind a firewall](container-registry-firewall-rules.md)

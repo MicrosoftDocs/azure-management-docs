@@ -152,6 +152,9 @@
     - name: Dedicated data endpoints
       displayName: dedicated data endpoints, endpoint, data endpoint
       href: container-registry-dedicated-data-endpoints.md
+    - name: IPv6 dual-stack endpoints (preview)
+      displayName: ipv6, dual stack, dual-stack, endpoint protocol
+      href: container-registry-ipv6-dual-stack.md
     - name: Restrict access using service endpoint (preview)
       href: container-registry-vnet.md
     - name: Allow access by trusted services

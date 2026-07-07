@@ -4,9 +4,8 @@ description: Rotate SQL Managed Instance service-managed credentials (preview)
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-author: MikeRayMSFT
-ms.author: mikeray
-ms.reviewer: mikeray
+author: MashaMSFT
+ms.author: mathoma
 ms.date: 03/06/2023
 ms.topic: how-to
 # Customer intent: As a database administrator, I want to rotate service-managed credentials for SQL Managed Instance in Azure Arc, so that I can enhance security and meet compliance requirements effectively.

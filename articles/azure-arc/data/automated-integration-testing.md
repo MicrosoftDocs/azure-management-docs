@@ -3,7 +3,6 @@ title: Azure Arc-enabled data services - Automated validation testing
 description: Running containerized validation tests on any Kubernetes Cluster
 author: mdrakiburrahman
 ms.author: mdrrahman
-ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data

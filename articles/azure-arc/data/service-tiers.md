@@ -6,7 +6,6 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: concept-article
 # Customer intent: As a database administrator, I want to understand the service tiers of SQL Managed Instance enabled by Azure Arc, so that I can choose the appropriate tier based on my application’s performance and availability needs.

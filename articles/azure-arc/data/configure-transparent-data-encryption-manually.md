@@ -6,7 +6,6 @@ ms.author: ravpate
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-ms.reviewer: mikeray
 ms.topic: how-to
 ms.date: 05/22/2022
 ms.custom: template-how-to
