@@ -46,8 +46,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | AlmaLinux                           | 8           | ✅    | ✅    |                                                                                                  |
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
 | Amazon Linux                        | 2           | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
-| Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |
-| Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ❌    |                                                                                                  |
+| Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |                                                                                                 |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
 | Azure Local                         |             |        |       |                                                                                                  |
 | Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
@@ -108,6 +107,7 @@ The listed version is supported on the specified agent version until the **End o
 | Operating system | Last supported agent version | End of Arc support date | Notes |
 |--|--|--|--|
 | SUSE Linux Enterprise Server (SLES) 15 SP3 | 1.58  | 07/03/2026 |  |
+| Azure Linux (CBL-Mariner) 2.0         | 1.64         | 07/07/2026    |   | 
 
 ### Connect new limited support servers
 
