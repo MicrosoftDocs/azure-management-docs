@@ -32,7 +32,7 @@ You can exclude untagged manifests from being deleted by a retention policy by s
 > [!IMPORTANT]
 > The retention policy applies only to untagged manifests with timestamps *after* the policy is enabled. Untagged manifests in the registry with earlier timestamps aren't subject to the policy. For other options to delete image data, see examples in [Delete container images in Azure Container Registry](container-registry-delete.md).
 >
-> Untagged manifests that use the media type `application/vnd.oci.image.index.v1+json` aren't supported by the retention policy. Only `v2` manifests are supported.
+> Untagged manifests that use OCI media types like `application/vnd.oci.image.manifest.v1+json` or `application/vnd.oci.image.index.v1+json` aren't supported by the retention policy. Only docker manifests are supported, including `application/vnd.docker.distribution.manifest.v2+json` and `application/vnd.docker.distribution.manifest.list.v2+json`. To clean up untagged OCI manifests, use the [acr purge command](container-registry-auto-purge.md).
 
 ## Set a retention policy
 
