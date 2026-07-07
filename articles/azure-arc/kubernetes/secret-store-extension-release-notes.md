@@ -8,6 +8,11 @@ ms.topic: release-notes
 # Azure Key Vault Secret Store extension release notes
 Updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## June 2026
+### 1.5.1
+
+ - Patch release to update dependencies with known vulnerabilities.
+
 ## May 2026
 ### 1.5.0
  - Security updates to internal components:
