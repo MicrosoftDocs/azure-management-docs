@@ -37,10 +37,16 @@ The version, stage, and architecture must match the system the symbols will be l
 
 ## Enable the `debuginfo` repository
 
+1. Install the config-manager plugin using the following command:
+
+    ```bash
+    sudo dnf install 'dnf5-command(config-manager)'
+    ```
+
 1. To install `debuginfo` packages, configure DNF to read from the Azure Linux `debuginfo` repository for your release and architecture:
 
     ```bash
-    sudo dnf5 config-manager --set-enabled azurelinux-base-debuginfo.enabled=1
+    sudo dnf config-manager setopt azurelinux-base-debuginfo.enabled=1
     ```
 
 1. Confirm that the `debuginfo` repository is enabled using the following command:
