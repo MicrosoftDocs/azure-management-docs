@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 06/1/2026
+ms.date: 07/07/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Agentic Retrieval in Foundry Local release so that I can plan updates for my organization.
@@ -18,6 +18,60 @@ ai-usage: ai-generated
 Agentic Retrieval helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic Retrieval in your organization.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## July 2026
+
+**Extension version**: `0.9.5` [Preview]
+
+This release focuses on ingestion scale and reliability, agentic memory management for long conversations, security hardening, and a smoother, more secure deployment experience. For current limitations and workarounds, see [Known issues in Agentic Retrieval in Foundry Local](known-issues.md).
+
+### Ingestion
+
+| Feature | Description |
+|---|---|
+| **Faster, more reliable large-scale ingestion** | Document parsing scales horizontally across multiple workers, with automatic retries, so large and complex documents are far less likely to fail. |
+| **Clearer visibility into parsing** | Files in unsupported formats are reported as *skipped* instead of being silently dropped, and parsing reports coverage so any missing or dropped content is detectable. |
+| **More robust job handling** | Ingestion runs can be cancelled cleanly, and duplicate or stuck-job edge cases are handled gracefully. |
+
+### Agentic memory and long conversations
+
+| Feature | Description |
+|---|---|
+| **Automatic context and memory compaction** | Keeps long, tool-heavy agentic conversations within the model's context window, using a strategy tuned for small local models. The full conversation history is preserved while the active context is compacted automatically, so multistep conversations stay reliable. |
+
+### Security
+
+| Feature | Description |
+|---|---|
+| **Ongoing security hardening** | Dependency and vulnerability patching, tighter handling of secrets and tokens so they don't leak into logs or telemetry, and cleaner credential handling during deployment. |
+
+### Networking and deployment
+
+| Feature | Description |
+|---|---|
+| **NetworkPolicy-capable CNI required** | For secure network segmentation, the cluster needs a CNI that enforces Kubernetes NetworkPolicy (Calico recommended). The installer checks for this up front and fails early with guidance if it's missing. |
+| **Bring-your-own ingress controller isn't supported** | Agentic Retrieval ships and manages its own `ingress-nginx` controller. For more information, see [Known issues in Agentic Retrieval in Foundry Local](known-issues.md). |
+| **Smoother, more resilient deployment** | Includes GPU/A100 support and automatic prerequisite setup and cleanup. |
+
+### Foundry Local model configuration
+
+| Feature | Description |
+|---|---|
+| **Recommended context window: 32K** | Configure the Foundry Local model with a 32K token window for the best results with retrieval and tool use. |
+
+### Agentic retrieval and evaluation
+
+| Feature | Description |
+|---|---|
+| **Multiple knowledge sources per knowledge base** | Connect multiple knowledge sources to a single knowledge base. |
+| **More flexible Chat API inputs** | Accepts more flexible inputs, with clearer and more accurate inference error reporting. |
+| **Multi-turn evaluation** | Measure answer quality across conversation turns. |
+
+### Disconnected operations on Azure Local
+
+| Feature | Description |
+|---|---|
+| **Improved disconnected support** | Improved support for disconnected and air-gapped deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md). |
 
 ## June 2026
 
