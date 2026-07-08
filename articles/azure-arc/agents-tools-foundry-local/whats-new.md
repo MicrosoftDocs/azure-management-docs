@@ -1,10 +1,10 @@
 ---
 title: What's New in Agentic Retrieval in Foundry Local
-description: Learn about the latest new features and announcement from the past few months.
+description: Learn about the latest features and announcements from the past few months.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/28/2026
+ms.date: 07/07/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ms.custom:
@@ -14,19 +14,48 @@ ms.custom:
 
 # What's new in Agentic Retrieval in Foundry Local
 
-This article lists the various features and improvements that are available in Agentic Retrieval (formerly Edge RAG enabled by Azure Arc).
+This article lists recent features and improvements in Agentic Retrieval (formerly Edge RAG enabled by Azure Arc).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## July 2026
+
+This month introduces improvements for ingestion, agentic conversation quality, security posture, and deployment resilience.
+
+### Release of extension version `0.9.5`
+
+This release focuses on ingestion scale and reliability, agentic memory management for long conversations, security hardening, and a smoother, more secure deployment experience.
+
+**Faster, more reliable ingestion**  
+Document parsing now scales horizontally across multiple workers with automatic retries, which reduces failures for large and complex documents. The process reports unsupported file formats as skipped instead of silently dropping them. Parsing reports coverage to help you detect missing content. You can cancel ingestion runs cleanly, and the process handles duplicate or stuck-job edge cases gracefully.
+
+**Agentic memory for long conversations**  
+Automatic context and memory compaction keeps long, tool-heavy agentic conversations within the model's context window, using a strategy tuned for small local models. The full conversation history is preserved while the active context is compacted automatically, so multistep conversations stay reliable.
+
+**Security hardening**  
+Ongoing security hardening includes dependency and vulnerability patching, tighter handling of secrets and tokens so they don't leak into logs or telemetry, and cleaner credential handling during deployment.
+
+**More secure networking and deployment**  
+For secure network segmentation, the cluster needs a CNI that enforces Kubernetes NetworkPolicy (Calico recommended), and the installer checks for this requirement. Agentic Retrieval ships and manages its own ingress controller, so bring-your-own ingress isn't supported. Deployment is smoother and more resilient, with GPU/A100 support and automatic prerequisite setup and cleanup.
+
+**Recommended 32K context window**  
+Configure the Foundry Local model with a 32K token window to improve retrieval and tool-use quality.
+
+**Agentic retrieval and evaluation improvements**  
+Connect multiple knowledge sources to a single knowledge base, use more flexible Chat API inputs with clearer inference error reporting, and measure answer quality across conversation turns with multistep evaluation.
+
+**Improved disconnected operations**  
+This release improves support for disconnected and air-gapped deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md).
 
 ## June 2026
 
 ### Agentic Retrieval (preview)
 
-This release transforms Edge RAG enabled by Azure Arc into Agentic Retrieval, an agentic Retrieval-Augmented Generation platform at the edge, and adds a new agentic layer for AI agent orchestration. Build agents that manage multistep conversations, invoke external tools, and ground responses in your on-premises data.
+This release renames Edge RAG enabled by Azure Arc to Agentic Retrieval, a retrieval-augmented generation platform at the edge, and adds an agentic layer for AI agent orchestration. You can build agents that manage multistep conversations, invoke external tools, and ground responses in your on-premises data.
 
-**Agentic Layer**
+**Agentic layer**
 
-Build intelligent, multithread AI agents that orchestrate across knowledge sources and external tools:
+Build multithreaded AI agents that orchestrate across knowledge sources and external tools:
 
 - **Agents Runtime** — Create threads, send messages, execute runs with streaming (SSE). OpenAI Assistants-compatible API.
 - **Knowledge Base Manager** — Manages the default knowledge base (GET, PATCH, PUT). Knowledge bases group knowledge sources and define what data the system can access.
@@ -113,7 +142,7 @@ Edge RAG is supported as part of a preview for [disconnected operations for Azur
 
 For more information about this release, see:
 
-- Blog: [Transforming City Operations: How Villa Park and DataON Deliver Real-Time Decisions and Resilience with Edge RAG]( https://aka.ms/EdgeAI/EdgeRAG/IgniteBlog2025)
+- Blog: [Transforming City Operations: How Villa Park and DataON Deliver Real-Time Decisions and Resilience with Edge RAG](https://aka.ms/EdgeAI/EdgeRAG/IgniteBlog2025)
 
 
 ## Related content

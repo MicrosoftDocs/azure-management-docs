@@ -28,7 +28,7 @@ Make sure your disconnected environment is prepared with the required pack and e
 
 | Requirement | How to check |
 |---|---|
-| **Agents and Tools with Foundry Local expansion pack loaded** into your disconnected environment. | Confirm with your platform onboarding process for the stamp (your disconnected environment instance). |
+| **Agents and Tools with Foundry Local expansion pack loaded** into your disconnected environment. | [Download and import the Agentic Retrieval expansion pack](prepare-disconnected.md), then confirm with your platform onboarding process for the stamp (your disconnected environment instance). |
 | **Agentic Retrieval extension type registered** (`microsoft.arc.rag`). | `az k8s-extension extension-types list --cluster-type connectedClusters --cluster-name <cluster> --resource-group <rg>` includes `microsoft.arc.rag`. |
 
 ### Tools and cluster readiness

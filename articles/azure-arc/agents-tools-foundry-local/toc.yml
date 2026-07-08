@@ -57,8 +57,6 @@ items:
                 href: prepare-dns.md
           - name: Deploy Agents and Tools with Foundry Local
             href: deploy.md
-          - name: Install for disconnected operations on Azure Local
-            href: disconnected-operations/deploy-disconnected.md
           - name: Configure authentication for BYOM
             href: configure-endpoint-authentication.md
       - name: Configure knowledge layer
@@ -103,6 +101,12 @@ items:
             href: enable-gpu-aks.md
           - name: Configure driver machine
             href: configure-driver-machine.md
+      - name: Disconnected operations
+        items:
+          - name: Prepare deployment
+            href: disconnected-operations/prepare-disconnected.md
+          - name: Install the extension
+            href: disconnected-operations/deploy-disconnected.md 
       - name: Responsible AI
         items: 
           - name: Transparency note
