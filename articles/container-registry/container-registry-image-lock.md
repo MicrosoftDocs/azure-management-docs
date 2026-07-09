@@ -6,7 +6,7 @@ ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
 ms.service: azure-container-registry
-ms.date: 10/31/2023
+ms.date: 07/08/2026
 # Customer intent: As a developer, I want to lock container images in a registry so that they cannot be deleted or overwritten, ensuring the integrity of production deployments.
 ---
 
@@ -24,6 +24,9 @@ This article requires that you run the Azure CLI in Azure Cloud Shell or locally
 By default, a tagged image in Azure Container Registry is *mutable*, so with appropriate permissions you can repeatedly update and push an image with the same tag to a registry. Container images can also be [deleted](container-registry-delete.md) as needed. This behavior is useful when you develop images and need to maintain a size for your registry.
 
 However, when you deploy a container image to production, you might need an *immutable* container image. An immutable image is one that you can't accidentally delete or overwrite.
+
+> [!NOTE]
+> Locking an image or repository doesn't protect it from the `acr purge` command when that command is run with the `--include-locked` parameter. `--include-locked` unlocks matching tags and manifests before deleting them. For more information, see [Automatically purge images from an Azure container registry](container-registry-auto-purge.md).
 
 See [Recommendations for tagging and versioning container images](container-registry-image-tag-version.md) for strategies to tag and version images in your registry.
 

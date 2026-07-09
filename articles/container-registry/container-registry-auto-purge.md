@@ -61,6 +61,9 @@ At a minimum, specify the following options when you run `acr purge`:
 * `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. Unlike the standard `acr purge` flow, which requires `--filter` and `--ago`, this flag makes those parameters optional. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests.
 * `--include-locked` - Purges tags and manifests even when they're locked (that is, their `write-enabled` or `delete-enabled` attribute is set to `false`). For each matching locked artifact, `acr purge` first unlocks it by setting both attributes back to `true`, then deletes it. Without this flag, locked tags and manifests are skipped. For more information about locking, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
 
+> [!NOTE]
+> The `--include-locked` parameter is available beginning with `mcr.microsoft.com/acr/acr-cli:0.17`.
+
 For information about additional parameters, run `acr purge --help`.
 
 `acr purge` supports other features of ACR Tasks commands, including [run variables](container-registry-tasks-reference-yaml.md#run-variables) and [task run logs](container-registry-tasks-logs.md) that are streamed and also saved for later retrieval.
