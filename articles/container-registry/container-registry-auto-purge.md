@@ -59,13 +59,10 @@ At a minimum, specify the following options when you run `acr purge`:
 * `--keep` - Specifies the latest number of to-be-deleted tags per repository that are retained. The latest tags are determined by the last modified time of the tag for each repository matched by the provided `--filter` options.
 * `--concurrency` - Specifies a number of purge tasks to process concurrently.
 * `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. Unlike the standard `acr purge` flow, which requires `--filter` and `--ago`, this flag makes those parameters optional. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests.
-* `--include-locked` - Purges tags and manifests even when they're locked (that is, their `write-enabled` or `delete-enabled` attribute is set to `false`). For each matching locked artifact, `acr purge` first unlocks it by setting both attributes back to `true`, then deletes it. Without this flag, locked tags and manifests are skipped. For more information about locking, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
-
-> [!NOTE]
-> The `--include-locked` parameter is available beginning with `mcr.microsoft.com/acr/acr-cli:0.17`.
+* `--include-locked` - Purges tags and manifests even when they're locked (that is, their `write-enabled` or `delete-enabled` attribute is set to `false`). For each matching locked artifact, `acr purge` first unlocks it by setting both attributes back to `true`, then deletes it. Without this flag, locked tags and manifests are skipped. This parameter is available beginning with `mcr.microsoft.com/acr/acr-cli:0.17`. For more information about locking, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
 
 > [!CAUTION]
-> Use `--include-locked` with care. It overrides the deletion protection provided by [locking](container-registry-image-lock.md): for every matching artifact, it disables the `write-enabled` and `delete-enabled` attributes and then deletes the artifact. This applies to *all* tags and manifests that match your `--filter` and `--ago` selection, including images that were deliberately locked to prevent deletion. Deleted data is **unrecoverable**. Run the command with `--dry-run` first to confirm the exact set of artifacts that will be removed.
+> `--include-locked` overrides the deletion protection provided by [locking](container-registry-image-lock.md) and applies to every artifact matching your `--filter` and `--ago` selection. Deleted data is **unrecoverable**. Run with `--dry-run` first to confirm what will be removed.
 
 For information about additional parameters, run `acr purge --help`.
 
