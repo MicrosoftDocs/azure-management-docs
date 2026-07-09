@@ -26,7 +26,7 @@ By default, a tagged image in Azure Container Registry is *mutable*, so with app
 However, when you deploy a container image to production, you might need an *immutable* container image. An immutable image is one that you can't accidentally delete or overwrite.
 
 > [!NOTE]
-> Locking an image or repository doesn't protect it from the `acr purge` command when that command is run with the `--include-locked` parameter. `--include-locked` unlocks matching tags and manifests before deleting them. For more information, see [Automatically purge images from an Azure container registry](container-registry-auto-purge.md).
+> A lock is an attribute on the image or repository, so it protects against deletion until the lock is removed. An identity with permission to change these attributes can unlock the image and then delete it. The `acr purge` command does this automatically when run with the `--include-locked` parameter: it sets `write-enabled` and `delete-enabled` back to `true` on each matching artifact before deleting it. For more information, see [Automatically purge images from an Azure container registry](container-registry-auto-purge.md).
 
 See [Recommendations for tagging and versioning container images](container-registry-image-tag-version.md) for strategies to tag and version images in your registry.
 

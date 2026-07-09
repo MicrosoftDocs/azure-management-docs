@@ -64,6 +64,9 @@ At a minimum, specify the following options when you run `acr purge`:
 > [!NOTE]
 > The `--include-locked` parameter is available beginning with `mcr.microsoft.com/acr/acr-cli:0.17`.
 
+> [!CAUTION]
+> Use `--include-locked` with care. It overrides the deletion protection provided by [locking](container-registry-image-lock.md): for every matching artifact, it disables the `write-enabled` and `delete-enabled` attributes and then deletes the artifact. This applies to *all* tags and manifests that match your `--filter` and `--ago` selection, including images that were deliberately locked to prevent deletion. Deleted data is **unrecoverable**. Run the command with `--dry-run` first to confirm the exact set of artifacts that will be removed.
+
 For information about additional parameters, run `acr purge --help`.
 
 `acr purge` supports other features of ACR Tasks commands, including [run variables](container-registry-tasks-reference-yaml.md#run-variables) and [task run logs](container-registry-tasks-logs.md) that are streamed and also saved for later retrieval.
