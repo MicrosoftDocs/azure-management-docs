@@ -68,7 +68,7 @@ landingContent:
           - text: In-cluster policy enforcements using Azure Policy
             url: /azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json
           - text: Access secrets from Azure Key Vault
-            url: tutorial-akv-secrets-provider.md
+            url: secret-store-extension.md
   
   - title: Reference architecture
     linkLists:
