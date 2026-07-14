@@ -1,7 +1,7 @@
 ---
 title: What's new for Flux (GitOps) in Azure Arc enabled Kubernetes
 description: Learn about supported versions of the microsoft.flux extension, along with important changes and improvements.
-ms.date: 07/02/2026
+ms.date: 07/13/2026
 ms.topic: release-notes
 ---
 
@@ -60,6 +60,19 @@ Migrate all your resources to the Flux stable APIs in your sources (Git reposito
 Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
+
+## July 2026 - `microsoft.flux` version 1.23.3
+
+Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7.5)
+
+- source-controller: v1.7.4-16
+- kustomize-controller: v1.7.3-13
+- helm-controller: v1.4.5-13
+- notification-controller: v1.7.5-11
+- image-automation-controller: v1.0.4-13
+- image-reflector-controller: v1.0.4-10
+
+Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
 
 ## June 2026 - `microsoft.flux` version 1.23.1
 
