@@ -131,6 +131,21 @@ conceptualContent:
           itemType: overview
           text: Azure Arc VM management on Azure Local
       # Card
+    - title: Azure Arc-enabled AI workloads
+      links:
+        - url: /azure/azure-sovereign-clouds/private/azure-local/ai-workloads-overview
+          itemType: overview
+          text: AI workloads on Azure Local
+        - url: /azure/azure-sovereign-clouds/private/foundry-local/overview
+          itemType: overview
+          text: Foundry Local on Azure Local
+        - url: /azure/azure-video-indexer/arc/azure-video-indexer-enabled-by-arc-overview
+          itemType: overview
+          text: Azure AI Video Indexer enabled by Azure Arc
+        - url: ./agents-tools-foundry-local/overview.md
+          itemType: overview
+          text: Agentic Retrieval in Foundry Local
+      # Card
     - title: Training modules
       links:
         - url: /training/modules/intro-to-azure-arc/
