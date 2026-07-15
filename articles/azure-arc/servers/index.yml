@@ -6,10 +6,10 @@ metadata:
   title: Azure Arc-enabled servers
   description: Learn how to connect and manage on-premises machines in Azure.
   ms.service: azure-arc
-  author: KumudD
-  ms.author: kumud
+  author: davidsmatlak
+  ms.author: davidsmatlak
   ms.topic: landing-page
-  ms.date: 09/24/2025
+  ms.date: 07/15/2026
 
 landingContent:
  # Card
