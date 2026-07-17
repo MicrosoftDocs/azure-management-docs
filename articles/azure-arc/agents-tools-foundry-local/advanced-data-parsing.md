@@ -21,7 +21,7 @@ Data parsing in Agentic Retrieval provides the following capabilities:
 
 - **Enhanced document understanding**: Extracts headings, tables, images, and formatting for richer context.
 - **Semantic chunking**: Splits text into meaningful sections, preserving context and document hierarchy.
-- **Rich metadata**: Captures paragraph headings, page numbers, and other structural details.
+- **Detailed metadata**: Captures paragraph headings, page numbers, and other structural details.
 - **Intelligent table processing**: Detects, merges, and indexes tables—even those spanning multiple pages.
 - **Improved retrieval accuracy**: Enables more relevant and precise search results.
 

@@ -85,4 +85,4 @@ In disconnected or air-gapped deployments, chat runs without Entra sign-in, and 
 
 - [Deployment overview for Agentic Retrieval](deploy-overview.md)
 - [Test the chat solution for Agentic Retrieval](test-end-user-app.md)
-- [What is Agentic Retrieval Augmented Generation (RAG)?](agentic-overview.md)
+- [The agentic layer in Agentic Retrieval in Foundry Local](agentic-overview.md)

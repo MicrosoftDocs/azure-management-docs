@@ -60,7 +60,7 @@ Before you start configuring your chat solution, complete the following steps:
 
 During ingestion, Agentic Retrieval parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
 
-Expect ingestion time to vary based on document complexity and size. Documents with richer structure usually take longer to process, but they produce higher-fidelity content for retrieval and grounding.
+Expect ingestion time to vary based on document complexity and size. Documents with more detailed structure usually take longer to process, but they produce higher-fidelity content for retrieval and grounding.
 
 For parsing details and supported behaviors, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).
 
@@ -125,7 +125,7 @@ In addition to the developer portal, you can use the REST APIs to configure the 
 
 ### Consuming the chat endpoint
 
-After you validate data ingestion and prompt quality, integrate the chat endpoint into your line-of-business applications, or use the out-of-the-box chat app to get started quickly. To use chat, each end user needs two Microsoft Entra app roles: EdgeRAGEndUser and a collection-specific app role whose value matches the collection name (for example, the default `edgeragapp`). If a user is missing the matching collection role, the query fails with a 403 error.
+After you validate data ingestion and prompt quality, integrate the chat endpoint into your line-of-business applications, or use the built-in chat app to get started quickly. To use chat, each end user needs two Microsoft Entra app roles: EdgeRAGEndUser and a collection-specific app role whose value matches the collection name (for example, the default `edgeragapp`). If a user is missing the matching collection role, the query fails with a 403 error.
 
 For more information, see the following articles:
 
