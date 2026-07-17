@@ -15,7 +15,7 @@ ai-usage: ai-generated
 
 # Release notes for Agentic Retrieval in Foundry Local
 
-Agentic Retrieval helps you deploy Retrieval Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic Retrieval in your organization.
+Agentic Retrieval helps you deploy Retrieval-Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic Retrieval in your organization.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 

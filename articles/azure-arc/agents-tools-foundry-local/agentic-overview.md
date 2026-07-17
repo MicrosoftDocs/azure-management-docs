@@ -45,9 +45,9 @@ The agents runtime executes conversations. It creates and manages:
 
 This runtime is responsible for invoking tools, interacting with the language model, and returning responses. It supports streaming responses through server-sent events (SSE).
 
-### Knowledge Base
+### Knowledge base
 
-The Knowledge Base manager is the control plane for knowledge base configuration. Use it to manage *Knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
+The Knowledge Base Manager is the control plane for knowledge base configuration. Use it to manage *knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
 
 The system automatically provisions agents and pairs them 1:1 with a knowledge base. Changes to the knowledge base sync to the paired internal agent.
 
@@ -137,7 +137,7 @@ Configure the language model endpoint at the cluster level during deployment. Fo
 
 ## Related content
 
-- [What is Agentic Retrieval Augmented Generation (RAG)?](overview.md)
+- [What is Agentic Retrieval in Agents and Tools with Foundry Local?](overview.md)
 - [Deployment overview for Agentic Retrieval](deploy-overview.md)
 - [Deployment prerequisites checklist for Agentic Retrieval](complete-prerequisites.md)
 - [Requirements for Agentic Retrieval](requirements.md)

@@ -138,7 +138,7 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Query** is the input provided to a language model to elicit a response or perform a specific task. It can be a question, a prompt, or a set of instructions, depending on the use case.
 
-- **Retrieval Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
+- **Retrieval-Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
 
 - **Search parameters** are settings that control how Agentic Retrieval in Foundry Local retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Agentic Retrieval in Foundry Local](search-types.md#search-type-parameters).
 
@@ -152,9 +152,9 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Agent** is an AI assistant configured with instructions, a model endpoint, and optionally a knowledge base. Agents process user queries through multi-turn conversations, invoking tools and knowledge sources as needed.
 
-- **Knowledge Base** is a grouping of knowledge sources assigned to an agent. When the agent processes a query, it can access all knowledge sources in its knowledge base.
+- **Knowledge base** is a grouping of knowledge sources assigned to an agent. When the agent processes a query, it can access all knowledge sources in its knowledge base.
 
-- **Knowledge Source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (e.g., a collection name).
+- **Knowledge source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (e.g., a collection name).
 
 - **Collection** is a logical grouping of ingested vector data. Each collection maps to Milvus vector collections and Postgres tables, and can be independently created, queried, and deleted.
 
@@ -168,7 +168,7 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 ## Compare with AI services in Azure
 
-Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
+Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval-Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
 In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in large public cloud regions. Customers need to bring their data and applications to Azure infrastructure.
 
