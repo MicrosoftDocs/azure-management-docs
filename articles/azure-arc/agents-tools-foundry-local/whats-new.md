@@ -27,7 +27,7 @@ This month introduces improvements for ingestion, agentic conversation quality, 
 This release focuses on ingestion scale and reliability, agentic memory management for long conversations, security hardening, and a smoother, more secure deployment experience.
 
 **Faster, more reliable ingestion**  
-Document parsing now scales horizontally across multiple workers with automatic retries, which reduces failures for large and complex documents. The process reports unsupported file formats as skipped instead of silently dropping them. Parsing reports coverage to help you detect missing content. You can cancel ingestion runs cleanly, and the process handles duplicate or stuck-job edge cases gracefully.
+Document parsing now scales horizontally across multiple workers with automatic retries, which reduces failures for large and complex documents. The process reports unsupported file formats as skipped instead of silently dropping them. Parsing reports coverage to help you detect missing content. You can cancel ingestion runs cleanly, and the process handles duplicate or stuck-job edge cases without failing.
 
 **Agentic memory for long conversations**  
 Automatic context and memory compaction keeps long, tool-heavy agentic conversations within the model's context window, using a strategy tuned for small local models. The full conversation history is preserved while the active context is compacted automatically, so multistep conversations stay reliable.
@@ -94,13 +94,13 @@ For more information, see the following articles:
 
 ### Release of extension version `0.8.5`
 
-This release focuses on reliability, stability, and security improvements for Edge RAG. These updates make the system more robust and predictable, with better error handling and enhanced security protections.
+This release focuses on reliability, stability, and security improvements for Edge RAG. These updates make the system more reliable and predictable, with better error handling and enhanced security protections.
 
 **Enhanced search reliability**  
 Search operations are more dependable with improved deep search accuracy for complex queries. You get clearer error messages that tell you whether the system is unavailable or the knowledge base is empty, so you know exactly what's happening and can take the right action.
 
-**More robust data ingestion**  
-Data ingestion now handles edge cases gracefully, including files without extensions and empty folders. The system reports which files it skipped and why, giving you full visibility into the ingestion process. NFS connections validate accessibility, sockets, and permissions upfront, with clear error messages when problems occur.
+**More reliable data ingestion**  
+Data ingestion now handles edge cases without failing, including files without extensions and empty folders. The system reports which files it skipped and why, giving you full visibility into the ingestion process. NFS connections validate accessibility, sockets, and permissions upfront, with clear error messages when problems occur.
 
 **Improved system reliability**  
 Configurable timeouts for document conversion, SharePoint connections, LLM inference calls, and database operations prevent indefinite hangs and resource exhaustion. Operations fail predictably with clear diagnostics, so you can tune settings for your environment.
@@ -118,7 +118,7 @@ This release addresses two important vulnerabilities: a critical Next.js Denial-
 This release of Edge RAG introduces several new features, enhancements, and improvements designed to expand capabilities, improve performance, and streamline the user experience.
 
 **Deep search**  
-Find the most relevant information with the new deep search model. Deep search uses production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. Edge RAG now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Agentic Retrieval](search-types.md).
+Find the most relevant information with the new deep search model. Deep search uses production-ready [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with high-quality RAG inferencing. Edge RAG now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Agentic Retrieval](search-types.md).
 
 **High-fidelity parsing**  
 Choose between basic text extraction or advanced parsing to capture tables, images, and more. By using advanced parsing, Edge RAG offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).
@@ -128,10 +128,10 @@ Experience up to 5× faster query performance for hybrid search and 100× faster
 
 **Advanced search and chat experience**  
 
-Edge RAG now offers a more powerful and flexible search and chat experience, making it easier to find information and interact with your data through new capabilities and interface improvements.
+Edge RAG now offers a more capable and flexible search and chat experience, making it easier to find information and interact with your data through new capabilities and interface improvements.
 
-- Use hybrid multimodal search to retrieve images and deliver responses with rich visual content. For more information, see [Search types in Agentic Retrieval](search-types.md).
-- Enjoy markdown-formatted responses that support images and rich text for responses that are easier to read and interpret.
+- Use hybrid multimodal search to retrieve images and deliver responses with relevant images. For more information, see [Search types in Agentic Retrieval](search-types.md).
+- Get markdown-formatted responses that support images and formatted text for responses that are easier to read and interpret.
 - Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information, see [Knowledge layer configuration](knowledge-layer-overview.md#data-query).
 
 **Preview support for disconnected scenarios**

@@ -34,7 +34,7 @@ The resources and components in the diagram form the core infrastructure for Age
   These components provide the compute, networking, load balancing, and storage that you need to run the Agentic Retrieval extension and to access Agentic Retrieval locally:
 
   - Azure Local*
-  - Azure Kubernetes (AKS) cluster on Azure Local*
+  - Azure Kubernetes Service (AKS) cluster on Azure Local*
   - MetalLB
   - AKS node pool
   - Network file share (NFS) server
