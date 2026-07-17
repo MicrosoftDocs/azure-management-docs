@@ -13,9 +13,9 @@ ms.custom:
 ---
 # What is Agentic Retrieval in Agents and Tools with Foundry Local?
 
-Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and grounding capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc.
+Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and *grounding* capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc. Grounding connects a model's responses to your own data so that answers reflect your private content instead of only the model's training.
 
-Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
+Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, Model Context Protocol (MCP) server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -53,7 +53,7 @@ Key capabilities:
 
 - **Agent execution** - agents process user queries by reasoning over instructions, invoking tools, and generating responses.
 - **Knowledge orchestration** - connect agents to one or more data sources through knowledge bases and knowledge sources.
-- **MCP server** - a built-in Model Context Protocol (MCP) server with search tools, plus support for connecting to external MCP servers.
+- **MCP server** - a built-in MCP server with search tools, plus support for connecting to external MCP servers.
 - **Conversation management** - threads, messages, and runs for managing multistep interactions with state.
 
 You can deploy the agentic layer together with the knowledge layer or by itself. In a combined deployment, agents query collections indexed locally. In an agentic-only deployment, agents connect to external MCP servers instead.
