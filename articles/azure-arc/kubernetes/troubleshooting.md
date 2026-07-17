@@ -233,13 +233,13 @@ This warning message appears when you use a service principal to sign in to Azur
 1. Sign in to Azure CLI by using your user account. Retrieve the Object ID of the Microsoft Entra application used by Azure Arc service:
 
     ```azurecli
-    az ad sp show --id bc313c14-388c-4e7d-a58e-70017303ee3b --query objectId -o tsv
+    az ad sp show --id bc313c14-388c-4e7d-a58e-70017303ee3b --query id -o tsv
     ```
 
-1. Sign in to Azure CLI by using the service principal. Use the `<objectId>` value from the previous step to enable custom locations on the cluster:
+1. Sign in to Azure CLI by using the service principal. Use the `<id>` value returned in the previous step to enable custom locations on the cluster:
 
-   * To enable custom locations when connecting the cluster to Arc, run `az connectedk8s connect -n <cluster-name> -g <resource-group-name> --custom-locations-oid <objectId>`
-   * To enable custom locations on an existing Azure Arc-enabled Kubernetes cluster, run `az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <objectId> --features cluster-connect custom-locations`
+   * To enable custom locations when connecting the cluster to Arc, run `az connectedk8s connect -n <cluster-name> -g <resource-group-name> --custom-locations-oid <id>`
+   * To enable custom locations on an existing Azure Arc-enabled Kubernetes cluster, run `az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <id> --features cluster-connect custom-locations`
 
 ## Next steps
 
