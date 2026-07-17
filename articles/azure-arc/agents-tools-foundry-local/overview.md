@@ -13,9 +13,9 @@ ms.custom:
 ---
 # What is Agentic Retrieval in Agents and Tools with Foundry Local?
 
-Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and *grounding* capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc. Grounding connects a model's responses to your own data so that answers reflect your private content instead of only the model's training.
+Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It extends AI reasoning and *grounding* capabilities to on-premises, distributed, and disconnected environments that you manage through Azure Arc. Grounding connects a model's responses to your own data so that answers reflect your private content instead of only the model's training.
 
-Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, Model Context Protocol (MCP) server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
+Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, Model Context Protocol (MCP) server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -154,7 +154,7 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Knowledge base** is a grouping of knowledge sources assigned to an agent. When the agent processes a query, it can access all knowledge sources in its knowledge base.
 
-- **Knowledge source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (e.g., a collection name).
+- **Knowledge source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (for example, a collection name).
 
 - **Collection** is a logical grouping of ingested vector data. Each collection maps to Milvus vector collections and Postgres tables, and can be independently created, queried, and deleted.
 
