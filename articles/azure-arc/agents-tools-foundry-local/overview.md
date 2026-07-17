@@ -13,9 +13,9 @@ ms.custom:
 ---
 # What is Agentic Retrieval in Agents and Tools with Foundry Local?
 
-Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach, extending AI reasoning and grounding capabilities to on-premises, distributed, and disconnected environments managed through Azure Arc.
+Agents and Tools with Foundry Local is part of Microsoft's [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. It extends AI reasoning and *grounding* capabilities to on-premises, distributed, and disconnected environments that you manage through Azure Arc. Grounding connects a model's responses to your own data so that answers reflect your private content instead of only the model's training.
 
-Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge, combining a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, MCP server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
+Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-arc/kubernetes/extensions-release) at the core of the Agents and Tools with Foundry Local platform. It provides an **agentic Retrieval-Augmented Generation (RAG) platform** at the edge. It combines a knowledge layer (document ingestion, embedding, vector search) with an agentic layer (AI agents, knowledge orchestration, Model Context Protocol (MCP) server) to deliver intelligent, multistep assistants grounded in your private on-premises data.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -53,7 +53,7 @@ Key capabilities:
 
 - **Agent execution** - agents process user queries by reasoning over instructions, invoking tools, and generating responses.
 - **Knowledge orchestration** - connect agents to one or more data sources through knowledge bases and knowledge sources.
-- **MCP server** - a built-in Model Context Protocol (MCP) server with search tools, plus support for connecting to external MCP servers.
+- **MCP server** - a built-in MCP server with search tools, plus support for connecting to external MCP servers.
 - **Conversation management** - threads, messages, and runs for managing multistep interactions with state.
 
 You can deploy the agentic layer together with the knowledge layer or by itself. In a combined deployment, agents query collections indexed locally. In an agentic-only deployment, agents connect to external MCP servers instead.
@@ -62,12 +62,12 @@ For more information, see [Agentic layer overview](agentic-overview.md).
 
 ### Local knowledge sources
 
-The knowledge layer provides a turnkey data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
+The knowledge layer provides a ready-to-use data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
 
 Key capabilities:
 
 - **Data ingestion** - parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
-- **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
+- **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection Azure role-based access control (Azure RBAC).
 - **Multiple search types** — choose from hybrid, vector, text, and hybrid multimodal to match your query needs.
 - **Developer portal** - configure ingestion settings, tune search parameters, and test queries through a local web interface.
 
@@ -92,7 +92,7 @@ For more information, see [Chat solution in Agentic Retrieval in Foundry Local](
 
 ## Customer scenarios and use cases
 
-Customers across verticals like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside of the hyperscale cloud. Customers want to use generative AI applications to get insights from this on-premises data.
+Customers across industries like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside the large public cloud. Customers want to use generative AI applications to get insights from this on-premises data.
 
 Agentic Retrieval in Foundry Local supports Q&A capabilities and multistep agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
 
@@ -111,9 +111,9 @@ Agentic Retrieval in Foundry Local supports Q&A capabilities and multistep agent
 Use Agentic Retrieval in Foundry Local to:
 
 - **Build intelligent agents** that orchestrate across multiple knowledge sources, tools, and external services by using the built-in MCP server and knowledge base framework.
-- **Reduce time to market** by using a turnkey experience that accelerates the development and deployment of AI applications on local data. 
-- **Simplify operations** and **end-to-end management** by using an enterprise-quality solution that delivers the same standard of security, compliance, and manageability you expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
-- **Remove the need for separate developer skillsets** by using cloud-consistent developer experiences. 
+- **Reduce deployment time** by using a ready-to-use experience that speeds up the development and deployment of AI applications on local data. 
+- **Simplify operations** and **management** by using an enterprise-ready solution that delivers the same standard of security, compliance, and manageability you expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
+- **Remove the need for separate developer skillsets** by using developer experiences that are consistent with the cloud. 
 - Stay on top of this rapidly evolving space with **continuous innovation from Microsoft**, the leader in AI technologies, and continue to focus on delivering business value.
 
 ## Key concepts
@@ -138,7 +138,7 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Query** is the input provided to a language model to elicit a response or perform a specific task. It can be a question, a prompt, or a set of instructions, depending on the use case.
 
-- **Retrieval Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
+- **Retrieval-Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
 
 - **Search parameters** are settings that control how Agentic Retrieval in Foundry Local retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Agentic Retrieval in Foundry Local](search-types.md#search-type-parameters).
 
@@ -152,9 +152,9 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 - **Agent** is an AI assistant configured with instructions, a model endpoint, and optionally a knowledge base. Agents process user queries through multi-turn conversations, invoking tools and knowledge sources as needed.
 
-- **Knowledge Base** is a grouping of knowledge sources assigned to an agent. When the agent processes a query, it can access all knowledge sources in its knowledge base.
+- **Knowledge base** is a grouping of knowledge sources assigned to an agent. When the agent processes a query, it can access all knowledge sources in its knowledge base.
 
-- **Knowledge Source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (e.g., a collection name).
+- **Knowledge source** is a self-contained registration of an MCP server connection. Each knowledge source carries its own connection details (URL, auth type). Two kinds: `remote_mcp` for external MCP servers, and `indexed_sources_mcp` for the built-in MCP server with a specific indexed source reference (for example, a collection name).
 
 - **Collection** is a logical grouping of ingested vector data. Each collection maps to Milvus vector collections and Postgres tables, and can be independently created, queried, and deleted.
 
@@ -168,9 +168,9 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 ## Compare with AI services in Azure
 
-Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
+Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval-Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
-In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions. Customers need to bring their data and applications to Azure infrastructure.
+In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in large public cloud regions. Customers need to bring their data and applications to Azure infrastructure.
 
 Agentic Retrieval in Foundry Local provides local developer UI experiences that align to Foundry experiences.
 
@@ -182,9 +182,9 @@ Agentic Retrieval in Foundry Local sends only system metadata and organizational
 
 The Agentic Retrieval in Foundry Local solution has four distinct user roles:
 
-- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
+- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes Service (AKS) on Azure Local infrastructure.
 - **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
-- **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
+- **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom or the built-in one, to query on-premises data.
 - **Agentic Layer administration**: Users configure and manage knowledge bases and knowledge sources by using the Knowledge Base Manager API. This role includes registering MCP servers as knowledge sources, updating the default knowledge base, and linking knowledge sources to it. Requires the `EdgeRAGDeveloper` Entra ID role.
 
 ## Related content

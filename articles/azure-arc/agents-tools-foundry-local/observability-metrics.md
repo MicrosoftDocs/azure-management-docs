@@ -8,7 +8,7 @@ ms.date: 05/13/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
-# Customer intent: As a cloud administrator or DevOps engineer, I want to utilize the available metrics for Agentic Retrieval in Foundry Local to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and swiftly address any issues in my infrastructure.
+# Customer intent: As a cloud administrator or DevOps engineer, I want to use the available metrics for Agentic Retrieval in Foundry Local to monitor API performance, ingestion rates, and processing times so that I can maintain optimal system performance and quickly address any issues in my infrastructure.
 ---
 
 # Metrics available for monitoring Agentic Retrieval in Foundry Local
