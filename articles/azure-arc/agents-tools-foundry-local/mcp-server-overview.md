@@ -22,7 +22,7 @@ MCP is an open standard for connecting AI agents to external tools and data sour
 - A *server* exposes tools (functions that agents can call) and resources (data endpoints).
 - A *client* discovers and invokes those tools.
 
-This plug-and-play architecture allows agents to connect to new data sources without code modifications. You simply register a new MCP server.
+This modular architecture lets agents connect to new data sources without code changes. You simply register a new MCP server.
 
 ## Agentic Retrieval's MCP server implementation
 

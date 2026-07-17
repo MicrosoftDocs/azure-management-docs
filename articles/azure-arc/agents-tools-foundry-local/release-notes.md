@@ -31,7 +31,7 @@ This release focuses on ingestion scale and reliability, agentic memory manageme
 |---|---|
 | **Faster, more reliable large-scale ingestion** | Document parsing scales horizontally across multiple workers, with automatic retries, so large and complex documents are far less likely to fail. |
 | **Clearer visibility into parsing** | Files in unsupported formats are reported as *skipped* instead of being silently dropped, and parsing reports coverage so any missing or dropped content is detectable. |
-| **More robust job handling** | Ingestion runs can be cancelled cleanly, and duplicate or stuck-job edge cases are handled gracefully. |
+| **More reliable job handling** | Ingestion runs can be cancelled cleanly, and duplicate or stuck-job edge cases are handled without failing. |
 
 ### Agentic memory and long conversations
 
@@ -116,7 +116,7 @@ This release improves the accuracy and reliability of search operations.
 
 ### Data ingestion
 
-Data ingestion is more robust and handles edge cases without failure.
+Data ingestion is more reliable and handles edge cases without failure.
 
 - The system skips files without extensions and reports which files it skipped and why.
 - You can now ingest to empty folders or folders with mixed content without failures.
@@ -144,7 +144,7 @@ The following table summarizes the updates included in this release.
 | Capability                | Description |
 |---------------------------|---------|
 | Data ingestion  | - Improved parsing for documents, including tables and charts.<br>- Added new ingestion type options for high-fidelity document processing.  <br></br>For more information, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md)|
-|Data query and chat   | - Added deep search model search type for production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Knowledge layer configuration](knowledge-layer-overview.md) and [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).|
+|Data query and chat   | - Added deep search model search type for production-ready [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with high-quality RAG inferencing. <br> - Added hybrid multimodal search with image retrieval and image-rich outputs.<br>- Added support for responses in markdown for improved readability.<br>- Added a model-only chat option for direct model chat. <br><br> For more information, see [Knowledge layer configuration](knowledge-layer-overview.md) and [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).|
 |Performance enhancements | From previous release version: <br>- Achieved a 5× faster query performance for hybrid search.<br>- Delivered 100× faster ingestion of live-streamed images. |
 |Preview support for disconnected scenarios|Agentic Retrieval supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).|
 

@@ -62,7 +62,7 @@ For more information, see [Agentic layer overview](agentic-overview.md).
 
 ### Local knowledge sources
 
-The knowledge layer provides a turnkey data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
+The knowledge layer provides a ready-to-use data ingestion and RAG pipeline that keeps all data on-premises. It handles the full lifecycle of your data, from document parsing to vector search.
 
 Key capabilities:
 
@@ -92,7 +92,7 @@ For more information, see [Chat solution in Agentic Retrieval in Foundry Local](
 
 ## Customer scenarios and use cases
 
-Customers across verticals like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside of the hyperscale cloud. Customers want to use generative AI applications to get insights from this on-premises data.
+Customers across industries like manufacturing, financial services, healthcare, government, and defense generate and store valuable data locally. Regulation, latency, business continuity, or the sheer volume of data generated in real time often keep this data outside the large public cloud. Customers want to use generative AI applications to get insights from this on-premises data.
 
 Agentic Retrieval in Foundry Local supports Q&A capabilities and multistep agentic conversations that allow customers to query on-premises data via AI agents for scenarios like: 
 
@@ -111,9 +111,9 @@ Agentic Retrieval in Foundry Local supports Q&A capabilities and multistep agent
 Use Agentic Retrieval in Foundry Local to:
 
 - **Build intelligent agents** that orchestrate across multiple knowledge sources, tools, and external services by using the built-in MCP server and knowledge base framework.
-- **Reduce time to market** by using a turnkey experience that accelerates the development and deployment of AI applications on local data. 
-- **Simplify operations** and **end-to-end management** by using an enterprise-quality solution that delivers the same standard of security, compliance, and manageability you expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
-- **Remove the need for separate developer skillsets** by using cloud-consistent developer experiences. 
+- **Reduce deployment time** by using a ready-to-use experience that speeds up the development and deployment of AI applications on local data. 
+- **Simplify operations** and **management** by using an enterprise-ready solution that delivers the same standard of security, compliance, and manageability you expect from Microsoft, including lifecycle and version management of all components and Microsoft Entra integration for Azure RBAC.  
+- **Remove the need for separate developer skillsets** by using developer experiences that are consistent with the cloud. 
 - Stay on top of this rapidly evolving space with **continuous innovation from Microsoft**, the leader in AI technologies, and continue to focus on delivering business value.
 
 ## Key concepts
@@ -170,7 +170,7 @@ Review the following key concepts for Agentic Retrieval in Foundry Local:
 
 Agentic Retrieval in Foundry Local runs on customer infrastructure outside the public cloud, so customers can search their on-premises data by using Retrieval Augmented Generation (RAG). The data plane, including all customer data and the language model, is hosted locally.
 
-In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in hyperscale cloud regions. Customers need to bring their data and applications to Azure infrastructure.
+In contrast, AI services in Azure such as Azure AI Search and Microsoft Foundry also provide RAG capabilities but are hosted in large public cloud regions. Customers need to bring their data and applications to Azure infrastructure.
 
 Agentic Retrieval in Foundry Local provides local developer UI experiences that align to Foundry experiences.
 
@@ -184,7 +184,7 @@ The Agentic Retrieval in Foundry Local solution has four distinct user roles:
 
 - **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
 - **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
-- **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
+- **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom or the built-in one, to query on-premises data.
 - **Agentic Layer administration**: Users configure and manage knowledge bases and knowledge sources by using the Knowledge Base Manager API. This role includes registering MCP servers as knowledge sources, updating the default knowledge base, and linking knowledge sources to it. Requires the `EdgeRAGDeveloper` Entra ID role.
 
 ## Related content
