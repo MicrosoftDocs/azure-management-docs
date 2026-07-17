@@ -67,7 +67,7 @@ The knowledge layer provides a ready-to-use data ingestion and RAG pipeline that
 Key capabilities:
 
 - **Data ingestion** - parse, chunk, and embed documents from on-premises file shares with customizable pipeline settings.
-- **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection RBAC.
+- **Collections** - organize vector data into logical groupings with independent lifecycle and per-collection Azure role-based access control (Azure RBAC).
 - **Multiple search types** — choose from hybrid, vector, text, and hybrid multimodal to match your query needs.
 - **Developer portal** - configure ingestion settings, tune search parameters, and test queries through a local web interface.
 
@@ -182,7 +182,7 @@ Agentic Retrieval in Foundry Local sends only system metadata and organizational
 
 The Agentic Retrieval in Foundry Local solution has four distinct user roles:
 
-- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
+- **Lifecycle management of the extension**: Users manage the lifecycle of the Agentic Retrieval in Foundry Local Arc extension. This role includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities go to an IT administrator with access to the underlying Azure Local and Azure Kubernetes Service (AKS) on Azure Local infrastructure.
 - **Development and evaluation of agents and chat endpoints**: Users configure agents, knowledge bases, and knowledge sources; provide the data source; customize the RAG pipeline settings; provide custom system prompts; evaluate, monitor, and update the solution. Typically, these responsibilities go to a prompt engineer or an AI application developer. Requires the `EdgeRAGDeveloper` Entra ID role.
 - **Consuming the endpoint to query the on-premises data**: Users integrate the chat endpoint into line-of-business applications and use a chat interface, custom or the built-in one, to query on-premises data.
 - **Agentic Layer administration**: Users configure and manage knowledge bases and knowledge sources by using the Knowledge Base Manager API. This role includes registering MCP servers as knowledge sources, updating the default knowledge base, and linking knowledge sources to it. Requires the `EdgeRAGDeveloper` Entra ID role.

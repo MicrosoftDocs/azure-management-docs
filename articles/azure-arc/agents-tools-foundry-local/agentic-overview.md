@@ -122,7 +122,7 @@ If you only need direct ingestion and RAG-style querying against indexed content
 
 ## Language model endpoint options
 
-Agentic Retrieval doesn't bundle language models. You must provide your own LLM endpoint. The LLM must expose an OpenAI-compatible chat completions API.
+Agentic Retrieval doesn't bundle language models. You must provide your own large language model (LLM) endpoint. The LLM must expose an OpenAI-compatible chat completions API.
 
 - **Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). For detailed hardware requirements, see [What you need for Agentic Retrieval](requirements.md).
 

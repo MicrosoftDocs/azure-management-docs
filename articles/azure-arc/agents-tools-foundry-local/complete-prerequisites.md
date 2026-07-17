@@ -28,7 +28,7 @@ Use this checklist to prepare your environment before deploying Agentic Retrieva
 | Step | Task | Description |
 |------|------|-------------|
 | 1 | [Verify your environment meets requirements](requirements.md) | Before you begin, review [What you need for Agentic Retrieval](requirements.md). |
-| 2 | Choose your deployment mode | Decide which deployment mode you need: **All** (default, full platform), **agentic** (agents only, no local data ingestion), or **knowledge** (data ingestion and RAG only, no agents). Your choice affects which prerequisites apply. For example, agentic mode doesn't require GPUs or a network files system (NFS) data source. |
+| 2 | Choose your deployment mode | Decide which deployment mode you need: **All** (default, full platform), **agentic** (agents only, no local data ingestion), or **knowledge** (data ingestion and RAG only, no agents). Your choice affects which prerequisites apply. For example, agentic mode doesn't require GPUs or a network file system (NFS) data source. |
 | 3 | [Verify you have the Contributor role](prepare-contributor-permission.md) | Verify that you have the **Contributor** role at the subscription level. This role is required to register providers and enable features. |
 | 4 | [Choose your language model](prepare-language-model.md) | Agentic Retrieval requires you to choose a language model and set up an OpenAI API-compatible endpoint .   |
 | 5 | [Create an endpoint](prepare-model-endpoint.md) | Set up an OpenAI API-compatible endpoint for your language model. This step is **mandatory** for all deployments. If you use Foundry Local, install the Foundry Local on Azure Local extension first and then use its model endpoint URL. |
