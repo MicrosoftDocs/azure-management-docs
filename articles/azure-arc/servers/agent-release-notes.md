@@ -147,7 +147,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.61/AzureConnect
 |Improved reliability of GPG signature validation of extensions on Linux distributions.||✓|Improvement|
 |Update OpenSSL to 3.6.1 for improved security and performance.|✓|✓|Improvement|
 |**Azcmagent**|**1.61.03310.2719**|**1.61.03310848**||
-|Added support for ARM64 Oracle 8, x86_64 Oracle 10, and Debian 13.||✓|Feature|
+|Added support for ARM64 Oracle 8, x86_64 Oracle 10, and x86_64 Debian 13.||✓|Feature|
 |Auto upgrade script now respects proxy configuration on Linux.||✓|Improvement|
 |Added option to disable automatic upgrades locally.|✓|✓|Feature|
 |Added MSI signature verification to the Windows installation script for enhanced security.|✓||Improvement|
