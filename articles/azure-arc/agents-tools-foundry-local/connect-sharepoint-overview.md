@@ -48,7 +48,7 @@ This server-to-server ingestion architecture uses certificate-based trust to pro
 
 - **No stored passwords**: Authentication uses a certificate-signed JWT.
 - **No AD FS or ACS required**: The pod creates the token locally.
-- **Compatible with disconnected or air-gapped environments**: After the certificate syncs to the cluster, no Azure connectivity is needed for authentication.
+- **Compatible with disconnected environments**: After the certificate syncs to the cluster, no Azure connectivity is needed for authentication.
 - **Data-source-level isolation**: Different SharePoint sites can use different identities.
 - **Token caching**: JWTs are valid for 12 hours and refresh automatically.
 

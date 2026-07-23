@@ -71,7 +71,7 @@ This release focuses on ingestion scale and reliability, agentic memory manageme
 
 | Feature | Description |
 |---|---|
-| **Improved disconnected support** | Improved support for disconnected and air-gapped deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md). |
+| **Improved disconnected support** | Improved support for disconnected deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md). |
 
 ## June 2026
 

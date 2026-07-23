@@ -28,7 +28,7 @@ When users open chat, they can:
 - Use a **sidebar with conversation history** that supports rename and delete.
 - Get **streaming answers** with markdown, code blocks, and citations.
 - **Sign in with a work account** (Microsoft Entra ID) in connected deployments.
-- Use chat in disconnected or air-gapped deployments, where sign-in is skipped.
+- Use chat in disconnected deployments, where sign-in is skipped.
 
 ## Chat in combined and agentic deployments
 
@@ -79,7 +79,7 @@ The following sequence shows how a user prompt moves through runtime services an
 
 In connected deployments, the browser gets a user token through Entra ID and sends it to runtime services for validation and user scoping.
 
-In disconnected or air-gapped deployments, chat runs without Entra sign-in, and the network boundary becomes the trust boundary.
+In disconnected deployments, chat runs without Entra sign-in, and the network boundary becomes the trust boundary.
 
 ## Related content
 
