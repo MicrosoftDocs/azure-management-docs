@@ -45,7 +45,7 @@ Configure the Foundry Local model with a 32K token window to improve retrieval a
 Connect multiple knowledge sources to a single knowledge base, use more flexible Chat API inputs with clearer inference error reporting, and measure answer quality across conversation turns with multistep evaluation.
 
 **Improved disconnected operations**  
-This release improves support for disconnected and air-gapped deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md).
+This release improves support for disconnected deployments, including SharePoint integration and simplified extension packaging. For more information, see [Download and import the Agentic Retrieval expansion pack](disconnected-operations/prepare-disconnected.md).
 
 ## June 2026
 

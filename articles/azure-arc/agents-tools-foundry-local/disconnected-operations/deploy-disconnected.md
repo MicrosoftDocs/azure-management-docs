@@ -302,6 +302,7 @@ Expect `Succeeded`.
 
 ## Related content
 
+- [Disconnected operations for Agentic Retrieval in Foundry Local overview](overview-disconnected.md)
 - [Deployment overview for Agentic Retrieval in Foundry Local](../deploy-overview.md)
 - [Deploy the extension for Agentic Retrieval in Foundry Local](../deploy.md)
 - [Configure authentication for Agentic Retrieval in Foundry Local](../prepare-authentication.md)

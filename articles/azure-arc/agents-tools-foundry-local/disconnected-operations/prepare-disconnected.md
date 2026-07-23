@@ -68,5 +68,6 @@ Get-ApplianceExpansionPackDetails
 
 ## Related content
 
+- [Disconnected operations for Agentic Retrieval in Foundry Local overview](overview-disconnected.md)
 - [Deployment overview for Agentic Retrieval in Foundry Local](../deploy-overview.md)
 - [What you need for Agentic Retrieval](../requirements.md)

@@ -1,7 +1,7 @@
 ---
 title: What's new for Flux (GitOps) in Azure Arc enabled Kubernetes
 description: Learn about supported versions of the microsoft.flux extension, along with important changes and improvements.
-ms.date: 07/13/2026
+ms.date: 07/22/2026
 ms.topic: release-notes
 ---
 
@@ -61,6 +61,24 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
+## July 2026 - `microsoft.flux` version 1.24.0
+
+Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7.5)
+
+- source-controller: v1.7.4-20
+- kustomize-controller: v1.7.3-15
+- helm-controller: v1.4.5-15
+- notification-controller: v1.7.5-13
+- image-automation-controller: v1.0.4-15
+- image-reflector-controller: v1.0.4-12
+
+Changes in this version include:
+
+- Enable ORAS notation client caching in `source-controller` version 1.7.4.
+- Extension config enhancement to specify field managers disallowed to perform changes on managed resources using `override-manager` in `kustomize-controller`.
+- Restore 2.7 CRDs for rolling forward clusters that have deprecated or removed Flux API usage.
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
+
 ## July 2026 - `microsoft.flux` version 1.23.3
 
 Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7.5)
@@ -72,7 +90,9 @@ Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7
 - image-automation-controller: v1.0.4-13
 - image-reflector-controller: v1.0.4-10
 
-Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
 
 ## June 2026 - `microsoft.flux` version 1.23.1
 
@@ -85,8 +105,9 @@ Flux version: [Release v2.7.5](https://github.com/fluxcd/flux2/releases/tag/v2.7
 - image-automation-controller: v1.0.4-12
 - image-reflector-controller: v1.0.4-9
 
-Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
+Changes in this version include:
 
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
 
 ## June 2026 - `microsoft.flux` version 1.23.0
 
