@@ -103,6 +103,8 @@ items:
             href: configure-driver-machine.md
       - name: Disconnected operations
         items:
+          - name: Overview
+            href: disconnected-operations/overview-disconnected.md
           - name: Prepare deployment
             href: disconnected-operations/prepare-disconnected.md
           - name: Install the extension

@@ -4,7 +4,7 @@ description: "Learn about Agentic Retrieval in Foundry Local, the Azure Arc-enab
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 05/26/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -19,7 +19,7 @@ Agentic Retrieval is the [Azure Arc-enabled Kubernetes extension](/azure/azure-a
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-Agentic Retrieval in Foundry Local is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
+Agentic Retrieval in Foundry Local is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview). You can run the platform in disconnected environments without internet connectivity, by using a deployment model consistent with connected scenarios. For what differs in a disconnected deployment, see [Disconnected operations for Agentic Retrieval in Foundry Local overview](disconnected-operations/overview-disconnected.md).
 
 For more information, see [Azure Arc](/azure/azure-arc/overview), [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/), and [Azure Arc extensions](/azure/azure-arc/kubernetes/conceptual-extensions). 
 
@@ -40,6 +40,7 @@ Additional platform capabilities include:
 - **Two GPU-accelerated models** for text embedding (BGE-M3) and image embedding (CLIP ViT-L/14) running locally on two GPUs. Docling (document parser) runs on CPU.
 - **Independent deployment modes** - Deploy the full platform, or just the agentic layer or knowledge layer separately.
 - **Image retrieval** - Ingest and retrieve relevant images as contextual references alongside text. Agentic Retrieval in Foundry Local isn't a visual language model (VLM).
+- **Disconnected operations** - Deploy in disconnected environments on Azure Local by using a locally imported expansion pack, with no internet connectivity required at deployment time. For more information, see [Disconnected operations for Agentic Retrieval in Foundry Local overview](disconnected-operations/overview-disconnected.md).
 
 ## Key components
 
