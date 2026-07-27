@@ -231,6 +231,12 @@
     href: ./cloud-native/monitor-alerts.md
   - name: Next steps
     href: ./cloud-native/next-steps.md
+- name: Essential machine management
+  items:
+  - name: Machine enrollment
+    href: ./essential-machine-management/enrollment.md
+  - name: Troubleshoot
+    href: ./essential-machine-management/troubleshoot.md
 - name: Reference
   items:
   - name: azcmagent CLI
