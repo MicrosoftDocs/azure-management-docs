@@ -29,7 +29,7 @@ When you connect your machine to Azure Arc-enabled servers, you can perform many
 * **Configure**:
   * Use [Azure Automation](/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows) for frequent and time-consuming management tasks by using PowerShell and Python [runbooks](/azure/automation/automation-runbook-execution). Assess configuration changes for installed software, Microsoft services, Windows registry and files, and Linux daemons by using the Azure Monitor agent for [change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm).
   * Use [Azure Update Manager](/azure/update-manager/overview) to manage operating system updates for your Windows and Linux servers.
-  * Use [machine enrollment (preview)](/azure/operations/configuration-enrollment?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json) to automatically configure Arc-enabled servers with a curated set of features for monitoring, security, and management.
+  * Use [machine enrollment (preview)](essential-machine-management/enrollment.md) to automatically configure Arc-enabled servers with a curated set of features for monitoring, security, and management.
   * Perform post-deployment configuration and automation tasks by using supported [Arc-enabled servers VM extensions](manage-vm-extensions.md) for your non-Azure Windows or Linux machine.
 * **Monitor**:
   * Monitor operating system performance and discover application components to monitor processes and dependencies with other resources by using [VM insights](/azure/azure-monitor/vm/vminsights-overview).
