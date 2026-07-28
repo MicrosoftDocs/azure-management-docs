@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 08/12/2025
+ms.date: 07/28/2026
 ms.topic: overview
 # Customer intent: "As a system administrator managing a hybrid cloud environment, I want to deploy and configure the Azure Connected Machine agent on my Windows and Linux servers, so that I can monitor and enforce compliance for those machines effectively."
 ---
@@ -38,8 +38,8 @@ The Azure Connected Machine agent package contains several logical components bu
 
 ### Azure Arc Proxy
 
-The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux. 
-Prior to the Azure Connected Machine agent version 1.51, this service was disabled by default, and should remain disabled unless you configure the agent to use the Azure Arc gateway (Limited preview). 
+The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux.
+Prior to the Azure Connected Machine agent version 1.51, this service was disabled by default, and should remain disabled unless you configure the agent to use the Azure Arc gateway (Limited preview).
 With version 1.51 and later, the Arc Proxy service is started by default as it can now determine whether the machine is configured to use an Arc Gateway, or to communicate directly with the Arc endpoints and behave appropriately. If you are not using an Arc Gateway you can still choose to disable the Arc Proxy service with the following command `azcmagent config set connection.type direct`.
 
 ## Agent resources
@@ -276,7 +276,7 @@ We provide several options for deploying the agent. For more information, see [P
 
 ## Cloning guidelines
 
-You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine.
+You can safely install the `azcmagent` package into a golden image, but don't connect that machine to Azure Arc by using the `azcmagent connect` command or it gets a unique Azure resource ID. If you clone your machines from a connected golden image, each new machine uses the same Azure resource ID and that leads to a disconnected state.
 
 If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure and then used that server as the golden image for cloning. Since the resource information was recorded into the image, cloned machines created from that image try to send heartbeat messages to the same resource.
 
