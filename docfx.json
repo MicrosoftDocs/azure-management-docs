@@ -144,7 +144,13 @@
     "fileMetadata": {
       "author": {
         "articles/azure-arc/**/*.md": "davidsmatlak",
+        "articles/azure-arc/**/*.yml": "davidsmatlak",
         "articles/azure-arc/servers/**/*.md": "davidsmatlak",
+        "articles/azure-arc/servers/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/kubernetes/**/*.md": "davidsmatlak",
+        "articles/azure-arc/kubernetes/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.md": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.yml": "davidsmatlak",
         "articles/azure-portal/**/*.md": "fossygirl",
         "articles/azure-portal/**/*.yml": "fossygirl",
         "articles/copilot/**/*.md": "fossygirl",
@@ -187,7 +193,7 @@
         "articles/azure-linux/**/*.md": "kumud",
         "articles/azure-linux/**/*.yml": "kumud",
         "articles/copilot/**/*.md": "kumud",
-        "articles/copilot/**/*.yml": "kumud",      
+        "articles/copilot/**/*.yml": "kumud",
         "articles/azure-portal/**/*.md": "kumud",
         "articles/azure-portal/**/*.yml": "kumud",
         "articles/container-registry/**/*.md": "kumud",
@@ -206,8 +212,10 @@
         "articles/azure-arc/servers/**/*.yml": "davidsmatlak",
         "articles/azure-arc/kubernetes/**/*.md": "davidsmatlak",
         "articles/azure-arc/kubernetes/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.md": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.yml": "davidsmatlak",
         "articles/copilot/**/*.md": "carols",
-        "articles/copilot/**/*.yml": "carols",      
+        "articles/copilot/**/*.yml": "carols",
         "articles/azure-portal/**/*.md": "carols",
         "articles/azure-portal/**/*.yml": "carols",
         "articles/container-registry/**/*.md": "kumud",
@@ -219,6 +227,13 @@
       },
       "ms.author": {
         "articles/azure-arc/**/*.md": "davidsmatlak",
+        "articles/azure-arc/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/servers/**/*.md": "davidsmatlak",
+        "articles/azure-arc/servers/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/kubernetes/**/*.md": "davidsmatlak",
+        "articles/azure-arc/kubernetes/**/*.yml": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.md": "davidsmatlak",
+        "articles/azure-arc/multicloud-connector/**/*.yml": "davidsmatlak",
         "articles/azure-portal/**/*.md": "carols",
         "articles/azure-portal/**/*.yml": "carols",
         "articles/copilot/**/*.md": "carols",
@@ -269,7 +284,7 @@
         "articles/azure-portal/**/*.yml": [
           "Azure",
           "Azure portal"
-        ],
+        ]
       },
       "titleSuffix": {
         "articles/azure-arc/**/*.md": "Azure Arc",
