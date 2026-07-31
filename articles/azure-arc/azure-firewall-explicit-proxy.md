@@ -3,6 +3,8 @@ title: Access Azure Arc resources over Azure Firewall Explicit Proxy (public pre
 description: Learn about using Azure Arc without exposing your on-premises environment to the public internet.
 ms.date: 04/22/2025
 ms.topic: how-to
+author: davidsmatlak
+ms.author: davidsmatlak
 # Customer intent: "As a network administrator, I want to configure Azure Firewall with the Explicit Proxy feature for Azure Arc resources, so that I can securely route traffic without exposing my on-premises environment to the public internet."
 ---
 
