@@ -106,6 +106,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/azure-arc/workload-orchestration/configure.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/deploy.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/workload-orchestration/portal-user-guide.md",
+      "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/container-registry/container-registry-firewall-access-rules.md",
       "redirect_url": "/azure/container-registry/container-registry-firewall-rules",
       "redirect_document_id": true

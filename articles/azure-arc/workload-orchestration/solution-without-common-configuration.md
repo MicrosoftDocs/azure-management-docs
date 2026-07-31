@@ -1,18 +1,18 @@
 ---
 title: Create a Basic Solution with Workload Orchestration
-description: Learn how to create a basic solution without common configurations using the workload orchestration via CLI. 
+description: Learn how to create a basic solution without common configurations using the workload orchestration. 
 author: nathmanish
 ms.author: nathmanish
 ms.topic: quickstart
 ms.date: 09/05/2025
 ms.custom:
   - build-2025
-# Customer intent: As a developer, I want to create a basic solution using workload orchestration via CLI without common configurations, so that I can deploy applications efficiently with minimal setup.
+# Customer intent: As a developer, I want to create a basic solution using workload orchestration without common configurations, so that I can deploy applications efficiently with minimal setup.
 ---
 
 # Deploy a basic solution 
 
-Follow this guide to deploy a basic solution using workload orchestration via CLI. 
+Follow this guide to deploy a basic solution using workload orchestration.
 
 ## Prerequisites
 
@@ -82,33 +82,14 @@ $appConfig = "app-config-template.yaml"
 
 ***
 
-## Create a configuration schema
 
-Create the schema file by referring to *shared-schema.yaml* from [GitHub repository](https://github.com/Azure/workload-orchestration).
-   
-```azurecli
-az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
-```
+## Create the solution template
 
-You can provide schema name and version in schema file instead of as CLI arguments. To do that, add the following section to the *shared-schema.yaml* file and run the previous command without `--schema-name` and `--version` arguments.
+Follow these steps to create a [solution template](configuration-model.md#solution-template) for your application.
 
-```yaml
-metadata:
-    name: <name> [optional]
-    version: <version> [optional]
-```
+1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, you can update the Helm URL and chart version in x.x.x format. The *app-config-template.yaml* file defines the configurable template parameters and the [schema](configuration-model.md#configuration-schema) validation rules governing them.
 
-> [!TIP]
-> You can view the created schema using `az workload-orchestration schema version show --resource-group "$rg" --schema-name "$schemaName" --version "$schemaVersion"`
-
-## Create the solution template 
-
-
-Follow these steps to create a solution template for your application.
-
-1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*. Update the *app-config-template.yaml* file with proper reference to your schema that you created in the previous step.
-
-1. Create the solution template resource.
+1. Create the solution template.
 
     ```azurecli
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
@@ -125,10 +106,33 @@ Follow these steps to create a solution template for your application.
     > [!NOTE]
     > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
+<details>
+<summary> You can also create a schema object and refer to it for multiple templates. </summary>
+
+1. Create the schema resource by referring to *shared-schema.yaml* from [GitHub repository](https://github.com/Azure/workload-orchestration).
+   
+    ```azurecli
+    az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
+    ```
+
+1. In the *app-config-template.yaml* file, replace the `schema` section with a reference to the schema resource you created.
+
+    ```yaml
+    schema:
+        name: <schema name>
+        version: <schema version>
+    ```
+
+1. Create the solution template.
+
+</details>
+
 
 ## Deploy the solution
 
-Run the following command to configure the solution template and deploy the corresponding solution/application to your target. The configuration values need to be stored in **config.yaml**.
+### [CLI](#tab/cli)
+
+Run the following command to configure the solution template and deploy the corresponding solution or application to your target. Store the configuration values in *config.yaml*.
 
 ```azurecli
 az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName" --solution-template-version $appVersion --configuration “config.yaml”   
@@ -162,7 +166,7 @@ az workload-orchestration target install --resource-group "$rg" --target-name "$
     az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName/versions/$appVersion
     ```
 
-    Completion of this step generates the final configuration of the solution after it is validated and approved, created by combining the schema, configuration template, and solution Helm chart. It represents a fully rendered, a predeployment ready, targeted solution.
+    Completion of this step generates the final configuration of the solution after it's validated and approved, created by combining the schema, configuration template, and solution Helm chart. It represents a fully rendered, a predeployment ready, targeted solution.
 
 1. Deploy the solution.
 
@@ -172,10 +176,43 @@ az workload-orchestration target install --resource-group "$rg" --target-name "$
 
 </details>
 
-> [!TIP]
-> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
+### [Portal](#tab/portal)
+
+1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
+1. Click on **Configure Solutions** on the left. The **Solutions** tab shows the status of all solutions deployed or pending deployment in your environment.
+
+    :::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the Configure tab showing how to apply filters1." lightbox="./media/configure-solutions.png":::
+
+1. Search and select the name of your solution with configuration status *Configuration pending* and click on **Configure and publish**. 
+
+    :::image type="content" source="./media/configure-solution-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to select a solution to configure it." lightbox="./media/configure-solution-1.png":::
+
+1. Select one or multiple targets you want to deploy the solution to. Targets can be filtered by name, parent site, hierarchy level and capabilities, and grouped by parent site and hierarchy level. Click on **Next**.
+
+    :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable autopublish." lightbox="./media/configure-solution-2.png":::
+
+1. In the **Configure target** step, you can set common configurations for all targets or click on the **custom target value** icon to set custom configuration values for selective targets. You can also click on **Previous Versions** to view configuration for previously deployed versions of this solution. Once done, click on **Next**.
+
+    :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
+    :::image type="content" source="./media/configure-solution-3-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets1." lightbox="./media/configure-solution-3-1.png":::
+
+1. Review the final configurations and click on **Publish** to create a new revision of configuration values for the selected targets. Once completed, the new solution version (or revision) is published for each target where the configurations were resolved successfully.
+
+    :::image type="content" source="./media/configure-solution-7.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to publish the configuration of a solution target." lightbox="./media/configure-solution-7.png":::
+
+1. Click on the **Deploy** tab and select the target you want to deploy the solution to.
+    :::image type="content" source="./media/single-deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/single-deploy-1.png":::
+
+1. Select your newly published solution from the list. Make sure it is in **Publish completed** state. Click on **Deploy Solution** and confirm.
+    :::image type="content" source="./media/single-deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to click on a target1." lightbox="./media/single-deploy-2.png":::
+
+1. You can monitor the deployment progress by clicking on the status of the solution you deployed. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it.
+
+    :::image type="content" source="./media/single-deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status details1." lightbox="./media/single-deploy-5.png":::
+
+***
 
 ## Next steps
 
-Once you know how to create a basic solution, you can explore more advanced scenarios. For example, check out how to [Create a basic solution with common configurations](solution-with-common-configuration.md), which is an extension of this guide.
+Once you know how to create a basic solution, you can explore more advanced scenarios. For example, check out how to [Create a solution with common configurations](solution-with-common-configuration.md), which is an extension of this guide.
 

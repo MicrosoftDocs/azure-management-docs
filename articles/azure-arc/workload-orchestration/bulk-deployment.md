@@ -7,9 +7,9 @@ ms.topic: how-to
 ms.date: 09/30/2025
 ---
 
-# Bulk review, publish, and deploy with workload orchestration
+# Bulk deployment with workload orchestration
 
-Workload orchestration allows you to bulk review, publish, and deploy a solution to multiple targets within the same or different Arc-connected clusters. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process. 
+Workload orchestration allows you to deploy a solution to multiple targets within the same or different Azure Arc-connected clusters. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process.
 
 ## Prerequisites
 
@@ -17,7 +17,12 @@ Set up the required Azure resources for workload orchestration by referring to [
 
 ## Perform bulk review
 
-You can review solutions across multiple targets and apply target-specific configurations by running the bulk-review command in Azure CLI by running the following command:
+The Review step ensures the configuration values obey all schema rules and generates a solution version based on the solution template. This step is optional and you can directly [publish the solution](bulk-deployment.md#perform-bulk-publishing).
+
+> [!NOTE]
+> You can directly deploy an application to intended targets in a single step using the [bulk_deployment.ps1](https://github.com/Azure/workload-orchestration/blob/main/bulk_deployment.ps1) script, eliminating the need to run multiple commands for bulk review, publishing, and deployment.
+
+To review a solution across multiple targets and apply target-specific configurations, run the following command:
 
 ```powershell
 az workload-orchestration solution-template bulk-review --name "<solution-template-name>" --version "<solution-template-version>" --targets "@targets.json" --dependencies "@dependencies.json" --solution-instance-name <instance name> --solution-configuration "@configuration.yaml"
@@ -58,29 +63,9 @@ The `--dependencies` parameter is optional and only required if the solution is 
 ]
 ```
 
-### Bulk review output
-
-On successful review, the CLI returns the list of reviewed targets under `reviewedTargets`, as shown:
-
-```json
-{
-    "solutionTemplateVersionId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/<solution-template>/versions/<version>",
-    "reviewedTargets": [
-      {
-        "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<version>",
-        "targetId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/<target1>"
-      },
-      {
-        "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/<target2>/solutions/<solution>/versions/<version>",
-        "targetId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/<target2>"
-      }
-    ]
-}
-```
-
-In case of failure, the CLI returns the list of targets that succeeded (if any) under `reviewedTargets` and the targets that failed under `failedTargets`, along with target ID and error details.
-
 ## Perform bulk publishing
+
+The publishing step generates the final configuration of the solution after it's validated and approved, created by combining the schema, configuration template, and solution Helm chart.
 
 You can perform bulk publishing of a solution to multiple targets using the Azure CLI or the workload orchestration portal.
 
@@ -89,7 +74,7 @@ You can perform bulk publishing of a solution to multiple targets using the Azur
 To perform bulk publishing of reviewed targets, run the following command in Azure CLI:
 
 ```powershell
-az workload-orchestration solution-template bulk-review --name "<solution-template-name>" --version "<solution-template-version>" --targets "@targets.json" --dependencies "@dependencies.json"
+az workload-orchestration solution-template bulk-publish --name "<solution-template-name>" --version "<solution-template-version>" --targets "@targets.json" --dependencies "@dependencies.json"
 ```
 
 You need to provide a *targets.json* file that contains the list of targets along with reviewed solution version ID:
@@ -107,10 +92,10 @@ You need to provide a *targets.json* file that contains the list of targets alon
 ]
 ```
 
-To perform a bulk-publish operation on a bunch of targets which contains a mix of targets that have been reviewed as well as targets for which you wish to bypass the review process, the command is as follows:
+To perform a bulk-publish operation on a mix of targets involving targets that have been reviewed as well as targets for which you wish to bypass the review process, the command is as follows:
 
 ```powershell
-az workload-orchestration solution-template bulk-review --name "<solution-template-name>" --version "<solution-template-version>" --targets "@targets.json" --dependencies "@dependencies.json" --solution-instance-name <instance name> --solution-configuration "@configuration.json"
+az workload-orchestration solution-template bulk-publish --name "<solution-template-name>" --version "<solution-template-version>" --targets "@targets.json" --dependencies "@dependencies.json" --solution-instance-name <instance name> --solution-configuration "@configuration.json"
 ```
 
 The targets.json file in this case has the following format:
@@ -133,41 +118,32 @@ The targets.json file in this case has the following format:
 
 All the other inputs for `bulk-publish` command in case of both reviewed and non-reviewed targets are the same as those of `bulk-review` command.
 
-> [!IMPORTANT]
-> You need to have access to the target clusters on which the solution is deployed. 
 
-### [WO portal](#tab/woportal)
+### [Portal](#tab/portal)
 
-You can perform bulk publishing of a solution to multiple targets using the **Configure tab** in workload orchestration portal. 
+1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
+1. Click on **Configure Solutions** on the left. The **Solutions** tab shows the status of all solutions deployed or pending deployment in your environment.
 
-- In the **Solutions subtab**, when you configure the parameters of the solution, select the targets where you want to publish the solution. For more information, see [Configure solution parameters](configure.md#configure-solution-parameters).
-- In the **Published Solutions subtab**, you can publish a solution to more targets after the solution is published. For more information, see [Publish a solution to more targets](configure.md#publish-a-solution-to-more-targets).
+     :::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the Configure tab showing how to apply filters1." lightbox="./media/configure-solutions.png":::
+
+1. Search and select the name of your solution with configuration status *Configuration pending* and click on **Configure and publish**. 
+
+    :::image type="content" source="./media/configure-solution-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to select a solution to configure it." lightbox="./media/configure-solution-1.png":::
+
+1. Select the targets for which you want to set the solution configuration. Click on **Next**.
+
+    :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable autopublish." lightbox="./media/configure-solution-2.png":::
+
+1. In the **Configure target** step, you can set common configurations for all targets or click on the **custom target value** icon to set custom configuration values for selective targets. You can also click on **Previous Versions** to view configuration for previously deployed versions of this solution. Once done, click on **Next**.
+
+    :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
+    :::image type="content" source="./media/configure-solution-3-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets1." lightbox="./media/configure-solution-3-1.png":::
+
+1. Review the final configurations and click on **Publish** to create a new revision of configuration values for the selected targets. Once completed, the new solution version (or revision) is published for each target where the configurations were resolved successfully.
+
+    :::image type="content" source="./media/configure-solution-7.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to publish the configuration of a solution target." lightbox="./media/configure-solution-7.png":::
 
 ***
-
-### Bulk publishing output
-
-If the bulk publish is successful, the CLI returns the list of published targets under `publishedTargets`. If any target has [external validation enabled](external-validation.md), the CLI also returns the list of targets that are pending external validation under `externalValidationPending`. These targets can't be deployed until external validation is completed. The CLI output looks like this:
-
-```json
-{
-"solutionTemplateVersionId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/<solution-template>/versions/<version>",
-  "publishedTargets": [
-    {
-      "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<instance>",
-      "targetId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>"
-    }
-],
-"externalValidationPending": [
-    {
-      "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target2>/solutions/<solution>/versions/<instance>",
-      "targetId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target2>"
-    },
-      ]
-}
-```
-
-If the bulk publish isn't successful, there are two types of failures: complete failure, when all the targets fail to publish, and partial failure, when some targets succeed to publish while others fail. In a partial failure, the CLI returns the list of targets that succeeded, `publishedTargets` and the targets that failed, `failedTargets`. In a complete failure, the CLI returns a message indicating that all targets failed to publish. 
 
 ### Bulk publishing with dependencies
 
@@ -183,9 +159,9 @@ If your solution has dependencies on other solutions, you also need to provide a
 
 In this case, workload orchestration creates a new revision of the dependency and publishes it. For example, if the solution has the dependency on shared-app-1.0.0.1, when bulk publishing triggers, workload orchestration creates new revision shared-app-1.0.0.2 and use it for publishing.
 
-Once publish succeeds, you can find the dependencies of solution by using `az rest` command:
+Once publish succeeds, you can find the dependencies of solution using:
 
-```powershell
+```azurecli
 az rest -u "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<revision>?api-version=2025-06-01" -m GET 
 ```
 
@@ -193,9 +169,13 @@ In the output, search for the property called `solutionDependencies`, which cont
 
 ## Perform bulk deployment
 
-Currently bulk deployment is only supported via CLI. To perform a bulk deployment, run `bulk-deploy` command in the Azure CLI. 
+Follow these steps to deploy a solution to multiple targets:
 
-```powershell
+### [CLI](#tab/cli)
+
+Run the following command: 
+
+```azurecli
 az workload-orchestration solution-template bulk-deploy --targets "@target.json" --version "<solution template version>" --name "<solution-name>" -g $rg --solution-dependencies "@dependencies.json"
 ```
 
@@ -212,25 +192,33 @@ You need to provide a *targets.json* file that contains the list of targets wher
 > [!NOTE]
 > The `--solution-dependencies` parameter is only required if the solution has dependencies. For more information, see the [previous section](#bulk-publishing-with-dependencies) on how to create the *dependencies.json* file.
 
-### Bulk deployment output
+### [Portal](#tab/portal)
 
-If the bulk publish is successful, the CLI returns the list of published targets under `deployedTargets`. 
+1. Click on the **Deploy** tab and switch to solution view to view the applicable solutions and their statuses.
 
-```json
-{
-"solutionTemplateVersionId": "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/<solution-template>/versions/<version>",
-  "deployedTargets": [
-    {
-      "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<instance>",
-      "targetId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>"
-    }
-]
-}
-```
+    :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target2." lightbox="./media/deploy-1.png":::
 
-If the bulk deployment isn't successful, there are two types of failures: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed to deploy while others fail. In a partial failure, the CLI returns the list of targets that succeeded, `deployedTargets` and the targets that failed, `failedTargets`. In a complete failure, the CLI returns a message indicating that all targets failed to deploy. You can retry the deployment for the failed targets by running the `bulk-deploy` command again with the same parameters.
+1. Select a solution which has 1 or more targets available to deploy to.
 
-### Bulk deployment script
+    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to click on a target3." lightbox="./media/deploy-2.png":::
+
+1. Choose the targets in **Publish Completed** state and click on **Deploy Solution**. If asked to confirm, click on **Confirm** to proceed.
+
+    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-3.png":::
+
+1. To view the detailed status of your deployment, click on the notification icon at the top right and click on **Show in event logs**.
+
+    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-6.png":::
+
+1. Click on the respective **Event name** to open the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+
+    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-7.png":::
+
+***
+
+In case any of the bulk operations fail partially or for all targets, you can retry the operation for the failed targets with the same parameters.
+
+## Bulk deployment script
 
 The script [bulk_deployment.ps1](https://github.com/Azure/workload-orchestration/blob/main/bulk_deployment.ps1) enables you to deploy an application to multiple targets in a single step, eliminating the need to run multiple commands for bulk review, publishing, and deployment. 
 
@@ -267,9 +255,6 @@ Once the input file is prepared, run the script using:
 ```powershell
 bulk_deployment.ps1 "input.json"
 ```
-
-> [!NOTE]
-> Every deployment (bulk or single) creates a Workflow resource. The default limitation on the number of Workflows is 800. Once this quota is reached, you need to delete existing Workflows by running `az workload-orchestration workflow delete --name <workflow-name> --resource-group <rg-name>`, before performing additional deployments.
 
 ## Related content
 
