@@ -42,7 +42,7 @@ The building blocks of a solution template help you manage configurations dynami
 - **Conditionals**: Execute code based on specified conditions, enabling decision-making in templates.
 - **Functions**: Reusable code blocks that perform specific tasks, enhancing modularity and provide a mechanism to incorporate configs from external config files or template promoting reusability.
 
-### Conditional Expressions
+### Conditional expressions
 
 | Expression        | Example                | Behavior                                |
 |-----------------|-----------------------------------------|--------------------------------------------------------|
@@ -69,7 +69,7 @@ You can perform a concatenation using `<string>` + `<expression>`. For example,
 - ApplicationName: Health Check Monitor For + ${{$val(FactoryName)}} + Factory
 - Output: Health Check Monitor For Contoso Factory
 
-### Handling Null Values
+### Handling null values
 
 If key in the template is having the null value, parser checks whether schema rule has `defaultValue` defined for this key. If `defaultValue` is present, then it sets the `defaultValue` to the key. If `required` is set true in the schema rule, it throws the null value error. Else it sets the null value to key.
 
@@ -82,7 +82,7 @@ TargetName= ${{$target(name)}}
 TargetArmId = ${{$target(id)}}
 ```
 
-### Nested Expression
+### Nested expression
 
 Expression can be nested, for example ${{$if($eq($val(key1), value), equal, notEqual)}}. In this case, the expression is evaluated from inside out.
 
@@ -125,15 +125,14 @@ This ensures that:
 - Site-specific adjustments can be applied where needed
 
 
-## Schema
+## Configuration schema
 
-A **schema** defines the configurable attributes of a solution and the rules that govern their usage. It is written in YAML and specifies the properties, types, and validation rules for the configuration values that users can provide when deploying a solution or configuring the hierarchy. Schemas are optional and can be reused across multiple solution deployments and hierarchy configurations.
-
+A **schema** defines the configurable attributes of a solution or a deployment target, and the rules that govern their usage. You write it in YAML. It specifies the properties, types, and validation rules for the configuration values that users can optionally provide when deploying a solution or configuring the hierarchy. You can either add schemas inline within the configuration template file or create them as a separate resource to reuse across multiple solution deployments and hierarchy configurations.
 
 <details>
 <summary>Learn more</summary>
 
-### Configuration schema structure
+### Schema structure
 
 The configuration schema consists of two main sections: `rules` and `validations`. The `rules` section defines the configuration keys and their properties, while the `validations` section defines any custom validation rules that apply to the entire schema.
 
@@ -174,7 +173,7 @@ The following constraints apply to the rules defined in the configuration schema
 - The `allowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
-- The `editableBy` property accepts either IT, OT or both values. If IT is set, this parameter isn't shown on the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com) and has to be configured via CLI. If OT is set, this parameter is visible on the workload orchestration portal and can be set via CLI also.
+- The `editableBy` property accepts either IT, OT, or both values. If you set IT, the parameter isn't shown on the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com) and you have to configure it via CLI. If you set OT, you can set the parameter via both CLI and the workload orchestration portal.
 
 ### Including and referencing rules from another schema
 

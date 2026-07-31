@@ -216,11 +216,11 @@ For more information about solution templates and publishing a solution, see [Cr
 
 ### Publish and validate the solution 
 
-#### [Bash](#tab/bash)
+#### [CLI](#tab/cli)
 
 1. When you publish the solution version, the publish command triggers the external validation process. The workload orchestration service sends an event to the Event Grid subscription, which invokes the external validation service. The external validation service can then perform custom validation logic and send a response back to the workload orchestration service.
 
-    ```bash
+    ```azurecli
     az workload-orchestration target publish \
       --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/1.0.0 \
       --resource-group "$rg" \
@@ -229,43 +229,37 @@ For more information about solution templates and publishing a solution, see [Cr
 
 1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
 
-    ```bash
-    solutionVersionId="<solutionVersionId>"
-    externalValidationId="<externalValidationId>"
-    ```
+#### [Portal](#tab/portal)
 
-#### [PowerShell](#tab/powershell)
+The configuration process is similar to the one described in [Deploy a basic solution](solution-without-common-configuration.md#deploy-the-solution). If you enable external validation for workload orchestration, during the configuration of the target you see if external validation is enabled for a particular solution.
 
-1. When you publish the solution version, the publish command triggers the external validation process. The workload orchestration service sends an event to the Event Grid subscription, which invokes the external validation service. The external validation service can then perform custom validation logic and send a response back to the workload orchestration service.
+:::image type="content" source="./media/external-validation-configure.png" alt-text="Screenshot of configure tab showing that external validation is mandatory when configuring a target." lightbox="./media/external-validation-configure.png":::
 
-    ```powershell
-    az workload-orchestration target publish `
-      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/1.0.0 `
-      --resource-group $rg `
-      --target-name $childName
-    ```
-1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
+Under the "Published Solutions" tab, you can see that the solutions with *Publish in progress* and *Publish failed* status have an alert.
 
-    ```powershell	
-    $solutionVersionId = "<solutionVersionId>"
-    $externalValidationId = "<externalValidationId>"
-    ```
+:::image type="content" source="./media/external-validation-configure-2.png" alt-text="Screenshot of configure tab showing the alerts when a validation fails." lightbox="./media/external-validation-configure-2.png":::
+
+Click on the **alert** to view the details of external validation.
+
+:::image type="content" source="./media/external-validation-configure-3.png" alt-text="Screenshot of configure tab showing the alerts details when a validation fails." lightbox="./media/external-validation-configure-3.png":::
+
 ***
 
 Event Grid uses the event subscription to determine the final delivery endpoint and applies necessary filtering, such as matching the subject name, to ensure only relevant events are forwarded.
 
-### Monitor the validation status with workload orchestration portal
+### Monitor the validation status
 
-After publishing, the solution should instantly move to *Publish In Progress* state in the [workload orchestration portal](monitor.md#monitor-solutions-with-external-validation-enabled), meaning that the data has been successfully pushed to Event Grid for external validation.
+If you enable external validation for workload orchestration, you see two new status tiles in the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) - *Publish in progress* and *Publish failed*. You can click on the tiles to filter solutions by the status. 
 
-- If the solution is in **Ready to deploy** state, the validation completed successfully.
+:::image type="content" source="./media/external-validation-monitor.png" alt-text="Screenshot of the monitor tab showing two new statuses when you enable external validation." lightbox="./media/external-validation-monitor.png":::
 
-- If the solution is in **Publish failed** state, the validation failed due to some errors. In the [Configure tab](configure.md#configure-a-solution-with-external-validation-enabled) of the workload orchestration portal, go to the *Published Solutions* tab and click on the alert for the solution to view the error details.
+You can also check the status of the solution version in CLI. The state of the solution version is stored in the `properties.state` field of the solution version object.
 
+```azurecli
+az rest --method GET --url "$solutionVersionId?api-version=2025-01-01-preview"
+```
 
-### Check the status of solution version via CLI
-
-You can check the state of the solution version using the CLI. The state of the solution version is stored in the `properties.state` field of the solution version object. 
+After publishing, the solution instantly moves to *Publish In Progress* state, which means that the data is successfully pushed to Event Grid for external validation.
 
 #### Status is ReadyToDeploy
 
@@ -305,25 +299,12 @@ If the state changes from `PendingExternalValidation` to `ExternalValidationFail
 
 If the state remains in `PendingExternalValidation` state, it's possible that the status doesn't proceed further due to some error in Function App. To solve this, you can manually update the status of the solution version to either `Valid` or `Invalid` using the CLI command below.
 
-#### [Bash](#tab/bash)
-
-1. In GET response, check the state in properties.state
-
-    ```bash
-    az rest --method GET --url "$solutionVersionId?api-version=2025-01-01-preview"
-    ```
-
 1. To set solution version configurations as **valid**:
 
     1. Update the status of the solution version to `Valid` using the following command:
 
-        ```bash
-        az workload-orchestration target update-external-validation-status \
-            --resource-group $rg \
-            --target-name $childName \
-            --external-validation-id $externalValidationId \
-            --solution-version-id $solutionVersionId \
-            --validation-status "Valid"
+        ```azurecli
+        az workload-orchestration target update-external-validation-status --resource-group $rg --target-name $childName --external-validation-id $externalValidationId --solution-version-id $solutionVersionId --validation-status "Valid"
         ```
 
     1. In the command response, the solution version object is displayed where the state is changed to `ReadyToDeploy`.
@@ -332,65 +313,14 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
 1. To set solution version configurations as **invalid**:
 
     1. Update the status of the solution version to `Invalid` using the following command:
-    
-        ```bash
-        az workload-orchestration target update-external-validation-status \
-         --resource-group $rg \
-         --target-name $childName \
-         --external-validation-id $externalValidationId \
-         --solution-version-id $solutionVersionId \
-         --validation-status "Invalid" \
-         --error-details "@error.json"
+
+        ```azurecli
+        az workload-orchestration target update-external-validation-status --resource-group $rg --target-name $childName --external-validation-id $externalValidationId --solution-version-id $solutionVersionId --validation-status "InValid" --error-details "@error.json"
         ```
 
     1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
     1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](monitor.md).
     1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
-
-
-#### [PowerShell](#tab/powershell)
-
-1. In GET response, check the state in properties.state
-
-    ```powershell
-    az rest --method GET --url "$solutionVersionId`?api-version=2025-01-01-preview"
-    ```
-
-1. To set solution version configurations as **valid**:
-
-    1. Update the status of the solution version to `Valid` using the following command:
-
-        ```powershell
-        az workload-orchestration target update-external-validation-status `
-            --resource-group $rg `
-            --target-name $childName `
-            --external-validation-id $externalValidationId `
-            --solution-version-id $solutionVersionId `
-            --validation-status "Valid"
-        ```
-
-    1. In the command response, solution version object is displayed where the state is changed to `ReadyToDeploy`.
-    1. Proceed further with install.
-
-1. To set solution version configurations as **invalid**:
-
-    1. Update the status of the solution version to `Invalid` using the following command:
-    
-        ```powershell
-        az workload-orchestration target update-external-validation-status `
-         --resource-group $rg `
-         --target-name $childName `
-         --external-validation-id $externalValidationId `
-         --solution-version-id $solutionVersionId `
-         --validation-status "Invalid" `
-         --error-details "@error.json"
-        ```
-
-    1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
-    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](monitor.md).
-    1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
-
-***
 
 
 ## Event Grid external validation payload
