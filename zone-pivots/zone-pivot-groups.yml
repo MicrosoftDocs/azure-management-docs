@@ -80,11 +80,3 @@ groups:
     title: Remove existing node pools and create Azure Linux with OS Guard node pools
   - id: in-place
     title: In-place OS SKU migration
-- id: extended-security-updates-windows-server
-  title: Windows Server version
-  prompt: Choose a Windows Server version
-  pivots:
-  - id: windows-server-2012
-    title: Windows Server 2012
-  - id: windows-server-2016
-    title: Windows Server 2016

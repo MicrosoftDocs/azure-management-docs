@@ -1,104 +1,58 @@
 ---
-title: Deliver Extended Security Updates for Windows Server
-description: Learn how to deliver Extended Security Updates for Windows Server 2012 and Windows Server 2016.
-ms.date: 07/16/2026
+title: Deliver Extended Security Updates for Windows Server 2012
+description: Learn how to deliver Extended Security Updates for Windows Server 2012.
+ms.date: 05/12/2025
 ms.topic: concept-article
-zone_pivot_groups: extended-security-updates-windows-server
-# Customer intent: "As an IT administrator managing Windows Server, I want to provision and link Extended Security Updates to Arc-enabled servers, so that I can ensure my systems remain compliant and secure beyond their support lifecycle."
+# Customer intent: "As an IT administrator managing Windows Server 2012, I want to provision and link Extended Security Updates to Arc-enabled servers, so that I can ensure my systems remain compliant and secure beyond their support lifecycle."
 ---
 
-# Deliver Extended Security Updates for Windows Server
+# Deliver Extended Security Updates for Windows Server 2012
 
-This article provides steps to enable delivery of Extended Security Updates (ESUs) to Windows Server machines onboarded to Arc-enabled servers. You can enable ESUs to these machines individually or at scale. The steps apply to Windows Server 2012/2012 R2 and Windows Server 2016. Use the selector at the top of the article to choose the operating system version you're licensing.
+This article provides steps to enable delivery of Extended Security Updates (ESUs) to Windows Server 2012 machines onboarded to Arc-enabled servers. You can enable ESUs to these machines individually or at scale.
 
 ## Before you begin
 
-Plan and prepare to onboard your machines to Azure Arc-enabled servers. To learn more, see [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md).
+Plan and prepare to onboard your machines to Azure Arc-enabled servers. See [Prepare to deliver Extended Security Updates for Windows Server 2012](prepare-extended-security-updates.md) to learn more.
 
 You also need the [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role in [Azure RBAC](/azure/role-based-access-control/overview) to create and assign ESUs to Arc-enabled servers.
 
 ## Manage ESU licenses
 
-::: zone pivot="windows-server-2012"
-
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com).
 
 1. In the service menu, under **Licenses**, select **Windows Server ESU licenses**.
 
-    :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-2012-main-window.png" alt-text="Screenshot of main ESU window showing licenses tab and eligible resources tab." lightbox="media/deliver-extended-security-updates/extended-security-updates-2012-main-window.png":::
+    :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-main-window.png" alt-text="Screenshot of main ESU window showing licenses tab and eligible resources tab." lightbox="media/deliver-extended-security-updates/extended-security-updates-main-window.png":::
 
     From here, you can view and create ESU **Licenses** and view **Eligible resources** for ESUs.
 
-::: zone-end
+## Create Azure Arc Windows Server 2012 licenses
 
-::: zone pivot="windows-server-2016"
+The first step is to provision Windows Server 2012 and 2012 R2 Extended Security Update licenses from Azure Arc. You link these licenses to one or more Arc-enabled servers that you select in the next section.
 
-1. From your browser, sign in to the [Azure portal](https://portal.azure.com).
-
-1. Go to the **Azure Arc** page, and in the service menu, under **Licenses**, select the **Windows Server 2016 ESU licenses** offering.
-
-    :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-2016-main-window.png" alt-text="Screenshot of main ESU window showing licenses tab and eligible resources tab." lightbox="media/deliver-extended-security-updates/extended-security-updates-2016-main-window.png":::
-
-    From here, you can view and create ESU **Licenses** and view **Eligible resources** for ESUs.
-
-::: zone-end
-
-## Create Azure Arc Windows Server licenses
-
-First, provision Extended Security Update licenses from Azure Arc. Link these licenses to one or more Arc-enabled servers that you select in the next section.
+After you provision an ESU license, you need to specify the SKU (Standard or Datacenter), type of cores (Physical or vCore), and number of cores to provision an ESU license. You can also provision an Extended Security Update license in a deactivated state so that it won't initiate billing or be functional on creation. Moreover, the cores associated with the license can be modified after provisioning.
 
 > [!NOTE]
 > The provisioning of ESU licenses requires you to attest to their SA or SPLA coverage.
 
-::: zone pivot="windows-server-2012"
-
-After you provision an ESU license, specify the SKU (Standard or Datacenter), type of cores (Physical or vCore), and number of cores. You can also provision an Extended Security Update license in a deactivated state so that it doesn't initiate billing or be functional on creation. You can modify the cores associated with the license after provisioning.
-
-The **Licenses** tab displays Azure Arc Windows Server licenses that are available. From here, you can select an existing license to apply or create a new license.
+The **Licenses** tab displays Azure Arc Windows Server 2012 licenses that are available. From here, you can select an existing license to apply or create a new license.
 
 :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-licenses.png" alt-text="Screenshot showing existing licenses and the option to create a new one.":::
 
-1. To create a new Windows Server license, select **Create**, and then provide the information required to configure the license on the page.
+1. To create a new Windows Server 2012 license, select **Create**, and then provide the information required to configure the license on the page.
 
-    For details on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server](license-extended-security-updates.md).
+    For details on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server 2012](license-extended-security-updates.md).
 
 1. Review the information provided, and then select **Create**.
 
     The license you created appears in the list. You can link it to one or more Arc-enabled servers by following the steps in the next section.
 
-::: zone-end
-
-::: zone pivot="windows-server-2016"
-
-For Windows Server 2016, specify the SKU (Standard or Datacenter) and the number of cores when you create the license. Unlike Windows Server 2012, you select the core type (physical or virtual) later, when you enable ESUs on your machines. You can also provision the license in a deactivated state so that it doesn't initiate billing or be functional on creation.
-
-1. On the license page, select **Create**.
-
-1. On the license creation page, provide the following information:
-
-    - **Resource group**: Select the resource group for the license.
-    - **License name**: Enter a name for the license.
-    - **Activation status**: Select the activation status.
-    - **Region**: Select your region.
-    - **SKU**: Select **Windows Server 2016 Standard** or **Windows Server 2016 Datacenter**.
-    - **Number of cores**: Enter the number of cores that the license supports.
-
-    For details on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server](license-extended-security-updates.md).
-
-1. Select **Next**, confirm that your Windows Server licenses have Software Assurance, and then select **Create**.
-
-    The license you created appears in the list. You can link it to one or more Arc-enabled servers by following the steps in the next section.
-
-::: zone-end
-
 ## Link ESU licenses to Arc-enabled servers
 
-Select one or more Arc-enabled servers to link to an Extended Security Update license. After you link a server to an activated ESU license, the server can receive Windows Server ESUs.
+You can select one or more Arc-enabled servers to link to an Extended Security Update license. Once you link a server to an activated ESU license, the server is eligible to receive Windows Server 2012 and 2012 R2 ESUs.
 
 > [!NOTE]
 > You have the flexibility to configure your patching solution of choice to receive these updates – whether that’s [Update Manager](/azure/update-center/overview), [Windows Server Update Services](/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus), Microsoft Updates, [Microsoft Endpoint Configuration Manager](/mem/configmgr/core/understand/introduction), or a third-party patch management solution.
-
-::: zone pivot="windows-server-2012"
 
 1. Select the **Eligible resources** tab to view a list of all your Arc-enabled servers running Windows Server 2012 and 2012 R2.
 
@@ -108,52 +62,16 @@ Select one or more Arc-enabled servers to link to an Extended Security Update li
 
 1. To enable ESUs for one or more machines, select them in the list, and then select **Enable ESUs**.
 
-::: zone-end
+1. On the **Enable Extended Security Updates** pane, it shows the number of machines selected to enable ESU and the Windows Server 2012 licenses available to apply. Select a license to link to the selected machine(s) and then select **Enable**.
 
-::: zone pivot="windows-server-2016"
+   :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-select-license.png" alt-text="Screenshot of options to select the license to apply to previously chosen machines.":::
 
-1. Select the **Eligible resources** tab to view a list of all your Azure Arc-enabled servers running Windows Server 2016.
-
-    :::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-2016-eligible-resources.png" alt-text="Screenshot of eligible resources tab showing servers eligible to receive ESUs." lightbox="media/deliver-extended-security-updates/extended-security-updates-2016-eligible-resources.png":::
-
-    The **ESUs status** column indicates whether the machine is enabled for ESUs.
-
-1. To enable ESUs for one or more machines, select them in the list, and then select **Enable ESUs**.
-
-::: zone-end
-
-::: zone pivot="windows-server-2012"
-
-On the **Enable Extended Security Updates** pane, it shows the number of machines selected to enable ESU and the Windows Server licenses available to apply. Select a license to link to the selected machines and then select **Enable**.
-
-:::image type="content" source="media/deliver-extended-security-updates/extended-security-updates-select-license.png" alt-text="Screenshot of options to select the license to apply to previously chosen machines.":::
-
-> [!NOTE]
-> You can create a license from this page, rather than choosing an existing one, by selecting **Create an ESUs license**.
-
-::: zone-end
-
-::: zone pivot="windows-server-2016"
-
-In the **Enable ESUs** dialog:
-
-1. Select the **Core type**: **Physical cores** or **Virtual cores**.
-1. Select the ESU license that you created.
-1. Select **Enable**.
-
-::: zone-end
+   > [!NOTE]
+   > You can create a license from this page, rather than choosing an existing one, by selecting **Create an ESUs license**.
 
 When you return to the **Eligible resources** tab, you see the status of the selected machines shows **Enabled**.
 
-::: zone pivot="windows-server-2016"
-
-To verify enrollment on the server, run `azcmagent show` and confirm that the **Extended Security Updates** section shows a status of **Active**.
-
-::: zone-end
-
-If problems occur during the enablement process, see [Troubleshoot delivery of Extended Security Updates for Windows Server](troubleshoot-extended-security-updates.md) for assistance.
-
-::: zone pivot="windows-server-2012"
+If problems occur during the enablement process, see [Troubleshoot delivery of Extended Security Updates for Windows Server 2012](troubleshoot-extended-security-updates.md) for assistance.
 
 ## Enable ESUs at scale using Azure Policy
 
@@ -212,7 +130,3 @@ When upgrading a Windows Server 2012/2012R machine to Windows Server 2016 or abo
 ## Assess WS2012 ESU patch Status
 
 To detect whether your Azure Arc-enabled servers are patched with the most recent Windows Server 2012/R2 Extended Security Updates, you can use the Azure Policy [Extended Security Updates should be installed on Windows Server 2012 Arc machines](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F14b4e776-9fab-44b0-b53f-38d2458ea8be/version~/null/scopes~/%5B%22%2Fsubscriptions%2F4fabcc63-0ec0-4708-8a98-04b990085bf8%22%5D). This policy definition, powered by Machine Configuration, identifies if the server has received the most recent ESU Patches. This is observable from the Guest Assignment and Azure Policy Compliance views built into the Azure portal.
-
-::: zone-end
-
-
