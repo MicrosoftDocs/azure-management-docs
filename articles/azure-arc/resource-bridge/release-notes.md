@@ -24,7 +24,7 @@ The [version support policy](overview.md#supported-versions) for Arc resource br
 
 - Kubernetes service cidr range reduced to 10.96.0.0/24 for new deployments.
 - Specific error code returned for proxy-update conflicts with an in-flight upgrade or agent-update operation.
-- Diagnostic checker includes CertificateExpiration checker for kubeadm certs. New health check that flags upcoming/expired kubeadm-managed certificates.
+- Diagnostic checker includes CertificateExpiration checker for kubeadm certs. New health check that flags upcoming or expired kubeadm-managed certificates.
 - Enable Azure Arc Gateway for Arc-enabled VMware vSphere (Preview) for new deployments.
 
 
