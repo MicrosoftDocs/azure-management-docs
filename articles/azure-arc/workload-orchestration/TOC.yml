@@ -11,35 +11,29 @@ items:
       href: resource-model.md
     - name: Configuration model
       href: configuration-model.md
-  - name: Tutorial
+  - name: Tutorials
     items:
-    - name: Set up workload orchestration
-      href: set-up-workload-orchestration.md
+    - name: Installation
+      items:
+      - name: Onboard using CLI
+        href: set-up-workload-orchestration.md
+      - name: Onboard using scripts
+        href: onboarding-scripts.md
+      - name: Onboard using Git
+        href: workload-orchestration-multicluster-git.md
     - name: Deploy a basic solution
       href: solution-without-common-configuration.md
     - name: Deploy a solution with common configuration
       href: solution-with-common-configuration.md
-    - name: Perform a bulk deployment
-      href: bulk-deployment.md
     - name: Stage a solution before deployment
       href: how-to-stage.md
     - name: Enable external validation
       href: external-validation.md
-    - name: Git-based resource management
-      href: workload-orchestration-multicluster-git.md
-    - name: Onboard using scripts
-      href: onboarding-scripts.md
+    - name: Perform a bulk deployment
+      href: bulk-deployment.md
     - name: Create a solution with dependency
       href: solution-shared-adapter-dependency.md
-  - name: Portal
-    items:
-    - name: User guide 
-      href: portal-user-guide.md
-    - name: Configure your solutions 
-      href: configure.md
-    - name: Deploy your solutions 
-      href: deploy.md
-    - name: Monitor your solutions 
+    - name: Monitor your solutions
       href: monitor.md
   - name: Developer reference and support
     items:
@@ -53,6 +47,8 @@ items:
         href: diagnose-problems.md
       - name: Known issues
         href: known-issues.md
+    - name: Cluster migration
+      href: migrate-cluster.md
     - name: RBAC guide 
       href: rbac-guide.md
     - name: Delete resources

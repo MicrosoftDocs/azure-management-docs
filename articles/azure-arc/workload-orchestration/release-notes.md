@@ -11,13 +11,30 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
+## July 2026 release
+
+### New features
+
+- **Schema inlining**: Workload orchestration configuration templates now support [inline schema](solution-without-common-configuration.md#create-the-solution-template) definition within the template file in CLI, in addition to the existing provision of creating the schema resource separately. This feature further simplifies the deployment process.
+
+### Improvements in CLI
+
+- **Extension upgrade**: The workload orchestration K8s extension is now upgraded to version 2.1.37 with support for new capabilities. To update to the latest version, run:
+  ```bash
+  az k8s-extension update --resource-group "<resource group name>" --cluster-name "<cluster name>" --cluster-type connectedClusters --name "<extension name>" --release-train dev --version 2.1.37
+  ```
+
+- **Scalable deletion support**: For k8s extension versions greater than 2.1.34, this release enables reliable and scalable delete operations for targets, resource groups, and subscriptions that have large numbers of active solution instances within their scope. To prevent throttling issues and ensure consistent behavior, older extension versions are now restricted from deleting targets when solutions are still installed on them.
+
+- **System namespace restriction**: During target creation, the attribute `--solution-scope` doesn't accept system namespaces such as azure-arc, kube-system, workloadorchestration, and cert-manager. This restriction has been imposed for security enhancement.
+
 ## April 2026 release
 
 ### New features
 
 - **Git-based management of resources**: Workload orchestration now supports a [Git-based workflow](workload-orchestration-multicluster-git.md) for managing resources, enabling you to define and manage schemas, solution templates, and configuration templates from your Git repository at scale. This approach introduces a streamlined authoring and deployment experience with pull request–based validation, automated synchronization to Azure using Deployment Stacks, and configurable resource protection.
 
-- **Cluster migration**: Users can now migrate their targets along with deployed solutions to a new Arc-enabled cluster. This is especially critical when the existing cluster gets deleted or solution deployments require capacity expansion.
+- **Cluster migration**: Users can now [migrate their targets along with deployed solutions](migrate-cluster.md) to a new Azure Arc-enabled cluster. This feature is especially critical when the existing cluster gets deleted or solution deployments require capacity expansion.
 
 ### Improvements in CLI
 
@@ -286,7 +303,7 @@ To migrate your existing workload orchestration target resources to the GA versi
 
 ### Improvements
 
-- Instance name: You can add the instance name in the [configuring flow](configure.md#configure-solution-parameters).
+- Instance name: You can add the instance name in the configuring flow.
 - Grouping by version: When configuring shared applications in the portal, choose the instance from the dropdown, which is now grouped by solution version.
 
 ## May 2025 release

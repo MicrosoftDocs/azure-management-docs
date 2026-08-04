@@ -4,6 +4,8 @@ description: Learn about what Azure Arc is and how it helps customers enable man
 ms.date: 08/26/2025
 ai-usage: ai-assisted
 ms.topic: overview
+author: davidsmatlak
+ms.author: davidsmatlak
 # Customer intent: As an IT administrator managing a hybrid environment, I want to use Azure Arc to unify the management of my on-premises and cloud resources, so that I can simplify governance and operational processes across diverse infrastructures.
 ---
 

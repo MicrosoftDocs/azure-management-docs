@@ -20,29 +20,31 @@ landingContent:
   # Card (optional)
   - title: Get started
     linkLists:
-      - linkListType: get-started
+      - linkListType: overview
         links:
           - text: What is workload orchestration?
             url: overview.md
-      - linkListType: download
-        links:
-          - text: Set up workload orchestration using onboarding scripts
-            url: onboarding-scripts.md
-          - text: Set up workload orchestration
-            url: set-up-workload-orchestration.md
       - linkListType: quickstart
         links:
+          - text: Set up workload orchestration
+            url: set-up-workload-orchestration.md
+          - text: Onboard using Git
+            url: workload-orchestration-multicluster-git.md
+          - text: Onboard using scripts
+            url: onboarding-scripts.md
           - text: Create a basic solution
             url: solution-without-common-configuration.md
 
-  - title: Workload orchestration for IT users
+  - title: Workload orchestration features
     linkLists:
       - linkListType: overview
         links:
-          - text: RBAC guide
-            url: rbac-guide.md
-          - text: Operate in a multi-cluster environment with GitHub
-            url: workload-orchestration-multicluster-git.md
+          - text: Understand the architecture
+            url: architecture.md
+          - text: Learn about the resource model
+            url: resource-model.md
+          - text: Learn about the configuration model
+            url: configuration-model.md
       - linkListType: how-to-guide
         links:
           - text: Enable external validation 
@@ -51,22 +53,20 @@ landingContent:
             url: how-to-stage.md
           - text: Perform a bulk deployment
             url: bulk-deployment.md
-          - text: Troubleshooting and known issues
-            url: troubleshooting.md
+          - text: Monitor your solutions 
+            url: monitor.md
 
-  - title: Workload orchestration for OT users
+  - title: Developer guide
     linkLists:
       - linkListType: overview
         links:
-          - text: User guide for workload orchestration
-            url: portal-user-guide.md
+          - text: RBAC guide
+            url: rbac-guide.md
       - linkListType: how-to-guide
         links:
-          - text: Monitor your solutions 
-            url: monitor.md
-          - text: Configure your solutions 
-            url: configure.md
-          - text: Deploy your solutions
-            url: deploy.md
-
-
+          - text: Workload orchestration SDK
+            url: workload-orchestration-sdk.md
+          - text: Troubleshooting and known issues
+            url: troubleshooting.md
+          - text: Diagnose edge logs
+            url: diagnose-problems.md

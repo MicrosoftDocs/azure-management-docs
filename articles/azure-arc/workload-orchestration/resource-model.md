@@ -18,11 +18,17 @@ The resource model consists of three primary building blocks:
 - **Hierarchy** – Represents the physical structure of your organization
 - **Target** – Represents the deployment unit or namespace within a Kubernetes cluster
 
+:::image type="content" source="./media/resource-model.png" alt-text="Diagramatic representation of resource model." lightbox="./media/resource-model.png":::
+
 ## Context
 
-A context, also referred to as an environment, is the top-level resource that groups all workload orchestration resources within an Azure tenant. It links to your organizational hierarchy and defines the set of capabilities available for deployment. Capability tags are name-description pairs that describe what a resource is capable of doing. They're used to map applications to be deployed, to the relevant targets.
+A context, also referred to as an environment, is the top-level resource that groups all workload orchestration resources within an Azure tenant. It links to your organizational hierarchy and defines the set of capabilities available for deployment. Capability tags are name-description pairs that describe what a resource is capable of doing. They're used to map applications to be deployed, to the relevant targets. Each Azure tenant supports a single context, which ensures consistency in how resources are organized and managed. 
 
-Each Azure tenant supports a single context, which ensures consistency in how resources are organized and managed.
+While creating a context, the name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means the context name:
+- Must start and end with an alphanumeric character.
+- Can contain hyphens, but not at the start or end of any segment.
+- Can contain dots to separate segments, but not consecutive dots or empty segments.
+- Can't have any special characters other than hyphen and dot.
 
 ## Hierarchy
 
@@ -59,7 +65,7 @@ In this model:
 
 ## Target
 
-A target represents the deployment unit within a Kubernetes cluster. It corresponds to a namespace within an Arc-enabled cluster where applications are deployed, and is associated with a **custom location** created on your cluster. To be able to use a target for deployment, it needs to be mapped to a level and Site of your hierarchy at the time of creation. A target is also tagged with capabilities that determine which solutions can be deployed on it.
+A target represents the deployment unit within a Kubernetes cluster. It corresponds to a namespace within an Azure Arc-enabled cluster where applications are deployed, and is associated with a **custom location** created on your cluster. To be able to use a target for deployment, it needs to be mapped to a level and Site of your hierarchy at the time of creation. A target is also tagged with capabilities that determine which solutions can be deployed on it.
 
 ## How the resource model works together
 

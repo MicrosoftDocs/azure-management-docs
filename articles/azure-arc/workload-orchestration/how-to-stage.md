@@ -473,7 +473,7 @@ az workload-orchestration target create `
     ```yaml
     configs:
       image:
-        repository: ${{$val(LocalConnectedRegistryIP)}}+/<image_name>
+        repository: ${{$connectedRegistryIP()}}+/<image_name>
     ```
 
 1. In spec.json, change the stage image to your own image:
@@ -516,7 +516,7 @@ az workload-orchestration target create `
     ```yaml
     configs:
       image:
-        repository: ${{$val(LocalConnectedRegistryIP)}}+/<image_name>
+        repository: ${{$connectedRegistryIP()}}+/<image_name>
     ```
 
 1. In spec.json, change the stage image to your own image:
@@ -666,7 +666,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
 
 ## View staged resources
 
-You can view staging details in the **Published solutions** tab of the [workload orchestration portal](configure.md#view-the-published-solutions). 
+You can view staging details in the **Published solutions** tab of the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview). 
 
 1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) and go to the **Configure Solutions** tab on the left side of the screen.
 1. Select the **Published solutions** tab.

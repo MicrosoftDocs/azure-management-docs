@@ -26,9 +26,9 @@ Workload orchestration is a centralized approach to deploying, configuring, and 
 
 Workload orchestration operates in two key steps: 
 
-1. Setup: It is a one-time operation that prepares your environment for workload deployments. It involves initializing workload orchestration on existing Azure Arc-connected Kubernetes infrastructure and provisioning targets that map to particular namespaces within the clusters where the applications are deployed.
+1. Setup: It is a one-time operation that prepares your environment for workload deployments. It involves initializing workload orchestration on your existing Kubernetes infrastructure and provisioning targets that map to particular namespaces within the clusters where the applications are to be deployed.
 
-1. Deploy: With setup in place, you can begin deploying applications consistently across your targets. This involves creating a blueprint for the application to be deployed, and leveraging the same consistently across all relevant targets.
+1. Deploy: With setup in place, you can begin deploying applications consistently across your targets. This involves creating a blueprint (or template) for the application to be deployed, and leveraging the same consistently across all relevant targets.
 
 To get started with workload orchestration, refer to the [setup guide](set-up-workload-orchestration.md).
 

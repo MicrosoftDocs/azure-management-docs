@@ -1,6 +1,6 @@
 ---
-title: Manage workload orchestration resources as Bicep in Git
-description: Learn how to manage Workload Orchestration resources (schemas, solution templates, and configuration templates) as Bicep templates in a Git repository, with automated validation and deployment via Azure Deployment Stacks.
+title: Set up workload orchestration using Git
+description: Learn how to set up and manage Workload Orchestration resources as Bicep templates in a Git repository, with automated validation and deployment via Azure Deployment Stacks.
 author: nathmanish
 ms.author: nathmanish
 ms.topic: how-to
@@ -10,14 +10,17 @@ ms.custom:
 # Customer intent: As a platform engineer, I want to manage workload orchestration resources as Bicep templates in Git, so that I can apply GitOps practices, enforce review through pull requests, and protect deployed resources from out-of-band changes.
 ---
 
-# Manage workload orchestration resources in Git
+# Set up workload orchestration using Git
 
-Workload orchestration allows you to provision and manage all resources in the form of Bicep templates stored in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart), and trigger single-click solution deployments. Leveraging preconfigured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes.
+This approach lets you manage all workload orchestration resources — environment, hierarchy, targets, schemas and templates — in the form of Bicep templates in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart), and trigger single-click solution deployments. Leveraging preconfigured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes. This is ideal for teams that want to apply GitOps practices with PR-based review and automated deployment.
+
+> [!TIP]
+> For alternative setup methods, see [Set up using CLI](set-up-workload-orchestration.md) for a manual controlled approach, or [Set up using scripts](onboarding-scripts.md) for scripted automation.
 
 
 ## How it works
 
-Your GitHub repository uses a Bicep template `main.bicep` to provision all of your workload orchestration resources, supported by other Bicep modules that declare those resources. Two GitHub Actions workflows enforce validation and synchronization between your repository and Azure account to manage the declared resources, and another workflow helps you deploy applications to selected targets. 
+Your GitHub repository uses a Bicep template `main.bicep` to provision your workload orchestration resources, supported by other Bicep modules that declare those resources. Two GitHub Actions workflows enforce validation and synchronization between your repository and Azure account to manage the declared resources, and another workflow helps you deploy applications to selected targets. 
 
 This is how you manage your workload orchestration resources from your Git repository:
 
