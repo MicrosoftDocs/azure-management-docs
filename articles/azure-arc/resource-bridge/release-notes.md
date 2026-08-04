@@ -12,10 +12,26 @@ To stay up to date with the most recent developments, this article provides you 
 
 The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, **whichever is more recent**. Even if a version is within the version support policy (n-3), the appliance should be manually upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
 
+## Version 1.8.0 (July 2026)
+
+- Support version: n
+- Appliance: 1.8.0
+- CLI extension: 1.8.0
+- Kubernetes: 1.33.5
+- Mariner: 3.0.20260517
+
+### Arc resource bridge platform
+
+- Kubernetes service CIDR range reduced to 10.96.0.0/24 for new deployments.
+- Specific error code returned for proxy-update conflicts with an in-flight upgrade or agent-update operation.
+- Diagnostic checker includes CertificateExpiration checker for kubeadm certs. New health check that flags upcoming or expired kubeadm-managed certificates.
+- Enable Azure Arc Gateway for Arc-enabled VMware vSphere (Preview) for new deployments.
+
+
 
 ## Version 1.7.0 (Dec 2025)
 
-- Support version: n
+- Support version: n-1 (extended support)
 - Appliance: 1.7.0
 - CLI extension: 1.7.0
 - Kubernetes: 1.32.6
@@ -37,7 +53,8 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.6.0 (Sept 2025)
 
-- Support version: n-1
+- Support version: out of support
+
 - Appliance: 1.6.0
 - CLI extension: 1.6.0
 - Kubernetes: 1.31.5
@@ -55,7 +72,7 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.5.0 (June 2025)
 
-- Support version: past 6 months, unsupported
+- Support version: out of support
 
 - Appliance: 1.5.0
 - CLI extension: 1.5.0
@@ -78,7 +95,8 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.4.1 (February 2025)
 
-- Support version: past 6 months, unsupported
+- Support version: out of support
+
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
@@ -93,7 +111,7 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.4.0 (February 2025)
 
-- Support version: past 6 months, unsupported
+- Support version: out of support
 
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
@@ -113,7 +131,9 @@ SCVMM: `--name, --resource-group`
 
 > [!NOTE]
 > This `az arcappliance` Azure CLI extension requires Azure CLI v2.69.0 or below. It isn't compatible with Azure CLI v2.70.0 or higher.
+> 
 
+- Support version: out of support
 - Appliance: 1.3.1
 - CLI extension: 1.3.1
 - Kubernetes: 1.29.4
