@@ -133,7 +133,7 @@ SCVMM: `--name, --resource-group`
 > This `az arcappliance` Azure CLI extension requires Azure CLI v2.69.0 or below. It isn't compatible with Azure CLI v2.70.0 or higher.
 > 
 
-- Support version: out-of-support
+- Support version: out of support
 - Appliance: 1.3.1
 - CLI extension: 1.3.1
 - Kubernetes: 1.29.4
