@@ -72,7 +72,7 @@ SCVMM: `--name, --resource-group`
 
 ## Version 1.5.0 (June 2025)
 
-- Support version: out-of-support
+- Support version: out of support
 
 - Appliance: 1.5.0
 - CLI extension: 1.5.0
