@@ -30,10 +30,10 @@ When deploying Arc resource bridge, specific IP ranges are reserved exclusively 
 > [!NOTE]
 > Designated IP ranges within the resource bridge don't affect Azure resources. However, they **must not overlap** with any IP ranges in the AVS environment or the Arc-enabled VMware environment (including management and workload networks).
 
-|      **Service**       |    **Designated IP range**    |  
+|      **Service**       |    **Designated IP range**    |
 | ----------------------- | ---------------------------- |
 | Arc resource bridge Kubernetes pods   | 10.244.0.0/16 |
-| Arc resource bridge Kubernetes services  | 10.96.0.0/12  |
+| Arc resource bridge Kubernetes services  | 10.96.0.0/24|
 
 
 ## SSL proxy configuration

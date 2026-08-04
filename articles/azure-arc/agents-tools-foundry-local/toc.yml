@@ -16,10 +16,12 @@ items:
           - name: Known issues
             href: known-issues.md
       - name: Quickstarts
+        expanded: true
         items:
           - name: Deploy Agents and Tools
             href: quickstart-edge-rag.md
       - name: Plan
+        expanded: true
         items:
           - name: Requirements
             href: requirements.md
