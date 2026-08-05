@@ -61,7 +61,6 @@ The Azure Arc service in the Azure portal provides a streamlined way to create a
    1. A name for your service principal.
    1. Choose whether the service principal has access to an entire subscription, or only to a specific resource group.
    1. Select the subscription (and resource group, if applicable) to which the service principal has access.
-   1. Enter a **Service Tree ID** for the service principal (if applicable).
    1. In the **Client secret** section, you can optionally enter a friendly name of your choice in the **Description** field. Then select the duration for which your generated client secret is in use.
    1. Under **Role assignment** section, select **Azure Connected Machine Onboarding**.
 1. Select **Create**.
