@@ -77,7 +77,7 @@ Use the file upload option to upload a diagnostic file, such as a [browser trace
 1. In the **Support Request**, select **Upload file**, and then browse to select one or more files. You can attach up to five files to your support request. To include more files, package them together in a compressed format such as .zip.
 
 > [!NOTE]
-> Portal always allow only one file to be uploaded during case creation. A second upload overrides the first one. After case creation, you can go to the support ticket page and upload up to 5 files.
+> Azure portal only allows one file to be uploaded during case creation. A second upload will override the first. After case creation, you can go to the support ticket page and upload up to 5 files.
 
 1. Select **Upload**.
 
