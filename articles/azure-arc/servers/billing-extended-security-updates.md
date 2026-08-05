@@ -1,12 +1,13 @@
 ---
-title: Billing service for Extended Security Updates for Windows Server 2012 through Azure Arc
-description: Learn about billing services for Extended Security Updates for Windows Server 2012 enabled by Azure Arc.
-ms.date: 08/14/2025
+title: Billing service for Extended Security Updates for Windows Server through Azure Arc
+description: Learn about billing services for Extended Security Updates for Windows Server 2012 and Windows Server 2016 enabled by Azure Arc.
+ms.date: 07/16/2026
 ms.topic: concept-article
-# Customer intent: As a cloud administrator managing Extended Security Updates for Windows Server 2012 via Azure Arc, I want to understand the billing structure and back-billing implications so that I can accurately forecast costs and optimize my license management.
+zone_pivot_groups: extended-security-updates-windows-server
+# Customer intent: As a cloud administrator managing Extended Security Updates for Windows Server via Azure Arc, I want to understand the billing structure and back-billing implications so that I can accurately forecast costs and optimize my license management.
 ---
 
-# Billing service for Extended Security Updates for Windows Server 2012 enabled by Azure Arc
+# Billing service for Extended Security Updates for Windows Server enabled by Azure Arc
 
 Three factors affect billing for Extended Security Updates (ESUs):
 
@@ -21,14 +22,26 @@ Billing is monthly. Decrementing, deactivating, or deleting a license results in
 
 ## Back-billing for ESUs enabled by Azure Arc
 
-Licenses that are provisioned after the End of Support (EOS) date of October 10, 2023 are charged a back bill for the time elapsed since the EOS date. For example, an ESU license provisioned in December 2023 is back-billed for October and November upon provisioning. Enrolling late in Windows Server 2012 ESUs makes you eligible for all the critical security patches up to that point. The back-billing charge reflects the value of these critical security patches.
+When you provision licenses after the End of Support (EOS) date, you pay back-billing charges for the time elapsed since the EOS date. When you enroll late, you become eligible for all the critical security patches up to that point, and the back-billing charge reflects the value of these critical security patches. The EOS date depends on the version of Windows Server.
+
+::: zone pivot="windows-server-2012"
+
+The EOS date for Windows Server 2012 and 2012 R2 is October 10, 2023. For example, an ESU license provisioned in December 2023 is back-billed for October and November upon provisioning.
+
+::: zone-end
+
+::: zone pivot="windows-server-2016"
+
+The EOS date for Windows Server 2016 is January 12, 2027. Licenses provisioned after that date are back-billed to January 12, 2027. Billing for Windows Server 2016 ESUs enabled by Azure Arc begins January 13, 2027.
+
+::: zone-end
 
 If you deactivate and then reactivate a license, you're billed for the window during which the license was deactivated. It's not possible to evade charges by deactivating a license before a critical security patch and reactivating it shortly before.
 
 If the region or the tenant of an ESU license is changed, this is subject to back-billing charges.
 
 > [!NOTE]
-> The back-billing cost appears as a separate line item in invoicing. If you acquired a discount for your core Windows Server 2012 ESUs enabled by Azure Arc, the same discount might or might not apply to back-billing. You should verify that the same discounting, if applicable, is applied to back-billing charges as well.
+> The back-billing cost appears as a separate line item in invoicing. If you acquired a discount for your core Windows Server ESUs enabled by Azure Arc, the same discount might or might not apply to back-billing. Verify that the same discounting, if applicable, is applied to back-billing charges as well.
 
 Estimates in the Azure Cost Management forecast might not accurately project monthly costs. Due to the episodic nature of back-billing charges, the projection of monthly costs might appear as overestimated during initial months.
 
@@ -54,20 +67,21 @@ Estimates in the Azure Cost Management forecast might not accurately project mon
 
 ## Billing for transition scenario for Volume Licensing
 
+::: zone pivot="windows-server-2012"
+
 Licenses for Windows Server 2012/R2 ESUs enabled by Azure Arc that have been provisioned with the specification of an Invoice Id for the Year 1 Volume Licensing entitlement won't be charged until October 10, 2024. These licenses won't be back-billed to October 2023. Licenses with Year 1 created after October 10, 2024 will be back-billed to October 10, 2024, the last day of the Year 1 of WS2012/R2 ESU program. Customers don't need to reactivate or recreate licenses between years of the WS2012/R2 ESU program.
 
-## Services included with Windows Server 2012 ESUs enabled by Azure Arc
+::: zone-end
 
-Purchase of Windows Server 2012/R2 ESUs enabled by Azure Arc provides you with the benefit of access to more Azure management services at no extra cost for enrolled servers. To learn more, see [Access to Azure services](prepare-extended-security-updates.md#access-to-azure-services).
+::: zone pivot="windows-server-2016"
 
-Azure Arc-enabled servers allow you the flexibility to evaluate and operationalize Azure’s robust security, monitoring, and governance capabilities for your non-Azure infrastructure. These services deliver key value beyond the observability, ease of enrollment, and financial flexibility of Windows Server 2012 ESUs enabled by Azure Arc.
+Transitioning from Volume Licensing isn't supported for Windows Server 2016 ESUs enabled by Azure Arc.
 
-## Additional notes
+::: zone-end
 
-- You're billed if you connect an activated Azure Arc ESU license to environments like Azure Local or Azure VMware Solution. These environments are eligible for free Windows Server 2012 ESUs enabled by Azure Arc and shouldn't be activated through Azure Arc.
+## Services included with Windows Server ESUs enabled by Azure Arc
 
-- You're billed for all of the cores provisioned in the license. If you provision licenses for free ESU usage like Visual Studio Development environments, you shouldn't provision additional cores for the scope of licensing applied to non-paid ESU coverage.
+When you purchase Windows Server ESUs enabled by Azure Arc, you get access to more Azure management services at no extra cost for enrolled servers. To learn more, see [Access to Azure services](prepare-extended-security-updates.md#access-to-azure-services).
 
-- Migration and modernization of End-of-Life infrastructure to Azure, including Azure VMware Solution and Azure Local, can reduce the need for paid Windows Server 2012 ESUs. You must decrement the cores with their Azure Arc ESU licenses or deactivate and delete ESU licenses to benefit from the cost savings associated with Azure Arc’s flexible monthly billing model. This isn't an automatic process.
+Azure Arc-enabled servers give you the flexibility to evaluate and operationalize Azure’s robust security, monitoring, and governance capabilities for your non-Azure infrastructure. These services deliver key value beyond the observability, ease of enrollment, and financial flexibility of Windows Server ESUs enabled by Azure Arc.
 
-- For customers seeking to transition from Volume Licensing based Multiple Activation Keys (MAKs) for Year 1 of WS2012/R2 ESUs to WS2012/R2 ESUs enabled by Azure Arc for Year 2, [there's a transition process](license-extended-security-updates.md#scenario-5-you-have-already-purchased-the-traditional-windows-server-2012-esus-through-volume-licensing) that is exempt from back-billing.

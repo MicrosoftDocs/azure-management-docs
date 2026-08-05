@@ -5,9 +5,10 @@ ms.date: 02/13/2026
 # Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to understand the required endpoints for Extended Security Updates so that I can ensure proper connectivity and compliance during installation and updates."
 ---
 
-If you use Azure Arc-enabled servers only for Extended Security Updates for either or both of the following products:
+If you use Azure Arc-enabled servers only for Extended Security Updates for one or more of the following products:
 
 - Windows Server 2012
+- Windows Server 2016
 - SQL Server 2012
 
 You can enable the following subset of endpoints.
@@ -45,4 +46,4 @@ You can enable the following subset of endpoints.
 #### [Azure operated by 21Vianet](#tab/azure-china)
 
 > [!NOTE]
-> Azure Arc-enabled servers used for Extended Security Updates for Windows Server 2012 aren't available in Microsoft Azure operated by 21Vianet regions at this time.
+> Azure Arc-enabled servers used for Extended Security Updates for Windows Server 2012 and Windows Server 2016 aren't available in Microsoft Azure operated by 21Vianet regions at this time.
