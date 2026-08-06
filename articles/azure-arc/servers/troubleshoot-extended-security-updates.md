@@ -1,18 +1,31 @@
 ---
-title: How to troubleshoot delivery of Extended Security Updates for Windows Server 2012 through Azure Arc
-description: Learn how to troubleshoot delivery of Extended Security Updates (ESU) for Windows Server 2012 through Azure Arc.
+title: How to troubleshoot delivery of Extended Security Updates for Windows Server through Azure Arc
+description: Learn how to troubleshoot delivery of Extended Security Updates (ESU) for Windows Server 2012 and Windows Server 2016 through Azure Arc.
 ms.topic: troubleshooting
-ms.date: 01/15/2026
+ms.date: 07/16/2026
+zone_pivot_groups: extended-security-updates-windows-server
 # Customer intent: As an IT administrator managing Windows Server workloads, I want to troubleshoot Extended Security Updates delivery through Azure Arc, so that I can ensure compliance and maintain security for my servers on extended support.
 ---
 
-# Troubleshoot delivery of Extended Security Updates for Windows Server 2012
+# Troubleshoot delivery of Extended Security Updates for Windows Server
 
-This article explains how to identify and resolve problems when enabling [Extended Security Updates (ESU) for Windows Server 2012 and Windows Server 2012 R2](deliver-extended-security-updates.md) through Azure Arc-enabled servers. Use these troubleshooting steps to address common issues with ESU licensing, enrollment, resource provider registration, and patch delivery.
+This article explains how to identify and resolve problems when enabling [Extended Security Updates (ESU) for Windows Server](deliver-extended-security-updates.md) through Azure Arc-enabled servers.
+
+::: zone pivot="windows-server-2012"
+
+Use these troubleshooting steps to address common issues with ESU licensing, enrollment, resource provider registration, and patch delivery for Windows Server 2012/2012 R2.
+
+::: zone-end
+
+::: zone pivot="windows-server-2016"
+
+Use these troubleshooting steps to address common issues with ESU licensing, enrollment, resource provider registration, and patch delivery for Windows Server 2016.
+
+::: zone-end
 
 ## License provisioning issues
 
-If you're unable to provision a Windows Server 2012 ESU license for Azure Arc-enabled servers, verify you meet these conditions:
+If you can't provision a Windows Server ESU license for Azure Arc-enabled servers, verify you meet these conditions:
 
 - **Permissions:** Verify you have sufficient permissions (**Contributor** role or higher) within the scope of ESU provisioning and linking.
 
@@ -24,15 +37,29 @@ If you're unable to provision a Windows Server 2012 ESU license for Azure Arc-en
 
 If you're unable to successfully link your Azure Arc-enabled server to an activated ESU license, verify you meet these conditions:
 
+::: zone pivot="windows-server-2012"
+
 - **Connectivity:** Azure Arc-enabled server is **Connected**. For information about viewing the status of Azure Arc-enabled machines, see [Agent status](overview.md#agent-status).
 
-- **Agent version:** Connected Machine agent is version 1.34 or higher. If the agent version is less than 1.34, you need to update it to this version or higher.
+- **Agent version:** Connected Machine agent is a supported version. For Windows Server 2012 ESUs, the agent must be version 1.34 or higher. If the agent version is less than 1.34, update it to this version or higher.
 
-- **Operating system:** Only Azure Arc-enabled servers running the Windows Server 2012 and Windows Server 2012 R2 operating system are eligible to enroll in ESU.
-
-- **Environment:** The connected machine shouldn't be running on Azure Local, Azure VMware solution (AVS), or as an Azure virtual machine. **In these scenarios, Windows Server 2012 ESU is available for free**. For information about no-cost ESUs through Azure Local, see [Free Extended Security Updates through Azure Local](/azure/azure-local/manage/azure-benefits-esu?tabs=windows-server-2012).
+- **Operating system:** Only Azure Arc-enabled servers running Windows Server 2012 or Windows Server 2012 R2 are eligible to enroll in ESU.
 
 - **License properties:** Verify the license is activated and allocated sufficient physical or virtual cores to support the intended scope of servers.
+
+::: zone-end
+
+::: zone pivot="windows-server-2016"
+
+- **Connectivity:** Azure Arc-enabled server is **Connected**. For information about viewing the status of Azure Arc-enabled machines, see [Agent status](overview.md#agent-status).
+
+- **Agent version:** Connected Machine agent is a supported version. For Windows Server 2016 ESUs, the agent must be version 1.62 or higher. If the agent version is less than 1.62, update it to this version or higher.
+
+- **Operating system:** Only Azure Arc-enabled servers running Windows Server 2016 are eligible to enroll in ESU.
+
+- **License properties:** Verify the license is activated and allocated sufficient physical or virtual cores to support the intended scope of servers.
+
+::: zone-end
 
 ## Resource providers
 
@@ -54,15 +81,29 @@ If you're unable to enable this service offering, review the resource providers 
 
 ## ESU patch issues
 
+::: zone pivot="windows-server-2012"
+
 ### ESU patch status
 
 To detect whether your Azure Arc-enabled servers are patched with the most recent Windows Server 2012 (R2) ESU, use Azure Update Manager or Azure Policy. The [(Preview): Extended Security Updates should be installed on Windows Server 2012 Arc machines](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F14b4e776-9fab-44b0-b53f-38d2458ea8be/version~/null/scopes~/%5B%22%2Fsubscriptions%2F4fabcc63-0ec0-4708-8a98-04b990085bf8%22%5D) policy checks whether the most recent Windows Server 2012 ESU patches were received.
 
 Both of these options are available at no additional cost for Azure Arc-enabled servers enrolled in Windows Server 2012 ESU enabled by Azure Arc.
 
+::: zone-end
+
 ### ESU prerequisites
 
-Ensure that both the licensing package and servicing stack update (SSU) are downloaded for the Azure Arc-enabled server as documented in [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Ensure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server 2012](prepare-extended-security-updates.md?tabs=azure-cloud#networking).
+::: zone pivot="windows-server-2012"
+
+Ensure that you download both the licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Make sure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
+
+::: zone-end
+
+::: zone pivot="windows-server-2016"
+
+Ensure that you download any required licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in the applicable Microsoft Knowledge Base article for Windows Server 2016. Make sure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
+
+::: zone-end
 
 ## Troubleshooting errors
 
@@ -83,7 +124,7 @@ You may need to update the intermediate certificate authorities trusted by your 
 
 #### Option 1: Allow access to the PKI URL
 
-Configure your network firewall and/or proxy server to allow access from the Windows Server 2012 (R2) machines to `http://www.microsoft.com/pkiops/certs` and `https://www.microsoft.com/pkiops/certs` (both TCP 80 and 443). This enables the machines to automatically retrieve any missing intermediate CA certificates from Microsoft.
+Configure your network firewall and proxy server to allow access from your Windows Server machines to `http://www.microsoft.com/pkiops/certs` and `https://www.microsoft.com/pkiops/certs` (both TCP 80 and 443). This configuration enables the machines to automatically retrieve any missing intermediate CA certificates from Microsoft.
 
 ```powershell
 # Define firewall rule name
@@ -122,7 +163,7 @@ If you're unable to allow access to the PKI URL from your servers, you can manua
    1. [Microsoft Azure RSA TLS Issuing CA 07](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2007%20-%20xsign.crt)
    1. [Microsoft Azure RSA TLS Issuing CA 08](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2008%20-%20xsign.crt)
 
-1. Copy the certificate files to your Windows Server 2012 (R2) machines.
+1. Copy the certificate files to your Windows Server machines.
 1. Run any one set of the following commands in an elevated command prompt or PowerShell session to add the certificates to the "Intermediate Certificate Authorities" store for the local computer. The command should be run from the same directory as the certificate files. These commands are safe to run multiple times and if the certificate is already installed, nothing changes.
 
    ```powershell
