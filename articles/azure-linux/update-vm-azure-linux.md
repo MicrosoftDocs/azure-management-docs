@@ -18,6 +18,8 @@ This article explains how to keep an Azure Linux virtual machine (VM) updated us
 
 Select the method that best fits your release process. You can also combine both approaches.
 
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
+
 ## Image-based updates
 
 Azure Linux ships a new image release each month that includes the previous month's package updates. To stay current, redeploy your fleet from the latest Azure Linux image release.
@@ -39,17 +41,7 @@ Package-based updates apply package changes to a VM that's already running. You 
 
 ### Use dnf-automatic
 
-> [!WARNING]
-> `dnf-automatic` doesn't reboot the VM after a kernel update.
-> Without staged rollout, a bad package update can be applied to every VM at once and cause an outage. Combine `dnf-automatic` with your own staging and monitoring before enabling it broadly.
-
-Add the `dnf-automatic` package to your image to automate in-VM package updates. After installing the package, enable and start the `dnf5-automatic.timer` systemd timer using the following commands:
-
-```bash
-sudo dnf install dnf-automatic
-sudo systemctl enable dnf5-automatic.timer
-sudo systemctl start dnf5-automatic.timer
-```
+[Install dnf-automatic](/azure/azure-linux/manage-packages#install-dnf-automatic)
 
 ### Use Azure VM guest patching
 
