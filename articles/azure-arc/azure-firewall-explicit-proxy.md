@@ -8,15 +8,11 @@ ms.author: davidsmatlak
 # Customer intent: "As a network administrator, I want to configure Azure Firewall with the Explicit Proxy feature for Azure Arc resources, so that I can securely route traffic without exposing my on-premises environment to the public internet."
 ---
 
-# Access Azure services over Azure Firewall Explicit Proxy (Public Preview)
+# Access Azure services over Azure Firewall Explicit Proxy 
 
 The [Azure Firewall Explicit proxy feature](/azure/firewall/explicit-proxy) can route all Azure Arc traffic securely through your private connection (ExpressRoute or Site-to-Site VPN) to Azure. This feature allows you to use Azure Arc without exposing your on-premises environment to the public internet.
 
 This article explains the steps to configure Azure Firewall with the Explicit Proxy feature as the forward proxy for your Arc-enabled servers or Kubernetes resources.
-
-> [!IMPORTANT]
-> Azure Firewall Explicit proxy is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## How the Azure Firewall Explicit proxy feature works
 
@@ -64,10 +60,10 @@ If you have an existing Azure Firewall in your VNet, you can skip this section. 
 
 For more information, see [Deploy and configure Azure Firewall](/azure/firewall/deploy-firewall-basic-portal-policy).
 
-### Enable the Explicit proxy (preview) feature
+### Enable the Explicit proxy feature
 
 1. Navigate to your Azure Firewall resource, then go to the Firewall Policy.
-1. In **Settings**, navigate to the **Explicit Proxy (Preview)** pane.
+1. In **Settings**, go to the **Explicit Proxy** pane.
 1. Select **Enable Explicit Proxy**.
 1. Enter the desired values for the HTTP and HTTPS ports.
 
@@ -140,5 +136,6 @@ You can use Azure Firewall Explicit proxy in conjunction with Azure Private Link
 
 ## Next steps
 
-- Learn more about [Azure Firewall Explicit proxy (preview)](/azure/firewall/explicit-proxy) 
+- Learn more about [Azure Firewall Explicit proxy](/azure/firewall/explicit-proxy).
+
 - Read [Demystifying Explicit proxy: Enhancing Security with Azure Firewall](https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/demystifying-explicit-proxy-enhancing-security-with-azure-firewall/3873445) 
