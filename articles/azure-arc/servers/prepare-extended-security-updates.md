@@ -72,7 +72,7 @@ Other Azure services through Azure Arc-enabled servers are available as well, wi
 
 1. Plan and prepare to connect your machines to Azure Arc-enabled servers by installing the [Azure Connected Machine agent](agent-overview.md) to establish a connection to Azure. For Windows Server 2016 ESUs, use agent version 1.62 or higher.
 
-    After establishing this connection, you can enroll your servers to receive Extended Security Updates (ESUs). Both Standard and Datacenter editions are supported. We recommend you deploy your machines to Azure Arc so that you have visibility into their ESU coverage and can enroll through the Azure portal or by using Azure Policy.
+    After establishing this connection, you can enroll your servers to receive Extended Security Updates (ESUs). Both Standard and Datacenter editions are supported. Deploy your machines to Azure Arc so that you have visibility into their ESU coverage and can enroll through the Azure portal or by using Azure Policy.
 
 ::: zone-end
 
