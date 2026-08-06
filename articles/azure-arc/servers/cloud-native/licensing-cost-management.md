@@ -1,7 +1,7 @@
 ---
 title: Cloud-native licensing and cost management with Azure Arc-enabled servers
 description: Cloud-native licensing options for Azure Arc help reduce overhead of license management and ensure your servers have appropriate, up-to-date coverage.
-ms.date: 08/19/2025
+ms.date: 08/05/2026
 ms.topic: concept-article
 # Customer intent: "As an administrator managing a hybrid cloud environment, I want to understand licensing and cost management options for Azure Arc, so I can manage my hybrid server licenses and have visibility into costs."
 ---
@@ -24,9 +24,9 @@ Pay-as-you-go is currently available for Windows Server 2025 and beyond, with th
 
 ## Extended Security Updates (ESUs)
 
-One of the pain points with older servers is figuring out what to do when they reach end of support. For example, Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023. Ensuring that these older servers keep getting critical security patches would normally mean purchasing separate [Extended Security Update (ESU)](/windows-server/get-started/extended-security-updates-overview) licenses for each server.
+One of the pain points with older servers is figuring out what to do when they reach end of support. Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023, and Windows Server 2016 reaches end of support on January 12, 2027. Ensuring that these older servers keep getting critical security patches would normally mean purchasing separate [Extended Security Update (ESU)](/windows-server/get-started/extended-security-updates-overview) licenses for each server.
 
-By [onboarding Windows Server 2012 servers to Azure Arc and signing up for ESUs in the Azure portal](/azure/azure-arc/servers/prepare-extended-security-updates), you get up to three more years of security patches. There's no need to install separate ESU product keys on each server; the Connected Machine agent enables the updates on each enrolled machine. Those servers then become eligible to receive ESU patches via your normal update tools (including Azure Update Manager).
+By [onboarding Windows Server 2012 or Windows Server 2016 machines to Azure Arc](/azure/azure-arc/servers/prepare-extended-security-updates) and signing up for ESUs in the Azure portal, you can receive security patches for up to three years after each version reaches end of support. You can configure Windows Server 2016 ESUs in the Azure portal starting August 3, 2026, and billing begins January 13, 2027. There's no need to install separate ESU product keys on each server; the Connected Machine agent enables the updates on each enrolled machine. Those servers then become eligible to receive ESU patches through your normal update tools, including Azure Update Manager.
 
 Rather than requiring a lump sum purchase for the full period, ESUs enabled by Azure Arc are pay-as-you-go on a monthly basis. Charges are billed through Azure, so you can use existing Azure credits or commitments and use [Microsoft Cost Management and Billing](/azure/cost-management-billing/cost-management-billing-overview) to analyze your costs. The Azure portal also provides a central inventory of which servers are ESU-covered, letting you easily determine which servers aren't yet covered by ESUs.
 

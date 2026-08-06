@@ -18,7 +18,7 @@ The purpose of this article is to help you understand the benefits and how to pr
 Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023. Billing for Windows Server 2012 ESUs enabled by Azure Arc starts from October 2023, after end of support.
 
 > [!NOTE]
-> Azure VMware Solution (AVS) machines are eligible for free ESUs and shouldn't enroll in ESUs enabled through Azure Arc.
+> Azure VMware Solution (AVS) machines and virtual machines on Azure Local are eligible for free ESUs and shouldn't enroll in ESUs enabled through Azure Arc.
 
 ::: zone-end
 
@@ -72,7 +72,7 @@ Other Azure services through Azure Arc-enabled servers are available as well, wi
 
 1. Plan and prepare to connect your machines to Azure Arc-enabled servers by installing the [Azure Connected Machine agent](agent-overview.md) to establish a connection to Azure. For Windows Server 2016 ESUs, use agent version 1.62 or higher.
 
-    After establishing this connection, you can enroll your servers to receive Extended Security Updates (ESUs). Both Standard and Datacenter editions are supported. Deploy your machines to Azure Arc so that you have visibility into their ESU coverage and can enroll through the Azure portal or by using Azure Policy.
+    After establishing this connection, you can enroll your servers to receive Extended Security Updates (ESUs). Both Standard and Datacenter editions are supported. We recommend you deploy your machines to Azure Arc so that you have visibility into their ESU coverage and can enroll through the Azure portal or by using Azure Policy.
 
 ::: zone-end
 
