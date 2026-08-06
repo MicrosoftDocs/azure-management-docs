@@ -63,7 +63,7 @@ For more information, see [Deploy and configure Azure Firewall](/azure/firewall/
 ### Enable the Explicit proxy feature
 
 1. Navigate to your Azure Firewall resource, then go to the Firewall Policy.
-1. In **Settings**, navigate to the **Explicit Proxy** pane.
+1. In **Settings**, go to the **Explicit Proxy** pane.
 1. Select **Enable Explicit Proxy**.
 1. Enter the desired values for the HTTP and HTTPS ports.
 
@@ -136,6 +136,6 @@ You can use Azure Firewall Explicit proxy in conjunction with Azure Private Link
 
 ## Next steps
 
-- Learn more about [Azure Firewall Explicit proxy](/azure/firewall/explicit-proxy)
+- Learn more about [Azure Firewall Explicit proxy](/azure/firewall/explicit-proxy).
 
 - Read [Demystifying Explicit proxy: Enhancing Security with Azure Firewall](https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/demystifying-explicit-proxy-enhancing-security-with-azure-firewall/3873445) 
