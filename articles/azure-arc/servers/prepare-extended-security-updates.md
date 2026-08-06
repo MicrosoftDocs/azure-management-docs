@@ -18,7 +18,7 @@ The purpose of this article is to help you understand the benefits and how to pr
 Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023. Billing for Windows Server 2012 ESUs enabled by Azure Arc starts from October 2023, after end of support.
 
 > [!NOTE]
-> Azure VMware Solution (AVS) machines are eligible for free ESUs and shouldn't enroll in ESUs enabled through Azure Arc.
+> Azure VMware Solution (AVS) machines and virtual machines on Azure Local are eligible for free ESUs and shouldn't enroll in ESUs enabled through Azure Arc.
 
 ::: zone-end
 
