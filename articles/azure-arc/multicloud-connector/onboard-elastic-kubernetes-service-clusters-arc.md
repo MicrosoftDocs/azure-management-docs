@@ -21,7 +21,8 @@ Currently supported platforms include:
 
 ## Prerequisites
 
-In addition to the [general prerequisites for connecting a public cloud](add-public-cloud.md#prerequisites), make sure you meet the requirements for each Kubernetes cluster that you want to onboard to Azure Arc.
+In addition to the [general prerequisites for connecting a public cloud](add-public-cloud.md#prerequisites), ensure you meet the requirements for each Kubernetes cluster that you want to onboard to Azure Arc.
+
 
 ### [AWS EKS](#tab/awseks)
 
@@ -40,7 +41,7 @@ In addition to the [general prerequisites for connecting a public cloud](add-pub
 
 - You must have the required GCP permissions to discover GKE clusters and to deploy or update the GCP resources used by the Multicloud Connector.
 
-- GKE clusters must be in GCP regions supported by the Multicloud Connector.
+- GKE clusters must be in GCP regions that the Multicloud Connector supports.
 
 - You must be able to reach the GKE cluster from the onboarding environment so you can install the Azure Arc-enabled Kubernetes agents.
 
