@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 05/18/2026
+  ms.date: 06/18/2026
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -29,9 +29,9 @@ highlightedContent:
       itemType: concept
       url: ./capabilities.md
     # Card
-    - title: Agents (preview) in Azure Copilot
+    - title: Agents in Azure Copilot
       itemType: whats-new
-      url: ./agents-preview.md
+      url: ./agents.md
     # Card
     - title: Write effective prompts
       itemType: how-to-guide

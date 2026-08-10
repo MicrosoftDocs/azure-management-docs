@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 04/23/2026
+ms.date: 08/10/2026
 ms.topic: concept-article
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 # Customer intent: "As a Kubernetes administrator, I want to stay informed about the latest updates and enhancements to Azure Arc-enabled Kubernetes agents, so that I can ensure my cluster is secure and operates with the most reliable version."
@@ -14,27 +14,42 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
-## Version 1.33.0 (March 2026)
+## Version 1.36.1 (July 2026)
+
+- Security vulnerability fixes
+- FIPS compliance updates for the Azure Arc-enabled Kubernetes agent
+- Pod Security Standards (PSS) compliance improvements. Azure Arc-enabled Kubernetes is now compliant with PSS, with the exception of the Azure Arc RBAC (Guard) component.
+- General bug fixes and reliability improvements
+
+## Version 1.35.3 (June 2026)
 
 - Security vulnerability fixes
 
-## Version 1.32.7 (February 2026)
+## Version 1.34.2 (May 2026)
+
+- Security vulnerability fixes
+
+## Older agent releases
+
+### Version 1.33.0 (March 2026)
+
+- Security vulnerability fixes
+
+### Version 1.32.7 (February 2026)
 
 - General availability of [workload identity federation](workload-identity.md) for Arc‑enabled Kubernetes
 - General availability of [Azure Arc gateway for Kubernetes](arc-gateway-simplify-networking.md)
 - Preview support for Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 - Security improvements, including vulnerability fixes and minor bug fixes to improve overall reliability
 
-## Version 1.31.2 (November 2025)
+### Version 1.31.2 (November 2025)
 
 - Security enhancements
 - Improved handling of cases where the Kubernetes API server is temporarily unavailable during extension reconciliation, providing clearer status and automatic recovery when connectivity returns.
 
-## Version 1.31.0 (October 2025)
+### Version 1.31.0 (October 2025)
 
 - Security vulnerability fixes
-
-## Older agent releases
 
 ### Version 1.30.1 (September 2025)
 

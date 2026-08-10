@@ -1,7 +1,7 @@
 ---
 title:  Azure Copilot capabilities
 description: Learn about the things you can do with Azure Copilot.
-ms.date: 12/12/2025
+ms.date: 06/19/2026
 ms.topic: concept-article
 ms.service: azure-copilot
 ms.custom:
@@ -30,8 +30,7 @@ You can also use Azure Copilot from within the [Azure mobile app](../azure-porta
 The following sections describe some of the ways you can use Azure Copilot.
 
 > [!TIP]
-> Agents (preview) in Azure Copilot extends the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents (preview) in Azure Copilot](agents-preview.md).
-
+> Agents in Azure Copilot extend the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents (preview) in Azure Copilot](agents.md).
 ## Perform tasks
 
 Use Azure Copilot to perform many basic tasks. There are many things you can do! Take a look at these articles to learn about some of the scenarios in which Azure Copilot can be especially helpful.
@@ -112,9 +111,6 @@ You can also view all conversations when using fullscreen mode.
 Share more context in your prompts by selecting the **Add** icon in the chat pane. Select one or more resources, subscriptions, service groups, or resource groups related to your request to help Azure Copilot provide more relevant responses.
 
 :::image type="content" source="media/capabilities/add-entities-icon.png" alt-text="Screenshot showing the option to add entities to an Azure Copilot chat.":::
-
-> [!TIP]
-> If your tenant has access to agents (preview) in Azure Copilot, selecting the agent mode icon provides access to agent capabilities. For more information, see [Agents (preview) in Azure Copilot](agents-preview.md).
 
 ## Current limitations
 
