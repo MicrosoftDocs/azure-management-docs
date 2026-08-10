@@ -14,6 +14,10 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.35.3 (June 2026)
+
+- Security vulnerability fixes
+
 ## Version 1.34.2 (May 2026)
 
 - Security vulnerability fixes
@@ -22,14 +26,14 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 - Security vulnerability fixes
 
-## Version 1.32.7 (February 2026)
+## Older agent releases
+
+### Version 1.32.7 (February 2026)
 
 - General availability of [workload identity federation](workload-identity.md) for Arc‑enabled Kubernetes
 - General availability of [Azure Arc gateway for Kubernetes](arc-gateway-simplify-networking.md)
 - Preview support for Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 - Security improvements, including vulnerability fixes and minor bug fixes to improve overall reliability
-
-## Older agent releases
 
 ### Version 1.31.2 (November 2025)
 
