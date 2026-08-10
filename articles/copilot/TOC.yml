@@ -2,26 +2,22 @@
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Agents (preview) in Azure Copilot
+- name: Agents in Azure Copilot
   items:
   - name: Overview
-    href: agents-preview.md
+    href: agents.md
   - name: Agents
     items:
     - name: Deployment
       href: deployment-agent.md
     - name: Migration
       href: migration-agent.md
-    - name: Observability
-      href: observability-agent.md
     - name: Optimization
       href: optimization-agent.md
     - name: Resiliency
       href: resiliency-agent.md
     - name: Troubleshooting
       href: troubleshooting-agent.md
-  - name: Manage preview access
-    href: manage-agents-preview.md
 - name: Concepts
   items:
   - name: Capabilities

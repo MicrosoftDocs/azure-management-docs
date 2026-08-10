@@ -1,32 +1,29 @@
 ---
-title: Migration agent capabilities in Agents (preview) in Azure Copilot
-description: Agents (preview) in Azure Copilot lets you get help with migration tasks help using intelligent agent capabilities.
-
-ms.date:  04/15/2026
+title: Azure Copilot Migration Agent
+description: The Azure Copilot Migration Agent helps you plan and execute migrations to Azure and get guidance on assessment, compatibility, and step-by-step migration paths.
+ms.date:  06/22/2026
 ms.service: azure-copilot
 ms.topic: concept-article
 
-# Customer intent: "As an Azure Copilot user, I want to understand how to use agents to help with migration, so that I can be more successful performing tasks in  my Azure tenant."
+# Customer intent: "As an Azure Copilot user, I want to understand how to use the Migration Agent, so that I can plan and execute migrations to Azure."
 ---
 
-# Migration capabilities in Agents (preview) in Azure Copilot
+# Azure Copilot Migration Agent
 
-[Agents (preview) in Azure Copilot](agents-preview.md) intelligently surfaces the right agent to help with your tasks. When you ask Azure Copilot for help with [migration tasks](/azure/migrate/migrate-services-overview), you can get help with planning, assessing, strategizing, and moving workloads to Azure.
+The Azure Copilot Migration Agent helps you perform [migration tasks](/azure/migrate/migrate-services-overview). You can get help with planning, assessing, strategizing, and moving workloads to Azure.
 
-Azure Copilot works to understand your migration goals, such as faster migration, modernization to PaaS, and regional targets, then creates artifacts such as [business cases](/azure/migrate/concepts-business-case-calculation) and [assessments](/azure/migrate/concepts-overview) using your existing context. You can also get help setting up [landing zones](/azure/cloud-adoption-framework/ready/landing-zone/), comparing alternative options, and resolving blocking issues.
+The Migration Agent works to understand your migration goals, such as faster migration, modernization to PaaS, and regional targets. It then creates artifacts such as [business cases](/azure/migrate/concepts-business-case-calculation) and [assessments](/azure/migrate/concepts-overview) using your existing context. You can also get help setting up [landing zones](/azure/cloud-adoption-framework/ready/landing-zone/), comparing alternative options, and resolving blocking issues.
 
 > [!IMPORTANT]
-> The functionality described in this article is only available for tenants that have access to [Agents (preview) in Azure Copilot](agents-preview.md) and don't currently use the [**Bring your own storage** option for conversation history in Azure Copilot](bring-your-own-storage.md). If your tenant uses **Bring your own storage**, you can still ask Azure Copilot for help with migration tasks, but agent capabilities won't be available.
+> Administrators can [enable or disable access to the Azure Copilot Migration Agent](manage-access.md#manage-user-access-to-azure-copilot-and-agents) and other [Azure Copilot agents](agents.md). If you don't see the Migration Agent as an option when starting a new chat, check with your administrator.
 
 ## Supported resource types
 
-Currently, Agents (preview) in Azure Copilot supports full end-to-end migration for VMware workloads. You can also get help with migration tasks related to Hyper-V and physical servers discovered in Azure Migrate.
+Currently, the Azure Copilot Migration Agent supports full end-to-end migration for VMware workloads. You can also get help with migration tasks related to Hyper-V and physical servers discovered in Azure Migrate.
 
 ## Migration sample prompts
 
-Here are a few examples of the kinds of prompts you can use to get help with migration tasks. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries. When using these kinds of prompts, be sure to enable agent mode by selecting the icon in the chat window.
-
-:::image type="content" source="media/agent-preview/azure-copilot-agent-mode-active.png" alt-text="Screenshot showing agent mode (preview) enabled in Azure Copilot.":::
+Here are a few examples of the kinds of prompts you can use with the Migration Agent. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
 
 - "How should I plan moving VMware workloads to Azure?"
 - "I want to move my servers and PGSQL database to Azure. How should I proceed?"
@@ -47,9 +44,9 @@ Here are a few examples of the kinds of prompts you can use to get help with mig
 
 ## Current considerations and limitations
 
-Keep in mind the following considerations and limitations when working with migration in Agents (preview) in Azure Copilot.
+Keep in mind the following considerations and limitations when working with the Azure Copilot Migration Agent.
 
-- While Azure Copilot can provide guidance, create plans, and apply tags, it can't perform actual migration actions such as server replication on your behalf.
+- While the Migration Agent can provide guidance, create plans, and apply tags, it can't perform actual migration actions such as server replication on your behalf.
 - Migration tasks that require Azure Migrate to interact with other Azure services, such as Azure Backup and Azure Site Recovery, aren't currently supported.
 
 ## Related content

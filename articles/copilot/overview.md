@@ -3,7 +3,7 @@ title: Azure Copilot Overview
 description: Azure Copilot is an AI-powered tool that helps you do more with Azure.
 
 ms.reviewer: maghan
-ms.date: 05/27/2026
+ms.date: 08/06/2026
 ms.service: azure-copilot
 ms.topic: overview
 ms.custom:
@@ -31,7 +31,7 @@ Azure Copilot helps you work with Azure services in many ways. You can use Azure
 To learn about some popular ways to use Azure Copilot, see [Capabilities of Azure Copilot](capabilities.md).
 
 > [!TIP]
-> Agents (preview) in Azure Copilot extends the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents (preview) in Azure Copilot](agents-preview.md).
+> Agents (preview) in Azure Copilot extends the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents (preview) in Azure Copilot](agents.md).
 
 ## Example prompts
 
@@ -47,7 +47,7 @@ For more information, see [Responsible AI FAQ for Azure Copilot](responsible-ai-
 
 ## Pricing and availability
 
-The capabilities of Azure Copilot available today are included at no extra cost. Future capabilities might be subject to pricing.
+The capabilities of Azure Copilot available today are included at no extra cost, except for Observability Agent that has usage-based charges. For details, see [Billing and cost management for Azure Copilot Observability Agent](/azure/azure-monitor/aiops/observability-agent-billing). Future capabilities might be subject to pricing. 
 
 Customers receive Azure Copilot under the terms governing their subscription to Microsoft Azure Services, including the Azure Copilot section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Review these terms carefully as they contain important conditions and obligations governing your use of Azure Copilot.
 

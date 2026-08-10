@@ -51,6 +51,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/copilot/agents-preview.md",
+      "redirect_url": "/azure/copilot/agents",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/copilot/manage-agents-preview.md",
+      "redirect_url": "/azure/copilot/manage-access#manage-access-to-azure-copilot-agents",
+      "redirect_document_id": false
+    },
+        {
+      "source_path_from_root": "/articles/copilot/observability-agent.md",
+      "redirect_url": "/azure/azure-monitor/aiops/observability-agent-overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/copilot/network-management.md",
       "redirect_url": "/azure/copilot/copilot-networking",
       "redirect_document_id": false
