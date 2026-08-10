@@ -14,6 +14,13 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.36.1 (July 2026)
+
+- Security vulnerability fixes
+- FIPS compliance updates for the Azure Arc-enabled Kubernetes agent
+- Pod Security Standards (PSS) compliance improvements. Azure Arc-enabled Kubernetes is now compliant with PSS, with the exception of the Azure Arc RBAC (Guard) component.
+- General bug fixes and reliability improvements
+
 ## Version 1.35.3 (June 2026)
 
 - Security vulnerability fixes
@@ -22,11 +29,11 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 - Security vulnerability fixes
 
-## Version 1.33.0 (March 2026)
+## Older agent releases
+
+### Version 1.33.0 (March 2026)
 
 - Security vulnerability fixes
-
-## Older agent releases
 
 ### Version 1.32.7 (February 2026)
 
