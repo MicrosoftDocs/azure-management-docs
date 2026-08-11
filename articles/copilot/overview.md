@@ -31,7 +31,7 @@ Azure Copilot helps you work with Azure services in many ways. You can use Azure
 To learn about some popular ways to use Azure Copilot, see [Capabilities of Azure Copilot](capabilities.md).
 
 > [!TIP]
-> Agents (preview) in Azure Copilot extends the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents (preview) in Azure Copilot](agents.md).
+> Agents in Azure Copilot extends the current capabilities of Azure Copilot to provide an agentic, multi-modal cloud interface. For more information, see [Agents in Azure Copilot](agents.md).
 
 ## Example prompts
 
