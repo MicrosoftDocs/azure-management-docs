@@ -105,7 +105,8 @@ Select specific source cloud regions to scan for Kubernetes clusters. You can al
 
 ## Onboarding experience
 
-After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their Connectivity status.
+After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their connectivity status.
+
 
 Common statuses might include:
 
@@ -114,8 +115,9 @@ Common statuses might include:
 | Connecting| The Multicloud Connector is attempting to onboard the cluster to Azure Arc. |
 | Connected | The cluster is onboarded to Azure Arc-enabled Kubernetes. |
 |Agent Not Installed| The cluster is eligible or selected for onboarding, but the Azure Arc-enabled Kubernetes agents aren't installed yet. |
-| Offline|The cluster's is onboarded to Azure Arc-enabled Kubernetes, but the cluster is offline. |
-| Expired|The cluster's is connection to Azure Arc-enabled Kubernetes has expired. |
+| Offline|The cluster is onboarded to Azure Arc-enabled Kubernetes, but the cluster is offline. |
+| Expired|The cluster's connection to Azure Arc-enabled Kubernetes has expired. |
+
 
 The exact status names in the Azure portal might vary.
 
