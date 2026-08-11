@@ -23,6 +23,30 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
+## Version 1.67 - August 2026
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature|Windows|Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config** | **1.29.117.0** | **1.26.117.0** ||
+|Fixed extension settings being cleared when installation was retried after the Extension Service restarted.|✓|✓|Bug Fix|
+|Fixed repeated extension installation failures when the downloaded package was missing.|✓|✓|Bug Fix|
+|Fixed an issue where Machine Configuration assignments that failed during processing were not fetched again.|✓|✓|Bug Fix|
+|Prevented Run Command extension registry operations from causing the Extension Service to become unresponsive.|✓||Bug Fix|
+|Added support for Azure Local environments using the new Azure.Local cloud name.|✓|✓|Improvement|
+|Improved reliability of Azure Local environment detection.|✓||Improvement|
+|Improved baseline customization pre-installation support for PowerShell script and module files.|✓|✓|Improvement|
+| **Azcmagent** | **1.67.03504.3207** | **1.67.03504.1320** ||
+|Added retry logic for gateway configuration and heartbeat request failures.|✓|✓|Improvement|
+|Restricted download directory permissions to prevent unauthorized access.|✓|✓|Security Fix|
+|Required SecureChannel for InitChangeReq and CancelChange operations.|✓|✓|Security Fix|
+|Added support for the new cloud name for Azure Local ("Azure.Local").|✓|✓|Improvement|
+|Hardened HIMDS IPC socket against local denial-of-service attacks (OOM/FD exhaustion).|✓|✓|Improvement|
+|Fixed automatic upgrade to correctly handle explicit false values with --enable-automatic-upgrade flag.|✓|✓|Bug Fix|
+|Fixed validation of auto-upgrade desired version to handle invalid versions gracefully.|✓|✓|Bug Fix|
+|Agent to use API version 2026-06-16-preview for Microsoft.HybridCompute/machines.|✓|✓|Improvement|
+|Arc proxy properly resets routing options on TLS handshake failures.|✓|✓|Bug Fix|
+
 ## Version 1.66 - July 2026
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.66/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
