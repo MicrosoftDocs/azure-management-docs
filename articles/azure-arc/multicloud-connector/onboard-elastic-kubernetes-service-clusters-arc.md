@@ -105,7 +105,7 @@ Select specific source cloud regions to scan for Kubernetes clusters. You can al
 
 ## Onboarding experience
 
-After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their onboarding status.
+After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their Connectivity status.
 
 Common statuses might include:
 
