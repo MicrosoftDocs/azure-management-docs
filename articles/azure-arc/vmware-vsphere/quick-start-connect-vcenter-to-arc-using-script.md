@@ -76,7 +76,7 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 You need an existing Arc gateway resource before running the Arc-enabled VMware vSphere onboarding script. The Azure Arc-enabled VMware vSphere [onboarding experience](quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) prompts you to use Arc gateway (preview). To enable Arc gateway for Arc-enabled VMware vSphere (preview), follow these steps:
 
 1. Reuse or [create a new Arc gateway resource](../../servers/arc-gateway.md#create-an-azure-arc-gateway-resource) and get its resource ID. 
-1. Run the Arc-enabled VMware vSphere onboarding script that you generate in the Azure portal (covered below). 
+1. Run the Arc-enabled VMware vSphere onboarding script that you generate in the Azure portal (covered later in this article). 
 1. During the onboarding script execution, provide the Arc gateway resource ID when prompted to use Arc gateway. 
 1. Track the onboarding progress and confirm that the Arc gateway enablement is successful.
 
