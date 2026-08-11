@@ -21,7 +21,8 @@ Currently supported platforms include:
 
 ## Prerequisites
 
-In addition to the [general prerequisites for connecting a public cloud](add-public-cloud.md#prerequisites), make sure you meet the requirements for each Amazon EKS cluster that you want to onboard to Azure Arc.
+In addition to the [general prerequisites for connecting a public cloud](add-public-cloud.md#prerequisites), ensure you meet the requirements for each Kubernetes cluster that you want to onboard to Azure Arc.
+
 
 ### [AWS EKS](#tab/awseks)
 
@@ -40,7 +41,7 @@ In addition to the [general prerequisites for connecting a public cloud](add-pub
 
 - You must have the required GCP permissions to discover GKE clusters and to deploy or update the GCP resources used by the Multicloud Connector.
 
-- GKE clusters must be in AWS regions supported by the Multicloud Connector.
+- GKE clusters must be in GCP regions that the Multicloud Connector supports.
 
 - You must be able to reach the GKE cluster from the onboarding environment so you can install the Azure Arc-enabled Kubernetes agents.
 
@@ -58,7 +59,7 @@ After you connect your AWS or GCP account and enable the related **Arc onboardin
 
 Discovered clusters are associated with the connected AWS or GCP account and you can view them with other multicloud resources in Azure. When you onboard a cluster to Azure Arc, you create an Azure Arc-enabled Kubernetes resource so you can manage the cluster from Azure.
 
-The Multicloud Connector places these resources in Azure regions by using the [standard region-mapping scheme](resource-representation.md#region-mapping). You can filter which AWS or GCP regions are scanned. By default, all supported AWS regions are scanned, but you can exclude regions when you [configure the solution](add-public-cloud.md#add-your-public-cloud-in-the-azure-portal).
+The Multicloud Connector places these resources in Azure regions by using the [standard region-mapping scheme](resource-representation.md#region-mapping). You can filter which AWS or GCP regions are scanned. By default, all supported AWS or GCP regions are scanned, but you can exclude regions when you [configure the solution](add-public-cloud.md#add-your-public-cloud-in-the-azure-portal).
 
 The resource group created for the connected AWS or GCP account follows the naming convention `<PublicCloud>_<AccountId>`. This resource group inherits permissions from its Azure subscription. You can grant additional access to user accounts in your tenant as needed.
 
@@ -98,23 +99,25 @@ Choose which clusters are eligible for onboarding by filtering based on:
 
 - Source cloud regions.
 
-- Source cloud tags.
+- Source cloud tags or labels.
 
-Select specific source cloud regions to scan for Kubernetes clusters. You can also filter by tags so that only clusters with matching tags are eligible for Arc onboarding. Tag matching is case-insensitive.
+Select specific source cloud regions to scan for Kubernetes clusters. You can also filter by tags or labels so that only clusters with matching tags or labels are eligible for Arc onboarding. Tag or label matching is case-insensitive.
 
 ## Onboarding experience
 
-After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their onboarding status.
+After you enable the **EKS or GKE Arc onboarding** solution, the Multicloud Connector discovers clusters in the selected regions and shows their connectivity status.
+
 
 Common statuses might include:
 
 | Status | Meaning |
 |----|----|
-| Discovered | The cluster was found by the Multicloud Connector. |
-| Agent not installed | The cluster is eligible or selected for onboarding, but the Azure Arc-enabled Kubernetes agents aren't installed yet. |
-| Onboarding in progress | The Multicloud Connector is attempting to onboard the cluster to Azure Arc. |
+| Connecting| The Multicloud Connector is attempting to onboard the cluster to Azure Arc. |
 | Connected | The cluster is onboarded to Azure Arc-enabled Kubernetes. |
-| Failed | The onboarding attempt didn't complete successfully. Review the error details, fix the issue, and retry onboarding. |
+|Agent Not Installed| The cluster is eligible or selected for onboarding, but the Azure Arc-enabled Kubernetes agents aren't installed yet. |
+| Offline|The cluster is onboarded to Azure Arc-enabled Kubernetes, but the cluster is offline. |
+| Expired|The cluster's connection to Azure Arc-enabled Kubernetes has expired. |
+
 
 The exact status names in the Azure portal might vary.
 
