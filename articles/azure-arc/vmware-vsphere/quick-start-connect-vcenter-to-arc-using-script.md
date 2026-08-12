@@ -74,9 +74,9 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 ## (Optional) Enable Arc gateway for Arc-enabled VMware vSphere (preview)
 
 > [!NOTE]
-> Arc gateway for Arc-enabled VMware vSphere (preview) is optional and can be used to reduce the number of required endpoints that you must allow-list. For more information, see [Plan for deployment](/support-matrix-for-arc-enabled-vmware-vsphere.md#resource-bridge-networking-requirements).
+> Arc gateway for Arc-enabled VMware vSphere (preview) is optional and can be used to reduce the number of required endpoints that you must allow-list. For more information, see [Plan for deployment](support-matrix-for-arc-enabled-vmware-vsphere.md#resource-bridge-networking-requirements).
 
-When you enable [Azure Arc gateway for Arc-enabled VMware vSphere (preview)](/support-matrix-for-arc-enabled-vmware-vsphere.md#arc-gateway-for-arc-resource-bridge-on-arc-enabled-vmware-vsphere-preview), supported endpoint traffic routes to a single Azure Arc gateway endpoint instead of going to each individual required networking endpoint. This setup simplifies firewall configuration and improves onboarding and operational reliability.
+When you enable [Azure Arc gateway for Arc-enabled VMware vSphere (preview)](support-matrix-for-arc-enabled-vmware-vsphere.md#arc-gateway-for-arc-resource-bridge-on-arc-enabled-vmware-vsphere-preview), supported endpoint traffic routes to a single Azure Arc gateway endpoint instead of going to each individual required networking endpoint. This setup simplifies firewall configuration and improves onboarding and operational reliability.
 
 To use Arc gateway (preview), you need an existing Arc gateway resource before running the Arc-enabled VMware vSphere onboarding script. The Arc-enabled VMware vSphere [onboarding experience](#download-the-onboarding-script) prompts you to use Arc gateway (preview). To enable Arc gateway for Arc-enabled VMware vSphere (preview), follow these steps:
 
