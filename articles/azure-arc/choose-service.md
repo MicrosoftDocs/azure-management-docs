@@ -1,7 +1,7 @@
 ---
 title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
-ms.date: 05/07/2025
+ms.date: 08/12/2026
 ms.topic: concept-article
 author: davidsmatlak
 ms.author: davidsmatlak
@@ -23,21 +23,21 @@ Each of these services extends the Azure control plane to your existing infrastr
 
 The following table provides a quick way to see the major capabilities of the Azure Arc services that connect your existing Windows and Linux machines to Azure Arc.
 
-| _ |Arc-enabled servers  |Arc-enabled VMware vSphere  |Arc-enabled SCVMM  |Azure Local  |
+| _ |Arc-enabled servers  |Arc-enabled VMware vSphere  |Azure Local  |
 |---------|---------|---------|---------|---------|---------|
-|Microsoft Defender for Cloud     |✓         |✓         |✓         |✓         |
-|Microsoft Sentinel     | ✓        |✓         |✓         |✓         |
-|Azure Automation     |✓         |✓         |✓         |✓         |
-|Azure Update Manager     |✓         |✓         |✓         |✓         |
-|Change Tracking and Inventory      |✓         |✓         |✓         |✓         |
-|Azure Monitor     |✓         |✓         |✓         |✓         |
-|VM extensions     |✓         |✓         |✓         |✓         |
-|Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓ (free for AVS)        |✓         |✓         |
-|Agentless discovery and inventory     |         |✓         |✓         |         |
-|Lifecycle and powercycle operations (create/delete/start/stop VMs, etc.)     |         |✓         |✓         |✓         |
-|Self-serve VM provisioning     |         |✓         |✓         |✓         |
-|SQL Server enabled by Azure Arc     |✓         |✓         |✓         |✓         |
-|Windows Server management and pay-as-you-go      |✓         |✓         |✓         |✓         |
+|Microsoft Defender for Cloud     |✓         |✓         |✓         |
+|Microsoft Sentinel     | ✓        |✓         |✓         |
+|Azure Automation     |✓         |✓         |✓         |
+|Azure Update Manager     |✓         |✓         |✓         |
+|Change Tracking and Inventory      |✓         |✓         |✓         |
+|Azure Monitor     |✓         |✓         |✓         |
+|VM extensions     |✓         |✓         |✓         |
+|Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓ (free for AVS)        |✓         |
+|Agentless discovery and inventory     |         |✓         |          |
+|Lifecycle and powercycle operations (create/delete/start/stop VMs, etc.)     |         |✓         |✓         |
+|Self-serve VM provisioning     |         |✓         |✓         |
+|SQL Server enabled by Azure Arc     |✓         |✓         |✓         |
+|Windows Server management and pay-as-you-go      |✓         |✓         |✓         |
 
 ### General recommendations
 
@@ -47,7 +47,6 @@ General recommendations about the right service to use are as follows:
 |---------|---------|
 |VMware VM (not running on AVS) |[Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md) (to get the complete set of Azure capabilities). <br> [Azure Arc-enabled servers](servers/overview.md) (to use Azure services only). |
 |Azure VMware Solution (AVS) VM |[Azure Arc-enabled VMware vSphere for Azure VMware Solution](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) |
-|VM managed by System Center Virtual Machine Manager |[Azure Arc-enabled SCVMM](system-center-virtual-machine-manager/overview.md) (to get the complete set of Azure capabilities). <br> [Azure Arc-enabled servers](servers/overview.md) (to use Azure services only). |
 |Azure Local machine, including the ones managed by SCVMM |[Azure Local](/azure/azure-local/overview) |
 |Physical server |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another hypervisor |[Azure Arc-enabled servers](servers/overview.md) |
@@ -76,7 +75,7 @@ Where your machine runs determines the best Azure Arc service to use. Organizati
 - Procure Extended Security Updates (ESUs) at scale for your Windows Server 2012 and 2012R2 machines running on vCenter managed estate.
 
 > [!IMPORTANT]
-> Azure Arc-enabled VMware vSphere and Azure Arc-enabled SCVMM have all the capabilities of Azure Arc-enabled servers, but also provide specific, additional capabilities.
+> Azure Arc-enabled VMware vSphere has all the capabilities of Azure Arc-enabled servers, but also provide specific, additional capabilities.
 
 ## Azure Arc-enabled VMware vSphere
 
@@ -101,26 +100,6 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 
 - Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell. 
-
-## Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)
-
-[Azure Arc-enabled System Center Virtual Machine Manager](system-center-virtual-machine-manager/overview.md) (SCVMM) empowers System Center customers to connect their VMM environment to Azure and perform VM self-service operations from Azure portal. 
-
-Azure Arc-enabled System Center Virtual Machine Manager also allows you to manage your hybrid environment consistently and perform self-service VM operations through Azure portal. For Microsoft Azure Pack customers, this solution is intended as an alternative to perform VM self-service operations. 
-
-### Capabilities
-
-- Discover and onboard existing SCVMM managed VMs to Azure.
-
-- Perform various VM lifecycle operations such as start, stop, pause, and delete VMs on SCVMM managed VMs directly from Azure.
-
-- Empower developers and application teams to self-serve VM operations on demand using Azure role-based access control (RBAC).
-
-- Browse your VMM resources (VMs, templates, VM networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
-
-- Install the Azure Arc-connected machine agents at scale and leverage all the capabilities offered by Azure Arc-enabled servers on SCVMM VMs.
-
-- Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell.
 
 ## Azure Local
 
@@ -153,9 +132,8 @@ Azure Arc-enabled System Center Virtual Machine Manager also allows you to manag
 
 ## Switching from Arc-enabled servers to another service
 
-If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere or Arc-enabled SCVMM:
+If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere:
 
 - [Enable virtual hardware and VM CRUD capabilities in a VMware machine with Azure Arc agent installed](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware)
 
-- [Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Azure Arc agent installed](/azure/azure-arc/system-center-virtual-machine-manager/enable-virtual-hardware-scvmm)
 

@@ -1,7 +1,7 @@
 ---
 title: Azure Connected Machine Agent Deployment Options
 description: Learn about the different options to onboard machines to Azure Arc-enabled servers.
-ms.date: 03/19/2025
+ms.date: 08/12/2026
 ms.topic: how-to 
 # Customer intent: As a system administrator, I want to choose an appropriate onboarding method for the Connected Machine agent so that I can effectively connect my hybrid machines to Azure for management and monitoring.
 ---
@@ -21,7 +21,6 @@ The following table highlights each method so that you can determine which one w
 | Linux and Windows | At scale | [Connect machines at scale with Ansible](onboard-ansible-playbooks.md) using the Azure Arc onboarding role in Ansible Core or Ansible Automation Platform. |
 | Linux and Windows | At scale | [Connect machines by using a service principal](onboard-service-principal.md) to install the agent at scale noninteractively. |
 | Linux and Windows | At scale | [Install the Azure Arc agent on VMware virtual machines (VMs) at scale by using Azure Arc-enabled VMware vSphere](../vmware-vsphere/enable-guest-management-at-scale.md). With Azure Arc-enabled VMware vSphere, you can [connect your VMware vCenter server to Azure](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md), automatically discover your VMware VMs, and install the Azure Arc agent on them. Requires VMware tools on VMs. |
-| Linux and Windows | At scale | [Install the Azure Arc agent on System Center Virtual Machine Manager (SCVMM) VMs at scale by using Azure Arc-enabled SCVMM](../system-center-virtual-machine-manager/enable-guest-management-at-scale.md). With Azure Arc-enabled SCVMM, you can [connect your SCVMM management server to Azure](../system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc.md), automatically discover your SCVMM VMs, and install the Azure Arc agent on them. |
 | Linux and Windows | At scale | [Connect your AWS cloud through the multicloud connector enabled by Azure Arc](../multicloud-connector/connect-to-aws.md) and [enable the ](../multicloud-connector/onboard-multicloud-vms-arc.md) [Arc onboarding](../multicloud-connector/onboard-multicloud-vms-arc.md) [solution](../multicloud-connector/onboard-multicloud-vms-arc.md) to autodiscover and onboard EC2 VMs. |
 | Windows | Interactively | [Connect machines from Windows Admin Center](onboard-windows-admin-center.md). |
 | Windows | Interactively | [Connect Windows Server machines to Azure through Azure Arc setup](onboard-windows-server.md). |
