@@ -70,6 +70,21 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 
 1. Ensure that the vSphere accounts have the appropriate permissions.
 
+
+## (Optional) Enable Arc gateway for Arc-enabled VMware vSphere (preview)
+
+> [!NOTE]
+> Arc gateway for Arc-enabled VMware vSphere (preview) is optional and can be used to reduce the number of required endpoints that you must allow-list. For more information, see [Plan for deployment](support-matrix-for-arc-enabled-vmware-vsphere.md#resource-bridge-networking-requirements).
+
+When you enable [Azure Arc gateway for Arc-enabled VMware vSphere (preview)](support-matrix-for-arc-enabled-vmware-vsphere.md#arc-gateway-for-arc-resource-bridge-on-arc-enabled-vmware-vsphere-preview), supported endpoint traffic routes to a single Azure Arc gateway endpoint instead of going to each individual required networking endpoint. This setup simplifies firewall configuration and improves onboarding and operational reliability.
+
+To use Arc gateway (preview), you need an existing Arc gateway resource before running the Arc-enabled VMware vSphere onboarding script. The Arc-enabled VMware vSphere [onboarding experience](#download-the-onboarding-script) prompts you to use Arc gateway (preview). To enable Arc gateway for Arc-enabled VMware vSphere (preview), follow these steps:
+
+1. Reuse or [create a new Arc gateway resource](../servers/arc-gateway.md#create-an-azure-arc-gateway-resource) and get its resource ID. 
+1. Run the Arc-enabled VMware vSphere onboarding script that you generate in the Azure portal (covered later in this article). 
+1. During the onboarding script execution, provide the Arc gateway resource ID when prompted to use Arc gateway. 
+1. Track the onboarding progress and confirm that the Arc gateway enablement is successful.
+
 ## Download the onboarding script
 
 1. Go to [Azure portal](https://aka.ms/SCVMM/MgmtServers).
@@ -148,7 +163,8 @@ A typical onboarding that uses the script takes 30 to 60 minutes. During the pro
 | **Resource pool** | Select the name of the resource pool to which the Azure Arc resource bridge VM will be deployed. |
 | **Data store** | Select the name of the datastore to be used for the Azure Arc resource bridge VM. |
 | **Folder** | Select the name of the vSphere VM and the template folder where the Azure Arc resource bridge's VM will be deployed. |
-| **Appliance proxy settings** | Enter **y** if there's a proxy in your appliance network. Otherwise, enter **n**. </br> You need to populate the following boxes when you have a proxy set up: </br> 1. **Http**: Address of the HTTP proxy server. </br> 2. **Https**: Address of the HTTPS proxy server. </br> 3. **NoProxy**: Addresses to be excluded from the proxy. </br> 4. **CertificateFilePath**: For SSL-based proxies, the path to the certificate to be used.
+| **Appliance proxy settings** | Enter **y** if there's a proxy in your appliance network. Otherwise, enter **n**. </br> You need to populate the following boxes when you have a proxy set up: </br> 1. **Http**: Address of the HTTP proxy server. </br> 2. **Https**: Address of the HTTPS proxy server. </br> 3. **NoProxy**: Addresses to be excluded from the proxy. </br> 4. **CertificateFilePath**: For SSL-based proxies, the path to the certificate to be used. |
+| **(Optional) Arc gateway resource ID (preview)** | Provide the resource ID of the Arc gateway Azure resource. This resource ID is used by the Arc gateway router in the Arc resource bridge to direct supported networking endpoints to the Arc gateway. |
 
 After the command finishes running, your setup is complete. You can now use the capabilities of Azure Arc-enabled VMware vSphere.
 
