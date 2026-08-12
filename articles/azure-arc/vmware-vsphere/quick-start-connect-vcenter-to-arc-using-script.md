@@ -164,7 +164,7 @@ A typical onboarding that uses the script takes 30 to 60 minutes. During the pro
 | **Data store** | Select the name of the datastore to be used for the Azure Arc resource bridge VM. |
 | **Folder** | Select the name of the vSphere VM and the template folder where the Azure Arc resource bridge's VM will be deployed. |
 | **Appliance proxy settings** | Enter **y** if there's a proxy in your appliance network. Otherwise, enter **n**. </br> You need to populate the following boxes when you have a proxy set up: </br> 1. **Http**: Address of the HTTP proxy server. </br> 2. **Https**: Address of the HTTPS proxy server. </br> 3. **NoProxy**: Addresses to be excluded from the proxy. </br> 4. **CertificateFilePath**: For SSL-based proxies, the path to the certificate to be used. |
-| **(Optional) Arc gateway resource ID (preview)** | Provide the resource ID of the Arc gateway Azure resource. This will be used by the Arc gateway router in the Arc resource bridge to direct supported networking endpoints to the Arc gateway. |
+| **(Optional) Arc gateway resource ID (preview)** | Provide the resource ID of the Arc gateway Azure resource. This resource ID is used by the Arc gateway router in the Arc resource bridge to direct supported networking endpoints to the Arc gateway. |
 
 After the command finishes running, your setup is complete. You can now use the capabilities of Azure Arc-enabled VMware vSphere.
 
