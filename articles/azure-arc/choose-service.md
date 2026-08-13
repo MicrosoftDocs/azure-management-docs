@@ -102,7 +102,7 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 
 ### Switching from Arc-enabled servers to Arc-enabled VMware vSphere
 
-If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere by [linking the VM with Azure Arc agent installed with Arc-enabled VMware vSphere in the vCenter inventory](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware)
+If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere by [linking the VM with Azure Arc agent installed with Arc-enabled VMware vSphere in the vCenter inventory](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware).
 
 ## Azure Local
 
