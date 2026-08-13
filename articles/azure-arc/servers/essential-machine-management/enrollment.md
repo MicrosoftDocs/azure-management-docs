@@ -13,7 +13,7 @@ ms.date: 07/27/2026
 
 - [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace) to collect log data from VMs.
 - [Azure Monitor workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-manage) to collect metrics data from VMs.
-- [User assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) as described in the [Managed identity](#managed-identity) section.
+- [User-assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) as described in the [Managed identity](#managed-identity) section.
 
 ## Required permissions
 
@@ -32,9 +32,9 @@ If you're using a Log Analytics workspace or Azure Monitor workspace in a differ
 
 ### Managed identity
 
-The enrollment requires a [user assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) with **Contributor** permission for the subscription.
+The enrollment requires a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) with **Contributor** permission for the subscription.
 
-The user assigned managed identity also needs to have permissions to act on the following resource providers: `Microsoft.Insights` and `Microsoft.Authorization`. For more information, see [Configure assignment restriction for user-assigned managed identities](/entra/identity/managed-identities-azure-resources/configure-managed-identities-assignment-restriction).
+The user-assigned managed identity also needs to have permissions to act on the following resource providers: `Microsoft.Insights` and `Microsoft.Authorization`. For more information, see [Configure assignment restriction for user-assigned managed identities](/entra/identity/managed-identities-azure-resources/configure-managed-identities-assignment-restriction).
 
 If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for Essential Machine Management, the managed identity must also have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
 
