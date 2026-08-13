@@ -1,7 +1,7 @@
 ---
 title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
-ms.date: 08/12/2026
+ms.date: 08/13/2026
 ms.topic: concept-article
 author: davidsmatlak
 ms.author: davidsmatlak
@@ -16,7 +16,6 @@ There are several different ways you can connect your existing Windows and Linux
 
 - Azure Arc-enabled servers
 - Azure Arc-enabled VMware vSphere
-- Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)
 - Azure Local
 
 Each of these services extends the Azure control plane to your existing infrastructure and enables the use of [Azure security, governance, and management capabilities using the Connected Machine agent](/azure/azure-arc/servers/overview). Other services besides Azure Arc-enabled servers also use an [Azure Arc resource bridge](/azure/azure-arc/resource-bridge/overview), a part of the core Azure Arc platform that provides self-servicing and additional management capabilities.
@@ -47,7 +46,7 @@ General recommendations about the right service to use are as follows:
 |---------|---------|
 |VMware VM (not running on AVS) |[Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md) (to get the complete set of Azure capabilities). <br> [Azure Arc-enabled servers](servers/overview.md) (to use Azure services only). |
 |Azure VMware Solution (AVS) VM |[Azure Arc-enabled VMware vSphere for Azure VMware Solution](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) |
-|Azure Local machine, including the ones managed by SCVMM |[Azure Local](/azure/azure-local/overview) |
+|Azure Local machine |[Azure Local](/azure/azure-local/overview) |
 |Physical server |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another hypervisor |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another cloud provider |[Azure Arc-enabled servers](servers/overview.md) |
@@ -99,7 +98,11 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 
-- Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell. 
+- Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell.
+
+### Switching from Arc-enabled servers to Arc-enabled VMware vSphere
+
+If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere by [linking the VM with Azure Arc agent installed with Arc-enabled VMware vSphere in the vCenter inventory](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware)
 
 ## Azure Local
 
@@ -129,11 +132,4 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 - VM image management with Azure Marketplace integration and ability to bring your own images from Azure storage account and cluster shared volumes.
 
 - Create and manage storage paths to store your VM disks and config files.
-
-## Switching from Arc-enabled servers to another service
-
-If you currently use Azure Arc-enabled servers, you can get the additional capabilities that come with Arc-enabled VMware vSphere:
-
-- [Enable virtual hardware and VM CRUD capabilities in a VMware machine with Azure Arc agent installed](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware)
-
 
