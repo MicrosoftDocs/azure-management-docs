@@ -358,47 +358,7 @@ Regional endpoints are enabled at the registry level and apply to every geo-repl
 Regional endpoints support the same authentication methods as the global endpoint: Microsoft Entra ID, service principals, managed identities, and admin credentials.
 
 > [!IMPORTANT]
-> **Re-authenticate when switching endpoints.** ACR tokens work across both global and regional endpoints. However, container tools like Docker and containerd store credentials per hostname, so switching from the global endpoint to a regional endpoint (or between regional endpoints) requires a new `az acr login` for that hostname. For AKS, the [Kubernetes ACR credential provider](/azure/aks/cluster-container-registry-integration) handles this automatically when the endpoint changes.
-
-> [!NOTE]
-> **AKS compatibility.** AKS image pulls that authenticate to ACR by using a managed identity are supported with regional endpoints on AKS node image `202607.29` or later. Check the current image for each node pool:
->
-> ```azurecli
-> az aks nodepool show \
->   --resource-group <resource-group> \
->   --cluster-name <cluster-name> \
->   --name <node-pool-name> \
->   --query nodeImageVersion \
->   --output tsv
-> ```
->
-> To receive a compatible node-image VHD automatically after it becomes available in your region and cloud, use the [`NodeImage` node OS auto-upgrade channel](/azure/aks/auto-upgrade-node-os-image). AKS Automatic uses `NodeImage`; for AKS Standard, select `NodeImage`.
->
-> ```azurecli
-> az aks update \
->   --resource-group <resource-group> \
->   --name <cluster-name> \
->   --node-os-upgrade-channel NodeImage
-> ```
->
-> If you don't use `NodeImage`, check the latest image available for the node pool in its region and cloud, and then [upgrade the node pool manually](/azure/aks/upgrade-node-image):
->
-> ```azurecli
-> az aks nodepool get-upgrades \
->   --resource-group <resource-group> \
->   --cluster-name <cluster-name> \
->   --nodepool-name <node-pool-name> \
->   --query latestNodeImageVersion \
->   --output tsv
->
-> az aks nodepool upgrade \
->   --resource-group <resource-group> \
->   --cluster-name <cluster-name> \
->   --name <node-pool-name> \
->   --node-image-only
-> ```
->
-> For AKS nodes running an earlier image, use a Kubernetes [image pull secret](container-registry-auth-kubernetes.md) when pulling images from regional endpoints, or reference the global endpoint (`<registry-name>.azurecr.io`) instead.
+> **Re-authenticate when switching endpoints.** ACR tokens work across both global and regional endpoints. However, container tools like Docker and containerd store credentials per hostname, so switching from the global endpoint to a regional endpoint (or between regional endpoints) requires a new `az acr login` for that hostname. For AKS, see [Use regional endpoints with AKS managed identity authentication](#use-regional-endpoints-with-aks-managed-identity-authentication).
 
 **Sign in to a specific regional endpoint:**
 
@@ -418,6 +378,30 @@ docker push myregistry.eastus.geo.azurecr.io/myapp:v1
 ```bash
 docker pull myregistry.eastus.geo.azurecr.io/myapp:v1
 ```
+
+#### Use regional endpoints with AKS managed identity authentication
+
+AKS image pulls that authenticate to ACR by using a managed identity are supported with regional endpoints on AKS node image `202607.29` or later. Check the current image for each node pool:
+
+```azurecli
+az aks nodepool show \
+  --resource-group <resource-group> \
+  --cluster-name <cluster-name> \
+  --name <node-pool-name> \
+  --query nodeImageVersion \
+  --output tsv
+```
+
+To receive a compatible node-image VHD automatically after it becomes available in your region and cloud, use the [`NodeImage` node OS auto-upgrade channel](/azure/aks/auto-upgrade-node-os-image). AKS Automatic uses `NodeImage`; for AKS Standard, select `NodeImage`.
+
+```azurecli
+az aks update \
+  --resource-group <resource-group> \
+  --name <cluster-name> \
+  --node-os-upgrade-channel NodeImage
+```
+
+For AKS nodes running an earlier image, use a Kubernetes [image pull secret](container-registry-auth-kubernetes.md) when pulling images from regional endpoints, or reference the global endpoint (`<registry-name>.azurecr.io`) instead.
 
 #### Use regional endpoints embedded in deployment manifests
 
