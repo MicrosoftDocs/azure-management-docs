@@ -372,7 +372,7 @@ Regional endpoints support the same authentication methods as the global endpoin
 >   --output tsv
 > ```
 >
-> To receive a compatible node-image VHD automatically after it becomes available in your region and cloud, use the [`NodeImage` node OS auto-upgrade channel](/azure/aks/auto-upgrade-node-os-image). AKS Automatic uses `NodeImage`; for AKS Standard, select `NodeImage`. The `SecurityPatch` channel can reimage nodes, but carries security fixes only and doesn't guarantee this compatibility update. The `Unmanaged` and `None` channels don't roll out the current AKS node image.
+> To receive a compatible node-image VHD automatically after it becomes available in your region and cloud, use the [`NodeImage` node OS auto-upgrade channel](/azure/aks/auto-upgrade-node-os-image). AKS Automatic uses `NodeImage`; for AKS Standard, select `NodeImage`.
 >
 > ```azurecli
 > az aks update \
