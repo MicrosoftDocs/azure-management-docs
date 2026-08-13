@@ -5,7 +5,7 @@ author: johnsonshi
 ms.topic: how-to
 ms.author: johsh
 ms.service: azure-container-registry
-ms.date: 05/27/2026
+ms.date: 08/13/2026
 # Customer intent: "As a developer, I want to replicate container registry content across multiple Azure regions for high availability."
 ---
 
@@ -359,6 +359,13 @@ Regional endpoints support the same authentication methods as the global endpoin
 
 > [!IMPORTANT]
 > **Re-authenticate when switching endpoints.** ACR tokens work across both global and regional endpoints. However, container tools like Docker and containerd store credentials per hostname, so switching from the global endpoint to a regional endpoint (or between regional endpoints) requires a new `az acr login` for that hostname. For AKS, the [Kubernetes ACR credential provider](/azure/aks/cluster-container-registry-integration) handles this automatically when the endpoint changes.
+
+> [!NOTE]
+> **AKS node image requirement for regional endpoint pulls.** The fix for authenticated pulls from ACR regional endpoints first ships in AKS node image `202607.29` ([AgentBaker PR #8994](https://github.com/Azure/AgentBaker/pull/8994), merged July 22, 2026) and isn't included in `202607.20`. On a test cluster upgraded from `202607.09` to `202607.29`, the `*.*.geo.azurecr.io` patterns appeared in the kubelet credential-provider configuration, and a private regional endpoint pull changed from `401` to `200` with no manual steps.
+>
+> Clusters using the AKS default node image auto-upgrade setting (`nodeOsUpgradeChannel=NodeImage`) receive the fix after the image reaches their region. If auto-upgrade is off, upgrade each node pool to `202607.29` or later by using `az aks nodepool upgrade --node-image-only` after a fixed image is available in the region.
+>
+> If regional endpoint pulls must work on nodes with an older image, temporarily use a Kubernetes [image pull secret](container-registry-auth-kubernetes.md) or reference the global endpoint (`<registry-name>.azurecr.io`) instead.
 
 **Sign in to a specific regional endpoint:**
 
