@@ -381,7 +381,7 @@ docker pull myregistry.eastus.geo.azurecr.io/myapp:v1
 
 #### Use regional endpoints with AKS managed identity authentication
 
-AKS image pulls that authenticate to ACR by using a managed identity are supported with regional endpoints on AKS node image `202607.29` or later. Check the current image for each node pool:
+AKS image pulls that authenticate to ACR by using a managed identity support regional endpoints on AKS node image `202607.29` or later. Check the current image for each node pool:
 
 ```azurecli
 az aks nodepool show \
