@@ -1,7 +1,7 @@
 ---
 title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
-ms.date: 08/13/2026
+ms.date: 08/14/2026
 ms.topic: concept-article
 author: davidsmatlak
 ms.author: davidsmatlak
@@ -31,7 +31,7 @@ The following table provides a quick way to see the major capabilities of the Az
 |Change Tracking and Inventory      |✓         |✓         |✓         |
 |Azure Monitor     |✓         |✓         |✓         |
 |VM extensions     |✓         |✓         |✓         |
-|Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓ (free for AVS)        |✓         |
+|Extended Security Updates for Windows Server and SQL Server workloads     |✓         |✓       |✓         |
 |Agentless discovery and inventory     |         |✓         |          |
 |Lifecycle and powercycle operations (create/delete/start/stop VMs, etc.)     |         |✓         |✓         |
 |Self-serve VM provisioning     |         |✓         |✓         |
@@ -71,7 +71,7 @@ Where your machine runs determines the best Azure Arc service to use. Organizati
 
 - Monitor: Utilize VM insights for monitoring OS performance and discovering application components. Collect log data, such as performance data and events, through the Log Analytics agent, storing it in a Log Analytics workspace.
 
-- Procure Extended Security Updates (ESUs) at scale for your Windows Server 2012 and 2012R2 machines running on vCenter managed estate.
+- Procure Extended Security Updates (ESUs) at scale for your Windows Server and SQL workloads running on other public clouds and private clouds like vCenter managed estates.
 
 > [!IMPORTANT]
 > Azure Arc-enabled VMware vSphere has all the capabilities of Azure Arc-enabled servers, but also provide specific, additional capabilities.
@@ -79,12 +79,6 @@ Where your machine runs determines the best Azure Arc service to use. Organizati
 ## Azure Arc-enabled VMware vSphere
 
 [Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md) simplifies the management of hybrid IT resources distributed across VMware vSphere and Azure.
-
-Running software in Azure VMware Solution, as a private cloud in Azure, offers some benefits not realized by operating your environment outside of Azure. For software running in a VM, such as SQL Server and Windows Server, running in Azure VMware Solution provides additional value such as free Extended Security Updates (ESUs). 
-
-To take advantage of these benefits if you're running in an Azure VMware Solution, it's important to follow respective [onboarding](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) processes to fully integrate the experience with the AVS private cloud. 
-
-Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enabled using a method distinct from the one outlined in the AVS public document, the steps are provided in the [document](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) to refresh the integration between the Azure Arc-enabled VMs and Azure VMware Solution.
 
 ### Capabilities
 
@@ -99,6 +93,10 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 
 - Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell.
+
+Running software in Azure VMware Solution, as a private cloud in Azure, offers some benefits not realized by operating your environment outside of Azure. To take advantage of these benefits if you're running in an Azure VMware Solution, it's important to follow respective [onboarding](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) processes to fully integrate the experience with the AVS private cloud. 
+
+Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enabled using a method distinct from the one outlined in the AVS public document, the steps are provided in the [document](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) to refresh the integration between the Azure Arc-enabled VMs and Azure VMware Solution.
 
 ### Switching from Arc-enabled servers to Arc-enabled VMware vSphere
 
