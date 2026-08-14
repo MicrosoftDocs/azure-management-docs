@@ -26,36 +26,14 @@ You learn how to:
 ## How it works
 
 When you publish a solution version that has external validation enabled, workload
-orchestration emits a `Microsoft.Edge.SolutionVersionPublished` event and holds the version
-in a pending state until it receives a callback. The validator performs these actions:
+orchestration emits a `Microsoft.Edge.SolutionVersionPublished` event and holds the version in a pending state until it receives a callback. The validator performs these actions:
 
 1. Receives the event through an Event Grid subscription on your context's system topic.
-2. Reads the **target** and the **solution version** from ARM. The target's `solutionScope`
-   is the *effective namespace* the solution is allowed to deploy into.
-3. Runs `helm template --namespace <solutionScope>` for every `helm.v3` component and
-   inspects the **rendered** manifests for every namespace they reference.
-1. Sends a `Valid` or `Invalid` result to the `callbackUrl`. If a rendered resource targets
-  a namespace other than `solutionScope`, the validator rejects the version, and publishing
-  fails.
+2. Reads the **target** and the **solution version** from ARM. The target's `--solution-scope` is the *effective namespace* the solution is allowed to deploy into.
+3. Runs `helm template --namespace <solutionScope>` for every `helm.v3` component and inspects the **rendered** manifests for every namespace they reference.
+1. Sends a `Valid` or `Invalid` result to the `callbackUrl`. If a rendered resource targets a namespace other than `solutionScope`, the validator rejects the version, and publishing fails.
 
-The validator is render-only and fail-closed. It always renders the chart. A render failure
-or a component with missing chart coordinates causes the validator to reject the version.
-
-```mermaid
-flowchart LR
-    P[Publish solution version] --> E[Microsoft.Edge.SolutionVersionPublished]
-    E --> EG[Event Grid system topic<br/>on the context]
-    EG --> F[Validator function app]
-    F --> A1[ARM GET target<br/>-> solutionScope]
-    F --> A2[ARM GET solution version<br/>-> helm.v3 components]
-    A1 --> R[helm template<br/>--namespace solutionScope]
-    A2 --> R
-    R --> D{Any namespace<br/>!= solutionScope?}
-    D -- No --> V[POST Valid]
-    D -- Yes --> I[POST Invalid]
-    V --> C[Publish succeeds]
-    I --> X[Publish blocked +<br/>error details]
-```
+:::image type="content" source="./media/namespace-validation.png" alt-text="Diagram of the namespace validation flow." lightbox="./media/namespace-validation.png":::
 
 ## Prerequisites
 
@@ -72,8 +50,6 @@ flowchart LR
 
 ## Define the variables
 
-### [Bash](#tab/bash)
-
 ```bash
 RG=nsvalidator-rg
 LOCATION=eastus2
@@ -86,8 +62,7 @@ IMAGE=namespace-validator:latest
 
 ## Deployment script
 
-The PowerShell script *deploy.ps1* in the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration) automates the resource creation and deployment steps listed in [Deploy the validator function app](#step-1---deploy-the-validator-function-app) and configures the app settings described in [Configure application settings](#step-3---configure-application-settings). You must still grant the access described in Step 2 and create
-the Event Grid subscription mentioned in Step 4. To run the script, use:
+The PowerShell script *deploy.ps1* in the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration) automates the resource creation and deployment steps listed in [Deploy the validator function app](#step-1---deploy-the-validator-function-app) and configures the app settings described in [Configure application settings](#step-3---configure-application-settings). You must still grant the access described in Step 2 and create the Event Grid subscription mentioned in Step 4. To run the script, use:
 
 ```powershell
 ./deploy.ps1 -ResourceGroup nsvalidator-rg -AcrName <yourAcr> -FunctionApp <yourFunctionApp>
