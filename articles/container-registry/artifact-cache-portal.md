@@ -54,6 +54,9 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
    :::image type="content" source="media/container-registry-artifact-cache/artifact-cache-enter-rule-details.png" alt-text="Screenshot showing details entered to create a new cache rule for a container registry in the Azure portal.":::
 
+> [!IMPORTANT]
+> If the target Azure container registry is network-restricted by using private endpoints or public IP access rules, enable **Allow trusted Microsoft services to access this container registry**. Artifact cache can't populate the target registry when trusted-services access is disabled. For configuration steps, see [Allow trusted services to securely access a network-restricted container registry](allow-access-trusted-services.md).
+
 ## Create new credentials
 
 Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
