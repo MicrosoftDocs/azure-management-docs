@@ -6,7 +6,7 @@ ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
 ms.service: azure-container-registry
-ms.date: 10/31/2023
+ms.date: 07/08/2026
 # Customer intent: As a developer, I want to lock container images in a registry so that they cannot be deleted or overwritten, ensuring the integrity of production deployments.
 ---
 
@@ -197,6 +197,9 @@ az acr repository update \
    --name myregistry --image $repo@$digest \
    --delete-enabled true --write-enabled true
 ```
+
+> [!NOTE]
+> If it has sufficient permissions, the `acr purge` command can unlock locked artifacts automatically. When run with the `--include-locked` parameter, it resets `delete-enabled` and `write-enabled` to `true` on each matching locked tag or manifest before deleting it. For more information, see [Automatically purge images from an Azure container registry](container-registry-auto-purge.md).
 
 ## Next steps
 
