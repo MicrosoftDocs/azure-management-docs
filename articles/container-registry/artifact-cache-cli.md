@@ -77,6 +77,9 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
      az acr cache show -r MyRegistry -n MyRule
     ```
 
+> [!IMPORTANT]
+> If the target Azure container registry is network-restricted by using private endpoints or public IP access rules, enable **Allow trusted Microsoft Services to access this container registry**.  Artifact cache can't populate the target registry when trusted-services access is disabled. For configuration steps, see [Allow trusted services to securely access a network-restricted container registry](allow-access-trusted-services.md).
+
 > [!TIP]
 > To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create --registry Myregistry --name MyRule --source-repo MySourceRepository --target-repo MyTargetRepository`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
