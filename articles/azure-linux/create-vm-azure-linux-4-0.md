@@ -13,6 +13,8 @@ ms.date: 04/27/2026
 
 This article shows you how to create an Azure Linux 4.0 virtual machine (VM) on Azure using the Azure portal, the Azure CLI, an ARM template, or Terraform.
 
+[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/).

@@ -87,23 +87,23 @@ Install `dnf-automatic` using the following command:
 sudo dnf install -y dnf-automatic
 ```
 
-### Enable the `dnf5-automatic` timer
+### Enable the `dnf-automatic` timer
 
-Enable the `dnf5-automatic` timer immediately and across reboots using the following command:
+Enable the `dnf-automatic` timer immediately and across reboots by using the following command:
 
 ```bash
-sudo systemctl enable --now dnf5-automatic.timer
+sudo systemctl enable --now dnf-automatic.timer
 ```
 
 - `enable` configures the timer to start at boot.
 - `--now` starts the timer in the current session.
 
-### Check status of the `dnf5-automatic` timer
+### Check status of the `dnf-automatic` timer
 
 Check that the timer is active and see when it last ran using the following command:
 
 ```bash
-systemctl status dnf5-automatic.timer
+systemctl status dnf-automatic.timer
 ```
 
 Typical output looks like the following example:
@@ -119,12 +119,12 @@ Typical output looks like the following example:
 
 `Active: active (waiting)` is expected: the underlying service is a one-shot that runs only when the timer fires, then exits. The `Trigger:` line shows the next scheduled run.
 
-### List the next scheduled run of the `dnf5-automatic` timer
+### List the next scheduled run of the `dnf-automatic` timer
 
 List the next run alongside any other timers using the following command:
 
 ```bash
-systemctl list-timers dnf5-automatic.timer
+systemctl list-timers dnf-automatic.timer
 ```
 
 Example output:
@@ -139,6 +139,9 @@ Pass --all to see loaded but inactive timers, too.
 ### Optional configuration of `dnf-automatic`
 
 You can configure automatic update behavior by adding the `/etc/dnf/automatic.conf` file. This file controls whether updates are only downloaded, automatically applied, or restricted to security‑only updates. For full configuration details, see the [dnf5‑automatic documentation](https://dnf5.readthedocs.io/en/stable/dnf5_plugins/automatic.8.html)
+
+### Note
+Automatic updates are installed through dnf-automatic, but the system isn't automatically rebooted. If a kernel (or other reboot-required package) is updated, the new version doesn't take effect until the next reboot. After updates, verify whether a reboot is required and schedule one as appropriate.
 
 ## Frequently used DNF commands
 
