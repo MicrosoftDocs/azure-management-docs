@@ -46,6 +46,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnect
 |Fixed validation of auto-upgrade desired version to handle invalid versions gracefully.|✓|✓|Bug Fix|
 |Agent to use API version 2026-06-16-preview for Microsoft.HybridCompute/machines.|✓|✓|Improvement|
 |Arc proxy properly resets routing options on TLS handshake failures.|✓|✓|Bug Fix|
+|Added support for Ubuntu 26.04 (x86-64)||✓|Feature|
 
 ## Version 1.66 - July 2026
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.66/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
