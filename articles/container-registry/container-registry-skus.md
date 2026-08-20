@@ -99,7 +99,7 @@ Occasionally, during a sudden, aggressive ramp-up from a low baseline (such as a
 > - Maximum private endpoints (Private Link connections) per registry
 > - Image push and pull performance limits, including throttling, bandwidth, and data-plane API request-rate limits
 >
-> The following limits are fixed and cannot be increased through a support request:
+> The following limits are fixed and can't be increased through a support request:
 >
 > - Maximum public IP network rules
 > - Maximum service endpoint virtual network rules
