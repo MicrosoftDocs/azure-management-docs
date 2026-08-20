@@ -70,6 +70,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Ubuntu                              | 20.04       | ✅    | ✅    |                                                                                                  |
 | Ubuntu                              | 22.04       | ✅    | ✅    |                                                                                                  |
 | Ubuntu                              | 24.04       | ✅    | ✅    |                                                                                                  |
+|Ubuntu| 26.04| ✅ | ❌||
 | Windows Client                      | 10          | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
 | Windows Client                      | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
 | Windows IoT Enterprise              | 10 (22H2)   | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
