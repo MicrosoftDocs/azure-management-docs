@@ -92,7 +92,21 @@ When you receive a `429` response, honor the `Retry-After` header and implement 
 Occasionally, during a sudden, aggressive ramp-up from a low baseline (such as a thundering herd), you might temporarily observe lower throughput than the published limits while the registry's infrastructure scales out to meet demand.
 
 > [!NOTE]
-> You can increase some limits listed in this table by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). For example, you can request an increase to private endpoint limits, image push and pull performance due to throttling or bandwidth constraints, or general storage limits.
+>
+> Some limits in this table can be increased by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). Increase requests are supported for:
+>
+> - Registry storage limits
+> - Maximum private endpoints (Private Link connections) per registry
+> - Image push and pull performance limits, including throttling, bandwidth, and data-plane API request-rate limits
+>
+> The following limits are fixed and cannot be increased through a support request:
+>
+> - Maximum public IP network rules
+> - Maximum service endpoint virtual network rules
+> - Maximum non-Microsoft Entra tokens
+> - Maximum non-Microsoft Entra token scope maps
+> - Maximum actions per non-Microsoft Entra token scope map
+> - Maximum repositories per non-Microsoft Entra token scope map
 
 For pricing information on each of the Azure Container Registry SKUs, see [Container Registry pricing][container-registry-pricing]. For details about pricing for data transfers, see [Bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
