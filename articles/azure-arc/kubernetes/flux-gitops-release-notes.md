@@ -1,7 +1,7 @@
 ---
 title: What's new for Flux (GitOps) in Azure Arc enabled Kubernetes
 description: Learn about supported versions of the microsoft.flux extension, along with important changes and improvements.
-ms.date: 08/10/2026
+ms.date: 08/24/2026
 ms.topic: release-notes
 ---
 
@@ -60,6 +60,25 @@ Migrate all your resources to the Flux stable APIs in your sources (Git reposito
 Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
+
+## August 2026 - `microsoft.flux` version 1.25.0
+
+Flux version: [Release v2.8.8](https://github.com/fluxcd/flux2/releases/tag/v2.8.8)
+
+- source-controller: v1.8.5-3
+- kustomize-controller: v1.8.5-2
+- helm-controller: v1.5.5-2
+- notification-controller: v1.8.4-3
+- image-automation-controller: v1.1.4-2
+- image-reflector-controller: v1.1.2-2
+
+Changes in this version include:
+
+- Updated the Flux extension to upstream Flux v2.8.8.
+- Added a generic feature-gates passthrough to the `azure-k8s-flux` chart, allowing opt-in configuration of upstream Flux controller feature gates.
+- Added support for configuring `--override-manager` on `helm-controller`.
+- Hardened the Flux extension chart by adding type guards (`quote`, `int`) to interpolated values in the controller templates.
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `notification-controller`, `image-automation-controller`, `image-reflector-controller`, and `helm-controller` by updating the Go packages and base images.
 
 ## August 2026 - `microsoft.flux` version 1.24.1
 
