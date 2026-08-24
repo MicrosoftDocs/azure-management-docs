@@ -107,6 +107,8 @@ Occasionally, during a sudden, aggressive ramp-up from a low baseline (such as a
 > - Maximum non-Microsoft Entra token scope maps
 > - Maximum actions per non-Microsoft Entra token scope map
 > - Maximum repositories per non-Microsoft Entra token scope map
+>
+>  Azure Support may review requests to increase storage capacity, private endpoint count, and persistent data-plane throttling or push/pull bandwidth limits. Approval is case-by-case. Other limits in this table are not adjustable unless explicitly stated.
 
 For pricing information on each of the Azure Container Registry SKUs, see [Container Registry pricing][container-registry-pricing]. For details about pricing for data transfers, see [Bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
