@@ -75,6 +75,7 @@ Flux version: [Release v2.8.8](https://github.com/fluxcd/flux2/releases/tag/v2.8
 Changes in this version include:
 
 - Updated the Flux extension to upstream Flux v2.8.8.
+- Moved the `helm-controller` from Helm v3 to Helm v4. This change alters some default behaviors, including the use of server-side apply and kstatus-based health checks. For more information, see [Helm v4 support](https://fluxcd.io/blog/2026/02/flux-v2.8.0/#helm-v4-support) in the upstream Flux v2.8.0 release notes. To restore the Helm v3 default behavior, enable the `UseHelmv3Defaults` feature gate as described in [Restore Helm v3 default behavior](tutorial-use-gitops-flux2.md#restore-helm-v3-default-behavior).
 - Added a generic feature-gates passthrough to the `azure-k8s-flux` chart, allowing opt-in configuration of upstream Flux controller feature gates.
 - Added support for configuring `--override-manager` on `helm-controller`.
 - Hardened the Flux extension chart by adding type guards (`quote`, `int`) to interpolated values in the controller templates.
