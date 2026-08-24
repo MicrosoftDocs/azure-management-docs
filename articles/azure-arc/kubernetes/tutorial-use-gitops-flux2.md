@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 06/05/2026
+ms.date: 08/24/2026
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -602,6 +602,18 @@ az k8s-extension update --resource-group <resource-group> --cluster-name <cluste
 ```
 
 If you don't specify values for `memoryThreshold` and `outOfMemoryWatch`, the default memory threshold is 95%, and the interval to check the memory utilization is 500 ms.
+
+### Restore Helm v3 default behavior
+
+Starting with `microsoft.flux` v1.25.0, the `helm-controller` uses Helm v4, which changes some default behaviors, including the use of server-side apply and kstatus-based health checks. For more information about these changes, see [Helm v4 support](https://fluxcd.io/blog/2026/02/flux-v2.8.0/#helm-v4-support) in the upstream Flux v2.8.0 release notes.
+
+If a Helm release isn't compatible with the Helm v4 defaults, you can restore the Helm v3 default behavior by enabling the `useHelm3Defaults` setting on the `helm-controller`:
+
+```azurecli
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config-settings "helm-controller.useHelm3Defaults=true"
+```
+
+Use this setting as a temporary measure while you validate your Helm releases against the Helm v4 defaults.
 
 ## Configurable log-level parameters
 
