@@ -212,7 +212,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list OCI referrer artifacts within repositories in the registry
     - View and list images and artifact metadata such as tags (listing and reading tags) within repositories in the registry
     - **Doesn't grant repository catalog list permissions (permissions to list repositories in the registry)**
-    - View policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - View prepository-level olicies for images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
     - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
@@ -229,9 +229,9 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Create, view, and list OCI referrer artifacts within repositories in the registry
     - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags) within repositories in the registry
     - **Doesn't grant repository catalog list permissions (permissions to list repositories in the registry)**
-    - Manage policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Grants permissions to manage repository-level policies for images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
     - Enabling (**but not disabling**) [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
-    - Manage [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Grants permissions to manage the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
     - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
     - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
   - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
