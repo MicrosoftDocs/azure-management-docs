@@ -295,9 +295,9 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list OCI referrer artifacts within repositories in the registry
     - View and list image and artifact metadata such as tags (listing and reading tags) within repositories in the registry
     - View and list all repositories (image names) in the registry
-    - Does not grant permissions to manage or view policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Grants permissions to view repository-level policies for images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
-    - Does not grant permissions to manage or view the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Grants permissions to view the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
     - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
     - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
 
