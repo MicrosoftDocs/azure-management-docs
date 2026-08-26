@@ -37,6 +37,8 @@ Importing images into an Azure container registry has the following benefits com
 
 * The maximum number of manifests for an imported image is 50.
 
+* Azure Container Registry supports importing images from a variety of source registries across cloud providers. If importing from a source Azure Container Registry, specify the source registry's global endpoint. The source registry's regional endpoints aren't supported as import sources. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
+
 ### [Azure CLI](#tab/azure-cli)
 
 To import container images, run the Azure CLI in Azure Cloud Shell or locally.
