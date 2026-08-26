@@ -20,26 +20,17 @@ When a new version of the `microsoft.flux` extension is released, it can take se
 
 ## Deprecation and removal notice: Changes to `microsoft.flux` extension
 
-Several upstream Flux APIs that were retired by the Flux project are removed in version 1.23.0 of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
-
-> [!CAUTION]
-> If you don't update your sources to remove references to deprecated APIs, you might experience disruptions in Flux functionality and see error messages referencing a removed kind/API, such as:
->
-> `Error Signature: no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"`
->
-> `Error Signature: no matches for kind "HelmRelease" in version "helm.toolkit.fluxcd.io/v2beta1"`
-
-The following Flux APIs have been removed:
+The following Flux APIs have been removed in upstream Flux versions 2,7, 2.8 and 2.9:
 
 - Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1` and `source.toolkit.fluxcd.io/v1beta2`
 - Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1` and `kustomize.toolkit.fluxcd.io/v1beta2`
 - Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1` and `helm.toolkit.fluxcd.io/v2beta2`
-- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
-- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1` and `notification.toolkit.fluxcd.io/v1beta2`
+- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1` and `image.toolkit.fluxcd.io/v1beta2`
 
 For more information, see <https://github.com/fluxcd/flux2/issues/5572>.
 
-**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. Use the supported API versions for all impacted resources and upgrade your clusters to use `microsoft.flux` version 1.23.0, which introduces the Flux 2.7 API version. If your clusters are running 1.20.4 or lower, upgrade them to an interim version (1.21.0 - 1.22.2) first, and then upgrade to version 1.23.0.
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs as soon as possible. If your clusters are running 1.20.4 or lower, upgrade them to an interim version (1.21.0 - 1.22.2) first, and then upgrade to version 1.23.0.
 
 Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
 
@@ -53,9 +44,9 @@ Migrate all your resources to the Flux stable APIs in your sources (Git reposito
 - `Receiver` to `notification.toolkit.fluxcd.io/v1`
 - `Alert` to `notification.toolkit.fluxcd.io/v1beta3`
 - `Provider` to `notification.toolkit.fluxcd.io/v1beta3`
-- `ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
+- `ImageRepository` to `image.toolkit.fluxcd.io/v1`
+- `ImagePolicy` to `image.toolkit.fluxcd.io/v1`
+- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1`
 
 Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
 
