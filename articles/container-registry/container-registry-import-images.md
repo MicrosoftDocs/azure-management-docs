@@ -37,7 +37,7 @@ Importing images into an Azure container registry has the following benefits com
 
 * The maximum number of manifests for an imported image is 50.
 
-* Azure Container Registry supports importing images from a variety of source registries across cloud providers. If the import source is an ACR, you can import only from the source ACR's home region. The source ACR's regional endpoints aren't supported as import sources. An import always writes content to the downstream ACR's home region. Specify the source ACR's global endpoint. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
+* Azure Container Registry supports importing images from a variety of source registries across cloud providers. If the import source is an ACR, you can import only from the source ACR's home region. The source ACR's regional endpoints aren't supported as import sources. Specify the source ACR's global endpoint when importing from a source ACR. Additionally, an import always writes content to the downstream ACR's home region. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
 
 ### [Azure CLI](#tab/azure-cli)
 
