@@ -4,7 +4,7 @@ description: Import container images to an Azure container registry by using Azu
 ms.topic: how-to
 author: KumudD
 ms.author: kumud
-ms.date: 06/17/2026
+ms.date: 08/26/2026
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 # Customer intent: As a developer, I want to import container images into an Azure container registry using APIs, so that I can manage my images without needing to use Docker commands or install Docker locally.
@@ -37,7 +37,7 @@ Importing images into an Azure container registry has the following benefits com
 
 * The maximum number of manifests for an imported image is 50.
 
-* Azure Container Registry supports importing images from a variety of source registries across cloud providers. If importing from a source Azure Container Registry, specify the source registry's global endpoint. The source registry's regional endpoints aren't supported as import sources. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
+* Azure Container Registry supports importing images from a variety of source registries across cloud providers. If the import source is an ACR, you can import only from the source ACR's home region. The source ACR's regional endpoints aren't supported as import sources. An import always writes content to the downstream ACR's home region. Specify the source ACR's global endpoint. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
 
 ### [Azure CLI](#tab/azure-cli)
 
