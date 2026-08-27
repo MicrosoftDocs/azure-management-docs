@@ -5,7 +5,7 @@ author: johnsonshi
 ms.topic: how-to
 ms.author: johsh
 ms.service: azure-container-registry
-ms.date: 08/13/2026
+ms.date: 08/26/2026
 # Customer intent: "As a developer, I want to replicate container registry content across multiple Azure regions for high availability."
 ---
 
@@ -449,14 +449,7 @@ For information about authenticating Azure Kubernetes Service (AKS) with ACR, se
 
 #### Import from specific geo-replicas using regional endpoints
 
-When importing images between registries, you can use regional endpoints to import from a specific geo-replica of the source registry. This is useful for scenarios where you want predictable network paths or need to import from a replica in a specific region.
-
-```azurecli
-az acr import \
-  --name mydownstreamregistry \
-  --source myupstreamregistry.westeurope.geo.azurecr.io/myapp:v1 \
-  --image myapp:v1
-```
+When the import source is an ACR, importing from a specific geo-replica by using a regional endpoint isn't supported. You can import only from the source ACR's home region. An import always writes content to the downstream ACR's home region.
 
 ### Regional endpoints network considerations
 
