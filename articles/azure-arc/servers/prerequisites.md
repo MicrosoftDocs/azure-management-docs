@@ -41,48 +41,50 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. I
 
 x86-64 (64-bit) architecture is fully supported, while [only some features may be supported on Arm64](#arm64-architecture-support). The Azure Connected Machine agent doesn't run on 32-bit architectures.
 
-| Operating system                    | Version     | x86-64 | ARM64 | Notes                                                                                            |
-| ----------------------------------- | ----------- | ------ | ----- | ------------------------------------------------------------------------------------------------ |
-| AlmaLinux                           | 8           | ✅    | ✅    |                                                                                                  |
-| AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
-| Amazon Linux                        | 2           | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
-| Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |
-| Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ✅    |                                                                                                  |
-| Azure Local                         |             |        |       |                                                                                                  |
-| Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
-| Debian                              | 12          | ✅    | ✅    |                                                                                                  |
-| Debian                              | 13          | ✅    | |                                                                                                  |
-| Oracle Linux                        | 7           | ✅    | ❌    |                                                                                                  |
-| Oracle Linux                        | 8           | ✅    | ✅    |                                                                                                  |
-| Oracle Linux                        | 9           | ✅    | ❌    |                                                                                                  |
-| Oracle Linux                        | 10          | ✅    | ❌    |                                                                                                  |
-| Red Hat Enterprise Linux (RHEL)     | 7           | ✅    | ❌    |                                                                                                  |
-| Red Hat Enterprise Linux (RHEL)     | 8           | ✅    | ❌    |                                                                                                  |
-| Red Hat Enterprise Linux (RHEL)     | 9           | ✅    | ❌    |                                                                                                  |
-| Red Hat Enterprise Linux (RHEL)     | 10          | ✅    | ❌    |                                                                                                  |
-| Rocky Linux                         | 8           | ✅    | ❌    |                                                                                                  |
-| Rocky Linux                         | 9           | ✅    | ❌    |                                                                                                  |
-| SUSE Linux Enterprise Server (SLES) | 12 SP5      | ✅    | ❌    |                                                                                                  |
-| SUSE Linux Enterprise Server (SLES) | 15 SP3      | ⚠️    | ⚠️    | [Limited support](#limited-support-operating-systems)                                            |
-| SUSE Linux Enterprise Server (SLES) | 15 SP4      | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
-| SUSE Linux Enterprise Server (SLES) | 15 SP5-7    | ✅    | ✅    |                                                                                                  |
-| Ubuntu                              | 18.04       | ✅    | ❌    |                                                                                                  |
-| Ubuntu                              | 20.04       | ✅    | ✅    |                                                                                                  |
-| Ubuntu                              | 22.04       | ✅    | ✅    |                                                                                                  |
-| Ubuntu                              | 24.04       | ✅    | ✅    |                                                                                                  |
-|Ubuntu| 26.04| ✅ | ❌||
-| Windows Client                      | 10          | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows Client                      | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows IoT Enterprise              | 10 (22H2)   | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows IoT Enterprise              | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows IoT Enterprise LTSC         | 10 (2021)   | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows IoT Enterprise LTSC         | 11 (2024)   | ✅    | ❌    | see [client operating system guidance](#client-operating-systems)                                |
-| Windows Server                      | 2012        | ✅    | ❌    |                                                                                                  |
-| Windows Server                      | 2012 R2     | ✅    | ❌    |                                                                                                  |
-| Windows Server                      | 2016        | ✅    | ❌    |                                                                                                  |
-| Windows Server                      | 2019        | ✅    | ❌    |                                                                                                  |
-| Windows Server                      | 2022        | ✅    | ❌    |                                                                                                  |
-| Windows Server                      | 2025        | ✅    | ❌    |                                                                                                  |
+| Operating system | Version | x86-64 | ARM64 | Expected End of Arc Support | Notes |
+| --- | --- | --- | --- | --- | --- |
+| AlmaLinux | 8 | ✅ | ✅ | May 2029 | |
+| AlmaLinux | 9 | ✅ | ❌ | August 2032 | |
+| Amazon Linux | 2 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| Amazon Linux | 2023 | ✅ | ✅ | August 2027 | |
+| Azure Linux (CBL-Mariner) | 3.0 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| Azure Local | | | || |
+| Debian | 11 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Debian | 12 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| Debian | 13 | ✅ | ❌ | — | |
+| Oracle Linux | 7 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Oracle Linux | 8 | ✅ | ✅ | August 2029 | |
+| Oracle Linux | 9 | ✅ | ❌ | August 2032 | |
+| Oracle Linux | 10 | ✅ | ❌ | — | |
+| Red Hat Enterprise Linux (RHEL) | 7 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Red Hat Enterprise Linux (RHEL) | 8 | ✅ | ❌ | August 2029 | |
+| Red Hat Enterprise Linux (RHEL) | 9 | ✅ | ❌ | August 2032 | |
+| Red Hat Enterprise Linux (RHEL) | 10 | ✅ | ❌ | August 2035 | |
+| Rocky Linux | 8 | ✅ | ❌ | August 2029 | |
+| Rocky Linux | 9 | ✅ | ❌ | August 2032 | |
+| SUSE Linux Enterprise Server (SLES) | 12 SP5 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| SUSE Linux Enterprise Server (SLES) | 15 SP3 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| SUSE Linux Enterprise Server (SLES) | 15 SP4 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| SUSE Linux Enterprise Server (SLES) | 15 SP5 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| SUSE Linux Enterprise Server (SLES) | 15 SP6 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| SUSE Linux Enterprise Server (SLES) | 15 SP7 | ✅ | ✅ | August 2031 | |
+| Ubuntu | 18.04 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Ubuntu | 20.04 | ⚠️ | ⚠️ | November 2026 | Approaching end of Arc support|
+| Ubuntu | 22.04 | ✅ | ✅ | May 2027 | |
+| Ubuntu | 24.04 | ✅ | ✅ | May 2029 | |
+| Ubuntu | 26.04 | ✅ | ❌ | — | |
+| Windows Client | 10 | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows Client | 11 | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows IoT Enterprise | 10 (22H2) | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows IoT Enterprise | 11 | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows IoT Enterprise LTSC | 10 (2021) | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows IoT Enterprise LTSC | 11 (2024) | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
+| Windows Server | 2012 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Windows Server | 2012 R2 | ⚠️ | ❌ | November 2026 | Approaching end of Arc support|
+| Windows Server | 2016 | ✅ | ❌ | February 2030 | |
+| Windows Server | 2019 | ✅ | ❌ | — | |
+| Windows Server | 2022 | ✅ | ❌ | — | |
+| Windows Server | 2025 | ✅ | ❌ | — | |
 
 For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Local.
 
@@ -98,39 +100,6 @@ Not all features, virtual machine extensions, and services are supported on Arm6
 
 > [!NOTE]
 > Machine configuration isn't compatible with Arm64 at this time.
-
-## Limited support operating systems
-
-The operating system versions listed in this section currently have **limited support**. Newer agent versions won't support these operating systems. The last agent version that supports the operating system is listed, and newer agent releases won't be made available for that system.
-
-The listed version is supported on the specified agent version until the **End of Arc support date**. If critical security issues are identified that affect these agent versions, the fixes can be backported to the last supported version. However, those versions won't be updated with new functionality or other bug fixes.
-
-| Operating system | Last supported agent version | End of Arc support date | Notes |
-|--|--|--|--|
-| SUSE Linux Enterprise Server (SLES) 15 SP3 | 1.58  | 07/03/2026 |  |
-| Azure Linux (CBL-Mariner) 2.0         | 1.64         | 07/07/2026    |   | 
-
-### Connect new limited support servers
-
-To connect a new server running a limited support operating system to Azure Arc, you may need to make adjustments to the onboarding script.
-
-For Windows, modify the installation script to specify the version required, using the -AltDownload parameter.
-
-Instead of the standard command:
-
-```powershell
-    # Install the hybrid agent
-    & "$env:TEMP\install_windows_azcmagent.ps1";
-```
-
-Use the following command, replacing the URL with the one for the last supported agent version:
-
-```powershell
-    # Install the hybrid agent
-    & "$env:TEMP\install_windows_azcmagent.ps1" -AltDownload https://aka.ms/AzureConnectedMachineAgent-1.39;
-```
-
-For Linux, the relevant package repository will only contain releases that are applicable, so no special considerations are required.
 
 ## Client operating systems
 
