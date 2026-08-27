@@ -449,7 +449,7 @@ For information about authenticating Azure Kubernetes Service (AKS) with ACR, se
 
 #### Import from specific geo-replicas using regional endpoints
 
-When the import source is an ACR, you can't import from a specific geo-replica by using a regional endpoint. You can import only from the source ACR's home region. An import always writes content to the downstream ACR's home region.
+Azure Container Registry supports importing images from a variety of source registries across cloud providers. If the import source is an ACR, you can import only from the source ACR's home region. The source ACR's regional endpoints aren't supported as import sources. Specify the source ACR's global endpoint when importing from a source ACR. Additionally, an import always writes content to the downstream ACR's home region. See [Azure Container Registry endpoint reference](container-registry-endpoint-reference.md).
 
 ### Regional endpoints network considerations
 
