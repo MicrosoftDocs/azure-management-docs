@@ -97,7 +97,7 @@ The following firewall and proxy URLs must be on the allow list in order to enab
 | Azure Arc | 443 | `guestnotificationservice.azure.us` | Appliance VM IPs need outbound connection. | Required for Azure Arc. |
 | Diagnostic data | 443 | `gcs.prod.monitoring.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 | Diagnostic data | 443 | `*.prod.microsoftmetrics.com` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
-| Diagnostic data | 443 | `*.prod.hot.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
+| Diagnostic data | 443 | `*.prod.hot.ingest.monitor.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 | Diagnostic data | 443 | `*.prod.warm.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 | Azure service bus | 443 | `*.servicebus.usgovcloudapi.net` | Appliance VM IPs need outbound connection. Outbound WebSocket (wss://) connections must be allowed. | Enables secure control channel. |
 | Azure CLI | 443 | `*.blob.core.usgovcloudapi.net` | Management machine needs outbound connection. | Download Azure CLI Installer. |
