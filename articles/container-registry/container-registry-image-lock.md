@@ -6,7 +6,7 @@ ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
 ms.service: azure-container-registry
-ms.date: 07/08/2026
+ms.date: 08/28/2026
 # Customer intent: As a developer, I want to lock container images in a registry so that they cannot be deleted or overwritten, ensuring the integrity of production deployments.
 ---
 
