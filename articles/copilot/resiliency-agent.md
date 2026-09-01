@@ -199,7 +199,7 @@ The agent supports multi-turn conversations that progress naturally from assessm
 
 ## Known limitations
 
-As this feature is in private preview, be aware of the following limitations:
+As this feature is in public preview, be aware of the following limitations:
 
 - The agent is optimized for zonal resiliency scenarios. Regional resiliency and other resiliency dimensions will be added in future releases.
 - Template generation currently supports Bicep format. Support for additional IaC formats in the Start Resilient flow is planned.
