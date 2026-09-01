@@ -1,14 +1,15 @@
 ---
-title: "Ingress support for cert-manager for Azure Arc-enabled Kubernetes (preview)"
-ms.date: 04/13/2026
+title: "Ingress support for Certificate Management for Azure Arc-enabled Kubernetes"
+ms.date: 08/28/2026
 ms.topic: how-to
-description: "Learn how to secure external ingress traffic when using cert-manager for Arc-enabled Kubernetes clusters."
-# Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how to use ingress support with cert-manager for Arc-enabled Kubernetes, so that I can secure external traffic to my Arc-enabled Kubernetes clusters.
+description: "Learn how to secure external ingress traffic when using Certificate Management for Azure Arc extension."
+
+# Customer intent: As a customer using Azure Arc-enabled Kubernetes, I want to understand how to configure  Certificate Management for Azure Arc-enabled Kubernetes on ingress scenarios, so that I can secure incoming external traffic to my Arc-enabled Kubernetes clusters.
 ---
 
-# Ingress support for cert-manager for Azure Arc-enabled Kubernetes (preview)
+# Ingress support for Certificate Management for Azure Arc-enabled Kubernetes
 
-You need ingress TLS support if your Kubernetes deployment accepts traffic securely from outside the cluster (and you're working within a zero-trust security model). Cert-manager for Arc-enabled Kubernetes can observe ingress and gateway resources, create a certificate resource, store the resulting key pair in a Kubernetes secret, and renew it before expiration. The ingress or gateway controller uses that secret to terminate TLS and route traffic to your services.
+You need ingress TLS support if your Kubernetes deployment accepts traffic securely from outside the cluster (and you're working within a zero-trust security model). Certificate Management for Azure Arc extension can observe ingress and gateway resources, create a certificate resource, store the resulting key pair in a Kubernetes secret, and renew it before expiration. The ingress or gateway controller uses that secret to terminate TLS and route traffic to your services.
 
 This article describes how to secure external traffic to your Arc-enabled Kubernetes clusters by using TLS termination at the edge (ingress or gateway) with certificates that cert-manager automatically issues and renews.
 
@@ -24,7 +25,7 @@ We recommend using the Gateway API for production deployments with your Arc-enab
 
 ## Configure cert-manager with the Gateway API
 
-Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to work with the [Gateway API](https://kubernetes.io/docs/concepts/services-networking/gateway/).
+Follow these steps to configure Certificate Management for Azure Arc extension to work with the [Gateway API](https://kubernetes.io/docs/concepts/services-networking/gateway/).
 
 1. Install the Gateway API CRDs by running the following command:
 
@@ -46,7 +47,7 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
      --config cert-manager.config.enableGatewayAPI=true
    ```
 
-   You can also include `--config cert-manager.config.enableGatewayAPI=true` with `az k8s-extension update` to enable Gateway API support on an existing cert-manager extension installation.  
+   You can also include `--config cert-manager.config.enableGatewayAPI=true` with `az k8s-extension update` to enable Gateway API support on an existing cert-manager extension installation.
 
 1. Create an Issuer or ClusterIssuer resource that cert-manager will use to issue certificates for the Gateway API resources. For example, create a self-signed ClusterIssuer:
 
@@ -81,7 +82,7 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
        annotations:
          cert-manager.io/cluster-issuer: ingresses-selfsigned-issuer
          cert-manager.io/duration: 4h
-         cert-manager.io/renew-before: 2h    
+         cert-manager.io/renew-before: 2h
      spec:
        gatewayClassName: gatewayclass
        listeners:
@@ -109,7 +110,7 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
 
 ## Configure cert-manager with the Ingress API
 
-Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to work with the [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+Follow these steps to configure Certificate Management for Azure Arc extension to work with the [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 1. Create an Issuer or ClusterIssuer resource that cert-manager will use to issue certificates for the Ingress API resources. For example, create a self-signed ClusterIssuer:
 
@@ -174,4 +175,4 @@ Follow these steps to configure cert-manager for Azure Arc-enabled Kubernetes to
 
 ## End-to-end setups for Gateway and Ingress APIs
 
-This article shows how to integrate cert-manager for Azure Arc-enabled Kubernetes integration with the Gateway and Ingress APIs, and how to verify the certificates cert-manager produces. For more information, see the cert-manager documentation, such as [Securing NGINX-ingress](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/), and the [Gateway API](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/) and [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/) documentation.
+This article shows how to integrate Certificate Management for Azure Arc extension with the Gateway and Ingress APIs, and how to verify the certificates cert-manager produces. For more information, see the cert-manager documentation, such as [Securing NGINX-ingress](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/), and the [Gateway API](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/) and [Ingress API](https://kubernetes.io/docs/concepts/services-networking/ingress/) documentation.

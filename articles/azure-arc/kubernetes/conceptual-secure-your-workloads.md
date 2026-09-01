@@ -1,6 +1,6 @@
 ---
 title: "Secure your workloads in Azure Arc-enabled Kubernetes"
-ms.date: 06/06/2025
+ms.date: 08/28/2026
 ms.topic: concept-article
 description: "Guidance for securing workloads running on Azure Arc-enabled Kubernetes clusters, including application and container security."
 ---
@@ -11,7 +11,7 @@ Securing your workloads involves building, deploying, and running containers in 
 
 ## Follow a secure container lifecycle as you acquire, catalog, and build your containers
 
-Follow the [Microsoft Containers Secure Supply Chain framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview) as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities. 
+Follow the [Microsoft Containers Secure Supply Chain framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview) as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities.
 
 Track code provenance by obtaining or generating a Software Bill of Materials (SBOM). You can also configure [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction#vulnerability-assessment) to help perform a vulnerability assessment of images in your container registry – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=extva%2Cazurert%2Cazurespm%2Cawsnet#vulnerability-assessment-va-features) for which registries are supported at what level (preview or general availability).
 
@@ -28,7 +28,7 @@ See also [our guidance](conceptual-secure-your-operations.md#follow-a-secure-con
 
 To help promote the execution of container images with least privileges at runtime, author your container images to support nonroot execution of workloads.
 
-Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components. You can choose base images for your workloads from a reputable vendor such as from the [Microsoft Artifact Registry](https://mcr.microsoft.com/). Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components and the maintenance burden resulting from security updates and bug fixes. Use multi-stage builds to further reduce the footprint of your runtime images. 
+Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components. You can choose base images for your workloads from a reputable vendor such as from the [Microsoft Artifact Registry](https://mcr.microsoft.com/). Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components and the maintenance burden resulting from security updates and bug fixes. Use multi-stage builds to further reduce the footprint of your runtime images.
 
 Use [container signing](/azure/container-registry/container-registry-tutorial-sign-trusted-ca) to help ensure your workload images aren't accidentally or maliciously tampered with. Azure Pipelines and GitHub Actions provide various tooling in support of container signing. You can integrate container signing with your chosen Public Key Infrastructure (PKI).
 
@@ -38,13 +38,13 @@ Use [container signing](/azure/container-registry/container-registry-tutorial-si
 
 ## Follow pod security standards
 
-Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a nonroot user and shouldn’t mount host volumes, unless it's strictly necessary for their operation. See [our suggestions](conceptual-secure-your-operations.md#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) about how you can help enforce these standards. Not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform. They may require extra capabilities to be permitted when deployed.
+Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a nonroot user and shouldn't mount host volumes, unless it's strictly necessary for their operation. See [our suggestions](conceptual-secure-your-operations.md#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) about how you can help enforce these standards. Not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform. They might require extra capabilities to be permitted when deployed.
 
 In addition, consider [setting memory limits and CPU requests](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for each pod (though not CPU limits which can lead to undesirable throttling). Also consider resource quotas for each namespace. These limits and quotas can prevent broader Denial of Service (DoS) attacks from a container that is compromised or otherwise misbehaving.
 
 ### References
 * [Pod Security Standards | Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
-* [Sections 5.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
+* [Sections 5.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
 * [NSA Kubernetes Hardening Guidance – "Pod security enforcement" and "Resource Policies"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 * [Kubernetes Security - OWASP Cheat Sheet Series – "Apply security context" and "Limiting resource usage in a cluster"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
@@ -58,23 +58,23 @@ Consider using [extra Linux security hardening frameworks](https://kubernetes.io
 
 ## Use workload identity for accessing Azure resources
 
-Your workloads should use [workload identity federation](/azure/azure-arc/kubernetes/workload-identity) to help securely access your resources in Azure, such a storage account. This approach helps avoid the need for you to create and distribute separate secrets to authenticate the Entra ID identities used for authorization with Azure RBAC. Instead, this federation approach enables to you to obtain a token for an Entra ID identity in the cloud directly from a Kubernetes service account token. (Service accounts are Kubernetes’ built-in identity for workloads.)
+Your workloads should use [workload identity federation](/azure/azure-arc/kubernetes/workload-identity) to securely access your resources in Azure, such as a storage account. This approach helps you avoid creating and distributing separate secrets to authenticate the Entra ID identities used for authorization with Azure RBAC. Instead, this federation approach enables you to obtain a token for an Entra ID identity in the cloud directly from a Kubernetes service account token. Service accounts are Kubernetes' built-in identity for workloads.
 
-Your cluster’s service account token issuer creates and signs these service account tokens. The issuer’s private key is therefore a fundamental secret. Access to it should be restricted and it should be regularly rotated.
+Your cluster's service account token issuer creates and signs these service account tokens. The issuer's private key is a fundamental secret. You should restrict access to it and rotate it regularly.
 
-If you’re running AKS enabled by Azure Arc on Azure Local, then this access control is automatically taken care of. Only the control planes nodes that run the API server (which includes the token issuer) can access the keys. The keys expire after 90 days, and they're rotated automatically every 45 days.
+If you're running AKS enabled by Azure Arc on Azure Local, this access control is automatically managed. Only the control plane nodes that run the API server, which includes the token issuer, can access the keys. The keys expire after 90 days, and they're rotated automatically every 45 days.
 
-If you connect your own cluster via Arc-enabled Kubernetes, then evaluate if your vendor’s product offers similar capabilities. Check if they restrict access to the service account token issuer key and if they rotate it regularly.
+If you connect your own cluster via Arc-enabled Kubernetes, evaluate if your vendor's product offers similar capabilities. Check if they restrict access to the service account token issuer key and if they rotate it regularly.
 
 ## Configure TLS encryption and authentication within/to/from workloads
 
-Use TLS for all connections that your workloads make, both inside and outside of the cluster. Using TLS may require you to generate certificates and distribute trust bundles for use in establishing these connections. 
+Use TLS for all connections that your workloads make, both inside and outside of the cluster. Using TLS may require you to generate certificates and distribute trust bundles for use in establishing these connections.
 
 For TLS connections within a cluster, evaluate using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/) to maintain the TLS connections for you. A service mesh such as Istio, or an application runtime such as DAPR, can help generate its own self-signed workload certificates. For extra security, consider [configuring a cluster-local intermediate CA](https://istio.io/latest/docs/tasks/security/cert-management/plugin-ca-cert/) for use in signing these workload certificates. If you do so, then also consider issuing the certificate for this intermediate CA using your Public Key Infrastructure (PKI), where the root certificate itself remains secured in an offline HSM-backed vault.
 
-For ingress TLS connections into the cluster, evaluate using one of the many products such as load balancers and ingress or gateway controllers that can help you securely manage incoming traffic. You might need to generate your own certificates for these endpoints to use. You might also need to distribute trust bundles for these certificates to external clients that need to authenticate their connection into the cluster. Again, consider issuing these certificates from your PKI. You can use [cert-manager for Arc-enabled Kubernetes (preview)](/azure/azure-arc/kubernetes/cert-manager-overview), based on the open-source [cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) projects, to request these certs and distribute trust in them. Here's [how this request works](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#automated-certificate-management-with-cert-manager) for the NGINX ingress controller. Or, if you only need a few certificates, you might create and rotate them manually in Azure Key Vault and sync them as Kubernetes secrets by using the [Azure Key Vault Secret Store extension for Kubernetes](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE").
+For ingress TLS connections into the cluster, evaluate using one of the many products such as load balancers and ingress or gateway controllers that can help you securely manage incoming traffic. You might need to generate your own certificates for these endpoints to use. You might also need to distribute trust bundles for these certificates to external clients that need to authenticate their connection into the cluster. Again, consider issuing these certificates from your PKI. You can use [Certificate Management for Azure Arc](/azure/azure-arc/kubernetes/cert-manager-overview), based on the open-source [cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) projects, to manage these certificates and distribute trust across namespaces within the clusters. Here's [how this request works](/azure/azure-arc/kubernetes/cert-manager-ingress) for Gateway API and NGINX ingress controllers. Or, if you only need a few certificates, you might create and rotate them manually in Azure Key Vault and sync them as Kubernetes secrets by using the [Azure Key Vault Secret Store extension for Kubernetes](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE").
 
-Once generated, these certificates and accompanying private keys are stored as secrets in the Kubernetes secret store. See this [guidance on protecting these secrets](conceptual-secure-your-data.md#protect-the-kubernetes-secrets-store). 
+Once generated, these certificates and accompanying private keys are stored as secrets in the Kubernetes secret store. See this [guidance on protecting these secrets](conceptual-secure-your-data.md#protect-the-kubernetes-secrets-store).
 
 You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the "default" service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules [for your services](conceptual-secure-your-workloads.md#configure-authorization-rules-for-accessing-workloadsservices) or [for your API server using Kubernetes RBAC](conceptual-secure-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac).
 
@@ -86,15 +86,15 @@ You may also use service account tokens for TLS, instead of certificates for mTL
 
 Aim to control traffic between your workloads by setting authorization rules about which workloads can send requests to your Kubernetes workloads (services).
 
-If you’re using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/), it can issue identity credentials to each workload automatically. You can then use these identities in [configuring authorization policies](https://istio.io/latest/docs/reference/config/security/authorization-policy/) that help restrict access to Kubernetes services only to the specified calling workloads. 
+If you use a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/), it automatically issues identity credentials to each workload. Use these identities when [configuring authorization policies](https://istio.io/latest/docs/reference/config/security/authorization-policy/) to restrict access to Kubernetes services so only specified calling workloads can access them.
 
-Alternatively, if you’re not using a service mesh, you can configure your own credentials (certificates or service account tokens) and deploy a dedicated authorization engine such as [OPA](https://www.openpolicyagent.org/). OPA can be used with its [Envoy plug-in](https://www.openpolicyagent.org/docs/latest/envoy-introduction/) to avoid the need to modify your workloads.
+If you don't use a service mesh, configure your own credentials, such as certificates or service account tokens, and deploy a dedicated authorization engine like [OPA](https://www.openpolicyagent.org/). By using OPA with its [Envoy plug-in](https://www.openpolicyagent.org/docs/envoy/), you don't need to modify your workloads.
 
 Also [consider enforcing traffic restrictions at the network layer](conceptual-secure-your-network.md#configure-kubernetes-network-policy-to-control-access-tofrom-your-workloads).
 
 ## Maintain and monitor workload telemetry and plug it into a security management (SIEM) solution
 
-Consider sending your workload telemetry to a monitoring solution, where it can be analyzed for potential security issues (as well was for product performance or debugging issues). 
+Send your workload telemetry to a monitoring solution where it can be analyzed for potential security issues, as well as product performance or debugging issues.
 
 You can deploy [Azure Monitor extensions](/azure/azure-monitor/containers/kubernetes-monitoring-enable) to your edge cluster. These extensions automatically send Prometheus metrics to your Azure Monitor workspace and/or Container Insights logs to your Log Analytics workspace. Prometheus metrics can be collected and analyzed at scale with Grafana dashboards. Container Insights logs and performance data can be collected and analyzed using prebuilt views and workbooks. As you set up this analysis, be aware of the [best practices for monitoring clusters](/azure/azure-monitor/containers/best-practices-containers) that cover reliability, cost optimization, performance, and security.
 

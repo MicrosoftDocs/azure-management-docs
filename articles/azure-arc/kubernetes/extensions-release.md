@@ -1,10 +1,11 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 06/02/2026
+ms.date: 08/28/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
   - build-2025
+
 # Customer intent: "As a Kubernetes administrator, I want to explore and install available extensions for Azure Arc-enabled Kubernetes clusters, so that I can enhance cluster management and implement necessary functionalities efficiently."
 ---
 
@@ -31,7 +32,7 @@ The Argo CD (GitOps) extension (preview) lets you use your Git repository as the
 For more information, see [Tutorial: Deploy applications using GitOps with Argo CD](tutorial-use-gitops-argocd.md).
 
 > [!IMPORTANT]
-> Argo CD (GitOps) is currently in public preview.
+> Argo CD (GitOps) is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
@@ -52,7 +53,7 @@ With the integration between Azure API Management and Azure Arc on Kubernetes, y
 For more information, see [Deploy an Azure API Management gateway on Azure Arc (preview)](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc).
 
 > [!IMPORTANT]
-> The API Management self-hosted gateway on Azure Arc is currently in public preview.
+> The API Management self-hosted gateway on Azure Arc is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
@@ -87,14 +88,9 @@ For more information, see [Azure Arc-enabled Open Service Mesh](tutorial-arc-ena
 
 - **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, and OpenShift Container Platform.
 
-Use this extension to provision an Azure Container Apps Connected Environment and Container Apps on top of an Azure Arc-enabled Kubernetes cluster.  This extension also enables the [Logic Apps Hybrid Deployment Model (public preview)](/azure/logic-apps/set-up-standard-workflows-hybrid-deployment-requirements).
+Use this extension to provision an Azure Container Apps connected environment and container apps on top of an Azure Arc-enabled Kubernetes cluster. This extension also enables the [Logic Apps Hybrid Deployment Model](/azure/logic-apps/set-up-standard-workflows-hybrid-deployment-requirements).
 
-For more information, see [Azure Container Apps on Azure Arc (Preview)](/azure/container-apps/azure-arc-overview).
-
-> [!IMPORTANT]
-> Azure Container Apps on Azure Arc is currently in public preview. Review the [public preview limitations](/azure/container-apps/azure-arc-overview#public-preview-limitations) before you deploy this extension.  This extension can't be installed on the same cluster as the Application services extension. If installed, the Application services extension must be removed before deploying this extension.
->
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+For more information, see [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-overview).
 
 ## Azure Container Storage enabled by Azure Arc
 
@@ -113,7 +109,7 @@ Event Grid is an event broker you can use to integrate workloads that use event-
 For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](/azure/event-grid/kubernetes/overview).
 
 > [!IMPORTANT]
-> Event Grid on Kubernetes with Azure Arc is currently in public preview.
+> Event Grid on Kubernetes with Azure Arc is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -139,12 +135,12 @@ For more information, see [Use the Azure Key Vault Secrets Provider extension to
 
 - **Supported distributions**: AKS (Azure Kubernetes Service), K3s (Lightweight Kubernetes), OCP (Red Hat OpenShift), EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), and Rancher (RKE).
 
-Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet.
+Azure Kubernetes Fleet Manager is a comprehensive multicluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Azure Arc-enabled Kubernetes cluster to a Fleet.
 
 For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/concepts-fleet), and its [multicluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management), and supported [member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 > [!IMPORTANT]
-> Azure Kubernetes Fleet Manager's extension for Arc-enabled Kubernetes clusters is in public preview. See **[important considerations for Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations)** for a complete list of requirements and considerations.
+> Azure Kubernetes Fleet Manager's extension for Azure Arc-enabled Kubernetes clusters is in preview. For more information, see [important considerations for Azure Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations) for a complete list of requirements and considerations.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -152,7 +148,7 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 
 The following Kubernetes distributions **have been validated in conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
 
-- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Redhat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Red Hat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
@@ -270,11 +266,11 @@ Security improvements.
  - Policy Image: v1.15.4
  - Gatekeeper Image: v3.21.0-1
 
-## Cert-manager for Arc-enabled Kubernetes (preview)
+## Certificate Management for Azure Arc
 
-The cert-manager for Azure Arc-enabled Kubernetes (preview) extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and multi-cloud environments, providing secure communication and compliance with organizational policies.
+The Certificate Management for Azure Arc extension provides a unified, automated solution for managing TLS certificates and trust bundles in Arc-connected Kubernetes clusters. It simplifies the process of issuing, renewing, and managing certificates across hybrid and edge environments, providing secure communication and compliance with organizational policies.
 
-For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md)
+For more information, see [What is Certificate Management for Azure Arc?](cert-manager-overview.md)
 
 ## Connected registry on Azure Arc-enabled Kubernetes
 
@@ -312,7 +308,7 @@ The [most recent version of the Flux v2 extension](flux-gitops-release-notes.md)
 
 - **Supported distributions**: AKS enabled by Azure Arc
 
-Foundry Local on Azure Local brings AI inference to Azure Local environments. Deploy and run AI models on an Arc-enabled Kubernetes cluster by using Kubernetes-native operations. Foundry Local supports generative AI inference (chat and text generation) through OpenAI-compatible request patterns, predictive AI inference, and multi-model serving. It supports CPU- and GPU-backed deployments and secures endpoints by using API keys, Microsoft Entra ID authentication, and TLS.
+Foundry Local on Azure Local brings AI inference to Azure Local environments. Deploy and run AI models on an Azure Arc-enabled Kubernetes cluster by using Kubernetes-native operations. Foundry Local supports generative AI inference (chat and text generation) through OpenAI-compatible request patterns, predictive AI inference, and multi-model serving. It supports CPU- and GPU-backed deployments and secures endpoints by using API keys, Microsoft Entra ID authentication, and TLS.
 
 You can also deploy Foundry Local on Azure Local in disconnected environments. In disconnected mode, model artifacts are pulled from a local container registry, certificate management uses locally installed cert-manager and trust-manager, and authentication integrates with local Active Directory infrastructure.
 
@@ -327,7 +323,7 @@ For more information, see [What is Foundry Local on Azure Local?](/azure/azure-s
 For more information, see [What is the Inspektor Gadget extension for AKS?](/azure/aks/inspektor-gadget-overview)
 
 > [!IMPORTANT]
-> Inspektor Gadget for Azure Arc-enabled Kubernetes is currently in public preview.
+> Inspektor Gadget for Azure Arc-enabled Kubernetes is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -340,7 +336,7 @@ Microsoft Defender for Containers is the cloud-native solution that is used to s
 For more information, see [Enable Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
 
 > [!IMPORTANT]
-> Defender for Containers support for Azure Arc-enabled Kubernetes clusters is currently in public preview.
+> Defender for Containers support for Azure Arc-enabled Kubernetes clusters is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 

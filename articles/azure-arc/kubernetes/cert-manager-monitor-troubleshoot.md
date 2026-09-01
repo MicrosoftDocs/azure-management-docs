@@ -1,18 +1,19 @@
 ---
-title: "Monitor and troubleshoot cert-manager for Arc-enabled Kubernetes (preview)"
-ms.date: 04/13/2026
+title: "Monitor and troubleshoot Certificate Management for Azure Arc-enabled Kubernetes"
+ms.date: 08/28/2026
 ms.topic: how-to
-description: "Learn how to monitor the health of the cert-manager for Azure Arc-enabled Kubernetes (preview) extension and troubleshoot problems."
-# Customer intent: As a customer using cert-manager for Azure Arc-enabled Kubernetes, I want to understand how to monitor the health of the extension and troubleshoot problems, so that my workloads remain secure and compliant.
+description: "Learn how to monitor the health of the Certificate Management for Azure Arc extension and troubleshoot problems."
+
+# Customer intent: As a customer using Certificate Management for Azure Arc-enabled Kubernetes, I want to understand how to monitor the health of the extension and troubleshoot problems related to certificates lifecycle, so that my workloads remain secure and compliant.
 ---
 
-# Monitor and troubleshoot cert-manager for Azure Arc-enabled Kubernetes (preview)
+# Monitor and troubleshoot Certificate Management for Azure Arc-enabled Kubernetes
 
-This article explains how to monitor extension status, check the health of cert-manager and trust-manager, and troubleshoot problems related to cert-manager for Azure Arc-enabled Kubernetes (preview).
+This article explains how to monitor extension status, check the health of cert-manager and trust-manager, and troubleshoot problems related to Certificate Management for Azure Arc extension.
 
 ## Confirm successful extension installation
 
-In the Azure portal, go to your Arc-enabled Kubernetes cluster. In the service menu, under **Settings**, select **Extensions**. You should see the cert-manager for Azure Arc-enabled Kubernetes extension, using either the name you provided or **microsoft.certmanagement**.
+In the Azure portal, go to your Arc-enabled Kubernetes cluster. In the service menu, under **Settings**, select **Extensions**. You should see the Certificate Management for Azure Arc extension, using either the name you provided or **microsoft.certmanagement**.
 
 Ensure that the extension status is **Installed** or **Succeeded**. If the status shows **Failed**, try reinstalling the extension, or check your Azure Activity log for possible errors.
 
@@ -95,7 +96,7 @@ If trust bundles aren't propagating as expected, check the following:
 - Run `kubectl logs deploy/trust-manager -n cert-manager` to check the trust-manager logs for messages regarding bundles.
 - Verify if the ConfigMap in target namespaces is created or updated. If not, trust-manager might not have the necessary permissions. By default, the extension sets up the needed ClusterRole that allows trust-manager to create ConfigMaps cluster-wide, but it's possible that the permissions were modified.
 
-## Resolve common errors in cert-manager for Azure Arc-enabled Kubernetes (preview)
+## Resolve common errors in Certificate Management for Azure Arc-enabled Kubernetes
 
 ### Error due to resource already existing in your cluster
 
@@ -115,7 +116,7 @@ If you see "Issuer is not ready (Error: secret not found)", fix the `spec.ca.sec
 
 ### ACME HTTP-01 challenge failed
 
-If you use an ACME issuer and see am HTTP-01 challenge failed error, ensure that an appropriate ingress controller is in place and that the HTTP challenge ingress can be reached. Normally, cert-manager creates a temporary ingress to serve a token at `http://<yourdomain>/.well-known/acme-challenge/`. If that doesn't happen, or if your cluster can't be reached, the challenge fails. If so, consider using DNS-01 challenge (requires access to DNS provider API) or use another method.
+If you use an ACME issuer and see an HTTP-01 challenge failed error, ensure that an appropriate ingress controller is in place and that the HTTP challenge ingress can be reached. Normally, cert-manager creates a temporary ingress to serve a token at `http://<yourdomain>/.well-known/acme-challenge/`. If that doesn't happen, or if your cluster can't be reached, the challenge fails. If so, consider using DNS-01 challenge (requires access to DNS provider API) or use another method.
 
 To check challenge resource status, run `kubectl describe challenge <name>` to look for reasons, such as a 404 error on the URL or DNS TXT not found.
 
@@ -123,4 +124,4 @@ To check challenge resource status, run `kubectl describe challenge <name>` to l
 
 Kubernetes updates volume mounts with new secret content, but some processes might not notice. For example, Java applications might need a restart or a specific signal to reload keystores.
 
-To resolve this, update your application so that it's prepared to reload certificates if necessary. Some applications use sidecars or cert-reloader processes for this purpose.
+To resolve this problem, update your application so that it's prepared to reload certificates if necessary. Some applications use sidecars or cert-reloader processes for this purpose.
