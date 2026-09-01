@@ -178,7 +178,7 @@
       - name: Azure Arc-enabled Machine Learning
         displayName: ML, AzureML, compute
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
-  - name: Cert-manager for Arc-enabled Kubernetes (preview)
+  - name: Certificate Management for Azure Arc
     items:
     - name: Overview
       href: cert-manager-overview.md

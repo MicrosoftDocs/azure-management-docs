@@ -1,9 +1,10 @@
 ---
 title: Use the Azure Key Vault Secret Store extension to sync secrets to the Kubernetes secret store for offline access in Azure Arc-enabled Kubernetes clusters
 description: The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access.
-ms.date: 09/26/2024
+ms.date: 08/28/2026
 ms.topic: how-to
 ms.custom: references_regions, ignite-2024
+
 # Customer intent: "As a Kubernetes administrator, I want to automatically synchronize secrets from Azure Key Vault to my Kubernetes cluster for offline access, so that I can manage critical business assets securely, even in semi-disconnected environments."
 ---
 
@@ -22,7 +23,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 - An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (this guide assumes a [K3s](https://k3s.io/) cluster, and provides guidance on how to Arc-enable it.) or a Microsoft-managed [AKS enabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
-- [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md) extension is required to support TLS for intracluster log communication. The examples later in this guide direct you through installation. For more information, see [What is cert-manager for Azure Arc-enabled Kubernetes?](cert-manager-overview.md).
+- [Certificate Management for Azure Arc](cert-manager-overview.md) extension is required to support TLS for intracluster log communication. The following examples direct you through installation. For more information, see [What is Certificate Management for Azure Arc?](cert-manager-overview.md)
 
 Install the [Azure CLI](/cli/azure/install-azure-cli-linux?pivots=apt) and sign in, if you haven't already:
 
@@ -118,7 +119,7 @@ Use the [How-to guide](/azure/aks/hybrid/workload-identity) to activate workload
 
 Return to these steps after the initial activation. There's no need to complete the remainder of that guide.
 
-Validate the activation has been successful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+Validate the activation by getting the cluster's service account issuer URL. You use this URL in the following steps:
 
    ```console
    export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
@@ -127,11 +128,11 @@ Validate the activation has been successful by obtaining the cluster's service a
 
 ### [AKS Edge Essentials](#tab/aks-ee)
 
-Use the [How-to guide](/azure/aks/hybrid/aks-edge-workload-identity) to activate workload identity federation on AKS Edge Essentials. 
+Use the [How-to guide](/azure/aks/hybrid/aks-edge-workload-identity) to activate workload identity federation on AKS Edge Essentials.
 
 Return to these steps after the initial activation. There's no need to complete the remainder of that guide.
 
-Validate the activation has been successful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+Validate the activation by getting the cluster's service account issuer URL. You use this URL in the following steps:
 
    ```console
    export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
@@ -218,9 +219,9 @@ Create a Kubernetes service account for the workload that needs access to secret
 
 The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
-The [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md) extension is also required for secure communication of logs between cluster services and must be installed before the SSE extension. The cert-manager extension installs both cert-manager and trust-manager.
+You must also install the [Certificate Management for Azure Arc](cert-manager-overview.md) extension for secure communication of logs between cluster services. Install it before the SSE extension. The Certificate Management for Azure Arc extension installs both cert-manager and trust-manager.
 
-1. Install the cert-manager for Arc-enabled Kubernetes extension.
+1. Install the Certificate Management for Azure Arc extension.
 
    ```azurecli
    az k8s-extension create \
@@ -231,7 +232,7 @@ The [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md
      --extension-type "microsoft.certmanagement"
    ```
 
-   For more information, see [Deploy cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-deploy.md).
+   For more information, see [Deploy Certificate Management for Azure Arc](cert-manager-deploy.md).
 
 1. Install the SSE to your Arc-enabled cluster using the following command:
 
@@ -249,7 +250,7 @@ The [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md
 
 ## Configure the SSE
 
-Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/). 
+Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/).
 
 
 SSE can be configured with a single simplified resource designed to suit most use cases, or the SSE internal components can be configured directly via two resources. The simplified configuration is a preview feature and may benefit from minor changes in upcoming versions. The direct configuration style will remain available for all deployments.
@@ -320,7 +321,7 @@ spec:
           objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to synchronize.
           objectType: secret
           objectVersionHistory: 2                        # [optional] The number of versions to synchronize, starting from latest.
-    tenantID: "${AZURE_TENANT_ID}"                       # The tenant ID of the Key Vault 
+    tenantID: "${AZURE_TENANT_ID}"                       # The tenant ID of the Key Vault
 EOF
 ```
 
@@ -330,7 +331,7 @@ See [SecretProviderClass reference](secret-store-extension-reference.md#secretpr
 
 A `SecretSync` object is needed to define how items fetched by the `SecretsProviderClass` are stored in Kubernetes. Kubernetes secrets are key-value maps, just like `ConfigMaps`, and the `SecretSync` object tells SSE how to map items defined in the linked `SecretsProviderClass` into keys in the Kubernetes secret. SSE will create a Kubernetes secret with the same name as the `SecretSync` that describes it.
 
-Create one `SecretSync` object YAML file for each kubernetes secret, following this template. The Kubernetes namespace should match the namespace of the `SecretProviderClass`.
+Create one `SecretSync` object YAML file for each Kubernetes secret, following this template. The Kubernetes namespace should match the namespace of the `SecretProviderClass`.
 
 ```yaml
 cat <<EOF > ss.yaml
@@ -405,7 +406,7 @@ See the [troubleshooting guide](secret-store-extension-troubleshooting.md) for a
 To remove the SSE and stop synchronizing secrets, uninstall it with the `az k8s-extension delete` command:
 
 ```console
-az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters    
+az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters
 ```
 
 Uninstalling the extension doesn't remove secrets or CRDs (`AKVSync`, `SecretSync`, or `SecretProviderClass`) from the cluster. These objects must be removed directly with `kubectl`.

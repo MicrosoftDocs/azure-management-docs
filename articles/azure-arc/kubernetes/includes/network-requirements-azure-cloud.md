@@ -1,7 +1,8 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 06/11/2026
+ms.date: 08/28/2026
+
 # Customer intent: As a network administrator, I want to configure outbound network access for Azure Arc agents in the Azure public cloud, so that they can connect to necessary endpoints for proper functionality and management of connected clusters.
 ---
 
@@ -24,7 +25,7 @@ ms.date: 06/11/2026
 | `*.arc.azure.net`| Required to manage connected clusters in Azure portal. |
 |`https://<region>.obo.arc.azure.com:8084/` | Required when [Cluster Connect](../cluster-connect.md) and [Azure RBAC](../azure-rbac.md) is configured. |
 | `https://linuxgeneva-microsoft.azurecr.io` | Required if using [Azure Arc-enabled Kubernetes extensions](../conceptual-extensions.md). |
-| `gcs.prod.monitoring.core.windows.net`<br>`*.prod.microsoftmetrics.com`<br>`*.prod.hot.ingest.monitor.core.windows.net`<br>`*.prod.warm.ingest.monitor.core.windows.net` | Required if using [Azure IoT Operations](/azure/iot-operations/overview-iot-operations), [Azure Key Vault Secret Store extension (SSE)](../secret-store-extension.md), or [cert-manager for Azure Arc-enabled Kubernetes](../cert-manager-overview.md).|
+| `gcs.prod.monitoring.core.windows.net`<br>`*.prod.microsoftmetrics.com`<br>`*.prod.hot.ingest.monitor.core.windows.net`<br>`*.prod.warm.ingest.monitor.core.windows.net` | Required if using [Azure IoT Operations](/azure/iot-operations/overview-iot-operations), [Azure Key Vault Secret Store extension (SSE)](../secret-store-extension.md), or [Certificate Management for edge workloads connected with Azure Arc](../cert-manager-overview.md).|
 
 To translate the `*.servicebus.windows.net` wildcard into specific endpoints, use the command:
 

@@ -1,9 +1,10 @@
 ---
 title: Migrate from the Azure Key Vault Secrets Provider extension to the Secret Store extension
 description: Plan and perform a migration from the Azure Key Vault Secrets Provider extension to the Secret Store extension on an Azure Arc-enabled Kubernetes cluster.
-ms.date: 06/09/2026
+ms.date: 08/28/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
+
 # Customer intent: As a cluster administrator running the Azure Key Vault Secrets Provider extension on an Azure Arc-enabled Kubernetes cluster, I want to understand what migrating to the Secret Store extension involves and how to do it safely, so that I can decide whether to migrate and execute the migration with confidence.
 ---
 
@@ -27,7 +28,7 @@ Migration from the Azure Key Vault Secrets Provider extension to the SSE require
 ### Prerequisites
 
 - **Activate workload identity federation on the cluster.** SSE authenticates to Azure with short-lived service-account tokens issued by the cluster and validated by Microsoft Entra ID. See [Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes](workload-identity.md) for third-party Arc clusters, or the dedicated guides for [AKS enabled by Azure Arc](/azure/aks/hybrid/workload-identity) or [AKS Edge Essentials](/azure/aks/hybrid/aks-edge-workload-identity). This step requires Kubernetes 1.27 or later and the ability to set `service-account-issuer` on the kube-apiserver.
-- **Install the [cert-manager for Arc-enabled Kubernetes (preview)](cert-manager-overview.md) extension.** SSE uses it for intracluster TLS. Check its own [supported regions](cert-manager-overview.md#regional-support) and [validated distributions](cert-manager-overview.md#validated-arc-enabled-kubernetes-distributions). If the cluster already runs open source cert-manager or trust-manager, [uninstall them first](cert-manager-deploy.md#migrate-from-open-source-cert-manager-and-trust-manager).
+- **Install the [Certificate Management for Azure Arc](cert-manager-overview.md) extension.** SSE uses it for intracluster TLS. Check its own [supported regions](cert-manager-overview.md#regional-support) and [validated distributions](cert-manager-overview.md#validated-arc-enabled-kubernetes-distributions). If the cluster already runs open source cert-manager or trust-manager, [uninstall them first](cert-manager-deploy.md#migrate-from-open-source-cert-manager-and-trust-manager).
 - **Plan one service account and one federated credential per consuming namespace.** SSE is namespace-scoped. A single managed identity supports a [maximum of 20 federated credentials](/entra/workload-id/workload-identity-federation-considerations#general-federated-identity-credential-considerations); use additional managed identities for clusters with more consuming namespaces.
 - **Plan a switch-over window.** Migration uninstalls the Azure Key Vault Secrets Provider extension before installing SSE. The two aren't supported side by side in the same cluster, so secret-consuming workloads are disrupted during the switchover.
 
@@ -42,7 +43,7 @@ Migration from the Azure Key Vault Secrets Provider extension to the SSE require
 The migration workflow is in six stages:
 
 1. **Inventory.** Capture the existing `SecretProviderClass` resources and the workloads that mount them.
-2. **Prepare SSE prerequisites.** Create a managed identity and enable workload identity on the cluster. Install the cert-manager for Arc-enabled Kubernetes extension.
+2. **Prepare SSE prerequisites.** Create a managed identity and enable workload identity on the cluster. Install the Certificate Management for Azure Arc extension.
 3. **Switch over.** Uninstall the Azure Key Vault Secrets Provider extension and install the SSE.
 4. **Translate configuration.** Edit each existing `SecretProviderClass` for SSE and add a `SecretSync` for every Kubernetes Secret you want SSE to produce, or replace both with `AKVSync` (preview).
 5. **Update workloads.** Re-point workloads at the SSE-produced Kubernetes Secret. Workloads that already read the AKV SPE–synced Secret may need no change; CSI-mounting workloads switch to a Secret-backed volume or `secretKeyRef`.
@@ -213,7 +214,7 @@ az identity federated-credential create \
   --audience api://AzureADTokenExchange
 ```
 
-### Install the cert-manager for Arc-enabled Kubernetes extension
+### Install the Certificate Management for Azure Arc extension
 
 SSE uses [cert-manager](cert-manager-overview.md) and trust-manager for intracluster TLS between its components.
 
@@ -228,7 +229,7 @@ az k8s-extension create \
   --extension-type "microsoft.certmanagement"
 ```
 
-After installation, [confirm the cert-manager components are running](cert-manager-monitor-troubleshoot.md#confirm-that-pods-and-components-are-running) before continuing. For more detail, see [Deploy cert-manager for Arc-enabled Kubernetes](cert-manager-deploy.md).
+After installation, [confirm the cert-manager components are running](cert-manager-monitor-troubleshoot.md#confirm-that-pods-and-components-are-running) before continuing. For more detail, see [Deploy Certificate Management for Azure Arc](cert-manager-deploy.md).
 
 ## Stage 3: Switch to the Secret Store extension
 
