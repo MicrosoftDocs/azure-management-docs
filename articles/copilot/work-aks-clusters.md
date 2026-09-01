@@ -172,7 +172,7 @@ You can say **"Help me deploy Periscope to my AKS cluster."** If you're not alre
 
 ### Deploy AKS CanIPull and troubleshoot image pull issues
 
-The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic utility designed to perform health checks on AKS clusters, specifically focusing on image pulls. This tool helps ensure that your AKS clusters can successfully pull container images from container registries, a crucial task for the smooth operation of your applications.
+The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic utility designed to perform health checks on AKS clusters, specifically focusing on image pulls. CanIPull helps diagnose image-pull authentication issues by checking DNS resolution and the initial ACR token exchange from a selected AKS node. It doesn’t perform an end-to-end image pull.
 
 #### CanIPull sample prompts
 
