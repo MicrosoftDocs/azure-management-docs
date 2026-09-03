@@ -19,6 +19,9 @@ Configuring IP access rules is available in the **Premium** container registry s
 
 Each registry supports a maximum of 200 IP access rules.
 
+The maximum of 200 public IP network rules per registry is a non-adjustable Azure Container Registry service limit. Azure Support can't increase this limit.
+
+
 [!INCLUDE [container-registry-scanning-limitation](./includes/container-registry-scanning-limitation.md)]
 
 ## Access from selected public network - CLI
