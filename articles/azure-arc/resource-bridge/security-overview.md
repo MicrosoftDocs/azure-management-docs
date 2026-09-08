@@ -1,8 +1,8 @@
 ---
-title: Azure Arc resource bridge security overview 
+title: Azure Arc resource bridge security overview
 description: Understand security configuration and considerations for Azure Arc resource bridge.
 ms.topic: concept-article
-ms.date: 09/20/2024
+ms.date: 09/09/2026
 # Customer intent: As a security administrator, I want to understand the security configuration and considerations for Azure Arc resource bridge, so that I can ensure compliance and protect sensitive data before deploying it in my enterprise environment.
 ---
 
@@ -22,7 +22,7 @@ Users and applications who are granted the [Contributor](/azure/role-based-acces
 
 ## Data residency
 
-Azure Arc resource bridge follows data residency regulations specific to each region. If applicable, data is backed up in a secondary pair region in accordance with data residency regulations. Otherwise, data resides only in that specific region. Data isn't stored or processed across different geographies.
+Azure Arc resource bridge follows data residency regulations specific to each region. If applicable, the service backs up data in a secondary pair region in accordance with data residency regulations. Otherwise, data resides only in that specific region. The service doesn't store or process data across different geographies.
 
 ## Data encryption at rest
 
@@ -30,12 +30,12 @@ Azure Arc resource bridge stores resource information in Azure Cosmos DB. As des
 
 ## Security audit logs
 
-The [activity log](/azure/azure-monitor/essentials/activity-log-insights) is an Azure platform log that provides insight into subscription-level events. This includes tracking when the Azure Arc resource bridge is modified, deleted, or added.
+The [activity log](/azure/azure-monitor/essentials/activity-log-insights) is an Azure platform log that provides insight into subscription-level events. This insight includes tracking when the Azure Arc resource bridge is modified, deleted, or added.
 
 You can [view the activity log](/azure/azure-monitor/essentials/activity-log-insights#view-the-activity-log) in the Azure portal or retrieve entries with PowerShell and Azure CLI. By default, activity log events are [retained for 90 days](/azure/azure-monitor/essentials/activity-log-insights#retention-period) and then deleted.
 
 ## Next steps
 
-- Understand [system requirements](system-requirements.md) and [network requirements](network-requirements.md) for Azure Arc resource bridge.
-- Review the [Azure Arc resource bridge overview](overview.md) to understand more about features and benefits.
+- Understand the [system requirements](system-requirements.md) and [network requirements](network-requirements.md) for Azure Arc resource bridge.
+- Review the [Azure Arc resource bridge overview](overview.md) to learn more about features and benefits.
 - Learn more about [Azure Arc](../overview.md).
