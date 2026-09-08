@@ -100,7 +100,7 @@ Starting with version 1.57 of the Azure Connected Machine agent, you can configu
 
 When you enable automatic upgrades, your agent is scheduled to be upgraded within one version of the latest release. To maintain stability across regions and minimize disruptions, upgrades are rolled out across batches, with all upgrades initiated during off-peak hours. If the upgrade doesn't complete successfully, the agent reattempts the automatic upgrade periodically until it succeeds.
 
-Before enabling automatic agent upgrades, ensure that the following operating-system requirements are met:
+Before enabling automatic agent upgrades, ensure that the following requirements are met:
 
 - **Windows**: Automatic agent upgrades aren't supported when the PowerShell execution policy is set to Restricted. Set the execution policy to RemoteSigned to ensure compatibility with automatic upgrades.
 
