@@ -31,7 +31,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 
 > [!IMPORTANT] 
 > During resource bridge recovery, virtual machine management operations in Azure are unavailable. These operations resume after the recovery is complete.
-> Arc-enabled machines with the Azure Connected Machine agent continue to appear as **Connected** because the agent communicates directly with Azure. However, this status does not indicate that cloud-based management operations are available during recovery.
+> Arc-enabled machines with the Azure Connected Machine agent continue to appear as **Connected** because the agent communicates directly with Azure. However, Azure management operations remain unavailable until recovery is complete and the resource bridge status returns to **Running**.
 
 To deploy the new resource bridge, follow these steps:
 
