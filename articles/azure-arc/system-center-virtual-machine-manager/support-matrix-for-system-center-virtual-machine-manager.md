@@ -104,7 +104,7 @@ For VMs managed by other SCVMM versions, [install Arc agents through the script]
 
 ### Supported operating systems
 
-Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2025, 2022, 2019, 2016, 2012R2, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
+Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2025, 2022, 2019, 2016, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
 
 ### Software requirements
 

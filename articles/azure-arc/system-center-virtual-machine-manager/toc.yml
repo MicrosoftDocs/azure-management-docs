@@ -88,8 +88,6 @@
     items:
     - name: Windows Server Management
       href: ../servers/windows-server-management-overview.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
-    - name: Procure and deliver Extended Security Updates
-      href: deliver-esus-for-system-center-virtual-machine-manager-vms.md
   - name: Administer
     items:
     - name: Upgrade Azure Arc resource bridge

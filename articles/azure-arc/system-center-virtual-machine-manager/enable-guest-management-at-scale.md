@@ -45,8 +45,8 @@ Before you install Arc agents at scale for SCVMM VMs, ensure the following condi
 This method works only if you're running: 
 
 - SCVMM 2025, 2022 UR1 or later, and 2019 UR5 or later versions of SCVMM server or console.
-- VMs running Windows Server 2012 R2, 2016, 2019, 2022, 2025, Windows 10, and Windows 11.
-- For other SCVMM versions, Linux VMs, or Windows VMs running WS 2012 or earlier versions, install Arc agents through the script or out-of-band methods. 
+- VMs running Windows Server 2016, 2019, 2022, 2025, Windows 10, and Windows 11.
+- For other SCVMM versions and Linux VMs, install Arc agents through the script or out-of-band methods. 
 
 An administrator can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
 
