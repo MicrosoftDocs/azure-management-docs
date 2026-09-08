@@ -29,6 +29,10 @@ The connection between on-premises infrastructure and Azure can be lost. Any ope
 
 In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same properties as the current resource bridge. This disaster recovery procedure requires deletion of the existing Arc resource bridge VM in vCenter and the resource bridge Azure resource in the Azure portal. Then you can modify the onboarding script to use for disaster recovery and attempt the recovery. The recovery creates a new resource bridge Azure resource with the same ARM ID, vCenter resource, and custom location.
 
+> [!IMPORTANT]
+> During resource bridge recovery, virtual machine management operations in Azure are unavailable. For example, you can't change a virtual machine's CPU or memory allocation, or update its disks or network configuration.
+> > Arc-enabled machines with the Azure Connected Machine agent continue to appear as **Connected** because the agent communicates directly with Azure. However, Azure management operations on these machines remain unavailable until recovery is complete and the resource bridge status returns to **Running**.
+
 To deploy the new resource bridge, follow these steps:
 
 1. In the Azure portal, find and copy the following properties from the resources related to your resource bridge: 
@@ -73,7 +77,7 @@ To deploy the new resource bridge, follow these steps:
    ./resource-bridge-onboarding-script.ps1 -force
     ```
     
-1. Once the script successfully finishes, the new resource bridge is deployed and reconnected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources are manageable in Azure again.
+1. When the script finishes successfully, you deploy the new resource bridge and reconnect it to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources and the associated Arc-enabled virtual machines are manageable in Azure when the resource bridge is online and its status is Running.
 
 ## Next steps
 

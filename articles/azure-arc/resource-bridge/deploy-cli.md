@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge deployment command overview
 description: Learn about the Azure CLI commands that can be used to manage your Azure Arc resource bridge deployment.
-ms.date: 04/23/2025
+ms.date: 09/09/2026
 ms.topic: overview
 ms.custom: devx-track-azurecli
 # Customer intent: As a cloud engineer, I want to use Azure CLI commands for deploying and managing the Arc resource bridge, so that I can integrate on-premises resources with Azure for better hybrid cloud management.
@@ -66,13 +66,15 @@ While the Arc resource bridge is connecting the ARM resource to the on-premises 
 
 `ProvisioningState` may be `Creating`, `Created`, `Failed`, `Deleting`, or `Succeeded`.
 
-`Status` transitions between `WaitingForHeartbeat` -> `Validating` ->  `Connecting` -> `Connected` -> `Running`.
+`Status` transitions through the following stages, in order:
 
-- `WaitingForHeartbeat`: Azure is waiting to receive a signal from the appliance VM.
-- `Validating`: Appliance VM is checking Azure services for connectivity and serviceability.
-- `Connecting`: Appliance VM is syncing on-premises resources to Azure.
-- `Connected`: Appliance VM completed sync of on-premises resources to Azure.
-- `Running`: Appliance VM and Azure have completed hybrid sync, and Arc resource bridge is now operational.
+| Status | Meaning |
+|---|---|
+| `WaitingForHeartbeat` | Azure is waiting to receive a signal from the appliance VM. |
+| `Validating` | Appliance VM is checking Azure services for connectivity and serviceability. |
+| `Connecting` | Appliance VM is syncing on-premises resources to Azure. |
+| `Connected` | Appliance VM completed sync of on-premises resources to Azure. |
+| `Running` | Appliance VM and Azure have completed hybrid sync, and Arc resource bridge is now operational. |
 
 Successful Arc resource bridge creation results in `ProvisioningState = Succeeded` and `Status = Running`.
 
