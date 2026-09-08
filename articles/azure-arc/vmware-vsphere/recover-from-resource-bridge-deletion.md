@@ -77,7 +77,7 @@ To deploy the new resource bridge, follow these steps:
    ./resource-bridge-onboarding-script.ps1 -force
     ```
     
-1. Once the script successfully finishes, the new resource bridge is deployed and reconnected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources and the associated Arc-enabled virtual machines are manageable in Azure once the resource bridge is online and its status is Running.
+1. When the script finishes successfully, you deploy the new resource bridge and reconnect it to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources and the associated Arc-enabled virtual machines are manageable in Azure when the resource bridge is online and its status is Running.
 
 ## Next steps
 
