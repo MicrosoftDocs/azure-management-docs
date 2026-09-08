@@ -31,8 +31,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 
 > [!IMPORTANT]
 > During resource bridge recovery, virtual machine management operations in Azure are unavailable. For example, you can't change a virtual machine's CPU or memory allocation, or update its disks or network configuration.
->
-> Arc-enabled machines with the Azure Connected Machine agent continue to appear as **Connected** because the agent communicates directly with Azure. However, Azure management operations remain unavailable until recovery is complete and the resource bridge status returns to **Running**.
+> > Arc-enabled machines with the Azure Connected Machine agent continue to appear as **Connected** because the agent communicates directly with Azure. However, Azure management operations on these machines remain unavailable until recovery is complete and the resource bridge status returns to **Running**.
 
 To deploy the new resource bridge, follow these steps:
 
@@ -78,7 +77,7 @@ To deploy the new resource bridge, follow these steps:
    ./resource-bridge-onboarding-script.ps1 -force
     ```
     
-1. Once the script successfully finishes, the new resource bridge is deployed and reconnected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources are manageable in Azure again.
+1. Once the script successfully finishes, the new resource bridge is deployed and reconnected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources and the associated Arc-enabled virtual machines are manageable in Azure once the resource bridge is online and its status is Running.
 
 ## Next steps
 
