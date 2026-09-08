@@ -15,7 +15,7 @@ ms.custom:
 This approach lets you manage all workload orchestration resources — environment, hierarchy, targets, schemas and templates — in the form of Bicep templates in a Git [repository](https://github.com/Azure/workload-orchestration-quickstart), and trigger single-click solution deployments. Leveraging preconfigured GitHub Actions and [Azure Deployment Stacks](/azure/azure-resource-manager/bicep/deployment-stacks), you can validate changes through pull requests, deploy resources automatically on merge, and protect Git-managed resources from out-of-band changes. This is ideal for teams that want to apply GitOps practices with PR-based review and automated deployment.
 
 > [!TIP]
-> For alternative setup methods, see [Set up using CLI](set-up-workload-orchestration.md) for a manual controlled approach, or [Set up using scripts](onboarding-scripts.md) for scripted automation.
+> For alternative setup methods, see [Onboard using Azure portal](set-up-workload-orchestration-azure-portal.md) for a guided experience, [Set up using CLI](set-up-workload-orchestration.md) for manual control, or [Onboard using scripts](onboarding-scripts.md) for scripted automation.
 
 
 ## How it works
