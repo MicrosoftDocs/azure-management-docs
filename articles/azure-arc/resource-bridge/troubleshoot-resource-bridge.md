@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Arc resource bridge issues
 description: This article tells how to troubleshoot and resolve issues with the Azure Arc resource bridge when trying to deploy or connect to the service.
-ms.date: 08/25/2026
+ms.date: 09/09/2026
 ms.topic: troubleshooting
 
 # Customer intent: As a cloud administrator, I want to troubleshoot Azure Arc resource bridge deployment issues, so that I can ensure stable and reliable connectivity to my on-premises infrastructure.
@@ -9,7 +9,7 @@ ms.topic: troubleshooting
 
 # Troubleshoot Azure Arc resource bridge issues
 
-This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md).
+This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a _management_ Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md).
 
 > [!NOTE]
 > - For **Arc-enabled System Center Virtual Machine Manager**, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
@@ -204,7 +204,7 @@ Context timed out during phase 'WaitingForCluster'
 
 This error indicates that the deployment process stalled while waiting for the Kubernetes cluster components to initialize. It typically occurs during the early stages of appliance setup and is often linked to environmental or configuration issues.
 
-The most frequent cause is the appliance VM's inability to reach your private cloud endpoint—such as the vSphere or vCenter server. Ensure you meet all networking requirements and try the deployment again.
+The most frequent cause is the appliance VM's inability to reach your private cloud endpoint, such as the vSphere or vCenter server. Ensure you meet all networking requirements and try the deployment again.
 
 
 ### 403 Forbidden or 404 Site Not Found
@@ -457,7 +457,7 @@ To resolve the error, one or more network misconfigurations might need to be add
 
   If a request times out, the management machine can't communicate with the IPs. This issue might be caused by a closed port, network misconfiguration, or firewall block. Work with your network administrator to allow communication between the management machine to the Control Plane IP and Appliance VM IP.
 
-- Appliance VM IP and Control Plane IP must be able to communicate with the management machine and vCenter endpoint (for VMware) or MOC cloud agent endpoint (for Azure Local). Work with your network administrator to ensure the network is configured to permit this communication. You might need to add a firewall rule to open port 443 from the Appliance VM IP and Control Plane IP to vCenter, or to open port 65000 and 55000 for Azure Local MOC cloud agent. For more infromation, see [network requirements for Azure Local](/azure/azure-local/manage/azure-arc-vm-management-prerequisites#network-port-requirements) and [VMware](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md) for Arc resource bridge.
+- Appliance VM IP and Control Plane IP must be able to communicate with the management machine and vCenter endpoint (for VMware) or MOC cloud agent endpoint (for Azure Local). Work with your network administrator to ensure the network is configured to permit this communication. You might need to add a firewall rule to open port 443 from the Appliance VM IP and Control Plane IP to vCenter, or to open port 65000 and 55000 for Azure Local MOC cloud agent. For more information, see [network requirements for Azure Local](/azure/azure-local/manage/azure-arc-vm-management-prerequisites#network-port-requirements) and [VMware](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md) for Arc resource bridge.
 
 - Appliance VM IP and Control Plane IP need internet access to [these required URLs](#not-able-to-connect-to-url). Azure Local requires [additional URLs](/azure/azure-local/manage/azure-arc-vm-management-prerequisites). Work with your network administrator to ensure that the IPs can access the required URLs.
 
@@ -654,7 +654,7 @@ To fix these errors, use one of these options:
 
 - Move the appliance VM back to its original location and ensure RBAC credentials are updated for the location change.
 - Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring you recreate the original location path.
-- For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
+- For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/recover-from-resource-bridge-deletion.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
 
 ### vCenter account is locked out - Update credentials
 
@@ -788,7 +788,7 @@ When you deploy Arc resource bridge, you provide vCenter credentials. Arc resour
 
 ## Next steps
 
-[Understand recovery operations for resource bridge in Azure Arc-enabled VMware vSphere disaster scenarios](../vmware-vsphere/disaster-recovery.md)
+[Understand recovery operations for resource bridge in Azure Arc-enabled VMware vSphere disaster scenarios](../vmware-vsphere/recover-from-resource-bridge-deletion.md)
 
 If you don't see your problem here or you can't resolve your issue, try one of the following channels for support:
 
