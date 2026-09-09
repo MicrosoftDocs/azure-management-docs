@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 08/25/2026
+ms.date: 09/09/2026
 
 # Customer intent: "As a network administrator, I want to configure outbound and inbound connectivity settings for the appliance VM and management machine, so that I can ensure smooth communication and functionality for the Arc resource bridge."
 ---
