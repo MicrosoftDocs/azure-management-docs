@@ -62,6 +62,8 @@ The Troubleshooting Agent is available to you at **no additional cost**. There i
 
 1. Describe the issue you're experiencing. Include the affected resource or subscription if it isn't already clear from your current context.
 
+  :::image type="content" source="media/troubleshooting-agent/troubleshooting-agent.png" alt-text="Screenshot of Troubleshooting Agent.":::
+
 ### Start troubleshooting from Support + Troubleshooting
 
 1. Go to the resource you want to troubleshoot.
@@ -69,6 +71,8 @@ The Troubleshooting Agent is available to you at **no additional cost**. There i
 1. Select **?**, and then select **Support + Troubleshooting**.
 
 1. Start a guided troubleshooting session and describe your issue.
+
+  :::image type="content" source="media/troubleshooting-agent/support-troubleshooting-resource.png" alt-text="Screenshot of Troubleshooting Agent on the right side of Azure portal." lightbox="media/troubleshooting-agent/support-troubleshooting-resource.png":::
 
 If the Troubleshooting Agent can't resolve your issue, it can create a support request for you. It gathers all the necessary details to help Microsoft Support assist you more effectively. You can review and confirm the details before submitting the request.
 
@@ -108,7 +112,7 @@ The following examples show prompts you can use with the Troubleshooting Agent. 
 - “My Azure Local cluster update is failing. Can you help me identify the root cause?”
 - "Why is my Azure Local cluster creation failing with an unauthorized error?”
 
-### Entra
+### Microsoft Entra
 
 - "My user is unable to sign in to an application."
 - "Help me troubleshoot why my user didn't receive an MFA prompt."
