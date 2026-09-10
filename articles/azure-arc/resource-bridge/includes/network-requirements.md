@@ -89,16 +89,16 @@ The following firewall and proxy URLs must be on the allow list in order to enab
 | Azure Resource Manager | 443 | `login.microsoftonline.us` <br> `<region>.login.microsoftonline.us` | Management machine & Appliance VM IPs need outbound connection. | Required to update ARM tokens. <br> <br> Region example: `usgovvirginia.login.microsoftonline.us` |
 | Resource bridge (appliance) Dataplane service | 443 | `*.dp.prod.appliances.azure.us` | Appliance VMs IP need outbound connection. | Communicate with resource provider in Azure. |
 | Resource bridge (appliance) container image download | 443 | `*.blob.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Required to pull container images. |
-| Managed Identity | 443 | `gbl.his.arc.azure.us`, `usgv.his.arc.azure.us` (not region dependent) | Appliance VM IPs need outbound connection. | Required to pull system-assigned Managed Identity certificates. |
+| Managed Identity | 443 | `gbl.his.arc.azure.us`, `usgv.his.arc.azure.us` | Appliance VM IPs need outbound connection. | Required to pull system-assigned Managed Identity certificates. |
 | Microsoft events data service | 443 | `v20.events.data.microsoft.com` | Appliance VM IPs need outbound connection. | Send diagnostic data from Windows. |
 | Log collection for Arc Resource Bridge | 443 | `linuxgeneva-microsoft.azurecr.io` | Appliance VM IPs need outbound connection. | Push logs for Appliance managed components. |
 | Microsoft open source packages manager | 443 | `packages.microsoft.com` | Appliance VM IPs need outbound connection. | Download Linux installation package. |
 | Custom Location | 443 | `sts.windows.net` | Appliance VM IPs need outbound connection. | Required for Custom Location. |
 | Azure Arc | 443 | `guestnotificationservice.azure.us` | Appliance VM IPs need outbound connection. | Required for Azure Arc. |
-| Diagnostic data | 443 | `gcs.prod.monitoring.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
-| Diagnostic data | 443 | `*.prod.microsoftmetrics.com` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
+| Diagnostic data | 443 | `gcs.monitoring.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
+| Diagnostic data | 443 | `*.prod.microsoftmetrics.com` <br> `*.prod.microsoftmetrics.us`| Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 | Diagnostic data | 443 | `*.prod.hot.ingest.monitor.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
-| Diagnostic data | 443 | `*.prod.warm.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
+| Diagnostic data | 443 | `*.prod.warm.ingest.monitor.core.usgovcloudapi.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 | Azure service bus | 443 | `*.servicebus.usgovcloudapi.net` | Appliance VM IPs need outbound connection. Outbound WebSocket (wss://) connections must be allowed. | Enables secure control channel. |
 | Azure CLI | 443 | `*.blob.core.usgovcloudapi.net` | Management machine needs outbound connection. | Download Azure CLI Installer. |
 | Arc Extension | 443 | `*.web.core.usgovcloudapi.net` | Management machine needs outbound connection. | Download Arc resource bridge extension. |
