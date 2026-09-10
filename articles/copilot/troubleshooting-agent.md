@@ -24,6 +24,8 @@ Alongside the Troubleshooting Agent, deep troubleshooting capabilities for Azure
 
 The Troubleshooting Agent moves from a customer's description of a problem to a grounded, resource-aware investigation in a few stages: it scopes the issue, gathers diagnostic evidence, determines a root cause when one is available, and then either resolves the issue directly or hands the customer off to the right next step.
 
+:::image type="content" source="media/troubleshooting-agent/workflow-diagram.png" alt-text="Screenshot of Troubleshooting Agent workflow.":::
+
 1. **Trigger** — The customer describes a problem in natural language, in the context of a resource, resource group, or subscription.
 
 1. **Scope** — The agent identifies the affected resource, the product area, and the specific problem, asking clarifying questions only when needed.
