@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Connected Machine agent connection issues
 description: This article tells how to troubleshoot and resolve issues with the Connected Machine agent that arise with Azure Arc-enabled servers when trying to connect to the service.
-ms.date: 05/14/2025
+ms.date: 09/11/2026
 ms.topic: troubleshooting
 ms.custom:
   - build-2025
@@ -115,7 +115,7 @@ When you run Azure Connected Machine Agent (azcmagent) commands, the process mig
 | **41** | Failed to obtain access token. | Ensure `az login` is successful and MSI is enabled if applicable. |
 | **42** | Failed to create Azure resource. | Check subscription permissions and resource quota. |
 | **43** | Failed to delete Azure resource. | Verify resource exists and you have delete permissions. |
-| **44** | Resource already exists. | Use `azcmagent reconnect` instead of `connect`. |
+| **44** | Resource already exists. | Specify a different name for the `--resource-name` parameter, or delete the existing Azure Arc-enabled server resource and rerun `azcmagent connect`. |
 | **45** | Failed to update reconnect public key. | Retry after verifying network connectivity and agent logs. |
 | **61** | Agent communication error. | Restart the himds service. |
 | **62** | Failed to connect machine to Azure. | Check network connectivity and subscription permissions. |
@@ -123,7 +123,7 @@ When you run Azure Connected Machine Agent (azcmagent) commands, the process mig
 | **64** | Unable to obtain establish communication with HIMDS server. | Restart `himds` service and verify logs. |
 | **65** | Unable to obtain agent metadata. | Check agent logs and retry. |
 | **66** | Unable to obtain agent status. | Restart agent and verify connectivity. |
-| **67** | Machine already connected. | Use `azcmagent reconnect` instead of `connect`. |
+| **67** | Machine already connected. | Run `azcmagent disconnect` to remove the current connection, then rerun `azcmagent connect`. |
 | **68** | Unable to fetch subscription ID. | Validate Azure credentials and retry. |
 | **69** | Error updating local configuration. | Check file permissions and retry. |
 | **70** | Unable to obtain local configuration. | Verify config file integrity and retry. |
