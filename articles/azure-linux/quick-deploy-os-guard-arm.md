@@ -10,6 +10,8 @@ ms.date: 04/28/2026
 
 # Quickstart: Deploy an Azure Linux with OS Guard (preview) Azure Kubernetes Service (AKS) cluster using an Azure Resource Manager (ARM) template
 
+[!INCLUDE [os-guard-preview-retirement](includes/os-guard-preview-retirement.md)]
+
 [!INCLUDE [os-guard replacement](./includes/os-guard-replacement.md)]
 
 Get started with the Azure Linux Container Host by using an Azure Resource Manager (ARM) template to deploy an Azure Linux with OS Guard (preview) cluster on AKS.

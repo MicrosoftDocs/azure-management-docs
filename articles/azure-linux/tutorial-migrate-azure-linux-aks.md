@@ -14,6 +14,8 @@ ms.date: 04/28/2026
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321934)
 
+[!INCLUDE [os-guard-preview-retirement](includes/os-guard-preview-retirement.md)]
+
 In this tutorial, part _three of five_, you migrate your existing nodes to Azure Linux. You can migrate your existing nodes to Azure Linux using one of the following methods:
 
 - Remove existing node pools and add new Azure Linux node pools.
