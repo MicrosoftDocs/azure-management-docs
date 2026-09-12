@@ -11,6 +11,8 @@ ms.date: 04/28/2026
 
 # Tutorial: Migrate nodes to Azure Linux with OS Guard (preview)
 
+[!INCLUDE [os-guard-preview-retirement](includes/os-guard-preview-retirement.md)]
+
 [!INCLUDE [os-guard replacement](./includes/os-guard-replacement.md)]
 
 > [!div class="nextstepaction"]

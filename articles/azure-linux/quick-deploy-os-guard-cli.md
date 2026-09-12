@@ -20,6 +20,8 @@ In this quickstart, you learn how to:
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303214)
 
+[!INCLUDE [os-guard-preview-retirement](includes/os-guard-preview-retirement.md)]
+
 [!INCLUDE [os-guard replacement](./includes/os-guard-replacement.md)]
 
 ## Prerequisites
