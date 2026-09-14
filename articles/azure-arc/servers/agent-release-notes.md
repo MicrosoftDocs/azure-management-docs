@@ -23,6 +23,39 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
+## Version 1.68 - September 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnectedMachineAgent.msi) or [Linux](manage-agent#install-a-specific-version-of-the-agent).
+
+| Feature | Windows | Linux | Change Type |
+| --- | --- | --- | --- |
+| **Guest Config** | **1.29.118.0** | **1.26.118.0** |  |
+| Updated bundled PowerShell from version 7.4.15 to 7.4.19. | ✓ | ✓ | Improvement |
+| Updated OpenSSL from version 3.6.3 to 3.6.4. | ✓ | ✓ | Improvement |
+| Strengthened extension package integrity validation. | ✓ |  | Security Fix |
+| Fixed PowerShell-based policy execution failures caused by Mark-of-the-Web metadata. | ✓ |  | Bug Fix |
+| Prevented security baseline settings intended for one Linux distribution from being applied to another distribution. |  | ✓ | Bug Fix |
+| Improved extension package download performance. | ✓ | ✓ | Improvement |
+| Improved the error shown when `Microsoft.CPlat.Core.LinuxPatchExtension` installation fails because sudo requirements aren't met. |  | ✓ | Improvement |
+| Improved error messages for extension state file write failures. | ✓ | ✓ | Improvement |
+| **Azcmagent** | **1.68** | **1.68** |  |
+| Updated Configuration UI subscription queries to follow pagination and return all inherited subscriptions. | ✓ |  | Bug Fix |
+| Ensured local configuration is updated before automatic upgrade logs are sent to HIS. | ✓ | ✓ | Bug Fix |
+| Redacted inline credentials in proxy URLs from `azcmagent show` output. | ✓ | ✓ | Security Fix |
+| Restricted `localconfig.json` permissions so the file is no longer world-readable. |  | ✓ | Security Fix |
+| Fixed cloud provider detection. | ✓ | ✓ | Bug Fix |
+| Fixed AZGCA notification pipeline lifecycle and response handling. | ✓ | ✓ | Bug Fix |
+| Sanitized untrusted AZGCA notification fields to prevent log injection. | ✓ | ✓ | Security Fix |
+| Added port protection for HIMDS. | ✓ | ✓ | Bug Fix |
+| Protected HIMDS against impersonation. | ✓ | ✓ | Bug Fix |
+| Prevented AZGCA guest-connect ingress from relaying to the agent's reserved ports. | ✓ | ✓ | Security Fix |
+| Replaced deferred Arc Proxy HIMDS certificate checks with TLS handshake verification. | ✓ | ✓ | Security Fix |
+| Added an on-disk agent metadata fallback when HIMDS IPC is unavailable during upgrades and downgrades. | ✓ | ✓ | Bug Fix |
+| Windows Filtering Platform port protection might not be available for containers. To install the agent without port protection, set `SKIPWFP` to `1`. | ✓ |  | Bug Fix |
+| Force-replaced unversioned agent scripts during MSI major upgrades. | ✓ |  | Bug Fix |
+| Built Linux Go binaries as static position-independent executables (PIE) to support address space layout randomization (ASLR). |  | ✓ | Security Fix |
+| Prevented denial-of-service attacks caused by unconditional token invalidation during `CancelChange` operations. | ✓ | ✓ | Security Fix |
+
 ## Version 1.67 - August 2026
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
@@ -36,7 +69,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnect
 |Added support for Azure Local environments using the new Azure.Local cloud name.|✓|✓|Improvement|
 |Improved reliability of Azure Local environment detection.|✓||Improvement|
 |Improved baseline customization pre-installation support for PowerShell script and module files.|✓|✓|Improvement|
-| **Azcmagent** | **1.67.03504.3207** | **1.67.03504.1320** ||
+| **Azcmagent** | **1.67** | **1.67** ||
 |Added retry logic for gateway configuration and heartbeat request failures.|✓|✓|Improvement|
 |Restricted download directory permissions to prevent unauthorized access.|✓|✓|Security Fix|
 |Required SecureChannel for InitChangeReq and CancelChange operations.|✓|✓|Security Fix|
