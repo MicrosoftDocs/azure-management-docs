@@ -46,8 +46,8 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Fixed cloud provider detection. | ✓ | ✓ | Bug Fix |
 | Fixed AZGCA notification pipeline lifecycle and response handling. | ✓ | ✓ | Bug Fix |
 | Sanitized untrusted AZGCA notification fields to prevent log injection. | ✓ | ✓ | Security Fix |
-| Added port protection for HIMDS. | ✓ | ✓ | Bug Fix |
-| Protected HIMDS against impersonation. | ✓ | ✓ | Bug Fix |
+| Added port protection for HIMDS. | ✓ | ✓ | Security Fix |
+| Protected HIMDS against impersonation. | ✓ | ✓ | Security Fix |
 | Prevented AZGCA guest-connect ingress from relaying to the agent's reserved ports. | ✓ | ✓ | Security Fix |
 | Replaced deferred Arc Proxy HIMDS certificate checks with TLS handshake verification. | ✓ | ✓ | Security Fix |
 | Added an on-disk agent metadata fallback when HIMDS IPC is unavailable during upgrades and downgrades. | ✓ | ✓ | Bug Fix |
