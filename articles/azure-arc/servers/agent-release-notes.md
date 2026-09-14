@@ -46,12 +46,11 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Fixed cloud provider detection. | ✓ | ✓ | Bug Fix |
 | Fixed AZGCA notification pipeline lifecycle and response handling. | ✓ | ✓ | Bug Fix |
 | Sanitized untrusted AZGCA notification fields to prevent log injection. | ✓ | ✓ | Security Fix |
-| Added port protection for HIMDS. | ✓ | ✓ | Security Fix |
 | Protected HIMDS against impersonation. | ✓ | ✓ | Security Fix |
 | Prevented AZGCA guest-connect ingress from relaying to the agent's reserved ports. | ✓ | ✓ | Security Fix |
 | Replaced deferred Arc Proxy HIMDS certificate checks with TLS handshake verification. | ✓ | ✓ | Security Fix |
 | Added an on-disk agent metadata fallback when HIMDS IPC is unavailable during upgrades and downgrades. | ✓ | ✓ | Bug Fix |
-| Enabled HIMDS port protection using Windows Filtering Platform (WFP) on Windows and socket binding on Linux. If WFP is unavailable or its configuration fails, specify `SKIPWFP=1` when running the Windows installer to bypass WFP setup. | ✓ | ✓ | Security Fix |
+| Added HIMDS port protection using Windows Filtering Platform (WFP) on Windows and socket binding on Linux. If WFP is unavailable or its configuration fails, specify `SKIPWFP=1` when running the Windows installer to bypass WFP setup.| ✓ | ✓ | Security Fix |
 | Force-replaced unversioned agent scripts during MSI major upgrades. | ✓ |  | Bug Fix |
 | Built Linux Go binaries as static position-independent executables (PIE) to support address space layout randomization (ASLR). |  | ✓ | Security Fix |
 | Prevented denial-of-service attacks caused by unconditional token invalidation during `CancelChange` operations. | ✓ | ✓ | Security Fix |
