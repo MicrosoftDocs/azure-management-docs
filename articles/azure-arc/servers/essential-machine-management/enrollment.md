@@ -56,9 +56,9 @@ The following features are part of the essentials tier.
 #### Essentials tier pricing
 
 - For Azure Virtual Machines only, capabilities enabled by Essential Machine Management are provided at no extra charge.
-- For Azure Arc-enabled servers with Windows Server Software Assurance, Windows Server PayGo, and Windows Server Extended Security Updates, capabilities enabled by Essential Machine Management are provided at no additional charge.
+- For Azure Arc-enabled servers with Windows Server Software Assurance, Windows Server PayGo, and Windows Server Extended Security Updates, you get capabilities enabled by Essential Machine Management at no extra charge.
 
-- For Azure Arc-enabled servers enrolled in Microsoft Defender for Server Plan 2, capabilities enabled by Essential Machine Management are provided at no additional charge.
+- For Azure Arc-enabled servers enrolled in Microsoft Defender for Server Plan 2, you get capabilities enabled by Essential Machine Management at no extra charge.
 
 - For all other Azure Arc-enabled servers, Essential Machine Management is priced at $9.01 per server per month. To view the pricing information, see the [Azure Arc pricing page](https://azure.microsoft.com/pricing/details/azure-arc/core-control-plane/).
 
