@@ -55,11 +55,15 @@ The following features are part of the essentials tier.
 
 #### Essentials tier pricing
 
-> [!NOTE]
-> During the initial phase of public preview, the Essential Machine Management features are provided at no extra charge. Logs generated from Change Tracking and Inventory incur a separate charge for both Azure Virtual Machines and Arc-enabled servers.
 - For Azure Virtual Machines only, capabilities enabled by Essential Machine Management are provided at no extra charge.
-- For Azure Arc-enabled servers with Windows Server Software Assurance, Windows Server PayGo, and Windows Server Extended Security Updates, capabilities enabled by Essential Machine Management are provided at no extra charge.
-- For all other Arc-enabled servers, Essential Machine Management is priced at $9 per server per month once billing is enabled at a future date. An announcement and documentation update will be posted when billing begins.
+- For Azure Arc-enabled servers with Windows Server Software Assurance, Windows Server PayGo, and Windows Server Extended Security Updates, capabilities enabled by Essential Machine Management are provided at no additional charge.
+
+- For Azure Arc-enabled servers enrolled in Microsoft Defender for Server Plan 2, capabilities enabled by Essential Machine Management are provided at no additional charge.
+
+- For all other Azure Arc-enabled servers, Essential Machine Management is priced at $9.01 per server per month. To view the pricing information, see the [Azure Arc pricing page](https://azure.microsoft.com/pricing/details/azure-arc/core-control-plane/).
+
+> [!NOTE]
+> Log ingestion rates are charged separately. To view the pricing information, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor).
 
 ### Security tier
 
