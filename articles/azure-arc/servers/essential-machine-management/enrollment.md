@@ -60,7 +60,7 @@ The following features are part of the essentials tier.
 
 - For Azure Arc-enabled servers enrolled in Microsoft Defender for Server Plan 2, you get capabilities enabled by Essential Machine Management at no extra charge.
 
-- For all other Azure Arc-enabled servers, Essential Machine Management is priced at $9.01 per server per month. To view the pricing information, see the [Azure Arc pricing page](https://azure.microsoft.com/pricing/details/azure-arc/core-control-plane/).
+- For all other Azure Arc-enabled servers, Essential Machine Management costs $9.01 per server per month. To view the pricing information, see the [Azure Arc pricing page](https://azure.microsoft.com/pricing/details/azure-arc/core-control-plane/).
 
 > [!NOTE]
 > Log ingestion rates are charged separately. To view the pricing information, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor).
