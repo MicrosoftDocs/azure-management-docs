@@ -36,7 +36,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Fixed PowerShell-based policy execution failures caused by Mark-of-the-Web metadata. | ✓ |  | Bug Fix |
 | Prevented security baseline settings intended for one Linux distribution from being applied to another distribution. |  | ✓ | Bug Fix |
 | Improved extension package download performance. | ✓ | ✓ | Improvement |
-| Improved the error shown when `Microsoft.CPlat.Core.LinuxPatchExtension` installation fails because sudo requirements aren't met. |  | ✓ | Improvement |
+| Improved the error shown when `Microsoft.CPlat.Core.LinuxPatchExtension` installation fails because sudo  requirements aren't met. |  | ✓ | Improvement |
 | Improved error messages for extension state file write failures. | ✓ | ✓ | Improvement |
 | **Azcmagent** | **1.68** | **1.68** |  |
 | Updated Configuration UI subscription queries to follow pagination and return all inherited subscriptions. | ✓ |  | Bug Fix |
@@ -51,7 +51,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Prevented AZGCA guest-connect ingress from relaying to the agent's reserved ports. | ✓ | ✓ | Security Fix |
 | Replaced deferred Arc Proxy HIMDS certificate checks with TLS handshake verification. | ✓ | ✓ | Security Fix |
 | Added an on-disk agent metadata fallback when HIMDS IPC is unavailable during upgrades and downgrades. | ✓ | ✓ | Bug Fix |
-| Windows Filtering Platform port protection might not be available for containers. To install the agent without port protection, set `SKIPWFP` to `1`. | ✓ |  | Bug Fix |
+| Enabled HIMDS port protection using Windows Filtering Platform (WFP) on Windows and socket binding on Linux. If WFP is unavailable or its configuration fails, specify `SKIPWFP=1` when running the Windows installer to bypass WFP setup. | ✓ | ✓ | Security Fix |
 | Force-replaced unversioned agent scripts during MSI major upgrades. | ✓ |  | Bug Fix |
 | Built Linux Go binaries as static position-independent executables (PIE) to support address space layout randomization (ASLR). |  | ✓ | Security Fix |
 | Prevented denial-of-service attacks caused by unconditional token invalidation during `CancelChange` operations. | ✓ | ✓ | Security Fix |
