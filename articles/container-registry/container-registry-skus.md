@@ -59,6 +59,8 @@ The following request rate limits are enforced for each SKU:
 | DataplaneWrite | Per identity per registry | 1,000 r/m | 2,000 r/m |
 | DataplaneDelete | Per registry | 1,000 r/m | 4,000 r/m |
 | DataplaneDelete | Per identity per registry | 500 r/m | 2,000 r/m |
+| MetadataRead | Per registry | 4,000 r/m | 8,000 r/m |
+| MetadataRead | Per identity per registry | 2,000 r/m | 4,000 r/m |
 | ListReferrers | Per registry | 500 r/m | 2,000 r/m |
 | ListReferrers | Per identity per registry | 250 r/m | 1,000 r/m |
 | OAuth | Per registry | 10,000 r/m | 20,000 r/m |
@@ -77,6 +79,8 @@ The following request rate limits are enforced for each SKU:
 #### Requests that count against multiple limits
 
 Some requests count against more than one operation category, and a request is throttled if *any* applicable limit is exceeded. For example, a request to list the referrers of a manifest is both a ListReferrers request and a DataplaneRead request, and it consumes capacity from both limits. If your registry has already exhausted its DataplaneRead limit, referrers requests are also throttled, even if the ListReferrers limit hasn't been reached. Likewise, a high rate of referrers requests reduces the DataplaneRead capacity that remains for other read operations, such as image pulls.
+
+Requests to list repositories, list tags for a repository, or list manifests for a repository count as both a MetadataRead request and a DataplaneRead request and consume capacity from both limits. 
 
 #### How rate limits are enforced
 
