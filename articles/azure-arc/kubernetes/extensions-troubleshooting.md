@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 09/16/2026
+ms.date: 09/17/2026
 ms.topic: how-to
 ms.custom:
   - devx-track-azurecli
@@ -147,10 +147,7 @@ Perhaps iptables or your kernel needs to be upgraded.
 
 This error occurs because installing the extension requires the `iptable_nat` module, but this module isn't automatically loaded in Oracle Linux (RHEL) 9.x distributions.
 
-To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you sign in to each node and manually add the `iptable_nat` module, retry the AMA installation.
-
-> [!NOTE]
-> Performing this step doesn't make the `iptables_nat` module persistent.
+To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you sign in to each node and manually add the `iptable_nat` module, retry the AMA installation. Performing this step doesn't make the `iptables_nat` module persistent.
 
 ## Azure Arc-enabled Open Service Mesh
 
@@ -207,12 +204,11 @@ kubectl get service -n arc-osm-system osm-controller
 If the OSM controller is healthy, you see output similar to the following example:
 
 ```output
-NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)              AGE
+NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORTS                AGE
 osm-controller   ClusterIP   10.0.31.254   <none>        15128/TCP,9092/TCP   67m
 ```
 
-> [!NOTE]
-> The actual value for `CLUSTER-IP` is different from this example. The values for `NAME` and `PORT(S)` match what is shown in this example.
+The actual value for `CLUSTER-IP` is different from this example. The values for `NAME` and `PORTS` match what is shown in this example.
 
 ### Check OSM controller endpoints
 
@@ -458,8 +454,7 @@ The following table lists `osm-mesh-config` resource values:
 
 ### Check namespaces
 
-> [!NOTE]
-> The `arc-osm-system` namespace never participates in a service mesh and is never labeled or annotated with the key/value pairs shown in this section.
+The `arc-osm-system` namespace never participates in a service mesh and is never labeled or annotated with the key/value pairs shown in this section.
 
 Use the `osm namespace add` command to join namespaces to a specific service mesh. When a Kubernetes namespace is part of the mesh, complete the following steps to confirm that requirements are met.
 
@@ -493,8 +488,7 @@ The following label must be present:
 
 If you aren't using the `osm` CLI, manually add these annotations to your namespaces. If a namespace isn't annotated with `"openservicemesh.io/sidecar-injection": "enabled"`, or if it isn't labeled with `"openservicemesh.io/monitored-by": "osm"`, the OSM injector doesn't add Envoy sidecars.
 
-> [!NOTE]
-> After `osm namespace add` is called, only *new* pods are injected with an Envoy sidecar. Existing pods must be restarted by using the `kubectl rollout restart deployment` command.
+After `osm namespace add` is called, only *new* pods are injected with an Envoy sidecar. Existing pods must be restarted by using the `kubectl rollout restart deployment` command.
 
 ### Verify the SMI CRDs
 
