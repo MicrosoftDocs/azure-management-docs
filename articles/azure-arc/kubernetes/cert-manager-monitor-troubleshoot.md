@@ -37,11 +37,7 @@ You might also see additional pods. For example, you might see output similar to
 ```output
 NAME                                      READY   STATUS    RESTARTS   AGE
 cert-manager-xxxxxxxx-xxxxx               2/2     Running   0          1m
-cert-manager-xxxxxxxx-xxxxx               2/2     Running   0          1m
 cert-manager-cainjector-xxxxxxxx-xxxxx    2/2     Running   0          1m
-cert-manager-cainjector-xxxxxxxx-xxxxx    2/2     Running   0          1m
-cert-manager-webhook-xxxxxxxx-xxxxx       2/2     Running   0          1m
-cert-manager-webhook-xxxxxxxx-xxxxx       2/2     Running   0          1m
 cert-manager-webhook-xxxxxxxx-xxxxx       2/2     Running   0          1m
 trust-manager-xxxxxxxx-xxxxx              2/2     Running   0          1m
 ```
@@ -54,6 +50,7 @@ If the cert-manager and trust-manager pods aren't running:
    ```bash
    kubectl logs deployment/cert-manager -n cert-manager
    kubectl logs deployment/cert-manager-webhook -n cert-manager
+   kubectl logs deployment/cert-manager-cainjector -n cert-manager
    kubectl logs deployment/trust-manager -n cert-manager
    ```
 
