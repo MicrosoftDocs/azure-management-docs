@@ -8,6 +8,11 @@ ms.topic: release-notes
 # Azure Key Vault Secret Store extension release notes
 Updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## September 2026
+### 1.5.5
+ - User-supplied pod labels and annotations now correctly render as strings in all cases.
+ - Updated dependencies with known vulnerabilities.
+
 ## August 2026
 ### 1.5.3
  - Patch release to update dependencies with known vulnerabilities.
