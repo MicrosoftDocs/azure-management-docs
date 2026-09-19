@@ -189,7 +189,7 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 #### 1.20.0
 
-Security Improvements.
+Security improvements.
 - Released: Sep 2026
 - Kubernetes: 1.30+
 - Gatekeeper: 3.23.1
