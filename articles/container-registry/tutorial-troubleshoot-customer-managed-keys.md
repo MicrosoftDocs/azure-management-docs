@@ -69,6 +69,29 @@ You have to reassign the identity back to registry explicitly.
 
 Deletion of the key vault, or the key, that's used to encrypt a registry with a customer-managed key makes the registry's content inaccessible. If [soft delete](/azure/key-vault/general/soft-delete-overview) is enabled in the key vault (the default option), you can recover a deleted vault or key vault object and resume registry operations.
 
+## Azure Policy remediation fails on a customer-managed key registry
+
+An Azure Policy assignment with a **Modify** effect (for example, the built-in policy [Configure container registries to disable ARM audience token authentication](container-registry-disable-authentication-as-arm.md)) can fail to automatically remediate a registry that's encrypted with a customer-managed key. The remediation task fails, and the registry stays noncompliant. The remediation deployment reports a `BadRequest` error similar to the following:
+
+```output
+Invalid encryption key vault property specified for registry <registry-name>. Property Identity and KeyIdentifier must be set when encryption is enabled. For more information on customer-managed keys, please visit 'https://aka.ms/acr/cmk'.
+```
+
+This is a known limitation: automatic **Modify** remediation isn't currently supported on registries that are encrypted with a customer-managed key. The remediation can't preserve the protected key vault settings when it resubmits the registry configuration, so the registry rejects the update with the preceding error and stays noncompliant.
+
+To bring the registry into compliance, set the property that the policy targets directly instead of relying on automatic remediation. Setting the property directly changes only that one setting and leaves the encryption configuration untouched, so the registry accepts the update. Use the command that corresponds to the policy you're remediating.
+
+For the **Configure container registries to disable ARM audience token authentication** policy, run:
+
+```azurecli
+az acr config authentication-as-arm update \
+    --registry myRegistry \
+    --resource-group myResourceGroup \
+    --status Disabled
+```
+
+After you run the command, trigger a policy compliance scan or wait for the next evaluation. The registry then reports as compliant. The automatic remediation task might still show a *Failed* status for registries that are encrypted with a customer-managed key. That status doesn't affect the registry's compliance after you set the property directly.
+
 ## Next steps
 
 For key vault deletion and recovery scenarios, see [Azure Key Vault recovery management with soft delete and purge protection](/azure/key-vault/general/key-vault-recovery).
