@@ -187,6 +187,13 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 ### Azure Policy Extension Release Notes
 
+#### 1.20.0
+
+Security improvements.
+- Released: Sep 2026
+- Kubernetes: 1.30+
+- Gatekeeper: 3.23.1
+
 #### 1.19.0
 
 Introducing Scoped Enforcement Action. Before this feature, the selected enforcement action applied to all enforcement points. Now, you can select which enforcement action happens in which enforcement points (`audit.gatekeeper.sh`, `validation.gatekeeper.sh`, `vap.k8s.io`).
