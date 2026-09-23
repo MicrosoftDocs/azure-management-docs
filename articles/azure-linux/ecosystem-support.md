@@ -46,7 +46,7 @@ The following partners have validated their solutions on Azure Linux. A partner 
 | [Upwind](#upwind) | Security | Validated ✅ | Validated ✅ | |
 | [Veeam](#veeam) | Storage | Validated ✅ | | |
 | [VictoriaMetrics](#victoriametrics) | DevOps, Observability, Storage, Monitoring | Validated ✅ | | |
-| [Wiz](#wiz) | Security | Validated ✅ | | |
+| [Wiz](#wiz) | Security | Validated ✅ | |  Validated ✅ |
 
 [!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
