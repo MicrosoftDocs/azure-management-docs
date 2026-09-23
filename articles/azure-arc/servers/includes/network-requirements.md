@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 04/01/2026
+ms.date: 09/23/2026
 # Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
@@ -52,8 +52,8 @@ This table lists the URLs that must be available to install and use the Connecte
 |---------|---------|--------|---------|
 |`download.microsoft.com`|Used to download the Windows installation package.|Only at installation time.<sup>1</sup> | Public. |
 |`packages.microsoft.com`|Used to download the Linux installation package.|Only at installation time.<sup>1</sup> | Public. |
-|`login.microsoftonline.com`|Microsoft Entra ID.|Always.| Public. |
-|`*.login.microsoft.com`|Microsoft Entra ID.|Always.| Public. |
+|`login.microsoftonline.com`|Global Microsoft Entra token endpoint used during onboarding and as a fallback when a regional endpoint can't be reached.|Always.| Public. |
+|`*.login.microsoft.com`|Regional Microsoft Entra token endpoints used during normal agent operation.|Always.| Public. |
 |`pas.windows.net`|Microsoft Entra ID.|Always.| Public. |
 |`management.azure.com`|Azure Resource Manager is used to create or delete the Azure Arc server resource.|Only when you connect or disconnect a server.| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured. |
 |`*.his.arc.azure.com`|Metadata and hybrid identity services.|Always.| Private. |
@@ -67,6 +67,9 @@ This table lists the URLs that must be available to install and use the Connecte
 | `https://<azure-keyvault-name>.vault.azure.net/`, `https://graph.microsoft.com/`<sup>2</sup>| For Microsoft Entra authentication with Azure Arc-enabled SQL Server. | If you use Azure Arc-enabled SQL Server. | Public. |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
 |`dls.microsoft.com`| Used by Azure Arc machines to perform license validation. | Required when you use [hotpatching](/azure/update-manager/manage-hot-patching-arc-machines), Windows Server Azure Benefits, or Windows Server pay-as-you-go billing on Azure Arc-enabled machines. | Public. |
+
+> [!IMPORTANT]
+> The Connected Machine agent normally acquires tokens from the regional Microsoft Entra endpoint returned by the Hybrid Identity Service, such as `eastus2.login.microsoft.com`. The global endpoint is a resiliency fallback and doesn't replace the requirement to allow the regional endpoint. If your firewall or proxy supports wildcard fully qualified domain name (FQDN) rules, allow `*.login.microsoft.com`. Otherwise, allow `<region>.login.microsoft.com` for every Azure region where your Arc-enabled servers are registered.
 
 <sup>1</sup> Access to this URL is also needed when updates are performed automatically.
 
@@ -172,5 +175,4 @@ Once installed a status update (up to 100 KB, but for most extensions much small
 Installed extensions have their own bandwidth requirements, which might also depend on how they have been configured. For more information, see the documentation for each extension.
 
 For Azure Monitor, see [Azure Monitor cost and usage](/azure/azure-monitor/fundamentals/cost-usage).
-
 

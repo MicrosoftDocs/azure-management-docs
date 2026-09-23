@@ -1,7 +1,7 @@
 ---
 title:  Manage and maintain Azure Connected Machine agent proxy settings
 description: This article describes proxy setting management tasks for the Azure Connected Machine agent.
-ms.date: 04/27/2026
+ms.date: 09/23/2026
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to manage the proxy settings of the Azure Connected Machine agent, so that I can ensure optimal connectivity of my Azure-connected servers.
 ---
@@ -59,6 +59,9 @@ Setting the proxy bypass value to `ArcData` only bypasses the traffic of the Azu
 | `AMA` | `global.handler.control.monitor.azure.com`</br>`<virtual-machine-region-name>.handler.control.monitor.azure.com`</br> `<log-analytics-workspace-id>.ods.opinsights.azure.com`</br>`management.azure.com`</br>`<virtual-machine-region-name>.monitoring.azure.com`</br>`<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |
 | `Arc` | `his.arc.azure.com`</br>`guestconfiguration.azure.com` |
 | `ArcData` <sup>1</sup> | `*.<region>.arcdataservices.com`|
+
+> [!NOTE]
+> The `AAD` bypass value applies only to the endpoints listed in the table. It doesn't bypass regional Microsoft Entra endpoints such as `<region>.login.microsoft.com`. When you configure a proxy server, make sure the proxy allows `*.login.microsoft.com` or each regional endpoint required by your Arc-enabled servers. For more information, see [Connected Machine agent network requirements](network-requirements.md).
 
 <sup>1</sup> The proxy bypass value `ArcData` is available starting with Azure Connected Machine agent version 1.36 and Azure Extension for SQL Server version 1.1.2504.99. Earlier versions include the SQL Server enabled by Azure Arc endpoints in the "Arc" proxy bypass value.
 
