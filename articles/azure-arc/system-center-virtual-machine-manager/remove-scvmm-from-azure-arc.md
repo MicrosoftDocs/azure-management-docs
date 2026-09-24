@@ -5,7 +5,7 @@ ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 # Customer intent: As an infrastructure admin, I want to cleanly remove my SCVMM environment from Azure Arc.
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Remove your SCVMM environment from Azure Arc
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article describes how to cleanly remove your SCVMM managed environment from Azure Arc-enabled SCVMM. For SCVMM environments that you no longer want to manage by using Azure Arc-enabled SCVMM, follow these steps:
 

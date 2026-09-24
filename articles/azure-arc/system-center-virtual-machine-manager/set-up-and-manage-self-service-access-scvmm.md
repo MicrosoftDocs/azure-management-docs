@@ -7,7 +7,7 @@ ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Set up and manage self-service access to SCVMM resources
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 After you enable your SCVMM resources in Azure, provide your teams with the required access for a self-service experience. This article describes how to use built-in roles to manage granular access to SCVMM resources through Azure Role-based Access Control (RBAC) and allow your teams to deploy and manage VMs.
 

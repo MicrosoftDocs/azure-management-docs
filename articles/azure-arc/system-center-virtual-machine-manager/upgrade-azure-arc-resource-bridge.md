@@ -7,7 +7,7 @@ ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Upgrade the Azure Arc resource bridge
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article describes how to upgrade the Azure Arc resource bridge associated with your SCVMM environment.
 

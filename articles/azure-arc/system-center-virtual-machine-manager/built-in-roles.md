@@ -8,7 +8,7 @@ author: Jeronika-MS
 manager: akashdubey
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.custom:
   - generated
   - build-2025
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Azure built-in roles for Azure Arc-enabled SCVMM
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article lists the Azure built-in roles and their permissions for Azure Arc-enabled SCVMM. 
 Azure Arc-enabled SCVMM has four built-in roles:
