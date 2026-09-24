@@ -6,6 +6,8 @@
     href: overview.md
   - name: Plan for deployment
     href: support-matrix-for-system-center-virtual-machine-manager.md
+  - name: Retirement guidance
+    href: transition-guidance.md
 - name: Quickstarts
   items:
   - name: Connect an SCVMM server to Azure Arc
