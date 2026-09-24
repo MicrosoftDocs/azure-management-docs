@@ -250,7 +250,8 @@ az acr replication update --registry myregistry --name eastus \
 ```
 
 > [!NOTE]
-> In Azure CLI 2.86.0 and later, `--region-endpoint-enabled` was renamed to `--global-endpoint-routing`. The old flag name is deprecated and is removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
+> - The `--name` parameter specifies the geo-replication resource name, not the Azure region. Use the **Name** value returned by `az acr replication list`.
+> - In Azure CLI 2.86.0 and later, `--region-endpoint-enabled` was renamed to `--global-endpoint-routing`. The old flag name is deprecated and is removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
 
 > [!IMPORTANT]
 > **Don't run a long-lived DNS cache for the global endpoint.** When you disable global endpoint routing for a geo-replica, ACR purges DNS records server-side on a fast path. However, if clients run their own long-lived DNS cache for the global endpoint, those clients continue resolving to the disabled geo-replica until the client cache expires. A long-lived cache makes `--global-endpoint-routing false` appear not to take effect from the client's perspective.
