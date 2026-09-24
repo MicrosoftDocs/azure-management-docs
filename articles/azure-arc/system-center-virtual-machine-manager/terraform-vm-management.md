@@ -2,7 +2,7 @@
 title: Terraform based SCVMM VM management
 description: This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Terraform based SCVMM VM management
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines by using the Terraform templates.
 

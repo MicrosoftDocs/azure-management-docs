@@ -7,7 +7,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Support matrix for Azure Arc-enabled System Center Virtual Machine Manager
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article documents the prerequisites and support requirements for using [Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)](overview.md) to manage your SCVMM managed on-premises VMs through Azure Arc.
 

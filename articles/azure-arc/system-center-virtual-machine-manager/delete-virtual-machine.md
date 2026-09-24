@@ -2,7 +2,7 @@
 title: Delete a SCVMM-managed VM in Azure through Azure Arc-enabled System Center Virtual Machine Manager
 description: In this article, you learn how to delete a SCVMM-managed virtual machine and its Azure resource through Azure Arc enabled SCVMM.
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
@@ -11,6 +11,8 @@ author: Jeronika-MS
 ---
 
 # Delete a SCVMM-managed VM in Azure through Azure Arc-enabled SCVMM
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 In this article, you learn how to delete a SCVMM-managed virtual machine and its Azure resource through Azure Arc-enabled SCVMM.
 

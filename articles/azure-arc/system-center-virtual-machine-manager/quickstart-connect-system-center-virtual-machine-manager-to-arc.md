@@ -7,7 +7,7 @@ author: Jeronika-MS
 ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.date: 03/02/2026
+ms.date: 09/24/2026
 ms.custom:
   - references_regions
   - build-2025
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Quickstart: Connect your System Center Virtual Machine Manager management server to Azure Arc
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 Before you can start using the Azure Arc-enabled SCVMM features, you need to connect your VMM management server to Azure Arc.
 
