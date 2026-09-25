@@ -57,15 +57,15 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 
 ### Known issues
 
-In rare cases, the new port-protection feature might cause some issues:
+In rare cases, the new port-protection feature might cause some issues.
 
 #### Windows
 
-If the internal Windows device path changes between reboots, the port-protection rules block the Arc agent. Running `azcmagent` commands returns this error:
+If the internal Windows device path can change between reboots, the port-protection rules can block the Arc agent. Running `azcmagent` commands will result in this error:
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
 
-The `himds.log` file also shows this error:
+The `himds.log` file will also show the following error:
 
 `Encountering an error listen tcp [::1]:40342: bind: An attempt was made to access a socket in a way forbidden by its access permissions.. Calling ListenAndServe for retrying`
 
