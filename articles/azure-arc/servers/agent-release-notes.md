@@ -65,7 +65,7 @@ Customers might encounter the following error when running azcmagent commands:
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
 
-To temporarily restore functionality, customers can roll back the agent or run the following repair command:
+To temporarily restore functionality, roll back the agent or run the following repair command:
 
 ```powershell
 Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureConnectedMachineAgent.msi" /qn /norestart /L*v "C:\Temp\himds-wfp-repair.log"'
