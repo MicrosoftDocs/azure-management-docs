@@ -78,8 +78,6 @@ Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureCon
 > This repair is temporary because the device path can change between reboots. The fix is planned for the azcmagent version 1.69 release.
 #### Linux
 
-In some configurations, systemd binds the IPv6 ports, but HIMDS doesn't listen on those ports.
-
 To work around this issue, edit the `himdsd.service` configuration by running:
 
 ```bash
