@@ -57,26 +57,28 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 
 ### Known issues
 
-#### Windows port protection logic bug
+In rare cases, the new port-protection feature might cause some issues:
 
-On Windows, some Arc-enabled servers might experience an issue with the port-protection rules where the internal Windows device path can change. When this change occurs, the existing rules can unintentionally block the agent itself.
+#### Windows
 
-You might encounter the following error when running azcmagent commands:
+If the internal Windows device path can change between reboots, the port-protection rules can block the Arc agent. Running `azcmagent` commands will result in this error:
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
+
+The `himds.log` file will also show the following error:
+
+`Encountering an error listen tcp [::1]:40342: bind: An attempt was made to access a socket in a way forbidden by its access permissions.. Calling ListenAndServe for retrying`
 
 To temporarily restore functionality, roll back the agent or run the following repair command:
 
 ```powershell
 Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureConnectedMachineAgent.msi" /qn /norestart /L*v "C:\Temp\himds-wfp-repair.log"'
 ```
-
 > [!NOTE]
 > This repair is temporary because the device path can change between reboots. The fix is planned for the azcmagent version 1.69 release.
+#### Linux
 
-#### IPv6 logic bug
-
-Some Arc-enabled servers might experience an IPv6 socket binding issue. In some configurations, systemd binds the IPv6 ports, but HIMDS doesn't listen on those ports.
+In some configurations, systemd binds the IPv6 ports, but HIMDS doesn't listen on those ports.
 
 To work around this issue, edit the `himdsd.service` configuration by running:
 
