@@ -61,7 +61,7 @@ In rare cases, the new port-protection feature might cause some issues:
 
 #### Windows
 
-If the internal Windows device path can change between reboots, the port-protection rules can block the Arc agent. Running `azcmagent` commands will result in this error:
+If the internal Windows device path changes between reboots, the port-protection rules block the Arc agent. Running `azcmagent` commands returns this error:
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
 
