@@ -78,7 +78,7 @@ Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureCon
 
 Some Arc-enabled servers might experience an IPv6 socket binding issue. In some configurations, systemd binds the IPv6 ports, but HIMDS doesn't listen on those ports.
 
-To work around this issue, edit the himdsd.service configuration by running:
+To work around this issue, edit the `himdsd.service` configuration by running:
 
 ```bash
 sudo systemctl edit --full himdsd.service
