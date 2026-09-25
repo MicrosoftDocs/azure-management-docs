@@ -214,7 +214,7 @@ The most frequent cause is the appliance VM's inability to reach your private cl
 Appliance Prepare timed out
 ```
 
-**Cause:** This is a generic error. It means that the overall appliance-image preparation workflow exceeded its time limit, but it does not identify the operation that timed out. The workflow downloads and validates the appliance OS image, then transfers and provisions it in the on-premises hypervisor or fabric image store. Delays or failures in download, validation, extraction, upload, image import, local storage, or hypervisor provisioning can produce this error.
+**Cause:** This is a generic error. It means that the overall appliance-image preparation workflow exceeded its time limit, and the error may be due to a problem. The workflow downloads and validates the appliance OS image, then transfers and provisions it in the on-premises hypervisor or fabric image store. Delays or failures in download, validation, extraction, upload, image import, local storage, or hypervisor provisioning can produce this error.
 
 **Resolution:**
 
