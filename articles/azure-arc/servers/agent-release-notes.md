@@ -65,7 +65,7 @@ If the internal Windows device path changes between reboots, the port-protection
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
 
-The `himds.log` file will also show the following error:
+The `himds.log` file also shows this error:
 
 `Encountering an error listen tcp [::1]:40342: bind: An attempt was made to access a socket in a way forbidden by its access permissions.. Calling ListenAndServe for retrying`
 
