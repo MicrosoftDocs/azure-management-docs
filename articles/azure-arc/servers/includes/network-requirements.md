@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 09/23/2026
+ms.date: 09/25/2026
 # Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
@@ -69,7 +69,7 @@ This table lists the URLs that must be available to install and use the Connecte
 |`dls.microsoft.com`| Used by Azure Arc machines to perform license validation. | Required when you use [hotpatching](/azure/update-manager/manage-hot-patching-arc-machines), Windows Server Azure Benefits, or Windows Server pay-as-you-go billing on Azure Arc-enabled machines. | Public. |
 
 > [!IMPORTANT]
-> The Connected Machine agent normally acquires tokens from the regional Microsoft Entra endpoint returned by the Hybrid Identity Service, such as `eastus2.login.microsoft.com`. The global endpoint is a resiliency fallback and doesn't replace the requirement to allow the regional endpoint. If your firewall or proxy supports wildcard fully qualified domain name (FQDN) rules, allow `*.login.microsoft.com`. Otherwise, allow `<region>.login.microsoft.com` for every Azure region where your Arc-enabled servers are registered.
+> Regional Microsoft Entra token endpoints are recommended for improved resilience. They provide regional isolation, reduce cross-region dependencies, and cache token data and metadata so repeat authentication requests can be served from cache. The Connected Machine agent normally acquires tokens from the regional endpoint returned by the Hybrid Identity Service, such as `eastus2.login.microsoft.com`. If a firewall or proxy server prevents the agent from reaching the regional endpoint, the agent falls back to the global endpoint. This fallback doesn't replace the requirement to allow the regional endpoint. If your firewall or proxy server supports wildcard fully qualified domain name (FQDN) rules, allow `*.login.microsoft.com`. Otherwise, allow `<region>.login.microsoft.com` for every Azure region where your Arc-enabled servers are registered.
 
 <sup>1</sup> Access to this URL is also needed when updates are performed automatically.
 

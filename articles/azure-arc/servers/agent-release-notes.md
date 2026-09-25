@@ -55,6 +55,57 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Built Linux Go binaries as static position-independent executables (PIE) to support address space layout randomization (ASLR). |  | ✓ | Security Fix |
 | Prevented denial-of-service attacks caused by unconditional token invalidation during `CancelChange` operations. | ✓ | ✓ | Security Fix |
 
+### Known issues
+
+In rare cases, the new port-protection feature might cause some issues.
+
+#### Windows
+
+If the internal Windows device path changes between reboots, the port-protection rules block the Arc agent. Running `azcmagent` commands returns this error:
+
+ `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
+
+The `himds.log` file also shows this error:
+
+`Encountering an error listen tcp [::1]:40342: bind: An attempt was made to access a socket in a way forbidden by its access permissions.. Calling ListenAndServe for retrying`
+
+To temporarily restore functionality, roll back the agent or run the following repair command:
+
+```powershell
+Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureConnectedMachineAgent.msi" /qn /norestart /L*v "C:\Temp\himds-wfp-repair.log"'
+```
+> [!NOTE]
+> This repair is temporary because the device path can change between reboots. The fix is planned for the azcmagent version 1.69 release.
+#### Linux
+
+Systemd binds the IPv6 ports, but in some cases, the lack of an IPv6 address on an active interface causes HIMDS to assume that IPv6 loopback is disabled.
+
+To work around this issue, edit the `himdsd.service` configuration by running:
+
+```bash
+sudo systemctl edit --full himdsd.service
+```
+
+Replace the existing `Sockets=` line with:
+
+```ini
+Sockets=himdsd.socket himdsd-https.socket
+```
+
+Then apply the configuration and restart HIMDS:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl mask --now himdsd-ipv6.socket himdsd-https-ipv6.socket
+sudo systemctl restart himdsd.service
+```
+
+After verifying HIMDS is running correctly, restart the Extension Service:
+
+```bash
+sudo systemctl restart extd.service
+```
+
 ## Version 1.67 - August 2026
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
