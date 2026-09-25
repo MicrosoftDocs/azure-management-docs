@@ -59,7 +59,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 
 #### Windows port protection logic bug
 
-On Windows, Azure Connected Machine agent version 1.68 might experience an issue with the port-protection rules where the internal Windows device path can change. When this occurs, the existing rules can unintentionally block the agent itself.
+On Windows, Azure Connected Machine agent version 1.68 might experience an issue with the port-protection rules where the internal Windows device path can change. When this change occurs, the existing rules can unintentionally block the agent itself.
 
 You might encounter the following error when running azcmagent commands:
 
