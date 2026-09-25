@@ -235,7 +235,7 @@ Appliance Prepare timed out
 | `use of closed network connection` | Interrupted network connection during transfer |
 | `upgrade deadline is before image download timeout` | A workflow deadline occurred before image download completed |
 
-   These errors indicate an area to investigate; they do not by themselves confirm the root cause.
+   These errors indicate an area to investigate; they don't by themselves confirm the root cause.
    
 1. For download, transfer, upload, or import-related errors, work with your networking or infrastructure team to validate:
    - Stable network bandwidth and endpoint connectivity. The lowest validated deployment bandwidth is 100 Mbps.
