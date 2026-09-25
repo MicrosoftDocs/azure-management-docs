@@ -55,6 +55,55 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 | Built Linux Go binaries as static position-independent executables (PIE) to support address space layout randomization (ASLR). |  | ✓ | Security Fix |
 | Prevented denial-of-service attacks caused by unconditional token invalidation during `CancelChange` operations. | ✓ | ✓ | Security Fix |
 
+### Known issues
+
+#### Windows port protection logic bug
+
+On Windows, Azure Connected Machine agent version 1.68 might experience an issue with the port-protection rules where the internal Windows device path can change. When this occurs, the existing rules can unintentionally block the agent itself.
+
+Customers might encounter the following error when running azcmagent commands:
+
+ `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
+
+To temporarily restore functionality, customers can roll back the agent or run the following repair command:
+
+```powershell
+Start-Process msiexec.exe -Wait -PassThru -ArgumentList  '/fa "C:\Temp\AzureConnectedMachineAgent.msi" /qn /norestart /L*v "C:\Temp\himds-wfp-repair.log"'
+```
+
+> [!NOTE]
+> This repair is temporary because the device path can change between reboots. The fix is planned for the azcmagent version 1.69 release.
+
+#### IPv6 logic bug
+
+Some Arc-enabled servers might experience an IPv6 socket binding issue. In some configurations, systemd binds the IPv6 ports, but HIMDS doesn't listen on those ports.
+
+To work around this issue, edit the himdsd.service configuration by running:
+
+```bash
+sudo systemctl edit --full himdsd.service
+```
+
+Replace the existing `Sockets=` line with:
+
+```ini
+Sockets=himdsd.socket himdsd-https.socket
+```
+
+Then apply the configuration and restart HIMDS:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl mask --now himdsd-ipv6.socket himdsd-https-ipv6.socket
+sudo systemctl restart himdsd.service
+```
+
+After verifying HIMDS is running correctly, restart the Extension Service:
+
+```bash
+sudo systemctl restart extd.service
+```
+
 ## Version 1.67 - August 2026
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.67/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
