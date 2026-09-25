@@ -61,7 +61,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnect
 
 On Windows, Azure Connected Machine agent version 1.68 might experience an issue with the port-protection rules where the internal Windows device path can change. When this occurs, the existing rules can unintentionally block the agent itself.
 
-Customers might encounter the following error when running azcmagent commands:
+You might encounter the following error when running azcmagent commands:
 
  `Failed to validate owner of \\.\PIPE\himds. Error Code: %!s(uintptr=2). Error: The operation completed successfully.`
 
