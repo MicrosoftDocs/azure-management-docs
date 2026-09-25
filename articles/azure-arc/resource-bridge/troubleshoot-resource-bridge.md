@@ -218,7 +218,7 @@ Appliance Prepare timed out
 
 **Resolution:**
 
-1. Collect logs from the management machine:
+1. Collect logs from the management machine.
 
    ```azurecli
    az arcappliance logs
