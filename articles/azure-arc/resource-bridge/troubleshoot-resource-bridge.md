@@ -206,6 +206,47 @@ This error indicates that the deployment process stalled while waiting for the K
 
 The most frequent cause is the appliance VM's inability to reach your private cloud endpoint, such as the vSphere or vCenter server. Ensure you meet all networking requirements and try the deployment again.
 
+### Appliance Prepare timed out
+
+**Problem:** The following error occurs during deployment at the command `az arcappliance prepare`:
+
+```text
+Appliance Prepare timed out
+```
+
+**Cause:** This error is generic. It means that the overall appliance-image preparation workflow exceeded its time limit, but it doesn't identify the operation that timed out. The workflow downloads and validates the appliance OS image, then transfers and provisions it in the on-premises hypervisor or fabric image store. Delays or failures in download, validation, extraction, upload, image import, local storage, or hypervisor provisioning can cause this error.
+
+**Resolution:**
+
+1. Collect logs from the management machine.
+
+   ```azurecli
+   az arcappliance logs
+   ```
+
+1. Review `kva.log` and deployment logs for a nested error. Use the nested error to identify the appropriate troubleshooting guidance.
+
+| Nested error example | Possible area to investigate |
+|---|---|
+| `Pxx: Stopping: Max retries` or `DisruptedDownloadError ... Max retries` | Image download interruption or repeated retry failures |
+| `size mismatch`, hash failure, or `5700` | Downloaded-image validation or integrity failure |
+| `CreateFile ... file not found` | Local file, extraction, or storage processing failure |
+| `UploadError` or datastore timeout | Upload to, or import into, the hypervisor datastore |
+| `use of closed network connection` | Interrupted network connection during transfer |
+| `upgrade deadline is before image download timeout` | A workflow deadline occurred before image download completed |
+
+   These errors indicate an area to investigate; they don't by themselves confirm the root cause.
+   
+1. For download, transfer, upload, or import-related errors, work with your networking or infrastructure team to validate:
+   - Stable network bandwidth and endpoint connectivity. The lowest validated deployment bandwidth is 100 Mbps.
+   - Proxy and firewall behavior during the image download and transfer.
+   - Network stability throughout the operation.
+   - Local storage performance and available capacity.
+   - Hypervisor datastore reachability, performance, and image-import progress.
+      
+1. After resolving the nested error or underlying infrastructure condition, retry `az arcappliance prepare`.
+
+1. If the error recurs, collect logs and contact Microsoft Support.
 
 ### 403 Forbidden or 404 Site Not Found
 
