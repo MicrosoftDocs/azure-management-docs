@@ -20,7 +20,7 @@ This tutorial describes how to use [GitOps with Argo CD](conceptual-gitops-argoc
 > Starting with version 1.0.0-preview, the Argo CD extension uses the [community Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). **This change is a breaking change as the configuration keys have changed**. If you installed a previous version (0.0.x) of the extension, uninstall the extension and reinstall the latest with updated configuration keys.
 
 > [!IMPORTANT]
-> GitOps with Argo CD is currently Generally Available for AKS and in PREVIEW for Azure Arc enabled Kubernetes clusters.
+> GitOps with Argo CD is currently generally available for AKS and in preview for Azure Arc-enabled Kubernetes clusters.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Prerequisites
