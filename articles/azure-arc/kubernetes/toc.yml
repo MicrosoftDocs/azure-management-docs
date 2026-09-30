@@ -10,8 +10,14 @@
   - name: Azure Arc validated partners
     displayName: distributions, validation
     href: validation-program.md
+  - name: GitOps Overview
+    displayName: gitops, overview
+    href: gitops-overview.md
 - name: Quickstarts
   items:
+  - name: Deploy a simple application using Argo CD extension
+    displayName: Argo CD, Quickstart
+    href: quickstart-deploy-gitops-argo-cd.md
   - name: Connect a cluster to Azure Arc
     displayName: enable, Arc-enable, deploy, quickstart
     href: quickstart-connect-cluster.md
@@ -144,6 +150,9 @@
     - name: Monitor GitOps (Flux v2) activity
       displayName: dashboard, prometheus, compliance, status, reconciliation, activity
       href: monitor-gitops-flux-2.md
+    - name: How to manage Argo CD extension
+      displayName: updating, troubleshooting
+      href: how-to-manage-gitops-argo-cd-extension.md
     - name: Enforce threat protection using Microsoft Defender for Cloud
       displayName: security
       href: /azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
