@@ -40,7 +40,7 @@ Where indicated, access by the trusted service requires additional configuration
 
 |Trusted service  |Supported usage scenarios  | Configure managed identity with RBAC role |
 |---------|---------|------|
-| Azure Container Instances | [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi) | Yes, either system-assigned or user-assigned identity |
+| Azure Container Instances | [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi) | Yes, user-assigned identity only |
 | Microsoft Defender for Cloud | Vulnerability scanning by [Microsoft Defender for container registries](scan-images-defender.md) | No |
 | Machine Learning | [Deploy](/azure/machine-learning/how-to-deploy-custom-container) or [train](/azure/machine-learning/how-to-train-with-custom-image) a model in a Machine Learning workspace using a custom Docker container image | Yes |
 | Azure Container Registry | [Import images](container-registry-import-images.md) to or from a network-restricted Azure container registry | No |
