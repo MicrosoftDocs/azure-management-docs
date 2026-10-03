@@ -109,19 +109,19 @@ The out-of-band methods first onboard the machines as Azure Arc-enabled Server r
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified subscription and links the machines with that SCVMM. 
 
       ```azurecli-interactive
-      az scvmm vm create-from-machines --subscription contoso-sub --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver 
+      az scvmm vm create-from-machines --subscription contoso-sub --scvmm-id /subscriptions/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver 
       ```
 
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified resource group and links the machines with that SCVMM. 
 
       ```azurecli-interactive
-      az scvmm vm create-from-machines –resource group contoso-rg --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
+      az scvmm vm create-from-machines –resource group contoso-rg --scvmm-id /subscriptions/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
       ```
 
    - The following command links an individual Azure Arc-enabled Server resource to SCVMM. 
 
       ```azurecli-interactive
-      az scvmm vm create-from-machines –resource group contoso-rg --name contoso-vm --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
+      az scvmm vm create-from-machines –resource group contoso-rg --name contoso-vm --scvmm-id /subscriptions/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
       ```
 
 ---

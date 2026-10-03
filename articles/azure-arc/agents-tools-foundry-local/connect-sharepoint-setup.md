@@ -492,8 +492,8 @@ After completing all steps, you should have these values ready for installation:
 | **KV Cert Secret Name** | `contoso-edgerag-sp-s2s-cert` | Step 3: name you chose |
 | **KV Cert Password Secret Name** | `contoso-sp-cert-password` | Step 3: name you chose |
 | **Key Vault Tenant ID** | `aaaabbbb-0000-cccc-1111-dddd2222eeee` | Your Microsoft Entra tenant ID |
-| **Client ID** | `11112222-3333-4444-aaaa-bbbbccccdddd` | Step 5: GUID you chose |
-| **Issuer ID** | `22223333-4444-5555-aaaa-bbbbccccdddd` | Step 5: GUID you chose |
+| **Client ID** | `00001111-aaaa-2222-bbbb-3333cccc4444` | Step 5: GUID you chose |
+| **Issuer ID** | `aaaabbbb-0000-cccc-1111-dddd2222eeee` | Step 5: GUID you chose |
 | **Realm** | `33334444-5555-6666-aaaa-bbbbccccdddd` | Step 5: `Get-SPAuthenticationRealm` |
 | **Windows SID** | `S-1-5-21-1234567890-2345678901-3456789012-1234` | Step 5: translated from AD account |
 
