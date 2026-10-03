@@ -107,7 +107,7 @@ The following JSON represents the sample dashboard shown in the previous section
                     "metrics": [
                       {
                         "name": "Percentage CPU",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
@@ -136,11 +136,11 @@ The following JSON represents the sample dashboard shown in the previous section
                     "metrics": [
                       {
                         "name": "Disk Read Operations/Sec",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Operations/Sec",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
@@ -169,11 +169,11 @@ The following JSON represents the sample dashboard shown in the previous section
                     "metrics": [
                       {
                         "name": "Disk Read Bytes",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Bytes",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
@@ -202,11 +202,11 @@ The following JSON represents the sample dashboard shown in the previous section
                     "metrics": [
                       {
                         "name": "Network In Total",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Network Out Total",
-                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+                        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
@@ -335,11 +335,11 @@ Each `MetricsChartPart` in our example has a single input that expresses the res
       "metrics": [
         {
           "name": "Network In Total",
-          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+          "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
         },
         {
           "name": "Network Out Total",
-          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
+          "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
         }
       ]
     }
