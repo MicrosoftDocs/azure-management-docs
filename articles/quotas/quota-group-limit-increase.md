@@ -185,7 +185,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
             "value": [
               {
                 "quotaAllocated": -10,
-                "subscriptionId": "226818a0-4fa2-4c2d-be7f-03b9b92ab3a2"
+                "subscriptionId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
               }
             ]
           },
@@ -228,4 +228,3 @@ The following Azure portal instructions continue from the steps outlined in the 
 1. A **New Support Request** notification will pop up, which has *ticketID* and a link.
 1. To view request details, return to the **Quotas** blade and select the **Request** tab under the **Overview** page. See the list of quota requests.
 1. You may also search and go to **Help + Support** blade and view request under **Recent support requests** table.
-
