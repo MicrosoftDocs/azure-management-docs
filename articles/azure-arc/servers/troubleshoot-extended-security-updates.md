@@ -2,7 +2,7 @@
 title: How to troubleshoot delivery of Extended Security Updates for Windows Server through Azure Arc
 description: Learn how to troubleshoot delivery of Extended Security Updates (ESU) for Windows Server 2012 and Windows Server 2016 through Azure Arc.
 ms.topic: troubleshooting
-ms.date: 07/16/2026
+ms.date: 09/11/2026
 zone_pivot_groups: extended-security-updates-windows-server
 # Customer intent: As an IT administrator managing Windows Server workloads, I want to troubleshoot Extended Security Updates delivery through Azure Arc, so that I can ensure compliance and maintain security for my servers on extended support.
 ---
@@ -13,7 +13,10 @@ This article explains how to identify and resolve problems when enabling [Extend
 
 ::: zone pivot="windows-server-2012"
 
-Use these troubleshooting steps to address common issues with ESU licensing, enrollment, resource provider registration, and patch delivery for Windows Server 2012/2012 R2.
+Use these troubleshooting steps to address common issues with ESU licensing, enrollment, resource provider registration, and patch delivery for Windows Server 2012 and 2012 R2.
+
+> [!IMPORTANT]
+> The Windows Server 2012 and Windows Server 2012 R2 ESU period ends on October 13, 2026. The October 13, 2026, security update is the final update provided through ESUs. At midnight Coordinated Universal Time (UTC) on October 14, 2026, ESU licenses enabled by Azure Arc deactivate and stop providing update eligibility. A deactivated license after this time is expected behavior, not an enrollment error. Troubleshooting can't restore eligibility for security updates released after October 13, 2026.
 
 ::: zone-end
 
@@ -35,7 +38,7 @@ If you can't provision a Windows Server ESU license for Azure Arc-enabled server
 
 ## ESU enrollment issues
 
-If you're unable to successfully link your Azure Arc-enabled server to an activated ESU license, verify you meet these conditions:
+If you can't link your Azure Arc-enabled server to an activated ESU license, verify that you meet these conditions:
 
 ::: zone pivot="windows-server-2012"
 
@@ -63,9 +66,9 @@ If you're unable to successfully link your Azure Arc-enabled server to an activa
 
 ## Resource providers
 
-If you're unable to enable this service offering, review the resource providers registered on the subscription. If you receive an error while attempting to register the resource providers, validate the role assignments on the subscription. Also review any potential Azure policies that may be set with a **Deny** policy, preventing the enablement of these resource providers:
+If you can't enable this service offering, review the resource providers registered on the subscription. If you receive an error while attempting to register the resource providers, validate the role assignments on the subscription. Also review any potential Azure policies that might be set with a **Deny** policy, preventing the enablement of these resource providers:
 
-- **Microsoft.HybridCompute:** This resource provider is essential for Azure Arc-enabled servers, allowing you to onboard and manage on-premises servers in the Azure portal.
+- **Microsoft.HybridCompute:** This resource provider is essential for Azure Arc-enabled servers, and it allows you to onboard and manage on-premises servers in the Azure portal.
 
 - **Microsoft.GuestConfiguration:** Enables Guest Configuration policies, which are used to assess and enforce configurations on your Arc-enabled servers for compliance and security.
 
@@ -75,9 +78,9 @@ If you're unable to enable this service offering, review the resource providers 
 
 - **Microsoft.OperationalInsights:** This resource provider is associated with **Azure Monitor and Log Analytics**, which is used for monitoring and collecting telemetry data from your hybrid infrastructure, including on-premises servers.
 
-- **Microsoft.Sql:** If you're managing on-premises SQL Server instances and require ESU for SQL Server, enabling this resource provider is necessary.
+- **Microsoft.Sql:** If you're managing on-premises SQL Server instances and require ESU for SQL Server, you need to enable this resource provider.
 
-- **Microsoft.Storage:** Enabling this resource provider is important for managing storage resources, which may be relevant for hybrid and on-premises scenarios.
+- **Microsoft.Storage:** Enabling this resource provider is important for managing storage resources, which might be relevant for hybrid and on-premises scenarios.
 
 ## ESU patch issues
 
@@ -95,13 +98,13 @@ Both of these options are available at no additional cost for Azure Arc-enabled 
 
 ::: zone pivot="windows-server-2012"
 
-Ensure that you download both the licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Make sure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
+Ensure that you download both the licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Make sure you follow all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
 
 ::: zone-end
 
 ::: zone pivot="windows-server-2016"
 
-Ensure that you download any required licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in the applicable Microsoft Knowledge Base article for Windows Server 2016. Make sure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
+Ensure that you download any required licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented in the applicable Microsoft Knowledge Base article for Windows Server 2016. Make sure you follow all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server](prepare-extended-security-updates.md#networking).
 
 ::: zone-end
 
@@ -117,10 +120,10 @@ ESU: Trying to Check IMDS Again LastError=HRESULT_FROM_WIN32(12002)
 ESU: Trying to Check IMDS Again LastError=HRESULT_FROM_WIN32(12029)
 ```
 
-You may need to update the intermediate certificate authorities trusted by your computer using one of the following methods.
+You might need to update the intermediate certificate authorities trusted by your computer by using one of the following methods.
 
 > [!IMPORTANT]
-> If you're running the [latest version of the Azure Connected machine agent](agent-release-notes.md), it's not necessary to install the intermediate CA certificates or allow access to the Public Key Infrastructure (PKI) URL. However, if a license was already assigned before the agent was upgraded, it can take up to 15 days for the older license to be replaced. During this time, the intermediate cert is still required. After upgrading the agent, you can delete the license file `%ProgramData%\AzureConnectedMachineAgent\certs\license.json` to force it to be refreshed.
+> If you're running the [latest version of the Azure Connected machine agent](agent-release-notes.md), you don't need to install the intermediate CA certificates or allow access to the Public Key Infrastructure (PKI) URL. However, if you assigned a license before the agent was upgraded, it can take up to 15 days for the older license to be replaced. During this time, the intermediate cert is still required. After upgrading the agent, you can delete the license file `%ProgramData%\AzureConnectedMachineAgent\certs\license.json` to force it to refresh.
 
 #### Option 1: Allow access to the PKI URL
 
@@ -150,11 +153,11 @@ New-NetFirewallRule -DisplayName $ruleNameHttps `
     -Description "Allow outbound HTTPS traffic to Microsoft PKI OPS"
 ```
 
-Once the network changes are made to allow access to the PKI URL, try installing the Windows updates again. You may need to reboot your computer for the automatic installation of certificates and validation of the license to take effect.
+After you make the network changes to allow access to the PKI URL, try installing the Windows updates again. You might need to reboot your computer for the automatic installation of certificates and validation of the license to take effect.
 
 #### Option 2: Manually download and install the intermediate CA certificates
 
-If you're unable to allow access to the PKI URL from your servers, you can manually download and install the certificates on each machine.
+If you can't allow access to the PKI URL from your servers, manually download and install the certificates on each machine.
 
 1. On any computer with internet access, download these intermediate CA certificates:
 
@@ -164,8 +167,7 @@ If you're unable to allow access to the PKI URL from your servers, you can manua
    1. [Microsoft Azure RSA TLS Issuing CA 08](https://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2008%20-%20xsign.crt)
 
 1. Copy the certificate files to your Windows Server machines.
-1. Run any one set of the following commands in an elevated command prompt or PowerShell session to add the certificates to the "Intermediate Certificate Authorities" store for the local computer. The command should be run from the same directory as the certificate files. These commands are safe to run multiple times and if the certificate is already installed, nothing changes.
-
+1. Run any one set of the following commands in an elevated command prompt or PowerShell session to add the certificates to the "Intermediate Certificate Authorities" store for the local computer. Run the command from the same directory as the certificate files. These commands are safe to run multiple times and if the certificate is already installed, nothing changes.
    ```powershell
    certutil -addstore CA "Microsoft Azure RSA TLS Issuing CA 03 - xsign.crt"
    certutil -addstore CA "Microsoft Azure RSA TLS Issuing CA 04 - xsign.crt"
@@ -173,7 +175,7 @@ If you're unable to allow access to the PKI URL from your servers, you can manua
    certutil -addstore CA "Microsoft Azure RSA TLS Issuing CA 08 - xsign.crt"
    ```
 
-1. Try installing the Windows updates again. You may need to reboot your computer for the validation logic to recognize the newly imported intermediate CA certificates.
+1. Try installing the Windows updates again. You might need to reboot your computer for the validation logic to recognize the newly imported intermediate CA certificates.
 
 ### Error: Not eligible (HRESULT 1633)
 
@@ -184,4 +186,4 @@ Remove-Item "$env:ProgramData\AzureConnectedMachineAgent\Certs\license.json" -Fo
 Restart-Service HIMDS
 ```
 
-If you have other issues receiving ESU after successfully enrolling the server through Arc-enabled servers, or you need additional information related to issues affecting ESU deployment, see [Troubleshoot issues in ESU](/troubleshoot/windows-client/windows-7-eos-faq/troubleshoot-extended-security-updates-issues).
+If you have other issues receiving ESU after successfully enrolling the server through Arc-enabled servers, or you need more information about issues that affect ESU deployment, see [Troubleshoot issues in ESU](/troubleshoot/windows-client/windows-7-eos-faq/troubleshoot-extended-security-updates-issues).

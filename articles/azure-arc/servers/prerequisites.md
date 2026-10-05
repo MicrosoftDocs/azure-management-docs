@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 10/15/2025
+ms.date: 09/11/2026
 ms.topic: concept-article
 ms.custom: devx-track-azurepowershell
 # Customer intent: "As an IT administrator managing physical and virtual servers, I want to understand the prerequisites for installing the Connected Machine agent for Azure Arc, so that I can ensure successful onboarding and optimal operation within my environment."
@@ -85,6 +85,9 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Windows Server | 2019 | ✅ | ❌ | — | |
 | Windows Server | 2022 | ✅ | ❌ | — | |
 | Windows Server | 2025 | ✅ | ❌ | — | |
+
+> [!IMPORTANT]
+> The expected end of Azure Arc support for Windows Server 2012 and Windows Server 2012 R2 doesn't extend the ESU period. ESUs for these versions end on October 13, 2026. The October 13, 2026 security update is the final update provided through ESUs.
 
 For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Local.
 
