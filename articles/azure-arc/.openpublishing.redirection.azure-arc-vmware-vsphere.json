@@ -44,6 +44,11 @@
             "source_path_from_root": "/articles/azure-arc/vmware-vsphere/switch-to-new-version-vmware.md",
             "redirect_url": "/azure/azure-arc/vmware-vsphere/switch-to-new-version",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/browse-and-enable-vcenter-resources-in-azure.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/enable-vcenter-resources-in-azure",
+            "redirect_document_id": false
         }
     ]
 }

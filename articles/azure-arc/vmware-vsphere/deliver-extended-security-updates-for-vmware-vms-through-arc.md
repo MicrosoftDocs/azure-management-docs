@@ -28,7 +28,7 @@ This article provides the steps to procure and deliver ESUs to WS 2012 and 2012 
 ## Prerequisites
 
 - The user account must have an Owner/Contributor role in a Resource Group in Azure to create and assign ESUs to VMware VMs. 
-- The vCenter managing the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [onboarded to Azure Arc](./quick-start-connect-vcenter-to-arc-using-script.md). After onboarding, the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [Azure-enabled](./browse-and-enable-vcenter-resources-in-azure.md) and [guest management enabled](./enable-guest-management-at-scale.md). 
+- The vCenter managing the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [onboarded to Azure Arc](./quick-start-connect-vcenter-to-arc-using-script.md). After onboarding, the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [Azure-enabled](./enable-vcenter-resources-in-azure.md) and [guest management enabled](./enable-guest-management-at-scale.md). 
 
 ## Create Azure Arc ESUs 
 

@@ -2,16 +2,12 @@
 title: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter
 description: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 10/04/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.custom:
-  - devx-track-azurecli
-  - build-2025
-  - sfi-image-nochange
 # Customer intent: "As an IT administrator managing VMware machines, I want to link Arc-enabled Server machines to vCenter, so that I can enable additional virtual machine lifecycle and power cycle operations for efficient management."
 ---
 
@@ -32,17 +28,13 @@ Follow the steps in [Quickstart: Connect vCenter to Azure Arc using script](./qu
 
 ## Link Arc-enabled Servers machines to vCenter from Azure portal
 
-1. Go to the Virtual machines inventory page for your vCenter in the Azure portal. 
+1. Go to the **Virtual machines** inventory page for your vCenter in the Azure portal. 
 
-1. Virtual machines that have the Arc agent installed through the Arc-enabled Servers route show the **Link to vCenter** status under virtual hardware management.  
+1. Virtual machines that have the Arc agent installed through the Arc-enabled Servers route show the **Action needed** status under virtual hardware management.  
 
-1. Select **Link to vCenter** to open a pane that lists all the machines under vCenter with the Arc agent installed but not linked to vCenter in Azure Arc.  
+1. Select all the Arc-enabled servers that you want to link with vCenter, and then select **Manage Arc onboarding**. In the pane that opens, select the Azure subscription and resource group, and then select **Onboard** to complete linking your Arc-enabled servers to vCenter. Alternatively, you can perform this operation for a single VM by selecting the **Action needed** link.
 
-1. Select all the machines and select the option to link machines to vCenter.
-
-    :::image type="content" source="media/enable-virtual-hardware/link-machine-to-vcenter.png" alt-text="Screenshot that shows the Link to vCenter page." lightbox="media/enable-virtual-hardware/link-machine-to-vcenter.png":::
-
-1.	After linking to vCenter, the virtual hardware status shows as **Enabled** for all the VMs, and you can perform [virtual hardware operations](./perform-vm-ops-through-azure.md). 
+1.	After linking to vCenter, the virtual hardware management status shows as **Enabled** for all the VMs, and you can perform [virtual hardware operations](./perform-vm-ops-through-azure.md). 
 
     :::image type="content" source="media/enable-virtual-hardware/perform-virtual-hardware-operations.png" alt-text="Screenshot that shows the page for performing virtual hardware operations." lightbox="media/enable-virtual-hardware/perform-virtual-hardware-operations.png":::
 
@@ -97,7 +89,7 @@ During the first scan of the vCenter inventory after onboarding to Azure Arc-ena
 
 *A machine '/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXXX/resourceGroups/rg-contoso/providers/Microsoft.HybridCompute/machines/testVM1' already exists with the specified virtual machine MoRefId: 'vm-4441'. The existing machine resource can be extended with private cloud capabilities by creating the VirtualMachineInstance resource under it.*
 
-When you encounter this error message, you can perform the **Link to vCenter** operation in 10 minutes. Alternatively, you can use any of the Azure CLI commands listed earlier to link an existing Arc-enabled Server machine to vCenter.
+When you encounter this error, you can perform the **enabling virtual hardware management** operation in 10 minutes. Alternatively, you can use any of the Azure CLI commands listed earlier to link an existing Arc-enabled Server machine to vCenter.
 
 ## Next steps
 
