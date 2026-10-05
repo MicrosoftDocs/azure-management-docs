@@ -19,6 +19,9 @@ Azure Arc resource bridge integrates with the following private cloud platforms:
 - VMware (via [Azure Arc-enabled VMware vSphere](../vmware-vsphere/overview.md))
 - System Center Virtual Machine Manager (via [Azure Arc-enabled SCVMM](../system-center-virtual-machine-manager/overview.md))
 
+> [!NOTE]
+> Azure Arc-enabled SCVMM retires in September 2029. If you're using Azure Arc-enabled SCVMM, transition to [Azure Arc-enabled Servers](/azure/azure-arc/servers/overview) or contact arc-vmm-feedback@microsoft.com. For more information, see the [transition guidance](../system-center-virtual-machine-manager/transition-guidance.md).
+
 Once deployed in your private cloud, the resource bridge is granted credentials to the local virtualization infrastructure, allowing it to project on-premises resources into Azure as Arc-enabled resources. This projection enables consistent management and automation using Azure tools, such as Azure Policy, and Azure CLI.
 
 Arc resource bridge enables the following hybrid management capabilities:
