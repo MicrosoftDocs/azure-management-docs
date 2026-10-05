@@ -2,7 +2,7 @@
 title: Perform powercycle operations on VMware vCenter managed virtual machines in Azure
 description: In this article, you learn how to perform power cycle operations such as start, stop, and restart on the Azure Arc-enabled VMware vSphere Virtual Machines.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 10/04/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -19,7 +19,7 @@ In this article, you learn how to perform power cycle operations such as start, 
 Before you perform power cycle operations on a VM, make sure that you meet the following prerequisites: 
 
 - The VMware vCenter is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state. 
-- The VM that you operate from Azure is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md). 
+- The VM that you operate from Azure is [onboarded for management in Azure](enable-vcenter-resources-in-azure.md). 
 - *Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to make any changes to the VMware vSphere VMs on which you want to perform the power operations. 
 
 ## Perform power cycle operations 
