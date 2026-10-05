@@ -1,7 +1,7 @@
 ---
 title: Prepare to deliver Extended Security Updates for Windows Server through Azure Arc
 description: Learn how to prepare to deliver Extended Security Updates for Windows Server 2012 and Windows Server 2016 through Azure Arc.
-ms.date: 07/16/2026
+ms.date: 09/11/2026
 ms.topic: how-to
 zone_pivot_groups: extended-security-updates-windows-server
 # Customer intent: As a system administrator managing Windows Server 2012 or Windows Server 2016 machines, I want to enroll these servers in Extended Security Updates through Azure Arc, so that I can maintain security and compliance after the end of support and streamline the migration to Azure.
@@ -15,7 +15,7 @@ The purpose of this article is to help you understand the benefits and how to pr
 
 ::: zone pivot="windows-server-2012"
 
-Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023. Billing for Windows Server 2012 ESUs enabled by Azure Arc starts from October 2023, after end of support.
+Windows Server 2012 and Windows Server 2012 R2 reached end of support on October 10, 2023. The three-year ESU period ends on October 13, 2026, and the October 13, 2026 security update is the final update provided through ESUs. At midnight Coordinated Universal Time (UTC) on October 14, 2026, Windows Server 2012 ESU licenses enabled by Azure Arc are deactivated and stop providing update eligibility. Plan to migrate your workloads or upgrade to a supported version of Windows Server before the ESU period ends. For more information, see [Overview of Extended Security Updates for Windows Server 2012 and Windows Server 2012 R2](/windows-server/get-started/extended-security-updates-overview).
 
 > [!NOTE]
 > Azure VMware Solution (AVS) machines and virtual machines on Azure Local are eligible for free ESUs and shouldn't enroll in ESUs enabled through Azure Arc.
@@ -47,7 +47,7 @@ Delivering ESUs to your Windows Server machines provides the following key benef
 For Azure Arc-enabled servers enrolled in ESUs enabled by Azure Arc, free access is provided to these Azure services for enrolled servers:
 
 * [Azure Update Manager](/azure/update-center/overview) - Unified management and governance of update compliance that includes not only Azure and hybrid machines, but also ESU update compliance for all your Windows Server machines.
-    Enrollment in ESUs does not impact Azure Update Manager. After enrollment in ESUs through Azure Arc, the server becomes eligible for ESU patches. These patches can be delivered through Azure Update Manager or any other patching solution. You'll still need to configure updates from Microsoft Updates or Windows Server Update Services.
+    Enrollment in ESUs does not impact Azure Update Manager. After enrollment in ESUs through Azure Arc, the server becomes eligible for ESU patches. These patches can be delivered through Azure Update Manager or any other patching solution. You still need to configure updates from Microsoft Updates or Windows Server Update Services.
 * [Change Tracking and Inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm) - Track changes in virtual machines hosted in Azure, on-premises, and other cloud environments.
 * [Azure Policy Guest Configuration](/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy) - Audit the configuration settings in a virtual machine. Guest configuration supports Azure VMs natively and non-Azure physical and virtual servers through Azure Arc-enabled servers.
 
@@ -80,7 +80,7 @@ Review the version-specific eligibility and licensing requirements before you en
 
 ::: zone pivot="windows-server-2012"
 
-Windows Server 2012 Extended Security Updates support Windows Server 2012 and 2012 R2 Standard and Datacenter editions. Windows Server 2012 Storage isn't supported. Billing for this service starts from October 2023 (that is, after Windows Server 2012 end of support).
+Windows Server 2012 Extended Security Updates support Windows Server 2012 and 2012 R2 Standard and Datacenter editions. Windows Server 2012 Storage isn't supported. Billing for this service starts in October 2023 (that is, after Windows Server 2012 end of support).
 
 > [!NOTE]
 > To purchase ESUs, you must have Software Assurance through Volume Licensing Programs such as an Enterprise Agreement (EA), Enterprise Agreement Subscription (EAS), Enrollment for Education Solutions (EES), Server and Cloud Enrollment (SCE), or through Microsoft Open Value Programs. Alternatively, if your Windows Server 2012/2012 R2 machines are licensed through SPLA or with a Server Subscription, Software Assurance isn't required to purchase ESUs.
@@ -98,7 +98,7 @@ Windows Server 2016 Extended Security Updates support Windows Server 2016 Standa
 
 ### Deployment options
 
-There are several at-scale onboarding options for Azure Arc-enabled servers:
+You can onboard Azure Arc-enabled servers at scale by using the following options:
 
 - Run a [Custom Task Sequence](onboard-configuration-manager-custom-task.md) through Configuration Manager.
 
@@ -109,7 +109,7 @@ There are several at-scale onboarding options for Azure Arc-enabled servers:
 - Use [SCVMM managed VMs](../system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms.md) through Azure Arc.
 
 > [!NOTE]
-> Delivery of ESUs through Azure Arc to virtual machines running on Virtual Desktop Infrastructure (VDI) is not recommended. VDI systems should use Multiple Activation Keys (MAK) to apply ESUs. See [Access your Multiple Activation Key from the Microsoft 365 Admin Center](/windows-server/get-started/extended-security-updates-deploy) to learn more.
+> Don't use Azure Arc to deliver ESUs to virtual machines running on Virtual Desktop Infrastructure (VDI). Use Multiple Activation Keys (MAK) to apply ESUs to VDI systems. To learn more, see [Access your Multiple Activation Key from the Microsoft 365 Admin Center](/windows-server/get-started/extended-security-updates-deploy).
 > 
 
 ### Networking

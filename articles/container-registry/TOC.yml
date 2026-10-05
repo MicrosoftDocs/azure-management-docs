@@ -190,8 +190,12 @@
   - name: Security and compliance
     expanded: false
     items:
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/container-registry-security-baseline?toc=/azure/container-registry/TOC.json
+    - name: Security overview
+      displayName: security model, threat surface, defense in depth, concepts
+      href: container-registry-security-overview.md
+    - name: Secure your Azure Container Registry deployment
+      displayName: security best practices, secure, harden
+      href: secure-container-registry.md
     - name: Security controls by Azure Policy
       displayName: regulatory, compliance, standards, domains
       href: ./security-controls-policy.md
