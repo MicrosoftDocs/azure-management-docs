@@ -1,16 +1,13 @@
 ---
 title: Install Arc agent at scale for your VMware VMs
-description: Learn how to enable guest management at scale for Arc enabled VMware vSphere VMs.
+description: Learn how to install Arc agent at scale for Arc enabled VMware vSphere VMs.
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 10/06/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.custom:
-  - build-2025
-  - sfi-ropc-nochange
 # Customer intent: As an IT infrastructure administrator, I want to install Arc agents at scale on VMware VMs, so that I can leverage Azure management capabilities for efficient resource management and operations.
 ---
 
@@ -33,7 +30,7 @@ Before you install Arc agents at scale for VMware VMs, ensure the following cond
 - All the target machines are:
     - Powered on.
     - Running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
-    - VMware tools are installed on the machines. If you don't install VMware tools, the portal disables the option to enable guest management operation.  
+    - VMware tools are installed on the machines. If you don't install VMware tools, the portal disables the option to install Arc agent.  
         >[!NOTE]
         >Use the out-of-band methods to install Arc agents if VMware tools aren't installed.  
     - Able to connect through the firewall to communicate over the internet, and [these URLs](../servers/network-requirements.md#urls) aren't blocked.
@@ -45,32 +42,32 @@ Before you install Arc agents at scale for VMware VMs, ensure the following cond
 
 # [Azure portal](#tab/azure-portal)
 
-This method works only if VMware tools are installed on the target machines. If VMware tools aren't installed, the portal grays out the **Enable guest management** option. You can install Arc agents by using out-of-band methods.
+This method works only if VMware tools are installed on the target machines. If VMware tools aren't installed, the portal grays out the **Arc agent with virtual hardware management** option under **Manage Arc onboarding**. You can install Arc agents by using out-of-band methods.
 
 An administrator can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
 
-1. Go to **Azure Arc center** and select **vCenter resource**.
+1. Go to **Azure Arc center** and select **vCenter resource**. Navigate to the virtual machines inventory.
 
-1. Select all the target machines and choose **Enable in Azure** option. 
+1. Select all the target machines and choose **Manage Arc onboarding** option. 
 
-1. Select **Enable guest management** checkbox to install Arc agents on the selected machines. By using this option, you can use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, and more to secure, govern, patch, and monitor your virtual machines.
+1. Select **Arc agent with virtual hardware management** radio button to install Arc agents on the selected machines. By using this option, you can use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, and more to secure, govern, patch, and monitor your virtual machines.
 
-1. If you enable guest management on any of your machines, based on your organization's network policies, choose the connectivity method for the Arc agents that runs in your VMware VMs to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
+1. Based on your organization's network policies, choose the connectivity method for the Arc agents that runs in your VMware VMs to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
      - To connect the Arc agent through a proxy, provide the proxy server details.
      - To connect the Arc agent through a private endpoint, follow these [steps](../servers/private-link-security.md) to set up Azure private link. 
 
       >[!NOTE]
       > Private endpoint connectivity is only available for Arc agent to Azure communications. For Arc resource bridge to Azure connectivity, Azure private link isn't supported.
 
-1. Enter the administrator username and password for the machine. For Windows VMs, the account must be part of the local administrators group. For Linux VMs, it must be a root account.
+1. Enter the administrator username and password for the machine. For Windows VMs, the account must be part of the local administrators group. For Linux VMs, it must be a root account. These credentials aren't persisted in Azure. They're used to install the Azure Arc agent and then discarded. Alternatively, for Linux VMs, you can use SSH key-based authentication method.
 
-6. Select **Enable** to start the installation of the Arc agent in the specified machines. Once installation is complete, the Guest management column will switch to Enabled for the machines with Arc agent running. You can start using Azure services for these machines. These credentials won't be persisted in Azure. They're used to install the Azure Arc agent and then discarded.
+6. Select **Onboard** to start the installation of the Arc agent in the specified machines. Once installation is complete, the Arc agent status column will switch to Enabled for the machines with Arc agent running. You can start using Azure services for these machines. 
 
 # [Auto Arc-enablement script](#tab/ercenablement-script)
 
 This method works only if VMware tools are installed on the target machines. If VMware tools aren't installed, you can install Arc agents by using out-of-band methods. 
 
-You can automate Arc agent installation by using a helper script that uses the AzCLI command. To enable VMs and install Arc agents at scale, download this [helper script](https://aka.ms/arcvmwarebatchenable). In a single ARM deployment, the helper script can enable and install Arc agents on 200 VMs.  
+You can automate Arc agent installation by using a helper script that uses the AzCLI command. To onboard VMs to Azure Arc at scale, download this [helper script](https://aka.ms/arcvmwarebatchenable). In a single ARM deployment, the helper script can onboard up to 400 VMs.
 
 ### Features of the script
 
@@ -80,9 +77,9 @@ You can automate Arc agent installation by using a helper script that uses the A
 
 - Creates ARM deployment files (`vmw-dep-<timestamp>-<batch>.json`).
 
-- Can enable up to 200 VMs in a single ARM deployment if guest management is enabled, otherwise enables 400 VMs. 
+- Onboards up to 200 VMs in a single ARM deployment if you're installing the Arc agent, otherwise it onboards up to 400 VMs. 
 
-- Supports running as a cron job to enable all the VMs in a vCenter. 
+- Supports running as a cron job to onboard all the VMs in a vCenter. 
 
 - Allows for service principal authentication to Azure for automation. 
 
@@ -110,9 +107,9 @@ Before running this script, install:
 
 - `VCenterId`: The ARM ID of the vCenter where the VMs are located. 
 
-- `EnableGuestManagement`: If you specify this switch, the script enables guest management on the VMs. 
+- `EnableGuestManagement`: If you specify this switch, the script installs Arc agents on the VMs. 
 
-- `VMCountPerDeployment`: The number of VMs to enable per ARM deployment. The maximum value is 200 if guest management is enabled, otherwise it's 400. 
+- `VMCountPerDeployment`: The number of VMs to onboard per ARM deployment. The maximum value is 200 if you are installing Arc agent, otherwise it's 400. 
 
 - `DryRun`: If you specify this switch, the script only creates the ARM deployment files. Otherwise, the script also deploys the ARM deployments. 
 
@@ -136,7 +133,7 @@ Unregister-ScheduledTask -TaskName "EnableVMs"
 
 # [Out-of-band methods](#tab/Out-of-band)
 
-You can install Arc agents directly on machines without relying on VMware tools or APIs. By using the out-of-band approach, first onboard the machines as Arc-enabled Server resources with the resource type `Microsoft.HybridCompute/machines`. After that, perform the **Link to vCenter** operation to update the machine's `Kind` property as `VMware`, which enables virtual lifecycle operations.  
+You can install Arc agents directly on machines without relying on VMware tools or APIs. By using the out-of-band approach, first onboard the machines as Arc-enabled Server resources with the resource type `Microsoft.HybridCompute/machines`. After that, select the **Arc agent with virtual hardware management** option under **Manage Arc onboarding** to update the machine's `Kind` property as `VMware`, which enables virtual lifecycle operations.  
 
 1. **Connect the machines as Arc-enabled Server resources:** Install Arc agents by using Arc-enabled Server scripts. 
 

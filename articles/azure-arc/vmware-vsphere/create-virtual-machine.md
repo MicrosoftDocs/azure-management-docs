@@ -63,7 +63,7 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
 
     :::image type="content" source="media/create-virtual-machine/admin-account.png" alt-text="Screenshot of administrator account screen." lightbox="media/create-virtual-machine/admin-account.png":::
 
-    If you're creating a Linux virtual machine, use an SSH key as the authentication method instead of an administrator account.
+    If you're creating a Linux virtual machine, you have an option to use an SSH key as the authentication method.
 
 1. If you chose to enable guest management, choose the **Connectivity method** for the Arc agent that you install in your VM to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
 
