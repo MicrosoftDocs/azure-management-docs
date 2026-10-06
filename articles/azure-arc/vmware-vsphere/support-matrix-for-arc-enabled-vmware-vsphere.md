@@ -2,7 +2,7 @@
 title: Plan for deployment
 description: Learn about the support matrix for Arc-enabled VMware vSphere including vCenter Server versions supported, network requirements, and more.
 ms.topic: how-to
-ms.date: 10/04/2026
+ms.date: 10/06/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -17,7 +17,7 @@ ms.custom:
 
 This article documents the prerequisites and support requirements for using [Azure Arc-enabled VMware vSphere](overview.md) to manage your VMware vSphere VMs through Azure Arc.
 
-To use Azure Arc-enabled VMware vSphere, deploy an Azure Arc resource bridge in your VMware vSphere environment during onboarding. The resource bridge is an appliance VM that provides an ongoing connection between your VMware vCenter Server and Azure. After you connect VMware vCenter Server to Azure, components running on the resource bridge discover your vCenter inventory and synchronize it with Azure. You can then enable discovered machines for Azure Arc guest management and perform virtual hardware and guest operating system management operations through Azure.
+To use Azure Arc-enabled VMware vSphere, deploy an Azure Arc resource bridge in your VMware vSphere environment during onboarding. The resource bridge is an appliance VM that provides an ongoing connection between your VMware vCenter Server and Azure. After you connect VMware vCenter Server to Azure, components running on the resource bridge discover your vCenter inventory and synchronize it with Azure. You can then onboard discovered machines to Azure Arc and perform virtual hardware and management operations through Azure interfaces.
 
 
 ## VMware vSphere requirements
@@ -80,11 +80,11 @@ The minimum Azure roles required for operations related to Arc-enabled VMware vS
 
 If you have roles with higher permissions on the same scope, such as Owner or Contributor, you can also perform the operations listed earlier.
 
-## Guest management (Arc agent) requirements
+## Azure Arc connected machine agent requirements
 
 By using Arc-enabled VMware vSphere, you can install the Azure Arc connected machine agent on your VMs at scale and use Azure management services on the VMs. This capability has additional requirements.
 
-To enable guest management (install the Azure Arc connected machine agent), ensure the following:
+To install the Azure Arc connected machine agent, ensure the following conditions are met:
 
 - The VM is powered on.
 - The VM has VMware tools installed and running.
@@ -92,7 +92,7 @@ To enable guest management (install the Azure Arc connected machine agent), ensu
 - The VM is running a [supported operating system](#supported-operating-systems).
 - The VM has internet connectivity directly or through proxy. If the connection is through a proxy, ensure [these URLs](#networking-requirements) are allow-listed.
 
-Additionally, make sure that the requirements described in the following section are met to enable guest management.
+Additionally, make sure that the requirements described in the following section are met to install the Arc agent.
 
 ### Supported operating systems
 
