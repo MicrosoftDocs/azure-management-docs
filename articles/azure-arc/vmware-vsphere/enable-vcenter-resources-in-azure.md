@@ -2,7 +2,7 @@
 title: Onboard your VMware vCenter resources in Azure
 description: Learn how to browse your vCenter inventory and represent a subset of your VMware vCenter resources in Azure to enable self-service.
 ms.topic: how-to
-ms.date: 10/04/2026
+ms.date: 10/06/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -51,11 +51,13 @@ In this section, you onboard resource pools, networks, and other non-VM resource
 
 1. Select **Arc agent with virtual hardware management** and then provide the Administrator username and password of the VM. For Linux VMs, there's an option to use SSH key-based authentication. 
 
-   The Arc agent is the [Azure Arc connected machine agent](../servers/agent-overview.md). Alternatively, you can choose not to install this agent by selecting **Virtual hardware management only**. For information about the prerequisites for installing the Arc agent, see [Manage VMware VMs through Arc-enabled VMware vSphere](perform-vm-ops-through-azure.md).
+   The Arc agent is the [Azure Arc connected machine agent](../servers/agent-overview.md). For information about the prerequisites for installing the Arc agent, see [Connected Machine agent prerequisites](../servers/prerequisites.md).
+
+   Alternatively, you can choose not to install this agent by selecting **Virtual hardware management only**.
 
 1. Select **Onboard** to start the deployment of the VM represented in Azure.
 
-For information about the capabilities enabled by the Arc agent, see [Manage access to VMware resources through Azure RBAC](setup-and-manage-self-service-access.md).
+For information about the capabilities enabled by the Arc agent, see [supported operations](../servers/cloud-native/overview.md).
 
 >[!NOTE]
 >Moving VMware vCenter resources between resource groups and subscriptions isn't currently supported.
