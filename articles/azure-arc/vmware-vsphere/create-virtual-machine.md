@@ -1,7 +1,7 @@
 ---
 title: Create a virtual machine on VMware vSphere using Azure Arc
 description: This article helps you create a virtual machine using Azure portal.
-ms.date: 02/10/2026
+ms.date: 10/08/2026
 ms.topic: how-to
 ms.services: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
@@ -54,18 +54,18 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
    - **Override template defaults** - Select the checkbox to override the default CPU cores and memory on the VM templates.
    - Specify computer name for the VM if the VM template has computer name associated with it.
 
-1. Keep the **Enable Guest Management** checkbox selected to automatically install Azure connected machine agent immediately after the creation of the VM. [Azure connected machine agent (Arc agent)](../servers/agent-overview.md) is required if you're planning to use Azure management services to govern, patch, monitor, and secure your VM through Azure.
+1. Keep the **Arc agent with virtual hardware management** option selected to automatically install Azure connected machine agent immediately after the creation of the VM. [Azure connected machine agent (Arc agent)](../servers/agent-overview.md) is required if you're planning to use Azure management services to govern, patch, monitor, and secure your VM through Azure. Select the **Virtual hardware management only** option if you plan to install the Arc agent manually later or if you plan to use only Azure-based VM CRUD capabilities without consuming Azure services. 
 
 1. Under **Administrator account**, enter the following information:
    - Username
    - Password
    - Confirm password
 
-    :::image type="content" source="media/create-virtual-machine/admin-account.png" alt-text="Screenshot of administrator account screen." lightbox="media/create-virtual-machine/admin-account.png":::
+    :::image type="content" source="media/create-virtual-machine/manage-arc-onboarding.png" alt-text="Screenshot of Arc onboarding choice screen." lightbox="media/create-virtual-machine/manage-arc-onboarding.png":::
 
     If you're creating a Linux virtual machine, you have an option to use an SSH key as the authentication method.
 
-1. If you chose to enable guest management, choose the **Connectivity method** for the Arc agent that you install in your VM to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
+1. If you chose to install the Arc agent, choose the **Connectivity method** for the Arc agent to connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
 
      - To connect the Arc agent through a proxy, provide the proxy server details. 
 
