@@ -3,6 +3,7 @@ title: Customer-Managed Keys for Azure Container Registry
 description: Learn how to encrypt your Premium container registry by using a customer-managed key stored in Azure Key Vault or Azure Key Vault Managed HSM.
 ms.topic: tutorial
 ms.date: 10/09/2026
+ai-usage: ai-assisted
 ms.author: kumud
 ms.service: azure-container-registry
 # Customer intent: "As a cloud administrator, I want to implement customer-managed keys for my container registry so that I can enhance encryption security and maintain compliance with regulatory requirements."
@@ -54,7 +55,7 @@ Azure Container Registry supports both automatic and manual rotation of registry
 >[!IMPORTANT]
 >It's an important security consideration for a registry with customer-managed key encryption to frequently update (rotate) the key versions. Follow your organization's compliance policies to regularly update key versions in the key store.
 
-* **Automatically update the key version**: When a registry is encrypted with a non-versioned key, Azure Container Registry regularly checks the key store for a new key version and updates the customer-managed key within one hour. We suggest that you omit the key version when you enable registry encryption with a customer-managed key. Azure Container Registry will then automatically use and update the latest key version.
+* **Automatically update the key version**: When a registry is encrypted with a non-versioned key, Azure Container Registry regularly checks the key store for a new key version and updates the customer-managed key within one hour. Omit the key version when you enable registry encryption with a customer-managed key. Azure Container Registry will then automatically use and update the latest key version.
 
 * **Manually update the key version**: When a registry is encrypted with a specific key version, Azure Container Registry uses that version for encryption until you manually rotate the customer-managed key. We suggest that you specify the key version when you enable registry encryption with a customer-managed key. Azure Container Registry will then use a specific version of a key for registry encryption.
 

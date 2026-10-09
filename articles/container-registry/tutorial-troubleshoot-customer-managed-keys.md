@@ -4,6 +4,7 @@ description: Learn how to troubleshoot the most common problems for a registry t
 author: KumudD
 ms.topic: tutorial
 ms.date: 10/09/2026
+ai-usage: ai-assisted
 ms.author: kumud
 ms.service: azure-container-registry
 # Customer intent: As a cloud administrator, I want to troubleshoot customer-managed keys in my container registry so that I can resolve common issues and ensure secure access to my images.
