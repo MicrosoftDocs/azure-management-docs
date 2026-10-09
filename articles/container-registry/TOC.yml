@@ -172,6 +172,8 @@
       href: container-registry-geo-replication.md
     - name: Monitor Container Registry
       href: monitor-container-registry.md
+    - name: Use Grafana dashboards
+      href: container-registry-dashboards-with-grafana.md
     - name: Configure Service Health alerts for Azure Container Registry
       href: set-container-registry-service-health-alerts.md
     - name: Artifact streaming
