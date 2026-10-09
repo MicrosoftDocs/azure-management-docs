@@ -14,6 +14,10 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.37.3 (September 2026)
+- Security vulnerability fixes
+- General bug fixes and reliability improvements
+  
 ## Version 1.36.1 (July 2026)
 
 - Security vulnerability fixes
