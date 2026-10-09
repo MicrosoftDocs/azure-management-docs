@@ -3,7 +3,7 @@ title: Troubleshoot Customer-Managed Keys in Azure Container Registry
 description: Learn how to troubleshoot the most common problems for a registry that's enabled with a customer-managed key.
 author: KumudD
 ms.topic: tutorial
-ms.date: 10/31/2023
+ms.date: 10/09/2026
 ms.author: kumud
 ms.service: azure-container-registry
 # Customer intent: As a cloud administrator, I want to troubleshoot customer-managed keys in my container registry so that I can resolve common issues and ensure secure access to my images.
@@ -44,11 +44,37 @@ If you get the error when you try to remove a user-assigned identity, follow the
 
 If you get the error when you try to remove a system-assigned identity, [create an Azure support ticket](https://azure.microsoft.com/support/create-ticket/) for assistance in restoring the identity.
 
-## Error after you enable a key vault firewall
+## Error after you enable a key store firewall
 
-If you enable a key vault firewall or virtual network after creating an encrypted registry, you might see HTTP 403 or other errors with image import or automated key rotation. To correct this problem, reconfigure the managed identity and key that you initially used for encryption. See the steps in [Rotate a customer-managed key](tutorial-rotate-revoke-customer-managed-keys.md#rotate-a-customer-managed-key).
+If you enable a Key Vault or Managed HSM firewall, virtual network, or private endpoint after creating an encrypted registry, you might see HTTP 403 or other errors with image import or automated key rotation. Ensure that the key store's network configuration allows Azure Container Registry to reach the key. For Managed HSM networking options, see [Network security for Managed HSM](/azure/key-vault/managed-hsm/network-security).
+
+If Azure Container Registry can access the Managed HSM but the portal key picker can't list keys, ensure that your client is inside the configured network boundary or use **Enter key URI**. Trusted-services bypass doesn't grant portal clients access through the Managed HSM firewall.
+
+After you correct the network configuration, reconfigure the managed identity and key that you initially used for encryption. See the steps in [Rotate a customer-managed key](tutorial-rotate-revoke-customer-managed-keys.md#rotate-a-customer-managed-key).
 
 If the problem persists, contact Azure Support.
+
+## Error when you use a Managed HSM key
+
+Check the following requirements if registry creation, key rotation, or image operations fail when the encryption key is stored in Managed HSM:
+
+* The Managed HSM is provisioned and activated. Data-plane operations, including key creation and role assignment, are unavailable until activation is complete.
+* The key is an RSA-HSM key that supports the `wrapKey` and `unwrapKey` operations.
+* The registry's managed identity has the **Managed HSM Crypto Service Encryption User** local RBAC role. For the least privilege, assign the role at `/keys/<key-name>`.
+* The key URI uses HTTPS and has the format `https://<managed-hsm-name>.<managed-hsm-dns-suffix>/keys/<key-name>` or `https://<managed-hsm-name>.<managed-hsm-dns-suffix>/keys/<key-name>/<version>`.
+* The URI identifies a key. URIs for secrets, certificates, or other Managed HSM object paths aren't supported.
+
+To verify the role assignment for a specific key, run:
+
+```azurecli
+az keyvault role assignment list \
+  --hsm-name <managed-hsm-name> \
+  --assignee-object-id <identity-principal-id> \
+  --role "Managed HSM Crypto Service Encryption User" \
+  --scope /keys/<key-name>
+```
+
+Managed HSM local RBAC changes can take several minutes to propagate. If the role assignment is correct but validation still fails, wait for propagation and retry the registry operation.
 
 ## Identity expiry error
 
@@ -65,10 +91,13 @@ You have to reassign the identity back to registry explicitly.
     --identities "/subscriptions/mysubscription/resourcegroups/myresourcegroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity"
     ``` 
 
-## Accidental deletion of a key vault or key
+## Accidental deletion of a key store or key
 
-Deletion of the key vault, or the key, that's used to encrypt a registry with a customer-managed key makes the registry's content inaccessible. If [soft delete](/azure/key-vault/general/soft-delete-overview) is enabled in the key vault (the default option), you can recover a deleted vault or key vault object and resume registry operations.
+Deletion of the Key Vault or Managed HSM resource, or the key that's used to encrypt a registry, makes the registry's content inaccessible. If [soft delete](/azure/key-vault/general/soft-delete-overview) is enabled in a key vault, you can recover the deleted vault or key vault object and resume registry operations. Managed HSM also supports soft-delete recovery, but it continues to incur charges while it's in a soft-deleted state.
 
 ## Next steps
 
-For key vault deletion and recovery scenarios, see [Azure Key Vault recovery management with soft delete and purge protection](/azure/key-vault/general/key-vault-recovery).
+For deletion and recovery scenarios, see:
+
+* [Azure Key Vault recovery management with soft delete and purge protection](/azure/key-vault/general/key-vault-recovery)
+* [Managed HSM soft-delete and purge protection](/azure/key-vault/managed-hsm/recovery)

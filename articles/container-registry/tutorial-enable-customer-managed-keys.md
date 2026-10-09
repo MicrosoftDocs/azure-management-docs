@@ -1,8 +1,8 @@
 ---
 title: Enable a Customer-Managed Key for Azure Container Registry
-description: In this tutorial, learn how to encrypt your Premium registry with a customer-managed key stored in Azure Key Vault.
+description: In this tutorial, learn how to encrypt your Premium registry with a customer-managed key stored in Azure Key Vault or Azure Key Vault Managed HSM.
 ms.topic: tutorial
-ms.date: 10/31/2023
+ms.date: 10/09/2026
 ms.author: kumud
 ms.service: azure-container-registry
 ms.custom:
@@ -24,7 +24,7 @@ This article is part two in a four-part tutorial series. [Part one](tutorial-cus
 
 ### Create a resource group
 
-Run the [az group create][az-group-create] command to create a resource group that will hold your key vault, container registry, and other required resources:
+Run the [az group create][az-group-create] command to create a resource group that will hold your key store, container registry, and other required resources:
 
 ```azurecli
 az group create --name <resource-group-name> --location <location>
@@ -32,7 +32,7 @@ az group create --name <resource-group-name> --location <location>
 
 ### Create a user-assigned managed identity
 
-Configure a user-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) for the registry so that you can access the key vault:
+Configure a user-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) for the registry so that it can access the encryption key:
 
 1. Run the [az identity create][az-identity-create] command to create the managed identity:
 
@@ -42,7 +42,7 @@ Configure a user-assigned [managed identity](/azure/active-directory/managed-ide
      --name <managed-identity-name>
    ```
 
-2. In the command output, take note of the `id` and `principalId` values to configure registry access with the key vault:
+2. In the command output, take note of the `id` and `principalId` values to configure registry access to the key:
 
    ```JSON
    {
@@ -67,7 +67,7 @@ Configure a user-assigned [managed identity](/azure/active-directory/managed-ide
    identityPrincipalID=$(az identity show --resource-group <resource-group-name> --name <managed-identity-name> --query 'principalId' --output tsv)
    ```
 
-### Create a key vault
+### Create and configure a key vault
 
 1. Run the [az keyvault create][az-keyvault-create] command to create a key vault where you can store a customer-managed key for registry encryption. 
 
@@ -116,7 +116,7 @@ az role assignment create --assignee $identityPrincipalID \
   --scope $keyvaultID
 ```
 
-### Create a key and get the key ID
+### Create a key in the key vault and get the key ID
 
 1. Run the [az keyvault key create][az-keyvault-key-create] command to create a key in the key vault:
 
@@ -175,6 +175,53 @@ keyID=$(az keyvault key show \
 
 keyID=$(echo $keyID | sed -e "s/\/[^/]*$//")
 ```
+
+### Create and configure a Managed HSM
+
+A Managed HSM must be provisioned and activated before you can create keys or assign data-plane roles. Follow [Quickstart: Provision and activate a Managed HSM by using the Azure CLI](/azure/key-vault/managed-hsm/quick-create-cli), and then return to this article.
+
+If the Managed HSM firewall is enabled, configure trusted services or other network access before you create the registry. For more information, see [Network security for Managed HSM](/azure/key-vault/managed-hsm/network-security).
+
+The user who creates the encryption key needs a Managed HSM role that permits key creation, such as **Managed HSM Crypto User**. For more information, see [Managed HSM data-plane role management](/azure/key-vault/managed-hsm/role-management).
+
+Create an RSA-HSM key that supports key wrapping:
+
+```azurecli
+az keyvault key create \
+  --hsm-name <managed-hsm-name> \
+  --name <key-name> \
+  --kty RSA-HSM \
+  --ops wrapKey unwrapKey
+```
+
+Managed HSM uses local RBAC instead of Key Vault access policies. Assign the **Managed HSM Crypto Service Encryption User** role to the user-assigned identity. The following example limits the assignment to the key that the registry uses:
+
+```azurecli
+az keyvault role assignment create \
+  --hsm-name <managed-hsm-name> \
+  --role "Managed HSM Crypto Service Encryption User" \
+  --assignee-object-id $identityPrincipalID \
+  --assignee-principal-type MSI \
+  --scope /keys/<key-name>
+```
+
+Store the key ID with its version for manual rotation:
+
+```azurecli
+keyID=$(az keyvault key show \
+  --hsm-name <managed-hsm-name> \
+  --name <key-name> \
+  --query 'key.kid' --output tsv)
+```
+
+To enable automatic key rotation, remove the version from the key ID:
+
+```azurecli
+keyID=$(echo $keyID | sed -e "s/\/[^/]*$//")
+```
+
+> [!NOTE]
+> A Managed HSM key URI uses the format `https://<managed-hsm-name>.managedhsm.azure.net/keys/<key-name>/<version>`. The DNS suffix can vary by Azure cloud.
 
 ### Create a registry with a customer-managed key
 
@@ -254,7 +301,19 @@ The first option is to configure the access policy for the key vault and set key
 
 The other option is to assign the `Key Vault Crypto Service Encryption User` RBAC role to the user-assigned managed identity at the key vault scope. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
-### Create a key 
+### Create and configure a Managed HSM
+
+1. Follow [Quickstart: Provision and activate a Managed HSM by using the Azure portal](/azure/key-vault/managed-hsm/quick-create-portal).
+1. Ensure that the user who creates the encryption key has a Managed HSM role that permits key creation, such as **Managed HSM Crypto User**.
+1. Under **Settings**, select **Keys**, and then create or import an RSA-HSM key that supports the `wrapKey` and `unwrapKey` operations.
+1. Under **Settings**, select **Local RBAC**.
+1. Add the **Managed HSM Crypto Service Encryption User** role assignment for the user-assigned identity. For the least privilege, assign the role at the scope of the encryption key. For more information, see [Managed HSM data-plane role management](/azure/key-vault/managed-hsm/role-management).
+1. If the Managed HSM firewall is enabled, configure trusted services or other network access. For more information, see [Network security for Managed HSM](/azure/key-vault/managed-hsm/network-security).
+
+> [!IMPORTANT]
+> Azure Container Registry doesn't create or update Managed HSM role assignments. Configure the role assignment before you create the registry or change its encryption key.
+
+### Create a key in a key vault
 
 Create a key in the key vault and use it to encrypt the registry. Follow these steps if you want to select a specific key version as a customer-managed key. You might also need to create a key before creating the registry if key vault access is restricted to a private endpoint or selected networks. 
 
@@ -271,8 +330,10 @@ Create a key in the key vault and use it to encrypt the registry. Follow these s
 1. On the **Encryption** tab, for **Customer-managed key**, select **Enabled**.
 1. For **Identity**, select the managed identity that you created.
 1. For **Encryption**, choose one of the following options:
-    * Choose **Select from Key Vault**, and then either select an existing key vault and key or select **Create new**. The key that you select is unversioned and enables automatic key rotation.
-    * Select **Enter key URI**, and provide the identifier of an existing key. You can provide either a versioned key URI (for a key that must be rotated manually) or an unversioned key URI (which enables automatic key rotation). See the previous section for steps to create a key.
+    * Choose **Select from Key Vault**, and then select an existing key vault or Managed HSM and a key. You can select **Create new** to create a key vault and key. The key that you select is unversioned and enables automatic key rotation.
+    * Select **Enter key URI**, and provide the identifier of an existing Key Vault or Managed HSM key. You can provide either a versioned key URI (for a key that must be rotated manually) or an unversioned key URI (which enables automatic key rotation).
+
+   If a Managed HSM firewall prevents the portal from listing keys, allow your client IP address or select **Enter key URI**. Allowing trusted services enables Azure Container Registry to reach the Managed HSM, but it doesn't allow a client outside the configured network boundary to use the key picker.
 1. Select **Review + create**.
 1. Select **Create** to deploy the registry instance.
 
@@ -284,7 +345,14 @@ To see the encryption status of your registry in the portal, go to your registry
 
 ## Enable a customer-managed key by using a Resource Manager template
 
-You can use a Resource Manager template to create a container registry and enable encryption with a customer-managed key: 
+You can use a Resource Manager template to create a container registry and enable encryption with a customer-managed key stored in Key Vault or Managed HSM.
+
+Before you deploy the template, create the user-assigned identity and configure its access to the key:
+
+* For Key Vault, grant the identity the `get`, `wrapKey`, and `unwrapKey` permissions by using an access policy or the **Key Vault Crypto Service Encryption User** Azure RBAC role.
+* For Managed HSM, assign the identity the **Managed HSM Crypto Service Encryption User** local RBAC role at the key scope.
+
+The template declares the existing identity so that the registry can depend on it. Deploy the template to the same resource group as the identity.
 
 1. Copy the following content of a Resource Manager template to a new file and save it as *CMKtemplate.json*:
 
@@ -293,23 +361,16 @@ You can use a Resource Manager template to create a container registry and enabl
      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
      "contentVersion": "1.0.0.0",
      "parameters": {
-       "vault_name": {
-         "defaultValue": "",
-         "type": "String"
-       },
        "registry_name": {
-         "defaultValue": "",
          "type": "String"
        },
        "identity_name": {
-         "defaultValue": "",
          "type": "String"
        },
        "kek_id": {
          "type": "String"
        }
      },
-     "variables": {},
      "resources": [
        {
          "type": "Microsoft.ContainerRegistry/registries",
@@ -334,8 +395,8 @@ You can use a Resource Manager template to create a container registry and enabl
            "encryption": {
              "status": "enabled",
              "keyVaultProperties": {
-               "identity": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2023-07-01').clientId]",
-               "KeyIdentifier": "[parameters('kek_id')]"
+               "identity": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2018-11-30').clientId]",
+               "keyIdentifier": "[parameters('kek_id')]"
              }
            },
            "networkRuleSet": {
@@ -359,31 +420,8 @@ You can use a Resource Manager template to create a container registry and enabl
          }
        },
        {
-         "type": "Microsoft.KeyVault/vaults/accessPolicies",
-         "apiVersion": "2023-07-01",
-         "name": "[concat(parameters('vault_name'), '/add')]",
-         "dependsOn": [
-           "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name'))]"
-         ],
-         "properties": {
-           "accessPolicies": [
-             {
-               "tenantId": "[subscription().tenantId]",
-               "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identity_name')), '2023-07-01').principalId]",
-               "permissions": {
-                 "keys": [
-                   "get",
-                   "unwrapKey",
-                   "wrapKey"
-                 ]
-               }
-             }
-           ]
-         }
-       },
-       {
          "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
-         "apiVersion": "2023-07-01",
+         "apiVersion": "2018-11-30",
          "name": "[parameters('identity_name')]",
          "location": "[resourceGroup().location]"
        }
@@ -393,10 +431,11 @@ You can use a Resource Manager template to create a container registry and enabl
 
 2. Follow the steps in the previous sections to create the following resources:
 
-   * Key vault, identified by name
-   * Key vault key, identified by key ID
+   * User-assigned managed identity, identified by name
+   * Key Vault or Managed HSM key, identified by key ID
+   * Required Key Vault permissions or Managed HSM local RBAC role assignment
 
-3. Run the [az deployment group create][az-deployment-group-create] command to create the registry by using the preceding template file. When indicated, provide a new registry name and a user-assigned managed identity name, along with the key vault name and key ID that you created.
+3. Run the [az deployment group create][az-deployment-group-create] command to create the registry by using the preceding template file. Provide a new registry name, the existing user-assigned managed identity name, and the key ID that you created.
 
    ```azurecli
    az deployment group create \
@@ -405,8 +444,7 @@ You can use a Resource Manager template to create a container registry and enabl
      --parameters \
        registry_name=<registry-name> \
        identity_name=<managed-identity> \
-       vault_name=<key-vault-name> \
-       key_id=<key-vault-key-id>
+       kek_id=<key-id>
    ```
 
 4. Run the [az acr encryption show][az-acr-encryption-show] command to show the status of registry encryption:
