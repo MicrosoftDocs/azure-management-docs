@@ -6,6 +6,7 @@ author: KumudD
 ms.author: kumud
 ms.date: 03/25/2026
 ms.service: azure-container-registry
+ai-usage: ai-assisted
 # Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."
 ---
 
@@ -39,15 +40,16 @@ ACR also has the following image pull and push performance limits.
 
 In addition to the storage and feature limits in the preceding table, Azure Container Registry enforces request rate limits on registry APIs. Rate limits are measured in requests per minute (r/m) and are determined by your registry's SKU. When your request rate exceeds a limit, the registry returns an HTTP `429 Too Many Requests` error. The response includes a `Retry-After` header that indicates how long to wait before retrying.
 
-Requests are throttled in the following operation categories. Each category is defined by the HTTP methods used by the registry's data plane APIs:
+Requests are throttled in the following operation categories. Some categories are subsets of a broader category, and requests in those categories count against both limits:
 
 | Operation category | HTTP methods | Examples |
 | --- | --- | --- |
-| **DataplaneRead** | GET, HEAD, OPTIONS | Getting (pulling) image manifests and layers. Getting layer blob location. Listing manifests, repositories, and tags. Checking the existence of a digest or tag. Other read operations. |
+| **DataplaneRead** | GET, HEAD, OPTIONS | Getting (pulling) image manifests and layers. Getting layer blob location. Checking the existence of a digest or tag. Other read operations. Includes MetadataRead and ListReferrers requests. |
+| **MetadataRead** | GET | Reading metadata about a registry and its contents. Includes the `GetListRepositories`, `GetListTags`, `GetListManifests`, `GetManifestProperties`, and `GetRepositoryProperties` APIs. MetadataRead requests also count toward the DataplaneRead limit. |
+| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. ListReferrers requests also count toward the DataplaneRead limit. |
 | **DataplaneWrite** | PUT, PATCH, POST | Pushing image manifests and layers. Pushing tags. Other write operations. |
 | **DataplaneDelete** | DELETE | Deleting images, manifests, and tags. |
 | **OAuth** | Authentication (AuthN) and authorization (AuthZ) | Authentication requests that clients make when logging in to a registry login server, such as exchanging from a Microsoft Entra ID access token, a registry admin token, or a non-Microsoft Entra scope mapped token, to a registry refresh token. Authorization requests that clients make before push, pull, and other registry data plane operations, such as exchanging from a registry refresh token to a scoped registry access token. |
-| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. |
 
 The following request rate limits are enforced for each SKU:
 
@@ -55,15 +57,17 @@ The following request rate limits are enforced for each SKU:
 | --- | --- | --- | --- |
 | DataplaneRead | Per registry | 10,000 r/m | 20,000 r/m |
 | DataplaneRead | Per identity per registry | 5,000 r/m | 10,000 r/m |
+| MetadataRead<sup>1</sup> | Per registry | 4,000 r/m | 8,000 r/m |
+| MetadataRead<sup>1</sup> | Per identity per registry | 2,000 r/m | 4,000 r/m |
+| ListReferrers<sup>1</sup> | Per registry | 500 r/m | 2,000 r/m |
+| ListReferrers<sup>1</sup> | Per identity per registry | 250 r/m | 1,000 r/m |
 | DataplaneWrite | Per registry | 2,000 r/m | 4,000 r/m |
 | DataplaneWrite | Per identity per registry | 1,000 r/m | 2,000 r/m |
 | DataplaneDelete | Per registry | 1,000 r/m | 4,000 r/m |
 | DataplaneDelete | Per identity per registry | 500 r/m | 2,000 r/m |
-| MetadataRead | Per registry | 4,000 r/m | 8,000 r/m |
-| MetadataRead | Per identity per registry | 2,000 r/m | 4,000 r/m |
-| ListReferrers | Per registry | 500 r/m | 2,000 r/m |
-| ListReferrers | Per identity per registry | 250 r/m | 1,000 r/m |
 | OAuth | Per registry | 10,000 r/m | 20,000 r/m |
+
+<sup>1</sup> MetadataRead and ListReferrers requests also count toward the DataplaneRead limit. For more information, see [Requests that count against multiple limits](#requests-that-count-against-multiple-limits).
 
 > [!NOTE]
 > The rate limits listed in the preceding table are **best-effort approximate maximums** and are **not backed by an SLA**. Actual throughput may vary across registries and over time depending on infrastructure conditions, traffic patterns, and other factors. These numbers represent the rough maximum request rates you can expect under typical operating conditions, but Azure Container Registry does not guarantee these exact rates at all times.
@@ -80,7 +84,7 @@ The following request rate limits are enforced for each SKU:
 
 Some requests count against more than one operation category, and a request is throttled if *any* applicable limit is exceeded. For example, a request to list the referrers of a manifest is both a ListReferrers request and a DataplaneRead request, and it consumes capacity from both limits. If your registry has already exhausted its DataplaneRead limit, referrers requests are also throttled, even if the ListReferrers limit hasn't been reached. Likewise, a high rate of referrers requests reduces the DataplaneRead capacity that remains for other read operations, such as image pulls.
 
-Requests to list repositories, list tags for a repository, or list manifests for a repository count as both a MetadataRead request and a DataplaneRead request and consume capacity from both limits. 
+MetadataRead requests work the same way. Each MetadataRead request counts against both the MetadataRead and DataplaneRead limits.
 
 #### How rate limits are enforced
 
