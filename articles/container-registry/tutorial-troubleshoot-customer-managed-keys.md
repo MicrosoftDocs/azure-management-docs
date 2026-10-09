@@ -78,7 +78,7 @@ An Azure Policy assignment with a **Modify** effect (for example, the built-in p
 Invalid encryption key vault property specified for registry <registry-name>. Property Identity and KeyIdentifier must be set when encryption is enabled. For more information on customer-managed keys, please visit 'https://aka.ms/acr/cmk'.
 ```
 
-This is a known limitation: automatic **Modify** remediation isn't currently supported on registries that are encrypted with a customer-managed key. The remediation can't preserve the protected key vault settings when it resubmits the registry configuration, so the registry rejects the update with the preceding error and stays noncompliant.
+This error is a known limitation: automatic **Modify** remediation isn't currently supported on registries that are encrypted with a customer-managed key. The remediation can't preserve the protected key vault settings when it resubmits the registry configuration, so the registry rejects the update with the preceding error and stays noncompliant.
 
 To bring the registry into compliance, set the property that the policy targets directly instead of relying on automatic remediation. Setting the property directly changes only that one setting and leaves the encryption configuration untouched, so the registry accepts the update. Use the command that corresponds to the policy you're remediating.
 
