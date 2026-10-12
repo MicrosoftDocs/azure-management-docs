@@ -41,35 +41,35 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. I
 
 x86-64 (64-bit) architecture is fully supported, while [only some features may be supported on Arm64](#arm64-architecture-support). The Azure Connected Machine agent doesn't run on 32-bit architectures.
 
-| Operating system | Version | x86-64 | ARM64 | Last agent release| Notes |
+| Operating system | Version | x86-64 | ARM64 |End of new agent version support| Notes |
 | --- | --- | --- | --- | --- | --- |
 | AlmaLinux | 8 | ✅ | ✅ | May 2029 | |
 | AlmaLinux | 9 | ✅ | ❌ | August 2032 | |
-| Amazon Linux | 2 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
+| Amazon Linux | 2 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
 | Amazon Linux | 2023 | ✅ | ✅ | August 2027 | |
-| Azure Linux (CBL-Mariner) | 3.0 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
+| Azure Linux (CBL-Mariner) | 3.0 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
 | Azure Local | | | || |
-| Debian | 11 | ⚠️ | ❌ | November 2026 |Final agent release planned for November 2026|
-| Debian | 12 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
+| Debian | 11 | ⚠️ | ❌ | November 2026 |New arc agent version support ends November 2026|
+| Debian | 12 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
 | Debian | 13 | ✅ | ❌ | — | |
-| Oracle Linux | 7 | ⚠️ | ❌ | November 2026 | Final agent release planned for November 2026|
+| Oracle Linux | 7 | ⚠️ | ❌ | November 2026 | New arc agent version support ends November 2026|
 | Oracle Linux | 8 | ✅ | ✅ | August 2029 | |
 | Oracle Linux | 9 | ✅ | ❌ | August 2032 | |
 | Oracle Linux | 10 | ✅ | ❌ | — | |
-| Red Hat Enterprise Linux (RHEL) | 7 | ⚠️ | ❌ | November 2026 | Final agent release planned for November 2026|
+| Red Hat Enterprise Linux (RHEL) | 7 | ⚠️ | ❌ | November 2026 |New arc agent version support ends November 2026|
 | Red Hat Enterprise Linux (RHEL) | 8 | ✅ | ❌ | August 2029 | |
 | Red Hat Enterprise Linux (RHEL) | 9 | ✅ | ❌ | August 2032 | |
 | Red Hat Enterprise Linux (RHEL) | 10 | ✅ | ❌ | August 2035 | |
 | Rocky Linux | 8 | ✅ | ❌ | August 2029 | |
 | Rocky Linux | 9 | ✅ | ❌ | August 2032 | |
-| SUSE Linux Enterprise Server (SLES) | 12 SP5 | ⚠️ | ❌ | November 2026 | Final agent release planned for November 2026|
-| SUSE Linux Enterprise Server (SLES) | 15 SP3 | ⚠️ | ⚠️ | November 2026 |Final agent release planned for November 2026|
-| SUSE Linux Enterprise Server (SLES) | 15 SP4 | ⚠️ | ⚠️ | November 2026 |Final agent release planned for November 2026|
-| SUSE Linux Enterprise Server (SLES) | 15 SP5 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
-| SUSE Linux Enterprise Server (SLES) | 15 SP6 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
+| SUSE Linux Enterprise Server (SLES) | 12 SP5 | ⚠️ | ❌ | November 2026 |New arc agent version support ends November 2026|
+| SUSE Linux Enterprise Server (SLES) | 15 SP3 | ⚠️ | ⚠️ | November 2026 |New arc agent version support ends November 2026|
+| SUSE Linux Enterprise Server (SLES) | 15 SP4 | ⚠️ | ⚠️ | November 2026 |New arc agent version support ends November 2026|
+| SUSE Linux Enterprise Server (SLES) | 15 SP5 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
+| SUSE Linux Enterprise Server (SLES) | 15 SP6 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
 | SUSE Linux Enterprise Server (SLES) | 15 SP7 | ✅ | ✅ | August 2031 | |
-| Ubuntu | 18.04 | ⚠️ | ❌ | November 2026 |Final agent release planned for November 2026|
-| Ubuntu | 20.04 | ⚠️ | ⚠️ | November 2026 | Final agent release planned for November 2026|
+| Ubuntu | 18.04 | ⚠️ | ❌ | November 2026 | New arc agent version support ends November 2026|
+| Ubuntu | 20.04 | ⚠️ | ⚠️ | November 2026 | New arc agent version support ends November 2026|
 | Ubuntu | 22.04 | ✅ | ✅ | May 2027 | |
 | Ubuntu | 24.04 | ✅ | ✅ | May 2029 | |
 | Ubuntu | 26.04 | ✅ | ❌ | — | |
@@ -79,8 +79,8 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Windows IoT Enterprise | 11 | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
 | Windows IoT Enterprise LTSC | 10 (2021) | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
 | Windows IoT Enterprise LTSC | 11 (2024) | ✅ | ❌ | — | see [client operating system guidance](#client-operating-systems) |
-| Windows Server | 2012 | ⚠️ | ❌ | November 2026 | Final agent release planned for November 2026|
-| Windows Server | 2012 R2 | ⚠️ | ❌ | November 2026 | Final agent release planned for November 2026|
+| Windows Server | 2012 | ⚠️ | ❌ | November 2026 | New arc agent version support ends November 2026|
+| Windows Server | 2012 R2 | ⚠️ | ❌ | November 2026 | New arc agent version support ends November 2026|
 | Windows Server | 2016 | ✅ | ❌ | February 2030 | |
 | Windows Server | 2019 | ✅ | ❌ | — | |
 | Windows Server | 2022 | ✅ | ❌ | — | |
@@ -95,7 +95,7 @@ The Azure Connected Machine agent isn't tested on operating systems hardened by 
 
 ### Azure Connected Machine Agent OS support and deprecation
 
-When an operating system reaches the date listed in the **Last agent release** column, Microsoft stops releasing new versions of the Azure Connected Machine Agent for that operating system. In accordance with the [Azure Connected Machine Agent release and support policy](https://learn.microsoft.com/azure/azure-arc/servers/agent-release-notes), Microsoft continues to support and service the final compatible agent version for **12 months after the final agent release**.
+When an operating system reaches the date listed in the **End of new agent version support** column, Microsoft stops releasing new versions of the Azure Connected Machine Agent for that operating system. In accordance with the [Azure Connected Machine Agent release and support policy](/azure/azure-arc/servers/agent-release-notes), Microsoft continues to support and service the final compatible agent version for **12 months after the final agent release**.
 
 Customers should upgrade to a supported operating system before the servicing period ends to continue receiving Azure Connected Machine Agent updates.
 
