@@ -68,7 +68,7 @@ For Windows Server 2012 and 2012 R2, you can also attest to conformance through 
 
 In all cases, you must attest to conformance with Software Assurance (SA) or an equivalent server subscription. You need Software Assurance or an equivalent server subscription to purchase Extended Security Updates on-premises and in hosted environments. You can purchase Extended Security Updates through Enterprise Agreement (EA), Enterprise Subscription Agreement (EAS), a Server & Cloud Enrollment (SCE), and Enrollment for Education Solutions (EES).
 
-For Windows Server 2016, you need Software Assurance (or an equivalent server subscription) for on-premises workloads. The Services Provider License Agreement (SPLA) isn't available for Windows Server 2016 ESUs.
+For Windows Server 2016, you can also attest to conformance through a Services Provider License Agreement (SPLA). If you license your machines through SPLA or with a server subscription, you don't need Software Assurance to purchase ESUs.
 
 ::: zone-end
 
@@ -110,7 +110,7 @@ As servers no longer require ESUs because you migrated them to Azure, Azure VMwa
 
 As you migrate and modernize your Windows Server 2016 infrastructure, use the flexibility of monthly billing with Windows Server 2016 ESUs enabled by Azure Arc for cost savings benefits.
 
-As servers no longer require ESUs because they're migrated to Azure or updated to Windows Server 2019 or higher, you can modify the number of cores associated with a license or delete or deactivate licenses. You can also link the license to a new scope of additional servers. To learn more, see [Programmatically deploy and manage Azure Arc Extended Security Updates licenses](api-extended-security-updates.md).
+As servers no longer require ESUs because they're updated to Windows Server 2019 or higher, you can modify the number of cores associated with a license or delete or deactivate licenses. You can also link the license to a new scope of additional servers. To learn more, see [Programmatically deploy and manage Azure Arc Extended Security Updates licenses](api-extended-security-updates.md).
 
 ::: zone-end
 
