@@ -4,7 +4,7 @@ description: "Learn how to install the Agentic Retrieval extension on an Azure L
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/18/2026
+ms.date: 10/12/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to install Agents and Tools with Foundry Local on an Azure Local cluster that uses disconnected operations so that I can run an AI-powered chat solution in a disconnected environment.
@@ -15,6 +15,8 @@ ms.subservice: edge-rag
 This article shows you how to install the Agentic Retrieval extension, part of the [Agents and Tools with Foundry Local](../overview.md) platform, on an Azure Local cluster configured for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview). Use this approach when you need to run an AI-powered chat solution that uses Foundry models without external internet connectivity.
 
 In this article, you choose an authentication method, configure Microsoft Entra app registration for end-user sign-in, assign required app roles, grant permissions for managed identity scenarios, prepare installation inputs, run the installation command, and verify successful provisioning. For a standard connected deployment, see [Deploy the extension for Agentic Retrieval in Foundry Local](../deploy.md).
+
+To add permission-aware remote retrieval and approved actions for on-premises SharePoint Server and Exchange Server, complete the base disconnected installation requirements in this article and then follow [Connect Microsoft 365 Local to Agentic Retrieval](../connect-m365-local.md#install-in-a-disconnected-environment). Microsoft 365 Local is in public preview and requires additional AD FS, source-system, network, TLS, and RWX storage preparation.
 
 [!INCLUDE [preview-notice](../includes/preview-notice.md)]
 

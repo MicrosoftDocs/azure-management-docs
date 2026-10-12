@@ -4,7 +4,7 @@ description: "Learn how Agentic Retrieval in Foundry Local deployments differ in
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 07/23/2026
+ms.date: 10/12/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to understand how Agentic Retrieval in Foundry Local differs in a disconnected Azure Local environment so that I can plan a secure, offline deployment.
@@ -28,6 +28,7 @@ In disconnected environments, extension availability, model and container image 
 - **Authentication**: End-user sign-in doesn't use public Microsoft Entra ID endpoints. Instead, you create the Microsoft Entra application registration on the disconnected stamp by using the `az` CLI and the disconnected Microsoft Graph endpoint, and you register the sign-in redirect URIs for your ingress domain.
 - **Authorization**: When you use managed identity authentication to Foundry, you grant the cluster managed identity the built-in **Contributor** role on the Foundry extension's ARM scope. Role propagation on disconnected Azure can take longer than in connected environments.
 - **Networking**: The extension requires a policy-enforcing container network interface (CNI) such as Calico, Cilium, or Azure NPM, because Agentic Retrieval uses Kubernetes network policies by default. The ingress load-balancer IP isn't baked into the expansion pack. You supply an IP from your cluster's ingress subnet at install time by using MetalLB.
+- **Microsoft 365 Local (public preview)**: SharePoint Server and Exchange Server connectors can use in-environment AD FS and local source-system endpoints. Microsoft 365 Local still requires browser and pod connectivity to AD FS, SharePoint, Exchange EWS, DNS, TLS, and two RWX cache volumes. Pre-stage the SharePoint signing-certificate Secret and use local storage before extension installation. See [Connect Microsoft 365 Local to Agentic Retrieval](../connect-m365-local.md#install-in-a-disconnected-environment).
 
 ## Architecture summary
 

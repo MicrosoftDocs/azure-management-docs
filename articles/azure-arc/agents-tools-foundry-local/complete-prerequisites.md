@@ -4,7 +4,7 @@ description: "Learn how to complete deployment prerequisites for Agentic Retriev
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/26/2026
+ms.date: 10/12/2026
 ai-usage: ai-generated
 ms.subservice: edge-rag
 ms.custom:
@@ -35,10 +35,11 @@ Use this checklist to prepare your environment before deploying Agentic Retrieva
 | 6 | [Verify file share access](prepare-file-server.md) | Make sure your documents and images are hosted on a supported and reachable NFS server. **Required for combined and knowledge modes only.** Skip this step if deploying in agentic mode. |
 | 7 | [(Optional) Set up NFS with Kerberos authentication](connect-file-share-kerberos-overview.md) | If you use NFS with Kerberos (`krb5p`) authentication for disconnected on-premises deployments, complete the Kerberos setup before deployment. **Optional** — skip if you use AUTH_SYS authentication. See [NFS with Kerberos overview](connect-file-share-kerberos-overview.md). |
 | 8 | [Set up SharePoint Server-to-Server authentication](connect-sharepoint-overview.md) | If you use SharePoint Server as a data source, configure High-Trust Server-to-Server (S2S) authentication before deployment. **Required when using SharePoint data sources.** See [SharePoint Server-to-Server overview](connect-sharepoint-overview.md). |
-| 9 | [Prepare an Azure Kubernetes Service (AKS) cluster on Azure Local](prepare-aks-cluster.md) | Create an AKS Arc cluster on your Azure Local instance with a node pool that meets minimum requirements. |
-| 10 | [Configure authentication](prepare-authentication.md) | Configure access to Agentic Retrieval for AI application developers and for end users of the chat endpoint. |
-| 11 | [Install networking and observability components](prepare-networking-observability.md) | Deploy required components for network routing, monitoring, and logging. |
-| 12 | [Configure DNS](prepare-dns.md) | Make sure DNS is properly configured so that you can reach the local portal domain for Agentic Retrieval. |
+| 9 | [(Optional) Prepare Microsoft 365 Local](connect-m365-local.md) | To retrieve live SharePoint and Exchange data or use approved Microsoft 365 actions, prepare AD FS, SharePoint high-trust authentication, Exchange EWS, connector metadata, network paths, and RWX caches. Microsoft 365 Local is in public preview and requires `combined` mode. |
+| 10 | [Prepare an Azure Kubernetes Service (AKS) cluster on Azure Local](prepare-aks-cluster.md) | Create an AKS Arc cluster on your Azure Local instance with a node pool that meets minimum requirements. |
+| 11 | [Configure authentication](prepare-authentication.md) | Configure access to Agentic Retrieval for AI application developers and for end users of the chat endpoint. |
+| 12 | [Install networking and observability components](prepare-networking-observability.md) | Deploy required components for network routing, monitoring, and logging. |
+| 13 | [Configure DNS](prepare-dns.md) | Make sure DNS is properly configured so that you can reach the local portal domain for Agentic Retrieval. |
 
 ## Related content
 

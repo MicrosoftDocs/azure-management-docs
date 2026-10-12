@@ -4,7 +4,7 @@ description: "Read about known issues in Agentic Retrieval in Foundry Local."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 07/07/2026
+ms.date: 10/12/2026
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
@@ -36,6 +36,11 @@ The following table lists the known issues in this release.
 | Table parsing | Documents that contain malformed or deeply nested tables (particularly large HTML files larger than 500 KB with many nested `<table>` elements) might be only partially parsed. Table content can be silently dropped and unavailable to search. |
 | Bring-your-own ingress controller | Agentic Retrieval bundles its own `ingress-nginx` controller, so bringing your own ingress controller isn't supported. When you install Foundry Local, skip the optional `ingress-nginx` step. A separate `ingress-nginx` release conflicts with the bundled one and causes the install to fail. **Workaround:** If one is already installed, remove it first with `helm uninstall ingress-nginx -n ingress-nginx`. |
 | First request after pod start (disconnected/ALDO) | On Azure Local Disconnected Operations (ALDO) clusters that authenticate to Foundry Local using a managed identity token (`foundryClientId`), the first inference or agent request after any pod start, restart, rollout, or scale-up might fail with an HTTP 500 error: "MI token acquisition timed out". On disconnected stamps, the token is minted by the Azure Arc cluster-identity operator on a fixed 30-second poll cadence, so a freshly started pod can take up to about 60 seconds to obtain its first token. The subsequent request succeeds because the token is cached for the lifetime of the pod. The failure is transient and self-clearing. This behavior doesn't occur with BYOM/API-key authentication. **Workaround:** For disconnected deployments where predictable first-request latency is important, use BYOM/API-key authentication to Foundry Local, or retry the first request after a service restart or scale event. |
+| Microsoft 365 Local deployment | Microsoft 365 Local connectors require `combined` deployment mode and Azure CLI installation. The Azure portal doesn't expose the connector settings. **Workaround:** Install or update the extension with `az k8s-extension` and the settings in [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md). |
+| Microsoft 365 Local connector sign-in | Browser-direct connector sign-in requires AD FS 2019 or later. The end-user browser must resolve and reach AD FS, trust its TLS certificate, and be allowed by AD FS CORS. A private-only AD FS hostname that is unreachable from the user network causes connector sign-in to fail. |
+| Exchange connector authentication | Exchange uses delegated AD FS authentication in this public preview. Microsoft Entra ID authentication for hybrid Exchange isn't supported in this release. |
+| Microsoft 365 Local caches | SharePoint and Exchange binary retrieval requires separate RWX cache claims. A `ReadWriteOnce` class or an unreachable storage endpoint leaves the MCP pod pending or prevents binary file processing. |
+| Microsoft 365 Local connector card | A connector is omitted from the Chat UI when its registry entry is incomplete. Configure its authority, public client ID, redirect URI, resource, scope, and MCP destination. |
 
 ## Security considerations
 

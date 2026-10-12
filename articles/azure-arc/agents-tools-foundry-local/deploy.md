@@ -4,7 +4,7 @@ description: "Learn how to deploy the Agentic Retrieval in Foundry Local extensi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/26/2026
+ms.date: 10/12/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -22,6 +22,8 @@ To try Agentic Retrieval without the need for local hardware, see [Quickstart: I
 ## Prerequisites
 
 Before you begin, [complete the deployment prerequisites for Agentic Retrieval](complete-prerequisites.md).
+
+To enable the Microsoft 365 Local public preview for on-premises SharePoint Server or Exchange Server, use the Azure CLI path and follow [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md). The Azure portal installation experience doesn't expose the Microsoft 365 Local settings.
 
 ## Deploy the extension
 

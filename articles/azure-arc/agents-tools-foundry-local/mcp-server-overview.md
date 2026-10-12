@@ -3,7 +3,7 @@ title: MCP Server Overview for Agentic Retrieval in Foundry Local
 description: Learn about the Model Context Protocol (MCP) server in Agentic Retrieval in Foundry Local, including built-in search tools, connection methods, and how to register external MCP servers.
 author: cwatson-cat
 ms.author: cwatson
-ms.date: 05/29/2026
+ms.date: 10/12/2026
 ms.topic: concept-article
 ms.subservice: edge-rag
 ai-usage: ai-generated
@@ -27,6 +27,8 @@ This modular architecture lets agents connect to new data sources without code c
 ## Agentic Retrieval's MCP server implementation
 
 The built-in MCP server `indexed-sources-mcp-server` runs on port 8080 and exposes search tools that query your ingested collections. It also supports consuming external MCP servers by registering them as knowledge sources, allowing agents to access tools and data from any MCP-compatible service.
+
+Agentic Retrieval also provides first-party Microsoft 365 Local MCP connectors for on-premises SharePoint Server and Exchange Server. These connectors retrieve data as the signed-in user and expose supported write actions. Every write action pauses for human approval before execution. For supported actions, authentication, deployment, and limitations, see [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md).
 
 ### Protocol details
 

@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 07/07/2026
+ms.date: 10/12/2026
 ai-usage: ai-generated
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Agentic Retrieval in Foundry Local release so that I can plan updates for my organization.
@@ -18,6 +18,20 @@ ai-usage: ai-generated
 Agentic Retrieval helps you deploy Retrieval-Augmented Generation (RAG) solutions at the edge. This article lists new features, improvements, and important changes for each release. Use these notes to plan, deploy, and manage Agentic Retrieval in your organization.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## October 2026
+
+### Microsoft 365 Local [Public Preview]
+
+| Feature | Description |
+|---|---|
+| **Remote SharePoint and Exchange retrieval** | Connect agents to on-premises SharePoint Server and Exchange Server through first-party MCP connectors. Content is retrieved at query time without ingestion. |
+| **Per-user permission enforcement** | AD FS connector tokens preserve the signed-in user's identity. SharePoint Server and Exchange Server apply source-system permissions to every request. |
+| **Exchange actions with human approval** | Agents can propose supported mail and calendar actions. The chat pauses for approval and executes the exact operation only after the user approves it. |
+| **SharePoint actions with human approval** | Agents can propose supported document, folder, metadata, move, copy, and access-control actions. Rejection causes no SharePoint side effect. |
+| **Connected and disconnected deployment** | Microsoft 365 Local supports connected Arc-enabled clusters and Azure Local disconnected operations when all AD FS, source-system, DNS, TLS, registry, and storage dependencies are available in the environment. |
+
+For prerequisites, supported actions, configuration, validation, and limitations, see [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md).
 
 ## July 2026
 

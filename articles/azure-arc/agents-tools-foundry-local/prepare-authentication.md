@@ -4,7 +4,7 @@ description: "Learn how to configure authentication for Agentic Retrieval in Fou
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 5/18/2026
+ms.date: 10/12/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Agentic Retrieval in Foundry Local so that I can securely connect to and manage the chat solution.
@@ -15,6 +15,8 @@ ms.subservice: edge-rag
 For your Agentic Retrieval deployment, register an application, create app roles, and assign users or groups in Microsoft Entra ID. This article is part of the [deployment prerequisites checklist](complete-prerequisites.md) and also a prerequisite of [Quickstart: Install Agentic Retrieval](quickstart-edge-rag.md). If your environment uses disconnected operations, app registration and role assignment must be done from the CLI. See [Install for disconnected operations on Azure Local](disconnected-operations/deploy-disconnected.md).
 
 You might need to work with your Microsoft Entra or cloud administrator to configure authentication.
+
+This article configures primary sign-in and Agentic Retrieval roles. Microsoft 365 Local uses separate AD FS public clients to obtain per-user connector tokens for SharePoint Server and Exchange Server. If you enable Microsoft 365 Local, complete this article and [configure Microsoft 365 Local connector authentication](connect-m365-local.md#configure-ad-fs-connector-applications).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 

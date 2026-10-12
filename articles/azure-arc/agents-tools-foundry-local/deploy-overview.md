@@ -4,7 +4,7 @@ description: Learn about deploying Agentic Retrieval in Foundry Local with Azure
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 07/08/2026
+ms.date: 10/12/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Agentic Retrieval in Foundry Local with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -76,6 +76,7 @@ When you deploy Agentic Retrieval, set several configuration options to tailor t
 - **SSL and domain configuration:** Set up a Transport Layer Security (TLS) termination certificate and domain so you can securely access the chat endpoint.
 - **Access and authentication:** Set up the Microsoft Entra app ID and assign roles to users and groups.
 - **Data source configuration:** Make sure your data source, an NFS share, is reachable and contains the required files in supported formats.
+- **Microsoft 365 Local (public preview):** In `combined` mode, you can enable first-party SharePoint Server and Exchange Server MCP connectors for permission-aware remote retrieval and approved actions. This path requires Azure CLI deployment, AD FS connector applications, SharePoint high-trust authentication, Exchange EWS, and RWX file caches. See [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md).
 
 If you connect Agentic Retrieval to Foundry Local using managed identity (foundryClientId), plan to set up the roles in the following section.
 

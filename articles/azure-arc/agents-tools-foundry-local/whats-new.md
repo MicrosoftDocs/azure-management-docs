@@ -4,7 +4,7 @@ description: Learn about the latest features and announcements from the past few
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 07/07/2026
+ms.date: 10/12/2026
 ms.subservice: edge-rag
 ai-usage: ai-generated
 ms.custom:
@@ -17,6 +17,16 @@ ms.custom:
 This article lists recent features and improvements in Agentic Retrieval (formerly Edge RAG enabled by Azure Arc).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## October 2026
+
+### Microsoft 365 Local public preview
+
+Connect Agentic Retrieval agents to on-premises SharePoint Server and Exchange Server through first-party MCP connectors. Agents retrieve files, email, and calendar information at query time while the source systems enforce the signed-in user's permissions.
+
+Agents can also propose supported SharePoint, Exchange mail, and Exchange calendar actions. Every write action pauses in the chat experience for human approval and runs only after approval. Microsoft 365 Local supports connected and disconnected deployments when AD FS, source-system, DNS, TLS, and RWX storage prerequisites are available.
+
+For setup and the supported action list, see [Connect Microsoft 365 Local to Agentic Retrieval](connect-m365-local.md).
 
 ## July 2026
 

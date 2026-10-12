@@ -25,6 +25,8 @@ items:
         items:
           - name: Requirements
             href: requirements.md
+          - name: Microsoft 365 Local
+            href: connect-m365-local.md
           - name: NFS with Kerberos authentication
             href: connect-file-share-kerberos-overview.md
           - name: SharePoint Server-to-Server authentication
