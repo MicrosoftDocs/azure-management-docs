@@ -97,7 +97,7 @@ The Azure Connected Machine agent isn't tested on operating systems hardened by 
 
 When an operating system version reaches the date listed in the **End of new agent version support** column, Microsoft stops releasing new versions of the Azure Connected Machine Agent for that operating system version. In accordance with the [Azure Connected Machine Agent release and support policy](/azure/azure-arc/servers/agent-release-notes), Microsoft continues to support and service the final compatible agent version for **12 months after the final agent release**.
 
-Customers should upgrade to a supported operating system before the servicing period ends to continue receiving Azure Connected Machine Agent updates.
+Customers should upgrade to a supported operating system version before the servicing period ends to continue receiving Azure Connected Machine Agent updates.
 
 Azure Connected Machine Agent support follows Microsoft's support lifecycle for the agent and is independent of extended support programs offered by operating system vendors. Participation in an extended security or support offering doesn't extend or otherwise change Microsoft's support timeline for the Azure Connected Machine Agent.
 
