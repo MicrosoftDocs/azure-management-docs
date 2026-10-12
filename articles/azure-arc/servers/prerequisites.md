@@ -95,7 +95,7 @@ The Azure Connected Machine agent isn't tested on operating systems hardened by 
 
 ### Azure Connected Machine Agent OS support and deprecation
 
-When an operating system reaches the date listed in the **Last agent release** column, Microsoft will stop releasing new versions of the Azure Connected Machine Agent for that operating system. In accordance with our [Azure Connected Machine Agent release and support policy](https://learn.microsoft.com/en-us/azure/azure-arc/servers/agent-release-notes), Microsoft will continue to support and service the final compatible agent version for **12 months after the final agent release**.
+When an operating system reaches the date listed in the **Last agent release** column, Microsoft stops releasing new versions of the Azure Connected Machine Agent for that operating system. In accordance with the [Azure Connected Machine Agent release and support policy](https://learn.microsoft.com/en-us/azure/azure-arc/servers/agent-release-notes), Microsoft continues to support and service the final compatible agent version for **12 months after the final agent release**.
 
 Customers should upgrade to a supported operating system before the servicing period ends to continue receiving Azure Connected Machine Agent updates.
 
