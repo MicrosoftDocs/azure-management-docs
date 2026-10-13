@@ -92,7 +92,7 @@ Windows Server 2012 Extended Security Updates support Windows Server 2012 and 20
 Windows Server 2016 Extended Security Updates support Windows Server 2016 Standard and Datacenter editions. You can configure Windows Server 2016 ESUs in the Azure portal starting August 3, 2026, and billing begins January 13, 2027.
 
 > [!NOTE]
-> To purchase ESUs, you must have Software Assurance through Volume Licensing Programs such as an Enterprise Agreement (EA), Enterprise Agreement Subscription (EAS), Enrollment for Education Solutions (EES), Server and Cloud Enrollment (SCE), or through Microsoft Open Value Programs, or an equivalent Server Subscription. Software Assurance is required for on-premises workloads. The Services Provider License Agreement (SPLA) isn't available for Windows Server 2016 ESUs.
+> To purchase ESUs, you must have Software Assurance through Volume Licensing Programs such as an Enterprise Agreement (EA), Enterprise Agreement Subscription (EAS), Enrollment for Education Solutions (EES), Server and Cloud Enrollment (SCE), or through Microsoft Open Value Programs. Alternatively, if your Windows Server 2016 machines are licensed through SPLA or with a Server Subscription, Software Assurance isn't required to purchase ESUs.
 
 ::: zone-end
 
