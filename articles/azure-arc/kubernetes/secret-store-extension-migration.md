@@ -1,7 +1,7 @@
 ---
 title: Migrate from the Azure Key Vault Secrets Provider extension to the Secret Store extension
 description: Plan and perform a migration from the Azure Key Vault Secrets Provider extension to the Secret Store extension on an Azure Arc-enabled Kubernetes cluster.
-ms.date: 08/28/2026
+ms.date: 10/14/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 
@@ -35,7 +35,6 @@ Migration from the Azure Key Vault Secrets Provider extension to the SSE require
 ### Considerations
 
 - **Windows containers aren't supported.** SSE supports Linux only.
-- **Sovereign clouds aren't supported.** SSE doesn't accept a `cloudName` parameter. Use the Azure Key Vault Secrets Provider extension's `cloudName` for vaults in `AzureUSGovernmentCloud` or `AzureChinaCloud`.
 - **Secrets are persisted in the Kubernetes secret store.** SSE writes Azure Key Vault contents into native Kubernetes Secret objects. The cluster's RBAC, audit posture, and [secret-store encryption at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) now apply to those values. Confirm they meet your requirements before migrating.
 
 ## Migration at a glance
@@ -278,6 +277,9 @@ See the [extension configuration reference](secret-store-extension-reference.md#
 ## Stage 4: Update configuration for the Secret Store Extension
 
 Each Azure Key Vault Secrets Provider `SecretProviderClass` you inventoried in Stage 1 becomes one SSE `SecretProviderClass` plus one `SecretSync` per Kubernetes Secret you want SSE to produce. If you prefer a single resource per Azure Key Vault, the simplified `AKVSync` resource (preview) replaces both.
+
+> [!IMPORTANT]
+> If a `SecretSync` or `AKVSync` reuses the name of a Secret that AKV SPE synced, delete that Secret first. SSE doesn't overwrite Secrets it doesn't manage.
 
 ### [Direct (recommended for migration)](#tab/direct)
 
