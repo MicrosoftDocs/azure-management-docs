@@ -2,7 +2,7 @@
 title: Use Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters
 description: Learn how to set up the Azure Key Vault Provider for Secrets Store CSI Driver interface as an extension on Azure Arc enabled Kubernetes cluster
 ms.custom: devx-track-azurecli
-ms.date: 02/19/2025
+ms.date: 10/14/2026
 ms.topic: how-to
 # Customer intent: As a DevOps engineer managing Azure Arc-enabled Kubernetes clusters, I want to deploy the Azure Key Vault Secrets Provider extension, so that I can securely fetch and manage secrets within my Kubernetes environment.
 ---
@@ -10,7 +10,7 @@ ms.topic: how-to
 # Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters
 
 > [!IMPORTANT]
-> We recommend using the [Secret Store extension](secret-store-extension.md) for clusters outside of Azure cloud. By default this extension does not store secrets persistently in the kubernetes secrets store so  connectivity to Azure Key Vault is required whenever a secret-consuming pod is started or restarted.
+> The Azure Key Vault Secrets Provider extension retires on October 9, 2027. After that date, it won't receive new features, bug fixes, security updates, or technical support. Before then, [migrate to the Secret Store extension](secret-store-extension-migration.md). For details, see the [retirement announcement](https://azure.microsoft.com/updates?id=570313).
 
 The Azure Key Vault Provider for Secrets Store CSI Driver allows for the integration of Azure Key Vault as a secrets store with a Kubernetes cluster via a [CSI volume](https://kubernetes-csi.github.io/docs/). For Azure Arc-enabled Kubernetes clusters, you can install the Azure Key Vault Secrets Provider extension to fetch secrets.
 

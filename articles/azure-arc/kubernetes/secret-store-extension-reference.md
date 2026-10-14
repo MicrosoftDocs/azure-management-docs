@@ -1,6 +1,6 @@
 ---
 title: Reference for Azure Key Vault Secret Store Extension
-ms.date: 03/24/2026
+ms.date: 10/14/2026
 ms.topic: reference
 description: A reference guide for the Azure Key Vault Secret Store Extension, documenting the possibilities allowed in each of SSE's configuration resources.
 ---
@@ -82,6 +82,7 @@ Within .spec:
  - **clientID** *(required)*: The clientID for the managed identity with access to the required secrets. This managed identity must have a federated credential associated with the named service account.
  - **tenantID** *(required)*: The ID of the Azure tenant containing the AKV instance.
  - **keyvaultName** *(required)*: The name of the key vault.
+ - **cloudName** *(optional)*: The Azure cloud containing the key vault, for example, `AzurePublicCloud`, `AzureUSGovernmentCloud`, or `AzureChinaCloud`. If omitted, SSE uses the cluster's Azure cloud.
 
  - **objects** *(required)*: A list of items (**secretInAKV**, **certInAKV**, or **kubernetesSecretName**). Items can be secrets or certificates to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
     - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV.
@@ -191,6 +192,7 @@ Within .spec:
      - **clientID** *(required)*: The clientID for the managed identity with access to the required secrets. This managed identity must have a federated credential associated with the service account named in the SecretSync resource that uses this SecretProviderClass.
      - **tenantID** *(required)*: The ID of the Azure tenant containing the AKV instance.
      - **keyvaultName** *(required)*: The name of the keyvault.
+     - **cloudName** *(optional)*: The Azure cloud containing the key vault. If omitted, SSE uses the cluster's Azure cloud. For cloud names, see the [AKV provider configuration](https://azure.github.io/secrets-store-csi-driver-provider-azure/docs/getting-started/usage/).
      - **objects** *(required)*: A **string** containing a YAML fragment representing the items to be fetched from this AKV. Pay close attention to the example to see how the objects field is constructed. Additional examples of SecretProviderClass resources for use with Azure Key Vault may be found in the [AKV provider docs](https://github.com/Azure/secrets-store-csi-driver-provider-azure/blob/master/examples/keyvault-secrets/v1alpha1_secretproviderclass_secrets.yaml). **objects** must contain at least one item within the "array" subobject.
          - **objectName** *(required)*: The name of the secret or certificate to fetch from AKV.
          - **objectType** *(required)*: Set this field to `secret` when fetching a secret from AKV.<br> When fetching a certificate, set this field to:
