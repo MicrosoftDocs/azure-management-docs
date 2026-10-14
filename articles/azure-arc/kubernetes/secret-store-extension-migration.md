@@ -5,12 +5,12 @@ ms.date: 10/14/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 
-# Customer intent: As a cluster administrator running the Azure Key Vault Secrets Provider extension on an Azure Arc-enabled Kubernetes cluster, I want to understand what migrating to the Secret Store extension involves and how to do it safely, so that I can decide whether to migrate and execute the migration with confidence.
+# Customer intent: As a cluster administrator running the Azure Key Vault Secrets Provider extension on an Azure Arc-enabled Kubernetes cluster, I want to understand what migrating to the Secret Store extension involves and how to do it safely, so that I can complete the migration before the Azure Key Vault Secrets Provider extension retires.
 ---
 
 # Migrate from the Azure Key Vault Secrets Provider extension to the Secret Store extension
 
-This guide is for cluster administrators who already use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) (AKV SPE), and are considering moving to the [Secret Store extension (SSE)](secret-store-extension.md).
+The [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) (AKV SPE) [retires on October 9, 2027](https://azure.microsoft.com/updates?id=570313). This guide covers migrating to the [Secret Store extension (SSE)](secret-store-extension.md).
 
 The two extensions make secrets from Azure Key Vault available to Kubernetes workloads, but the SSE improves on the Azure Key Vault Secrets Provider extension in three ways:
 
