@@ -10,7 +10,7 @@ ms.custom: devx-track-azurecli
 
 # Migrate from the Azure Key Vault Secrets Provider extension to the Secret Store extension
 
-This guide is for cluster administrators who already use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) (AKV SPE), and are considering moving to the [Secret Store extension (SSE)](secret-store-extension.md).
+This guide is for cluster administrators who already use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) (AKV SPE), and are considering moving to the [Secret Store extension (SSE)](secret-store-extension.md). AKV SPE [retires on October 9, 2027](https://azure.microsoft.com/updates?id=570313).
 
 The two extensions make secrets from Azure Key Vault available to Kubernetes workloads, but the SSE improves on the Azure Key Vault Secrets Provider extension in three ways:
 
