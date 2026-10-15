@@ -110,7 +110,7 @@ kubectl get deploy,sts,ds,job,cronjob --all-namespaces -o json | \
 ```
 
 > [!NOTE]
-> These commands find common workloads. If your cluster runs CronJobs, operators or other resources that create pods, or workloads that Flux, Argo CD, or Helm manage, refer to the **All workload types** tab.
+> These commands find common workloads. If your cluster runs CronJobs, operators, or other resources that create pods, or workloads that Flux, Argo CD, or Helm manage, refer to the **All workload types** tab.
 
 #### [All workload types](#tab/all-workload-types)
 
