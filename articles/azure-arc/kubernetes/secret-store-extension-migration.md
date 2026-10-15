@@ -241,7 +241,7 @@ kube-apiserver-arg:
 ```
 
 > [!NOTE]
-> On a cluster with more than one node, the new issuer makes the API server reject tokens issued before the restart. Pods on nodes that aren't restarted get 401 errors until kubelet refreshes their tokens, which can take up to about 50 minutes. To avoid this, add the current issuer as a second `service-account-issuer` entry after the new one. Get it with `kubectl get --raw /.well-known/openid-configuration | jq -r .issuer`. If it's the same URL as the new issuer, leave it out, because kube-apiserver rejects duplicates.
+> On a cluster with more than one node, the new issuer makes the API server reject tokens issued before the restart. Pods on nodes that aren't restarted get 401 errors until kubelet refreshes their tokens, which can take up to about 50 minutes. To avoid this problem, add the current issuer as a second `service-account-issuer` entry after the new one. Get it with `kubectl get --raw /.well-known/openid-configuration | jq -r .issuer`. If it's the same URL as the new issuer, leave it out, because kube-apiserver rejects duplicates.
 
 ```bash
 sudo systemctl restart k3s
