@@ -1,21 +1,17 @@
 ---
-title: Azure Copilot Deployment Agent (preview)
-description: The Azure Copilot Deployment Agent helps you plan and execute deployments and get help with templates, configurations, and rollout strategies.
-ms.date: 06/22/2026
+title: Azure Copilot Deployment Agent
+description: The Azure Copilot Deployment Agent helps plan and execute deployments, and provides help with templates, configurations, and rollout strategies.
+ms.date: 11/01/2026
 ms.service: azure-copilot
 ms.topic: concept-article
 # Customer intent: "As an Azure Copilot user, I want to understand how to use the Deployment Agent, so that I can be more successful performing deployment tasks in  my Azure tenant."
 ---
 
-# Azure Copilot Deployment Agent (preview)
+# Azure Copilot Deployment Agent
 
-The Azure Copilot Deployment Agent acts as a virtual cloud solution architect, guiding you through the entire infrastructure planning and deployment process with simplicity and precision.
+The Azure Copilot Deployment Agent acts as a virtual cloud solution architect, guiding the entire infrastructure planning and deployment process with simplicity and precision.
 
 To invoke Azure Deployment Agent outside of the Azure portal, use the [azure-skills repository](https://github.com/microsoft/azure-skills) or learn more about the [enterprise infrastructure planner](https://github.com/microsoft/azure-skills/blob/main/skills/azure-enterprise-infra-planner/SKILL.md).
-
-> [!IMPORTANT]
-> The Azure Copilot Deployment Agent is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 The Deployment Agent helps you translate high-level goals into actionable deployment plans by applying [Azure Well-Architected Framework](/azure/well-architected/) best practices. You can get help with tasks like creating workload plans, generating and reviewing Terraform and Bicep configurations, and streamlining the automation of Infrastructure-as-Code (IaC) workflows by integrating with GitHub.
 
