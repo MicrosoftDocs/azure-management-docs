@@ -614,7 +614,7 @@ If AKV SPE was installed with `syncSecret.enabled=true` and the workload was alr
 
 ### Start the workloads again
 
-Apply the updated manifests. This re-creates the DaemonSets, Jobs, and bare Pods that you deleted in Stage 3. Then restore the replica counts that you recorded in Stage 3, and resume CronJobs:
+Apply the updated manifests. This step re-creates the DaemonSets, Jobs, and bare Pods that you deleted in Stage 3. Then restore the replica counts that you recorded in Stage 3, and resume CronJobs.
 
 ```bash
 envsubst < my-app.yaml | kubectl apply -f -
