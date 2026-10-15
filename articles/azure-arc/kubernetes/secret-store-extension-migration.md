@@ -344,7 +344,7 @@ az k8s-extension delete \
   --name ${AKV_SPE_EXTENSION_NAME}
 ```
 
-The `nodePublishSecretRef` Secrets that held the service-principal credentials are now inert, because the CSI driver that consumed them is gone. Stage 6 removes them.
+The `nodePublishSecretRef` Secrets that held the service principal credentials are now inert, because the CSI driver that consumed them is gone. Stage 6 removes them.
 
 ### Install the Secret Store extension
 
