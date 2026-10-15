@@ -371,7 +371,7 @@ Each Azure Key Vault Secrets Provider `SecretProviderClass` you inventoried in S
 
 #### Update each SecretProviderClass
 
-The `SecretProviderClass` resources from the Azure Key Vault Secrets Provider remain in the cluster after Stage 3. Edit each one (or you can extract and modify them from `akv-spe-spc-backup.json` taken in Stage 1):
+The cluster retains the `SecretProviderClass` resources from the Azure Key Vault Secrets Provider after Stage 3. Edit each one (or extract and modify them from `akv-spe-spc-backup.json` taken in Stage 1):
 
 | Change | Why |
 | --- | --- |
