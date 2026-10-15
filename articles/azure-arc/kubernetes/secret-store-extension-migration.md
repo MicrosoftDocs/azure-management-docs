@@ -334,7 +334,7 @@ kubectl get pods --all-namespaces -o json | \
 
 ### Uninstall the Azure Key Vault Secrets Provider extension
 
-Delete the extension, using the name you found in Stage 1:
+Delete the extension by using the name you found in Stage 1:
 
 ```azurecli
 az k8s-extension delete \
