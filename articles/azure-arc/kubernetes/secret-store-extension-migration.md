@@ -504,7 +504,7 @@ kubectl describe secretsync my-app-secrets -n ${KUBERNETES_NAMESPACE}
 kubectl describe akvsync my-app-secrets -n ${KUBERNETES_NAMESPACE}
 ```
 
-A healthy sync reports a status reason of `UpdateNoValueChangeSucceeded` or `UpdateValueChangeOrForceUpdateSucceeded`. Investigate further if the status is any other value. `ControllerSyncFailed`, `PartialSync`, or `ProviderError` indicates that SSE couldn't reach Azure Key Vault; causes include connectivity issues, insufficient permissions on the identity, or `SecretProviderClass` misconfiguration. Cross-reference the [troubleshooting guide](secret-store-extension-troubleshooting.md#secretsync-status-reasons) before changing any configuration.
+A healthy sync reports a status reason of `UpdateNoValueChangeSucceeded` or `UpdateValueChangeOrForceUpdateSucceeded`. Investigate further if the status has any other value. `ControllerSyncFailed`, `PartialSync`, or `ProviderError` indicates that SSE couldn't reach Azure Key Vault. Causes include connectivity issues, insufficient permissions on the identity, or `SecretProviderClass` misconfiguration. Before changing any configuration, cross-reference the [troubleshooting guide](secret-store-extension-troubleshooting.md#secretsync-status-reasons).
 
 For `AKVSync`, the top-level condition only shows that SSE generated its resources. Check the reason for each entry under `Details`.
 
