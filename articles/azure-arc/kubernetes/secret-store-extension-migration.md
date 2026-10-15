@@ -1,9 +1,10 @@
 ---
 title: Migrate from the Azure Key Vault Secrets Provider extension to the Secret Store extension
 description: Plan and perform a migration from the Azure Key Vault Secrets Provider extension to the Secret Store extension on an Azure Arc-enabled Kubernetes cluster.
-ms.date: 10/14/2026
+ms.date: 10/15/2026
 ms.topic: how-to
 ms.custom: devx-track-azurecli
+ai-usage: ai-assisted
 
 # Customer intent: As a cluster administrator running the Azure Key Vault Secrets Provider extension on an Azure Arc-enabled Kubernetes cluster, I want to understand what migrating to the Secret Store extension involves and how to do it safely, so that I can complete the migration before the Azure Key Vault Secrets Provider extension retires.
 ---
@@ -43,9 +44,9 @@ The migration workflow is in six stages:
 
 1. **Inventory.** Capture the existing `SecretProviderClass` resources and the workloads that mount them.
 2. **Prepare SSE prerequisites.** Create a managed identity and enable workload identity on the cluster. Install the Certificate Management for Azure Arc extension.
-3. **Switch over.** Uninstall the Azure Key Vault Secrets Provider extension and install the SSE.
+3. **Switch over.** Stop the workloads that mount CSI volumes, then replace the Azure Key Vault Secrets Provider extension with the SSE.
 4. **Translate configuration.** Edit each existing `SecretProviderClass` for SSE and add a `SecretSync` for every Kubernetes Secret you want SSE to produce, or replace both with `AKVSync` (preview).
-5. **Update workloads.** Re-point workloads at the SSE-produced Kubernetes Secret. Workloads that already read the AKV SPE–synced Secret may need no change; CSI-mounting workloads switch to a Secret-backed volume or `secretKeyRef`.
+5. **Update workloads.** Re-point workloads at the SSE-produced Kubernetes Secret, then start them again. Workloads that already read the AKV SPE–synced Secret might not need to change; CSI-mounting workloads switch to a Secret-backed volume or `secretKeyRef`.
 6. **Verify and clean up.** Confirm secrets are syncing. Revoke the old service principal and remove the leftover credentials and local inventory files.
 
 ## Set up your environment
@@ -75,13 +76,28 @@ Discover and record where and how the Azure Key Vault Secrets Provider extension
 
 The `SecretProviderClass` CRD (`secrets-store.csi.x-k8s.io/v1`) and your existing `SecretProviderClass` instances remain on the cluster after the Stage 3 switchover. SSE consumes them after the edits in Stage 4.
 
+Back them up without the fields that the API server generates, so that `kubectl apply` can reapply the file:
+
 ```bash
-kubectl get secretproviderclass --all-namespaces -o yaml > akv-spe-spc-backup.yaml
+kubectl get secretproviderclass --all-namespaces -o json | \
+  jq 'del(.items[].metadata.resourceVersion, .items[].metadata.uid,
+          .items[].metadata.creationTimestamp, .items[].metadata.generation,
+          .items[].metadata.annotations."kubectl.kubernetes.io/last-applied-configuration")' \
+  > akv-spe-spc-backup.json
+```
+
+List the vaults that these classes use. Stage 2 grants the new identity access to each one.
+
+```bash
+kubectl get secretproviderclass --all-namespaces \
+  -o jsonpath='{range .items[*]}{.spec.parameters.keyvaultName}{"\n"}{end}' | sort -u
 ```
 
 ### Identify workloads that mount via CSI
 
 Capture both the running pods and the controllers that own them. Stage 5 updates each controller's pod template; the pod-level capture records where CSI volumes are mounted today, including the `nodePublishSecretRef` to clean up in Stage 6.
+
+#### [Common workloads](#tab/common-workloads)
 
 ```bash
 kubectl get pods --all-namespaces -o json | \
@@ -93,16 +109,47 @@ kubectl get deploy,sts,ds,job,cronjob --all-namespaces -o json | \
   > akv-spe-csi-owners.json
 ```
 
+> [!NOTE]
+> These commands find common workloads. If your cluster runs CronJobs, operators, or other resources that create pods, or workloads that Flux, Argo CD, or Helm manage, refer to the **All workload types** tab.
+
+#### [All workload types](#tab/all-workload-types)
+
+Capture the pods with the first command in the **Common workloads** tab. In place of its second command, run this search. It checks every namespaced resource type, including CronJobs and custom resources, and keeps each object that contains a `secrets-store.csi.k8s.io` volume. It skips objects owned by a built-in controller, such as the ReplicaSets of a Deployment. On a large cluster, the search can take several minutes.
+
+```bash
+for r in $(kubectl api-resources --verbs=list --namespaced -o name | grep -vE '^(events|events\.events\.k8s\.io|secrets)$'); do
+  kubectl get "$r" --all-namespaces -o json 2>/dev/null | jq -c '.items[]
+    | select(all((.metadata.ownerReferences // [])[]; .kind | IN("Deployment","ReplicaSet","StatefulSet","DaemonSet","Job","CronJob","ReplicationController") | not))
+    | select(any(.. | objects; .csi?.driver? == "secrets-store.csi.k8s.io"))'
+done | jq -s '.' > akv-spe-csi-owners.json
+
+jq -r '.[] | "\(.kind) \(.metadata.namespace)/\(.metadata.name)\(if .metadata.ownerReferences then " (owned by \(.metadata.ownerReferences[0].kind)/\(.metadata.ownerReferences[0].name))" else "" end)"' \
+  akv-spe-csi-owners.json
+```
+
+For an object listed as `owned by` another resource, stop and update that resource instead. Its operator might undo direct changes to the object.
+
+If Flux, Argo CD, or Helm manages a workload, make the Stage 5 changes in its source, such as the Git repository or chart values. Flux, and Argo CD with self-heal turned on, can revert changes made with `kubectl`, including scaling a workload to zero, and the next `helm upgrade` overwrites them. Suspend reconciliation before Stage 3, and resume it after Stage 5. For Flux configurations on Azure Arc, run [`az k8s-configuration flux update`](/cli/azure/k8s-configuration/flux#az-k8s-configuration-flux-update) with `--suspend true`, and later with `--suspend false`.
+
+---
+
 ### Record the extension configuration
 
-Capture any non-default settings applied to the Azure Key Vault Secrets Provider extension, for example rotation interval, `syncSecret.enabled`, or `linux.kubeletRootDir`:
+Find the installed name of the Azure Key Vault Secrets Provider extension, and then capture any non-default settings applied to it, such as rotation interval, `syncSecret.enabled`, or `linux.kubeletRootDir`:
 
 ```azurecli
+export AKV_SPE_EXTENSION_NAME="$(az k8s-extension list \
+  --cluster-name $CLUSTER_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --cluster-type connectedClusters \
+  --query "[?extensionType=='microsoft.azurekeyvaultsecretsprovider'].name" \
+  -o tsv)"
+
 az k8s-extension show \
   --cluster-type connectedClusters \
   --cluster-name $CLUSTER_NAME \
   --resource-group $RESOURCE_GROUP \
-  --name <akv-spe-extension-name> \
+  --name ${AKV_SPE_EXTENSION_NAME} \
   --query configurationSettings \
   > akv-spe-extension-config.json
 ```
@@ -134,19 +181,32 @@ export USER_ASSIGNED_CLIENT_ID="$(az identity show \
   --query 'clientId' --output tsv)"
 ```
 
-Grant the managed identity access to the Azure Key Vault that holds your secrets. These commands assume the vault uses Azure RBAC; if it uses access policies, grant `Get` on secrets, certificates, and keys instead.
+Grant the managed identity access to each vault in the list from Stage 1. These commands assume the vault uses Azure RBAC; if it uses access policies, grant `Get` on secrets, certificates, and keys instead. Key Vault Reader is needed only for `cert` and `key` objects. If you sync only secrets, including certificates fetched with `objectType: secret`, Key Vault Secrets User is enough.
+
+The commands assign the roles by principal ID, so they don't fail while the new identity replicates in Microsoft Entra ID. For details, see [Assign a role for a new service principal](/azure/role-based-access-control/role-assignments-cli#assign-a-role-for-a-new-service-principal-at-a-resource-group-scope).
 
 ```azurecli
+export USER_ASSIGNED_PRINCIPAL_ID="$(az identity show \
+  --resource-group "${RESOURCE_GROUP}" \
+  --name "${USER_ASSIGNED_IDENTITY_NAME}" \
+  --query 'principalId' --output tsv)"
+
+export KEYVAULT_ID="$(az keyvault show --name "${KEYVAULT_NAME}" --query id --output tsv)"
+
 az role assignment create \
   --role "Key Vault Reader" \
-  --assignee "${USER_ASSIGNED_CLIENT_ID}" \
-  --scope "/subscriptions/${SUBSCRIPTION}/resourcegroups/${RESOURCE_GROUP}/providers/Microsoft.KeyVault/vaults/${KEYVAULT_NAME}"
+  --assignee-object-id "${USER_ASSIGNED_PRINCIPAL_ID}" \
+  --assignee-principal-type ServicePrincipal \
+  --scope "${KEYVAULT_ID}"
 
 az role assignment create \
   --role "Key Vault Secrets User" \
-  --assignee "${USER_ASSIGNED_CLIENT_ID}" \
-  --scope "/subscriptions/${SUBSCRIPTION}/resourcegroups/${RESOURCE_GROUP}/providers/Microsoft.KeyVault/vaults/${KEYVAULT_NAME}"
+  --assignee-object-id "${USER_ASSIGNED_PRINCIPAL_ID}" \
+  --assignee-principal-type ServicePrincipal \
+  --scope "${KEYVAULT_ID}"
 ```
+
+For each other vault, set `KEYVAULT_NAME` to its name and run the commands again, starting from `KEYVAULT_ID`.
 
 ### Enable workload identity on the cluster
 
@@ -179,6 +239,9 @@ kube-apiserver-arg:
   - 'service-account-issuer=<SERVICE_ACCOUNT_ISSUER>'
   - 'service-account-max-token-expiration=24h'
 ```
+
+> [!NOTE]
+> On a cluster with more than one node, the new issuer makes the API server reject tokens issued before the restart. Pods on nodes that aren't restarted get 401 errors until kubelet refreshes their tokens, which can take up to about 50 minutes. To avoid this problem, add the current issuer as a second `service-account-issuer` entry after the new one. Get it with `kubectl get --raw /.well-known/openid-configuration | jq -r .issuer`. If it's the same URL as the new issuer, leave it out, because kube-apiserver rejects duplicates.
 
 ```bash
 sudo systemctl restart k3s
@@ -233,32 +296,55 @@ After installation, [confirm the cert-manager components are running](cert-manag
 ## Stage 3: Switch to the Secret Store extension
 
 > [!WARNING]
-> Once the Azure Key Vault Secrets Provider extension is uninstalled, its CSI driver components are removed from the cluster. From this point, pods that start, restart, or reschedule won't be able to mount their `secrets-store.csi.k8s.io` volumes and will fail to start until you complete Stage 4 and Stage 5. Already-running pods may briefly continue to access their mounted secrets, but pod behavior after uninstall is unpredictable; treat any continued access as best-effort and plan as if all CSI-backed secret access is unavailable from this point.
+> Uninstalling the Azure Key Vault Secrets Provider extension removes its CSI driver, and kubelet needs the driver to unmount `secrets-store.csi.k8s.io` volumes. A pod that still mounts one after the driver is gone can't terminate. It stays in `Terminating`, and its secret files stay on the node until the node restarts. Stop these workloads before you uninstall the extension. They stay stopped until Stage 5.
+
+### Stop the workloads that mount CSI volumes
+
+Record the replica counts of the workloads in your Stage 1 inventory, so that you can restore them in Stage 5:
+
+```bash
+jq -r '.[] | select(.spec.replicas != null)
+       | "\(.kind) \(.metadata.namespace)/\(.metadata.name) \(.spec.replicas)"' \
+  akv-spe-csi-owners.json
+```
+
+Stop each workload in the inventory:
+
+```bash
+# Deployments and StatefulSets
+kubectl scale deployment/<name> --replicas=0 -n <namespace>
+kubectl scale statefulset/<name> --replicas=0 -n <namespace>
+
+# CronJobs
+kubectl patch cronjob <name> -n <namespace> -p '{"spec":{"suspend":true}}'
+
+# DaemonSets, Jobs, and bare Pods. Stage 5 re-creates them from their updated manifests.
+kubectl delete daemonset/<name> -n <namespace>
+kubectl delete job/<name> -n <namespace>
+kubectl delete pod/<name> -n <namespace>
+```
+
+Wait until no pod mounts a `secrets-store.csi.k8s.io` volume. This command lists the pods that still do, and returns nothing when they're all gone:
+
+```bash
+kubectl get pods --all-namespaces -o json | \
+  jq -r '.items[] | select(any(.spec.volumes[]?; .csi?.driver=="secrets-store.csi.k8s.io"))
+         | "\(.metadata.namespace)/\(.metadata.name)"'
+```
 
 ### Uninstall the Azure Key Vault Secrets Provider extension
 
-Find the installed name of the extension:
-
-```azurecli
-az k8s-extension list \
-  --cluster-name $CLUSTER_NAME \
-  --resource-group $RESOURCE_GROUP \
-  --cluster-type connectedClusters \
-  --query "[?extensionType=='microsoft.azurekeyvaultsecretsprovider'].name" \
-  -o tsv
-```
-
-Delete it (replace `akvsecretsprovider` with the name returned above):
+Delete the extension by using the name you found in Stage 1:
 
 ```azurecli
 az k8s-extension delete \
   --cluster-type connectedClusters \
   --cluster-name $CLUSTER_NAME \
   --resource-group $RESOURCE_GROUP \
-  --name akvsecretsprovider
+  --name ${AKV_SPE_EXTENSION_NAME}
 ```
 
-The `nodePublishSecretRef` Secrets that held the service-principal credentials are now inert (the CSI driver that consumed them is gone). Leave them in place until Stage 6 so you have a fast rollback path if Stage 4 or Stage 5 fails.
+The `nodePublishSecretRef` Secrets that held the service principal credentials are now inert, because the CSI driver that consumed them is gone. Stage 6 removes them.
 
 ### Install the Secret Store extension
 
@@ -285,12 +371,12 @@ Each Azure Key Vault Secrets Provider `SecretProviderClass` you inventoried in S
 
 #### Update each SecretProviderClass
 
-The `SecretProviderClass` resources from the Azure Key Vault Secrets Provider remain in the cluster after Stage 3. Edit each one (or you can extract and modify them from `akv-spe-spc-backup.yaml` taken in Stage 1):
+The cluster retains the `SecretProviderClass` resources from the Azure Key Vault Secrets Provider after Stage 3. Edit each one (or extract and modify them from `akv-spe-spc-backup.json` taken in Stage 1):
 
 | Change | Why |
 | --- | --- |
 | Add `spec.parameters.clientID` and set it to the user-assigned managed identity's client ID. | This is how SSE knows which managed identity to federate to the service account. |
-| Remove `spec.parameters.usePodIdentity`, `useVMManagedIdentity`, and `userAssignedIdentityID` if present. | SSE doesn't read these legacy auth flags; `clientID` plus the federated credential is the only auth path. |
+| Remove `spec.parameters.usePodIdentity`, `useVMManagedIdentity`, and `userAssignedIdentityID` if present. | Legacy auth flags can override workload identity federation and make the sync fail. |
 | Optionally add `objectVersionHistory: <n>` to entries in `objects` to sync multiple versions of each secret from Azure Key Vault. | The Azure provider supports this in both AKV SPE and SSE, but only SSE exposes each version as a distinct Kubernetes Secret data key (see SecretSync / AKVSync `v0`, `v1`, ...). |
 
 > [!NOTE]
@@ -361,12 +447,12 @@ spec:
     type: Opaque
     data:
       - sourcePath: my-secret
-        targetKey: my-secret-value
+        targetKey: my-secret
       - sourcePath: my-certificate
-        targetKey: my-certificate-value
+        targetKey: my-certificate
 ```
 
-`sourcePath` matches the `objectName` in the `SecretProviderClass`. `targetKey` is the data key within the resulting Kubernetes Secret. If your `SecretProviderClass` entries set `objectVersionHistory > 1`, reference specific versions with `<objectName>/0`, `<objectName>/1`, and so on (`/0` is the most recent). See the [SecretSync reference](secret-store-extension-reference.md#secretsync-resources).
+`sourcePath` matches the `objectName` in the `SecretProviderClass`. `targetKey` is the data key within the resulting Kubernetes Secret. To keep file paths unchanged for workloads that read files, set each `targetKey` to the file name the workload reads: the `objectName`, or `objectAlias` if set. If your `SecretProviderClass` entries set `objectVersionHistory > 1`, reference specific versions with `<objectName>/0`, `<objectName>/1`, and so on (`/0` is the most recent). See the [SecretSync reference](secret-store-extension-reference.md#secretsync-resources).
 
 If you need the same secret in workloads in different namespaces, create a copy of the `SecretSync` resource for each namespace, alongside a Kubernetes service account and federated identity credential for that namespace.
 
@@ -418,7 +504,9 @@ kubectl describe secretsync my-app-secrets -n ${KUBERNETES_NAMESPACE}
 kubectl describe akvsync my-app-secrets -n ${KUBERNETES_NAMESPACE}
 ```
 
-A healthy sync reports a status reason of `UpdateNoValueChangeSucceeded` or `UpdateValueChangeOrForceUpdateSucceeded`. Investigate further if the status is any other value. `ProviderError` indicates that SSE couldn't reach Azure Key Vault; causes include connectivity issues, insufficient permissions on the identity, or `SecretProviderClass` misconfiguration. Cross-reference the [troubleshooting guide](secret-store-extension-troubleshooting.md#secretsync-status-reasons) before changing any configuration.
+A healthy sync reports a status reason of `UpdateNoValueChangeSucceeded` or `UpdateValueChangeOrForceUpdateSucceeded`. Investigate further if the status has any other value. `ControllerSyncFailed`, `PartialSync`, or `ProviderError` indicates that SSE couldn't reach Azure Key Vault. Causes include connectivity issues, insufficient permissions on the identity, or `SecretProviderClass` misconfiguration. Before changing any configuration, cross-reference the [troubleshooting guide](secret-store-extension-troubleshooting.md#secretsync-status-reasons).
+
+For `AKVSync`, the top-level condition only shows that SSE generated its resources. Check the reason for each entry under `Details`.
 
 When the sync reports success, confirm the Kubernetes Secret exists:
 
@@ -426,7 +514,7 @@ When the sync reports success, confirm the Kubernetes Secret exists:
 # Direct style:
 kubectl get secret my-app-secrets -n ${KUBERNETES_NAMESPACE}
 kubectl get secret my-app-secrets -n ${KUBERNETES_NAMESPACE} \
-  -o jsonpath="{.data.my-secret-value}" | base64 -d && echo
+  -o jsonpath="{.data.my-secret}" | base64 -d && echo
 
 # AKVSync style:
 kubectl get secret my-secret -n ${KUBERNETES_NAMESPACE}
@@ -516,7 +604,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: my-app-secrets        # SecretSync (or AKVSync) name
-              key: my-secret-value        # targetKey within the synced Secret
+              key: my-secret              # targetKey within the synced Secret
 ```
 
 > [!NOTE]
@@ -524,18 +612,18 @@ spec:
 
 If AKV SPE was installed with `syncSecret.enabled=true` and the workload was already consuming the synced Kubernetes Secret via `secretKeyRef`, the `env` block stays as-is, provided the SSE-produced Secret has the same name and the same data keys (`targetKey` values) as the AKV SPE Secret. Only the CSI volume needs to go.
 
-### Restart workloads to apply the changes
+### Start the workloads again
 
-Apply the manifests, then restart the workloads so they pick up the new Secret references. The exact command depends on the workload kind:
+Apply the updated manifests. This step re-creates the DaemonSets, Jobs, and bare Pods that you deleted in Stage 3. Then restore the replica counts that you recorded in Stage 3, and resume CronJobs.
 
 ```bash
 envsubst < my-app.yaml | kubectl apply -f -
 
-# Deployment, StatefulSet, or DaemonSet:
-kubectl rollout restart deployment/my-app -n ${KUBERNETES_NAMESPACE}
+# Deployments and StatefulSets, if the manifest doesn't set replicas
+kubectl scale deployment/my-app --replicas=<count> -n ${KUBERNETES_NAMESPACE}
 
-# Bare Pod (as shown in the examples above):
-kubectl delete pod my-app -n ${KUBERNETES_NAMESPACE} && envsubst < my-app.yaml | kubectl apply -f -
+# CronJobs
+kubectl patch cronjob my-cronjob -n ${KUBERNETES_NAMESPACE} -p '{"spec":{"suspend":false}}'
 ```
 
 ## Stage 6: Verify and clean up
@@ -547,21 +635,21 @@ Once secrets are syncing and workloads are healthy:
 
    ```bash
    jq -r '.[] | .metadata.namespace as $ns
-          | .spec.volumes[]? | select(.csi?.driver=="secrets-store.csi.k8s.io")
-          | "\($ns) \(.csi.nodePublishSecretRef.name)"' \
-     akv-spe-csi-consumers.json | sort -u
+          | .. | objects | select(.csi?.driver? == "secrets-store.csi.k8s.io")
+          | "\($ns) \(.csi.nodePublishSecretRef.name // empty)"' \
+     akv-spe-csi-consumers.json akv-spe-csi-owners.json | sort -u
 
    kubectl delete secret <name> -n <namespace> --ignore-not-found
    ```
-3. **Remove the Stage 1 inventory files** (`akv-spe-spc-backup.yaml`, `akv-spe-csi-consumers.json`, `akv-spe-csi-owners.json`, `akv-spe-extension-config.json`) from your workstation.
+3. **Remove the Stage 1 inventory files** (`akv-spe-spc-backup.json`, `akv-spe-csi-consumers.json`, `akv-spe-csi-owners.json`, `akv-spe-extension-config.json`) from your workstation.
 
-The `secrets-store.csi.x-k8s.io` CRDs intentionally stay on the cluster as SSE still uses them.
+Leave the `secrets-store.csi.x-k8s.io` CRDs in place. SSE still uses `SecretProviderClass`.
 
 ## Troubleshoot Secret Store migration issues
 
-- **`ProviderError` immediately after applying the SecretSync.** Federated credentials can take a few minutes to propagate after creation. Also double check the kube-apiserver was restarted after `service-account-issuer` was set in Stage 2.
-- **Authentication fails on every request.** Confirm the managed identity has both `Key Vault Reader` and `Key Vault Secrets User` on the vault (or equivalent access-policy permissions), and that `clientID` in the `SecretProviderClass` is the managed identity's **client ID**, not its principal/object ID.
-- **Workload still tries to mount the CSI volume.** Look for stale references to `driver: secrets-store.csi.k8s.io` or `secretProviderClass:` in pod specs left over from Stage 5.
+- **`ControllerSyncFailed`, `PartialSync`, or `ProviderError` immediately after applying the SecretSync.** Federated credentials can take a few minutes to propagate after creation. Also double check the kube-apiserver was restarted after `service-account-issuer` was set in Stage 2.
+- **Authentication fails on every request.** Confirm the managed identity has both `Key Vault Reader` and `Key Vault Secrets User` on the vault (or equivalent access-policy permissions), and that `clientID` in the `SecretProviderClass` is the managed identity's **client ID**, not its principal/object ID. Using the object ID returns `AADSTS700016: Application with identifier '<object-id>' was not found in the directory`.
+- **Workload still tries to mount the CSI volume.** The pod stays in `ContainerCreating`, with the event `driver name secrets-store.csi.k8s.io not found in the list of registered CSI drivers`. Look for stale references to `driver: secrets-store.csi.k8s.io` or `secretProviderClass:` in pod specs left over from Stage 5.
 
 See the [Secret Store extension troubleshooting guide](secret-store-extension-troubleshooting.md).
 
