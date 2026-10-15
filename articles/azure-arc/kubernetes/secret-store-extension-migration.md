@@ -135,7 +135,7 @@ If Flux, Argo CD, or Helm manages a workload, make the Stage 5 changes in its so
 
 ### Record the extension configuration
 
-Find the installed name of the Azure Key Vault Secrets Provider extension, then capture any non-default settings applied to it, for example rotation interval, `syncSecret.enabled`, or `linux.kubeletRootDir`:
+Find the installed name of the Azure Key Vault Secrets Provider extension, and then capture any non-default settings applied to it, such as rotation interval, `syncSecret.enabled`, or `linux.kubeletRootDir`:
 
 ```azurecli
 export AKV_SPE_EXTENSION_NAME="$(az k8s-extension list \
