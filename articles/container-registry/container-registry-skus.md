@@ -4,7 +4,7 @@ description: Learn about the features and limits in various SKUs of Azure Contai
 ms.topic: concept-article
 author: KumudD
 ms.author: kumud
-ms.date: 03/25/2026
+ms.date: 10/15/2026
 ms.service: azure-container-registry
 ai-usage: ai-assisted
 # Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."
@@ -40,13 +40,16 @@ ACR also has the following image pull and push performance limits.
 
 In addition to the storage and feature limits in the preceding table, Azure Container Registry enforces request rate limits on registry APIs. Rate limits are measured in requests per minute (r/m) and are determined by your registry's SKU. When your request rate exceeds a limit, the registry returns an HTTP `429 Too Many Requests` error. The response includes a `Retry-After` header that indicates how long to wait before retrying.
 
+To monitor request traffic and investigate throttling, see
+[Throttling and bandwidth constraints](#throttling-and-bandwidth-constraints).
+
 Requests are throttled in the following operation categories. Some categories are subsets of a broader category, and requests in those categories count against both limits:
 
 | Operation category | HTTP methods | Examples |
 | --- | --- | --- |
 | **DataplaneRead** | GET, HEAD, OPTIONS | Getting (pulling) image manifests and layers. Getting layer blob location. Checking the existence of a digest or tag. Other read operations. Includes MetadataRead and ListReferrers requests. |
-| **MetadataRead** | GET | Reading metadata about a registry and its contents. Includes the `GetListRepositories`, `GetListTags`, `GetListManifests`, `GetManifestProperties`, and `GetRepositoryProperties` APIs. MetadataRead requests also count toward the DataplaneRead limit. |
-| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. ListReferrers requests also count toward the DataplaneRead limit. |
+| **MetadataRead** | GET | Reading metadata about a registry and its contents. Includes the following [`ApiName` values](monitor-container-registry-reference.md#api-name-values) for the `Transactions` metric: `GetListRepositories`, `GetListTags`, `GetListManifests`, `GetManifestProperties`, and `GetRepositoryProperties`. MetadataRead requests also count toward the DataplaneRead limit. |
+| **ListReferrers** | GET | Listing the referrer artifacts of a manifest, such as signatures and SBOMs. This category appears as `GetListReferrers` in the [`ApiName` values](monitor-container-registry-reference.md#api-name-values) for the `Transactions` metric. ListReferrers requests also count toward the DataplaneRead limit. |
 | **DataplaneWrite** | PUT, PATCH, POST | Pushing image manifests and layers. Pushing tags. Other write operations. |
 | **DataplaneDelete** | DELETE | Deleting images, manifests, and tags. |
 | **OAuth** | Authentication (AuthN) and authorization (AuthZ) | Authentication requests that clients make when logging in to a registry login server, such as exchanging from a Microsoft Entra ID access token, a registry admin token, or a non-Microsoft Entra scope mapped token, to a registry refresh token. Authorization requests that clients make before push, pull, and other registry data plane operations, such as exchanging from a registry refresh token to a scoped registry access token. |
@@ -151,15 +154,38 @@ For more information about API operations that happen during image push and pull
 
 ### Throttling and bandwidth constraints
 
-During periods of high request volume, you might encounter throttling with an HTTP 429 `Too many requests` error or slow bandwidth throughput. To mitigate these problems:
+During periods of high request volume, you might encounter throttling with an HTTP 429 `Too many requests` error or
+slow bandwidth throughput.
+
+#### Audit throttling and bandwidth
+
+Use Azure Monitor metrics to identify the affected operations and regions:
+
+* Filter `Transactions` by `ResponseType = Throttled` to identify throttled requests.
+* Split `Transactions` by `ApiName` to identify the affected registry operations.
+* Split `Transactions` by `Region` to determine which replicas are affected.
+* Split `DataTransfer` by `ApiName` or `Region` to compare transferred data by operation or serving region.
+
+For definitions, see
+[API name values](monitor-container-registry-reference.md#api-name-values) and
+[Response type values](monitor-container-registry-reference.md#response-type-values).
+For reusable visualizations, see
+[Grafana dashboards in Azure Container Registry](/azure/container-registry/container-registry-dashboards-with-grafana).
+
+#### Mitigate throttling and bandwidth constraints
+
+After you identify the affected traffic, use one or more of the following mitigation options:
 
 * Implement retry logic with exponential backoff and jitter.
 * Reduce the rate of concurrent requests.
 * Space out large-scale deployments to reduce simultaneous image pulls across multiple nodes.
-* If you're experiencing throttling after a sudden increase in traffic from a previously low baseline, you might temporarily see lower throughput while the registry's infrastructure scales out to meet demand.
+* If you're experiencing throttling after a sudden increase in traffic from a previously low baseline, you might
+  temporarily see lower throughput while the registry's infrastructure scales out to meet demand.
 
 > [!NOTE]
-> If you experience persistent API throttling or slow bandwidth throughput, consider [updating your registry's SKU](#change-registry-sku) to a higher one. You can also contact Azure support to [request a limit increase](https://azure.microsoft.com/support/create-ticket/).
+> If you experience persistent API throttling or slow bandwidth throughput, consider
+> [updating your registry's SKU](#change-registry-sku) to a higher one. You can also contact Azure support to
+> [request a limit increase](https://azure.microsoft.com/support/create-ticket/).
 
 ## Show registry usage
 

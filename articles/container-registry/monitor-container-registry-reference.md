@@ -1,12 +1,13 @@
 ---
 title: Monitoring Data Reference for Azure Container Registry
 description: Access essential reference material for monitoring Azure Container Registry, including metrics, logs, and activity logs for comprehensive insights.
-ms.date: 06/17/2024
+ms.date: 10/09/2026
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
-author: KumudD
-ms.author: kumud
+author: jeburke
+ms.author: jeburke
 ms.service: azure-container-registry
+ai-usage: ai-assisted
 # Customer intent: As a cloud operations manager, I want to access monitoring metrics and logs for Azure Container Registry, so that I can gain insights into performance and operational activities to ensure efficient management and troubleshooting of container resources.
 ---
 
@@ -33,7 +34,62 @@ The following table lists the metrics available for the Microsoft.ContainerRegis
 
 [!INCLUDE [horz-monitor-ref-metrics-dimensions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions.md)]
 
-- **Geolocation**. The Azure region for a registry or [geo-replica](container-registry-geo-replication.md).
+| Dimension name | Description |
+|---|---|
+| `ApiName` | The registry operation represented by the metric. Available values depend on the metric. |
+| `ResponseType` | The outcome of a transaction, classified by its HTTP status code. |
+| `Region` | The Azure region that handled the transaction or from which data was transferred. |
+
+`Region` values depend on the registry's home region and [geo-replicas](container-registry-geo-replication.md).
+
+> [!NOTE]
+> The `StorageUsed` metric uses the legacy `Geolocation` dimension to represent the Azure region where content is
+> stored. Use `Geolocation` when filtering or splitting `StorageUsed`. Newer metrics use the `Region` dimension.
+
+### API name values
+
+The `Transactions` metric supports the following `ApiName` values:
+
+- `HeadManifest`: Checks whether a manifest exists and retrieves its response headers.
+- `GetManifest`: Retrieves a manifest.
+- `GetManifestProperties`: Retrieves properties for a specific manifest.
+- `GetListManifests`: Lists the manifests in a repository.
+- `GetTag`: Retrieves information about a tag.
+- `GetListTags`: Lists the tags in a repository.
+- `HeadBlob`: Checks whether a blob or layer exists and retrieves its response headers.
+- `GetBlobRedirection`: Redirects a blob or layer download request to its content location.
+- `GetBlob`: Retrieves blob or layer content.
+- `GetListRepositories`: Lists repositories in the registry.
+- `GetListReferrers`: Lists artifacts that refer to a specified manifest digest.
+- `GetRepositoryProperties`: Retrieves repository properties.
+- `GetToken`: Requests an ACR access token for the requested scope.
+- `PostToken`: Exchanges an ACR refresh token for an ACR access token.
+- `PostExchange`: Exchanges a Microsoft Entra access token for an ACR refresh token.
+
+For the corresponding API definitions, see
+[Registry data plane REST operation groups](/rest/api/registry-dataplane/operation-groups).
+
+The `DataTransfer` metric supports the following `ApiName` values:
+
+- `GetBlob`: Data transferred when a client downloads a blob or layer.
+- `GetManifest`: Data transferred when a client retrieves a manifest.
+- `GeoReplication`: Data transferred during service-initiated geo-replication, including initial synchronization and
+  replication after a push.
+- `ImportSource`: Data transferred when another Azure container registry uses this registry as the source of an import
+  operation.
+
+### Response type values
+
+The `Transactions` metric supports the following `ResponseType` values:
+
+- `Success`: The operation succeeded with HTTP status code 200, 201, or 202.
+- `Redirect`: The operation returned HTTP status code 307. For example, a blob download can redirect the client to the
+  blob's content location.
+- `ClientErrorUnauthorized`: Authentication or authorization failed with HTTP status code 401 or 403.
+- `ClientErrorNotFound`: The requested resource wasn't found and returned HTTP status code 404.
+- `Throttled`: The request was rate limited and returned HTTP status code 429.
+- `ClientErrorOther`: The operation returned a 4xx client error that doesn't have a dedicated response type.
+- `ServerErrorOther`: The operation returned a 5xx server error.
 
 [!INCLUDE [horz-monitor-ref-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-resource-logs.md)]
 
