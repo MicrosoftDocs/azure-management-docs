@@ -32,7 +32,7 @@ In Azure Container Registry, you use service tags to manage network traffic for 
 
 The endpoint for a webhook must be publicly accessible from the registry. You can configure registry webhook requests to authenticate to a secured endpoint.
 
-Azure Container Registry sends the request to the configured webhook endpoint through the IP addresses for service tags. If the webhook endpoint runs behind a firewall, it requires an inbound rule to allow these IP addresses. To help secure the webhook endpoint access, you must also configure the proper authentication to validate the request.
+Azure Container Registry sends the request to the configured webhook endpoint through the IP addresses for service tags. If the webhook endpoint runs behind a firewall, it requires an inbound rule to allow these IP addresses. To help secure the webhook endpoint access, you must also configure the proper authentication to validate the request. Service tag rules only filter network traffic; they don't protect credentials that you configure for the webhook. To learn how to send webhook credentials safely, see [Protect webhook credentials](container-registry-webhook.md#protect-webhook-credentials).
 
 For detailed steps on creating a webhook setup, refer to the [Azure Container Registry documentation](container-registry-webhook.md).
 
