@@ -42,7 +42,7 @@ For details on webhook requests, see [Azure Container Registry webhook schema re
 | Value | Description |
 |---|---|
 | Webhook name | The name you want to give to the webhook. It may contain only letters and numbers, and must be 5-50 characters in length. |
-| Location | For a [geo-replicated](container-registry-geo-replication.md) registry, specify the Azure region of the registry replica.
+| Location | For a [geo-replicated](container-registry-geo-replication.md) registry, specify the Azure region of the registry replica. |
 | Service URI | The HTTPS URI where the webhook should send POST notifications. Don't include passwords, access tokens, API keys, or other secrets anywhere in the URI. This rule applies to credentials before the host name (for example, `https://user:password@host`), the path, and the query string. |
 | Custom headers | Headers you want to pass along with the POST request. They should be in "key: value" format. Send credentials only in the `Authorization` header. Don't include passwords, access tokens, API keys, or other secrets in any other header. Only the `Authorization` header value is masked in the webhook event history. |
 | Trigger actions | Actions that trigger the webhook. Actions include image push, image delete, Helm chart push, Helm chart delete, and image quarantine. You can choose one or more actions to trigger the webhook. |
