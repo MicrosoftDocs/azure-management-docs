@@ -71,7 +71,7 @@ Azure Container Registry stores the webhook configuration and records the reques
   * The service URI, including credentials before the host name (for example, `https://user:password@host`), the path, and the query string.
   * Custom headers other than `Authorization`.
   * Request and response bodies.
-* Make sure that your endpoint doesn't echo credentials in its response body or in response headers other than `Authorization`.
+* Ensure that your endpoint doesn't echo credentials in its response body or in response headers other than `Authorization`.
 * Don't rely on encoding to hide credentials. URL encoding, Base64 encoding, and shell quoting don't protect a secret.
 * Limit who can read webhook configuration. Users with the `Microsoft.ContainerRegistry/registries/webhooks/getCallbackConfig/action` permission can read the configured service URI and all custom headers, including the unmasked `Authorization` header value. Users with the `Microsoft.ContainerRegistry/registries/webhooks/listEvents/action` permission can read the webhook event history but cannot view the unmasked `Authorization` header value. Built-in roles such as Owner and Contributor include these permissions.
 * If a credential was previously included in the service URI, in another custom header, or in a request or response body, revoke or rotate that credential.
