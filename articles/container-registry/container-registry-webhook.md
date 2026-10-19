@@ -24,7 +24,7 @@ For details on webhook requests, see [Azure Container Registry webhook schema re
 > [!IMPORTANT]
 > Use HTTPS, and send webhook credentials only in the `Authorization` header. Azure Container Registry masks the `Authorization` header value in the webhook event history. It doesn't mask credentials in the service URI, in other custom headers, or in request or response bodies.
 >
-> Don't include passwords, access tokens, API keys, or other secrets anywhere in the service URI. This includes credentials before the host name (for example, `https://user:password@host`), the path, and the query string. It also includes signed callback URLs that contain authentication tokens in their query strings. Don't include secrets in any custom header other than `Authorization`. For more information, see [Protect webhook credentials](#protect-webhook-credentials).
+> Don't include passwords, access tokens, API keys, or other secrets anywhere in the service URI. This restriction includes credentials before the host name (for example, `https://user:password@host`), the path, and the query string. It also includes signed callback URLs that contain authentication tokens in their query strings. Don't include secrets in any custom header other than `Authorization`. For more information, see [Protect webhook credentials](#protect-webhook-credentials).
 
 ## Prerequisites
 
