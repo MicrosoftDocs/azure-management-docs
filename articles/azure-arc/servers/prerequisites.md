@@ -47,7 +47,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | AlmaLinux | 9 | ✅ | ❌ | August 2032 | |
 | Amazon Linux | 2 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
 | Amazon Linux | 2023 | ✅ | ✅ | August 2027 | |
-| Azure Linux (CBL-Mariner) | 3.0 | ⚠️ | ⚠️ | February 2027 | |
+| Azure Linux (CBL-Mariner) | 3.0 | ✅ | ✅ | February 2027 | |
 | Azure Local | | | || |
 | Debian | 11 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
 | Debian | 12 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
@@ -56,7 +56,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Oracle Linux | 8 | ✅ | ✅ | August 2029 | |
 | Oracle Linux | 9 | ✅ | ❌ | August 2032 | |
 | Oracle Linux | 10 | ✅ | ❌ | — | |
-| Red Hat Enterprise Linux (RHEL) | 7 | ⚠️ | ❌ | February 2027 | |
+| Red Hat Enterprise Linux (RHEL) | 7 | ✅ | ❌ | February 2027 | |
 | Red Hat Enterprise Linux (RHEL) | 8 | ✅ | ❌ | August 2029 | |
 | Red Hat Enterprise Linux (RHEL) | 9 | ✅ | ❌ | August 2032 | |
 | Red Hat Enterprise Linux (RHEL) | 10 | ✅ | ❌ | August 2035 | |
