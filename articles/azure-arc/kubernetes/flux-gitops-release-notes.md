@@ -53,7 +53,7 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
-## October 2026 - `microsoft.flux` version 1.26.1
+## October 2026 - `microsoft.flux` version 1.26.2
 
 Flux version: [Release v2.9.6](https://github.com/fluxcd/flux2/releases/tag/v2.9.6)
 
@@ -68,7 +68,7 @@ Changes in this version include:
 
 - Updated the bundled Flux controllers and CRDs to Flux v2.9.6, improving Helm release recovery and CRD upgrades, Azure Blob and Helm repository reconciliation, post-build substitution handling, and secret redaction.
 - Preserved non-strict post-build substitution as the extension default while supporting explicit `true` or `false` configuration and rejecting conflicting generic feature-gate settings.
-- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `helm-controller`, `notification-controller`, `image-automation-controller`, and `image-reflector-controller` by updating the Go packages and base images.
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `helm-controller`, `notification-controller`, `image-automation-controller`, and `image-reflector-controller` by updating the Go packages and base images. Upstream controllers are pinned to go1.26.
 
 ## September 2026 - `microsoft.flux` version 1.25.1
 
