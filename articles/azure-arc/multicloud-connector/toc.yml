@@ -10,13 +10,16 @@
     href: resource-representation.md
 - name: How-to guides
   items:
+  - name: Manage the Power Cycle of Multicloud VMs
+    href: multicloud-lifecycle-management.md
+    displayName: lifecycle, AWS, GCP, EC2
   - name: Add a public cloud
     href: add-public-cloud.md
   - name: View multicloud inventory
     href: view-multicloud-inventory.md
   - name: Onboard VMs to Azure Arc
     href: onboard-multicloud-vms-arc.md
-  - name: Onboard Amazon EKS clusters to Azure Arc
+  - name: Onboard Kubernetes clusters to Azure Arc
     href: onboard-elastic-kubernetes-service-clusters-arc.md
   - name: Migrate S3 to Blob
     href: /azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json
