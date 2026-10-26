@@ -47,7 +47,6 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnect
 | Fell back to the global Entra endpoint when a proxy denies the regional endpoint. | ✓ | ✓ | Bug Fix |
 | Reported keyless Windows pay-as-you-go licensing state. | ✓ | | Bug Fix |
 | Fixed HIMDS bind failures caused by stale Windows Filtering Platform executable paths. | ✓ | | Bug Fix |
-| Added HIMDS handling for Delivery Optimization download outcomes. | ✓ | | New Feature |
 | Prevented HIMDS named-pipe squatting and hardened BCrypt RSA public-blob parsing. | ✓ | | Security Fix |
 | Hardened HIMDS resource ID parsing and HTTP signature-base derivation. | ✓ | ✓ | Security Fix |
 | Preserved delimiters in Azure tag values. | ✓ | ✓ | Bug Fix |
@@ -57,7 +56,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnect
 | Limited concurrent HIMDS IPC connections. | ✓ | | Security Fix |
 | Completed HTTP and HTTPS proxy credential redaction. | ✓ | ✓ | Security Fix |
 | Prevented command injection through proxy arguments. | | ✓ | Security Fix |
-| Added best-available key store selection for TPM-backed onboarding. | ✓ | ✓ | Improvement |
+| Added best-available key store selection. | ✓ | ✓ | Improvement |
 | Built Linux Go binaries as static position-independent executables for address space layout randomization. | | ✓ | Improvement |
 | Prevented unconditional token invalidation through `CancelChange` requests. | ✓ | | Security Fix |
 
