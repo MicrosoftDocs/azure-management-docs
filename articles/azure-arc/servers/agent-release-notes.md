@@ -23,6 +23,43 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
+### Version 1.69 - October 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent).
+
+| Feature | Windows | Linux | Change Type |
+|---|---|---|---|
+| **Guest Config** | **1.29.119.0** | **1.26.119.0** | |
+| Hardened package extraction for ZIP entries with excessively long filenames. | ✓ | ✓ | Security Fix |
+| Strengthened extension package integrity validation. | ✓ | | Security Fix |
+| Prevented command injection when processing extension protected settings and validating package signatures. | | ✓ | Security Fix |
+| Prevented command injection in extension registry operations and removed unsafe registry imports. | ✓ | | Security Fix |
+| Prevented command injection through security baseline pre-installation settings. | ✓ | ✓ | Security Fix |
+| Updated OpenSSL from version 3.6.4 to 3.6.5. | ✓ | ✓ | Improvement |
+| Updated bundled PowerShell from version 7.4.19 to 7.4.20. | ✓ | ✓ | Improvement |
+| Added support for long-running extension uninstall operations. | ✓ | ✓ | Improvement |
+| **Azcmagent** | **1.69** | **1.69** | |
+| Serialized gateway configuration updates to prevent concurrent local configuration changes from being overwritten. | ✓ | ✓ | Bug Fix |
+| Moved non-elevated network checks into HIMDS and redacted proxy credentials returned through the public IPC endpoint. | ✓ | ✓ | Bug Fix |
+| Fixed HIMDS port-protection detection during unelevated MSI installation and removal. | ✓ | | Bug Fix |
+| Prevented malformed RSA exponents in JSON Web Keys from crashing HIMDS. | ✓ | ✓ | Security Fix |
+| Fixed HIMDS handling of systemd-inherited IPv6 listeners. | | ✓ | Bug Fix |
+| Fell back to the global Entra endpoint when a proxy denies the regional endpoint. | ✓ | ✓ | Bug Fix |
+| Reported keyless Windows pay-as-you-go licensing state. | ✓ | | Bug Fix |
+| Fixed HIMDS bind failures caused by stale Windows Filtering Platform executable paths. | ✓ | | Bug Fix |
+| Prevented HIMDS named-pipe squatting and hardened BCrypt RSA public-blob parsing. | ✓ | | Security Fix |
+| Hardened HIMDS resource ID parsing and HTTP signature-base derivation. | ✓ | ✓ | Security Fix |
+| Preserved delimiters in Azure tag values. | ✓ | ✓ | Bug Fix |
+| Used defaults when log rotation environment values are invalid. | ✓ | ✓ | Bug Fix |
+| Fixed concurrent cached-token metadata reads. | ✓ | ✓ | Bug Fix |
+| Reset relay reconnect backoff after a sustained successful connection. | ✓ | ✓ | Improvement |
+| Limited concurrent HIMDS IPC connections. | ✓ | | Security Fix |
+| Completed HTTP and HTTPS proxy credential redaction. | ✓ | ✓ | Security Fix |
+| Prevented command injection through proxy arguments. | | ✓ | Security Fix |
+| Added best-available key store selection. | ✓ | ✓ | Improvement |
+| Built Linux Go binaries as static position-independent executables for address space layout randomization. | | ✓ | Improvement |
+| Prevented unconditional token invalidation through `CancelChange` requests. | ✓ | | Security Fix |
+
 ## Version 1.68 - September 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.68/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent).
