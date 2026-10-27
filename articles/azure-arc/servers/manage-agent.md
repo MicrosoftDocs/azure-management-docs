@@ -8,7 +8,7 @@ ms.topic: how-to
 
 # Manage Azure Connected Machine agent versions for Azure Arc-enabled servers
 
-After you deploy the Azure Connected Machine agent, you might need to reconfigure, upgrade, remove, or make other changes to the agent. You can perform these routine maintenance tasks manually. You can also enable [automatic agent upgrades (preview)](#enable-automatic-agent-upgrade-preview) or explore other options to automate tasks, which reduces operational error and expenses.
+After you deploy the Azure Connected Machine agent, you might need to reconfigure, upgrade, remove, or make other changes to the agent. You can perform these routine maintenance tasks manually. You can also enable [automatic agent upgrades (preview)](automatic-agent-upgrade.md) or explore other options to automate tasks, which reduces operational error and expenses.
 
 The Azure Connected Machine agent is updated regularly to address bug fixes, stability enhancements, and new functionality. [Azure Advisor](/azure/advisor/advisor-overview) identifies resources that aren't using the latest version of the machine agent and recommends that you upgrade to the latest version. It notifies you when you select the Azure Arc-enabled server by presenting a banner on the **Overview** page, or when you access Advisor through the Azure portal.
 
@@ -94,58 +94,9 @@ Links to releases of the Windows agents appear under the heading of each [releas
 
 ---
 
-## Enable automatic agent upgrade (preview)
+## Upgrade the agent automatically (preview)
 
-Starting with version 1.57 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview and is only available in the Azure public cloud.
-
-When you enable automatic upgrades, your agent is scheduled to be upgraded within one version of the latest release. To maintain stability across regions and minimize disruptions, upgrades are rolled out across batches, with all upgrades initiated during off-peak hours. If the upgrade doesn't complete successfully, the agent reattempts the automatic upgrade periodically until it succeeds.
-
-Before enabling automatic agent upgrades, ensure that you meet the following requirements:
-
-- **Windows**: Automatic agent upgrades aren't supported when the PowerShell execution policy is set to Restricted. Set the execution policy to RemoteSigned to ensure compatibility with automatic upgrades.
-
-- **Linux**: The cron service is required to schedule and perform automatic agent upgrades. Ensure that cron is installed and running.
-
-To enable automatic upgrades when connecting your machine to Azure Arc, use the `--enable-automatic-upgrade` flag in the `azcmagent connect` command. For example:
-
-```bash
-azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --enable-automatic-upgrade
-```
-
-You can also use [Azure Policy](/azure/governance/policy/overview) to assign the [Configure Azure Arc-enabled Servers to enable automatic upgrades](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff9dfba6f-7430-4214-a666-342b3d3d0d62) policy. This policy enables automatic agent upgrade to servers at scale across your environment.
-
-To enable automatic upgrades on an existing Arc-enabled server, set the `enableAutomaticUpgrade` property to `true` by using Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) or Azure PowerShell.
-
-The following example shows how to configure automatic agent upgrades with Azure CLI.
-
-```azurecli
-# Set your target subscription
-az account set --subscription "YOUR SUBSCRIPTION"
-
-# Enable automatic upgrades on a single Arc-enabled server
-az rest 
---method PATCH 
---url "https://management.azure.com/subscriptions/<SUB_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.HybridCompute/machines/<MACHINE_NAME>?api-version=2024-05-20-preview" 
---headers "Content-Type=application/json" 
---body '{"properties":{"agentUpgrade":{"enableAutomaticUpgrade":true}}}'
-```
-
-The following example shows how to configure automatic agent upgrades by using PowerShell.
-
-```azurepowershell
-Set-AzContext -Subscription "YOUR SUBSCRIPTION"
-
-$params = @{
-  ResourceGroupName = "YOUR RESOURCE GROUP"
-  ResourceProviderName = "Microsoft.HybridCompute"
-  ResourceType = "Machines"
-  ApiVersion = "2024-05-20-preview"
-  Name = "YOUR MACHINE NAME"
-  Method = "PATCH"
-  Payload = '{"properties":{"agentUpgrade":{ "enableAutomaticUpgrade":true}}}'
-}
-Invoke-AzRestMethod @params
-```
+You can configure the Azure Connected Machine agent to automatically upgrade through Automatic Agent Upgrade. Microsoft manages the rollout in batches during off-peak hours, and no server restart is required. To learn about requirements and how to enable and verify automatic upgrades, see [Automatically upgrade the Azure Connected Machine agent (preview)](automatic-agent-upgrade.md).
 
 ## Additional agent upgrade methods
 
@@ -153,8 +104,8 @@ The following table describes additional methods supported to perform agent upgr
 
 | Operating system | Upgrade method |
 |------------------|----------------|
-| Windows | Manually<br> Microsoft Update<br> Azure Update Manager (AUM) |
-|Linux | [apt](https://help.ubuntu.com/lts/serverguide/apt.html)<br> [yum](https://access.redhat.com/articles/yum-cheat-sheet)<br> [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3)<br> Azure Update Manager (AUM) |
+| Windows |	[Automatic agent upgrade (preview)](automatic-agent-upgrade.md)<br>Manually<br> Microsoft Update<br> Azure Update Manager (AUM) |
+|Linux | [Automatic agent upgrade (preview)](automatic-agent-upgrade.md)<br>[apt](https://help.ubuntu.com/lts/serverguide/apt.html)<br> [yum](https://access.redhat.com/articles/yum-cheat-sheet)<br> [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3)<br> Azure Update Manager (AUM) |
 
 
 

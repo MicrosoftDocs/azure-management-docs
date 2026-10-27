@@ -89,6 +89,8 @@
       items:
       - name: Manage agent versions
         href: manage-agent.md
+      - name: Automatically upgrade the Azure Connected Machine agent
+        href: automatic-agent-upgrade.md
       - name: Uninstall agent
         href: uninstall-agent.md
       - name: Manage proxy settings
