@@ -116,6 +116,8 @@
       href: manage-howto-migrate.md
     - name: Use Run command
       href: run-command.md
+    - name: Enable Windows Recovery Environment and Quick Machine Recovery through Azure Arc
+      href: enable-windows-recovery.md
   - name: Scenarios
     items:
     - name: Test Arc-enabled servers using an Azure VM
