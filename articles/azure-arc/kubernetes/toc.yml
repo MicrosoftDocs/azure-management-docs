@@ -118,6 +118,8 @@
   - name: Upgrade agents
     displayName: update, automatic
     href: agent-upgrade.md
+  - name: Manage agent proxy settings
+    href: manage-agent-proxy-settings.md
   - name: Use Private Link Scope
     href: private-link.md
   - name: View resources in Azure portal
