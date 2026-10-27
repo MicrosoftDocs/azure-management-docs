@@ -10,7 +10,7 @@ ms.custom: references_regions
 # What's new with Azure Connected Machine agent
 
 > [!WARNING]
-> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#enable-automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
+> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](automatic-agent-upgrade.md). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
 The Azure Connected Machine agent receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about:
 
