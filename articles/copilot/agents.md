@@ -13,8 +13,8 @@ Agents extend the capabilities of Azure Copilot to provide an agentic, multimoda
 
 Currently, Azure Copilot includes the following agents:
 
-- [Troubleshooting](troubleshooting-agent.md) (preview)
-- [Deployment](deployment-agent.md) (preview)
+- [Troubleshooting](troubleshooting-agent.md) (GA)
+- [Deployment](deployment-agent.md)
 - [Optimization](optimization-agent.md) (preview)
 - [Resiliency](resiliency-agent.md) (preview)
 - [Migration](/azure/migrate/azure-copilot-migration-agent) (preview)

@@ -2,7 +2,7 @@
 title: Azure Arc resource bridge network requirements
 description: Learn about network requirements for Azure Arc resource bridge including URLs that must be allowlisted.
 ms.topic: concept-article
-ms.date: 08/25/2026
+ms.date: 09/09/2026
 
 # Customer intent: "As an IT infrastructure manager, I want to understand the network requirements for deploying Azure Arc resource bridge, so that I can ensure proper connectivity and performance during installation and operation."
 ---
@@ -84,10 +84,10 @@ The default value for `noProxy` is `localhost,127.0.0.1,.svc,10.0.0.0/8,172.16.0
 
 The appliance VM is configured to listen on the following ports. These ports are used exclusively for internal processes and don't require external access:
 
-- 8443 – Endpoint for Microsoft Entra Authentication Webhook
-- 10257 – Endpoint for Arc resource bridge metrics
-- 10250 – Endpoint for Arc resource bridge metrics
-- 2382 – Endpoint for Arc resource bridge metrics
+- 8443: Endpoint for Microsoft Entra Authentication Webhook
+- 10257: Endpoint for Arc resource bridge metrics
+- 10250: Endpoint for Arc resource bridge metrics
+- 2382: Endpoint for Arc resource bridge metrics
 
 ## Next steps
 

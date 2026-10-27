@@ -1,7 +1,7 @@
 ---
 title: Programmatically deploy and manage Azure Arc Extended Security Updates licenses
 description: Learn how to programmatically deploy and manage Azure Arc Extended Security Updates licenses for Windows Server 2012 and Windows Server 2016.
-ms.date: 07/16/2026
+ms.date: 09/11/2026
 ms.topic: concept-article
 zone_pivot_groups: extended-security-updates-windows-server
 # Customer intent: As a cloud administrator, I want to programmatically deploy and manage Extended Security Updates licenses for Windows Server through Azure APIs, so that I can efficiently handle license provisioning, linking, modifying, and unlinking.
@@ -18,6 +18,9 @@ For each of the API commands explained in this article, enter accurate parameter
 - `Windows Server 2012`
 - `Windows Server 2012 R2`
 
+> [!IMPORTANT]
+> The Windows Server 2012 and Windows Server 2012 R2 ESU period ends on October 13, 2026. At midnight Coordinated Universal Time (UTC) on October 14, 2026, ESU licenses enabled by Azure Arc are deactivated and stop providing update eligibility. Deactivated license resources remain available to query, but they can't provide eligibility for security updates released after October 13, 2026.
+
 ::: zone-end
 
 ::: zone pivot="windows-server-2016"
@@ -27,12 +30,12 @@ For each of the API commands explained in this article, enter accurate parameter
 ::: zone-end
 
 > [!NOTE]
-> You'll need to create a service principal to use the Azure API to manage ESUs. See [Connect hybrid machines to Azure at scale](onboard-service-principal.md) and [Azure REST API reference](/rest/api/azure/) for more information.
+> You need to create a service principal to use the Azure API to manage ESUs. See [Connect hybrid machines to Azure at scale](onboard-service-principal.md) and [Azure REST API reference](/rest/api/azure/) for more information.
 > 
 
 ## Provision a license
 
-To provision a license, execute the following command:
+To provision a license, run the following command:
 
 ::: zone pivot="windows-server-2012"
 
@@ -76,7 +79,9 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ::: zone-end
 
-Programmatically, you can use Azure CLI to generate new licenses, specifying the `Volume License Details` parameter in your Year 1 Volume Licensing entitlements by entering the respective invoice numbers. You must explicitly specify the Invoice Id (Number) in your license provisioning for Azure Arc:
+::: zone pivot="windows-server-2012"
+
+The `--volume-license-details` parameter applies only to the transition from Year 1 Volume Licensing entitlements. This transition period has ended. The command syntax retains the parameter for compatibility with existing automation:
 
 ```azurecli
 az connectedmachine license create --license-name
@@ -94,6 +99,8 @@ az connectedmachine license create --license-name
                                    [--volume-license-details]
 ```
 
+::: zone-end
+
 ::: zone pivot="windows-server-2016"
 
 ### Transition from volume licensing
@@ -104,7 +111,7 @@ Transitioning from Volume Licensing isn't supported for Windows Server 2016 ESUs
 
 ## Link a license
 
-To link a license, execute the following command:
+To link a license, run the following command:
 
 ```http
 PUT  
@@ -121,7 +128,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ## Unlink a license
 
-To unlink a license, execute the following command:
+To unlink a license, run the following command:
 
 ```http
 PUT 
@@ -137,7 +144,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ## Modify a license
 
-To modify a license, execute the following command:
+To modify a license, run the following command:
 
 ::: zone pivot="windows-server-2012"
 
@@ -182,7 +189,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 ::: zone-end
 
 
-To delete a license, execute the following command:
+To delete a license, run the following command:
 
 ```http
 DELETE  

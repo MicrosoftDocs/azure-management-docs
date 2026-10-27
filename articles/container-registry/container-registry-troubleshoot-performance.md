@@ -4,8 +4,9 @@ description: Identify and resolve common performance issues with Azure Container
 ms.topic: troubleshooting
 author: KumudD
 ms.author: kumud
-ms.date: 10/31/2023
+ms.date: 10/15/2026
 ms.service: azure-container-registry
+ai-usage: ai-assisted
 # Customer intent: "As a cloud engineer, I want to troubleshoot Azure Container Registry performance issues, so that I can ensure efficient image pulling and pushing operations for my containerized applications."
 ---
 
@@ -37,7 +38,7 @@ If you don't resolve your problem here, see [Advanced troubleshooting](#advanced
 
 ### Check expected network speed
 
-Check your internet upload and download speed, or use a tool such as AzureSpeed to test [upload](https://www.azurespeed.com/Azure/Uploadß) and [download](https://www.azurespeed.com/Azure/Download) from Azure blob storage, which hosts registry image layers.
+Check your internet upload and download speed, or use a tool such as AzureSpeed to test [upload](https://www.azurespeed.com/Azure/Upload) and [download](https://www.azurespeed.com/Azure/Download) from Azure blob storage, which hosts registry image layers.
 
 Check your image size against the maximum supported size and the supported download or upload bandwidth for your registry service tier. If your registry is in the Basic or Standard tier, consider upgrading to improve performance. 
 
@@ -60,6 +61,19 @@ If you're concurrently pushing or pulling multiple or many multi-layered images 
 Review your Docker daemon configuration for the maximum concurrent uploads or downloads for each push or pull operation on the client. Configure higher limits if needed.
 
 Because each image layer requires a separate registry read or write operation, check the number of layers in your images. Consider strategies to reduce the number of image layers.
+
+Use Azure Monitor metrics or the integrated Grafana dashboards to determine whether the registry is throttling
+requests or whether performance differs by operation or region:
+
+* Filter `Transactions` by `ResponseType = Throttled` to identify HTTP 429 responses.
+* Split `Transactions` by `ApiName` to identify the affected registry operations.
+* Split `Transactions` by `Region` to compare the home region and geo-replicas.
+* Split `DataTransfer` by `ApiName` or `Region` to compare transferred data by operation or serving region.
+
+For dimension descriptions and possible values, see
+[Azure Container Registry monitoring data reference](monitor-container-registry-reference.md#metric-dimensions).
+For reusable dashboards and ad hoc analysis, see
+[Grafana dashboards in Azure Container Registry](/azure/container-registry/container-registry-dashboards-with-grafana).
 
 Related links:
 

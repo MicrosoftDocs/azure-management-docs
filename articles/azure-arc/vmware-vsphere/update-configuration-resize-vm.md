@@ -2,7 +2,7 @@
 title: Update configuration and resize a VMware vCenter managed virtual machine in Azure
 description: In this article, you learn how to update the configuration and resize a VMware vCenter-managed VM in Azure through Azure Arc-enabled VMware vSphere.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 10/04/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -25,7 +25,7 @@ From Azure, you can modify the following configuration of a VM:
 Before you update and resize a virtual machine, make sure you meet the following prerequisites: 
  
 -	The VMware vCenter is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
--	The VM is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
+-	The VM is [onboarded for management in Azure](enable-vcenter-resources-in-azure.md).
 -	If you're modifying the Disk settings, the VM which is modified from Azure must be in a *Stopped* state.
 -	*Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to make changes to the VMware vSphere VM on which you want to perform update and resize operations.
 

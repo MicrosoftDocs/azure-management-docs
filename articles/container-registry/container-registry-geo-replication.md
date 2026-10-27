@@ -250,7 +250,8 @@ az acr replication update --registry myregistry --name eastus \
 ```
 
 > [!NOTE]
-> In Azure CLI 2.86.0 and later, `--region-endpoint-enabled` was renamed to `--global-endpoint-routing`. The old flag name is deprecated and is removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
+> - The `--name` parameter specifies the geo-replication resource name, not the Azure region. Use the **Name** value returned by `az acr replication list`.
+> - In Azure CLI 2.86.0 and later, `--region-endpoint-enabled` was renamed to `--global-endpoint-routing`. The old flag name is deprecated and is removed in Azure CLI 2.87.0 (June 2026). If you have existing scripts or automation that use `--region-endpoint-enabled`, update them to use `--global-endpoint-routing`.
 
 > [!IMPORTANT]
 > **Don't run a long-lived DNS cache for the global endpoint.** When you disable global endpoint routing for a geo-replica, ACR purges DNS records server-side on a fast path. However, if clients run their own long-lived DNS cache for the global endpoint, those clients continue resolving to the disabled geo-replica until the client cache expires. A long-lived cache makes `--global-endpoint-routing false` appear not to take effect from the client's perspective.
@@ -328,6 +329,9 @@ The following diagram illustrates the regional endpoint request flow:
 ### Enable regional endpoints
 
 You can enable regional endpoints when creating a new registry or update an existing registry.
+
+> [!IMPORTANT]
+> For registries with private endpoints, enabling or disabling regional endpoints is asynchronous and requires coordination of private endpoint IP configuration and DNS updates with Azure Networking. These updates can take extra time. Wait for the registry and private endpoint provisioning operations to complete successfully before submitting another change. Avoid repeatedly toggling regional endpoints or updating the private endpoint while an operation is in progress. For static-IP private endpoints, review the [required member-to-IP mappings](#geo-replica-creation-fails-on-registries-with-a-static-ip-private-endpoint).
 
 **Create a new registry with regional endpoints enabled:**
 
@@ -521,7 +525,7 @@ This issue usually arises when the identity creating a geo-replica for a private
 
 ### Geo-replica creation fails on registries with a static-IP private endpoint
 
-Adding a geo-replica fails when the registry's private endpoint is configured with **static** private IP allocation.
+Adding a geo-replica or enabling regional endpoints can fail if the registry's **static IP** private endpoint is missing required member-to-IP mappings.
 
 Each geo-replica has its own dedicated data endpoint, which is exposed on the private endpoint as a member with the group ID `registry` and a member name of `registry_data_<region>`. When you add a new geo-replica, ACR requests the private endpoint add the member for the new region's data endpoint. A private endpoint configured with dynamic IP allocation provisions the new member's IP automatically. A private endpoint configured with static IP allocation has a fixed set of IP configurations defined at creation time and doesn't auto-add the new member, so replica creation fails with an error similar to:
 
@@ -532,6 +536,8 @@ membernames/groupids requested by Private Link service [GroupId: registry, Membe
 registry_data_<new-region>, IpVersion: IPv4]. Private Endpoint needs to be reconfigured with
 missing memberNames.
 ```
+
+Enabling regional endpoints also requires a member named `registry_<region>` with group ID `registry` for each geo-replica, including the home region. These regional endpoint members are separate from `registry_data_<region>`. For example, a registry in `westus2` with a replica in `westus` needs `registry_westus2` and `registry_westus`, each mapped to an available static private IP. Free subnet capacity alone doesn't supply these mappings.
 
 To check the allocation method of a registry's private endpoint, inspect the `PrivateIPAllocationMethod` of the IP configurations on the private endpoint's network interface. The private endpoint references a network interface that holds these IP configurations, so first get the network interface ID, then inspect its IP configurations:
 
@@ -548,8 +554,8 @@ az network nic show --ids "$nicId" \
 
 **Solutions:**
 
-- **Use dynamic IP allocation** for the private endpoint if you expect to add geo-replicas later. With dynamic allocation, ACR provisions the data endpoint member for each new region automatically. This is the recommended approach.
-- **Create the private endpoint after all geo-replicas exist** if static IP allocation is required. Add every geo-replica first, then create the static-IP private endpoint so its IP configuration includes a member for every existing region's data endpoint. After a static-IP private endpoint is created this way, you can't add further geo-replicas without reconfiguring the private endpoint to add the new member.
+- **Use dynamic IP allocation** for the private endpoint if you expect to add geo-replicas or enable regional endpoints later. With dynamic allocation, the required data endpoint and regional endpoint members receive private IP addresses automatically. This approach is recommended.
+- **Create the private endpoint after all geo-replicas exist** if static IP allocation is required. Add every geo-replica and enable regional endpoints, if needed, first. Then create the static IP private endpoint so its IP configuration includes members for each region's data endpoint and, when enabled, regional endpoint. After a static IP private endpoint is created this way, you can't add further geo-replicas or enable regional endpoints without reconfiguring the private endpoint to add the new members.
 
 ## Related content
 

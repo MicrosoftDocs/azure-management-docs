@@ -41,8 +41,8 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:  
-        - text: Enable VMware vCenter resources in Azure
-          url: browse-and-enable-vcenter-resources-in-azure.md
+        - text: Onboard VMware vCenter resources in Azure
+          url: enable-vcenter-resources-in-azure.md
         - text: Link Arc-enabled server machines to VMware vSphere
           url: enable-virtual-hardware.md
         - text: Set up and manage self-service access

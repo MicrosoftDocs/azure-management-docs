@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
 ms.custom:
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Enable SCVMM inventory resources from Azure portal
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article describes how you can view SCVMM management servers and enable SCVMM inventory from Azure portal, after connecting to the SCVMM management server.
 

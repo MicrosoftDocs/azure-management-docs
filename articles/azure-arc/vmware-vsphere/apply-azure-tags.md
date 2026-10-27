@@ -2,7 +2,7 @@
 title: Apply Azure tags to VMware vCenter resources through Azure Arc-enabled VMware vSphere
 description: In this article, you learn how to apply Azure tags to Azure Arc-enabled VMware vSphere resources.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 10/04/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -20,7 +20,7 @@ In this article, you learn how to apply Azure tags to Azure Arc-enabled VMware v
 
 Before you apply Azure tags to an Azure Arc-enabled VMware vSphere resource, ensure you meet the following prerequisites:
 - The VMware vCenter is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
-- If you plan to apply Azure tags to a Virtual machine, Resource Pool, Cluster, Host, VM template, or VM network, ensure the resource is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
+- If you plan to apply Azure tags to a virtual machine, resource pool, cluster, host, VM template, or VM network, ensure the resource is [onboarded for management in Azure](enable-vcenter-resources-in-azure.md).
 - *Azure Arc VMware  VM Contributor* role or a custom Azure role with permissions to apply tags on the resources on which you plan to apply Azure tags.
 
 ## Apply Azure tags to VMware vSphere resources 

@@ -2,7 +2,7 @@
 title: Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager.
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom:
@@ -21,6 +21,8 @@ In this article, you learn how to perform various maintenance and administrative
 - [Maintain the Azure Arc resource bridge manually by following the best practices](#best-practices-to-maintain-the-azure-arc-enabled-scvmm-resources).
 - [Update the SCVMM account credentials](#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding).
 - [Collect logs from the Azure Arc resource bridge](#collect-logs-from-the-arc-resource-bridge).
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 ## Best practices to maintain the Azure Arc-enabled SCVMM resources 
 

@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 08/28/2026
+ms.date: 10/14/2026
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -119,11 +119,12 @@ For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](/a
 
 The Azure Key Vault Secret Store extension for Kubernetes (Secret Store) automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
 
-We recommend the Secret Store extension for clusters at the edge where internet connectivity cannot be guaranteed, or if you need secrets synced to the Kubernetes secret store. For clusters in Azure cloud that do not require local secret storage, we recommend that you use the Azure Key Vault Secrets Provider extension instead.
-
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
 
 ## Azure Key Vault Secrets Provider
+
+> [!IMPORTANT]
+> The Azure Key Vault Secrets Provider extension retires on October 9, 2027. [Migrate to the Secret Store extension](secret-store-extension-migration.md) before then.
 
 - **Supported distributions**: AKS on Azure Local, AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
 
@@ -148,11 +149,11 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 
 The following Kubernetes distributions **have been validated in conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
 
-- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Red Hat OpenShift (ARO), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Red Hat OpenShift (ARO), Openshift Cloud Platform (OCP), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
-- **Supported distributions without conformance validation**: EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine)
+- **Supported distributions without conformance validation**: EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), Nexus Baremetal
 
 > kubeadm is currently not supported in Azure Policy extension.
 > RKE (Rancher Kubernetes Engine) is now deprecated. Please use Rancher Government (RKE2) instead.
@@ -186,6 +187,13 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 ```
 
 ### Azure Policy Extension Release Notes
+
+#### 1.20.0
+
+Security improvements.
+- Released: Sep 2026
+- Kubernetes: 1.30+
+- Gatekeeper: 3.23.1
 
 #### 1.19.0
 

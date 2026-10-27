@@ -15,7 +15,7 @@ ms.custom:
 The onboarding scripts automate the end-to-end setup of infrastructure and resources for workload orchestration in Azure Arc. Rather than running individual CLI commands, the scripts handle the entire process of [setting up workload orchestration](set-up-workload-orchestration.md) to deploy your first application. The scripts are available in three variants—PowerShell, Python, and Bash—all of which are functionally equivalent.
 
 > [!TIP]
-> If you prefer full control over each step and want to run commands individually, follow the instructions in [Set up using CLI](set-up-workload-orchestration.md). For a Git-based declarative approach with Bicep templates, follow [Set up using Git](workload-orchestration-multicluster-git.md)
+> For a guided experience, follow [Onboard using Azure portal](set-up-workload-orchestration-azure-portal.md). If you want full control over each step and want to run commands individually, follow [Set up using CLI](set-up-workload-orchestration.md). For a Git-based declarative approach with Bicep templates, follow [Onboard using Git](workload-orchestration-multicluster-git.md).
 
 ## How the scripts work
 

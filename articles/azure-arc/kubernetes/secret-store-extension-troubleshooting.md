@@ -1,8 +1,9 @@
 ---
 title: Troubleshooting issues with the Secret Store extension
 description: This guide helps you to efficiently diagnose and resolve issues with the Azure Key Vault Secret Store extension.
-ms.date: 08/01/2025
+ms.date: 10/15/2026
 ms.topic: troubleshooting
+ai-usage: ai-assisted
 ---
 
 # Troubleshooting
@@ -33,16 +34,18 @@ The following table lists common status reasons, their meanings, and potential t
 | `UpdateNoValueChangeSucceeded` | The secret in Kubernetes was fully up-to-date with the AKV version at the last check. No change was needed during the latest check. | n/a |
 | `UpdateValueChangeOrForceUpdateSucceeded` | The whole secret in Kubernetes was successfully updated with the necessary AKV versions included during the latest check. | n/a |
 | `PartialSync` | Some items in the secret could not be updated. | Investigate further by looking at the `status.conditions.message` field of the `SecretSync` object. This field contains a stringified json summary of the success or failure for each item in the secret. |
+| `ControllerSyncFailed` | SSE couldn't fetch the secret from Azure Key Vault. Either every item failed, or `enablePartialSecretSync` is `false` and at least one item failed. | Investigate as with `PartialSync`. In the message, `errorCode: 403` means the identity lacks permission on the vault, and `AADSTS` codes are Microsoft Entra ID errors. |
 | `ProviderError` | Secret creation failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, misconfiguration of the `SecretProviderClass`, or other issues. | Investigate first as with `PartialSync`, next look at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
-| `InvalidClusterSecretLabelError`<br>`InvalidClusterSecretAnnotationError` | SSE could not create the Kubernetes secret because an existing non-SSE secret exists with the same name. | Remove the secret to allow the SSE to recreate the secret: ```kubectl delete secret <secret-name> -n <namespace>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name> -n <namespace>```) and reapply the secret sync resource (```kubectl apply -f <path_to_secret_sync> -n <namespace>```). |
+| `InvalidClusterSecretLabelError`<br>`InvalidClusterSecretAnnotationError` | The `SecretSync` sets the reserved key `secrets-store.sync.x-k8s.io` in its `labels` or `annotations`. | Remove that key from the `SecretSync`, then reapply it. |
+| `ValidatingAdmissionPolicyCheckFailed` | An admission policy rejected the update to the Kubernetes secret. The most common cause is an existing secret with the same name that SSE doesn't manage. The condition message names the policy. | If SSE doesn't manage the secret, remove it to allow the SSE to recreate the secret: ```kubectl delete secret <secret-name> -n <namespace>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name> -n <namespace>```) and reapply the secret sync resource (```kubectl apply -f <path_to_secret_sync> -n <namespace>```). |
 | `UserInputValidationFailed` | Secret update failed because the `SecretSync` resource was configured incorrectly (such as an invalid secret type). | Review the secret sync resource definition and correct any errors. Then, delete the secret sync resource (```kubectl delete -f <path_to_secret_sync>```), and reapply the secret sync resource (```kubectl apply -f <path_to_secret_sync>```). |
 | `ControllerSpcError` | Secret update failed because the SSE failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
-| `ControllerInternalError`<br>`ValidatingAdmissionPolicyCheckFailed`<br>`ControllerSyncFailed`  | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl logs -n secrets-store-sync-controller-system deployment/secrets-store-sync-controller-manager -f``` |
+| `ControllerInternalError` | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl logs -n azure-secret-store deployment/secrets-store-sync-controller-manager --container manager -f``` |
 | `UnknownError`| Secret update failed during patching the Kubernetes secret value. This failure might occur if someone other than the SSE modifies the secret, or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the `SecretSync` object: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>```<br>If this step does not help, follow the steps to inspect the logs as with a  `ControllerInternalError`. |
 
 ## Network access issues
 
-If you see a ```ProviderError``` status reason with a message indicating a timeout or inability to reach your key vault endpoint (```<vault_name>.vault.azure.net```), there is a likely network access issue to resolve. Possible network access issues include:
+If you see a ```ControllerSyncFailed```, ```PartialSync```, or ```ProviderError``` status reason with a message indicating a timeout or inability to reach your key vault endpoint (```<vault_name>.vault.azure.net```), there's likely a network access issue to resolve. Possible network access issues include:
 
 ### Azure Key Vault firewall configuration
 By default Azure Key Vault has a permissive firewall configuration and can be accessed via the public internet, but it is good practice to limit network access to Azure Key Vault. Double check that your key vault firewall configuration permits access for your cluster. See [Network security for Azure Key Vault](/azure/key-vault/general/network-security)

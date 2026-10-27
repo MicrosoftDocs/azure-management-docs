@@ -13,10 +13,14 @@ items:
       href: configuration-model.md
   - name: Tutorials
     items:
+    - name: Quickstart
+      href: quickstart-azure-portal.md
     - name: Installation
       items:
       - name: Onboard using CLI
         href: set-up-workload-orchestration.md
+      - name: Onboard using Azure portal
+        href: set-up-workload-orchestration-azure-portal.md
       - name: Onboard using scripts
         href: onboarding-scripts.md
       - name: Onboard using Git
@@ -57,6 +61,8 @@ items:
       href: migrate-cluster.md
     - name: RBAC guide 
       href: rbac-guide.md
+    - name: Artifact signature verification
+      href: verify-artifact-signatures.md
     - name: Delete resources
       href: delete-resources.md
     - name: Release notes

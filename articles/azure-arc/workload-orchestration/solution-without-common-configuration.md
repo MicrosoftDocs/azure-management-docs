@@ -4,7 +4,8 @@ description: Learn how to create a basic solution without common configurations 
 author: nathmanish
 ms.author: nathmanish
 ms.topic: quickstart
-ms.date: 09/05/2025
+ms.date: 08/27/2026
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 # Customer intent: As a developer, I want to create a basic solution using workload orchestration without common configurations, so that I can deploy applications efficiently with minimal setup.
@@ -23,6 +24,8 @@ Follow this guide to deploy a basic solution using workload orchestration.
 
 
 ## Define the variables
+
+Set the shared variables to use in this guide. If you plan to use the portal, you can skip this step.
 
 ### [Bash](#tab/bash)
 
@@ -87,6 +90,8 @@ $appConfig = "app-config-template.yaml"
 
 Follow these steps to create a [solution template](configuration-model.md#solution-template) for your application.
 
+### [CLI](#tab/cli)
+
 1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, you can update the Helm URL and chart version in x.x.x format. The *app-config-template.yaml* file defines the configurable template parameters and the [schema](configuration-model.md#configuration-schema) validation rules governing them.
 
 1. Create the solution template.
@@ -103,8 +108,50 @@ Follow these steps to create a [solution template](configuration-model.md#soluti
       version: <version> [optional]
     ```
 
-    > [!NOTE]
-    > The list of capabilities for a solution template should be a subset of that of the targets the solution is intended to be deployed to. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
+### [Portal](#tab/portal)
+
+1. Open your workload orchestration environment in the Azure portal.
+
+    :::image type="content" source="./media/it-portal-environments-overview.png" alt-text="Screenshot of the environment grid page." lightbox="./media/it-portal-environments-overview.png":::
+
+1. On **Overview**, under **Associate solutions**, open **Link/Associate**, and then select **Create Solution template**.
+
+    :::image type="content" source="./media/it-portal-create-solution-template-menu.png" alt-text="Screenshot of the environment Overview page showing Create Solution template in the Link or Associate menu." lightbox="./media/it-portal-create-solution-template-menu.png":::
+
+1. On the **Basics** tab, select the **Subscription**, **Resource group**, and **Region** for the solution template.
+1. Enter the **Solution name**, semantic **Version**, and optional **Description**.
+
+    :::image type="content" source="./media/it-portal-solution-template-basics.png" alt-text="Screenshot of the Create solution template Basics tab showing project and instance details." lightbox="./media/it-portal-solution-template-basics.png":::
+
+1. Under **Solution template code**, upload the YAML template or enter the template code in the editor. To view the sample template code, select **Download sample file**.
+
+    :::image type="content" source="./media/it-portal-solution-template-upload-file.png" alt-text="Screenshot of the Create solution template Basics tab with Upload YAML or JSON file highlighted." lightbox="./media/it-portal-solution-template-upload-file.png":::
+
+1. After the portal loads the configuration template, select **Next: Add component**.
+
+    :::image type="content" source="./media/it-portal-solution-template-configuration-code.png" alt-text="Screenshot of the Create solution template Basics tab showing configuration template code and the Next Add component button." lightbox="./media/it-portal-solution-template-configuration-code.png":::
+
+1. On the **Add component** tab, upload a JSON component specification or enter the specification in the editor. Use the sample file as a reference.
+
+    :::image type="content" source="./media/it-portal-solution-template-add-component.png" alt-text="Screenshot of the empty Add component tab in the Create solution template wizard." lightbox="./media/it-portal-solution-template-add-component.png":::
+
+1. Select **Next: Capability tags**.
+
+    :::image type="content" source="./media/it-portal-solution-template-helm-component.png" alt-text="Screenshot of the Add component tab showing a Helm component specification and the Next Capability tags button." lightbox="./media/it-portal-solution-template-helm-component.png":::
+
+1. On the **Capability tags** tab, select the tags that map this solution template to compatible targets.
+1. Select **Next: Review + Create**.
+
+    :::image type="content" source="./media/it-portal-solution-template-capability-tags.png" alt-text="Screenshot of the Capability tags tab showing an added capability tag and the Next Review and Create button." lightbox="./media/it-portal-solution-template-capability-tags.png":::
+
+1. After validation passes, select **Review+Create** to create the solution template.
+
+    :::image type="content" source="./media/it-portal-solution-template-review-create.png" alt-text="Screenshot of the Review and Create tab showing successful validation and the Review and Create button." lightbox="./media/it-portal-solution-template-review-create.png":::
+
+***
+
+> [!NOTE]
+> The list of capabilities for a solution template should be a subset of the capabilities of the targets where the solution is intended to be deployed. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
 <details>
 <summary> You can also create a schema object and refer to it for multiple templates. </summary>

@@ -29,6 +29,8 @@ Webhook requests include a `Content-Type` of `application/json` if you have not 
 
 No other headers are added to the request beyond those custom headers you might have specified for the webhook.
 
+If your endpoint requires a credential, send it only in the `Authorization` custom header. Don't include credentials in the URL or in other custom headers. For more information, see [Protect webhook credentials](container-registry-webhook.md#protect-webhook-credentials).
+
 ## Push event
 
 Webhook triggered when a container image is pushed to a repository.
@@ -207,7 +209,7 @@ az acr repository delete --name MyRegistry --image MyRepository:MyTag
 
 ## Chart delete event
 
-Webhook triggered when a Helm chart or repository is deleted. 
+Webhook triggered when a Helm chart or repository is deleted.
 
 ### Chart delete event payload
 

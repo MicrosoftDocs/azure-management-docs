@@ -2,7 +2,7 @@
 title: Delete a VMware vCenter-managed VM in Azure through Azure Arc-enabled VMware vSphere
 description: In this article, you learn how to delete a VMware vCenter-managed virtual machine and its Azure resource through Azure Arc-enabled VMware vSphere.
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 10/04/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -19,14 +19,14 @@ In this article, you learn how to delete a VMware vCenter-managed virtual machin
 Before you delete a virtual machine or remove its Azure resource, make sure you meet the following prerequisites: 
 
 - The VMware vCenter that manages the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
-- Ensure the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
-- If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), [uninstall the agent and remove any VM extensions](/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fvmware-vsphere%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
+- The VM, which you want to delete from the host or remove its Azure resource, is [onboarded for management in Azure](enable-vcenter-resources-in-azure.md).
+- If the VM, which you want to delete from the host or remove its Azure resource, has the Arc agent installed, [uninstall the agent and remove any VM extensions](/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fvmware-vsphere%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
 - *Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to delete the VMware vSphere VMs you want to delete.
 	
 ## Delete a virtual machine
 
 >[!Important] 
->- This operation also deletes the VM on your VMware vCenter managed on-premises host. To remove the machine from Azure only and keep the on-premises resources intact, perform the [Remove from Azure](#remove-a-virtual-machine-from-azure-only) instead.
+>- This operation also deletes the VM on your VMware vCenter managed on-premises host. To remove the machine from Azure only and keep the on-premises resources intact, perform the [Offboard](#offboard-a-virtual-machine-from-azure-only) operation instead.
 >- Before you delete a VM, ensure you back up all critical data, inform the VM owner, and consider all dependencies and services regarding the VM. 
 
 To delete a VM, follow these steps:
@@ -39,16 +39,14 @@ To delete a VM, follow these steps:
 
    When prompted, confirm that you want to delete it.
  
-    :::image type="content" source="media/delete-virtual-machine/delete.png" alt-text="Screenshot showing Delete screen." lightbox="media/delete-virtual-machine/delete.png":::
-
-## Remove a virtual machine from Azure only
+## Offboard a virtual machine from Azure only
 
 To remove a VM from Azure only, follow these steps: 
 
 1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters**, and then select the VMware vCenter that manages the VM. You're planning to operate from Azure. 
-1. Go to the **Virtual machines** inventory view under the vCenter inventory. Select the machine for which you want to remove the Azure representation and then select **Remove from Azure**.
+1. Go to the **Virtual machines** inventory view under the vCenter inventory. Select the machine for which you want to remove the Azure representation and then select **Offboard**.
 
-   :::image type="content" source="media/delete-virtual-machine/remove-from-azure.png" alt-text="Screenshot showing Virtual machines screen." lightbox="media/delete-virtual-machine/remove-from-azure.png":::
+   :::image type="content" source="media/delete-virtual-machine/remove-vm-from-azure.png" alt-text="Screenshot showing Virtual machines screen." lightbox="media/delete-virtual-machine/remove-vm-from-azure.png":::
 
    When prompted, confirm that you want to remove the Azure representation of the VM.
 

@@ -1,14 +1,14 @@
 ---
 title:  Manage and maintain Azure Connected Machine agent proxy settings
 description: This article describes proxy setting management tasks for the Azure Connected Machine agent.
-ms.date: 04/27/2026
+ms.date: 09/23/2026
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to manage the proxy settings of the Azure Connected Machine agent, so that I can ensure optimal connectivity of my Azure-connected servers.
 ---
 
 # Manage and maintain Azure Connected Machine agent proxy settings
 
-To configure the agent to communicate with the service through a proxy server or to remove this configuration after deployment, use one of the methods described in this article. The agent communicates outbound by using the HTTP protocol under this scenario.
+Use the methods described in this article to configure the agent to communicate with the service through a proxy server or to remove this configuration after deployment. The agent communicates outbound by using the HTTP protocol under this scenario.
 
 You can configure proxy settings by using the `azcmagent config` command or system environment variables. If you specify a proxy server in both the agent configuration and system environment variables, the agent configuration takes precedence and becomes the effective setting. Use `azcmagent show` to view the effective proxy configuration for the agent.
 
@@ -17,7 +17,7 @@ You can configure proxy settings by using the `azcmagent config` command or syst
 
 ### Agent-specific proxy configuration
 
-Agent-specific proxy configuration is the preferred way to configure proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. Using agent-specific proxy configuration helps prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
+Agent-specific proxy configuration is the preferred way to configure proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. By using agent-specific proxy configuration, you can prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
 
 > [!NOTE]
 > Some extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
@@ -48,7 +48,7 @@ You don't need to restart any services when reconfiguring the proxy settings by 
 
 Starting with agent version 1.15, you can specify services that shouldn't use the specified proxy server. This configuration helps with split-network designs and private endpoint scenarios where you want Microsoft Entra ID and Azure Resource Manager traffic to go through your proxy server to public endpoints, but you want Azure Arc traffic to skip the proxy and communicate with a private IP address on your network.
 
-The proxy bypass feature doesn't require you to enter specific URLs to bypass. Instead, you provide the name of any services that shouldn't use the proxy server. The location parameter refers to the Azure region of the Arc-enabled server.
+The proxy bypass feature doesn't require you to enter specific URLs to bypass. Instead, provide the name of any services that shouldn't use the proxy server. The location parameter refers to the Azure region of the Arc-enabled server.
 
 Setting the proxy bypass value to `ArcData` only bypasses the traffic of the Azure extension for SQL Server and not the Arc agent.
 
@@ -59,6 +59,9 @@ Setting the proxy bypass value to `ArcData` only bypasses the traffic of the Azu
 | `AMA` | `global.handler.control.monitor.azure.com`</br>`<virtual-machine-region-name>.handler.control.monitor.azure.com`</br> `<log-analytics-workspace-id>.ods.opinsights.azure.com`</br>`management.azure.com`</br>`<virtual-machine-region-name>.monitoring.azure.com`</br>`<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |
 | `Arc` | `his.arc.azure.com`</br>`guestconfiguration.azure.com` |
 | `ArcData` <sup>1</sup> | `*.<region>.arcdataservices.com`|
+
+> [!NOTE]
+> The `AAD` bypass value applies only to the endpoints listed in the preceding table. It doesn't bypass regional Microsoft Entra endpoints such as `<region>.login.microsoft.com`. When you configure a proxy server, ensure the proxy allows `*.login.microsoft.com` or each regional endpoint required by your Arc-enabled servers. For more information, see [Connected Machine agent network requirements](network-requirements.md).
 
 <sup>1</sup> The proxy bypass value `ArcData` is available starting with Azure Connected Machine agent version 1.36 and Azure Extension for SQL Server version 1.1.2504.99. Earlier versions include the SQL Server enabled by Azure Arc endpoints in the "Arc" proxy bypass value.
 
@@ -87,7 +90,7 @@ You can view the effective proxy server and proxy bypass configuration by runnin
 
 On Windows, the Azure Connected Machine agent first checks the `proxy.url` agent configuration property (starting with agent version 1.13), and then the system-wide `HTTPS_PROXY` environment variable, to determine which proxy server to use. If both are empty, the agent doesn't use a proxy server, even if the default Windows system-wide proxy setting is configured.
 
-We recommend using the agent-specific proxy configuration instead of the system environment variable.
+Use the agent-specific proxy configuration instead of the system environment variable.
 
 To set the proxy server environment variable, run the following commands:
 

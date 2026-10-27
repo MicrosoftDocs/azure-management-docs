@@ -57,6 +57,9 @@ You automatically receive minor version updates, which include new features and 
 
 After the Azure CLI confirms that the installation was successful, [verify that the components are running in your cluster](cert-manager-monitor-troubleshoot.md#confirm-that-pods-and-components-are-running).
 
+> [!IMPORTANT]
+> Security note: To improve platform security and help reduce the deployment attack surface, Certificate Management for Azure Arc-enabled Kubernetes doesn't support the Helm extraObjects configuration option.
+
 ### Restricted PSA environments
 
 Certificate Management for Azure Arc requires privileged access for log collection into Azure for support and troubleshooting purposes. For environments with restricted Pod Security Standards where privileged access isn't permitted by PSA, log collection into Azure can be disabled to comply with security requirements.

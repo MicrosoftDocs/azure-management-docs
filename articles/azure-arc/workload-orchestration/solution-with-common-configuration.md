@@ -4,7 +4,8 @@ description: Learn how to create a basic solution with common configurations usi
 author: nathmanish
 ms.author: sethm
 ms.topic: quickstart
-ms.date: 05/03/2025
+ms.date: 08/27/2026
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 # Customer intent: As a developer working with workload orchestration, I want to create a basic solution template with common configurations using CLI commands, so that I can streamline my deployment process and manage application dependencies effectively.
@@ -24,7 +25,7 @@ In this guide, you create a solution with common configurations using workload o
 
 ## Define the variables
 
-This guide uses the same environment, schema, and application variables defined in [Deploy a basic solution](solution-without-common-configuration.md#define-the-variables). Set those variables first, then define the following additional variables for the hierarchical configuration template.
+This guide uses the same environment, schema, and application variables defined in [Deploy a basic solution](solution-without-common-configuration.md#define-the-variables). Set those variables first, and then define the following additional variables for the hierarchical configuration template. If you plan to use the portal, you can skip this step.
 
 ### [Bash](#tab/bash)
 
@@ -49,6 +50,10 @@ $configVersion = "1.0.0"
 
 ## Set the hierarchy configuration
 
+Follow these steps to create a [hierarchy configuration template](configuration-model.md#hierarchy-configuration-template), link it to the desired sites or targets, and set the common configuration values.
+
+### [CLI](#tab/cli)
+
 1. Create the [hierarchy configuration template](configuration-model.md#hierarchy-configuration-template) by referring to the sample *common-config.yaml* in the [GitHub repository](https://github.com/Azure/workload-orchestration).
 
     ```azurecli
@@ -67,29 +72,58 @@ $configVersion = "1.0.0"
 
 1. Set the common configuration for the Site.
 
-    ### [CLI](#tab/cli)
     ```azurecli
     az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "siteId" --template-name "$appName" --version $appVersion
     ```
 
-    ### [Portal](#tab/portal)
-    1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) and click on **Configure Solutions** on the left.
+### [Portal](#tab/portal)
 
-    1. Select the name of the factory you want to configure, whose configuration status is not *Configuration up to date*, and click on **Configure**. 
+1. On the environment **Overview** page, under **Associate solutions**, open **Link/Associate**, and then select **Create Config template**. Alternatively, under **Configuration Templates**, select **Hierarchy Configuration Templates**, and then select **Create**.
 
-        :::image type="content" source="./media/configure-line-1.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line." lightbox="./media/configure-line-1.png":::
+    :::image type="content" source="./media/it-portal-create-hierarchy-configuration-menu.png" alt-text="Screenshot of the environment Overview page showing Create Config template in the Link or Associate menu." lightbox="./media/it-portal-create-hierarchy-configuration-menu.png":::
 
-    1. In case there is a single configuration template linked to the hierarchy level, you can directly configure the values. In case of multiple templates, select the templates to be configured from the **Select Version** screen and click on **Next**. You can also filter templates by Name, Version and Status.
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-templates-create.png" alt-text="Screenshot of the Hierarchy Configuration Templates page with Create highlighted." lightbox="./media/it-portal-hierarchy-configuration-templates-create.png":::
 
-        :::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line1." lightbox="./media/configure-line-2.png":::
+1. On the **Basics** tab, select the **Subscription**, **Resource group**, and **Region** for the hierarchy configuration template.
+1. Enter the **Hierarchy configuration name**, semantic **Version**, and optional **Description**.
 
-    1. In the **Configure** step, enter the parameters for each template and click on **Next**. You can choose to autofill values from previous version only if configuration template was previously configured.
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-basics.png" alt-text="Screenshot of the Create Hierarchy Configuration Basics tab showing project details, instance details, and the hierarchy configuration code editor." lightbox="./media/it-portal-hierarchy-configuration-basics.png":::
 
-        :::image type="content" source="./media/configure-line-3.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to enter the parameters to configure a target." lightbox="./media/configure-line-3.png":::
+1. Under **Hierarchy configuration code**, upload a YAML or JSON configuration file or enter the configuration code in the editor. To view a sample configuration, select **Download sample file**.
 
-    1. Review the details and click on **Confirm** to apply the changes.
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-upload-file.png" alt-text="Screenshot of the Create Hierarchy Configuration Basics tab with Upload YAML or JSON file highlighted." lightbox="./media/it-portal-hierarchy-configuration-upload-file.png":::
 
-        :::image type="content" source="./media/configure-line-4.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to review and apply the changes of the configuration." lightbox="./media/configure-line-4.png":::
+1. After the portal loads the hierarchy configuration code, select **Next: Link to Hierarchy**.
+
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-code.png" alt-text="Screenshot of the Create Hierarchy Configuration Basics tab showing configuration code and the Next Link to Hierarchy button." lightbox="./media/it-portal-hierarchy-configuration-code.png":::
+
+1. On the **Link to Hierarchy** tab, select the sites or targets where you want to apply the configuration template. This step is optional. You can link the template after creating it.
+1. Select **Next: Review + Create**.
+
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-link-targets.png" alt-text="Screenshot of the Link to Hierarchy tab showing selected targets and the Next Review and Create button." lightbox="./media/it-portal-hierarchy-configuration-link-targets.png":::
+
+1. After validation passes, review the project details, instance details, hierarchy configuration code, and linked hierarchy resources.
+1. Select **Review+Create** to create the hierarchy configuration template.
+
+    :::image type="content" source="./media/it-portal-hierarchy-configuration-review-create.png" alt-text="Screenshot of the hierarchy configuration Review and Create tab showing successful validation and the Review and Create button." lightbox="./media/it-portal-hierarchy-configuration-review-create.png":::
+
+1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), and select **Configure Hierarchy** on the left.
+
+1. Select the site you want to configure whose configuration status isn't **Configuration up to date**, and then select **Configure**.
+
+    :::image type="content" source="./media/configure-line-1.png" alt-text="Screenshot of the Configure Hierarchy page showing a selected Site and the Configure button." lightbox="./media/configure-line-1.png":::
+
+1. If a single configuration template is linked to the hierarchy resource, enter its configuration values. If multiple templates are linked, select the templates to configure on the **Select Version** screen, and then select **Next**. You can filter templates by name, version, and status.
+
+    :::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the Select Version page showing configuration templates selected for a Site." lightbox="./media/configure-line-2.png":::
+
+1. In the **Configure** step, enter the parameters for each template, and then select **Next**. If you previously configured another version of the same template, you can autofill values from that version.
+
+    :::image type="content" source="./media/configure-line-3.png" alt-text="Screenshot of the Configure step showing parameter values for hierarchy configuration templates." lightbox="./media/configure-line-3.png":::
+
+1. Review the configuration details, and then select **Confirm** to apply the changes.
+
+    :::image type="content" source="./media/configure-line-4.png" alt-text="Screenshot of the Review step showing hierarchy configuration values and the Confirm button." lightbox="./media/configure-line-4.png":::
 
 ***
 
@@ -100,6 +134,8 @@ $configVersion = "1.0.0"
 ## Create the solution template 
 
 Follow these steps to create a [solution template](configuration-model.md#solution-template) for your application.
+
+### [CLI](#tab/cli)
 
 1. Create the *specs.json* and *app-config-template.yaml* files by referring to sample files from the [GitHub repository](https://github.com/Azure/workload-orchestration). In *specs.json*, you can update the Helm URL and chart version in x.x.x format. The *app-config-template.yaml* file defines the configurable template parameters and the [schema](configuration-model.md#configuration-schema) validation rules governing them.
 
@@ -117,8 +153,50 @@ Follow these steps to create a [solution template](configuration-model.md#soluti
       version: <version> [optional]
     ```
 
-    > [!NOTE]
-    > The list of capabilities for a solution template should be a subset of the capabilities of the targets where the solution is intended to be deployed. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
+### [Portal](#tab/portal)
+
+1. Open your workload orchestration environment in the Azure portal.
+
+    :::image type="content" source="./media/it-portal-environments-overview.png" alt-text="Screenshot of the environment grid page." lightbox="./media/it-portal-environments-overview.png":::
+
+1. On **Overview**, under **Associate solutions**, open **Link/Associate**, and then select **Create Solution template**.
+
+    :::image type="content" source="./media/it-portal-create-solution-template-menu.png" alt-text="Screenshot of the environment Overview page showing Create Solution template in the Link or Associate menu." lightbox="./media/it-portal-create-solution-template-menu.png":::
+
+1. On the **Basics** tab, select the **Subscription**, **Resource group**, and **Region** for the solution template.
+1. Enter the **Solution name**, semantic **Version**, and optional **Description**.
+
+    :::image type="content" source="./media/it-portal-solution-template-basics.png" alt-text="Screenshot of the Create solution template Basics tab showing project and instance details." lightbox="./media/it-portal-solution-template-basics.png":::
+
+1. Under **Solution template code**, upload the YAML template or enter the template code in the editor. To view the sample template code, select **Download sample file**.
+
+    :::image type="content" source="./media/it-portal-solution-template-upload-file.png" alt-text="Screenshot of the Create solution template Basics tab with Upload YAML or JSON file highlighted." lightbox="./media/it-portal-solution-template-upload-file.png":::
+
+1. After the portal loads the configuration template, select **Next: Add component**.
+
+    :::image type="content" source="./media/it-portal-solution-template-configuration-code.png" alt-text="Screenshot of the Create solution template Basics tab showing configuration template code and the Next Add component button." lightbox="./media/it-portal-solution-template-configuration-code.png":::
+
+1. On the **Add component** tab, upload a JSON component specification or enter the specification in the editor. Use the sample file as a reference.
+
+    :::image type="content" source="./media/it-portal-solution-template-add-component.png" alt-text="Screenshot of the empty Add component tab in the Create solution template wizard." lightbox="./media/it-portal-solution-template-add-component.png":::
+
+1. Select **Next: Capability tags**.
+
+    :::image type="content" source="./media/it-portal-solution-template-helm-component.png" alt-text="Screenshot of the Add component tab showing a Helm component specification and the Next Capability tags button." lightbox="./media/it-portal-solution-template-helm-component.png":::
+
+1. On the **Capability tags** tab, select the tags that map this solution template to compatible targets.
+1. Select **Next: Review + Create**.
+
+    :::image type="content" source="./media/it-portal-solution-template-capability-tags.png" alt-text="Screenshot of the Capability tags tab showing an added capability tag and the Next Review and Create button." lightbox="./media/it-portal-solution-template-capability-tags.png":::
+
+1. After validation passes, select **Review+Create** to create the solution template.
+
+    :::image type="content" source="./media/it-portal-solution-template-review-create.png" alt-text="Screenshot of the solution template Review and Create tab showing successful validation and the Review and Create button." lightbox="./media/it-portal-solution-template-review-create.png":::
+
+***
+
+> [!NOTE]
+> The list of capabilities for a solution template should be a subset of the capabilities of the targets where the solution is intended to be deployed. To update the list of capabilities for an existing solution template, run `az workload-orchestration solution-template update-capabilities -n "$appName" --capabilities "<capability 1>" "<capability 2>" --description "$desc" --location $l -g $rg`.
 
 
 ## Deploy the solution

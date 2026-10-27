@@ -2,7 +2,7 @@
 title: Plan for deployment
 description: Learn about the support matrix for Arc-enabled VMware vSphere including vCenter Server versions supported, network requirements, and more.
 ms.topic: how-to
-ms.date: 03/10/2026
+ms.date: 10/06/2026
 ms.service: azure-arc
 ms.subservice: vmware-vsphere-azure-arc
 ms.author: v-gajeronika
@@ -17,7 +17,7 @@ ms.custom:
 
 This article documents the prerequisites and support requirements for using [Azure Arc-enabled VMware vSphere](overview.md) to manage your VMware vSphere VMs through Azure Arc.
 
-To use Azure Arc-enabled VMware vSphere, deploy an Azure Arc resource bridge in your VMware vSphere environment during onboarding. The resource bridge is an appliance VM that provides an ongoing connection between your VMware vCenter Server and Azure. After you connect VMware vCenter Server to Azure, components running on the resource bridge discover your vCenter inventory and synchronize it with Azure. You can then enable discovered machines for Azure Arc guest management and perform virtual hardware and guest operating system management operations through Azure.
+To use Azure Arc-enabled VMware vSphere, deploy an Azure Arc resource bridge in your VMware vSphere environment during onboarding. The resource bridge is an appliance VM that provides an ongoing connection between your VMware vCenter Server and Azure. After you connect VMware vCenter Server to Azure, components running on the resource bridge discover your vCenter inventory and synchronize it with Azure. You can then onboard discovered machines to Azure Arc and perform virtual hardware and management operations through Azure interfaces.
 
 
 ## VMware vSphere requirements
@@ -48,7 +48,7 @@ For Arc-enabled VMware vSphere, resource bridge has the following minimum virtua
 - 8 GB of memory
 - 4 vCPUs
 - An external virtual switch that can provide access to the internet directly or through a proxy.
-- If internet access for the resource bridge is through a proxy or firewall, ensure to allow-list the following [Arc gateway (preview)](#arc-gateway-for-arc-resource-bridge-on-arc-enabled-vmware-vsphere-preview), Arc resource bridge, Arc agent and VMware vSphere required endpoints.
+- If internet access for the resource bridge is through a proxy or firewall, ensure to allow-list the following [Arc resource bridge](#resource-bridge-networking-requirements), [Arc agent](#networking-requirements) and [VMware vSphere](#vmware-vsphere-network-requirements) required endpoints. (Optional) If you are trying out the Azure Arc Gateway (preview) for Azure Arc resource bridge, ensure to allow list the [following endpoints](#arc-gateway-for-arc-resource-bridge-on-arc-enabled-vmware-vsphere-preview) additionally. 
 
 ### Resource bridge networking requirements
 
@@ -80,11 +80,11 @@ The minimum Azure roles required for operations related to Arc-enabled VMware vS
 
 If you have roles with higher permissions on the same scope, such as Owner or Contributor, you can also perform the operations listed earlier.
 
-## Guest management (Arc agent) requirements
+## Azure Arc connected machine agent requirements
 
 By using Arc-enabled VMware vSphere, you can install the Azure Arc connected machine agent on your VMs at scale and use Azure management services on the VMs. This capability has additional requirements.
 
-To enable guest management (install the Azure Arc connected machine agent), ensure the following:
+To install the Azure Arc connected machine agent, ensure the following conditions are met:
 
 - The VM is powered on.
 - The VM has VMware tools installed and running.
@@ -92,7 +92,7 @@ To enable guest management (install the Azure Arc connected machine agent), ensu
 - The VM is running a [supported operating system](#supported-operating-systems).
 - The VM has internet connectivity directly or through proxy. If the connection is through a proxy, ensure [these URLs](#networking-requirements) are allow-listed.
 
-Additionally, make sure that the requirements described in the following section are met to enable guest management.
+Additionally, make sure that the requirements described in the following section are met to install the Arc agent.
 
 ### Supported operating systems
 
@@ -137,7 +137,7 @@ The Azure Arc agents need the following firewall URL exceptions:
 You need an existing Azure Arc gateway resource before running the Arc-enabled VMware vSphere onboarding script. [Create a new Azure Arc gateway resource](../servers/arc-gateway.md#create-an-azure-arc-gateway-resource) or reuse an existing one from another Azure Arc product. During onboarding, the script prompts you to provide your Azure Arc gateway resource ID. If you have an existing Azure Arc gateway being used in a different Azure Arc product, you can use the same gateway with Arc resource bridge. 
 
 > [!Important]
-> You can enable Azure Arc gateway only during a **new deployment** of Arc resource bridge. Azure Arc gateway isn't currently supported on an existing Azure Arc resource bridge and would require [a recovery scenario](recover-from-resource-bridge-deletion.md).
+> You can enable Azure Arc gateway only during a **new deployment** of Arc resource bridge. Azure Arc gateway isn't currently supported on an existing Azure Arc resource bridge and would require a re-deployment through [the recovery method](recover-from-resource-bridge-deletion.md).
 
 During Arc-enabled VMware vSphere deployment, the Arc gateway router that runs inside the Arc resource bridge establishes a connection to an existing Arc gateway resource. Supported outbound traffic is then routed through the Arc gateway endpoint instead of going directly to each individual Microsoft URL.
 
@@ -168,7 +168,7 @@ The following configurations aren't supported:
 - Enterprise proxy or firewall that performs SSL/TLS inspection
 
 
-### Arc gateway (preview) firewall/proxy endpoint allowlist
+### Arc gateway (preview) firewall/proxy endpoint allow list
 
 Ensure that your Azure Arc gateway URL is allowed as listed in the following table:
 
@@ -176,9 +176,9 @@ Ensure that your Azure Arc gateway URL is allowed as listed in the following tab
 |----------|------|-----|-----------|-------|
 | Arc gateway | 443 | Your unique Arc gateway URL | Outbound from Arc resource bridge appliance VM IPs | Reduces the number of Microsoft URLs you must allow. |
 
-### Arc resource bridge with Arc gateway (preview) firewall and proxy endpoints allowlist
+### Arc resource bridge with Arc gateway (preview) firewall and proxy endpoints allow list
 
-The following table lists the URLs that **still require direct access** (not routed through Arc gateway) and must be individually allowed. The allowlist enables communication from [the management machine and Arc resource bridge IP addresses](quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) to the required endpoints.
+The following table lists the URLs that **still require direct access** (not routed through Arc gateway) and must be individually allowed. The allow list enables communication from [the management machine and Arc resource bridge IP addresses](quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) to the required endpoints.
 
 
 | **Service** | **Port** | **URL** | **Direction** | **Notes** |

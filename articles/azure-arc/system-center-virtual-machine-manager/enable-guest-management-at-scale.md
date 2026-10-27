@@ -7,7 +7,7 @@ ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # Install Arc agents on SCVMM VMs
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 In this article, you learn how to install Azure connected machine agents for SCVMM VMs. This installation is a prerequisite for using Azure services to secure, patch, and monitor your VMs. By installing these agents, you can also leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits.
 
@@ -45,8 +47,8 @@ Before you install Arc agents at scale for SCVMM VMs, ensure the following condi
 This method works only if you're running: 
 
 - SCVMM 2025, 2022 UR1 or later, and 2019 UR5 or later versions of SCVMM server or console.
-- VMs running Windows Server 2012 R2, 2016, 2019, 2022, 2025, Windows 10, and Windows 11.
-- For other SCVMM versions, Linux VMs, or Windows VMs running WS 2012 or earlier versions, install Arc agents through the script or out-of-band methods. 
+- VMs running Windows Server 2016, 2019, 2022, 2025, Windows 10, and Windows 11.
+- For other SCVMM versions and Linux VMs, install Arc agents through the script or out-of-band methods. 
 
 An administrator can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
 

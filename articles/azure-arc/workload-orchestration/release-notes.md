@@ -4,12 +4,35 @@ description: Release notes for Workload Orchestration.
 author: sethmanheim
 ms.author: sethm
 ms.topic: release-notes
-ms.date: 11/04/2025
+ms.date: 08/31/2026
+ai-usage: ai-assisted
 ---
 
 # Release notes for workload orchestration
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
+
+## August 2026 release
+
+### New features
+
+- **New portal interface**: Workload orchestration now offers a centralized portal experience for a wide range of capabilities, including environment setup, management, and authoring workflows, in the Azure portal:
+  - **Environment creation**: Users can choose to create a [test or proof-of-concept environment](quickstart-azure-portal.md) with minimal configuration and quickly deploy a sample application, or create a [production-scale environment](set-up-workload-orchestration-azure-portal.md) with custom configurations.
+  - **Environment management**: Monitor and manage the lifecycle of all resources in your workload orchestration environment from the Azure portal, such as site hierarchies and targets.
+  - **Template authoring**: Create and manage solution templates, hierarchy configuration templates, and schemas through guided workflows.
+
+- **Deployment artifact signature verification**: Workload orchestration can now [verify deployment artifacts](verify-artifact-signatures.md) before they run on edge clusters. This feature adds a two-layer supply chain protection that verifies Helm charts, Kubernetes manifests, and container images by using Azure Key Vault and other trusted services. This verification helps prevent unsigned, modified, or untrusted artifacts from being deployed.
+
+### Improvements in CLI
+
+- **Azure CLI Workload Orchestration extension 5.3.1** is now available. Update to the latest version by running:
+
+  ```azurecli
+  az extension update --name workload-orchestration
+  ```
+
+- **Simplified initialization**: The `az workload-orchestration init` command sets up the workload orchestration environment, including the Azure Arc-enabled cluster, in a single operation. This consolidation further streamlines the CLI onboarding experience by reducing manual setup steps and the risk of configuration errors.
+
 
 ## July 2026 release
 
@@ -19,12 +42,12 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### Improvements in CLI
 
-- **Extension upgrade**: The workload orchestration K8s extension is now upgraded to version 2.1.37 with support for new capabilities. To update to the latest version, run:
+- **Extension upgrade**: The workload orchestration Kubernetes extension is now upgraded to version 2.1.37 with support for new capabilities. To update to the latest version, run:
   ```bash
   az k8s-extension update --resource-group "<resource group name>" --cluster-name "<cluster name>" --cluster-type connectedClusters --name "<extension name>" --release-train dev --version 2.1.37
   ```
 
-- **Scalable deletion support**: For k8s extension versions greater than 2.1.34, this release enables reliable and scalable delete operations for targets, resource groups, and subscriptions that have large numbers of active solution instances within their scope. To prevent throttling issues and ensure consistent behavior, older extension versions are now restricted from deleting targets when solutions are still installed on them.
+- **Scalable deletion support**: For Kubernetes extension versions greater than 2.1.34, this release enables reliable and scalable delete operations for targets, resource groups, and subscriptions that have large numbers of active solution instances within their scope. To prevent throttling issues and ensure consistent behavior, older extension versions are now restricted from deleting targets when solutions are still installed on them.
 
 - **System namespace restriction**: During target creation, the attribute `--solution-scope` doesn't accept system namespaces such as azure-arc, kube-system, workloadorchestration, and cert-manager. This restriction has been imposed for security enhancement.
 
@@ -149,7 +172,6 @@ This article provides the latest and past release notes for workload orchestrati
   ```bash
   az extension update --name workload-orchestration
   ```
-- The first-party application **EdgeConfigurationManagerApp** no longer requires RBAC read/write permission assignment.
 
 - The time taken for target and solution template creation has been significantly reduced, resulting in faster response time and enhanced CLI experience.
 
@@ -160,8 +182,6 @@ This article provides the latest and past release notes for workload orchestrati
 ### New features
 
 - The status of solutions and targets shown to users in the workload orchestration portal, related to completion of configuration, publishing and deployment, are standardized across all screens. The distinct number of statuses are reduced for simplification and enhanced readability. Users can click on the status of any item to open a context pane showing details of all operations performed on it so far, along with timestamp and name of user who performed the action.
-
-- The first party app **EdgeConfigurationManagerApp** access requirement is reduced from **Contributor** to **Reader** role.
 
 ## September 2025 release
 
@@ -203,7 +223,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 - Eliminated delays between the live status of a user-initiated action displayed on portal and its corresponding notifications, presenting a more accurate and consistent view of operations.
 
-- The portal now has improved accessibility. Details can be found [here](https://www.microsoft.com/accessibility/conformance-reports).
+- The portal now has improved accessibility. For details, see [Microsoft accessibility conformance reports](https://www.microsoft.com/accessibility/conformance-reports).
 
 ### Improvements in CLI
 

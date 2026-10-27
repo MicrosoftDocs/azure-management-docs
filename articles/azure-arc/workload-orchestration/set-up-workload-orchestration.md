@@ -16,7 +16,7 @@ ms.date: 11/04/2025
 This article walks you through the process of setting up Workload Orchestration for Azure Arc using Azure CLI commands. This involves installing the workload orchestration CLI extension, connecting your Kubernetes cluster to Azure, and creating the workload orchestration environment, Site hierarchy and deployment targets within your cluster. The CLI-driven approach gives you full control over each resource created during onboarding.
 
 > [!TIP]
-> For alternative setup methods, see [Set up using scripts](onboarding-scripts.md) for an automated approach, or [Set up using Git](workload-orchestration-multicluster-git.md) for a Git-based declarative solution using Bicep templates.
+> For alternative setup methods, see [Onboard using Azure portal](set-up-workload-orchestration-azure-portal.md) for a guided experience, [Onboard using scripts](onboarding-scripts.md) for an automated approach, or [Onboard using Git](workload-orchestration-multicluster-git.md) for a Git-based declarative solution using Bicep templates.
 
 
 ## Prerequisites
@@ -34,7 +34,7 @@ This article walks you through the process of setting up Workload Orchestration 
 * An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md). The workload orchestration Arc extension doesn't support Arm-based architecture nodes, so make sure your cluster uses a non-Arm virtual machine and meets the following requirements:
 
     | Cluster Type | RAM | CPUs | Disk |
-    |---|---|---|---|
+    | --- | --- | --- | --- |
     | Single node K3s | Minimum 4 GB | 2 | — |
     | Multi-node K8s | Minimum 4 GB per node | 2 per node | Extra 1 GB |
 
@@ -126,19 +126,63 @@ All sample input files required in this guide can be downloaded from the [worklo
 
 ***
 
+## Set up the workload orchestration environment
 
-## Prepare your Arc cluster
+1. Create the [Site hierarchy](resource-model.md#hierarchy). You can choose between the following two types of hierarchies based on your requirements.
 
-1. Initialize your Arc-connected Kubernetes cluster for application deployments using workload orchestration. This command installs the workload orchestration Arc extension along with cert-manager and trust-manager extensions, and creates a custom location on the cluster.
+    ### [Resource Group Hierarchy](#tab/resource-group-hierarchy)
 
     ```azurecli
-    az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l"
+    az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "{name:$siteName,level:$level1}"
+    ```
+
+    ### [Service Group Hierarchy](#tab/service-group-hierarchy)
+
+    The following command creates a service group hierarchy based on the structure defined in `hierarchy.yaml`. You can find a sample file in the [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). Specify both new and existing sites to use for your hierarchy in the YAML file.
+
+    ```azurecli
+    az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
+    ```
+
+    <details>
+    <summary> Manually add sites to hierarchy </summary>
+    You can also manually add a site to any level of the hierarchy by using the following steps:
+
+      1. Create the service group.
+          ```azurecli
+          $sg = "<service-group-name>"
+          $tenantId = "<tenant-id>"
+
+          az rest --method put --header Content-Type=application/json --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$sg`?api-version=2024-02-01-preview --body "{'properties':{'displayName':'$sg','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" --resource https://management.azure.com
+          ```
+      1. Create and tag a site with the respective hierarchy level.
+
+          ```azurecli
+          az rest --method put --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" --body "{'properties':{'displayName':'$siteName','description': '$siteName','labels': {'level': 'Factory'}}}" --resource https://management.azure.com
+          ```
+      1. Create the configuration reference.
+          ```azurecli
+          configName="<configuration name>"
+          configId="/subscriptions/$subId/resourceGroups/$rg/providers/microsoft.edge/configurations/$configName"
+          az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$l'}"
+          az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
+          ```
+    </details>
+
+1. Initialize your Azure Arc-enabled Kubernetes cluster and the workload orchestration environment or [context](resource-model.md#context), with the hierarchy created in the previous step and the desired set of capabilities that you want to include in your targets. The hierarchy level names must match what you specified in `level` in the previous step.
+
+    ```azurecli
+    az workload-orchestration init -c "$clusterName" -g "$rg" -l "$l" --subscription "$subId" --context-resource-group "$rg" --context-location "$l" --context-name "$contextName" --capabilities "[{name:soap,description:Soap},{name:shampoo,description:Shampoo}]" --hierarchies "[0].name=$level1" "[0].description=$level1" "[1].name=$level2" "[1].description=$level2" --site-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName
+    ```
+
+    Choose to specify other properties like name, version, and release train of the Azure Arc extension, along with custom location details, by using additional arguments. Use the Azure Resource Manager (ARM) ID of the parent site of your hierarchy for the `--site-id` argument. If you don't have an existing hierarchy, drop this argument and later link your parent site to the context.
+
+    ```azurecli
+    az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$contextName" --name "$siteReference" --site-id "$siteId"
     ```
 
     > [!TIP]
-    > You can choose to specify other properties like name, version, and release train of the Azure Arc extension, along with custom location details, by running `az workload-orchestration cluster init -c "$clusterName" -g "$rg" -l "$l" --release-train stable --extension-version 2.1.28  --extension-name "$extensionName" --custom-location-name "$customLocation"`.
-    
-    On successful run, the command writes `extended-location.json` containing the details of the custom location created, to the current directory.
+    > You can rerun `az workload-orchestration init` with a new Azure Arc-connected cluster to initialize extra clusters for workload orchestration deployments. You can also pass the list of context capabilities in a JSON file by using `--capabilities @capabilities.json` (sample file included in [GitHub repository](https://github.com/Azure/workload-orchestration)). Description for capabilities is optional and defaults to the capability name if not specified.
 
     <details>
     <summary> Perform the cluster initialization steps individually </summary>
@@ -178,10 +222,7 @@ All sample input files required in this guide can be downloaded from the [worklo
         ```
         ---
     
-    </details>
-
-1. This step applies only if you plan to set up an Azure Container Registry (ACR) to host your container images.
-
+    The following steps are optional and apply only if you plan to set up an Azure Container Registry (ACR) to host your container images.
     1. Set up ACR Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
 
     1. Set up ACR Helm Chart Pull (an Azure Arc-connected cluster). Verify that the extension has a system managed identity. Run the following command:
@@ -203,68 +244,19 @@ All sample input files required in this guide can be downloaded from the [worklo
         $extensionSPId = az k8s-extension show --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --query identity.principalId --output tsv
         az role assignment create --assignee $extensionSPId --role "AcrPull" --scope "<ACR Resource ID>"
         ```
-
-
-## Set up the workload orchestration resources
-
-1. Create the [Site hierarchy](resource-model.md#hierarchy). You can choose between the following two types of hierarchies based on your requirements.
-
-    ### [Resource Group Hierarchy](#tab/resource-group-hierarchy) 
-
-    ```azurecli
-    az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "{name:$siteName,level:$level1}"
-    ```
-
-    ### [Service Group Hierarchy](#tab/service-group-hierarchy) 
-
-    The following command creates a Service Group hierarchy according to the structure defined in `hierarchy.yaml`. You can refer to the sample file from [workload-orchestration GitHub repository](https://github.com/Azure/workload-orchestration). You can specify both new and existing Sites to use for your hierarchy in the YAML file.
-
-    ```azurecli
-    az workload-orchestration hierarchy create -g "$rg" --configuration-location "$l" --hierarchy-spec "hierarchy.yaml"
-    ```
-
-    <details>
-    <summary> Manually add Sites to hierarchy </summary>
-    You can also manually add a Site to any level of the hierarchy, using the following steps:
     
-      1. Create the Service Group
-          ```azurecli
-          $sg = "<service-group-name>"
-          $tenantId = "<tenant-id>"
-
-          az rest --method put --header Content-Type=application/json --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$sg`?api-version=2024-02-01-preview --body "{'properties':{'displayName':'$sg','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" --resource https://management.azure.com
-          ```
-      1. Create and tag a Site with the respective hierarchy level.
-
-          ```azurecli
-          az rest --method put --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" --body "{'properties':{'displayName':'$siteName','description': '$siteName','labels': {'level': 'Factory'}}}" --resource https://management.azure.com
-          ```
-      1. Create the configuration reference.
-          ```azurecli
-          configName="<configuration name>"
-          configId="/subscriptions/$subId/resourceGroups/$rg/providers/microsoft.edge/configurations/$configName"
-          az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$l'}"
-          az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-          ```
     </details>
 
-1. Create the workload orchestration [context](resource-model.md#context) or environment with the hierarchy created in the previous step, and with the desired set of capabilities that you want to include in your targets. The hierarchy level names must match what you specified in `level` in the previous step.
+    <details>
+    <summary> Create a new context without cluster initialization </summary>
 
     ```azurecli
     az workload-orchestration context create -g "$rg" -n "$contextName" -l "$l" --capabilities "[{name:soap,description:Soap},{name:shampoo,description:Shampoo}]" --hierarchies "[0].name=$level1" "[0].description=$level1" "[1].name=$level2" "[1].description=$level2" --site-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName
     ```
-
-    Use the Azure Resource Manager (ARM) ID of the parent Site of your hierarchy for the `--site-id` argument. If you don't have an existing hierarchy, you can create the context first and later link it to the parent site.
-
-    ```azurecli
-    az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$contextName" --name "$siteReference" --site-id "$siteId"
-    ```
-
-    > [!NOTE]
-    > You can also pass the list of capabilities in a JSON file using `--capabilities @capabilities.json` (sample file included in [GitHub repository](https://github.com/Azure/workload-orchestration)). Description for capabilities is optional and defaults to the capability name if not specified.
+    </details>
 
     <details>
-    <summary> Use existing context </summary>
+    <summary> Use an existing context </summary>
     You can also use an already existing context and pass the desired list of capabilities and hierarchies to it.
     
     ```azurecli
@@ -287,13 +279,13 @@ All sample input files required in this guide can be downloaded from the [worklo
     ### [Resource Group Hierarchy](#tab/resource-group-hierarchy)
 
     ```azurecli
-    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location type=CustomLocation name="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ExtendedLocation/customLocations/$customLocation" --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
+    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location type=CustomLocation name="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ExtendedLocation/customLocations/$customLocation"
     ```
 
     ### [Service Group Hierarchy](#tab/service-group-hierarchy)
 
     ```azurecli
-    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location type=CustomLocation name="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ExtendedLocation/customLocations/$customLocation" --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName --service-group $sg
+    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location type=CustomLocation name="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ExtendedLocation/customLocations/$customLocation" --service-group $sg
     ```
 
     You can also create a target without the `--service-group` argument, and later link it to a service group in the hierarchy using:

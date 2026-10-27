@@ -7,7 +7,7 @@ ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
 author: Jeronika-MS
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom:
   - build-2025
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article provides troubleshooting steps to help you resolve errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
 

@@ -38,7 +38,7 @@ Note the targets and solutions listed. These are the resources that will be sync
 ## Set up the new cluster
 
 1. Delete the existing cluster, Arc connection, and custom location.
-1. Re-create the cluster, Arc connection, and custom location. Make sure that the Azure Resource Manager (ARM) ID for the custom location on the new cluster remains the same as the original. Use the same resource group, subscription, and custom location name when re-creating it. Follow the steps in [Prepare your Arc cluster](set-up-workload-orchestration.md#prepare-your-arc-cluster).
+1. Re-create the cluster, Arc connection, and custom location. Make sure that the Azure Resource Manager (ARM) ID for the custom location on the new cluster remains the same as the original. Use the same resource group, subscription, and custom location name when re-creating it. Follow the steps in [Set up the workload orchestration environment](set-up-workload-orchestration.md#set-up-the-workload-orchestration-environment).
 
 ## Sync targets and solutions to the new cluster
 

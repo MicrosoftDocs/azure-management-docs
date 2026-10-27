@@ -2,7 +2,7 @@
 title: Create custom roles with Azure Arc-enabled SCVMM
 description: This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM.
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.author: v-gajeronika
 ms.reviewer: v-gajeronika
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Create custom roles with Azure Arc-enabled SCVMM
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 If the [built-in roles of Azure Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/built-in-roles) don't meet the specific needs of your organization, create custom roles to provide permissions at a granular level to your end users. 
 

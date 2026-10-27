@@ -2,7 +2,7 @@
 title: Enable VM CRUD and power cycle operational ability in an SCVMM managed Arc-enabled server machine
 description: This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 ms.topic: how-to
-ms.date: 02/09/2026
+ms.date: 09/24/2026
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: v-gajeronika
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Enable VM CRUD and power cycle operational ability in an SCVMM managed Arc-enabled server machine
+
+[!INCLUDE [azure-arc-scvmm-retirement-note.md](../includes/azure-arc-scvmm-retirement-note.md)]
 
 This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 
