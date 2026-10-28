@@ -8,7 +8,7 @@ ms.topic: how-to
 
 # Manage Azure Connected Machine agent versions for Azure Arc-enabled servers
 
-After you deploy the Azure Connected Machine agent, you might need to reconfigure, upgrade, remove, or make other changes to the agent. You can perform these routine maintenance tasks manually. You can also enable [automatic agent upgrades (preview)](automatic-agent-upgrade.md) or explore other options to automate tasks, which reduces operational error and expenses.
+After you deploy the Azure Connected Machine agent, you might need to reconfigure, upgrade, remove, or make other changes to the agent. You can perform these routine maintenance tasks manually. You can also enable [automatic agent upgrades](automatic-agent-upgrade.md) or explore other options to automate tasks, which reduces operational error and expenses.
 
 The Azure Connected Machine agent is updated regularly to address bug fixes, stability enhancements, and new functionality. [Azure Advisor](/azure/advisor/advisor-overview) identifies resources that aren't using the latest version of the machine agent and recommends that you upgrade to the latest version. It notifies you when you select the Azure Arc-enabled server by presenting a banner on the **Overview** page, or when you access Advisor through the Azure portal.
 
@@ -94,9 +94,9 @@ Links to releases of the Windows agents appear under the heading of each [releas
 
 ---
 
-## Upgrade the agent automatically (preview)
+## Upgrade the agent automatically
 
-You can configure the Azure Connected Machine agent to automatically upgrade through Automatic Agent Upgrade. Microsoft manages the rollout in batches during off-peak hours, and no server restart is required. To learn about requirements and how to enable and verify automatic upgrades, see [Automatically upgrade the Azure Connected Machine agent (preview)](automatic-agent-upgrade.md).
+You can configure the Azure Connected Machine agent to automatically upgrade through Automatic Agent Upgrade. Microsoft manages the rollout in batches during off-peak hours, and no server restart is required. To learn about requirements and how to enable and verify automatic upgrades, see [Automatically upgrade the Azure Connected Machine agent](automatic-agent-upgrade.md).
 
 ## Additional agent upgrade methods
 
@@ -104,8 +104,8 @@ The following table describes additional methods supported to perform agent upgr
 
 | Operating system | Upgrade method |
 |------------------|----------------|
-| Windows |	[Automatic agent upgrade (preview)](automatic-agent-upgrade.md)<br>Manually<br> Microsoft Update<br> Azure Update Manager (AUM) |
-|Linux | [Automatic agent upgrade (preview)](automatic-agent-upgrade.md)<br>[apt](https://help.ubuntu.com/lts/serverguide/apt.html)<br> [yum](https://access.redhat.com/articles/yum-cheat-sheet)<br> [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3)<br> Azure Update Manager (AUM) |
+| Windows |	[Automatic agent upgrade](automatic-agent-upgrade.md)<br>Manually<br> Microsoft Update<br> Azure Update Manager (AUM) |
+|Linux | [Automatic agent upgrade](automatic-agent-upgrade.md)<br>[apt](https://help.ubuntu.com/lts/serverguide/apt.html)<br> [yum](https://access.redhat.com/articles/yum-cheat-sheet)<br> [zypper](https://en.opensuse.org/SDB:Zypper_usage_11.3)<br> Azure Update Manager (AUM) |
 
 
 
