@@ -6,7 +6,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# Automatically upgrade the Azure Connected Machine agent (preview)
+# Automatically upgrade the Azure Connected Machine agent
 
 
 
