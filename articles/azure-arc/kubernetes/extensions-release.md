@@ -188,6 +188,14 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 ### Azure Policy Extension Release Notes
 
+#### 1.20.2
+
+Security improvements. Resolved eMudhra issue.
+- Released: Oct 2026
+- Kubernetes: 1.30+
+- Gatekeeper: 3.23.1
+
+
 #### 1.20.0
 
 Security improvements.
