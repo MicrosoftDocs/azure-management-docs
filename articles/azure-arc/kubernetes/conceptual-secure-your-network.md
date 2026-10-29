@@ -1,7 +1,8 @@
 ---
 title: "Secure your network in Azure Arc-enabled Kubernetes"
-ms.date: 06/06/2025
+ms.date: 07/17/2026
 ms.topic: concept-article
+ai-usage: ai-assisted
 description: "Network security best practices for Azure Arc-enabled Kubernetes clusters, including segmentation, encryption, and access controls."
 ---
 
@@ -19,9 +20,9 @@ In addition to [helping to protect your cluster’s workload data traffic via TL
 * [NSA Kubernetes Hardening Guidance – "Network policies"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 * [Kubernetes Security - OWASP Cheat Sheet Series – "Use Kubernetes network policies to control traffic"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
-## Configure your network infrastructure for further defense in depth
+## Configure your network infrastructure for extra protection
 
-You can also create further defense in depth, for both your management and data traffic, by appropriately configuring the network of your underlying infrastructure. For example, if you’re using AKS enabled by Azure Arc on Azure Local, you should review the [guidance](/azure/aks/aksarc/aks-hci-network-system-requirements) for cluster IP address planning. Consider fully separating management and data traffic if your workloads don’t need to access the API server.
+You can create extra protection for both your management and data traffic by appropriately configuring the network of your underlying infrastructure. For example, consider fully separating management and data traffic if your workloads don't need to access the API server. If you're using AKS enabled by Azure Arc on an Azure Local hyperconverged deployment, review the [AKS network requirements](/azure/aks/aksarc/network-system-requirements) for cluster IP address planning. If you're using AKS bare-metal, you can [configure a dedicated control plane IP address](/azure/aks/aksarc/aks-bare-metal-create-cluster-portal#step-4-configure-networking).
 
 Further, we recommend evaluating your organization’s external firewall rules so that they're consistent with the rules you set at the Kubernetes and infrastructure layers. Enable only those outbound and inbound destinations strictly required, and no more. You can also use [Azure Arc gateway](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking?tabs=azure-cli) to simplify the firewall rules needed to enable  your cluster’s access to Azure resources.
 

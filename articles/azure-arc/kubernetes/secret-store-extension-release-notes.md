@@ -1,7 +1,7 @@
 ---
 title: What's new for AKV Secret Store extension
 description: The release notes identify important updates and improvements in the Azure Key Vault Secret Store extension.
-ms.date: 10/14/2026
+ms.date: 10/29/2026
 ms.topic: release-notes
 ai-usage: ai-assisted
 ---
@@ -11,11 +11,25 @@ Updates and improvements to the Azure Key Vault Secret Store extension are liste
 
 ## October 2026
 
+### 1.6.1
+
+- Updated the trusted root certificate authorities.
+- Updated internal dependencies to address vulnerabilities and security advisories.
+
 ### 1.6.0
 
 - Added an optional `cloudName` field to `AKVSync` resources. The value is passed to generated `SecretProviderClass` resources.
 - Improved reconciliation efficiency by indexing `SecretProviderClass` objects only once per reconciliation.
 - Fixed a ValidatingAdmissionPolicyBinding that referenced a nonexistent policy. The binding now targets the correct policy, preventing the controller from overwriting a Kubernetes Secret that has no owner.
+- Updated internal dependencies to address vulnerabilities and security advisories.
+
+### 1.5.8
+
+- Includes the 1.6.1 updates for the 1.5 release line.
+
+### 1.5.7
+
+- Includes the admission policy fix from 1.6.0 for the 1.5 release line.
 - Updated internal dependencies to address vulnerabilities and security advisories.
 
 ## September 2026
