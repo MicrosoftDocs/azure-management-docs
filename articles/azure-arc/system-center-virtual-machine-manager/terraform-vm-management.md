@@ -353,7 +353,7 @@ location             = "eastus"
 machine_name         = "vm-name"
 vm_username          = "Administrator"
 vm_password          = "your_vm_password"
-inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
+inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 vmmserver_id         = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
 custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
 ``` 

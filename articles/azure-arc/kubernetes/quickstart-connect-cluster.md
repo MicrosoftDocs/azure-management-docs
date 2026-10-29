@@ -142,7 +142,7 @@ ResourceGroupName : AzureArcTest
 Location          : eastus
 ProvisioningState : Succeeded
 Tags              :
-ResourceId        : /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/AzureArcTest
+ResourceId        : /subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/AzureArcTest
 ```
 
 ---

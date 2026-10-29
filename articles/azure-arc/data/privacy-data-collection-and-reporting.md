@@ -273,7 +273,7 @@ The following JSON document is an example of the Azure Arc Data Controller resou
                     "management.azure.com/customLocation": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso",
                     "management.azure.com/location": "eastus",
                     "management.azure.com/operationId": "265b98a7-0fc2-4dce-9cef-26f9b6dd000c*705EDFCA81D01028EFA1C3E9CB3CEC2BF472F25894ACB2FFDF955711236F486D",
-                    "management.azure.com/resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
+                    "management.azure.com/resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
                     "management.azure.com/systemData": "{\"createdBy\":\"9c1a17be-338f-4b3c-90e9-55eb526c5aef\",\"createdByType\":\"User\",\"createdAt\":\"2023-01-03T21:35:36.8412132Z\",\"resourceUID\":\"74087467-4f98-4a23-bacf-a1e40404457f\"}",
                     "management.azure.com/tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
                     "traceparent": "00-197d885376f938d6138babf8ed4d809c-1a584b84b3c8f5df-01"
@@ -468,7 +468,7 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
                     "management.azure.com/customLocation": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/microsoft.extendedlocation/customlocations/contoso",
                     "management.azure.com/location": "eastus",
                     "management.azure.com/operationId": "dbf2e708-78da-4762-8fd5-75ba43721b24*4C234309E6735F28E751F5734D64E8F98A910A88E54A1AD35C6469BCD0E6EA84",
-                    "management.azure.com/resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
+                    "management.azure.com/resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
                     "management.azure.com/systemData": "{\"createdBy\":\"9c1a17be-338f-4b3c-90e9-55eb526c5aef\",\"createdByType\":\"User\",\"createdAt\":\"2023-01-04T01:33:57.5232885Z\",\"resourceUID\":\"40fa8b55-4b7d-4d6a-b783-043169d7fd03\"}",
                     "management.azure.com/tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
                     "traceparent": "00-3c07cf4caa8b4778591b02b1bf3979ef-f2ee2c890c21ea8a-01"
