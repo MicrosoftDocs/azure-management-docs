@@ -166,7 +166,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 Azure Red Hat OpenShift (ARO) clusters ship with **Guardrails pre-installed**. These guardrails **conflict with the Azure Policy Extension** and must be disabled before installation.
 
-To disable ARO Guardrails, add the below configuration flag when installing policy extension on ARO cluster:
+To disable ARO guardrails, add the following configuration flag when installing the policy extension on an ARO cluster:
 
 ```bash
 --configuration-settings AdoptExistingResources=true
