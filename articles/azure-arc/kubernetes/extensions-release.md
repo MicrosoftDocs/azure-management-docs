@@ -183,7 +183,7 @@ az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster
 
 #### 1.21.0
 
-Security improvements. Fixed GKE/EKS installation bug.
+Security improvements. Fixed GKE and EKS installation bug.
 - Released: Oct 2026
 - Kubernetes: 1.30+
 - Gatekeeper: 3.23.1
