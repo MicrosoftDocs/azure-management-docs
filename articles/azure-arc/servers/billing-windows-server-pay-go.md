@@ -42,7 +42,7 @@ For example, if you increase the number of cores from 16 to 32, then within 24 h
 
 ## Disenrollment and deletion  
 
-When customers disenroll an Azure Arc-enabled server from Windows Server pay-as-you-go or if the Arc agent status is no longer `Connected`, billing stops within 24 hours. When customers delete the Azure Arc-enabled server resource, billing stops within 48 hours.
+When you disenroll an Azure Arc-enabled server from Windows Server pay-as-you-go or if the Arc agent status is no longer `Connected`, billing stops within 24 hours. When you delete the Azure Arc-enabled server resource, billing stops within 48 hours.
 
 ## Resource moves 
 
