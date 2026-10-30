@@ -24,7 +24,7 @@ Before enabling automatic agent upgrade, ensure your machines meet the following
 - **Windows:** Set the PowerShell execution policy to RemoteSigned. Automatic agent upgrade isn't supported when the execution policy is set to Restricted.
 - **Linux:** Ensure the cron service is installed and running. This service is required to schedule and perform automatic agent upgrades.
 > [!IMPORTANT]
-> If enabled on an agent version earlier than 1.67, use [one of the other methods](manage-agent.md#enable-automatic-agent-upgrade-preview) to upgrade the agent to a compatible version. Automatic Agent Upgrade can then manage all future upgrades.
+> If enabled on an agent version earlier than 1.67, use [one of the other methods](manage-agent.md#additional-agent-upgrade-methods) to upgrade the agent to a compatible version. Automatic Agent Upgrade can then manage all future upgrades.
 
 ## Enable automatic agent upgrade
 
