@@ -1,7 +1,7 @@
 ---
 title: Billing service for Windows Server pay-as-you-go
 description: Learn about billing services for Windows Server pay-as-you-go enabled by Azure Arc.
-ms.date: 11/01/2024
+ms.date: 10/30/2026
 ms.topic: concept-article
 # Customer intent: "As a system administrator, I want to manage Windows Server pay-as-you-go billing through Azure Arc, so that I can efficiently control server resources and costs while leveraging cloud management benefits."
 ---
@@ -42,11 +42,7 @@ For example, if you increase the number of cores from 16 to 32, then within 24 h
 
 ## Disenrollment and deletion  
 
-When you disable or disenroll an Azure Arc-enabled server from Windows Server pay-as-you-go, billing stops within 24 hours. Similarly, if you delete the Azure Arc-enabled server resource, the billing stops within 24 hours.
-
-Uninstalling the Connected Machine agent won't stop billing unless you explicitly delete the configuration files, or the underlying machine is disconnected from Azure Arc.
-
-If an Azure Arc-enabled server "expires" due to disconnection for over 30 days resulting in an expiration of the associated certificate, billing won't stop until the certificate is expired. 
+When you disenroll an Azure Arc-enabled server from Windows Server pay-as-you-go or if the Arc agent status is no longer `Connected`, billing stops within 24 hours. When you delete the Azure Arc-enabled server resource, billing stops within 48 hours.
 
 ## Resource moves 
 
