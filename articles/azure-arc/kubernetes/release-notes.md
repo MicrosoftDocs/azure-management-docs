@@ -14,6 +14,11 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.39.3 (November 2026)
+- Security updates include fixes for multiple CVEs, removal of the compromised eMudhra certificate from the root CA certificate bundle, and agents built using the Go 1.26.10 toolchain for additional security hardening.
+- General bug fixes and reliability improvements
+
+
 ## Version 1.38.0 (October 2026)
 - Security vulnerability fixes
 - General bug fixes and reliability improvements
