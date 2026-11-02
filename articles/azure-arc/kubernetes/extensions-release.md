@@ -175,7 +175,6 @@ Full command:
 
 ```bash
 az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --configuration-settings AdoptExistingResources=true
-
 ```
 
 ### Azure Policy Extension Release Notes
