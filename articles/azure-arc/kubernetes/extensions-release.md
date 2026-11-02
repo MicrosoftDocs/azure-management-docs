@@ -149,13 +149,12 @@ For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azur
 
 The following Kubernetes distributions **have been validated in conformance testing**. This means we have explicitly validated that the **Azure Policy Extension installs correctly and functions as expected** on these platforms.
 
-- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Red Hat OpenShift (ARO), Openshift Cloud Platform (OCP), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid)
+- **Supported distributions with conformance validation**: AKS on Azure Local (AKS enabled by Azure Arc), Azure Red Hat OpenShift (ARO), Openshift Cloud Platform (OCP), Kind, Rancher Government (RKE2), Minikube, K3s, AKS Edge, TKG (VMware Tanzu Kubernetes Grid), Canonical Kubernetes Distribution.
 
 The following Kubernetes distributions **have NOT been validated in conformance testing**. This means Azure Policy extension installation is supported, but **there is no guarantee of full functionality** or behavioral consistency until conformance validation is complete.
 
-- **Supported distributions without conformance validation**: EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), Nexus Baremetal
+- **Supported distributions without conformance validation**: EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), RKE (Rancher Kubernetes Engine), Nexus Baremetal, kubeadm
 
-> kubeadm is currently not supported in Azure Policy extension.
 > RKE (Rancher Kubernetes Engine) is now deprecated. Please use Rancher Government (RKE2) instead.
 
 Azure Policy extends [Gatekeeper](https://github.com/open-policy-agent/gatekeeper), an admission controller webhook for [Open Policy Agent](https://www.openpolicyagent.org/) (OPA). Use Gatekeeper with OPA to consistently apply centralized, at-scale enforcements and safeguards on your clusters.
@@ -176,7 +175,6 @@ Full command:
 
 ```bash
 az k8s-extension create --cluster-type connectedClusters --cluster-name <cluster name> --resource-group <resource group name> --extension-type Microsoft.PolicyInsights --name <extension name> --configuration-settings AdoptExistingResources=true
-
 ```
 
 ### Azure Policy Extension Release Notes
