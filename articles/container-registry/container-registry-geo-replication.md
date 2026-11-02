@@ -557,6 +557,14 @@ az network nic show --ids "$nicId" \
 - **Use dynamic IP allocation** for the private endpoint if you expect to add geo-replicas or enable regional endpoints later. With dynamic allocation, the required data endpoint and regional endpoint members receive private IP addresses automatically. This approach is recommended.
 - **Create the private endpoint after all geo-replicas exist** if static IP allocation is required. Add every geo-replica and enable regional endpoints, if needed, first. Then create the static IP private endpoint so its IP configuration includes members for each region's data endpoint and, when enabled, regional endpoint. After a static IP private endpoint is created this way, you can't add further geo-replicas or enable regional endpoints without reconfiguring the private endpoint to add the new members.
 
+### Geo-replica deletion or regional endpoints disablement fails on registries with a locked private DNS zone
+
+Deleting a geo-replica or disabling regional endpoints on a private endpoint-enabled registry removes the corresponding private DNS records. If a **Delete** or **Read-only** [resource lock](/azure/azure-resource-manager/management/lock-resources) applies to the private DNS zone, either directly or inherited from its resource group or subscription, the record deletion fails with a `ScopeLocked` error and the operation can't complete.
+
+**Solution:**
+
+- Temporarily remove the lock before you delete a geo-replica or disable regional endpoints. Restore the lock after the registry and private endpoint provisioning operations complete successfully.
+
 ## Related content
 
 - [ACR SKUs and service tiers](container-registry-skus.md)
