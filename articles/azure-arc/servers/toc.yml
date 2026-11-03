@@ -53,6 +53,8 @@
       href: private-link-security.md
     - name: Deployment options
       href: deployment-options.md
+    - name: Connect Arc-enabled servers using TPM-backed identity
+      href: tpm-backed-identity.md
     - name: Connect machines interactively
       items:
       - name: Connect machines using a deployment script
@@ -211,7 +213,7 @@
     href: security-extensions.md
   - name: Configuration and remote access
     href: security-machine-configuration.md
-  - name: Identity and authorization
+  - name: Managed identity and access control
     href: security-identity-authorization.md
   - name: Data and privacy
     href: security-data-privacy.md
