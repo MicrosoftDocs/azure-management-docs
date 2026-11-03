@@ -1,7 +1,7 @@
 ---
 title: Azure Copilot Resiliency Agent (preview)
 description: The Azure Copilot Resiliency Agent helps you strengthen the reliability of your Azure workloads and get recommendations for high availability, disaster recovery, and fault tolerance.
-ms.date: 07/14/2026
+ms.date: 10/23/2026
 ms.service: azure-copilot
 ms.topic: concept-article
 # Customer intent: "As an Azure Copilot user, I want to understand how to use the Resiliency Agent, so that I can improve the reliability of my Azure workloads."
@@ -9,7 +9,7 @@ ms.topic: concept-article
 
 # Azure Copilot Resiliency Agent (preview)
 
-The Azure Copilot Resiliency Agent is an AI-powered assistant integrated into Azure Copilot that helps you design, assess, and improve the resiliency of your Azure workloads through natural language. Instead of navigating multiple tools and interpreting raw signals, you can interact with the agent conversationally to understand your resiliency posture, get actionable recommendations, and execute remediation - all from within the Azure portal.
+The Azure Copilot Resiliency Agent is an AI-powered assistant integrated into Azure Copilot that helps you design, assess, and improve the resiliency of your Azure workloads through natural language. Instead of navigating multiple tools and interpreting raw signals, you can interact with the agent conversationally to understand your resiliency posture, get actionable recommendations, and execute remediation. You can use the full agent experience in the Azure portal and a focused set of capabilities in GitHub Copilot.
 
 > [!IMPORTANT]
 > The Azure Copilot Resiliency Agent is currently in PREVIEW.
@@ -28,7 +28,7 @@ Start Resilient helps you build resiliency into your applications before they ar
 
 - Analyze your application topology and identify resiliency best practices relevant to your resources.
 - Generate a detailed resiliency report with recommendations tailored to your architecture.
-- Produce deployment-ready Bicep templates with the recommended resiliency configurations already enabled.
+- Produce deployment-ready Bicep, ARM JSON, or Terraform with the recommended resilience configurations already enabled.
 
 This capability is designed for teams that are building new applications or modernizing existing ones and want to ensure resiliency is a deployment default — not a remediation afterthought.
 
@@ -39,7 +39,7 @@ Get Resilient helps you understand and improve the resiliency posture of workloa
 - Check whether individual resources or entire application groups (Service Groups) are zonally resilient.
 - Identify prerequisites and blockers for enabling resiliency on your resources.
 - Provide guided remediation — including direct conversions where supported, or step-by-step migration guidance for more complex scenarios.
-- Generate enablement scripts in your preferred format (PowerShell, Azure CLI, or Bicep templates).
+- Generate enablement scripts in your preferred format (PowerShell, Azure CLI, Bicep, ARM JSON, or Terraform).
 - Help you organize resources into Service Groups, set resiliency goals, and track compliance over time.
 - Surface indicative cost impact so you can make informed decisions about remediation.
 
@@ -47,7 +47,7 @@ This capability is designed for teams managing existing workloads who want to sy
 
 ## How to Access the Resiliency Agent
 
-There are two ways to launch the Resiliency Agent:
+There are two ways to launch the Resiliency Agent in the Azure portal:
 
 ### Option 1: Via Azure Copilot
 
@@ -65,6 +65,199 @@ When you're on the Resiliency overview page, you see top action buttons that pro
 > [!TIP] 
 > After the agent loads, you can interact with it by using the suggested prompts or by typing your own questions in natural language. The agent maintains context across multiple turns, so you can have a continuous conversation that progresses from assessment to remediation.
 
+## Use Azure Resiliency Agent in GitHub Copilot (Limited Preview)
+
+Use the Azure Resiliency Agent plugin while working in a local repository with
+GitHub Copilot. The plugin provides a focused set of capabilities:
+
+> [!NOTE]
+> Agent plugins bundle related GitHub Copilot customizations, such as custom
+> agents, skills, and MCP servers, into one installation. For more information
+> about discovering, installing, and managing agent plugins, see
+> [Agent plugins in Visual Studio Code](https://code.visualstudio.com/docs/agent-customization/agent-plugins).
+
+- Ask general questions about Azure resiliency, high availability, availability zones, zone resilience, and zone redundancy.
+- Assess a described application architecture or approved local architecture files.
+- Generate new zone-resilient Bicep, ARM JSON, or Terraform.
+- Review and correct existing Bicep, ARM JSON, or Terraform and related local files.
+
+The plugin connects to the same hosted Azure Resiliency Agent used by Azure
+Copilot. When you submit a request, Azure MCP uses the default Azure tenant to
+determine the appropriate Azure data boundary and then sends the request to
+Azure Resiliency Agent.
+
+### Supported GitHub Copilot experiences
+
+- GitHub Copilot in Visual Studio Code.
+- GitHub Copilot CLI.
+
+### Before you begin
+
+- For Visual Studio Code workflows, install the latest
+  [Visual Studio Code](https://code.visualstudio.com/download), and make sure
+  GitHub Copilot Chat and Agent Plugins are enabled.
+- For terminal workflows, install or update to the latest
+  [GitHub Copilot CLI](https://docs.github.com/copilot/github-copilot-in-the-cli/installing-github-copilot-in-the-cli).
+  If your organization manages GitHub Copilot, the Copilot CLI policy must be
+  enabled.
+- Only Azure public cloud is currently supported.
+- Install [Node.js 22 or later](https://nodejs.org/), with `node`, `npm`, and `npx` available on your `PATH`.
+- Use Windows, Linux, or macOS on an x64 or ARM64 device. The npm package downloads the matching Azure MCP binary and its runtime dependencies. You don't need a .NET SDK.
+- Sign in to Azure by using Visual Studio Code, Azure CLI (`az login`), Azure
+  PowerShell, Azure Developer CLI, or Visual Studio.
+- Open the application repository or folder that contains the architecture documents or infrastructure-as-code files you want to assess.
+
+### Network requirements
+
+Azure MCP uses outbound HTTPS on port 443. If your organization restricts outbound traffic, allow access to:
+
+- Your configured npm registry, normally `registry.npmjs.org`, to download Azure MCP the first time you use the plugin and after package updates.
+- `login.microsoftonline.com` for Microsoft Entra authentication.
+- `management.azure.com` to determine the Azure data boundary for the default tenant.
+- `agent.public.resiliencemanagement.azure.com` to call Azure Resiliency Agent.
+
+> [!IMPORTANT]
+> If `agent.public.resiliencemanagement.azure.com` is blocked by a firewall, proxy, or network security policy, Azure MCP can't reach Azure Resiliency Agent. Add the host to your organization's outbound allow list before using the plugin.
+
+### Install Azure Resiliency Agent
+
+You can start the installation from the Azure portal, the Awesome Copilot
+marketplace, Visual Studio Code, or GitHub Copilot CLI.
+
+#### Start from the Azure portal
+
+1. From the **Infrastructure resiliency overview** in the Azure portal, select
+   **Explore in VS Code**.
+1. Review the capabilities shown in the
+   **Resiliency Agent in Visual Studio Code** panel.
+1. Select **Try in VS Code**.
+1. If your browser asks for confirmation, allow it to open Visual Studio Code.
+1. In Visual Studio Code, review the marketplace source, and then select
+   **Add Marketplace and Install**.
+1. After installation, open the repository or folder that you want to assess
+   and select **AzureResiliencyAgent** from GitHub Copilot Chat.
+
+:::image type="content" source="media/resiliency-agent/github-copilot-installation.gif" alt-text="Animated walkthrough of selecting Explore in VS Code in the Azure portal, reviewing the Resiliency Agent capabilities, approving the Awesome Copilot marketplace, and confirming that Azure Resiliency Agent is installed.":::
+
+The portal action provides a path to install and open the GitHub Copilot
+experience. It doesn't automatically transfer Azure resources, repository
+files, or an existing Azure Copilot conversation to Visual Studio Code.
+
+#### Install from the Awesome Copilot marketplace
+
+1. Open the
+   [Azure Resiliency Agent listing in Awesome Copilot](https://awesome-copilot.github.com/plugin/azure-resiliency-agent/).
+1. Review the publisher, source repository, plugin contents, and prerequisites.
+1. Select **Install in VS Code**.
+1. Review the marketplace source in Visual Studio Code, and then select
+   **Add Marketplace and Install**.
+
+#### Install directly in Visual Studio Code
+
+1. Run **Chat: Open Customizations** from the Command Palette.
+1. Select **Browse**, and then search for `azure-resiliency-agent`.
+1. Select **Azure Resiliency Agent** to review its publisher, contents, and
+   README.
+1. Select **Install**.
+1. Open GitHub Copilot Chat and select **AzureResiliencyAgent** from the agent
+   picker.
+
+You can also open the **Extensions** view and search for
+`@agentPlugins azure-resiliency-agent`.
+
+#### Install in GitHub Copilot CLI
+
+Install the Agent Plugin:
+
+```bash
+copilot plugin install azure-resiliency-agent@awesome-copilot
+```
+
+Start GitHub Copilot CLI with the agent selected:
+
+```bash
+copilot --agent azure-resiliency-agent:AzureResiliencyAgent
+```
+
+You can also select **AzureResiliencyAgent** from the interactive `/agent`
+menu.
+
+#### Verify the installation
+
+In Visual Studio Code:
+
+1. Run **Chat: Open Customizations**.
+1. Select **Plugins**.
+1. Confirm that **azure-resiliency-agent** is installed and enabled for the
+   intended profile or workspace.
+1. Open GitHub Copilot Chat and confirm that **AzureResiliencyAgent** appears
+   in the agent picker.
+
+In GitHub Copilot CLI, list the installed plugins:
+
+```bash
+copilot plugin list
+```
+
+#### Troubleshoot the Awesome Copilot marketplace
+
+Awesome Copilot is a default plugin marketplace. Normally, you don't need to
+set up a marketplace in Visual Studio Code or GitHub Copilot CLI.
+
+If the plugin doesn't appear in Visual Studio Code:
+
+1. Confirm that the `chat.plugins.enabled` setting is enabled.
+1. Run **Chat: Open Customizations**, and then select **Browse**.
+1. Open the source menu and select **Configure Marketplaces**.
+1. Confirm that **awesome-copilot** is listed.
+1. If it's not listed, select **Add Marketplace** and enter
+   `github/awesome-copilot`.
+1. Return to **Browse**, select the Awesome Copilot source, and search for
+   `azure-resiliency-agent`.
+
+In GitHub Copilot CLI, verify the registered marketplaces:
+
+```bash
+copilot plugin marketplace list
+```
+
+If `awesome-copilot` isn't listed, add it and browse the marketplace:
+
+```bash
+copilot plugin marketplace add github/awesome-copilot
+copilot plugin marketplace browse awesome-copilot
+```
+
+> [!NOTE]
+> The Agent Customizations editor and GitHub Copilot CLI maintain separate
+> plugin inventories. Manage a plugin from the experience where you installed
+> it. Visual Studio Code also discovers plugins installed in
+> `~/.copilot/installed-plugins` by GitHub Copilot CLI.
+
+### Start a conversation
+
+After installation, open the repository that you want to assess and select **AzureResiliencyAgent**. Ask a resiliency question, describe an architecture, or identify the templates that you want reviewed.
+
+When a request needs local files, the agent displays each file and asks for approval before sharing it. Only the files that you approve are sent to Azure Resiliency Agent for that assessment or review.
+
+:::image type="content" source="media/resiliency-agent/github-copilot-workflow.gif" alt-text="Animated demonstration of selecting AzureResiliencyAgent, approving the required files, confirming the proposed changes, and reviewing the updated files.":::
+
+### Example prompts for GitHub Copilot
+
+Use these prompts with **AzureResiliencyAgent** in Visual Studio Code or GitHub
+Copilot CLI.
+
+**Sample prompts:**
+
+> *"How should I begin improving the resiliency of a new Azure application?"*
+
+> *"Use this architecture diagram to identify availability-zone resiliency gaps before deployment."*
+
+> *"Generate resilient Terraform for a web application with App Service and PostgreSQL."*
+
+> *"Review the ARM templates in this folder together and make only the changes required for zonal resilience."*
+
+> *"Correct the attached Terraform while preserving resource addresses, variables, and provider constraints."*
 
 ## Start Resilient — scenarios and sample prompts
 
@@ -82,17 +275,17 @@ Tell the agent about your application's resources in natural language. The agent
 
 > *"I have a web app with an App Service, SQL Database, and a Front Door. Can you assess the resiliency?"*
 
-### Generate resilient Bicep templates
+### Generate resilient infrastructure as code
 
-Ask the agent to generate deployment-ready Bicep templates for your resources with the recommended resiliency configurations already enabled. The agent produces modular templates including `main.bicep`, `parameters.json`, and per-resource files.
+Ask the agent to generate deployment-ready Bicep, ARM JSON, or Terraform for your resources with the recommended resiliency configurations already enabled. Specify the format that you want, or let the agent ask a clarification question before generating the files.
 
 **Sample prompts:**
 
 > *"Generate a Bicep template for a zonally resilient VM setup."*
 
-> *"Create Bicep templates for a resilient architecture with VMs, AKS, and Storage."*
+> *"Create an ARM JSON template for a resilient architecture with VMs, AKS, and Storage."*
 
-> *"Generate deployment templates for my application with resiliency best practices included."*
+> *"Generate Terraform for my application with resiliency best practices included."*
 
 ### Larger application architectures
 
@@ -102,7 +295,7 @@ The agent can handle more complex application descriptions with multiple resourc
 
 > *"My app includes VMs, AKS, Redis, Storage, and Cosmos DB. Help me design a resilient setup."*
 
-> *"Generate Bicep templates for a zonally resilient architecture with VMs, AKS, and Storage."*
+> *"Generate infrastructure as code for a zone-resilient architecture with VMs, AKS, and Storage. Ask me whether to use Bicep, ARM JSON, or Terraform."*
 
 ## Get Resilient — Scenarios and Sample Prompts
 
@@ -202,5 +395,4 @@ The agent supports multi-turn conversations that progress naturally from assessm
 As this feature is in public preview, be aware of the following limitations:
 
 - The agent is optimized for zonal resiliency scenarios. Regional resiliency and other resiliency dimensions will be added in future releases.
-- Template generation currently supports Bicep format. Support for additional IaC formats in the Start Resilient flow is planned.
 - Some operations might take a few moments to complete, especially for larger service groups.

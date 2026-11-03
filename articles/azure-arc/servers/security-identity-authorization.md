@@ -1,12 +1,12 @@
 ---
-title: Identity and authorization
+title: Managed identity and access control
 description: Identity and authorization for Azure Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 03/06/2025
 # Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to configure managed identities and assign appropriate roles, so that I can control authentication and access to Azure resources securely and efficiently."
 ---
 
-# Identity and authorization
+# Managed identity and access control
 
 This article describes the Microsoft Entra ID managed identity for Azure Arc-enabled servers, which is used for authentication when communicating with Azure, and details two useful Azure built-in roles.
 
