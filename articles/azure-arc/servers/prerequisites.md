@@ -80,7 +80,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Windows IoT Enterprise LTSC | 10 (2021) | ✅ | ❌ | — |see [client operating system guidance](#client-operating-systems) |
 | Windows IoT Enterprise LTSC | 11 (2024) | ✅ | ❌ | — |see [client operating system guidance](#client-operating-systems) |
 | Windows Server | 2012 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| Windows Server | 2012 R2 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
+| Windows Server | 2012 R2 | ⚠️ | ❌ |||
 | Windows Server | 2016 | ✅ | ❌ | February 2030 | |
 | Windows Server | 2019 | ✅ | ❌ | — | |
 | Windows Server | 2022 | ✅ | ❌ | — | |
