@@ -14,7 +14,7 @@ Windows Server pay-as-you-go enabled by Azure Arc supports both Windows Server 2
 
 ## Core counts with hyper-threading
 
-For Windows Server 2025 pay-as-you-go enabled by Azure Arc, billing uses the machine's physical core count, not the logical processor count exposed by hyper-threading. Enabling hyper-threading doesn't increase the number of billable cores.
+For Windows Server 2025 pay-as-you-go enabled by Azure Arc, billing uses the machine's physical core count, not the logical processor count that hyper-threading provides. Enabling hyper-threading doesn't increase the number of billable cores.
 
 For example, if your physical server has 16 physical cores and hyper-threading exposes 32 logical processors, you're billed for 16 cores, not 32. A physical core that exposes two logical processors counts as one billable core.
 
