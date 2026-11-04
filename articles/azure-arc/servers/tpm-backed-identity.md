@@ -126,10 +126,10 @@ For more information, see [Enable Virtual Trusted Platform Module for an Existin
 
 ## Connect the machine using TPM-backed identity
 
-Use the `--identity-key-store` flag during onboarding to configure how the machine stores its managed identity credentials. The flag supports two values:
+Use the `--identity-key-store` flag during onboarding to configure how the machine stores its managed identity credentials. The flag supports two values for TPM:
 
 - **`tpm`**: Onboards the machine only by using TPM-backed identity. If a compatible TPM or vTPM isn't enabled and ready, onboarding fails.
-- **`auto`**: Attempts to use TPM-backed identity first. If TPM-backed identity isn't available, onboarding continues by using the file-based credential storage method instead of failing.
+- **`auto`**: Checks the machine for TPM readiness first, and if available onboards with TPM, otherwise continues onboarding using the file-based method.
 
 ```azurecli
 --identity-key-store "tpm"
@@ -163,7 +163,7 @@ You can enable TPM-backed identity when you generate an onboarding script in the
 1. Under **TPM-backed Identity**, select the checkbox labeled **Onboard with a Trusted Platform Module (TPM) for additional security**.
 
    ![Screenshot of the Azure Arc onboarding page with the TPM-backed Identity option highlighted.](media/trusted-platform-module-identity/trusted-platform-module-identity-configuration.png)
-
+   
 1. Complete the remaining onboarding settings, and then download and run the generated script on the machine. For detailed instructions, see [Connect hybrid machines to Azure from the Azure portal](onboard-portal.md).
 
 > [!NOTE]
