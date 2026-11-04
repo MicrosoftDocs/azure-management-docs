@@ -1,7 +1,7 @@
 ---
 title: Billing service for Windows Server pay-as-you-go
 description: Learn about billing services for Windows Server pay-as-you-go enabled by Azure Arc.
-ms.date: 10/30/2026
+ms.date: 11/03/2026
 ms.topic: concept-article
 # Customer intent: "As a system administrator, I want to manage Windows Server pay-as-you-go billing through Azure Arc, so that I can efficiently control server resources and costs while leveraging cloud management benefits."
 ---
@@ -11,6 +11,12 @@ ms.topic: concept-article
 Machines must be onboarded to Azure Arc through the deployment of the [Azure Connected Machine agent](agent-overview.md). Azure Arc-enabled servers need to be in a connected state. Azure Arc-enabled servers don't support disconnected machines.  
 
 Windows Server pay-as-you-go enabled by Azure Arc supports both Windows Server 2025 Standard and Datacenter editions. Windows Server Datacenter and Standard editions are billed at the same rate for pay-as-you-go enabled by Azure Arc. There's no difference between virtual and physical machines from a billing perspective. Also, there's no minimum CPU core count per machine or per subscription, nor a fixed increment in which CPU cores are counted.
+
+## Core counts with hyper-threading
+
+For Windows Server 2025 pay-as-you-go enabled by Azure Arc, billing uses the machine's physical core count, not the logical processor count that hyper-threading provides. Enabling hyper-threading doesn't increase the number of billable cores.
+
+For example, if your physical server has 16 physical cores and hyper-threading exposes 32 logical processors, you're billed for 16 cores, not 32. A physical core that exposes two logical processors counts as one billable core.
 
 ## Benefits  
 
