@@ -107,6 +107,18 @@ Azure Resiliency Agent.
   PowerShell, Azure Developer CLI, or Visual Studio.
 - Open the application repository or folder that contains the architecture documents or infrastructure-as-code files you want to assess.
 
+After installing Node.js, restart Visual Studio Code and any open terminals.
+Verify that Node.js, npm, and npx are available:
+
+```bash
+node --version
+npm --version
+npx --version
+```
+
+If your configured npm registry requires authentication, sign in to that
+registry before the first Azure Resiliency tool call.
+
 ### Network requirements
 
 Azure MCP uses outbound HTTPS on port 443. If your organization restricts outbound traffic, allow access to:
@@ -176,7 +188,7 @@ copilot plugin install azure-resiliency-agent@awesome-copilot
 Start GitHub Copilot CLI with the agent selected:
 
 ```bash
-copilot --agent azure-resiliency-agent:AzureResiliencyAgent
+copilot --agent azure-resiliency-agent:azure-resiliency
 ```
 
 You can also select **AzureResiliencyAgent** from the interactive `/agent`
