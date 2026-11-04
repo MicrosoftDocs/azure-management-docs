@@ -129,7 +129,7 @@ For more information, see [Enable Virtual Trusted Platform Module for an Existin
 Use the `--identity-key-store` flag during onboarding to configure how the machine stores its managed identity credentials. The flag supports two values for TPM:
 
 - **`tpm`**: Onboards the machine only by using TPM-backed identity. If a compatible TPM or vTPM isn't enabled and ready, onboarding fails.
-- **`auto`**: Checks the machine for TPM readiness first, and if available onboards with TPM, otherwise continues onboarding using the file-based method.
+- **`auto`**: Checks the machine for TPM readiness first, and if available, onboards with TPM. Otherwise, continues onboarding by using the file-based method.
 
 ```azurecli
 --identity-key-store "tpm"
