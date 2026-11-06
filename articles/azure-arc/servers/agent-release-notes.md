@@ -23,7 +23,7 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
-### Version 1.69 - October 2026
+## Version 1.69 - October 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent).
 
@@ -59,6 +59,10 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnect
 | Added best-available key store selection. | ✓ | ✓ | Improvement |
 | Built Linux Go binaries as static position-independent executables for address space layout randomization. | | ✓ | Improvement |
 | Prevented unconditional token invalidation through `CancelChange` requests. | ✓ | | Security Fix |
+
+### Known issues
+
+   Agent versions earlier than 1.70 include a version of PowerShell that's affected by [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497). Microsoft is aware of this issue and working on a fix.
 
 ## Version 1.68 - September 2026
 

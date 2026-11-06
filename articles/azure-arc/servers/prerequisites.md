@@ -1,9 +1,10 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 09/11/2026
+ms.date: 11/05/2026
 ms.topic: concept-article
 ms.custom: devx-track-azurepowershell
+ai-usage: ai-assisted
 # Customer intent: "As an IT administrator managing physical and virtual servers, I want to understand the prerequisites for installing the Connected Machine agent for Azure Arc, so that I can ensure successful onboarding and optimal operation within my environment."
 ---
 
@@ -37,39 +38,26 @@ If two agents use the same source ID, you'll encounter inconsistent behaviors wh
 
 ## Supported operating systems
 
-Azure Arc supports Windows and Linux operating systems as listed in the table. If an OS version isn't listed, it's not supported by Azure Arc.
+Azure Arc supports new Connected Machine agent versions on the Windows and Linux operating systems listed in the following table. For operating systems that no longer receive new agent versions, see [Operating systems no longer supported by new agent versions](#operating-systems-no-longer-supported-by-new-agent-versions). Operating system versions not listed in either table aren't supported by Azure Arc.
 
 x86-64 (64-bit) architecture is fully supported, while [only some features may be supported on Arm64](#arm64-architecture-support). The Azure Connected Machine agent doesn't run on 32-bit architectures.
 
-| Operating system | Version | x86-64 | ARM64 |End of new agent version support| Notes |
+| Operating system | Version | x86-64 | ARM64 | End of new agent version support\* | Notes |
 | --- | --- | --- | --- | --- | --- |
-| AlmaLinux | 8 | ✅ | ✅ | May 2029 | |
+| AlmaLinux | 8 | ✅ | ❌ | May 2029 | |
 | AlmaLinux | 9 | ✅ | ❌ | August 2032 | |
-| Amazon Linux | 2 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
 | Amazon Linux | 2023 | ✅ | ✅ | August 2027 | |
-| Azure Linux (CBL-Mariner) | 3.0 | ✅ | ✅ | February 2027 | |
-| Azure Local | | | || |
-| Debian | 11 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| Debian | 12 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
+| Azure Linux (CBL-Mariner) | 3.0 | ⚠️ | ⚠️ | February 2027 | [New arc agent version support ends February 2027](#azure-connected-machine-agent-os-support-and-deprecation) |
 | Debian | 13 | ✅ | ❌ | — | |
-| Oracle Linux | 7 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| Oracle Linux | 8 | ✅ | ✅ | August 2029 | |
+| Oracle Linux | 8 | ✅ | ❌ | August 2029 | |
 | Oracle Linux | 9 | ✅ | ❌ | August 2032 | |
 | Oracle Linux | 10 | ✅ | ❌ | — | |
-| Red Hat Enterprise Linux (RHEL) | 7 | ✅ | ❌ | February 2027 | |
 | Red Hat Enterprise Linux (RHEL) | 8 | ✅ | ❌ | August 2029 | |
 | Red Hat Enterprise Linux (RHEL) | 9 | ✅ | ❌ | August 2032 | |
 | Red Hat Enterprise Linux (RHEL) | 10 | ✅ | ❌ | August 2035 | |
 | Rocky Linux | 8 | ✅ | ❌ | August 2029 | |
 | Rocky Linux | 9 | ✅ | ❌ | August 2032 | |
-| SUSE Linux Enterprise Server (SLES) | 12 SP5 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| SUSE Linux Enterprise Server (SLES) | 15 SP3 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| SUSE Linux Enterprise Server (SLES) | 15 SP4 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| SUSE Linux Enterprise Server (SLES) | 15 SP5 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| SUSE Linux Enterprise Server (SLES) | 15 SP6 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
 | SUSE Linux Enterprise Server (SLES) | 15 SP7 | ✅ | ✅ | August 2031 | |
-| Ubuntu | 18.04 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| Ubuntu | 20.04 | ⚠️ | ⚠️ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
 | Ubuntu | 22.04 | ✅ | ✅ | May 2027 | |
 | Ubuntu | 24.04 | ✅ | ✅ | May 2029 | |
 | Ubuntu | 26.04 | ✅ | ❌ | — | |
@@ -79,12 +67,13 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Windows IoT Enterprise | 11 | ✅ | ❌ | — |see [client operating system guidance](#client-operating-systems) |
 | Windows IoT Enterprise LTSC | 10 (2021) | ✅ | ❌ | — |see [client operating system guidance](#client-operating-systems) |
 | Windows IoT Enterprise LTSC | 11 (2024) | ✅ | ❌ | — |see [client operating system guidance](#client-operating-systems) |
-| Windows Server | 2012 | ⚠️ | ❌ | November 2026 |[New arc agent version support ends November 2026](#azure-connected-machine-agent-os-support-and-deprecation)|
-| Windows Server | 2012 R2 | ⚠️ | ❌ | — ||
+| Windows Server | 2012 R2 | ✅ | ❌ | — ||
 | Windows Server | 2016 | ✅ | ❌ | February 2030 | |
 | Windows Server | 2019 | ✅ | ❌ | — | |
 | Windows Server | 2022 | ✅ | ❌ | — | |
 | Windows Server | 2025 | ✅ | ❌ | — | |
+
+\* End-of-support dates for new agent versions are subject to change.
 
 > [!IMPORTANT]
 > The expected end of Azure Arc support for Windows Server 2012 and Windows Server 2012 R2 doesn't extend the ESU period. ESUs for these versions end on October 13, 2026. The October 13, 2026 security update is the final update provided through ESUs.
@@ -100,6 +89,33 @@ When an operating system version reaches the date listed in the **End of new age
 Customers should upgrade to a supported operating system version before the servicing period ends to continue receiving Azure Connected Machine Agent updates.
 
 Azure Connected Machine Agent support follows Microsoft's support lifecycle for the agent and is independent of extended support programs offered by operating system vendors. Participation in an extended security or support offering doesn't extend or otherwise change Microsoft's support timeline for the Azure Connected Machine Agent.
+
+### Operating systems no longer supported by new agent versions
+
+The following table lists operating system versions and architectures for which new Azure Connected Machine agent version support ended within the past year, along with the date support ended and the final compatible agent version. Entries remain in this table for one year. The [agent support and deprecation policy](#azure-connected-machine-agent-os-support-and-deprecation) describes the servicing period for the final compatible agent version.
+
+| Operating system | Version | x86-64 | ARM64 | End of new agent version support | Final compatible agent version |
+| --- | --- | --- | --- | --- | --- |
+| AlmaLinux | 8 | — | ❌ | October 2026 | 1.69 |
+| Amazon Linux | 2 | ❌ | ❌ | October 2026 | 1.69 |
+| Debian | 11 | ❌ | ❌ | October 2026 | 1.69 |
+| Debian | 12 | ❌ | ❌ | October 2026 | 1.69 |
+| Oracle Linux | 7 | ❌ | ❌ | October 2026 | 1.69 |
+| Oracle Linux | 8 | — | ❌ | October 2026 | 1.69 |
+| Red Hat Enterprise Linux (RHEL) | 7 | ❌ | ❌ | October 2026 | 1.69 |
+| SUSE Linux Enterprise Server (SLES) | 12 SP5 | ❌ | ❌ | October 2026 | 1.69 |
+| SUSE Linux Enterprise Server (SLES) | 15 SP3 | ❌ | ❌ | October 2026 | 1.69 |
+| SUSE Linux Enterprise Server (SLES) | 15 SP4 | ❌ | ❌ | October 2026 | 1.69 |
+| SUSE Linux Enterprise Server (SLES) | 15 SP5 | ❌ | ❌ | October 2026 | 1.69 |
+| SUSE Linux Enterprise Server (SLES) | 15 SP6 | ❌ | ❌ | October 2026 | 1.69 |
+| Ubuntu | 18.04 | ❌ | ❌ | October 2026 | 1.69 |
+| Ubuntu | 20.04 | ❌ | ❌ | October 2026 | 1.69 |
+| Windows Server | 2012 | ❌ | ❌ | October 2026 | 1.69 |
+
+> [!NOTE]
+> A dash (—) in an architecture column in this table means that new agent versions are still supported for that operating system version and architecture.
+
+Upgrade to a supported operating system version to continue receiving new agent versions.
 
 ### Arm64 architecture support
 
