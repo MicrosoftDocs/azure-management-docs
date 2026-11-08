@@ -33,7 +33,7 @@ The following table summarizes the key differences between Azure Linux Container
 | **FIPS support** | Supported | Supported |
 | **Pod Sandboxing** | Supported | Not supported |
 | **Artifact Streaming** | Supported | Not yet supported |
-| **Confidential VMs** | Supported | Not yet supported |
+| **Confidential VMs** | Supported | Supported |
 
 ## When to use Azure Linux Container Host
 

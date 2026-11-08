@@ -75,7 +75,6 @@ There are several settings that can block the OS SKU migration request. To ensur
 - ACL requires Trusted Launch. If not already enabled on your node pool, you must include `--enable-secure-boot` and `--enable-vtpm` when migrating to the `AzureContainerLinux` OS SKU. Your node pool's VM size must also support Trusted Launch. If your current VM size doesn't support it, you need to resize or recreate the node pool with a supported VM size before migrating.
 - [Generation 1 VMs](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
 - An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
-- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
 - [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
 - Windows OS SKU migration isn't supported.
 

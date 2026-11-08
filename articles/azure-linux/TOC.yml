@@ -80,6 +80,8 @@
           items:
             - name: Overview
               href: azure-container-linux-overview.md
+            - name: Security features
+              href: azure-container-linux-security-features.md
             - name: Create an ACL for AKS cluster
               items:
                 - name: Use the Azure CLI
@@ -102,6 +104,8 @@
               items:
                 - name: Toggle SELinux mode for troubleshooting
                   href: selinux-toggle-troubleshoot.md
+                - name: Enable IPE in audit mode
+                  href: enable-integrity-policy-enforcement-audit-mode.md
         - name: Azure Linux with OS Guard for AKS
           items:
             - name: Overview
