@@ -23,6 +23,37 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Effective February 2027, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
 
+## Version 1.70 - November 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.70/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent).
+
+| Feature | Windows | Linux | Change Type |
+|---|---|---|---|
+| **Guest Config** | **1.29.122.0** | **1.26.122.0** | |
+| Updated bundled PowerShell from version 7.4.20 (.NET 8) to 7.6.9 (.NET 10). Addressed CVE-2026-111497 and CVE-2026-114148. | ✓ | ✓ | Security Fix |
+| Replaced bundled OpenSSL libraries with native Windows APIs for HTTPS communication, package hashing, and extension signature validation. | ✓ | | Improvement |
+| Switched bundled OpenSSL from version 3.6.5 to 3.5.9 on the long-term support (LTS) branch. | | ✓ | Improvement |
+| Fixed a security issue in the local extension-blocking policy. | ✓ | ✓ | Security Fix |
+| Improved startup reliability for Machine Configuration and extension services. | ✓ | | Improvement |
+| Fixed an issue where overlapping extension operations could cause package validation to fail. | | ✓ | Improvement |
+| Fixed handling of invalid responses during extension-change notification registration. | ✓ | ✓ | Bug Fix |
+| Fixed an issue where downloaded extension ZIP files weren't cleaned up. | ✓ | ✓ | Bug Fix |
+| **Azcmagent** | **1.70** | **1.70** | |
+| Added `azcmagent reconnect` (preview) to restore a machine's connection to its existing Azure Arc resource. | ✓ | ✓ | Feature |
+| Added support for onboarding with Trusted Platform Module (TPM)-backed keys before a managed identity is assigned. | ✓ | ✓ | Feature |
+| Added structured managed identity details to `azcmagent show`, including service-reported identity type, principal IDs, and user-assigned identity lifecycle states. | ✓ | ✓ | Improvement |
+| Updated `azcmagent downgrade` to use the bundled installation script. | ✓ | ✓ | Improvement |
+| Updated Go to version 1.26.10. Addressed CVE-2026-111943. | ✓ | ✓ | Security Fix |
+| Updated the .NET SDK to version 10.0.402. | ✓ | | Improvement |
+| Fixed endpoint discovery failures so the agent retries discovery on a later heartbeat instead of reusing unreachable or rejected endpoints. | ✓ | ✓ | Bug Fix |
+| Fixed crashes when commands that require elevated privileges are run without sufficient permissions. | ✓ | ✓ | Bug Fix |
+| Improved agent upgrade and downgrade reliability, including operation logging and cleanup after failures. | ✓ | | Bug Fix |
+| Fixed agent upgrades and downgrades through Azure Arc gateway. | ✓ | | Bug Fix |
+| Fixed agent upgrades using an incorrect download endpoint in sovereign clouds. | ✓ | | Bug Fix |
+| Fixed Configuration UI accessibility issues affecting high-contrast themes, keyboard navigation, and screen readers. | ✓ | | Bug Fix |
+| Fixed false security alerts when the local identity service encounters busy named pipes. | ✓ | | Bug Fix |
+| Blocked requests for Hybrid Identity Service tokens through the local managed identity endpoint. | ✓ | ✓ | Security Fix |
+
 ## Version 1.69 - October 2026
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent).
