@@ -19,6 +19,8 @@
     href: view-multicloud-inventory.md
   - name: Attach Windows Server Extended Security Updates licenses
     href: multicloud-extended-security-updates.md
+  - name: Manage SQL Server licensing and subscribe to Extended Security Updates
+    href: multicloud-extended-security-updates-sql-server.md
   - name: Onboard VMs to Azure Arc
     href: onboard-multicloud-vms-arc.md
   - name: Onboard Kubernetes clusters to Azure Arc
