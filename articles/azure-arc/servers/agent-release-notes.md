@@ -93,7 +93,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.69/AzureConnect
 
 ### Known issues
 
-   Agent versions earlier than 1.70 include a version of PowerShell that's affected by [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497). Microsoft is aware of this issue and working on a fix.
+Agent versions earlier than 1.70 include a version of PowerShell that's affected by [CVE-2026-111497](https://nvd.nist.gov/vuln/detail/CVE-2026-111497). Microsoft recommends upgrading to agent version 1.70, which addresses this vulnerability.
 
 ## Version 1.68 - September 2026
 
