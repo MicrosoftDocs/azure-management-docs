@@ -59,7 +59,7 @@ To discover applications:
 
 The discovery agent supports only system-assigned managed identities. Discovery scopes must be complete subscriptions or resource groups; management groups, individual resources, partial names, tags, resource types, and locations aren't supported as discovery scopes. You can alternatively identify service-group resources by Azure Resource Graph criteria or a list of resource IDs.
 
-If you want the agent to assign **Reader**, you need permission to create role assignments, such as **User Access Administrator** or **Role Based Access Control Administrator**. Creating service groups and adding members also requires the [service-group permissions](goals-recommendations-support-matrix.md#rbac-requirements-for-goals-and-recommendations).
+If you want the agent to assign **Reader**, you need permission to create role assignments, such as **User Access Administrator** or **Role Based Access Control Administrator**. Creating service groups and adding members also requires the [service-group permissions](/azure/resiliency/goals-recommendations-support-matrix.md#rbac-requirements-for-goals-and-recommendations).
 
 Sample prompts include:
 
@@ -105,7 +105,7 @@ For an end-to-end workflow, ask the agent to:
 1. Check the resilience posture.
 1. Fix identified problems or generate scripts for remediation.
 
-For more information about these workflows, see [Assign goals and view resilience posture](goals-recommendations-assign-goals-view-posture.md) and [Review recommendations](goals-recommendations-review-recommendations.md).
+For more information about these workflows, see [Assign goals and view resilience posture](/azure/resiliency/goals-recommendations-assign-goals-view-posture.md) and [Review recommendations](/azure/resiliency/goals-recommendations-review-recommendations.md).
 
 ## Stay resilient for ongoing validation and recovery readiness
 
@@ -113,8 +113,8 @@ Use the agent to assess applications as they change, prepare recovery orchestrat
 
 ### Prerequisites for drills and recovery plans
 
-- Enroll the service group in a [usage plan](infrastructure-resiliency-manager-pricing.md#enroll-a-service-group-in-a-usage-plan) before using drills or recovery plans.
-- Ensure that you have the required [drill roles and permissions](availability-zone-down-drills-support-matrix.md#required-roles-and-permissions) and [recovery-plan roles](recovery-orchestration-plan-support-matrix.md#role-requirements).
+- Enroll the service group in a [usage plan](/azure/resiliency/infrastructure-resiliency-manager-pricing.md#enroll-a-service-group-in-a-usage-plan) before using drills or recovery plans.
+- Ensure that you have the required [drill roles and permissions](/azure/resiliency/availability-zone-down-drills-support-matrix.md#required-roles-and-permissions) and [recovery-plan roles](/azure/resiliency/recovery-orchestration-plan-support-matrix.md#role-requirements).
 - Before executing a drill, configure a service-level indicator (SLI) or an Azure Monitor health model. The agent can list existing options and attach your selection, but can't create them.
 - If drill resources require manual failover, such as Azure Site Recovery-protected VMs, prepare a ready recovery plan.
 - Use existing Azure Automation runbooks for custom drill faults and recovery group pre-scripts or post-scripts. The agent doesn't create runbooks.
@@ -135,7 +135,7 @@ You can download the report as Markdown. The service doesn't save reports, and i
 
 Ask the agent to create a recovery plan, explain resource protection and inclusion states, and investigate resources that need attention. You can organize resources into groups, specify recovery order, add manual steps and pre-scripts or post-scripts from existing runbooks, and check readiness.
 
-A recovery plan orchestrates recovery; it doesn't protect resources. In the recovery-plan workflow, the agent can direct you to the appropriate page to enable protection such as Azure Site Recovery, but it doesn't enable it for you. For Azure VM backup, use the separate [guided backup experience](tutorial-manage-data-using-copilot.md#configure-backup-for-azure-vms). The agent doesn't infer dependencies or choose the recovery order.
+A recovery plan orchestrates recovery; it doesn't protect resources. In the recovery-plan workflow, the agent can direct you to the appropriate page to enable protection such as Azure Site Recovery, but it doesn't enable it for you. For Azure VM backup, use the separate [guided backup experience](/azure/resiliency/tutorial-manage-data-using-copilot.md#configure-backup-for-azure-vms). The agent doesn't infer dependencies or choose the recovery order.
 
 Sample prompts include:
 
@@ -144,7 +144,7 @@ Sample prompts include:
 - *Add a pre-script to the first group in my recovery plan.*
 - *Is my recovery plan ready?*
 
-For configuration details, see [Create and configure a recovery orchestration plan](recovery-orchestration-plan-create-configure.md). Perform [failover and reprotect operations](recovery-orchestration-plan-execute.md) from the portal, not through the agent.
+For configuration details, see [Create and configure a recovery orchestration plan](/azure/resiliency/recovery-orchestration-plan-create-configure.md). Perform [failover and reprotect operations](/azure/resiliency/recovery-orchestration-plan-execute.md) from the portal, not through the agent.
 
 ### Prepare and validate a zone-down drill
 
@@ -157,7 +157,7 @@ Sample prompts include:
 - *Attach a health model to my drill.*
 - *Why is my drill not ready?*
 
-Review the proposed configuration and confirm resource-changing operations. When readiness checks pass, [execute the drill in the Azure portal](availability-zone-down-drill-execute.md). The agent doesn't execute drills. After execution, review the results and rerun the resilience assessment to identify further improvements.
+Review the proposed configuration and confirm resource-changing operations. When readiness checks pass, [execute the drill in the Azure portal](/azure/resiliency/availability-zone-down-drill-execute.md). The agent doesn't execute drills. After execution, review the results and rerun the resilience assessment to identify further improvements.
 
 ## Manage data resiliency with Azure Backup
 
@@ -165,7 +165,7 @@ Use the Resiliency Agent to manage backups as well as infrastructure resilience.
 
 Open the agent from Azure Copilot, or select a contextual nudge on a backup-related portal page. Try prompts such as *Help me configure backup for my VM*, *Show the security level of all my vaults*, or *Show job failures for this vault*.
 
-For supported scenarios, sample prompts, and guided workflows, see [Manage data resiliency using Azure Copilot Resiliency Agent](tutorial-manage-data-using-copilot.md). Azure Backup capabilities are also available through [Azure MCP Server tools](/azure/developer/azure-mcp-server/tools/azure-backup?tabs=azure-mcp-cli) for MCP-compatible clients such as GitHub Copilot.
+For supported scenarios, sample prompts, and guided workflows, see [Manage data resiliency using Azure Copilot Resiliency Agent](/azure/resiliency/tutorial-manage-data-using-copilot.md). Azure Backup capabilities are also available through [Azure MCP Server tools](/azure/developer/azure-mcp-server/tools/azure-backup?tabs=azure-mcp-cli) for MCP-compatible clients such as GitHub Copilot.
 
 ## How to Access the Resiliency Agent
 
