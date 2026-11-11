@@ -237,6 +237,118 @@ After you complete the **Add public cloud** option in Azure and upload your temp
 
 Resources are stored in a resource group using the naming convention `<PublicCloud>_<AccountId>`, with permissions inherited from its subscription. Scans run regularly to update these resources, based on your **Enable periodic sync** selections.
 
+## Clean up GCP connector resources
+
+Use the Terraform configuration and state associated with your connector deployment to remove connector-specific resources from GCP. Confirm that you're using the correct GCP project, Terraform backend, and workspace before continuing. These steps address GCP-side Terraform resources; verify deletion of the Azure connector separately.
+
+### Retain shared GCP APIs
+
+Enable GCP APIs at the project level so workloads other than the multicloud connector can use them. Retain shared APIs when removing the connector, including:
+
+- Kubernetes Engine API (`container.googleapis.com`)
+- Identity and Access Management API (`iam.googleapis.com`)
+- IAM Service Account Credentials API (`iamcredentials.googleapis.com`)
+
+For the corresponding `google_project_service` resources in your Terraform configuration, explicitly set:
+
+```hcl
+disable_on_destroy         = false
+disable_dependent_services = false
+```
+
+Make this change **before cleanup**, and review and apply the configuration update so Terraform records the retention setting in its state. Confirm that the update doesn't introduce unintended changes before applying it.
+
+Then generate, review, and apply a destroy plan:
+
+```sh
+terraform plan -destroy -out=destroy.tfplan
+terraform show destroy.tfplan
+terraform apply "destroy.tfplan"
+```
+
+> [!WARNING]
+> Don't set `disable_dependent_services = true` or forcibly disable dependent APIs to complete connector cleanup. Disabling shared APIs and their dependent services can disrupt unrelated workloads, including Google Kubernetes Engine (GKE) and Filestore.
+
+### Recover from a partially successful destroy
+
+Terraform destroy can delete connector-specific resources and then fail when attempting to disable an API that other enabled services depend on. A dependency error doesn't roll back resources that Terraform already deleted. However, don't assume that Terraform removed all connector resources. Inspect the remaining state and verify the actual resources.
+
+1. In the original deployment directory, confirm the backend, workspace, and GCP project. Back up the current state:
+
+   ```sh
+   terraform state pull > terraform-state-backup.json
+   ```
+
+   Store the backup securely because Terraform state can contain sensitive information.
+
+2. List the remaining resources and inspect each relevant entry:
+
+   ```sh
+   terraform state list
+   terraform state show '<resource-address>'
+   ```
+
+   Replace `<resource-address>` with the exact address returned by `terraform state list`. Check the resource type, project, and service name. Distinguish shared API enablement entries (`google_project_service`) from remaining connector-specific resources.
+
+3. For each shared API you intentionally want to retain, remove only its exact resource instance from Terraform state:
+
+   ```sh
+   terraform state rm -dry-run '<api-resource-address>'
+   terraform state rm '<api-resource-address>'
+   ```
+
+   Replace `<api-resource-address>` with the exact API resource instance address verified in the previous step. These examples use Cloud Shell quoting.
+
+   Removing an entry from state stops Terraform from managing it; it doesn't disable the API. Don't remove connector-specific resources from state as a substitute for deleting them, and don't remove the entire state file.
+
+4. Generate and review a new destroy plan for any remaining connector resources:
+
+   ```sh
+   terraform plan -destroy -out=destroy-recovery.tfplan
+   terraform show destroy-recovery.tfplan
+   ```
+
+   Apply the plan only after confirming that it targets the intended resources and doesn't disable shared APIs you want to retain:
+
+   ```sh
+   terraform apply "destroy-recovery.tfplan"
+   ```
+
+   Don't reuse the original saved plan after a partial apply or state change.
+
+> [!IMPORTANT]
+> Don't run a normal `terraform apply` against the original deployment configuration during recovery. It can recreate deleted connector resources or resume management of API entries removed from state.
+
+### Verify cleanup
+
+After recovery, complete the following checks:
+
+1. Run `terraform state list` and generate a fresh destroy plan:
+
+   ```sh
+   terraform state list
+   terraform plan -destroy
+   ```
+
+   For a state dedicated to the connector, no managed resources should remain and the destroy plan should report no changes.
+
+   If the state also manages unrelated infrastructure, preserve those resources. Verify that connector-specific entries are absent, and don't apply a destroy plan that targets unrelated resources.
+
+2. Verify in GCP that the connector-specific resources identified in the original configuration, such as service accounts, IAM bindings, and workload identity resources, are removed. An empty Terraform state alone doesn't prove that resources were deleted.
+
+3. Confirm that intentionally retained APIs remain enabled:
+
+   ```sh
+   gcloud services list --enabled --project=PROJECT_ID
+   ```
+
+   Replace `PROJECT_ID` with your GCP project ID.
+
+4. Verify separately that the Azure multicloud connector is deleted if you're removing the connection entirely.
+
+> [!NOTE]
+> Intentionally retained GCP APIs don't indicate that connector resources remain. API enablement is project-wide and is separate from the connector-specific resources and permissions used to access your project.
+
 ## Next steps
 
 - Query your inventory with [the multicloud connector **Inventory** solution](view-multicloud-inventory.md).
