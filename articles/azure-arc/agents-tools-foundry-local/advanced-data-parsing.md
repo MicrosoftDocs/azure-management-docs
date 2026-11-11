@@ -1,26 +1,28 @@
 ---
-title: Data parsing for Agents and Tools with Foundry Local
-description: "Learn how data parsing in Agents and Tools with Foundry Local extracts structured data, tables, and images for more accurate search and chat results."
-ms.reviewer: assafakiva
+title: Data parsing for Agentic Retrieval in Foundry Local
+description: "Learn how data parsing in Agentic Retrieval in Foundry Local extracts structured data, tables, and images for more accurate search and chat results."
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 11/08/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-#CustomerIntent: As a solution architect or data engineer, I want to understand data parsing in Agents and Tools with Foundry Local so that I can extract structured information, tables, and images from complex documents for accurate, context-rich search and chat experiences.
+#CustomerIntent: As a solution architect or data engineer, I want to understand data parsing in Agentic Retrieval in Foundry Local so that I can extract structured information, tables, and images from complex documents for accurate, context-rich search and chat experiences.
 ---
-# Agents and Tools with Foundry Local data parsing
+# Data parsing for Agentic Retrieval in Foundry Local
 
-The Agents and Tools with Foundry Local extension uses advanced data parsing to help you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how data parsing works, what it extracts, and how to optimize your content for better retrieval results.
+Agentic Retrieval uses advanced data parsing to help you extract more value from your documents by capturing structure, tables, and images for more accurate, context-rich search and chat experiences. This article explains how data parsing works, what it extracts, and how to optimize your content for better retrieval results.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Key capabilities
 
-Data parsing in the extension provides the following capabilities:
+Data parsing in Agentic Retrieval provides the following capabilities:
 
 - **Enhanced document understanding**: Extracts headings, tables, images, and formatting for richer context.
 - **Semantic chunking**: Splits text into meaningful sections, preserving context and document hierarchy.
 - **Detailed metadata**: Captures paragraph headings, page numbers, and other structural details.
-- **Intelligent table processing**: Extracts table grids directly, groups up to 10 rows per chunk with column headers (`ColName: value`), and records table index, row range, and page numbers.
+- **Intelligent table processing**: Detects, merges, and indexes tables—even those spanning multiple pages.
 - **Improved retrieval accuracy**: Enables more relevant and precise search results.
 
 ## When data parsing adds the most value
@@ -37,7 +39,7 @@ Data parsing analyzes your documents to identify and preserve structure, includi
 
 - Headings, paragraphs, lists, and hierarchy.
 - Tables and images.
-- Multiple file formats, including PDF, Word, PowerPoint, Excel, HTML, Markdown, and common image types.
+- Multiple file formats, including PDF, Word, PowerPoint, HTML, Markdown, and common image types.
 
 The process splits text into context-aware chunks that align with natural boundaries, such as sentences or sections. Each chunk includes metadata like headings and page numbers, making it easier to trace information back to its source.
 
@@ -49,27 +51,21 @@ Data parsing supports the following file types:
 - .pdf (PDF documents)
 - .docx (Microsoft Word documents)
 - .pptx (Microsoft PowerPoint presentations)
-- .xlsx (Microsoft Excel workbooks)
-- .csv (comma-separated values files)
 - .html (HTML documents)
 - .md (Markdown files)
 - .png, .jpg, .jpeg (images)
 
-Each file can be up to 30 MB. The ingestion service skips files that exceed this limit.
-
 ### Text chunking and metadata
 
-Data parsing uses semantic chunking to create meaningful sections. Text chunks include metadata such as headings, page numbers, and unique chunk IDs. Table chunks group up to 10 rows per chunk with column headers (`ColName: value`) and record the table index, row range, and page numbers. This approach helps preserve context and improves retrieval relevance.
+Data parsing uses semantic chunking to create meaningful sections. Each chunk includes metadata such as headings, page numbers, and unique chunk IDs. Table chunks include details like table index, shape, and a preview of the content. This approach helps preserve context and improves retrieval relevance.
 
 ### Table extraction and processing
 
-Data parsing detects tables across pages, including tables in scanned documents. It extracts table grids directly and groups up to 10 rows per chunk with column headers (`ColName: value`). Each table chunk records the table index, row range, and page numbers. This information makes tables searchable and retrievable with source context.
-
-Malformed or deeply nested tables might be only partially parsed. Review the extracted content before relying on these tables for search.
+Data parsing automatically detects tables across all pages, including tables in scanned documents. It merges tables that span multiple pages, restores column headers, and ensures consistent column structure. Each table chunk includes metadata such as table index, shape, page numbers, section headings, and a preview of the table. This information makes tables searchable and retrievable with full context.
 
 ### Image extraction and processing
 
-Data parsing automatically detects images across all pages and stores each image at full quality with its source page number metadata. This information supports full-quality image display and source page context during inference.
+Data parsing automatically detects images across all pages. Each image is stored as the original source in full quality with source page number metadata. This information supports full-quality image display and source page context during inference.
 
 ## How data parsing improves results
 
@@ -77,7 +73,7 @@ Data parsing directly improves the quality of retrieval-augmented generation (RA
 
 ## Performance considerations
 
-Data parsing can take longer for large, complex documents because it extracts richer structure and metadata. It can also increase storage requirements per chunk. Split files that exceed the 30-MB limit before ingestion.
+Data parsing can take longer for large, complex documents because it extracts richer structure and metadata. It can also increase storage requirements per chunk. In most workloads, improved retrieval relevance and source attribution outweigh the extra processing time and storage.
 
 ## Best practices
 
@@ -95,7 +91,8 @@ If you notice missing or incomplete tables, check that your source documents are
 
 ## Related content
 
-- [Agentic Retrieval overview](knowledge-layer-overview.md)
-- [Add a data source](add-data-source.md)
-- [Set up the data query](set-up-data-query.md)
+- [Knowledge layer configuration](knowledge-layer-overview.md)
+- [Add data source for the chat solution](add-data-source.md)
+- [Set up the data query for chat solution](set-up-data-query.md)
 - [Supported data sources](requirements.md#supported-data-sources)
+

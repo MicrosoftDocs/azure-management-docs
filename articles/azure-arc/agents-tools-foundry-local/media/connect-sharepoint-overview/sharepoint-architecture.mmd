@@ -1,0 +1,20 @@
+graph TD
+    KV("🔑 <b>Azure Key Vault</b><br/>PFX cert · base64<br/>PFX password")
+
+    subgraph Cluster ["☸️ Kubernetes Cluster"]
+        direction TB
+        Secret("🔒 <b>Kubernetes Secret</b><br/>cert.pfx<br/>cert-password")
+        Pod("📦 <b>Ingestion Pod</b><br/>/certs/cert.pfx<br/>Signs JWT locally<br/>No network call needed")
+    end
+
+    SP("🏢 <b>SharePoint Server SE</b><br/>On-premises<br/>Validates JWT with<br/>registered public key")
+
+    KV -->|"1. CSI Secrets Store Driver<br/>syncs via Workload Identity"| Secret
+    Secret -->|"2. Volume mount"| Pod
+    Pod -->|"3. Bearer JWT<br/>over HTTP/HTTPS"| SP
+    SP -->|"4. Returns<br/>documents"| Pod
+
+    style KV fill:#0078d4,stroke:#005a9e,stroke-width:2px,color:#fff
+    style Secret fill:#ff8c00,stroke:#e07b00,stroke-width:2px,color:#fff
+    style Pod fill:#50e6ff,stroke:#0078d4,stroke-width:2px,color:#002050
+    style SP fill:#5c2d91,stroke:#4a2574,stroke-width:2px,color:#fff

@@ -1,18 +1,20 @@
 ---
-title: NFS with Kerberos reference and troubleshooting
+title: NFS with Kerberos Reference and Troubleshooting for Agentic Retrieval in Foundry Local
 description: "Verification steps, troubleshooting guide, network requirements, keytab rotation, and Helm values reference for NFS with Kerberos authentication."
-ms.reviewer: assafakiva
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: reference
-ms.date: 11/05/2026
+ms.date: 05/17/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-#customer intent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agents and Tools with Foundry Local so that file share ingestion stays reliable and secure.
+#customer intent: As a platform administrator, I want to verify, troubleshoot, and maintain NFS Kerberos authentication for Agentic Retrieval in Foundry Local.
 ---
 
-# NFS with Kerberos reference and troubleshooting
+# NFS with Kerberos reference and troubleshooting for Agentic Retrieval in Foundry Local
 
 This article provides verification steps, troubleshooting guidance, network requirements, operational procedures, and a Helm values reference for NFS with Kerberos authentication.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Verification
 
@@ -28,8 +30,8 @@ kubectl get nodes -l edge-rag/kerberos-ready=true
 ### Check for failed nodes and reasons
 
 ```bash
-kubectl get nodes -l edge-rag/kerberos-ready=false \
-  -o go-template='{{range .items}}{{.metadata.name}}{{"\t"}}{{index .metadata.annotations "edge-rag/kerberos-reason"}}{{"\n"}}{{end}}'
+kubectl get nodes -l edge-rag/kerberos-ready=false --show-labels \
+  | tr ',' '\n' | grep kerberos
 # Possible reasons: KRB5_CONF_MISSING, KEYTAB_MISSING, KEYTAB_EMPTY,
 #                   KDC_UNREACHABLE, KDC_DNS_UNREACHABLE
 ```
@@ -52,37 +54,32 @@ kubectl logs -n arc-rag -l app=kerberos-validator --tail=20
 
 | Symptom | Root cause | Fix |
 |---|---|---|
-| **Install fails:** "Error: Not enough Kerberos-provisioned nodes." | No nodes are labeled. | Run `kubectl label node <node_name> edge-rag/kerberos-provisioned=true`. Complete all prerequisite steps first. |
+| **Install fails:** "No nodes with kerberos-provisioned label" | No nodes are labeled. | Run `kubectl label node <node_name> edge-rag/kerberos-provisioned=true`. Complete all prerequisite steps first. |
 | **Node shows `kerberos-ready=false`** with reason `KRB5_CONF_MISSING` | `/etc/krb5.conf` doesn't exist on the node. | Create the file per [Step 3](connect-file-share-kerberos-setup.md#step-3-install-and-configure-kerberos-client). |
 | **Node shows `kerberos-ready=false`** with reason `KEYTAB_MISSING` or `KEYTAB_EMPTY` | `/etc/krb5.keytab` is missing or zero bytes. | Deploy the keytab per [Step 4](connect-file-share-kerberos-setup.md#step-4-create-a-service-principal-and-deploy-the-keytab). |
-| **Node shows `kerberos-ready=false`** with reason `KDC_UNREACHABLE` | Can't reach the domain controller on port 88, or `kdc =` in `/etc/krb5.conf` includes a `:88` port suffix. | Ensure `kdc =` in `/etc/krb5.conf` is a hostname or IP address without a `:88` port suffix, and check firewall rules and DNS: `nc -zv <domain_controller> 88`. |
-| **Node shows `kerberos-ready=false`** (`KDC_DNS_UNREACHABLE`) | DNS can't resolve the KDC hostname. | Check `/etc/resolv.conf` and `nslookup <domain_controller>`. |
+| **Node shows `kerberos-ready=false`** with reason `KDC_UNREACHABLE` | Can't reach the domain controller on port 88. | Check firewall rules and DNS: `nc -zv <domain_controller> 88`. |
+| **Node shows `kerberos-ready=false`** with reason `KDC_DNS_UNREACHABLE` | DNS can't resolve KDC hostname. | Check `/etc/resolv.conf` and `nslookup <domain_controller>`. |
 | **Ingestion fails:** "No Kerberos-ready nodes available" | All nodes are `kerberos-ready=false`. | Check DaemonSet logs: `kubectl logs -n arc-rag -l app=kerberos-validator`. |
 | **NFS mount fails:** `access denied by server` | Reverse DNS missing for NFS server, or NFS export doesn't allow `krb5p`. | Verify: `nslookup <nfs_server_ip>` returns FQDN. Check NFS export config. |
 | **NFS mount fails when using IP address** | Kerberos requires hostname, not IP. | Use the NFS server's FQDN (for example, `nfs-server.contoso.com`). |
 | **`kinit: Keytab contains no suitable keys`** | Service principal name (SPN) mismatch between keytab and request. | Run `klist -kt /etc/krb5.keytab` and verify that the SPN matches exactly. |
 | **`Clock skew too great`** | Node time differs from KDC by more than 5 minutes. | Enable NTP: `sudo timedatectl set-ntp true`. |
-| **NFS authentication fails but the node is `kerberos-ready=true`** | The validator doesn't check `rpc.gssd`, key validity, `kinit`, time synchronization, or an NFS read. | Check `systemctl status rpc-gssd`, validate the keytab with `kinit`, verify time synchronization, and repeat the authenticated mount/read test. |
-| **Pod stuck in `Pending`** | No nodes match the `kerberos-ready=true` affinity. | Check node labels: `kubectl get nodes --show-labels \| grep kerberos`. |
+| **`rpc.gssd` not running** | Service is stopped or failed to start. | Run `sudo systemctl restart rpc-gssd`. Check `journalctl -u rpc-gssd`. |
+| **Pod stuck in `Pending`** | No nodes match the `kerberos-ready=true` affinity. | Check node labels: `kubectl get nodes --show-labels | grep kerberos`. |
 
 ## Network requirements
 
-The following paths are required while the product uses NFS with Kerberos:
+Ensure the following network paths are open from all Kubernetes worker nodes:
 
 | Source | Destination | Port | Protocol | Purpose |
 |---|---|---|---|---|
 | Worker nodes | Domain controller (KDC) | 88 | TCP/UDP | Kerberos authentication |
+| Worker nodes | Domain controller | 464 | TCP/UDP | Kerberos password change |
+| Worker nodes | Domain controller | 389 / 636 | TCP | LDAP / LDAPS |
 | Worker nodes | NFS file server | 2049 | TCP | NFS file access |
+| Worker nodes | NFS file server | 111 | TCP/UDP | RPC portmapper |
 | Worker nodes | DNS server | 53 | TCP/UDP | DNS resolution |
 | Worker nodes | NTP server | 123 | UDP | Time synchronization |
-
-Domain join and administration can require additional paths:
-
-| Purpose | Port | When required |
-|---|---|---|
-| Kerberos password change | 464 TCP/UDP | When your administration or rotation process changes passwords through this service. |
-| LDAP / LDAPS | 389 / 636 TCP | For AD DS domain join, directory lookups, or administration that uses LDAP. |
-| RPC portmapper | 111 TCP/UDP | For NFS versions or auxiliary RPC services that use portmapper. It isn't required by the product's fixed NFSv4.1 mount path. |
 
 Test connectivity:
 
@@ -93,15 +90,25 @@ nc -zv <nfs_server_fqdn> 2049      # NFS
 
 ## Keytab rotation
 
-Use a staged rotation. The readiness label only checks that the keytab is nonempty and the KDC is reachable; it doesn't validate the new key version, password, expiry, or authentication.
+When your Active Directory (AD) policy requires password rotation (typically every 90 days):
 
-1. Generate the replacement principal material with your realm's supported administration process. Use `ktpass` or approved AD DS tooling for AD DS. The `kadmin` and `ktadd` commands apply only to an MIT Kerberos administration service.
-1. Preserve the existing `/etc/krb5.keytab` and its required machine and host entries. Merge or install the new NFS principal through your approved keytab-management process.
-1. Keep the old principal material valid during the overlap required by your realm's ticket-lifetime and key-version policy.
-1. On every prepared node, run `klist -kt`, obtain fresh credentials with `kinit -kt`, and complete an NFSv4.1 mount and read with `sec=krb5p`.
-1. Confirm new ingestion runs succeed before retiring old key material.
+```bash
+# 1. Generate new keytab (while old keytab is still valid)
+kadmin -p <admin_user>@<YOUR_REALM> \
+  -q "ktadd -k /tmp/edgerag-nfs-new.keytab nfs/<service_account>@<YOUR_REALM>"
 
-Don't rely on a fixed grace period or the `kerberos-ready=true` label as proof of successful rotation. Whether a running workload must be recreated depends on the node's `rpc.gssd` behavior and your Kerberos policy; validate it in your environment.
+# 2. Deploy to all nodes
+for NODE in <node_1> <node_2> <node_3>; do
+  scp /tmp/edgerag-nfs-new.keytab ${NODE}:/etc/krb5.keytab
+  ssh ${NODE} "sudo chmod 600 /etc/krb5.keytab && sudo chown root:root /etc/krb5.keytab"
+done
+
+# 3. Verify: DaemonSet detects the new keytab within 60 seconds
+kubectl get nodes -l edge-rag/kerberos-ready=true
+```
+
+> [!NOTE]
+> After the AD password is reset, existing Kerberos TGTs remain valid for approximately 10 hours. Deploy the new keytab within this window for uninterrupted service. Running pods don't need to restart. `rpc.gssd` reads the keytab again on its next `kinit`.
 
 ## Add new nodes
 
@@ -114,33 +121,24 @@ sudo realm join <YOUR_DOMAIN> -U <admin_user>@<YOUR_DOMAIN>
 # 2. Install packages
 sudo apt install -y krb5-user nfs-common
 
-# 3. Copy krb5.conf through a protected temporary directory
-KRB5_TMP=$(mktemp -d)
-chmod 700 "$KRB5_TMP"
-scp <existing_node>:/etc/krb5.conf "$KRB5_TMP/krb5.conf"
-chmod 600 "$KRB5_TMP/krb5.conf"
-sudo install -o root -g root -m 644 "$KRB5_TMP/krb5.conf" /etc/krb5.conf
-rm -rf "$KRB5_TMP"
+# 3. Copy krb5.conf from an existing node
+scp <existing_node>:/etc/krb5.conf /etc/krb5.conf
 
-# 4. Preserve the domain-join machine/host entries and merge the NFS principal
-# Repeat the protected staging and ktutil merge procedure from setup Step 4.
+# 4. Deploy keytab
+scp <admin_machine>:/path/edgerag-nfs.keytab /etc/krb5.keytab
+sudo chmod 600 /etc/krb5.keytab
 
 # 5. Enable rpc-gssd
 sudo systemctl enable --now rpc-gssd
 
-# 6. Run the validation script with the intended principal and a known readable file
-export KERBEROS_SPN="nfs/<service_account>@<YOUR_REALM>"
-export NFS_SERVER="<nfs_server_fqdn>"
-export NFS_EXPORT="<export_path>"
-export NFS_TEST_FILE="<relative_path_to_known_readable_file>"
-sudo --preserve-env=DOMAIN_JOINED,KERBEROS_SPN,NFS_SERVER,NFS_EXPORT,NFS_TEST_FILE \
-  ./validate-kerberos-prereqs.sh
+# 6. Run validation script
+sudo ./validate-kerberos-prereqs.sh
 
-# 7. Label the node only after the authenticated mount and file read succeed
+# 7. Label the node
 kubectl label node <new_node_name> edge-rag/kerberos-provisioned=true
-```
 
-The DaemonSet can then set `kerberos-ready=true` after its limited file-presence and KDC-reachability checks. That label isn't a substitute for the validation script's `kinit`, mount, and known-file read.
+# The DaemonSet automatically validates and labels it kerberos-ready=true
+```
 
 ## Helm values reference
 

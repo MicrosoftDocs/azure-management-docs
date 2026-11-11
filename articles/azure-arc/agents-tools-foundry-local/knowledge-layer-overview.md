@@ -1,41 +1,36 @@
 ---
-title: Agentic Retrieval Overview for Agents and Tools with Foundry Local
-description: "Learn how Agentic Retrieval in Agents and Tools with Foundry Local uses indexed sources and remote sources, including data ingestion, collections, and data querying."
-ms.reviewer: assafakiva
+title: Knowledge Layer Configuration for Agentic Retrieval in Foundry Local
+description: "Learn about configuring the Knowledge Layer in Agentic Retrieval in Foundry Local, including data ingestion, collections, and data querying."
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 11/08/2026
+ms.date: 05/29/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-ms.update-cycle: 180-days
-#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agents and Tools with Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
+#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Agentic Retrieval in Foundry Local so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
 ms.custom:
   - build-2025
 ---
 
-# Agentic Retrieval overview
+# Knowledge layer configuration for Agentic Retrieval in Foundry Local
 
-Agentic Retrieval is the retrieval and grounding component of Agents and Tools with Foundry Local. It finds relevant information in your organization's data and supplies it, with references, so that AI applications can give grounded answers. A *grounded* answer is based on retrieved content instead of only on the model's training data.
+The Knowledge Layer is the data foundation for Agentic Retrieval. It ingests and chunks your source content, stores vectors and metadata in collections, and retrieves relevant context at query time so responses are grounded in your organization’s data. This layer is important because it directly determines chat quality, relevance, and access control through collection-level Azure role-based access control (Azure RBAC).
 
-Agentic Retrieval supports two kinds of sources:
+This article provides a high-level overview of configuring the Knowledge Layer in Agentic Retrieval, including data ingestion, collections, and data querying.
 
-- **Indexed sources**: The extension ingests your documents, splits them into chunks, generates embeddings, and stores the searchable content in local *collections*. An *embedding* is a list of numbers that represents the meaning of a piece of text, so that similar text can be found.
-- **Remote sources**: The extension gets information at request time from connected systems, without ingesting it into local collections. Remote sources include customer-provided Model Context Protocol (MCP) servers, SQL databases (in preview), and Microsoft 365 Local (in limited preview for approved customers). *Remote* describes how the source is accessed; the connected system can still run in your local environment.
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-A *knowledge source* identifies one configured source of information. A *knowledge base* groups knowledge sources so that agents can use them. For remote sources, see [Configure a knowledge source](knowledge-sources-guide.md). For an introduction to all components, see [What is Agents and Tools with Foundry Local?](overview.md)
+## Knowledge Layer configuration
 
-This article focuses on indexed sources. It describes the ingestion and retrieval pipeline for indexed collections that you register as `indexed_sources_mcp` knowledge sources. Indexed sources support app-role collection access. Callers allowed by an Azure role see all collections; collection app roles don't limit that access.
-
-> [!NOTE]
-> Local ingestion and the developer portal are available only when `indexedSourcesEnabled=true`.
-
-## Configure indexed sources
-
-To use indexed sources, complete the following tasks:
+As part of Agentic Retrieval, you deploy a local developer portal on the AKS cluster. Developers can access this portal to complete the following tasks:
 
 - **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
-- **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the quality of the answers.
+- **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
 - **Collections management**: Create and manage collections to organize your vector data into logical groupings.
+
+Access the portal via the redirect URI (for example, `https://arcrag.contoso.com`) that you provide at the time of extension deployment or the redirect URI you provide during app registration.
+
+To authenticate and authorize your access to the portal, make sure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Data ingestion
 
@@ -43,98 +38,113 @@ Data ingestion means you add your on-premises data and set up options so the dat
 
 ### Collections
 
-Before you ingest data, create the target **collection**. Collections are logical groupings of vector data. Each collection maps to dedicated Milvus vector collections and Postgres tables.
+Before ingesting data, you can optionally create a **collection** to organize your vector data. Collections are logical groupings. Each collection maps to dedicated Milvus vector collections and Postgres tables.
 
-- If you don't specify a collection in an API request, data goes to the default `edgeragapp` collection, which is created automatically on startup. Verify that it exists with `GET /collections/edgeragapp`.
-- Use `POST /collections` only if `edgeragapp` was deleted or when creating custom collections for API ingestion. See the [Collections REST API reference](reference/collections-api-reference.md). Ingestion doesn't create collections.
-- Use multiple collections to separate data by department, tenant, or use case. App-role collection access limits callers who use collection app roles. It doesn't limit callers allowed by an Azure role.
+- If you don't specify a collection, data is ingested into the default `edgeragapp` collection.
+- To create a new collection, use the [Collections API](collections-overview.md) or specify a collection name during ingestion.
+- Use multiple collections to separate data by department, tenant, or use case, with per-collection Azure RBAC.
 
 For more information, see [Collections overview](collections-overview.md).
 
-### Plan data ingestion
+### Planning data ingestion
 
-Before you add an indexed source, complete the following steps:
+Before you start configuring your chat solution, complete the following steps:
 
-- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources). For NFS, use an accessible share and provide its path. For AUTH_SYS authentication, also provide the user ID and group ID. For Kerberos, configure the worker nodes as described in [NFS with Kerberos authentication](connect-file-share-kerberos-overview.md). For SharePoint Server, configure server-to-server authentication and provide the site and folder information required by the ingestion request.
+- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources).  Make sure all your private data is in a network file system (NFS) share that's accessible from Agentic Retrieval. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
-  Ensure that the files aren't password protected or otherwise encrypted so that the extension can access the data.
+  Make sure that the files aren't password protected or otherwise encrypted so the Agentic Retrieval application can access the data.
 
-- **Choose the sync frequency**. Before you add a data source, decide whether to run ingestion once or sync it on a schedule. Parsing and text chunking use the built-in Docling settings.
+- **Choose the right settings for data ingestion**. Before you add a data source in Agentic Retrieval, choose the appropriate ingestion parsing settings, chunk settings, and sync frequency.
 
 ### Ingestion parsing
 
-During ingestion, Agents and Tools with Foundry Local parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
+During ingestion, Agentic Retrieval parses documents to extract text and structure for chunking and embedding. This parsing is designed for mixed-content files, including tables, charts, and images, so retrieved context is more accurate for chat responses.
 
 Expect ingestion time to vary based on document complexity and size. Documents with more detailed structure usually take longer to process, but they produce higher-fidelity content for retrieval and grounding.
 
-For parsing details and supported behaviors, see [Advanced data parsing for Agents and Tools with Foundry Local](advanced-data-parsing.md).
+For parsing details and supported behaviors, see [Advanced data parsing for Agentic Retrieval](advanced-data-parsing.md).
 
 ### Chunk settings
 
-The service uses Docling HybridChunker with the BGE-M3 tokenizer to split text into chunks of about 512 tokens. A token is a small unit of text, such as a word or part of a word. The chunker uses document structure to keep related text together.
+Before you add a data source in Agentic Retrieval, choose the appropriate chunk size, chunk overlap, and sync frequency. Here's some high-level guidance to help you select the right chunk settings for your data, as provided by Azure:
 
-> [!NOTE]
-> The portal shows chunk size and overlap fields, and the API accepts `chunkSize` and `chunkOverlap`. The current release doesn't apply these values.
+- **Chunk size**: Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words) and allows for some overlap (for example, 10-15% of the content). This approach can produce good chunks as input for embedding vector generators.
+
+  | **Processor** | **Recommended Chunk Size** | **Max Supported Size** |
+  |---|---|---|
+  | **GPU** | 2000 | 4000 |
+  | **CPU-only** | 2000 | 2000 |
+
+- **Chunk overlap**: When you chunk data, overlapping a small amount of text between chunks can help preserve context. Start with an overlap of approximately 10%. For example, given a fixed chunk size of 256 tokens, begin testing with an overlap of 25 tokens. The actual amount of overlap varies depending on the type of data and the specific use case, but 10-15% works for many scenarios.
+
+  |**Processor** | **Recommended Chunk Overlap** | **Max Supported Overlap** |
+  | ---|---|---|
+  | **GPU** | 200 | 1000 |
+  | **CPU-only** | 200 | 200 |
+
+When you chunk data, consider these factors:
+
+- **Shape and density of your documents**: If you need intact text or passages, larger chunks and variable chunking that preserves sentence structure can produce better results.
+
+- **User queries**: Larger chunks and overlapping strategies help preserve context and semantic richness for queries that target specific information.
+
+- **Large Language Models (LLM) have performance guidelines for chunk size**. Set a chunk size that works best for all of the models you're using. For instance, if you use models for summarization and embeddings, choose an optimal chunk size that works for both.
+
 
 ### Data ingestion by using REST APIs
 
 You can also perform data ingestion programmatically by using the REST APIs:
 
-- [Collections API](reference/collections-api-reference.md) — Create and manage collections before ingesting.
+- [Collections API](collections-overview.md) — Create and manage collections before ingesting.
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
-- Only one ingestion run executes at a time. Other runs wait with the `PENDING` status. The platform stores the data in the existing collection you specify, or in the existing default `edgeragapp` collection.
+- Create as many data ingestions as you'd like. Data is vectorized and stored in the collection you specify (or the default `edgeragapp` collection if none is specified). You can create multiple collections to organize data by domain, department, or use case.
 
 ## Data query
 
-In Agents and Tools with Foundry Local, setting up a data query means you create a system prompt, adjust model settings for your needs, and check that the solution works as expected.
+In Agentic Retrieval, setting up a data query means you create a system prompt, adjust model settings for your needs, and check that the solution works as expected.
 
-### Choose the right prompt and model parameters
+### Choosing the right prompt and model parameters
 
 A critical part of prompt engineering is providing the right system prompt and model parameters according to your data and use case.
 
 - To choose the right system prompt, see [Foundry Tools - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
 - For information and guidance about choosing model and search parameters, see [Search type parameters](search-types.md#search-type-parameters).
 
-### Test queries
+### Testing queries in the chat playground
 
-Compare these query experiences:
+Agentic Retrieval offers two chat experiences in the chat playground:
 
-- **Knowledge-base**: Query the model with your ingested data as retrieved context.
-- **Model-only**: Query the language model without retrieving ingested data.
+- **Knowledge-base**: Chat with the model using your own ingested data as context. This means the model’s answers are based on your organization’s documents and data sources, so you get responses that are relevant and grounded in your latest information.
+- **Model-only**: Chat directly to the language model, without using your ingested data as context. This is helpful when you want to ask general questions, test the model’s raw capabilities, or just see how it responds without any extra information.
 
-Switch between **Knowledge-base** chat and **Model-only** chat depending on what you need.
+Switch between knowledge-based chat and model chat depending on what you need.
 
 ### Data querying by using REST APIs
 
-In the developer portal, **View the endpoint** displays the deprecated classic inference URL (`POST /chat/completions`), which is restricted to the developer portal browser origin and returns `403 Forbidden` for external callers. To configure and run queries from external applications, use Agent Service (`/openai/v1/responses` and `/openai/v1/conversations`) or Indexed Sources MCP (`/mcp`).
+In addition to the developer portal, you can use the REST APIs to configure the chat solution, such as providing the system message and model parameters.
 
-### Use the chat endpoint
+### Consuming the chat endpoint
 
-After you validate data ingestion and prompt quality in the developer portal, integrate your line-of-business applications with Agent Service (`/openai/v1/responses` and `/openai/v1/conversations`) or Indexed Sources MCP (`/mcp`), or use the Local chat UI. (**View the endpoint** in the developer portal displays the deprecated classic `POST /chat/completions` URL, which is restricted to the developer portal browser origin and returns `403 Forbidden` for external callers.) The Local chat UI uses Responses and Conversations, which require an Azure role and have no app-role fallback. In connected deployments, assign **Reader** to list agents and **Cognitive Services OpenAI User** to run them. In disconnected deployments, use **Contributor**.
-
-Classic chat completions still support app-role fallback. With that fallback, assign `EdgeRAGEndUser` and a collection app role whose value matches the collection name, such as `edgeragapp`. Without the matching collection role, the classic query fails with `403`. Callers allowed by an Azure role or the `EdgeRAGDeveloper` app-role fallback aren't limited by collection app roles. For role setup, see [Assign Azure roles](prepare-authentication.md#assign-azure-roles).
+After you validate data ingestion and prompt quality, integrate the chat endpoint into your line-of-business applications, or use the built-in chat app to get started quickly. To use chat, each end user needs two Microsoft Entra app roles: EdgeRAGEndUser and a collection-specific app role whose value matches the collection name (for example, the default `edgeragapp`). If a user is missing the matching collection role, the query fails with a 403 error.
 
 For more information, see the following articles:
 
-- [How the Local chat UI works](chat-experience.md)
-- [Test the Local chat UI](test-end-user-app.md)
+- [Chat in Agentic Retrieval](chat-experience.md)
+- [Test the chat solution for Agentic Retrieval](test-end-user-app.md).
 
-If you want to integrate chat and retrieval into your line-of-business applications, use the REST APIs for Agent Service (`/openai/v1/responses` and `/openai/v1/conversations`) or Indexed Sources MCP (`/mcp`).
+If you want to integrate the chat endpoint in one of your line-of-business applications, use the  REST APIs.
 
-### Connect collections to Agent Service
+### Connecting to the Agentic Layer
 
-If you deployed with indexed sources enabled, AI agents in Agent Service can access your ingested collections:
+If you deployed in combined mode, AI agents can access your ingested collections through the Agentic Layer:
 
-1. Create [Knowledge Sources](knowledge-sources-guide.md) pointing to your collections (using `kind: indexed_sources_mcp` with `indexed_source_ref` = collection name), and check source readiness.
-1. Group them into a [Knowledge Base](knowledge-bases-guide.md).
-1. Add the knowledge base to an agent as a tool. See [Add tools to an agent](add-agent-tools.md#add-a-knowledge-base-to-an-agent).
+1. Create [Knowledge Sources](knowledge-sources-guide.md) pointing to your collections (using `kind: indexed_sources_mcp` with `indexed_source_ref` = collection name).
+1. Group them into a [Knowledge Base](knowledge-bases-guide.md) by linking them to your default knowledge base.
 
-A successful Knowledge Bases API create response completes validation and creates the managed `kb-<knowledge-base-name>` connection. There's no separate knowledge-base readiness poll.
-
-For a full walkthrough, see [Quickstart: Create an agent and chat with it](quickstart-create-agent.md).
+For a full walkthrough, see [Query your data quickstart](quickstart-edge-rag.md).
 
 ## Related content
 
 - [Supported data sources](requirements.md#supported-data-sources)
-- [Add a data source](add-data-source.md)
-- [Set up the data query](set-up-data-query.md)
+- [Add data source for the chat solution](add-data-source.md)
+- [Set up the data query for chat solution](set-up-data-query.md)

@@ -1,0 +1,18 @@
+flowchart LR
+    User["User (browser)"] --> UI["Chat UI<br/>(static nginx)"]
+    UI -->|Microsoft Authentication Library token when enabled| Runtime["agents-runtime<br/>(Foundry Agents API)"]
+    Runtime --> Agent["Agent"]
+    Agent --> KB["Knowledge sources<br/>(retrieval, tools)"]
+    Runtime --> UI
+
+    style User fill:#0078d4,color:#fff
+    style UI fill:#005a9e,color:#fff
+    style Runtime fill:#005a9e,color:#fff
+    style Agent fill:#005a9e,color:#fff
+    style KB fill:#008272,color:#fff
+
+    linkStyle 0 stroke:#0078d4,stroke-width:2px
+    linkStyle 1 stroke:#ff8c00,stroke-width:2px
+    linkStyle 2 stroke:#2e7d32,stroke-width:2px
+    linkStyle 3 stroke:#008272,stroke-width:2px
+    linkStyle 4 stroke:#0078d4,stroke-width:2px
