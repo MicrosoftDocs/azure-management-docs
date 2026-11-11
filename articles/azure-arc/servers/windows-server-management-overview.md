@@ -144,5 +144,3 @@ Resources
 ```
 
 The `softwareAssuranceCustomer` column shows `"true"` for servers with Software Assurance attestation. A value of `"false"` or an empty string doesn't confirm attestation. To show only attested servers, add `| where softwareAssuranceCustomer == "true"` after the `project` operator and before the `order by` operator.
-
-Allow time for Azure Resource Graph to reflect recent changes. This query checks the recorded attestation, not the underlying license entitlement. Servers enrolled through Windows Server pay-as-you-go receive the benefits automatically and don't require Software Assurance attestation.
