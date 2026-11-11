@@ -1,27 +1,28 @@
 ---
-title: Configure NFS Server for Agentic Retrieval in Foundry Local 
-description: "Learn how to configure an NFS server for Agentic Retrieval in Foundry Local to enable shared storage for high availability and scalable applications."
-author: cwatson-cat
-ms.author: cwatson
+title: Configure an NFS server for Agents and Tools with Foundry Local
+description: "Learn how to configure an NFS server for Agents and Tools with Foundry Local to enable shared storage for high availability and scalable applications."
+ms.reviewer: assafakiva
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
+ms.date: 11/05/2026
+ai-usage: ai-assisted
 ms.subservice: edge-rag
+ms.collection: ce-skilling-ai-copilot
 ms.custom:
   - build-2025
-# Customer intent: As a system administrator, I want to configure an NFS server for Agentic Retrieval in Foundry Local, so that I can implement shared storage that enhances the high availability and scalability of my applications.
+# Customer intent: As a system administrator, I want to configure an NFS server for Agents and Tools with Foundry Local, so that I can implement shared storage that enhances the high availability and scalability of my applications.
 ---
 
-# Configure an NFS server for Agentic Retrieval in Foundry Local
+# Configure an NFS server for Agents and Tools with Foundry Local
 
-Install network file system (NFS) server packages and create the shared directory to use as a data source for Agentic Retrieval.
-
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+Install network file system (NFS) server packages and create the shared directory to use as a data source for Agents and Tools with Foundry Local.
 
 ## Configure the NFS server
 
-Complete the following steps to set up your NFS server to use with Agentic Retrieval.
+Complete the following steps to set up your NFS server to use with Agents and Tools with Foundry Local.
 
-1. Install NFS server packages. On the server to host the NFS shares, install the necessary NFS packages:
+This procedure configures `AUTH_SYS` access, where NFS authorizes requests by numeric user ID (UID) and group ID (GID). Use the same UID and GID when you create the ingestion data source, and give that identity read and directory-traverse access to the export. To use Kerberos instead, follow [Set up NFS with Kerberos authentication](connect-file-share-kerberos-setup.md).
+
+1. Install NFS server packages. On the server to host the NFS shares, install the necessary NFS packages.
 
    ```bash
    sudo apt update
@@ -39,15 +40,15 @@ Complete the following steps to set up your NFS server to use with Agentic Retri
      
      sudo groupadd -g 1003 edgerag_group 
 
-      # Create the user with uid 1003 and assign to the group if it doesn't exist. The following example uses UID 1003.
+     # Create the user with UID 1003 and assign it to the group if it doesn't exist.
 
      sudo useradd -u 1003 -g 1003 edgerag_user 
-     
-     # Set ownership to uid 1003 and gid 1003 **
+
+     # Set ownership to uid 1003 and gid 1003
 
      sudo chown 1003:1003 /srv/edgerag/share 
 
-     # Set appropriate permissions **
+     # Set appropriate permissions
 
      sudo chmod 755 /srv/edgerag/share
 
@@ -59,19 +60,19 @@ Complete the following steps to set up your NFS server to use with Agentic Retri
 
     /srv/edgerag/share *(rw,sync,no_subtree_check)
 
-     # Run the following command reflect the change:
+     # Run the following command to reflect the change:
 
      sudo exportfs -a
     ```
 
-1. Start and Enable the NFS Server Service.
+1. Start and enable the NFS server service.
 
    ```bash
    sudo systemctl restart nfs-kernel-server 
    sudo systemctl enable nfs-kernel-server 
    ```
 
-1. Optional - Set a password for the user to allow password-based SSH authentication. This step is needed if you want to copy files to the share by using the Secure Copy Protocol (SCP) command.
+1. (Optional) Set a password for the user to allow password-based SSH authentication. This step is needed if you want to copy files to the share by using the Secure Copy Protocol (SCP) command.
 
    ```bash
    sudo passwd edgerag_user
@@ -80,4 +81,4 @@ Complete the following steps to set up your NFS server to use with Agentic Retri
 ## Related content
 
 - [Supported data sources](requirements.md#supported-data-sources)
-- [Complete Agentic Retrieval deployment prerequisites](complete-prerequisites.md)
+- [Complete Agents and Tools with Foundry Local deployment prerequisites](complete-prerequisites.md)
