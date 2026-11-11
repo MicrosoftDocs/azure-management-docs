@@ -2,13 +2,16 @@
 title: CLI reference for `azcmagent connect`
 description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 03/24/2026
+ms.date: 11/10/2026
+ai-usage: ai-assisted
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
 # `azcmagent connect`
 
 Connects the server to Azure Arc by creating a metadata representation of the server in Azure and associating the Azure connected machine agent with it. The command requires information about the tenant, subscription, and resource group where you want to represent the server in Azure and valid credentials with permissions to create Azure Arc-enabled server resources in that location.
+
+To restore a server's connection to an existing Azure Arc resource, see [`azcmagent reconnect`](azcmagent-reconnect.md) (preview, agent version 1.70 or later).
 
 ## Usage
 
@@ -52,65 +55,19 @@ azcmagent connect --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --res
 
 ## Authentication options
 
-There are five ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
+<!-- Preserve published links to the former authentication method sections. -->
+<a id="interactive-browser-login-windows-only"></a>
+<a id="device-code-login"></a>
+<a id="service-principal-with-secret"></a>
+<a id="service-principal-with-certificate"></a>
+<a id="access-token"></a>
+<a id="azure-cli-credentials"></a>
 
-### Interactive browser login (Windows only)
-
-This option is the default on Windows operating systems with a desktop experience. Its login page opens in your default web browser. This option might be required if your organization configured conditional access policies that require you to log in from trusted machines.
-
-No flag is required to use the interactive browser login.
-
-### Device code login
-
-This option generates a code that you can use to log in on a web browser on another device. This option is the default on Windows Server core editions and all Linux distributions. When you execute the connect command, you have 5 minutes to open the specified login URL on an internet-connected device and complete the login flow.
-
-To authenticate with a device code, use the `--use-device-code` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
-
-### Service principal with secret
-
-Service principals allow you to authenticate noninteractively and are often used for at-scale deployments where the same script is run across multiple servers. Microsoft recommends providing service principal information via a configuration file (see `--config`) to avoid exposing the secret in any console logs. The service principal should also be dedicated for Arc onboarding and have as few permissions as possible, to limit the impact of a stolen credential.
-
-To authenticate with a service principal using a secret, provide the service principal's application ID, secret, and tenant ID: `--service-principal-id [appid] --service-principal-secret [secret] --tenant-id [tenantid]`
-
-### Service principal with certificate
-
-Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PKCS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
-
-To authenticate with a service principal using a certificate, provide the service principal's application ID, tenant ID, and path to the certificate file: `--service-principal-id [appId] --service-principal-cert [pathToPEMorPFXfile] --tenant-id [tenantid]`
-
-For more information, see [create a service principal for RBAC with certificate-based authentication](/cli/azure/azure-cli-sp-tutorial-3).
-
-Windows users have the option to use an exportable or nonexportable certificate in Windows certificate stores for onboarding. The certificate can be stored in Personal, Trusted Root Certification Authorities, Trusted Publishers, or Third-Party Root Certification Authorities under Local Machine Certificate Store or Current User Certificate Store. Password-protected certificates aren't currently supported.
-
-To authenticate with a service principal using a certificate from a Windows certificate store, provide the service principal's application ID, tenant ID, and certificate thumbprint: `--service-principal-id [appId] --service-principal-cert-thumbprint [certThumbprint] --tenant-id [tenantid]`
-
-### Access token
-
-Access tokens can also be used for non-interactive authentication, but they're short-lived. Access tokens are typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
-
-To authenticate with an access token, use the `--access-token [token]` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
-
-### Azure CLI credentials
-
-This option uses the credentials from an existing Azure CLI session on the machine. This is useful when you're already authenticated with Azure CLI and want to use the same identity for Azure Arc enrollment without re-entering credentials.
-
-To use Azure CLI credentials for authentication, your machine must have Azure Connected Machine agent version 1.59 or later.
-
-Before using this method, ensure you're logged in with Azure CLI by running:
-
-```bash
-az login
-```
-
-To authenticate with Azure CLI credentials, use the `--use-azcli` flag. If the account you're logged in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
+Choose a sign-in method and its flags from [Authenticate the azcmagent CLI](azcmagent-authentication.md). Use an account or service principal with the **[Azure Connected Machine Onboarding](security-identity-authorization.md#rbac-roles)** role, or equivalent permission to create servers in the target resource group.
 
 ## Flags
 
-This command supports the flags described in [Common flags](azcmagent.md#common-flags) and the flags listed in this section.
-
-`--access-token`
-
-Specifies the Microsoft Entra access token used to create the Azure Arc-enabled server resource in Azure. For more information, see [authentication options](#authentication-options).
+This command supports [Common flags](azcmagent.md#common-flags), [Authentication flags](azcmagent-authentication.md#authentication-flags), and the flags listed in this section.
 
 `--automanage-profile`
 
@@ -174,18 +131,6 @@ If you want to force AWS servers to use the hostname instead of the instance ID,
 
 Sample value: `FileServer01`
 
-`-i`, `--service-principal-id`
-
-Specifies the application ID of the service principal used to create the Azure Arc-enabled server resource in Azure. Must be used with the  `--tenant-id` and either the `--service-principal-secret` or `--service-principal-cert` flags. For more information, see [authentication options](#authentication-options).
-
-`--service-principal-cert`
-
-Specifies the path to a service principal certificate file. Must be used with the `--service-principal-id` and `--tenant-id` flags. The certificate must include a private key and can be in a PKCS #12 (.PFX) or ASCII-encoded text (.PEM, .CRT) format. Password-protected PFX files are not supported. For more information, see [authentication options](#authentication-options).
-
-`-p`, `--service-principal-secret`
-
-Specifies the service principal secret. Must be used with the `--service-principal-id` and `--tenant-id` flags. To avoid exposing the secret in console logs, Microsoft recommends providing the service principal secret in a configuration file. For more information, see [authentication options](#authentication-options).
-
 `-s`, `--subscription-id`
 
 The subscription name or ID where you want to create the Azure Arc-enabled server resource.
@@ -200,16 +145,4 @@ Sample value: `Datacenter=NY3,Application=SharePoint,Owner='Shared Infrastructur
 
 `-t`, `--tenant-id`
 
-The tenant ID for the subscription where you want to create the Azure Arc-enabled server resource. This flag is required when authenticating with a service principal. For all other authentication methods, the home tenant of the account used to authenticate with Azure is used for the resource as well. If the tenants for the account and subscription are different (such as when using guest accounts or [Azure Lighthouse](/azure/lighthouse)), you must specify the tenant ID to clarify the tenant where the subscription is located.
-
-`--use-device-code`
-
-Generate a Microsoft Entra device login code that can be entered in a web browser on another computer to authenticate the agent with Azure. For more information, see [authentication options](#authentication-options).
-
-`--use-azcli`
-
-Use the credentials from the current Azure CLI session to authenticate with Azure. Requires Azure Connected Machine agent version 1.59 or later and an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
-
-`--user-tenant-id`
-
-The tenant ID for the account used to connect the server to Azure. This field is required when the tenant of the onboarding account isn't the same as the desired tenant for the Azure Arc-enabled server resource.
+The tenant ID for the subscription where you want to create the Azure Arc-enabled server resource. This flag is required when authenticating with a service principal or whenever `--user-tenant-id` is supplied. Otherwise, the home tenant of the account used to authenticate with Azure is used for the resource as well. If the tenants for the account and subscription are different (such as when using guest accounts or [Azure Lighthouse](/azure/lighthouse)), you must specify the tenant ID to clarify the tenant where the subscription is located.

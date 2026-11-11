@@ -253,6 +253,8 @@
     items:
     - name: Overview
       href: azcmagent.md
+    - name: Authentication
+      href: azcmagent-authentication.md
     - name: azcmagent check
       href: azcmagent-check.md
     - name: azcmagent config
@@ -271,6 +273,8 @@
       href: azcmagent-license.md
     - name: azcmagent logs
       href: azcmagent-logs.md
+    - name: azcmagent reconnect (preview)
+      href: azcmagent-reconnect.md
     - name: azcmagent show
       href: azcmagent-show.md
     - name: azcmagent upgrade

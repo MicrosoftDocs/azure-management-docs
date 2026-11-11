@@ -16,6 +16,8 @@ Unless otherwise specified, the command syntax and flags represent available opt
 
 To get details about the individual commands available in the `azcmagent` CLI, run `azcmagent COMMANDNAME --help` or see the following reference pages:
 
+For sign-in methods and shared authentication flags, see [Authenticate the azcmagent CLI](azcmagent-authentication.md).
+
 ## Commands
 
 | Command | Purpose |
@@ -28,6 +30,7 @@ To get details about the individual commands available in the `azcmagent` CLI, r
 | [`azcmagent help`](azcmagent-help.md) | Get help for commands. |
 | [`azcmagent license`](azcmagent-license.md) | Display the end-user license agreement. |
 | [`azcmagent logs`](azcmagent-logs.md) | Collect logs to troubleshoot agent issues. |
+| [`azcmagent reconnect`](azcmagent-reconnect.md) | Restore the server's connection to its existing Azure Arc resource (preview). |
 | [`azcmagent show`](azcmagent-show.md) | Display the agent status. |
 | [`azmagent upgrade`](azcmagent-upgrade.md) | Upgrade the agent to the latest version. |
 | [`azcmagent version`](azcmagent-version.md) | Display the agent version. |

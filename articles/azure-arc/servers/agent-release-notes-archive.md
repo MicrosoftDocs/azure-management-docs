@@ -282,7 +282,7 @@ Customers using private endpoints with Azure Arc may encounter issues with exten
 
 ### New features
 
-- Certificate-based authentication is now supported when using a service principal to connect or disconnect the agent. For more information, see [authentication options for the azcmagent CLI](azcmagent-connect.md#authentication-options).
+- Certificate-based authentication is now supported when using a service principal to connect or disconnect the agent. For more information, see [authentication options for the azcmagent CLI](azcmagent-authentication.md#service-principal-with-certificate).
 - [azcmagent check](azcmagent-check.md) now allows you to also check for the endpoints used by the SQL Server enabled by Azure Arc extension using the new `--extensions` flag. This can help you troubleshoot networking issues for both the OS and SQL management components. You can try this out by running `azcmagent check --extensions sql --location eastus` on a server, either before or after it is connected to Azure Arc.
 
 ### Fixed
@@ -414,7 +414,7 @@ The Windows Admin Center in Azure feature is incompatible with Azure Connected M
 
 - The Linux installation script now downloads supporting assets with either wget or curl, depending on which tool is available on the system
 - [azcmagent connect](azcmagent-connect.md) and [azcmagent disconnect](azcmagent-disconnect.md) now accept the `--user-tenant-id` parameter to enable Lighthouse users to use a credential from their tenant and onboard a server to a different tenant.
-- You can configure the extension manager to run, without allowing any extensions to be installed, by configuring the allowlist to `Allow/None`. This supports Windows Server 2012 ESU scenarios where the extension manager is required for billing purposes but doesn't need to allow any extensions to be installed. Learn more about [local security controls](security-extensions.md#local-agent-security-controls).
+- You can configure the extension manager to run without allowing any extensions to be installed by configuring the allow list to `Allow/None`. This configuration supports Windows Server 2012 ESU scenarios where the extension manager is required for billing purposes but doesn't need to allow any extensions to be installed. Learn more about [local security controls](security-extensions.md#local-agent-security-controls).
 
 ### Fixed
 
@@ -651,7 +651,7 @@ Download for [Windows](https://download.microsoft.com/download/1/3/5/135f1f2b-7b
 - The agent now supports Red Hat Enterprise Linux 8 servers that have FIPS mode enabled.
 - Agent telemetry uses the proxy server when configured.
 - Improved accuracy of network connectivity checks
-- The agent retains extension allow and blocklists when switching the agent from monitoring mode to full mode. Use [azcmagent config clear](azcmagent-config.md) to reset individual configuration settings to the default state.
+- The agent retains extension allow and block lists when switching the agent from monitoring mode to full mode. Use [azcmagent config clear](azcmagent-config.md) to reset individual configuration settings to the default state.
 
 ## Version 1.21 - August 2022
 
