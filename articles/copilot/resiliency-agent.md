@@ -1,7 +1,7 @@
 ---
 title: Azure Copilot Resiliency Agent (preview)
 description: The Azure Copilot Resiliency Agent helps you strengthen the reliability of your Azure workloads and get recommendations for high availability, disaster recovery, and fault tolerance.
-ms.date: 10/23/2026
+ms.date: 11/11/2026
 ms.service: azure-copilot
 ms.topic: concept-article
 # Customer intent: "As an Azure Copilot user, I want to understand how to use the Resiliency Agent, so that I can improve the reliability of my Azure workloads."
@@ -22,28 +22,150 @@ To use the Resiliency Agent, select **Resiliency** from the **New chat** options
 
 The agent supports two primary capability areas:
 
-### Start Resilient — Design with resiliency from day one
+## Start Resilient for new applications
 
-Start Resilient helps you build resiliency into your applications before they are deployed. Describe your application architecture in natural language, and the agent will:
+Provide application context in any of the following ways:
 
-- Analyze your application topology and identify resiliency best practices relevant to your resources.
-- Generate a detailed resiliency report with recommendations tailored to your architecture.
-- Produce deployment-ready Bicep, ARM JSON, or Terraform with the recommended resilience configurations already enabled.
+- Describe your proposed application in natural language.
+- Upload an architecture diagram.
+- Upload existing infrastructure-as-code (IaC) templates for review.
 
-This capability is designed for teams that are building new applications or modernizing existing ones and want to ensure resiliency is a deployment default — not a remediation afterthought.
+The agent analyzes the architecture, identifies relevant resilience practices, and generates recommendations tailored to your resources. Ask it to generate Bicep, Azure Resource Manager (ARM) JSON, or Terraform templates with recommended resilience configurations enabled. Review the proposed architecture and validate the generated templates before deployment.
 
-### Get Resilient — Assess and improve your existing workloads
+Sample prompts include:
 
-Get Resilient helps you understand and improve the resiliency posture of workloads that are already running in Azure. The agent can:
+- *My app has a VM, a PostgreSQL database, and a load balancer. Help me start my resilient journey.*
+- *I'm building an application with AKS, Redis, Storage, and Cosmos DB. What should I do to make it resilient?*
+- *Generate a Bicep template for a zone-resilient VM setup.*
+- *Create Bicep templates for a resilient architecture with VMs, AKS, and Storage.*
+- *Review the uploaded architecture diagram and generate resilient Terraform for this application.*
+- *Review my existing IaC templates and recommend zone resilience improvements.*
 
-- Check whether individual resources or entire application groups (Service Groups) are zonally resilient.
-- Identify prerequisites and blockers for enabling resiliency on your resources.
-- Provide guided remediation — including direct conversions where supported, or step-by-step migration guidance for more complex scenarios.
-- Generate enablement scripts in your preferred format (PowerShell, Azure CLI, Bicep, ARM JSON, or Terraform).
-- Help you organize resources into Service Groups, set resiliency goals, and track compliance over time.
-- Surface indicative cost impact so you can make informed decisions about remediation.
+## Get Resilient for existing applications
 
-This capability is designed for teams managing existing workloads who want to systematically close resiliency gaps and maintain compliance with their organization's resiliency objectives.
+Use the agent to assess and improve the zone resilience of workloads that are already running in Azure.
+
+### Discover application resources and dependencies (preview)
+
+If you don't know which resources belong to an application, use automatic application discovery. The agent uses resource metadata and relationships to propose application boundaries, including shared resources and a catch-all boundary for resources it couldn't associate with an application. Review these suggestions before using them to define service groups; they might not match your organization's application boundaries.
+
+To discover applications:
+
+1. Provide the complete resource ID of a subscription or resource group, such as `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`.
+1. Choose **Automatic application discovery**, and select an existing discovery agent or ask the agent to create one. A discovery agent is an Azure resource that reads the scope through a system-assigned managed identity.
+1. Ensure that the discovery agent's managed identity has **Reader** access on the subscription or resource group. Assign the role manually, or ask the agent to assign it after confirmation if you have role-assignment permissions.
+1. Review the proposed boundaries, grouping explanations, resource counts, shared resources, and catch-all resources.
+1. Ask the agent to create service groups from the reviewed boundaries or add resources to existing service groups. Confirm the proposed changes before they're applied.
+
+The discovery agent supports only system-assigned managed identities. Discovery scopes must be complete subscriptions or resource groups; management groups, individual resources, partial names, tags, resource types, and locations aren't supported as discovery scopes. You can alternatively identify service-group resources by Azure Resource Graph criteria or a list of resource IDs.
+
+If you want the agent to assign **Reader**, you need permission to create role assignments, such as **User Access Administrator** or **Role Based Access Control Administrator**. Creating service groups and adding members also requires the [service-group permissions](goals-recommendations-support-matrix.md#rbac-requirements-for-goals-and-recommendations).
+
+Sample prompts include:
+
+- *Discover all application resources in /subscriptions/\<subscription-id\>.*
+- *Discover all application resources in /subscriptions/\<subscription-id\>/resourceGroups/\<resource-group-name\>.*
+- *Create service groups for the discovered applications.*
+
+When you request the same scope in a new conversation, the agent can offer previous discovery results instead of rerunning discovery. Resource discovery doesn't determine the recovery order for a recovery plan; you must specify that order.
+
+### Check resilience and prerequisites
+
+Ask whether an individual resource or an entire service group is zone-resilient. The agent returns the current resilience status and relevant configuration details. It can also identify blockers such as regional limitations, permissions, and configuration dependencies.
+
+Sample prompts include:
+
+- *Is my VM zone-resilient?*
+- *Get the zone resilience posture of my service group.*
+- *What are the prerequisites to make my VM zone-resilient?*
+
+### Enable resilience and generate scripts
+
+For resource types that support in-place conversion, the agent can enable zone resilience after you confirm the change. For resources that require redeployment, such as virtual machines, the agent provides migration guidance and scripts instead of changing the resource.
+
+The agent can generate enablement scripts in Azure PowerShell, Azure CLI, Bicep, Terraform, and Azure Resource Manager template formats.
+
+Sample prompts include:
+
+- *Enable zone resilience for my PostgreSQL server.*
+- *How do I make my storage account zone-redundant?*
+- *Give me scripts to enable zone resilience for my resources.*
+
+> [!IMPORTANT]
+> Review and validate all recommendations, scripts, templates, and proposed changes before you use them in a production environment. Resource-changing operations require your confirmation.
+
+### Organize resources and track goals
+
+The agent can create service groups, add resources to them, set zone resilience goals, check goal compliance, exclude resources, and refresh compliance after configuration changes.
+
+For an end-to-end workflow, ask the agent to:
+
+1. Create a service group for your application.
+1. Set zone resilience goals.
+1. Check the resilience posture.
+1. Fix identified problems or generate scripts for remediation.
+
+For more information about these workflows, see [Assign goals and view resilience posture](goals-recommendations-assign-goals-view-posture.md) and [Review recommendations](goals-recommendations-review-recommendations.md).
+
+## Stay resilient for ongoing validation and recovery readiness
+
+Use the agent to assess applications as they change, prepare recovery orchestration, and configure zone-down drills before an outage.
+
+### Prerequisites for drills and recovery plans
+
+- Enroll the service group in a [usage plan](infrastructure-resiliency-manager-pricing.md#enroll-a-service-group-in-a-usage-plan) before using drills or recovery plans.
+- Ensure that you have the required [drill roles and permissions](availability-zone-down-drills-support-matrix.md#required-roles-and-permissions) and [recovery-plan roles](recovery-orchestration-plan-support-matrix.md#role-requirements).
+- Before executing a drill, configure a service-level indicator (SLI) or an Azure Monitor health model. The agent can list existing options and attach your selection, but can't create them.
+- If drill resources require manual failover, such as Azure Site Recovery-protected VMs, prepare a ready recovery plan.
+- Use existing Azure Automation runbooks for custom drill faults and recovery group pre-scripts or post-scripts. The agent doesn't create runbooks.
+
+### Reassess your application
+
+Ask the agent to run a resilience assessment for a service group. The assessment summarizes resource counts and zone resilience, explains risks, and recommends actions for observability, drills, and recovery-plan gaps. Rerun it after application changes and after drills.
+
+Sample prompts include:
+
+- *Run a resilience assessment for my service group.*
+- *What should I fix first?*
+- *Download the assessment report.*
+
+You can download the report as Markdown. The service doesn't save reports, and it doesn't support comparison with previous reports. Retain downloaded reports externally if you need a historical record.
+
+### Prepare a recovery orchestration plan
+
+Ask the agent to create a recovery plan, explain resource protection and inclusion states, and investigate resources that need attention. You can organize resources into groups, specify recovery order, add manual steps and pre-scripts or post-scripts from existing runbooks, and check readiness.
+
+A recovery plan orchestrates recovery; it doesn't protect resources. In the recovery-plan workflow, the agent can direct you to the appropriate page to enable protection such as Azure Site Recovery, but it doesn't enable it for you. For Azure VM backup, use the separate [guided backup experience](tutorial-manage-data-using-copilot.md#configure-backup-for-azure-vms). The agent doesn't infer dependencies or choose the recovery order.
+
+Sample prompts include:
+
+- *Create a recovery plan for my service group.*
+- *Which resources in my recovery plan need attention?*
+- *Add a pre-script to the first group in my recovery plan.*
+- *Is my recovery plan ready?*
+
+For configuration details, see [Create and configure a recovery orchestration plan](recovery-orchestration-plan-create-configure.md). Perform [failover and reprotect operations](recovery-orchestration-plan-execute.md) from the portal, not through the agent.
+
+### Prepare and validate a zone-down drill
+
+Ask the agent to create a drill with suggested defaults, explain included and excluded resources, and configure native faults or custom faults from existing runbooks. The agent can help resolve onboarding and permission blockers, attach an existing SLI or health model that you select, and check readiness. If manual-failover resources need a recovery plan, it can offer to help create one.
+
+Sample prompts include:
+
+- *Create a zone down drill for my service group.*
+- *Why are some resources excluded from my drill?*
+- *Attach a health model to my drill.*
+- *Why is my drill not ready?*
+
+Review the proposed configuration and confirm resource-changing operations. When readiness checks pass, [execute the drill in the Azure portal](availability-zone-down-drill-execute.md). The agent doesn't execute drills. After execution, review the results and rerun the resilience assessment to identify further improvements.
+
+## Manage data resiliency with Azure Backup
+
+Use the Resiliency Agent to manage backups as well as infrastructure resilience. You can review your protection estate, configure backup for Azure VMs with guided vault and policy creation or selection, improve vault security, monitor recovery points and jobs, and troubleshoot backup failures.
+
+Open the agent from Azure Copilot, or select a contextual nudge on a backup-related portal page. Try prompts such as *Help me configure backup for my VM*, *Show the security level of all my vaults*, or *Show job failures for this vault*.
+
+For supported scenarios, sample prompts, and guided workflows, see [Manage data resiliency using Azure Copilot Resiliency Agent](tutorial-manage-data-using-copilot.md). Azure Backup capabilities are also available through [Azure MCP Server tools](/azure/developer/azure-mcp-server/tools/azure-backup?tabs=azure-mcp-cli) for MCP-compatible clients such as GitHub Copilot.
 
 ## How to Access the Resiliency Agent
 
