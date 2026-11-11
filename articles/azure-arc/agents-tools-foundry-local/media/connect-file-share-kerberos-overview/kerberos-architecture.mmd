@@ -1,0 +1,19 @@
+graph TD
+    AD("🔐 <b>Active Directory / KDC</b><br/>dc01.contoso.com<br/>Ports: 88 · 464 · 389")
+
+    subgraph Node ["🖥️ Kubernetes Worker Node (domain-joined)"]
+        direction TB
+        Config("⚙️ <b>Node Kerberos Config</b><br/>/etc/krb5.conf<br/>/etc/krb5.keytab<br/>rpc.gssd · kubelet")
+        Pod("📦 <b>Ingestion Pod</b><br/>/mnt/data—PVC mount<br/>Pod is unaware of Kerberos")
+    end
+
+    NFS("💾 <b>NFS File Server</b><br/>nfs-server.contoso.com<br/>/exports/data · sec=krb5p<br/>Port: 2049")
+
+    AD -->|"Kerberos tickets<br/>port 88"| Config
+    Config -->|"NFS mount<br/>sec=krb5p · port 2049"| Pod
+    Pod -->|"NFS v4.1 + krb5p<br/>fully encrypted"| NFS
+
+    style AD fill:#0078d4,stroke:#005a9e,stroke-width:2px,color:#fff
+    style Config fill:#2e7d32,stroke:#008272,stroke-width:2px,color:#fff
+    style Pod fill:#50e6ff,stroke:#005a9e,stroke-width:2px,color:#005a9e
+    style NFS fill:#5c2d91,stroke:#005a9e,stroke-width:2px,color:#fff

@@ -1,69 +1,128 @@
 ---
-title: Set up SharePoint server-to-server authentication
-description: Learn how to configure a certificate Secret and SharePoint Server authentication for indexed ingestion with Agents and Tools with Foundry Local.
-ms.reviewer: assafakiva
+title: Set Up SharePoint Server-to-Server Authentication for Agentic Retrieval in Foundry Local
+description: "Learn how to configure certificates, Azure Key Vault, Workload Identity, and SharePoint Server for server-to-server authentication with Agentic Retrieval in Foundry Local."
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: how-to
-ms.date: 11/05/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-ms.custom:
-  - sfi-ropc-nochange
-#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agents and Tools with Foundry Local.
+#customer intent: As a platform administrator, I want to set up SharePoint server-to-server authentication so that I can securely ingest on-premises SharePoint data with Agentic Retrieval in Foundry Local.
 ---
 
-# Set up SharePoint server-to-server authentication
+# Set up SharePoint server-to-server authentication for Agentic Retrieval in Foundry Local
 
-This article explains how to set up High-Trust Server-to-Server (S2S) authentication for indexed ingestion from SharePoint Server Subscription Edition.
-
-SharePoint ingestion is enabled by default in Knowledge and combined deployments. You don't provide deployment-wide SharePoint credentials. For each new SharePoint source, you select an existing Kubernetes Secret and provide the SharePoint identity values for that source.
+This article provides a step-by-step guide for setting up SharePoint Server High-Trust Server-to-Server (S2S) authentication.
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
-- Farm Administrator access to SharePoint Management Shell.
-- Access to the cluster by using `kubectl`.
-- A SharePoint Server Subscription Edition site and document library.
-- A Windows account for ingestion, with a Windows SID, SharePoint User Profile, and read access to the selected content.
-- DNS and HTTPS connectivity from the application namespace to the SharePoint Windows-claims zone.
-- A certificate chain that the ingestion workers trust. Don't disable TLS verification in production.
+- Access to a Windows machine or SharePoint server for running PowerShell in Steps 2 and 5.
+- An Azure Key Vault, an Arc-enabled Kubernetes or AKS cluster, and permissions to create or manage a user-assigned managed identity.
+- A reachable SharePoint Server Subscription Edition environment where you can run SharePoint Management Shell as a Farm Administrator.
 
 Estimated time: approximately 2 hours.
 
-## Step 1: Verify network connectivity
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-Set the application namespace and SharePoint host. Replace `arc-rag` if your extension uses another namespace.
+## Step 1: Install cluster prerequisites
 
-```bash
-NAMESPACE="arc-rag"
-SHAREPOINT_HOST="<sharepoint_fqdn>"
+You must install two cluster-level components before enabling SharePoint in Agentic Retrieval.
 
-kubectl run netcheck \
-  --namespace "$NAMESPACE" \
-  --image=busybox:1.36 \
-  --restart=Never \
-  -- sleep 300
+### Install CSI Secrets Store Driver
 
-kubectl wait \
-  --namespace "$NAMESPACE" \
-  --for=condition=Ready pod/netcheck \
-  --timeout=90s
+The CSI driver syncs your certificate from Azure Key Vault into the Kubernetes cluster as a Kubernetes secret. Without it, the ingestion pod fails to start with `driver "secrets-store.csi.k8s.io" not found`.
 
-kubectl exec --namespace "$NAMESPACE" netcheck -- nslookup "$SHAREPOINT_HOST"
-kubectl exec --namespace "$NAMESPACE" netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 443
-kubectl delete pod --namespace "$NAMESPACE" netcheck --ignore-not-found
+**For AKS:**
+
+```azurecli
+az aks enable-addons \
+  --resource-group <resource_group> \
+  --name <cluster_name> \
+  --addons azure-keyvault-secrets-provider \
+  --enable-secret-rotation
 ```
 
-Resolve DNS, firewall, proxy, routing, or certificate-trust issues before you continue.
+**For Arc-enabled Kubernetes (Azure Local):**
 
-## Step 2: Create the signing certificate
+```azurecli
+az k8s-extension create \
+  --cluster-name <cluster_name> \
+  --resource-group <resource_group> \
+  --cluster-type connectedClusters \
+  --extension-type microsoft.azure.secretstore \
+  --name ssarcextension \
+  --scope cluster \
+  --configuration-settings \
+    rotationPollIntervalInSeconds=120 \
+    secrets-store-csi-driver.syncSecret.enabled=true
+```
 
-Run the following PowerShell on a protected Windows machine:
+### Enable Workload Identity and OIDC issuer
+
+By using Workload Identity, the CSI driver authenticates to Azure Key Vault by using a federated Kubernetes ServiceAccount. The cluster doesn't store any client secrets.
+
+You use the OIDC issuer URL from this section in Step 4. Keep it available for the federated credential command.
+
+**For AKS:**
+
+```azurecli
+az aks update \
+  --resource-group <resource_group> \
+  --name <cluster_name> \
+  --enable-oidc-issuer \
+  --enable-workload-identity
+```
+
+**For Arc-enabled Kubernetes:**
+
+```azurecli
+az connectedk8s update \
+  --name <cluster_name> \
+  --resource-group <resource_group> \
+  --enable-oidc-issuer
+```
+
+### Verify network connectivity
+
+Before you continue, verify that cluster network access meets SharePoint and Key Vault requirements.
+
+Run these checks from a shell that can access your cluster with `kubectl`:
+
+```bash
+# Set target hosts
+SHAREPOINT_HOST="<sharepoint_fqdn>"
+KEYVAULT_HOST="<keyvault_name>.vault.azure.net"
+
+# Start a temporary pod for network tests
+kubectl run netcheck --image=busybox:1.36 --restart=Never -- sleep 300
+kubectl wait --for=condition=Ready pod/netcheck --timeout=90s
+
+# 1) DNS resolution for SharePoint
+kubectl exec netcheck -- nslookup "$SHAREPOINT_HOST"
+
+# 2) Reach SharePoint on 80 or 443 (use the one your environment uses)
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 80
+kubectl exec netcheck -- nc -zvw5 "$SHAREPOINT_HOST" 443
+
+# 3) Reach Azure Key Vault on 443
+kubectl exec netcheck -- nc -zvw5 "$KEYVAULT_HOST" 443
+
+# Clean up
+kubectl delete pod netcheck --ignore-not-found
+```
+
+If any check fails, resolve DNS, firewall, proxy, or routing issues before you continue. These checks validate that pods can resolve and connect to SharePoint and Azure Key Vault.
+
+## Step 2: Create the certificate
+
+Run the following PowerShell on any Windows machine or on the SharePoint server:
 
 ```powershell
+# Create a self-signed certificate (RSA 2048, SHA256, valid 2 years)
 $cert = New-SelfSignedCertificate `
-    -Subject "CN=FoundryLocal-SharePoint-S2S" `
+    -Subject "CN=EdgeRAG-SharePoint-S2S" `
     -CertStoreLocation "Cert:\LocalMachine\My" `
     -KeyExportPolicy Exportable `
     -KeySpec KeyExchange `
@@ -72,198 +131,397 @@ $cert = New-SelfSignedCertificate `
     -NotAfter (Get-Date).AddYears(2) `
     -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider"
 
+# Choose a strong password for the PFX export
 $pfxPassword = ConvertTo-SecureString "<your_pfx_password>" -AsPlainText -Force
 
-Export-PfxCertificate `
-    -Cert $cert `
-    -FilePath "C:\sharepoint-s2s.pfx" `
-    -Password $pfxPassword
+# Export PFX (private key) -  this goes to Azure Key Vault
+Export-PfxCertificate -Cert $cert -FilePath "C:\edgerag-s2s.pfx" -Password $pfxPassword
 
-Export-Certificate `
-    -Cert $cert `
-    -FilePath "C:\sharepoint-s2s.cer"
+# Export CER (public key only) -  this stays on the SharePoint server
+Export-Certificate -Cert $cert -FilePath "C:\edgerag-s2s.cer"
 
-Write-Output "Certificate thumbprint: $($cert.Thumbprint)"
+# Note the thumbprint for troubleshooting
+Write-Output "Certificate Thumbprint: $($cert.Thumbprint)"
 ```
 
-Protect the PFX file and its password. Don't commit them to source control.
+After this step, you have:
 
-## Step 3: Create the certificate Secret
+| File | Contains | Destination |
+|---|---|---|
+| `edgerag-s2s.pfx` | Private key (for signing JWTs) | Azure Key Vault |
+| `edgerag-s2s.cer` | Public key (for verification) | SharePoint Server |
+| Thumbprint | Identifier for debugging | Your notes |
 
-The person creating the Secret needs `create` permission on Secrets in the application namespace. Rotation also requires `update` or `patch`, depending on the command you use.
+## Step 3: Upload certificate to Azure Key Vault
+
+Upload the PFX and its password as two separate secrets:
+
+```azurecli
+# Upload PFX certificate (base64-encoded binary)
+az keyvault secret set \
+  --vault-name "<keyvault_name>" \
+  --name "edgerag-sp-s2s-cert" \
+  --file "edgerag-s2s.pfx" \
+  --encoding base64
+
+# Upload PFX password
+az keyvault secret set \
+  --vault-name "<keyvault_name>" \
+  --name "sp-cert-password" \
+  --value "<your_pfx_password>"
+```
+
+The secret names must match the values you provide during installation (`KV Cert Secret Name` and `KV Cert Password Secret Name` fields).
+
+| Key Vault secret name | Default in extension | Contains |
+|---|---|---|
+| `edgerag-sp-s2s-cert` | `edgerag-sp-s2s-cert` | PFX certificate (base64) |
+| `sp-cert-password` | `sp-cert-password` | PFX password (plaintext string) |
+
+## Step 4: Set up Workload Identity for Key Vault access
+
+In this step, you create and connect a managed identity so the cluster can securely read certificate secrets from Azure Key Vault without storing client secrets.
+
+### Create a user-assigned managed identity
+
+```azurecli
+az identity create \
+  --name "edgerag-kv-identity" \
+  --resource-group "<resource_group>" \
+  --location "<location>"
+
+# Capture the Client ID -  you need this for the "Workload Identity Client ID" portal field
+MI_CLIENT_ID=$(az identity show \
+  --name "edgerag-kv-identity" \
+  --resource-group "<resource_group>" \
+  --query clientId -o tsv)
+
+echo "Managed Identity Client ID: $MI_CLIENT_ID"
+```
+
+### Grant the managed identity access to Key Vault
+
+**Using access policies:**
+
+```azurecli
+az keyvault set-policy \
+  --name "<keyvault_name>" \
+  --secret-permissions get \
+  --spn "$MI_CLIENT_ID"
+```
+
+**Or using Azure RBAC (if your Key Vault uses RBAC):**
+
+```azurecli
+KV_RESOURCE_ID=$(az keyvault show --name "<keyvault_name>" --query id -o tsv)
+
+az role assignment create \
+  --role "Key Vault Secrets User" \
+  --assignee "$MI_CLIENT_ID" \
+  --scope "$KV_RESOURCE_ID"
+```
+
+### Create a federated identity credential
+
+This step links a Kubernetes ServiceAccount to the managed identity, so the CSI driver can authenticate to Key Vault without storing any client secret in the cluster.
+
+The ServiceAccount name depends on your configuration:
+
+| Configuration | ServiceAccount | Subject for federated credential |
+|---|---|---|
+| SharePoint S2S only | `edgerag-sp-sa` | `system:serviceaccount:arc-rag:edgerag-sp-sa` |
+| SharePoint S2S **+ Kerberos** | `kerberos-ingestion-sa` | `system:serviceaccount:arc-rag:kerberos-ingestion-sa` |
+
+When Kerberos is enabled (`kerberos.enabled=true`), the ingestion pod uses `kerberos-ingestion-sa` instead of `edgerag-sp-sa` because it needs additional cluster-scoped permissions for persistent volume and node access. The SharePoint workload identity annotations are applied to whichever ServiceAccount the pod uses.
+
+The `--subject` value must exactly match the extension's namespace and ServiceAccount in this format: `system:serviceaccount:<namespace>:<serviceaccount_name>`. If your deployment uses a different namespace, update the subject value to match it exactly. If this value doesn't match, the workload identity exchange fails and the cluster can't read Key Vault secrets.
+
+```azurecli
+# Get the OIDC issuer URL
+# For AKS:
+ISSUER_URL=$(az aks show \
+  --resource-group "<resource_group>" \
+  --name "<cluster_name>" \
+  --query "oidcIssuerProfile.issuerUrl" -o tsv)
+
+# For Arc:
+# ISSUER_URL=$(az connectedk8s show \
+#   --name "<cluster_name>" \
+#   --resource-group "<resource_group>" \
+#   --query "oidcIssuerProfile.issuerUrl" -o tsv)
+
+# Create the federated credential
+# Use "edgerag-sp-sa" if SharePoint only, "kerberos-ingestion-sa" if Kerberos is also enabled
+SA_NAME="edgerag-sp-sa"  # Change to "kerberos-ingestion-sa" if Kerberos is enabled
+
+az identity federated-credential create \
+  --name "edgerag-sp-credential" \
+  --identity-name "edgerag-kv-identity" \
+  --resource-group "<resource_group>" \
+  --issuer "$ISSUER_URL" \
+  --subject "system:serviceaccount:arc-rag:${SA_NAME}" \
+  --audience "api://AzureADTokenExchange"
+```
+
+> [!TIP]
+> If you plan to toggle Kerberos on or off, create federated credentials for **both** ServiceAccounts to avoid CSI mount failures when switching configurations.
+
+If you're unsure which ServiceAccount is in use after installation, check with:
 
 ```bash
-NAMESPACE="arc-rag"
-kubectl auth can-i create secrets --namespace "$NAMESPACE"
+kubectl get pods -n arc-rag -l app=ingestion-publisher -o jsonpath='{.items[0].spec.serviceAccountName}'
 ```
 
-The extension installs the ingestion service account's permission to read selected Secrets. A person who submits ingestion through the external API needs an access token and an Azure role that allows ingestion, not direct Kubernetes Secret-read access. Assign **Cognitive Services Contributor** at the extension scope, or **Contributor** in disconnected deployments. The `EdgeRAGDeveloper` app role also works as a fallback. See [Assign Azure roles](prepare-authentication.md#assign-azure-roles).
+## Step 5: Configure SharePoint Server
 
-Create the Secret in the application namespace. The certificate data key must be `cert.pfx` and must be nonempty. The password data key must exist even when the PFX password is empty.
+Run all commands in this section on the SharePoint server by using SharePoint Management Shell as a Farm Administrator. If you run this remotely, connect to the SharePoint server first and run the commands in that session.
 
-```powershell
-$namespace = "arc-rag"
-[System.IO.File]::WriteAllText("$PWD\cert-password.txt", "<your_pfx_password>")
-
-kubectl create secret generic sharepoint-s2s-cert `
-  --namespace $namespace `
-  --from-file=cert.pfx=C:\sharepoint-s2s.pfx `
-  --from-file=cert-password="$PWD\cert-password.txt"
-
-Remove-Item cert-password.txt
-```
-
-For an unencrypted PFX, use an empty password file so the `cert-password` key still exists.
-
-Check only the Secret metadata and key names. Don't print or decode credential values.
-
-```bash
-kubectl describe secret sharepoint-s2s-cert --namespace "$NAMESPACE"
-```
-
-## Step 4: Configure SharePoint Server
-
-Run this step on the SharePoint server in SharePoint Management Shell as a Farm Administrator.
-
-For the complete SharePoint high-trust model and farm prerequisites, see [Create high-trust SharePoint Add-ins](/sharepoint/dev/sp-add-ins/create-high-trust-sharepoint-add-ins) and [Package and publish high-trust SharePoint Add-ins](/sharepoint/dev/sp-add-ins/package-and-publish-high-trust-sharepoint-add-ins).
-
-### Verify required service applications
-
-The target web application needs App Management and Subscription Settings service applications and proxies. This ingestion flow also needs a User Profile service application and proxy so SharePoint can resolve the selected ingestion-account SID.
-
-```powershell
-Get-SPServiceApplication |
-    Select-Object DisplayName, TypeName
-
-Get-SPServiceApplicationProxy |
-    Select-Object DisplayName, TypeName
-
-Get-SPDatabase |
-    Select-Object Name, TypeName, Server
-```
-
-Confirm that the required service applications and proxies are present and associated with the target web application. In the database inventory, identify the row whose `TypeName` is **Configuration Database**. Don't assume that its name is `SharePoint_Config`.
-
-If a required service application is missing, create it through Central Administration or your approved farm-provisioning process. For Microsoft's reference scripts, see [High-trust configuration scripts for SharePoint](/sharepoint/dev/sp-add-ins/high-trust-configuration-scripts-for-sharepoint). Don't run a generic database-creation script without the farm administrator approving the application pool, managed account, database server, and database names.
-
-### Register the certificate and trusted issuer
+### Register certificate as trusted root authority
 
 ```powershell
 Add-PSSnapin Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue
 
-$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2(
-    "C:\sharepoint-s2s.cer"
-)
+# Load the public key certificate (.cer file from Step 2)
+$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2("C:\edgerag-s2s.cer")
 
-New-SPTrustedRootAuthority `
-    -Name "FoundryLocal-SharePoint-S2S" `
-    -Certificate $cert
-
-$issuerId = [guid]::NewGuid().ToString()
-$realm = Get-SPAuthenticationRealm
-$registeredIssuerName = "$issuerId@$realm"
-
-New-SPTrustedSecurityTokenIssuer `
-    -Name "FoundryLocal-SharePoint-S2S" `
-    -Certificate $cert `
-    -RegisteredIssuerName $registeredIssuerName `
-    -IsTrustBroker
-
-Write-Output "Issuer ID: $issuerId"
-Write-Output "Realm: $realm"
+# Register as trusted root authority
+New-SPTrustedRootAuthority -Name "EdgeRAG-S2S" -Certificate $cert
 ```
 
-Save the Issuer ID and realm. Each SharePoint source must use the Issuer ID registered for its signing certificate.
-
-### Register the app principal with read access
+### Register as trusted security token issuer
 
 ```powershell
+# Choose a unique GUID for the Issuer ID -  SAVE THIS VALUE
+$issuerId = [guid]::NewGuid().ToString()
+
+# Get the SharePoint realm
+$realm = Get-SPAuthenticationRealm
+$fullIssuerId = "$issuerId@$realm"
+
+New-SPTrustedSecurityTokenIssuer `
+    -Name "EdgeRAG-S2S" `
+    -Certificate $cert `
+    -RegisteredIssuerName $fullIssuerId `
+    -IsTrustBroker
+
+Write-Output "================================================"
+Write-Output "SAVE THESE VALUES:"
+Write-Output "  Issuer ID : $issuerId"
+Write-Output "  Realm     : $realm"
+Write-Output "================================================"
+```
+
+### Enable OAuth over HTTP (skip if SharePoint uses HTTPS)
+
+Only use OAuth over HTTP for isolated lab environments that don't use HTTPS. For production, use HTTPS and skip this step.
+
+```powershell
+# ONLY run this if your SharePoint web application uses HTTP (not HTTPS)
+$sts = Get-SPSecurityTokenServiceConfig
+$sts.AllowOAuthOverHttp = $true
+$sts.AllowMetadataOverHttp = $true
+$sts.Update()
+```
+
+### Create required service applications
+
+Server-to-server authentication requires three SharePoint service applications. They might already exist if your farm was configured with the wizard. This script checks first and only creates what's missing.
+
+This script is idempotent. `Created:` and `Already exists:` outputs are both expected outcomes.
+
+```powershell
+Add-PSSnapin Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue
+
+# Determine database server from config database
+$configDb = Get-SPDatabase | Where-Object { $_.Name -eq "SharePoint_Config" }
+$dbServer = $configDb.Server.Address
+
+# Get or create the service application pool
+$pool = Get-SPServiceApplicationPool "SharePoint Web Services Default" -ErrorAction SilentlyContinue
+if (-not $pool) {
+    $managedAccount = Get-SPManagedAccount "<DOMAIN\farm_account>"
+    $pool = New-SPServiceApplicationPool `
+        -Name "SharePoint Web Services Default" `
+        -Account $managedAccount
+}
+
+# --- App Management Service Application ---
+$appMgmt = Get-SPServiceApplication | Where-Object {
+    $_.TypeName -eq "App Management Service Application"
+}
+if (-not $appMgmt) {
+    Get-SPServiceInstance | Where-Object {
+        $_.TypeName -eq "App Management Service"
+    } | Start-SPServiceInstance
+    Start-Sleep 5
+    $appMgmt = New-SPAppManagementServiceApplication `
+        -Name "App Management Service" `
+        -ApplicationPool $pool `
+        -DatabaseServer $dbServer `
+        -DatabaseName "SP_AppManagement"
+    New-SPAppManagementServiceApplicationProxy `
+        -ServiceApplication $appMgmt `
+        -Name "App Management Proxy"
+    Write-Output "Created: App Management Service"
+} else {
+    Write-Output "Already exists: App Management Service"
+}
+
+# --- Subscription Settings Service Application ---
+$subSettings = Get-SPServiceApplication | Where-Object {
+    $_.TypeName -like "*Subscription*"
+}
+if (-not $subSettings) {
+    Get-SPServiceInstance | Where-Object {
+        $_.TypeName -like "*Subscription*"
+    } | Start-SPServiceInstance
+    Start-Sleep 5
+    $subSettings = New-SPSubscriptionSettingsServiceApplication `
+        -Name "Subscription Settings" `
+        -ApplicationPool $pool `
+        -DatabaseServer $dbServer `
+        -DatabaseName "SP_SubscriptionSettings"
+    New-SPSubscriptionSettingsServiceApplicationProxy `
+        -ServiceApplication $subSettings
+    Write-Output "Created: Subscription Settings"
+} else {
+    Write-Output "Already exists: Subscription Settings"
+}
+
+# --- User Profile Service Application ---
+$upa = Get-SPServiceApplication | Where-Object {
+    $_.TypeName -eq "User Profile Service Application"
+}
+if (-not $upa) {
+    Get-SPServiceInstance | Where-Object {
+        $_.TypeName -eq "User Profile Service"
+    } | Start-SPServiceInstance
+    Start-Sleep 5
+    $upa = New-SPProfileServiceApplication `
+        -Name "User Profile Service" `
+        -ApplicationPool $pool `
+        -ProfileDBServer $dbServer -ProfileDBName "SP_UPA_Profile" `
+        -SocialDBServer $dbServer -SocialDBName "SP_UPA_Social" `
+        -ProfileSyncDBServer $dbServer -ProfileSyncDBName "SP_UPA_Sync"
+    New-SPProfileServiceApplicationProxy `
+        -ServiceApplication $upa `
+        -Name "User Profile Proxy" `
+        -DefaultProxyGroup
+    Write-Output "Created: User Profile Service"
+} else {
+    Write-Output "Already exists: User Profile Service"
+}
+```
+
+### Register the app principal
+
+```powershell
+# Set the app domain (required for app registration)
 Set-SPAppDomain "<your_ad_domain>"
 Set-SPAppSiteSubscriptionName -Name "app" -Confirm:$false
 
+# Choose a unique GUID for the Client ID -  SAVE THIS VALUE
 $clientId = [guid]::NewGuid().ToString()
+
 $realm = Get-SPAuthenticationRealm
 $appId = "$clientId@$realm"
+
+# Register the app principal on the target SharePoint site
 $site = Get-SPSite "<your_sharepoint_site_url>"
 $web = $site.RootWeb
 
 $principal = Register-SPAppPrincipal `
     -NameIdentifier $appId `
     -Site $web `
-    -DisplayName "Foundry Local SharePoint ingestion"
+    -DisplayName "Agents and Tools Ingestion Service"
 
+# Grant FullControl at site collection level
 Set-SPAppPrincipalPermission `
     -Site $web `
     -AppPrincipal $principal `
     -Scope SiteCollection `
-    -Right Read
+    -Right FullControl
 
-Write-Output "Client ID: $clientId"
+Write-Output "================================================"
+Write-Output "SAVE THIS VALUE:"
+Write-Output "  Client ID : $clientId"
+Write-Output "================================================"
 ```
 
-Register the app principal and grant read access in every site collection that the source must access.
 
-### Prepare the ingestion account
+If Agentic Retrieval needs to access multiple SharePoint site collections, run `Register-SPAppPrincipal` and `Set-SPAppPrincipalPermission` for each site.
 
-The selected ingestion account also needs read access to the target library. A SharePoint User Profile makes its SID resolvable but doesn't grant content access.
+### Create user profile and get Windows SID
 
 ```powershell
+# The service account the extension impersonates
 $account = "<DOMAIN\service_account>"
+
+# Create a user profile if one doesn't exist
 $site = Get-SPSite "<your_sharepoint_site_url>"
 $context = Get-SPServiceContext $site
 $upm = New-Object Microsoft.Office.Server.UserProfiles.UserProfileManager($context)
 
 if (-not $upm.UserExists($account)) {
     $upm.CreateUserProfile($account)
+    Write-Output "Created user profile for $account"
+} else {
+    Write-Output "User profile already exists for $account"
 }
 
+# Get the Windows SID
 $adUser = New-Object System.Security.Principal.NTAccount($account)
 $sid = $adUser.Translate([System.Security.Principal.SecurityIdentifier])
-Write-Output "Windows SID: $($sid.Value)"
+
+Write-Output "================================================"
+Write-Output "SAVE THIS VALUE:"
+Write-Output "  Windows SID : $($sid.Value)"
+Write-Output "================================================"
 ```
 
-Grant this account read access through your normal SharePoint permissions process. The SID must use the `S-1-5-21-...` format.
+The Windows SID must be in `S-1-5-21-...` format. Don't use `DOMAIN\username` or `i:0#.w|domain\user`. Only the SID format works with server-to-server JWT authentication.
 
-### HTTP is for isolated labs only
+## Summary: Values collected
 
-Production guidance requires HTTPS and valid CA trust. If an isolated lab uses HTTP, SharePoint OAuth and metadata over HTTP must be enabled deliberately for that lab. Don't enable these settings as generic `401` troubleshooting in production.
+After completing all steps, you should have these values ready for installation:
 
-## Step 5: Record the source values
+| Value | Example | Source |
+|---|---|---|
+| **Managed Identity Client ID** | `00001111-aaaa-2222-bbbb-3333cccc4444` | Step 4: `az identity show` |
+| **Key Vault Name** | `contoso-edgerag-kv` | Your Azure Key Vault |
+| **KV Cert Secret Name** | `contoso-edgerag-sp-s2s-cert` | Step 3: name you chose |
+| **KV Cert Password Secret Name** | `contoso-sp-cert-password` | Step 3: name you chose |
+| **Key Vault Tenant ID** | `aaaabbbb-0000-cccc-1111-dddd2222eeee` | Your Microsoft Entra tenant ID |
+| **Client ID** | `00001111-aaaa-2222-bbbb-3333cccc4444` | Step 5: GUID you chose |
+| **Issuer ID** | `aaaabbbb-0000-cccc-1111-dddd2222eeee` | Step 5: GUID you chose |
+| **Realm** | `33334444-5555-6666-aaaa-bbbbccccdddd` | Step 5: `Get-SPAuthenticationRealm` |
+| **Windows SID** | `S-1-5-21-1234567890-2345678901-3456789012-1234` | Step 5: translated from AD account |
 
-For each new SharePoint source, collect:
+## Deploy the extension with SharePoint ingestion enabled
 
-| Value | Ingestion API field |
-|---|---|
-| SharePoint site URL | `sharePointUrl` |
-| Server-relative library or folder path starting with `/` (for example, `/Shared Documents`) | `sharePointFolderPath` |
-| App principal Client ID | `sharePointClientId` |
-| Trusted issuer ID | `sharePointIssuerId` |
-| Ingestion-account Windows SID | `sharePointSid` |
-| Certificate Secret name | `sharePointCertSecretName` |
-| Realm, if you don't use discovery | `sharePointRealm` |
-| Separate password Secret, if used | `sharePointCertPasswordSecretName` |
-| Password data key, if not `cert-password` | `sharePointCertPasswordSecretKey` |
+After you complete this SharePoint setup, return to the [deployment prerequisites checklist](complete-prerequisites.md) and finish any remaining prerequisite steps. When you're ready to deploy, use [Deploy the extension for Agentic Retrieval](deploy.md) and the SharePoint-specific values in this section.
 
-Different sources can select different identities and Secrets without redeploying the extension.
+During deployment:
 
-## Step 6: Confirm indexed sources are enabled
+- In the Azure portal, on the **Configurations** tab, turn on **SharePoint ingestion** and enter the Key Vault and workload identity values collected in this article.
+- In Azure CLI, set `enableSharePoint="true"` and provide `keyVaultName`, `kvCertSecretName`, `kvCertPasswordSecretName`, and `workloadIdentityClientId` in the CLI script in [Deploy the extension for Agentic Retrieval](deploy.md?tabs=azure-cli).
 
-In the Azure portal:
+If you don't plan to use SharePoint ingestion, skip this article and continue with the standard deployment flow in [Deploy the extension for Agentic Retrieval](deploy.md).
 
-1. Go to **Components**.
-1. Set **Enable indexed sources** to **Enabled**.
-1. Select **Configure** for **Indexed sources**.
-1. Choose the processing mode and save.
+## Add a SharePoint data source
 
-There's no deployment-wide SharePoint certificate or Key Vault form. SharePoint identity and signing-Secret selection happens when you add the data source.
+After you deploy Agentic Retrieval and can access the developer portal, add your SharePoint Server data source.
 
-## Step 7: Add and validate the SharePoint source
+For step-by-step instructions, see [Add a data source for Agentic Retrieval](add-data-source.md).
 
-Ensure the target collection exists before you submit an ingestion job. Add the SharePoint source in the developer portal or by using the [Ingestion REST API](reference/ingestion-api-reference.md). For portal steps, see [Add a data source](add-data-source.md).
+When you add a SharePoint Server data source, you might need values collected in this article:
 
-The API preflight proves only that the selected Secrets and required data keys are readable in the application namespace. It doesn't validate the PFX password, certificate trust, trusted issuer, realm, or SharePoint content permissions.
+- **Client ID**
+- **Issuer ID**
+- **Windows SID**
+- **Realm**
 
-Complete an ingestion run and read an indexed document before you treat the setup as operationally validated. Monitor the run by using the returned `operation-location`.
+For details on how installation defaults and settings you enter for each data source work together, see [Configuration precedence](connect-sharepoint-overview.md#configuration-precedence).
 
 ## Next step
 
@@ -272,5 +530,4 @@ Complete an ingestion run and read an indexed document before you treat the setu
 
 ## Related content
 
-- [SharePoint authentication overview](connect-sharepoint-overview.md)
-- [SharePoint connection reference and troubleshooting](connect-sharepoint-reference.md)
+- [SharePoint Server-to-Server connection reference and troubleshooting](connect-sharepoint-reference.md)

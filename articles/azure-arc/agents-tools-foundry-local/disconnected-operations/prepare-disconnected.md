@@ -1,22 +1,22 @@
 ---
-title: Download and import the expansion pack
-description: "Learn how to download and import the Agents and Tools with Foundry Local extension expansion pack to prepare for a disconnected deployment on Azure Local."
-ms.reviewer: assafakiva
+title: Download and Import the Agentic Retrieval Expansion Pack for Disconnected Operations on Azure Local
+description: "Learn how to download and import the Agentic Retrieval extension expansion pack to prepare for a disconnected deployment on Azure Local."
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: how-to
-ms.date: 11/05/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-#CustomerIntent: As a cloud administrator, I want to download and import the Agents and Tools with Foundry Local expansion pack so that the extension is available to install on an Azure Local cluster that uses disconnected operations.
+#CustomerIntent: As a cloud administrator, I want to download and import the Agentic Retrieval expansion pack so that the extension is available to install on an Azure Local cluster that uses disconnected operations.
 ---
 
-# Download and import the expansion pack
+# Download and import the Agentic Retrieval expansion pack for disconnected operations on Azure Local
 
-This article explains how to download and import the [Agents and Tools with Foundry Local](../overview.md) expansion pack to prepare a disconnected deployment on an Azure Local cluster configured for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview). You download the expansion pack in a connected environment, transfer it to your disconnected environment, and then import it on the Azure Local Disconnected Operations machine.
+This article explains how to download and import the Agentic Retrieval expansion pack, part of [Agents and Tools with Foundry Local](../overview.md), to prepare a disconnected deployment on an Azure Local cluster configured for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview). You download the expansion pack in a connected environment, transfer it to your disconnected environment, and then import it on the Azure Local Disconnected Operations machine.
 
-After you complete these steps, the Agents and Tools with Foundry Local extension type is available for installation. To install the extension, see [Install Agents and Tools with Foundry Local for disconnected operations on Azure Local](deploy-disconnected.md).
+After you complete these steps, the Agentic Retrieval extension type is available for installation. To install the extension, see [Install Agents and Tools with Foundry Local for disconnected operations on Azure Local](deploy-disconnected.md).
 
-[!INCLUDE [disconnected-operations-preview-notice](../includes/disconnected-operations-preview-notice.md)]
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
 ## Prerequisites
 
@@ -26,11 +26,11 @@ Before you begin, verify these prerequisites:
 * Access to the Azure Local Disconnected Operations machine, including the Azure Local Disconnected Operations PowerShell module (`Azure.Local.ExpansionPack.psm1`).
 * A connected environment to download the expansion pack, and a way to transfer the pack to your disconnected environment.
 
-## Download and import the Agents and Tools with Foundry Local expansion pack
+## Download and import the Agentic Retrieval expansion pack
 
-Download the Agents and Tools with Foundry Local expansion pack in a connected environment, transfer it to your disconnected environment, and then install it on the Azure Local Disconnected Operations machine.
+Download the Agentic Retrieval expansion pack in a connected environment, transfer it to your disconnected environment, and then install it on the Azure Local Disconnected Operations machine.
 
-1. Download the latest [Agents and Tools with Foundry Local expansion pack](https://aka.ms/azurelocal-pxp-microsoft-foundrylocal-agenticretrieval-k8sextension).
+1. Download the latest [Agentic Retrieval expansion pack](https://aka.ms/azurelocal-pxp-microsoft-foundrylocal-agenticretrieval-k8sextension).
 1. Transfer the expansion pack to the disconnected Azure Local environment.
 1. Run the following commands on the Azure Local Disconnected Operations machine to install the expansion pack.
 
@@ -51,15 +51,14 @@ When installation finishes:
 
 * Container images are imported into the `edgeartifacts` registry.
 * Model artifacts are published to the registry.
-* The Agents and Tools with Foundry Local Azure Arc extension becomes available for installation.
+* The Agentic Retrieval Azure Arc extension becomes available for installation.
 
 ### Verify installation
 
-Run the following commands on the Azure Local Disconnected Operations machine, and confirm your expansion pack is in the `Installed` state.
+Run the following command on the Azure Local Disconnected Operations machine, and confirm your expansion pack is in the `Installed` state.
 
 ```powershell
-Get-AldoExpansionPackDetails -ExpansionPackId $expansionPackId
-Get-AldoExpansionPackInstallationStatus -ExpansionPackId $expansionPackId
+Get-ApplianceExpansionPackDetails
 ```
 
 ## Next step
@@ -69,6 +68,6 @@ Get-AldoExpansionPackInstallationStatus -ExpansionPackId $expansionPackId
 
 ## Related content
 
-- [Disconnected operations for Agents and Tools with Foundry Local overview](overview-disconnected.md)
-- [Deployment overview for Agents and Tools with Foundry Local](../deploy-overview.md)
-- [What you need for Agents and Tools with Foundry Local](../requirements.md)
+- [Disconnected operations for Agentic Retrieval in Foundry Local overview](overview-disconnected.md)
+- [Deployment overview for Agentic Retrieval in Foundry Local](../deploy-overview.md)
+- [What you need for Agentic Retrieval](../requirements.md)

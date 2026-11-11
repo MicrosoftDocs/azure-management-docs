@@ -1,171 +1,601 @@
 ---
-title: Knowledge Sources REST API Reference - Agents and Tools with Foundry Local
-description: REST API reference for managing knowledge sources by using the Knowledge Sources API in Agents and Tools with Foundry Local.
-ms.reviewer: assafakiva
+title: Knowledge Sources REST API Reference - Agentic Retrieval in Foundry Local
+description: REST API reference for managing knowledge sources in Agentic Retrieval in Foundry Local.
+author: cwatson-cat
+ms.author: cwatson
 ms.topic: reference
-ms.date: 11/08/2026
-ms.service: azure-arc
+ms.date: 05/27/2026
 ms.subservice: edge-rag
-ms.collection: ce-skilling-ai-copilot
-ms.update-cycle: 180-days
-ai-usage: ai-generated
+ai-usage: ai-assisted
 ---
 
-# Knowledge sources REST API reference
+# Knowledge Sources REST API reference
 
-Use this reference to manage knowledge sources in Agents and Tools with Foundry Local. A knowledge source registers an indexed collection, an external MCP server, a SQL database, or a managed Microsoft 365 Local source (`sharepoint` or `exchange`, in limited preview for approved customers). Microsoft 365 Local is supported only with Agentic Retrieval, through knowledge sources that you add to a knowledge base. Knowledge bases refer to knowledge sources by name. For step-by-step guidance, see [Configure a knowledge source](../knowledge-sources-guide.md).
+Manage knowledge sources in Agentic Retrieval in Foundry Local. A knowledge source is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Knowledge sources are the units that agents and knowledge bases consume to access external knowledge.
 
-[!INCLUDE [sql-knowledge-source-preview-notice](../includes/sql-knowledge-source-preview-notice.md)]
+Two kinds of knowledge sources exist:
 
-> [!NOTE]
-> Managed `sharepoint` and `exchange` knowledge sources (limited preview for approved customers) also use `/knowledgesources`. Creating a `sharepoint` or `exchange` source returns `202 Accepted`, and updating or deleting one requires concurrency preconditions (`expected_resource_version`, `expected_uid`, `expected_source_uid`, or `expected_uids`). For their parameters, authentication types, preconditions, and provisioning behavior, see [Connect Microsoft 365 Local](../connect-microsoft-365-local.md).
+- **`remote_mcp`** — An arbitrary external MCP server (any MCP-compliant endpoint).
+- **`indexed_sources_mcp`** — An `indexed-source-mcp` server connected to a specific indexed source reference.
 
-## Base address and authorization
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
 
-- **Base address:** `https://<cluster-domain>/knowledgesources`.
-- **Authorization:** Send a Microsoft Entra ID access token for the extension's app registration in the Authorization header, using the Bearer scheme.
+## API information
 
-Azure role-based access control (Azure RBAC) checks permissions at the extension resource scope first:
+| Property | Value |
+|---|---|
+| **API version** | `2024-10-01-preview` |
+| **Service** | Knowledge Sources API (`knowledge-sources`) |
+| **Port** | 3005 |
+| **Dapr App ID** | `knowledge-sources` |
 
-| Required Azure role | Operations | Permission |
-|---|---|---|
-| **Reader** | List and get sources; get exposed SQL schema | `Microsoft.CognitiveServices/accounts/knowledgeSources/read` |
-| **Cognitive Services Contributor** | Create or update sources; preview a SQL schema; replace exposed schema; rotate SQL credentials | `Microsoft.CognitiveServices/accounts/knowledgeSources/write` |
-| **Cognitive Services Contributor** | Delete one or several sources | `Microsoft.CognitiveServices/accounts/knowledgeSources/delete` |
+All endpoints use the `/edgeai/knowledgesources` prefix.
 
-If the Azure role check doesn't allow a request, all operations accept `EdgeRAGDeveloper` as an app-role fallback. `EdgeRAGEndUser` isn't a fallback for these routes. **Contributor** and **Owner** also allow these management operations. In disconnected deployments, use **Reader** for reads and **Contributor** for changes, including schema previews.
+## Access Methods
 
-The extension's managed identity needs **Reader** at the extension scope to check role assignments. See [Assign Azure roles](../prepare-authentication.md#assign-azure-roles).
+You can reach the Knowledge Sources API through three access methods. The access method determines whether authentication is required.
 
-> [!IMPORTANT]
-> The Knowledge Sources API path is `/knowledgesources`. Earlier builds used `/knowledgesources/v2` or `/edgeai/knowledgesources/v2`. Those URLs no longer work, and there's no redirect. For example, `POST /knowledgesources/v2` returns `405 Method Not Allowed`, and `GET /knowledgesources/v2` reads a source named `v2`. Update your clients to `/knowledgesources`, and don't send old requests again. `/edgeai/knowledgesources` still works as an alias of `/knowledgesources`.
+### External access (via ingress)
 
-These permissions manage knowledge sources. Running agents through Responses or Conversations requires an Azure role and has no app-role fallback. See [Permission checks](../agent-service-security.md#permission-checks).
-
-## Operations
-
-| Operation | Method and path | Success |
-|---|---|---|
-| Create a knowledge source | `POST /knowledgesources` | `201` for MCP sources; `202` for SQL, SharePoint, and Exchange |
-| List knowledge sources | `GET /knowledgesources` | `200` |
-| Get a knowledge source | `GET /knowledgesources/{name}` | `200` |
-| Update a knowledge source | `PATCH /knowledgesources/{name}` | `200` for MCP, SQL, description-only, or no-op updates; `202` when a SharePoint binding changes or Exchange parameters are updated |
-| Delete a knowledge source | `DELETE /knowledgesources/{name}` | `204` |
-| Delete several knowledge sources | `POST /knowledgesources/batch-delete` | `200` |
-| Preview a SQL schema | `POST /knowledgesources/schema-preview` | `200` |
-| Get exposed SQL schema | `GET /knowledgesources/{name}/schema` | `200` |
-| Replace exposed SQL schema | `PUT /knowledgesources/{name}/schema` | `202` |
-| Rotate SQL credential | `PUT /knowledgesources/{name}/credential` | `202` |
-
-## Create request body
-
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `name` | string | Yes | The name and ID. Use 1 to 40 lowercase letters, digits, and hyphens. Start and end with a letter or digit. Can't look like a GUID. Can't change later. |
-| `kind` | string | Yes | `indexed_sources_mcp`, `remote_mcp`, `sql`, `sharepoint` (limited preview), or `exchange` (limited preview). Can't change later. |
-| `auth_type` | string | Yes | `microsoft_entra_id` forwards the caller's token only to a trusted MCP destination. `unauthenticated` sends no credentials. For `sharepoint` (`s2s_user`) and `exchange` (`delegated_connector`), see [Connect Microsoft 365 Local](../connect-microsoft-365-local.md). |
-| `description` | string | No | Up to 500 characters. |
-| `indexed_sources_parameters` | object | For `indexed_sources_mcp` | See the next table. |
-| `remote_mcp_parameters` | object | For `remote_mcp` | See the next table. |
-| `sql_parameters` | object | For `sql` | See [Connect a SQL database](../connect-sql-database.md#sql-parameters). |
-
-Send only the parameters object that matches `kind`. For `sharepoint_parameters` and `exchange_parameters`, see [Connect Microsoft 365 Local](../connect-microsoft-365-local.md).
-
-### indexed_sources_parameters
-
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `server_url` | string | Yes | The trusted in-cluster address of Indexed Sources MCP: `http://localhost:3500/v1.0/invoke/indexed-sources-mcp-server/method/mcp`. |
-| `indexed_source_ref` | string | Yes | The collection name, up to 256 characters. |
-| `server_label` | string | No | Up to 64 characters. Default `indexed-sources-mcp-server`. |
-
-### remote_mcp_parameters
-
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `server_url` | string | Yes | The HTTPS MCP server address, up to 2,048 characters. |
-| `server_label` | string | No | Up to 64 characters. |
-
-When you create a knowledge source or change its connection settings, the service connects to the MCP server to check it. If the check fails, the service returns `400` and saves nothing.
-
-With `microsoft_entra_id`, the deployment must trust the destination before the service forwards the caller's token. Use `unauthenticated` when delegated authentication isn't required.
-
-## Knowledge source object
-
-| Property | Type | Description |
-|---|---|---|
-| `name` | string | The name and ID. |
-| `kind` | string | The kind. |
-| `description` | string | The description. |
-| `auth_type` | string | The authentication type. |
-| `indexed_sources_parameters` | object | The settings for `indexed_sources_mcp`, or `null`. |
-| `remote_mcp_parameters` | object | The settings for `remote_mcp`, or `null`. |
-| `uid` | string | Kubernetes resource UID, or `null`. |
-| `resource_version` | string | Opaque resource version, or `null`. |
-| `generation` | integer | Current desired generation, or `null`. |
-| `observed_generation` | integer | Most recently completed generation, or `null`. |
-| `provisioning_state` | string | `Provisioning`, `Succeeded`, or `Failed`. |
-| `provisioning_message` | string | Reason for the current provisioning state, or `null`. |
-| `source_uid` | string | Server-assigned managed-source UID for `sharepoint`, or `null`. |
-| `connection` | object | Managed connection identity (`name` and `id`) for `sharepoint`, or `null`. |
-| `connection_id` | string | Generated connector ID for `exchange` delegated authentication, or `null`. |
-| `created_by` | string | Who created it. |
-| `created_at` | string | When it was created, in ISO 8601 format. |
-
-SQL connection strings and `sql_parameters` aren't returned. Use the SQL schema operation to read the exposed entities. For `sharepoint` and `exchange` response parameters (`sharepoint_parameters` and `exchange_parameters`), see [Connect Microsoft 365 Local](../connect-microsoft-365-local.md).
-
-## Readiness
-
-`indexed_sources_mcp` and `remote_mcp` sources return `201 Created` on create and `200 OK` on `PATCH`, with `provisioning_state` set to `Succeeded`. Creating a `sql`, `sharepoint`, or `exchange` source returns `202 Accepted`. Updating a `sql` source with `PATCH` returns `200 OK` with `provisioning_state` set to `Provisioning`, while `PUT /knowledgesources/{name}/schema` and `PUT /knowledgesources/{name}/credential` return `202 Accepted`. For `sharepoint` and `exchange`, `PATCH` returns `202 Accepted` when a managed SharePoint binding changes or Exchange parameters are updated. Whenever `provisioning_state` is `Provisioning` or the response is `202`, poll `GET /knowledgesources/{name}` until `provisioning_state` is `Succeeded` or `Failed`.
-
-`generation` is the desired configuration. `observed_generation` is the generation most recently completed by the status writer or operator. A pending generation isn't reported as ready because an earlier generation succeeded.
-
-## List query parameters
-
-| Name | Type | Description |
-|---|---|---|
-| `kind` | string | Return only `indexed_sources_mcp`, `remote_mcp`, `sql`, `sharepoint`, or `exchange`. |
-| `limit` | integer | 1 to 100. Default 10. |
-| `offset` | integer | Number of items to skip. Default 0. |
-
-The response is `{"items": [...], "total": <number>, "limit": <number>, "offset": <number>}`.
-
-## Update request body
-
-Send only the fields that you want to change: `description`, `auth_type`, or the parameters object that matches the kind. A parameters object replaces the old one completely. You can't change `name` or `kind`. Omit a field to preserve it. Send `null` only for `description`; explicit `null` is rejected for `auth_type` and parameter blocks.
-
-`PATCH /knowledgesources/{name}` status codes depend on the source kind and change:
-
-- `indexed_sources_mcp` and `remote_mcp` updates revalidate the MCP server synchronously and return `200 OK` with `provisioning_state: "Succeeded"`.
-- `sql` `PATCH` updates replace the exposed schema (while retaining the stored credential; use `PUT /knowledgesources/{name}/credential` to rotate it) and return `200 OK` with `provisioning_state: "Provisioning"`. (`PUT /knowledgesources/{name}/schema` and `PUT /knowledgesources/{name}/credential` return `202 Accepted`.)
-- Description-only or no-op updates return `200 OK`.
-- `202 Accepted` on `PATCH` applies when a managed `sharepoint` binding changes or `exchange` parameters are updated. Managed `sharepoint` and `exchange` updates and deletes also require `expected_resource_version` / `expected_uid` / `expected_source_uid` preconditions; see [Connect Microsoft 365 Local](../connect-microsoft-365-local.md).
-
-## Batch delete
-
-Request body:
-
-```json
-{ "names": ["product-manuals", "benefits-docs"] }
+```
+https://<cluster-domain>/edgeai/knowledgesources/...
 ```
 
-You can send up to 100 names. The response has one result for each name, in the same order:
+Requires a valid JWT token (see [Authentication](#authentication)). The ingress adds the `X-External-Request` header which triggers Entra Auth sidecar validation.
+
+### Port forwarding (for development and testing)
+
+```bash
+kubectl port-forward deployment/knowledgesources-deployment 3005:3005 -n arc-rag
+```
+
+Then call `http://localhost:3005/edgeai/knowledgesources/...`. No `Authorization` header needed.
+
+### Internal access (from a pod via Dapr)
+
+```bash
+curl -H "dapr-app-id: knowledge-sources" http://localhost:3500/edgeai/knowledgesources/...
+```
+
+No `Authorization` header needed for internal Dapr calls.
+
+## Authentication
+
+Required only for **external access** (via ingress). Port forwarding and internal Dapr calls bypass authentication.
+
+All external API calls require a valid Entra ID JWT token with the `EdgeRAGDeveloper` app role.
+
+```bash
+az account clear
+az login --tenant <your-tenant-id> --output none
+
+TOKEN=$(az account get-access-token \
+  --resource "<your-resource-app-id>" \
+  --query accessToken -o tsv)
+```
+
+Tokens expire after about one hour. If you receive a `401 Unauthorized`, acquire a fresh token.
+
+## Concepts
+
+### Knowledge source
+
+A knowledge source is a **registration of an MCP server**. It holds the connection configuration (server URL, auth type) and, for indexed-source MCPs, the reference to the specific indexed source.
+
+### Kinds
+
+| `kind` | Required parameters field | Use case |
+|---|---|---|
+| `remote_mcp` | `remote_mcp_parameters` | Register any external MCP server. |
+| `indexed_sources_mcp` | `indexed_sources_parameters` | Register an `indexed-source-mcp` server pointing at a specific indexed source. |
+
+### Auth Types
+
+### Validation Status
+| Value | Description |
+|---|---|
+| `microsoft_entra_id` | Forwards the caller's `Authorization` header to the MCP server. |
+| `unauthenticated` | No auth headers are forwarded to the MCP server. |
+
+### MCP validation
+
+When you **create** a knowledge source or **update** its connection parameters, the service validates the MCP connection before saving it:
+
+1. Extracts `server_url` from the parameters.
+1. Performs an SSRF/DNS safety check (blocks private/internal IPs).
+1. Sends a JSON-RPC `initialize` request to the MCP server (connect timeout: 5 seconds, read timeout: 30 seconds).
+1. Retries up to three times with exponential backoff (1 second, 2 seconds).
+1. If validation **succeeds**: sets `validation_status` to `active` and saves the record.
+1. If validation **fails**: rejects the request with `400 Bad Request` - doesn't save anything (on create) or change anything (on update).
+
+| Status | Description |
+|---|---|
+| `unknown` | Default status. Not validated yet. |
+| `active` | MCP `initialize` succeeded. `validated_at` is set. |
+| `failed` | Validation failed. Check `validation_error` for details. `validated_at` is set. |
+
+## Create
+
+Creates a new knowledge source. The service validates the MCP server before saving the record.
+
+### Request
+
+```http
+POST /edgeai/knowledgesources
+```
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Content-Type` | True | String | `application/json` |
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Request body
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `name` | True | String | Unique human-readable name. 1-256 characters. |
+| `kind` | True | String | `"remote_mcp"` or `"indexed_sources_mcp"`. |
+| `auth_type` | False | String | `"microsoft_entra_id"` (default) or `"unauthenticated"`. |
+| `description` | False | String | Optional description. |
+| `created_by` | False | String | Optional creator identifier. |
+| `remote_mcp_parameters` | Conditional | Object | Required when `kind` is `"remote_mcp"`. See below. |
+| `indexed_sources_parameters` | Conditional | Object | Required when `kind` is `"indexed_sources_mcp"`. See below. |
+
+#### `remote_mcp_parameters`
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `server_url` | True | String | URL of the MCP server endpoint. |
+| `server_label` | False | String | Human-readable label for the server. |
+
+#### `indexed_sources_parameters`
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `server_url` | True | String | URL of the indexed-source-mcp server endpoint. |
+| `indexed_source_ref` | True | String | The name of the indexed source to connect to. |
+| `server_label` | False | String | Human-readable label. Defaults to `"indexed-sources-mcp-server"`. |
+
+> [!NOTE]
+> Provide only one of `remote_mcp_parameters` or `indexed_sources_parameters`. The provided parameter must match the `kind`.
+
+### Example: Remote MCP
+
+#### Request
+
+```http
+POST /edgeai/knowledgesources
+
+Content-Type: application/json
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
 
 ```json
 {
-  "results": [
-    { "name": "product-manuals", "status": "deleted" },
-    { "name": "benefits-docs", "status": "not_found" }
-  ],
-  "deleted_count": 1
+  "name": "my-external-mcp",
+  "kind": "remote_mcp",
+  "auth_type": "unauthenticated",
+  "description": "External MCP server for document search",
+  "remote_mcp_parameters": {
+    "server_url": "https://my-mcp-server.example.com/mcp",
+    "server_label": "doc-search"
+  }
 }
 ```
 
-`status` is `deleted`, `not_found`, or `error`. For `error`, `message` explains why.
+#### Response
+
+**Status code:** 201 Created
+
+```json
+{
+  "id": "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
+  "name": "my-external-mcp",
+  "kind": "remote_mcp",
+  "description": "External MCP server for document search",
+  "auth_type": "unauthenticated",
+  "remote_mcp_parameters": {
+    "server_url": "https://my-mcp-server.example.com/mcp",
+    "server_label": "doc-search"
+  },
+  "indexed_sources_parameters": null,
+  "validation_status": "active",
+  "validation_error": null,
+  "validated_at": "2026-03-29T12:00:00.000000+00:00",
+  "created_by": null,
+  "created_at": "2026-03-29T12:00:00.000000+00:00",
+  "updated_at": "2026-03-29T12:00:00.000000+00:00"
+}
+```
+
+### Example: Indexed Sources MCP
+
+#### Request
+
+```http
+POST /edgeai/knowledgesources
+
+Content-Type: application/json
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+```json
+{
+  "name": "my-indexed-source",
+  "kind": "indexed_sources_mcp",
+  "auth_type": "microsoft_entra_id",
+  "description": "Indexed source for product documentation",
+  "indexed_sources_parameters": {
+    "server_url": "https://indexed-sources-mcp.example.com/mcp",
+    "indexed_source_ref": "product-docs-v2",
+    "server_label": "indexed-sources-mcp-server"
+  }
+}
+```
+
+#### Response
+
+**Status code:** 201 Created
+
+```json
+{
+  "id": "a2b3c4d5-e6f7-8901-bcde-f23456789012",
+  "name": "my-indexed-source",
+  "kind": "indexed_sources_mcp",
+  "description": "Indexed source for product documentation",
+  "auth_type": "microsoft_entra_id",
+  "remote_mcp_parameters": null,
+  "indexed_sources_parameters": {
+    "server_url": "https://indexed-sources-mcp.example.com/mcp",
+    "indexed_source_ref": "product-docs-v2",
+    "server_label": "indexed-sources-mcp-server"
+  },
+  "validation_status": "active",
+  "validation_error": null,
+  "validated_at": "2026-03-29T12:00:00.000000+00:00",
+  "created_by": null,
+  "created_at": "2026-03-29T12:00:00.000000+00:00",
+  "updated_at": "2026-03-29T12:00:00.000000+00:00"
+}
+```
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 201 | Created. The knowledge source was created and MCP validation succeeded. |
+| 400 | Bad Request. MCP validation failed (server unreachable or protocol error). |
+| 409 | Conflict. A knowledge source with the same `name` already exists. |
+| 422 | Unprocessable Entity. Missing required fields, invalid field values, or parameters/kind mismatch. |
+
+---
+
+## List
+
+Returns knowledge sources with pagination and optional filtering.
+
+### Request
+
+```http
+GET /edgeai/knowledgesources
+```
+
+### Query parameters
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `name` | False | String | Filter by exact name. |
+| `kind` | False | String | Filter by kind (`remote_mcp` or `indexed_sources_mcp`). |
+| `limit` | False | Integer | Maximum number of results. Default: `10`. Range: 1-100. |
+| `offset` | False | Integer | Number of results to skip. Default: `0`. |
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Example
+
+#### Request
+
+```http
+GET /edgeai/knowledgesources?kind=indexed_sources_mcp&limit=10&offset=0
+
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+#### Response
+
+**Status code:** 200 OK
+
+```json
+{
+  "items": [
+    {
+      "id": "a2b3c4d5-e6f7-8901-bcde-f23456789012",
+      "name": "my-indexed-source",
+      "kind": "indexed_sources_mcp",
+      "description": "Indexed source for product documentation",
+      "auth_type": "microsoft_entra_id",
+      "remote_mcp_parameters": null,
+      "indexed_sources_parameters": {
+        "server_url": "https://indexed-sources-mcp.example.com/mcp",
+        "indexed_source_ref": "product-docs-v2",
+        "server_label": "indexed-sources-mcp-server"
+      },
+      "validation_status": "active",
+      "validation_error": null,
+      "validated_at": "2026-03-29T12:00:00.000000+00:00",
+      "created_by": null,
+      "created_at": "2026-03-29T12:00:00.000000+00:00",
+      "updated_at": "2026-03-29T12:00:00.000000+00:00"
+    }
+  ],
+  "total": 1,
+  "limit": 10,
+  "offset": 0
+}
+```
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 200 | OK. The response contains the paginated list of knowledge sources. |
+
+---
+
+## Get
+
+Retrieves a single knowledge source by ID.
+
+### Request
+
+```http
+GET /edgeai/knowledgesources/{ks_id}
+```
+
+### URI parameters
+
+| Name | In | Required | Type | Description |
+|---|---|---|---|---|
+| `ks_id` | path | True | UUID | The knowledge source identifier. |
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Example
+
+#### Request
+
+```http
+GET /edgeai/knowledgesources/a2b3c4d5-e6f7-8901-bcde-f23456789012
+
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+#### Response
+
+**Status code:** 200 OK
+
+```json
+{
+  "id": "a2b3c4d5-e6f7-8901-bcde-f23456789012",
+  "name": "my-indexed-source",
+  "kind": "indexed_sources_mcp",
+  "description": "Indexed source for product documentation",
+  "auth_type": "microsoft_entra_id",
+  "remote_mcp_parameters": null,
+  "indexed_sources_parameters": {
+    "server_url": "https://indexed-sources-mcp.example.com/mcp",
+    "indexed_source_ref": "product-docs-v2",
+    "server_label": "indexed-sources-mcp-server"
+  },
+  "validation_status": "active",
+  "validation_error": null,
+  "validated_at": "2026-03-29T12:00:00.000000+00:00",
+  "created_by": null,
+  "created_at": "2026-03-29T12:00:00.000000+00:00",
+  "updated_at": "2026-03-29T12:00:00.000000+00:00"
+}
+```
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 200 | OK. The response contains the requested knowledge source. |
+| 404 | Not Found. No knowledge source with the specified ID exists. |
+
+---
+
+## Update
+
+Partially updates a knowledge source. If you change connection parameters or `auth_type`, the system re-runs MCP validation. If revalidation fails, the system doesn't update any fields.
+
+### Request
+
+```http
+PATCH /edgeai/knowledgesources/{ks_id}
+```
+
+### URI parameters
+
+| Name | In | Required | Type | Description |
+|---|---|---|---|---|
+| `ks_id` | path | True | UUID | The knowledge source identifier. |
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Content-Type` | True | String | `application/json` |
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Request body
+
+All fields are optional. Only the fields you provide are updated.
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `name` | False | String | Updated name. 1-256 characters. |
+| `description` | False | String | Updated description. |
+| `auth_type` | False | String | Updated auth type. Triggers MCP revalidation. |
+| `remote_mcp_parameters` | False | Object | Updated parameters. Only valid for `kind=remote_mcp`. Triggers MCP revalidation. |
+| `indexed_sources_parameters` | False | Object | Updated parameters. Only valid for `kind=indexed_sources_mcp`. Triggers MCP revalidation. |
+
+The `kind` field is immutable after creation. Supplying a parameters field that doesn't match the knowledge source's `kind` returns `400 Bad Request`.
+
+### Example
+
+#### Request
+
+```http
+PATCH /edgeai/knowledgesources/a2b3c4d5-e6f7-8901-bcde-f23456789012
+
+Content-Type: application/json
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+```json
+{
+  "name": "updated-indexed-source",
+  "description": "Updated description"
+}
+```
+
+#### Response
+
+**Status code:** 200 OK
+
+Returns the full updated knowledge source object.
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 200 | OK. The knowledge source was updated. |
+| 400 | Bad Request. MCP revalidation failed, or parameters/kind mismatch. |
+| 404 | Not Found. No knowledge source with the specified ID exists. |
+| 409 | Conflict. Updated `name` conflicts with an existing knowledge source. |
+| 422 | Unprocessable Entity. Invalid field values. |
+
+## Delete
+
+Deletes a single knowledge source by ID.
+
+### Request
+
+```http
+DELETE /edgeai/knowledgesources/{ks_id}
+```
+
+### URI parameters
+
+| Name | In | Required | Type | Description |
+|---|---|---|---|---|
+| `ks_id` | path | True | UUID | The knowledge source identifier. |
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Example
+
+#### Request
+
+```http
+DELETE /edgeai/knowledgesources/a2b3c4d5-e6f7-8901-bcde-f23456789012
+
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+#### Response
+
+**Status code:** 204 No Content
+
+No response body.
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 204 | No Content. The knowledge source was deleted. |
+| 404 | Not Found. No knowledge source with the specified ID exists. |
+
+## Batch Delete
+
+Deletes multiple knowledge sources by their IDs.
+
+### Request
+
+```http
+POST /edgeai/knowledgesources/batch-delete
+```
+
+### Request headers
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `Content-Type` | True | String | `application/json` |
+| `Authorization` | Conditional | String | `Bearer {token}`. Required for external access only. |
+
+### Request body
+
+| Name | Required | Type | Description |
+|---|---|---|---|
+| `ks_ids` | True | Array of UUID | Knowledge source IDs to delete. At least one required. |
+
+### Example
+
+#### Request
+
+```http
+POST /edgeai/knowledgesources/batch-delete
+
+Content-Type: application/json
+Authorization: Bearer eyJ0eX...FWSXfwtQ
+```
+
+```json
+{
+  "ks_ids": [
+    "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
+    "a2b3c4d5-e6f7-8901-bcde-f23456789012"
+  ]
+}
+```
+
+#### Response
+
+**Status code:** 200 OK
+
+```json
+{
+  "deleted_count": 2
+}
+```
+
+### Response codes
+
+| Code | Description |
+|---|---|
+| 200 | OK. The matching knowledge sources are deleted. |
+| 400 | Bad Request. No `ks_ids` provided. |
 
 ## Related content
 
-- [Configure a knowledge source](../knowledge-sources-guide.md)
-- [Knowledge Bases REST API reference](knowledge-bases-api-reference.md)
-- [MCP Server API reference](mcp-server-api-reference.md)
-- [Connect a SQL database as a knowledge source](../connect-sql-database.md)
+- [Knowledge Sources Guide](../knowledge-sources-guide.md) — How-to guide for configuring knowledge sources
+- [Knowledge Bases Guide](../knowledge-bases-guide.md) — Group knowledge sources into knowledge bases
+- [Collections API Reference](collections-api-reference.md) — Create and manage collections
+- [Collections Overview](../collections-overview.md) — Understanding the relationship between collections and knowledge sources
+- [Ingestion API Reference](ingestion-api-reference.md) — Ingest documents into collections
+- [Inference API Reference](inference-api-reference.md) — Query collections using RAG
