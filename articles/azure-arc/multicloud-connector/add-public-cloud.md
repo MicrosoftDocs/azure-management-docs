@@ -2,7 +2,7 @@
 title: "Add a public cloud with the multicloud connector in the Azure portal"
 description: "Learn how to add an AWS or GCP cloud by using the multicloud connector enabled by Azure Arc."
 ms.topic: how-to
-ms.date: 07/03/2025
+ms.date: 11/10/2026
 # Customer intent: "As a cloud administrator, I want to connect my AWS or GCP account to Azure using the multicloud connector, so that I can manage my AWS resources alongside Azure services efficiently."
 ---
 
@@ -11,7 +11,7 @@ ms.date: 07/03/2025
 The multicloud connector enabled by Azure Arc lets you connect non-Azure public cloud resources to Azure by using the Azure portal. Currently, the multicloud connector provides support for connecting resources from these public clouds:
 
 - Amazon Web Services (AWS)
-- Google Cloud Platform (GCP) (preview)
+- Google Cloud Platform (GCP)
 
 ## Prerequisites
 
