@@ -39,7 +39,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.70/AzureConnect
 | Fixed handling of invalid responses during extension-change notification registration. | ✓ | ✓ | Bug Fix |
 | Fixed an issue where downloaded extension ZIP files weren't cleaned up. | ✓ | ✓ | Bug Fix |
 | **Azcmagent** | **1.70** | **1.70** | |
-| Added `azcmagent reconnect` (preview) to restore a machine's connection to its existing Azure Arc resource. | ✓ | ✓ | Feature |
+| Added [`azcmagent reconnect`](azcmagent-reconnect.md) (preview) to restore a machine's connection to its existing Azure Arc resource. | ✓ | ✓ | Feature |
 | Added support for onboarding with Trusted Platform Module (TPM)-backed keys before a managed identity is assigned. | ✓ | ✓ | Feature |
 | Added structured managed identity details to `azcmagent show`, including service-reported identity type, principal IDs, and user-assigned identity lifecycle states. | ✓ | ✓ | Improvement |
 | Updated `azcmagent downgrade` to use the bundled installation script. | ✓ | ✓ | Improvement |

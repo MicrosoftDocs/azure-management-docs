@@ -1,8 +1,9 @@
 ---
 title: Resolve Azure Advisor recommendations for Azure Arc-enabled servers
 description: Learn how to resolve Azure Advisor reliability recommendations for disconnected and expired Azure Arc-enabled servers.
-ms.date: 09/09/2026
+ms.date: 11/09/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 # Customer intent: As an Azure Arc administrator, I want to resolve Azure Advisor recommendations for unhealthy Arc-enabled servers, so that I can restore connectivity and avoid managed identity expiration.
 ---
 
@@ -86,11 +87,12 @@ To reconnect the server before the certificate expires:
 
 ## Re-onboard expired Arc-enabled server
 
-Azure shows this recommendation when the server's status is **Expired** or its managed identity certificate has expired. An expired credential can't renew automatically, and Azure Arc management capabilities are unavailable until you reconnect the server with onboarding credentials.
+Azure shows this recommendation when the server's status is **Expired** or its managed identity certificate has expired. An expired credential can't renew automatically, and Azure Arc management capabilities are unavailable until you recover the connection.
 
 First, confirm whether the server should remain managed by Azure Arc.
 
-- If the server should remain Arc-enabled, [disconnect the agent and reconnect the server by using an onboarding credential](security-identity-authorization.md#microsoft-entra-id-managed-identity). To generate and run a new onboarding script, see [Connect hybrid machines to Azure using a deployment script](onboard-portal.md).
+- If the server should remain Arc-enabled and uses agent version 1.70 or later, use [`azcmagent reconnect`](azcmagent-reconnect.md) (preview) to recover its connection to the existing resource.
+- For earlier agent versions, [disconnect the agent and reconnect the server by using an onboarding credential](security-identity-authorization.md#microsoft-entra-id-managed-identity). To generate and run a new onboarding script, see [Connect hybrid machines to Azure using a deployment script](onboard-portal.md).
 - If the server is retired, [remove its stale Azure resource](uninstall-agent.md#remove-stale-server-resources). If you still have access to the server, [remove VM extensions, disconnect the server, and uninstall the agent](uninstall-agent.md).
 
 After re-onboarding a server, confirm in the Azure portal that its status is **Connected**.

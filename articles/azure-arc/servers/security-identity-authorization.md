@@ -2,7 +2,8 @@
 title: Managed identity and access control
 description: Identity and authorization for Azure Arc-enabled servers.
 ms.topic: concept-article
-ms.date: 03/06/2025
+ms.date: 11/09/2026
+ai-usage: ai-assisted
 # Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to configure managed identities and assign appropriate roles, so that I can control authentication and access to Azure resources securely and efficiently."
 ---
 
@@ -16,7 +17,7 @@ Every Azure Arc-enabled server has a system-assigned Microsoft Entra ID managed 
 
 Each Microsoft Entra ID directory has a finite limit for the number of objects it can store. A managed identity counts as one object in the directory. If you're planning a large deployment of Azure Arc-enabled servers, check the available quota in your Microsoft Entra ID directory first, and submit a support request to increase your quota if needed. You can see the available and used quota in the [List Organizations API](/graph/api/intune-onboarding-organization-list) response under the `directorySizeLimit` section.
 
-The managed identity is fully managed by the agent. As long as the agent stays connected to Azure, it handles rotating the credential automatically. The certificate backing the managed identity is valid for 90 days. The agent attempts to renew the certificate when it has 45 or fewer days of validity remaining. If the agent is offline long enough to expire, the agent becomes "expired" as well and won't connect to Azure. In this situation, automatic reconnection isn't possible and requires you to disconnect and reconnect the agent to Azure using an onboarding credential.
+The agent fully manages the managed identity. As long as the agent stays connected to Azure, it handles rotating the credential automatically. The certificate backing the managed identity is valid for 90 days. The agent attempts to renew the certificate when it has 45 or fewer days of validity remaining. If the agent is offline long enough for the certificate to expire, the agent becomes **Expired** and can't automatically restore its connection. For recovery options, see [Re-onboard expired Arc-enabled server](resolve-azure-advisor-recommendations.md#re-onboard-expired-arc-enabled-server).
 
 The managed identity certificate is stored on the local disk of the system. It’s important that you protect this file, because anyone in possession of this certificate can request a token from Microsoft Entra ID. The agent stores the certificate in `C:\ProgramData\AzureConnectedMachineAgent\Certs\` on Windows and `/var/opt/azcmagent/certs` on Linux. The agent automatically applies an access control list to this directory, restricting access to local administrators and the "himds" account. Don't modify access to the certificate files or modify the certificates on your own. If you think the credential for a system-assigned managed identity has been compromised, [disconnect](/azure/azure-arc/servers/azcmagent-disconnect) the agent from Azure and [connect](/azure/azure-arc/servers/azcmagent-connect) it again to generate a new identity and credential. Disconnecting the agent removes the resource in Azure, including its managed identity.
 
