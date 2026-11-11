@@ -130,7 +130,7 @@ $response.properties
 
 ### Verify
 
-After enrollment, use [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal) in the Azure portal to verify Software Assurance attestation across your Azure Arc-enabled Windows servers. Select the subscriptions you want to check, and run the following query:
+After enrollment, use [Azure Resource Graph Explorer](https://ms.portal.azure.com/#servicemenu/Microsoft_Azure_Resources/ResourceManager/resourcegraphexplorer) in the Azure portal to verify Software Assurance attestation across your Azure Arc-enabled Windows servers. Select the subscriptions you want to check, and run the following query:
 
 ```kusto
 Resources
