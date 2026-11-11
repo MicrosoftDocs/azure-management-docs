@@ -1,15 +1,15 @@
 ### YamlMime:Landing
 
 title: Agents and Tools with Foundry Local documentation # < 60 chars
-summary: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension providing agentic RAG at the edge.  # < 160 chars
+summary: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension for agents, tools, and retrieval over on-premises data. # < 160 chars
 
 metadata:
-  title: Agents and Tools with Foundry Local Documentation
-  description: Agents and Tools with Foundry Local is an adaptive cloud platform that includes Agentic Retrieval, an Azure Arc-enabled Kubernetes extension used to search on-premises data with generative AI.
+  title: Agents and Tools with Foundry Local documentation
+  description: Agents and Tools with Foundry Local is an Azure Arc-enabled Kubernetes extension for agents, tools, and retrieval over on-premises data.
   ms.topic: landing-page
   author: cwatson-cat
   ms.author: cwatson
-  ms.date: 05/06/2026
+  ms.date: 11/08/2026
   ms.service: azure-arc
   ms.custom: build-2025
   ms.subservice: edge-rag
@@ -42,6 +42,40 @@ landingContent:
             url: quickstart-edge-rag.md
 
   # Card (optional)
+  - title: Build and run agents
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Create an agent and chat with it
+            url: quickstart-create-agent.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create and manage agents
+            url: create-manage-agents.md
+          - text: Add tools to an agent
+            url: add-agent-tools.md
+          - text: Run agents with the Responses API
+            url: run-agents-responses-api.md
+          - text: Manage knowledge bases
+            url: knowledge-bases-guide.md
+          - text: Configure knowledge sources
+            url: knowledge-sources-guide.md
+          - text: Connect a SQL database
+            url: connect-sql-database.md
+          - text: Connect Microsoft 365 Local
+            url: connect-microsoft-365-local.md
+      - linkListType: reference
+        links:
+          - text: Agents REST API
+            url: reference/agents-api-reference.md
+          - text: Responses and Conversations REST API
+            url: reference/responses-api-reference.md
+          - text: Knowledge Bases REST API
+            url: reference/knowledge-bases-api-reference.md
+          - text: Knowledge Sources REST API
+            url: reference/knowledge-sources-api-reference.md
+
+  # Card (optional)
   - title: Deploy to production
     linkLists:
       - linkListType: deploy
@@ -60,10 +94,12 @@ landingContent:
     linkLists:
       - linkListType: concept
         links:
-          - text: Agentic layer overview
+          - text: Agent Service overview
             url: agentic-overview.md
-          - text: Knowledge layer overview
+          - text: Agentic Retrieval overview
             url: knowledge-layer-overview.md
+          - text: Local chat UI
+            url: chat-experience.md
       - linkListType: how-to-guide
         links:
           - text: Add data source

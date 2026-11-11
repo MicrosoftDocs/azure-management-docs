@@ -129,6 +129,26 @@
       "source_path": "articles/container-registry/container-registry-private-link.md",
       "redirect_url": "/azure/container-registry/container-registry-private-endpoints",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/azure-arc/agents-tools-foundry-local/reference/agents-runtime-api.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/reference/responses-api-reference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/agents-tools-foundry-local/reference/knowledge-base-manager-api.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/reference/knowledge-bases-api-reference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/agents-tools-foundry-local/evaluate-solution.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/agents-tools-foundry-local/evaluation-metrics.md",
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/overview",
+      "redirect_document_id": false
     }
   ]
 }

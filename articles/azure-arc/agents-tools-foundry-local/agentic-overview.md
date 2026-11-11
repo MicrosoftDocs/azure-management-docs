@@ -1,143 +1,173 @@
 ---
-title: Agentic Layer in Agentic Retrieval in Foundry Local Overview
-description: Learn how the agentic layer in Agentic Retrieval in Foundry Local uses agents, knowledge bases, and MCP-connected tools to orchestrate grounded multi-turn AI experiences at the edge.
-author: cwatson-cat
-ms.author: cwatson
+title: Agent Service Overview for Agents and Tools with Foundry Local
+description: Learn how agents, agent versions, tools, knowledge bases, and the Responses API work together in Agent Service in Agents and Tools with Foundry Local.
+ms.reviewer: assafakiva
 ms.topic: concept-article
-ms.date: 05/28/2026
+ms.date: 11/08/2026
+ms.service: azure-arc
 ms.subservice: edge-rag
+ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ai-usage: ai-generated
-# Customer intent: As a platform engineer or AI application developer, I want to understand how the agentic layer uses agents, knowledge bases, and knowledge sources so that I can design and operate grounded multistep AI interactions on my infrastructure.
+# Customer intent: As a platform engineer or AI application developer, I want to understand agents, tools, knowledge bases, and the Responses API in Agent Service so that I can design and run grounded AI assistants on my infrastructure.
 ---
 
-# The agentic layer in Agentic Retrieval in Foundry Local
+# Agent Service overview
 
-The Agentic Retrieval platform is organized into two layers. The *knowledge layer* handles document ingestion, indexing, and retrieval. The *agentic layer* sits above it and decides how agents use that knowledge at runtime.
+Agents and Tools with Foundry Local has three components. *Agentic Retrieval* finds and grounds content from your documents and other knowledge sources. *Agent Service* runs *agents*. An agent is an AI assistant that follows your instructions, calls tools, and answers users with content from your own data. The *Local chat UI* gives users a browser experience for chatting with agents. This article describes Agent Service.
 
-:::image type="content" source="media/agentic-overview/agentic-rag-platform.svg" alt-text="Diagram showing the Agentic Retrieval platform with the agentic layer on top of the knowledge layer." border="false":::
+:::image type="content" source="media/agentic-overview/agentic-rag-platform.svg" alt-text="Diagram of how the local chat UI, Agent Service, and Agentic Retrieval connect to models and tools." border="false":::
 
-The agentic layer adds planning, tool use, and conversation orchestration to Agentic Retrieval. The agentic layer lets you build assistants that can manage multithread interactions, call Model Context Protocol (MCP)-connected knowledge tools, and generate responses grounded in private data that stays on your infrastructure.
+Agent Service uses the same API shapes as [Microsoft Foundry Agent Service](/azure/foundry/agents/overview): an Agents API to define agents, and an OpenAI-compatible Responses API to run them. If you already know these APIs, most of your knowledge and client code carries over.
 
-You can deploy the agentic layer together with the knowledge layer or by itself, depending on whether you need local document ingestion and retrieval or only agent orchestration.
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-In a combined deployment, agents can use the built-in MCP server to query collections indexed by the knowledge layer. In an agentic-only deployment, agents can still work, but they use external MCP servers instead of the built-in ingestion and retrieval stack.
+## What Agent Service provides
 
-## What the agentic layer provides
+Use Agent Service when you need more than a single search. It gives you:
 
-Use the agentic layer when you need more than direct retrieval. It adds these capabilities:
+- **Agents that you define.** You create agents, write their instructions, choose their model, and pick their tools.
+- **Versioning.** Every change to an agent creates a new, unchangeable version. You choose which version answers users, and you can roll back.
+- **Tools.** Agents can call Model Context Protocol (MCP) servers, Microsoft Foundry toolboxes, and your Agentic Retrieval knowledge bases. Microsoft 365 Local is supported only with Agentic Retrieval: agents use SharePoint Server and Exchange Server content through a knowledge base, not as a direct agent tool.
+- **Conversations.** The service stores multiturn conversations for each user, so the agent remembers earlier turns.
+- **Streaming answers with citations.** Answers can stream to the client as they're generated, and include links to the sources the agent used.
 
-- **Agent execution** for running instructions, reasoning over a request, and deciding when to call tools.
-- **Conversation state** through threads, messages, and runs for multithread interactions.
-- **Knowledge orchestration** by connecting agents to one or more MCP-backed knowledge sources through a knowledge base.
-- **Flexible deployment** so you can use Agentic Retrieval with the built-in knowledge layer or with external MCP servers only.
+## Main parts of Agent Service
 
-## Core components
+Agent Service works with four services on your cluster. Agents management and agents execution are part of Agent Service. The Knowledge Sources and knowledge base execution services give agents access to Agentic Retrieval. You call their public routes through the cluster's HTTPS address (`https://<cluster-domain>`).
 
-The agentic layer contains three components.
+| Service | What it does | Main paths |
+|---|---|---|
+| **Agents management** | Stores agents, agent versions, connections, and knowledge bases. Developers use it to set up agents. | `/agents`, `/connections`, `/knowledgebases` |
+| **Agents execution** | Runs agents. It reads the agent version, calls the model and tools, and stores the result. Applications and the local chat UI use it. | `/openai/v1/responses`, `/openai/v1/conversations` |
+| **Knowledge Sources** | Creates and manages indexed, remote MCP, SQL, SharePoint, and Exchange knowledge-source resources. | `/knowledgesources` |
+| **Knowledge base execution** | Searches the knowledge sources in a knowledge base and returns grounded content to the agent. Agents use it through an MCP tool. You don't call it directly. | No public route |
 
-### Agents runtime
+## Key concepts
 
-The agents runtime executes conversations. It creates and manages:
+Read these terms in order. Each one builds on the previous terms.
 
-- **Threads** to hold a conversation session.
-- **Messages** to store user, assistant, or system turns.
-- **Runs** to execute an agent against the messages in a thread.
+- **Model connection.** A *model connection* tells the platform how to reach one deployed language model: its endpoint, model name, and sign-in method. A developer creates it with the Connections API. Agents and knowledge bases refer to it by name. For example, `my-model/gpt-oss-20b` means "the model `gpt-oss-20b` that the connection `my-model` points to".
 
-This runtime is responsible for invoking tools, interacting with the language model, and returning responses. It supports streaming responses through server-sent events (SSE).
+- **Agent.** An *agent* is a named AI assistant, such as `hr-helper`. A developer creates it. The agent itself only holds a name, an on/off state (*enabled* or *disabled*), and a pointer to the version that answers users.
 
-### Knowledge base
+- **Agent version.** An *agent version* holds the real settings of an agent: the model, the instructions, and the tools. A developer creates a new version each time they change the agent. The first version is number `1`, and each new version gets the next number. You can't change a version after you create it.
 
-The Knowledge Base Manager is the control plane for knowledge base configuration. Use it to manage *knowledge bases*. Knowledge bases define the knowledge boundary available to agents. Each deployment includes a default knowledge base that the system automatically provisions.
+- **Tool.** A *tool* is something an agent can call while it answers, such as a search over your documents. You list the tools in the agent version. The agent decides when to call them.
 
-The system automatically provisions agents and pairs them 1:1 with a knowledge base. Changes to the knowledge base sync to the paired internal agent.
+- **MCP connection.** An *MCP connection* stores the address and sign-in method of one MCP server. A developer creates it with the Connections API, or inline when creating an agent version. MCP tools in an agent version point to an MCP connection by name.
 
-Each deployment includes a default knowledge base. You can't create extra knowledge bases or delete the default one. Use GET, PATCH, or PUT to view and update the default knowledge base.
+- **Knowledge source.** A *knowledge source* registers one place that holds knowledge, such as an indexed collection, an external MCP server, an approved read-only SQL database slice, or Microsoft 365 Local (`sharepoint` and `exchange`). SQL knowledge sources are in preview. Microsoft 365 Local knowledge sources are in limited preview for approved customers. A developer creates a source with the Knowledge Sources API. For more information, see [Configure a knowledge source](knowledge-sources-guide.md).
 
-For more information, see [Knowledge bases in Agentic Retrieval](knowledge-bases-guide.md).
+- **Knowledge base.** A *knowledge base* groups one or more knowledge sources and adds retrieval instructions. A developer creates it with the Knowledge Bases API. When you create a knowledge base, the platform also creates a matching MCP connection named `kb-<knowledge-base-name>`. To let an agent use the knowledge base, you add that connection to the agent version as a tool. For more information, see [Manage knowledge bases](knowledge-bases-guide.md).
 
-### Knowledge sources
+- **Conversation.** A *conversation* stores the turns between one user and agents over time. The calling user owns it. Other users can't see it.
 
-Knowledge sources register MCP connections that an agent can use as tools. Each knowledge source contains its own connection details and identifies the MCP endpoint the agent should call.
+- **Response.** A *response* is one run of an agent. Your application sends the user's input, and the agent reads it, calls tools if needed, and returns output. A response can be part of a conversation, or it can stand alone.
 
-Agentic Retrieval support two knowledge source kinds:
+## How the parts work together
 
-- **remote_mcp** for external MCP servers.
-- **indexed_sources_mcp** for the built-in MCP server with a reference to indexed content in the knowledge layer.
+The following steps show a typical setup, from an empty cluster to a user getting an answer.
 
-For more information, see [Knowledge sources in Agentic Retrieval](knowledge-sources-guide.md).
+1. A developer creates a **model connection** for the language model.
+1. A developer creates **knowledge sources** and a **knowledge base** that groups them. The platform creates the MCP connection `kb-<name>` for the knowledge base.
+1. A developer creates an **agent version**. It names the model connection, gives instructions, and adds tools, for example the knowledge base and an external MCP server.
+1. A user opens the local chat UI, or your application calls the Responses API, and sends a question to the agent.
+1. The agents execution service runs the selected agent version. It calls the model. When the model asks for a tool, the service calls the tool and gives the result back to the model.
+1. The service returns the answer, with citations, and stores it in the user's conversation.
 
-## How the knowledge base works with knowledge sources
+Agents only use the tools listed in their version. They don't see other knowledge bases, connections, or collections on the cluster.
 
-The agentic layer uses a predictable sequence for knowledge access. You register knowledge sources, link them to the default knowledge base, and let the system keep the paired internal agent in sync. At runtime, users interact through threads, and each run executes the paired agent with access only to the configured knowledge sources.
+## Roles and access
 
-At a high level, the flow works like this:
+For a full description of identities, credentials, and approved endpoints, see [Security and access for Agent Service](agent-service-security.md).
 
-1. You register one or more knowledge sources.
-1. You link those sources to your default knowledge base.
-1. A user starts a thread and sends a message.
-1. A run executes the paired agent, which calls MCP tools when needed and generates a grounded response.
+Azure role-based access control (Azure RBAC) is the primary access model. An administrator assigns Azure roles to users, groups, or application identities at the extension resource scope. Inherited assignments at subscription, resource-group, or cluster scope also apply. For setup steps, see [Assign Azure roles](prepare-authentication.md#assign-azure-roles).
 
-This model keeps knowledge access explicit. Agents don't automatically see all available tools or indexed data. They only use the knowledge sources exposed through the assigned knowledge base.
+> [!IMPORTANT]
+> App roles remain a fallback for most management and classic APIs, but not for Responses or Conversations. The local chat UI uses these APIs, so an app role alone no longer lets you chat with agents.
 
-## Key concepts in the agentic layer
+| Azure role | Who gets it | What they can do |
+|---|---|---|
+| **Reader** | People who read resource settings | Read settings and list enabled agent summaries. |
+| **Cognitive Services Contributor** | Developers and administrators | Create, change, and delete agents, agent versions, connections, knowledge sources, and knowledge bases. |
+| **Cognitive Services OpenAI User** | People and apps that run agents | Use Responses and Conversations, including the local chat UI. Also assign **Reader** to list agents. |
 
-Review the following key concepts for the agentic layer:
+In disconnected deployments, use **Reader** for read-only access and **Contributor** for changes and chat. The extension's managed identity also needs **Reader** at the extension scope to check role assignments.
 
-- **Agent** is an internal execution entity that's automatically provisioned and paired one-to-one with a knowledge base. The agent handles reasoning, planning, calling tools, and producing responses. You don't create or manage agents directly. Instead, you configure the knowledge base, and the system keeps the paired agent in sync.
+The `EdgeRAGDeveloper` app role remains a management fallback and is required to read full definitions from `GET /agents` and `GET /agents/{name}`. Without it, callers get enabled-agent summaries. `EdgeRAGEndUser` remains a fallback for agent summaries, connection metadata, and classic queries. Azure-role-authorized callers can access every collection; app-role fallback retains collection filters.
 
-- **Knowledge base** groups one or more knowledge sources into a reusable boundary. Each deployment includes a default knowledge base. It defines what knowledge the agent can access rather than how the agent behaves.
+Conversations and responses belong to the caller who created them. The service uses the object ID (`oid`) in the access token. Stored responses also use the tenant ID (`tid`). A different owner or response tenant returns `404 Not Found`.
 
-- **Knowledge source** is a registered MCP connection. It contains the endpoint and configuration required to reach a specific MCP server or indexed source.
+The extension also has its own managed identity. If agents call a Foundry Local model with this identity, the identity needs Azure role assignments. You don't assign these roles to people. For steps, see [Configure Foundry Local inference authentication](configure-foundry-inference-authentication.md).
+## Optional indexed sources and Agent Service
 
-- **Thread** represents a conversation session between a user and an agent. It stores the ordered message history for that interaction.
+The current chart always deploys the core Agent Service workloads. The `indexedSourcesEnabled` setting controls whether the local indexed-source stack is also deployed.
 
-- **Message** is a single turn in a thread. Messages can represent user input, assistant output, or system content.
-
-- **Run** is a single execution of an agent against a thread. During a run, the agent reads the thread state, decides whether to call knowledge tools, and produces a response.
-
-- **Model Context Protocol** is the protocol used to connect agents to tools and external data sources. Agentic Retrieval can both expose MCP tools through its built-in MCP server and consume external MCP servers through knowledge sources.
-
-## Deployment modes and the agentic layer
-
-The role of the agentic layer depends on the deployment mode you choose:
-
-| Deployment mode | Agentic layer | Knowledge layer | Typical use |
+| `indexedSourcesEnabled` | Core Agent Service | Local indexed-source stack | Typical use |
 |---|---|---|---|
-| **Combined** | Yes | Yes | Full platform with agents grounded in locally indexed content. |
-| **Agentic** | Yes | No | Agent orchestration only, using external MCP tools or services. |
-| **Knowledge** | No | Yes | Retrieval and RAG APIs only, without agent orchestration. |
+| `true` (default) | Yes | Yes | Agents grounded in locally indexed content and other configured tools. |
+| `false` | Yes | No | Agent execution without the local ingestion, collection, and Indexed Sources MCP workloads. |
 
-Choose **combined** when you want the full Agentic Retrieval platform. Choose **agentic** when you already have MCP-accessible knowledge systems and only need the agent runtime and management layer. Choose **knowledge** when your application only needs ingestion and retrieval APIs.
+## Language model options
 
-## When to use the agentic layer
+The Agents and Tools with Foundry Local extension doesn't include a language model. You provide one and register it as a model connection. The model must offer an OpenAI-compatible API. The recommended model is **GPT-OSS-20B**. For hardware needs, see [Requirements](requirements.md). To create a model connection, see [Create and manage agents](create-manage-agents.md#create-a-model-connection).
 
-Use the agentic layer when your solution needs one or more of these patterns:
+| Model connection kind | Use it for |
+|---|---|
+| `FoundryOnArc` | A model served by [Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) on the same Azure Arc-connected cluster. Recommended for on-premises deployments. |
+| `FoundryCloud` | A model deployed in [Microsoft Foundry](/azure/foundry/what-is-foundry). Needs network access from the cluster to Azure. |
+| `OpenAICompatible` | Any other endpoint that offers an OpenAI-compatible API. Requires an API key. |
 
-- Multiturn assistants that maintain conversation state.
-- Tool-calling workflows that must combine multiple knowledge sources.
-- Clear separation between agent behavior and knowledge access.
-- Deployments where agents need to work with either built-in retrieval or external MCP servers.
+## Agent APIs from earlier previews
 
-If you only need direct ingestion and RAG-style querying against indexed content, the knowledge layer by itself might be enough.
+Earlier previews used threads, messages, and runs, and created one agent for you automatically. Microsoft retired these APIs. Calls to `/threads`, `/knowledge-bases`, and `POST /agents` with the old request body now return `410 Gone`. The earlier Knowledge Sources API used generated IDs. The current Knowledge Sources API at `/knowledgesources` uses source names and a different request body. Use the Agents API, current Knowledge Sources and Knowledge Bases APIs, Conversations API, and Responses API that this article describes.
 
-## Language model endpoint options
+| Earlier preview concept | Use instead |
+|---|---|
+| Thread | Conversation |
+| Message | Conversation item |
+| Run | Response |
+| Default knowledge base paired with an automatic agent | Knowledge bases that you create and add to your own agents as tools |
 
-Agentic Retrieval doesn't bundle language models. You must provide your own large language model (LLM) endpoint. The LLM must expose an OpenAI-compatible chat completions API.
+### Route mapping
 
-- **Recommended model:** **GPT-OSS-20B**. This model requires its own dedicated GPU (minimum 24 GB VRAM; 48 GB+ recommended for production). For detailed hardware requirements, see [What you need for Agentic Retrieval](requirements.md).
+The following table shows the current route for each route from earlier previews. Knowledge sources and knowledge bases now use a name in the route, not a generated ID.
 
-- **Hosting options**: You can deploy GPT-OSS-20B (or another model) using any of these options:
+| Earlier route | Current route | Notes |
+|---|---|---|
+| `POST /agents` with the old request body | `POST /agents/{agent_name}/versions` | Creates the agent and its first version. |
+| `POST /threads` | `POST /openai/v1/conversations` | |
+| `GET /threads` | `GET /openai/v1/conversations` | |
+| `GET /threads/{thread_id}` | `GET /openai/v1/conversations/{conversation_id}` | |
+| `POST /threads/{thread_id}` | `POST /openai/v1/conversations/{conversation_id}` | Replaces the conversation metadata. |
+| `DELETE /threads/{thread_id}` | `DELETE /openai/v1/conversations/{conversation_id}` | |
+| `POST /threads/{thread_id}/messages` | `POST /openai/v1/conversations/{conversation_id}/items` | |
+| `GET /threads/{thread_id}/messages` | `GET /openai/v1/conversations/{conversation_id}/items` | |
+| `GET /threads/{thread_id}/messages/{message_id}` | `GET /openai/v1/conversations/{conversation_id}/items/{item_id}` | |
+| `DELETE /threads/{thread_id}/messages/{message_id}` | `DELETE /openai/v1/conversations/{conversation_id}/items/{item_id}` | |
+| `POST /threads/{thread_id}/runs` | `POST /openai/v1/responses` | Set `agent_reference` and `conversation` in the body. Set `stream` to `true` to get Server-Sent Events. |
+| `GET /threads/{thread_id}/runs/{run_id}` | `GET /openai/v1/responses/{response_id}` | |
+| `POST /threads/{thread_id}/runs/{run_id}/cancel` | `POST /openai/v1/responses/{response_id}/cancel` | |
+| `GET /threads/{thread_id}/runs/{run_id}/steps` | `GET /openai/v1/responses/{response_id}` | Tool calls appear as `mcp_call` items in `output`. |
+| `GET /knowledge-bases` | `GET /knowledgebases` | |
+| `GET /knowledge-bases/{kb_id}` | `GET /knowledgebases('{name}')` | |
+| `PUT` or `PATCH /knowledge-bases/{kb_id}` | `PUT /knowledgebases('{name}')` | The current API has no `PATCH`. Send the full knowledge base. |
+| `POST /edgeai/knowledgesources` | `POST /knowledgesources` | Use the current request body. |
+| `GET /edgeai/knowledgesources` | `GET /knowledgesources` | |
+| `GET`, `PATCH`, or `DELETE /edgeai/knowledgesources/{ks_id}` | `GET`, `PATCH`, or `DELETE /knowledgesources/{name}` | Use the source name, not the generated ID. |
+| `POST /edgeai/knowledgesources/batch-delete` | `POST /knowledgesources/batch-delete` | |
 
-  | Hosting option | Description |
-  |---|---|
-  |[Foundry Local on Azure Local](/azure/azure-sovereign-clouds/private/foundry-local/what-is-foundry-local-on-azure-local) (Recommended)| Run models locally on your Arc-connected cluster. Both extensions are designed to work together on the same cluster. Recommended for on-premises deployments. |
-  | [Microsoft Foundry](/azure/foundry/what-is-foundry) | Cloud-hosted models. Requires network connectivity from the edge. |
-
-Configure the language model endpoint at the cluster level during deployment. For endpoints, use Helm values such as `byom.apiEndpoint`, `byom.apiKey`, and `byom.apiModel`. All agents on the cluster currently share the same LLM endpoint.
+For request and response details, see the [Agents API reference](reference/agents-api-reference.md), [Responses API reference](reference/responses-api-reference.md), [Knowledge Bases API reference](reference/knowledge-bases-api-reference.md), and [Knowledge Sources API reference](reference/knowledge-sources-api-reference.md).
 
 ## Related content
 
-- [What is Agentic Retrieval in Agents and Tools with Foundry Local?](overview.md)
-- [Deployment overview for Agentic Retrieval](deploy-overview.md)
-- [Deployment prerequisites checklist for Agentic Retrieval](complete-prerequisites.md)
-- [Requirements for Agentic Retrieval](requirements.md)
+- [Quickstart: Create an agent and chat with it](quickstart-create-agent.md)
+- [Create and manage agents](create-manage-agents.md)
+- [Add tools to an agent](add-agent-tools.md)
+- [Run agents with the Responses API](run-agents-responses-api.md)
+- [Manage knowledge bases](knowledge-bases-guide.md)
+- [Security and access for Agent Service](agent-service-security.md)
+- [Troubleshoot Agent Service](troubleshoot-agent-service.md)
+- [Agent Service limits](reference/agent-service-limits.md)
+- [What is Agents and Tools with Foundry Local?](overview.md)
