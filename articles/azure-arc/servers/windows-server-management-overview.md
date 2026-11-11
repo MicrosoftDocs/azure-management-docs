@@ -1,8 +1,9 @@
 ---
 title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
-ms.date: 04/01/2026
+ms.date: 11/11/2026
 ms.topic: concept-article
+ai-usage: ai-assisted
 # Customer intent: As an IT administrator managing hybrid environments, I want to enroll Windows Server Management through Azure Arc, so that I can leverage remote management, configuration, and update capabilities for improved oversight and operational efficiency across my server infrastructure.
 ---
 
@@ -127,3 +128,19 @@ $response.properties
 
 ---
 
+### Verify
+
+After enrollment, use [Azure Resource Graph Explorer](https://ms.portal.azure.com/#servicemenu/Microsoft_Azure_Resources/ResourceManager/resourcegraphexplorer) to verify Software Assurance attestation across your Azure Arc-enabled Windows servers. Select the subscriptions you want to check, and run the following query:
+
+```kusto
+Resources
+| where type =~ 'microsoft.hybridcompute/machines'
+| where properties.osType =~ 'Windows'
+| extend softwareAssurance = tobool(properties.licenseProfile.softwareAssurance.softwareAssuranceCustomer)
+| project name, resourceGroup, subscriptionId,
+    status = tostring(properties.status),
+    softwareAssuranceCustomer = tostring(softwareAssurance)
+| order by name asc
+```
+
+The `softwareAssuranceCustomer` column shows `"true"` for servers with Software Assurance attestation. A value of `"false"` or an empty string doesn't confirm attestation. To show only attested servers, add `| where softwareAssuranceCustomer == "true"` after the `project` operator and before the `order by` operator.
