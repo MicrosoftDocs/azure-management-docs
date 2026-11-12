@@ -62,13 +62,13 @@
     },
     {
       "source_path_from_root": "/articles/azure-arc/edge-rag/evaluate-solution.md",
-      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/evaluate-solution",
-      "redirect_document_id": true
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/overview",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/azure-arc/edge-rag/evaluation-metrics.md",
-      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/evaluation-metrics",
-      "redirect_document_id": true
+      "redirect_url": "/azure/azure-arc/agents-tools-foundry-local/overview",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/azure-arc/edge-rag/known-issues.md",
