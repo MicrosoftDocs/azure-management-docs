@@ -1,250 +1,288 @@
 ---
-title: Configure a Knowledge Source in Agentic Retrieval in Foundry Local
-description: Learn how to configure knowledge sources in Agentic Retrieval in Foundry Local, which define MCP server connections for agent access.
-author: cwatson-cat
-ms.author: cwatson
+title: Configure a Knowledge Source in Agents and Tools with Foundry Local
+description: Learn how to create, update, and delete knowledge sources in Agents and Tools with Foundry Local so that knowledge bases can search your content.
+ms.reviewer: assafakiva
 ms.topic: how-to
-ms.date: 04/30/2026
+ms.date: 11/08/2026
 ms.service: azure-arc
 ms.subservice: edge-rag
+ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ai-usage: ai-generated
+# Customer intent: As an AI application developer, I want to register my indexed collections and MCP servers as knowledge sources so that I can group them into knowledge bases for my agents.
 ---
 
-# Configure a knowledge source in Agentic Retrieval in Foundry Local
+# Configure a knowledge source in Agents and Tools with Foundry Local
 
-This guide explains how to configure knowledge sources in Agentic Retrieval. A *knowledge source* is a self-contained registration of an MCP server connection, optionally bound to a specific indexed source reference. Each knowledge source includes all MCP server connection details (URL, auth type). 
+A *knowledge source* registers one place that holds knowledge. It can be a collection that Agentic Retrieval indexed, an external Model Context Protocol (MCP) server, or an approved read-only SQL database slice. Agents don't use knowledge sources directly. Instead, you group knowledge sources into a [knowledge base](knowledge-bases-guide.md), and then add the knowledge base to an agent as a tool.
 
-[!INCLUDE [preview-notice](includes/preview-notice.md)]
+This article shows you how to create, list, update, and delete knowledge sources by using the Knowledge Sources API.
+
+[!INCLUDE [sql-knowledge-source-preview-notice](includes/sql-knowledge-source-preview-notice.md)]
 
 ## Prerequisites
 
-- Deploy Agentic Retrieval in combined or agentic mode.
+- An Agents and Tools with Foundry Local deployment.
+- For indexed sources: a collection with ingested documents. See [Data collections](collections-overview.md) and [Add data source](add-data-source.md).
+- For remote sources: an MCP server that the cluster can reach.
+- For SQL sources: a supported SQL Server, PostgreSQL, or MySQL database. See [Connect a SQL database](connect-sql-database.md).
+- A Microsoft Entra ID identity with **Cognitive Services Contributor** at the extension resource scope to create, change, or delete knowledge sources. **Reader** is enough to list and get sources and read exposed SQL schemas. In disconnected deployments, use **Contributor** for changes. All these operations support `EdgeRAGDeveloper` as an app-role fallback.
 
-- MCP server. Either the built-in Agentic Retrieval MCP server or an external one.
+Azure roles are checked first. Previewing a SQL schema also needs **Cognitive Services Contributor**, even though it doesn't save a source. The extension's managed identity needs **Reader** at the extension scope to check caller roles. See [Assign Azure roles](prepare-authentication.md#assign-azure-roles) and [Security and access](agent-service-security.md#permission-checks).
 
-- Bearer token with **EdgeRAGDeveloper** role for write operations.
-
-  ```azurecli
-  TOKEN=$(az account get-access-token \
-    --resource "api://<app-registration-client-id>" \
-    --query accessToken -o tsv)
-  ```
+[!INCLUDE [agent-service-setup](includes/agent-service-setup.md)]
 
 ## Knowledge source kinds
 
-The following table describes the two types of knowledge sources you can create:
+The following table describes the kinds of knowledge sources that this article covers.
 
-| Kind | Parameters field | Use case |
+| Kind | Parameters field | Use it for |
 |---|---|---|
-| `remote_mcp` | `remote_mcp_parameters` | Register any external MCP server. |
-| `indexed_sources_mcp` | `indexed_sources_parameters` | Register the built-in `indexed-source-mcp` server pointing at a specific indexed source (for example, a collection). |
+| `indexed_sources_mcp` | `indexed_sources_parameters` | A collection that Agentic Retrieval indexed on this cluster. The built-in MCP server searches it. |
+| `remote_mcp` | `remote_mcp_parameters` | An external MCP server. |
+| `sql` | `sql_parameters` | An approved read-only set of SQL tables and columns. |
 
-## Step 1: Create a remote MCP knowledge source
+## Create an indexed source
 
-To register an external MCP server directly as a knowledge source, send a POST request with the server connection details:
+When you set `indexedSourcesEnabled=true`, the extension automatically registers a default knowledge source named `knowledge-agent`. It uses the built-in MCP server and points to the `edgeragapp` collection. You can use this source in a knowledge base, or create a source for another collection.
+
+To make an indexed collection available to knowledge bases, send a `POST` request to `/knowledgesources`. Set `indexed_source_ref` to the collection name.
+
+# [curl](#tab/curl)
 
 ```bash
-curl -X POST https://<cluster-domain>/edgeai/knowledgesources \
+curl -X POST "$BASE/knowledgesources" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $TOKEN" \
   -d '{
-    "name": "my-external-mcp",
-    "kind": "remote_mcp",
-    "auth_type": "unauthenticated",
-    "description": "External MCP server for document search",
-    "remote_mcp_parameters": {
-      "server_url": "https://my-mcp-server.example.com/mcp",
-      "server_label": "doc-search"
+    "name": "benefits-docs",
+    "kind": "indexed_sources_mcp",
+    "auth_type": "microsoft_entra_id",
+    "description": "Benefits policy documents",
+    "indexed_sources_parameters": {
+      "server_url": "http://localhost:3500/v1.0/invoke/indexed-sources-mcp-server/method/mcp",
+      "indexed_source_ref": "benefits"
     }
   }'
 ```
 
-You can verify the successful response (201 Created):
+# [Python](#tab/python)
+
+```python
+r = api.post(f"{BASE}/knowledgesources", json={
+    "name": "benefits-docs",
+    "kind": "indexed_sources_mcp",
+    "auth_type": "microsoft_entra_id",
+    "description": "Benefits policy documents",
+    "indexed_sources_parameters": {
+        "server_url": "http://localhost:3500/v1.0/invoke/indexed-sources-mcp-server/method/mcp",
+        "indexed_source_ref": "benefits",
+    },
+})
+r.raise_for_status()
+print(r.json()["provisioning_state"])  # Succeeded
+```
+
+---
+
+The `server_url` in this example is the in-cluster address of the built-in MCP server. Use it as shown.
+
+If the request succeeds, the service returns `201 Created`, and `provisioning_state` is `Succeeded`:
 
 ```json
 {
-  "id": "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
-  "name": "my-external-mcp",
-  "kind": "remote_mcp",
-  "description": "External MCP server for document search",
-  "auth_type": "unauthenticated",
-  "remote_mcp_parameters": {
-    "server_url": "https://my-mcp-server.example.com/mcp",
-    "server_label": "doc-search"
+  "name": "benefits-docs",
+  "kind": "indexed_sources_mcp",
+  "description": "Benefits policy documents",
+  "auth_type": "microsoft_entra_id",
+  "indexed_sources_parameters": {
+    "server_url": "http://localhost:3500/v1.0/invoke/indexed-sources-mcp-server/method/mcp",
+    "indexed_source_ref": "benefits",
+    "server_label": "indexed-sources-mcp-server"
   },
-  "indexed_sources_parameters": null,
-  "validation_status": "active",
-  "validation_error": null,
-  "validated_at": "2026-03-29T12:00:00.000000+00:00",
-  "created_by": null,
-  "created_at": "2026-03-29T12:00:00.000000+00:00",
-  "updated_at": "2026-03-29T12:00:00.000000+00:00"
+  "provisioning_state": "Succeeded",
+  "created_at": "2026-10-21T09:00:00Z"
 }
 ```
 
-### `remote_mcp_parameters` fields
+When you set `auth_type` to `microsoft_entra_id`, the search runs with the end user's identity. Users only get results from collections that they have access to. For more information, see [Collections overview](collections-overview.md).
 
-The following table describes the parameters for remote MCP connections:
+## Create a remote MCP source
 
-| Field | Required | Description |
-|---|---|---|
-| `server_url` | **Yes** | URL of the MCP server endpoint |
-| `server_label` | No | Human-readable label for the server |
+To register an external MCP server as a knowledge source, use `remote_mcp`:
 
-## Step 2: Create an indexed source MCP knowledge source
-
-To register the built-in MCP server pointing at a specific indexed source (collection), send a POST request with the indexed source connection details:
+# [curl](#tab/curl)
 
 ```bash
-curl -X POST https://<cluster-domain>/edgeai/knowledgesources \
+curl -X POST "$BASE/knowledgesources" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $TOKEN" \
   -d '{
-    "name": "my-docs-search",
-    "kind": "indexed_sources_mcp",
-    "auth_type": "microsoft_entra_id",
-    "description": "Search the my-docs collection",
-    "indexed_sources_parameters": {
-      "server_url": "https://<cluster-domain>/edgeai/mcp",
-      "indexed_source_ref": "my-docs",
-      "server_label": "indexed-sources-mcp-server"
+    "name": "product-manuals",
+    "kind": "remote_mcp",
+    "auth_type": "unauthenticated",
+    "description": "Product manuals search server",
+    "remote_mcp_parameters": {
+      "server_url": "https://manuals.contoso.com/mcp",
+      "server_label": "manuals"
     }
   }'
 ```
 
-### `indexed_sources_parameters` fields
+# [Python](#tab/python)
 
-The following table describes the parameters for indexed source connections:
+```python
+r = api.post(f"{BASE}/knowledgesources", json={
+    "name": "product-manuals",
+    "kind": "remote_mcp",
+    "auth_type": "unauthenticated",
+    "description": "Product manuals search server",
+    "remote_mcp_parameters": {
+        "server_url": "https://manuals.contoso.com/mcp",
+        "server_label": "manuals",
+    },
+})
+r.raise_for_status()
+```
+
+---
+
+Before the service saves the knowledge source, it connects to the MCP server to check that it works. If the check fails, the service returns `400 Bad Request` and saves nothing.
+
+Authenticated external MCP destinations must use HTTPS and be trusted by the deployment before the service forwards a caller token. Use `unauthenticated` when the server doesn't require delegated authentication.
+
+> [!TIP]
+> To let an agent call all the tools of an external MCP server, you don't need a knowledge source. Add the server to the agent as an MCP tool instead. See [Add tools to an agent](add-agent-tools.md). Use a knowledge source when you want a knowledge base to combine the server with other sources.
+
+## Check readiness
+
+Get the source by name:
+
+```bash
+curl "$BASE/knowledgesources/benefits-docs" \
+  -H "Authorization: ******"
+```
+
+MCP source creation normally returns `Succeeded`. SQL source creation returns `202 Accepted` and can report `Provisioning` while the operator creates the serving workload. Poll a source that reports `Provisioning` until `provisioning_state` is `Succeeded`. If the state is `Failed`, inspect the custom resource's `status.message` and correct the cause.
+
+## Request fields
+
+The following table describes the fields that you send when you create a knowledge source.
 
 | Field | Required | Description |
 |---|---|---|
-| `server_url` | **Yes** | URL of the indexed-source-mcp server endpoint. |
-| `indexed_source_ref` | **Yes** | The name of the indexed source (collection) to connect to. |
-| `server_label` | No | Human-readable label. Defaults to `"indexed-sources-mcp-server"`. |
+| `name` | Yes | The name and ID of the knowledge source. Use lowercase letters, digits, and hyphens, and start and end with a letter or digit. You can't change it later. Knowledge bases refer to the knowledge source by this name. |
+| `kind` | Yes | `indexed_sources_mcp`, `remote_mcp`, or `sql`. You can't change it later. |
+| `auth_type` | Yes | `microsoft_entra_id` sends the end user's token only to a trusted MCP destination. `unauthenticated` sends no credentials. |
+| `description` | No | A short description of the content. |
+| `indexed_sources_parameters.server_url` | For `indexed_sources_mcp` | The address of the built-in MCP server. |
+| `indexed_sources_parameters.indexed_source_ref` | For `indexed_sources_mcp` | The name of the collection. |
+| `indexed_sources_parameters.server_label` | No | A label for the server. Default `indexed-sources-mcp-server`. |
+| `remote_mcp_parameters.server_url` | For `remote_mcp` | The address of the MCP server. |
+| `remote_mcp_parameters.server_label` | No | A label for the server. |
+| `sql_parameters` | For `sql` | SQL connection, schema, and credential configuration. See [Connect a SQL database](connect-sql-database.md). |
 
-> [!IMPORTANT]
-> When using the built-in MCP server's search tools, `indexed_source_ref` refers to a collection name (for example, `"my-docs"`). This is the link between the Agentic Layer and the knowledge layer's collections.
+> [!WARNING]
+> With `microsoft_entra_id`, the end user's token goes to the MCP server. Register only MCP servers that you operate or trust.
 
-## MCP validation and authentication
+## List and get knowledge sources
 
-When a knowledge source is created or its connection parameters are updated, the service validates the MCP connection before persisting:
+To list knowledge sources, use `limit` (1 to 100, default 10) and `offset` for paging. You can also filter by `kind`.
 
-- Extracts `server_url` from the parameters.
-- Performs an SSRF/DNS safety check (blocks private/internal IPs).
-- Sends a JSON-RPC `initialize` request to the MCP server (connect timeout: 5s, read timeout: 30s).
-- Retries up to three times with exponential backoff (1s, 2s).
-- If validation *succeeds*: `validation_status` is set to `active`, the record is persisted.
-- If validation *fails*: the request is rejected with `400 Bad Request`. Nothing is persisted (on create) or changed (on update).
-
-| Status | Description |
-|---|---|
-| `unknown` | Default status. Has not been validated. |
-| `active` | MCP `initialize` succeeded. `validated_at` is set. |
-
-> [!NOTE]
-> If validation fails on create, the request is rejected with `400 Bad Request` and no record is persisted. If validation fails on update, no fields are changed. In both cases, the error response contains the validation failure details.
-
-### Supported authentication types
-
-The following table describes the supported authentication types for knowledge sources:
-
-| Auth type | Description | When to use |
-|---|---|---|
-| `microsoft_entra_id` | Forwards the caller's `Authorization` header to the MCP server. | When the MCP server validates Entra ID tokens. |
-| `unauthenticated` | No auth headers are forwarded to the MCP server. | When the MCP server has no auth requirement (for example, internal service). |
-
-## Step 3: Update a knowledge source
-
-To modify an existing knowledge source, send a PATCH request with the fields you want to update. If connection parameters or `auth_type` are changed, MCP validation is re-run. If revalidation fails, no fields are updated.
-
-Send a PATCH request with the fields to update:
+# [curl](#tab/curl)
 
 ```bash
-curl -X PATCH https://<cluster-domain>/edgeai/knowledgesources/<ks-id> \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{
-    "name": "updated-name",
-    "description": "Updated description"
-  }'
+curl "$BASE/knowledgesources?kind=indexed_sources_mcp&limit=20" \
+  -H "Authorization: Bearer $TOKEN"
+
+curl "$BASE/knowledgesources/benefits-docs" \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
-> [!IMPORTANT]
-> The `kind` field is immutable after creation. Supplying a parameters field that doesn't match the knowledge source's `kind` returns `400 Bad Request`.
+# [Python](#tab/python)
 
-## Step 4: Delete knowledge sources
+```python
+page = api.get(f"{BASE}/knowledgesources",
+               params={"kind": "indexed_sources_mcp", "limit": 20}).json()
+for source in page["items"]:
+    print(source["name"], source["provisioning_state"])
 
-You can delete knowledge sources individually or in batch operations.
+source = api.get(f"{BASE}/knowledgesources/benefits-docs").json()
+```
 
-1. Delete a single knowledge source.
+---
 
-    ```bash
-    curl -X DELETE https://<cluster-domain>/edgeai/knowledgesources/<ks-id> \
-      -H "Authorization: Bearer $TOKEN"
-    ```
+The list response has `items`, `total`, `limit`, and `offset`.
 
-1. Batch delete multiple knowledge sources.
+## Update a knowledge source
 
-    ```bash
-    curl -X POST https://<cluster-domain>/edgeai/knowledgesources/batch-delete \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $TOKEN" \
-      -d '{
-        "ks_ids": ["<ks-id-1>", "<ks-id-2>"]
-      }'
-    ```
+To change a knowledge source, send a `PATCH` request with only the fields that you want to change. You can change `description`, `auth_type`, and the parameters object that matches the kind. When you send a parameters object, it replaces the old one completely.
 
-## Step 5: Complete an end-to-end example
+# [curl](#tab/curl)
 
-Follow this complete flow to create a knowledge source and link it to your default knowledge base.
+```bash
+curl -X PATCH "$BASE/knowledgesources/product-manuals" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{ "description": "Product manuals, 2026 edition" }'
+```
 
-1. Create a knowledge source for your collection.
+# [Python](#tab/python)
 
-    ```bash
-    KS_RESPONSE=$(curl -s -X POST https://<cluster-domain>/edgeai/knowledgesources \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $TOKEN" \
-      -d '{
-        "name": "my-docs-search",
-        "kind": "indexed_sources_mcp",
-        "auth_type": "microsoft_entra_id",
-        "description": "Search the my-docs collection",
-        "indexed_sources_parameters": {
-          "server_url": "https://<cluster-domain>/edgeai/mcp",
-          "indexed_source_ref": "my-docs",
-          "server_label": "indexed-sources-mcp-server"
-          }
-        }
-      }')
+```python
+api.patch(f"{BASE}/knowledgesources/product-manuals",
+          json={"description": "Product manuals, 2026 edition"}).raise_for_status()
+```
 
-    KS_ID=$(echo $KS_RESPONSE | jq -r '.id')
-    echo "Knowledge Source ID: $KS_ID"
-    ```
+---
 
-1. Get the default knowledge base ID.
+For `indexed_sources_mcp`, `remote_mcp`, and `sql` sources, `PATCH` returns `200 OK`. For MCP sources, connection changes are validated synchronously before returning `200 OK`. For SQL `sql_parameters` changes, the `200 OK` response reports `provisioning_state` as `Provisioning` while reconciliation continues, whereas `PUT /knowledgesources/{name}/schema` and `PUT /knowledgesources/{name}/credential` return `202 Accepted`.
 
-    ```bash
-    KB_ID=$(curl -s https://<cluster-domain>/knowledge-bases?limit=1 \
-      -H "Authorization: Bearer $TOKEN" | jq -r '.data[0].id')
-    echo "Knowledge Base ID: $KB_ID"
-    ```
+## Delete knowledge sources
 
-1. Link the knowledge source to the default knowledge base.
+Before you delete a knowledge source, remove it from every knowledge base that uses it. See [Manage knowledge bases](knowledge-bases-guide.md).
 
-    ```bash
-    curl -X PATCH https://<cluster-domain>/knowledge-bases/$KB_ID \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $TOKEN" \
-      -d "{
-        \"knowledge_source_ids\": [\"$KS_ID\"]
-      }"
-    ```
+# [curl](#tab/curl)
 
-The knowledge base is now ready to use. To create threads, send messages, and execute runs, see [Quickstart: Query your data](quickstart-edge-rag.md).
+```bash
+# Delete one knowledge source
+curl -X DELETE "$BASE/knowledgesources/product-manuals" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Delete several knowledge sources
+curl -X POST "$BASE/knowledgesources/batch-delete" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{ "names": ["product-manuals", "benefits-docs"] }'
+```
+
+# [Python](#tab/python)
+
+```python
+api.delete(f"{BASE}/knowledgesources/product-manuals").raise_for_status()
+
+result = api.post(f"{BASE}/knowledgesources/batch-delete",
+                  json={"names": ["product-manuals", "benefits-docs"]}).json()
+for item in result["results"]:
+    print(item["name"], item["status"])
+```
+
+---
+
+The batch response lists the result for each name: `deleted`, `not_found`, or `error`.
+
+> [!NOTE]
+> The Knowledge Sources API path is `/knowledgesources`. URLs from earlier builds that end in `/knowledgesources/v2` no longer work. For details, see the [Knowledge Sources REST API reference](reference/knowledge-sources-api-reference.md#base-address-and-authorization).
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Manage knowledge bases](knowledge-bases-guide.md)
 
 ## Related content
 
-- [Manage the knowledge base in Agentic Retrieval](knowledge-bases-guide.md)
-- [The agentic layer in Agentic Retrieval](agentic-overview.md)
-- [MCP server in Agentic Retrieval](mcp-server-overview.md)
-<!-- - [Knowledge sources API reference](APIs/KNOWLEDGE-SOURCES-API-REFERENCE.md) -->
+- [Agent Service overview](agentic-overview.md)
+- [MCP server in Agents and Tools with Foundry Local](mcp-server-overview.md)
+- [Connect a SQL database as a knowledge source](connect-sql-database.md)
+- [Add tools to an agent](add-agent-tools.md)
+- [Knowledge Sources REST API reference](reference/knowledge-sources-api-reference.md)
