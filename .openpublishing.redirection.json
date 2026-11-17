@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-arc/servers/prepare-vm-app-on-arc.md",
+      "redirect_url": "/azure/azure-arc/servers/overview-vm-app-on-arc#prepare-and-create-a-vm-application",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-arc/data/azure-data-studio-dashboards.md",
       "redirect_url": "/azure/azure-arc/data/view-arc-data-services-inventory-in-azure-portal",
       "redirect_document_id": false

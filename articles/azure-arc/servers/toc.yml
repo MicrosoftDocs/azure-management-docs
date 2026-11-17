@@ -119,6 +119,16 @@
         href: manage-vm-extensions-ansible.md
       - name: Automatic extension upgrade
         href: manage-automatic-vm-extension-upgrade.md
+    - name: VM Applications on Arc-enabled servers 
+      items:
+      - name: Overview
+        href: overview-vm-app-on-arc.md
+      - name: Deploy VM Applications on Arc-enabled servers 
+        href: deploy-vm-app-on-arc.md
+      - name: Manage VM Applications on Arc-enabled servers 
+        href: manage-vm-app-on-arc.md
+      - name: Govern and monitor VM Applications on Arc-enabled servers
+        href: monitor-vm-app-on-arc.md
     - name: Use managed identities on server
       href: managed-identity-authentication.md
     - name: Rename or move Arc-enabled servers
