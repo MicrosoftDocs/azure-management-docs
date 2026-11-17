@@ -148,6 +148,12 @@ Microsoft doesn't recommend running Azure Arc on short-lived (ephemeral) servers
 
 This section details the software requirements for the Azure Connected Machine agent.
 
+### Windows PowerShell execution policy
+
+When you use PowerShell scripts to manage your Azure Arc-enabled servers, configure one of the supported PowerShell execution policies on your Windows machines: `Bypass`, `RemoteSigned`, or `Unrestricted`.
+
+The agent doesn't support the `AllSigned` PowerShell execution policy. If your organization enforces this policy through Group Policy, update it to a supported configuration.
+
 ### Linux operating system requirements
 
 * systemd
