@@ -58,6 +58,7 @@ This table lists the URLs that must be available to install and use the Connecte
 |`management.azure.com`|Azure Resource Manager is used to create or delete the Azure Arc server resource.|Only when you connect or disconnect a server.| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured. |
 |`*.his.arc.azure.com`|Metadata and hybrid identity services.|Always.| Private. |
 |`*.guestconfiguration.azure.com`| Extension management and guest configuration services. |Always.| Private. |
+|`*.blob.core.windows.net`|Used to download VM Application packages from Blob Storage to Arc-enabled servers.|When deploying or updating VM Applications.|Public.|
 |`guestnotificationservice.azure.com`, `*.guestnotificationservice.azure.com`|Notification service for extension and connectivity scenarios.|Always.| Public. |
 |`azgn*.servicebus.windows.net` or `*.servicebus.windows.net`|Notification service for extension and connectivity scenarios.|Always.| Public. |
 |`*.servicebus.windows.net`|For Windows Admin Center and Secure Shell (SSH) scenarios.|If you use SSH or Windows Admin Center from Azure.|Public.|

@@ -3,7 +3,7 @@ title: Troubleshoot Customer-Managed Keys in Azure Container Registry
 description: Learn how to troubleshoot the most common problems for a registry that's enabled with a customer-managed key.
 author: KumudD
 ms.topic: tutorial
-ms.date: 10/09/2026
+ms.date: 10/30/2026
 ai-usage: ai-assisted
 ms.author: kumud
 ms.service: azure-container-registry
@@ -60,10 +60,13 @@ If the problem persists, contact Azure Support.
 Check the following requirements if registry creation, key rotation, or image operations fail when the encryption key is stored in Managed HSM:
 
 * The Managed HSM is provisioned and activated. Data-plane operations, including key creation and role assignment, are unavailable until activation is complete.
+* Purge protection is enabled on the Managed HSM. Soft-delete is always enabled, but Azure Container Registry also requires purge protection.
 * The key is an RSA-HSM key that supports the `wrapKey` and `unwrapKey` operations.
 * The registry's managed identity has the **Managed HSM Crypto Service Encryption User** local RBAC role. For the least privilege, assign the role at `/keys/<key-name>`.
 * The key URI uses HTTPS and has the format `https://<managed-hsm-name>.<managed-hsm-dns-suffix>/keys/<key-name>` or `https://<managed-hsm-name>.<managed-hsm-dns-suffix>/keys/<key-name>/<version>`.
 * The URI identifies a key. URIs for secrets, certificates, or other Managed HSM object paths aren't supported.
+
+If deployment reports that the encryption key isn't compliant and requests soft-delete and purge protection, enable purge protection on the Managed HSM before retrying. Portal validation can pass before deployment detects this requirement. See [Create and configure a Managed HSM](tutorial-enable-customer-managed-keys.md#create-and-configure-a-managed-hsm).
 
 To verify the role assignment for a specific key, run:
 
@@ -83,14 +86,14 @@ The identity attached to a registry is set for autorenewal to avoid expiry. If y
 
 You have to reassign the identity back to registry explicitly.
 
-1. Run the [az acr identity assign](/cli/azure/acr/identity/#az-acr-identity-assign) command to reassign the identity manually.
+Run the [az acr identity assign](/cli/azure/acr/identity/#az-acr-identity-assign) command to reassign the identity manually.
 
-    - For example,
-   
-    ```azurecli-interactive
-    az acr identity assign -n myRegistry \
-    --identities "/subscriptions/mysubscription/resourcegroups/myresourcegroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity"
-    ``` 
+For example:
+
+```azurecli-interactive
+az acr identity assign -n myRegistry \
+  --identities "/subscriptions/mysubscription/resourcegroups/myresourcegroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity"
+```
 
 ## Accidental deletion of a key store or key
 
