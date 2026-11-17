@@ -32,6 +32,9 @@
   - name: Deploy applications using GitOps (Flux v2)
     displayName: flux, tutorial, configuration
     href: tutorial-use-gitops-flux2.md
+  - name: Get Upgrade Insights for Azure Arc-enabled Kubernetes clusters
+    href: tutorial-upgrade-insights-arc-k8s.md
+    displayName: UpgradeInsights
   - name: Implement CI/CD with GitOps (Flux v2)
     displayName: flux, pipeline
     href: tutorial-gitops-flux2-ci-cd.md
