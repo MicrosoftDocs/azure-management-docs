@@ -62,6 +62,7 @@ By default, all users in a tenant can access Azure Copilot. However, Global Admi
 
 ## Related content
 
+- [Use the agentic chat experience](use-agentic-chat.md)
 - [Learn about things you can do with Azure Copilot](capabilities.md)
 - [Explore some example prompts](example-prompts.md)
 - [Get tips on creating effective prompts](write-effective-prompts.md)

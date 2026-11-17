@@ -65,14 +65,12 @@ Global Administrators for a tenant can change the **Access management** selectio
 Currently, you can manage access to the following agents:
 
 - **Generally available agents:**
-
-  - [Migration](migration-agent.md)
+  - [Troubleshooting](troubleshooting-agent.md)
+  - [Deployment](deployment-agent.md)
+  - [Catalyst](/azure/migrate/azure-copilot-migration-agent) 
+  - [Observability](/azure/azure-monitor/aiops/observability-agent-overview) 
 
 - **Preview agents:**
-
-  - [Troubleshooting](troubleshooting-agent.md)
-  - [Observability](/azure/azure-monitor/aiops/observability-agent-overview)
-  - [Deployment](deployment-agent.md)
   - [Optimization](optimization-agent.md)
   - [Resiliency](resiliency-agent.md)
 

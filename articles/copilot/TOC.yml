@@ -28,6 +28,8 @@
     href: responsible-ai-faq.md
 - name: How-to guides
   items:
+  - name: Use the agentic chat experience
+    href: use-agentic-chat.md
   - name: Manage access
     href: manage-access.md
   - name: Manage conversation storage
