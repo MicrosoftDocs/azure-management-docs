@@ -1,6 +1,6 @@
 ---
 title: Agents in Azure Copilot
-description: Azure Copilot agents help you migrate, operate, deploy, troubleshoot, and optimize your workloads.
+description: Azure Copilot agents help you modernize, operate, deploy, troubleshoot, and optimize your workloads.
 ms.date: 06/19/2026
 ms.service: azure-copilot
 ms.topic: overview
@@ -9,20 +9,20 @@ ms.topic: overview
 
 # Agents in Azure Copilot
 
-Agents extend the capabilities of Azure Copilot to provide an agentic, multimodal cloud experience. By integrating agents into your daily workflows, Azure Copilot can help you migrate, operate, and optimize your workloads to help streamline your cloud adoption and deployment journey. Unlike a patchwork of disconnected AI and automation tools, Azure Copilot is natively built into the Azure platform, bringing together agents, context, and governance.
+Agents extend the capabilities of Azure Copilot to provide an agentic, multimodal cloud experience. By integrating agents into your daily workflows, Azure Copilot can help you modernize, operate, and optimize your workloads to help streamline your cloud adoption and deployment journey. Unlike a patchwork of disconnected AI and automation tools, Azure Copilot is natively built into the Azure platform, bringing together agents, context, and governance.
 
 Currently, Azure Copilot includes the following agents:
 
 - [Troubleshooting](troubleshooting-agent.md) (GA)
-- [Deployment](deployment-agent.md)
+- [Deployment](deployment-agent.md) (GA)
+- [Catalyst](/azure/migrate/azure-copilot-migration-agent) (GA)
+- [Observability](/azure/azure-monitor/aiops/observability-agent-overview) (GA)
 - [Optimization](optimization-agent.md) (preview)
 - [Resiliency](resiliency-agent.md) (preview)
-- [Migration](/azure/migrate/azure-copilot-migration-agent) (preview)
-- [Observability](/azure/azure-monitor/aiops/observability-agent-overview) (GA)
 
-Users can engage directly with supported agents from the Azure Copilot chat experience. The following agents are visible in Azure Copilot chat experience and can be directly invoked: Deployment, Troubleshooting, Optimization, and Resiliency.  
+Users can engage directly with supported agents from the Azure Copilot chat experience. The following agents are visible in Azure Copilot chat experience and can be directly invoked: Troubleshooting, Deployment, Catalyst, Optimization, and Resiliency.  
 
-Observability Agent and Migration Agent continue to be invoked through their existing experiences in Azure Monitor and Azure Migrate, respectively. 
+You continue to invoke the Observability Agent through its existing experiences in Azure Monitor. 
 
 ## Availability and access
 

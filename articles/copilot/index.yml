@@ -25,6 +25,10 @@ highlightedContent:
       itemType: overview
       url: ./overview.md
     # Card
+    - title: Use the agentic chat experience
+      itemType: how-to-guide
+      url: ./use-agentic-chat.md
+    # Card
     - title: Capabilities
       itemType: concept
       url: ./capabilities.md
