@@ -13,8 +13,6 @@ ms.date: 04/27/2026
 
 Azure Linux uses **DNF5** as its package manager and ships software as **RPM packages**. This article covers the specifics of how Azure Linux is packaged, what's new in DNF5, and where to look when paths or tools still carry YUM-era names.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## DNF5
 
 DNF5 is the latest major release of [DNF](https://github.com/rpm-software-management/dnf5), the package manager maintained by the upstream RPM software management community. Compared to DNF4, DNF5 provides:

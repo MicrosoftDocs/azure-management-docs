@@ -2,6 +2,21 @@
     "redirections": [
 
         {
+            "source_path_from_root": "/articles/azure-linux/ebpf.md",
+            "redirect_url": "/azure/azure-linux/extended-berkeley-packet-filter",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/manage-cves.md",
+            "redirect_url": "/azure/azure-linux/manage-common-vulnerabilities-exposures",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-linux/selinux-security.md",
+            "redirect_url": "/azure/azure-linux/security-enhanced-linux-security",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/azure-linux/concepts-core.md",
             "redirect_url": "/azure/azure-linux/aks-core-concepts",
             "redirect_document_id": false

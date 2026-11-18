@@ -13,8 +13,6 @@ ms.date: 04/27/2026
 
 This article covers common developer tasks on Azure Linux, from building and packaging software to customizing images for your environment.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Developer tasks
 
 | Task | Description |

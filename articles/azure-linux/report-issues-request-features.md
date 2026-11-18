@@ -22,8 +22,6 @@ This article explains how to report bugs, documentation issues, and security vul
 >
 > Issues outside this scope might be closed.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Before you file
 
 - **Search existing issues** to see if the problem has already been reported. If you find an existing issue that matches your scenario, add a thumbs up (👍) reaction and include any extra context in a comment. This helps us prioritize without creating duplicates.
@@ -35,7 +33,7 @@ This article explains how to report bugs, documentation issues, and security vul
 | -------------------- | ------------- |
 | Production issues or outages | If you're experiencing a technical issue affecting your Azure workload, [open an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) through the Azure portal. GitHub issues aren't monitored for production support. |
 | Bug reports, documentation issues, feature requests | GitHub issues using the appropriate issue template in the [correct repository](./how-to-contribute.md#choose-the-correct-repository-for-your-contribution). |
-| Security vulnerabilities | Follow the guidance under [Manage CVEs](./manage-cves.md#report-a-security-issue). **Please don't report security vulnerabilities through public GitHub issues**. |
+| Security vulnerabilities | Follow the guidance under [Manage CVEs](./manage-common-vulnerabilities-exposures.md#report-a-security-issue). **Please don't report security vulnerabilities through public GitHub issues**. |
 
 ## How to write a good bug report
 

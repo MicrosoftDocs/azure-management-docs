@@ -21,7 +21,7 @@ This article describes the support lifecycle for the Azure Linux Container Host 
 
 At the beginning of each month, Azure Linux releases a minor image version containing medium, high, and critical package updates from the previous month. This release also includes minor kernel updates and bug fixes.
 
-For more information on the Common Vulnerabilities and Exposures (CVE) service level agreement (SLA), see [CVE infrastructure](./manage-cves.md).
+For more information on the Common Vulnerabilities and Exposures (CVE) service level agreement (SLA), see [CVE infrastructure](./manage-common-vulnerabilities-exposures.md).
 
 ### Major releases
 

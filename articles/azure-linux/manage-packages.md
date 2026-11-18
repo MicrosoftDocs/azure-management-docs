@@ -20,17 +20,15 @@ This article covers common package management tasks on Azure Linux, including:
 - How to enable unattended updates.
 - The most commonly used DNF commands.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Repository configuration
 
 DNF5 reads repository definitions from `/etc/yum.repos.d/`. The directory name is preserved from YUM for compatibility; DNF5 reads from this directory.
 
 Each `.repo` file in that directory is a plain-text configuration file that tells DNF where to find packages, whether to verify them with GPG, and whether the repository is enabled by default. The main DNF configuration file is `/etc/dnf/dnf.conf`, which controls global behavior such as cache settings, the install-only limit, and proxy configuration.
 
-## Compatibility symlinks for legacy commands
+## Command-level Compatibility
 
-Azure Linux ships compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF4), `microdnf`, `tdnf`) all dispatch to DNF5:
+Azure Linux ships command-level compatibility symlinks so that legacy commands (`yum`, `dnf` (DNF4), `microdnf`, `tdnf`) all dispatch to DNF5:
 
 ```text
 lrwxrwxrwx.  1 root root       4  yum -> dnf5
@@ -40,8 +38,15 @@ lrwxrwxrwx.  1 root root       4  dnf -> dnf5
 lrwxrwxrwx.  1 root root       4  tdnf -> dnf5
 ```
 
-The common subcommands all work through the symlinks. Edge cases that depended on DNF4 internals or `microdnf`-specific behavior might not. For details on what changed, see the following resources:
+The command-level compatibility symlinks allow existing commands to invoke DNF5 without requiring the command name to change. However, they may not provide full behavioral compatibility with the legacy package managers.
 
+## DNF5 Migration guidance
+
+Most main common package management operations can continue to use familiar command names. However, applications, scripts, and automation that rely on legacy command-specific behavior, options, output formats, APIs, plugins, or implementation details might require changes when migrating to DNF5.
+
+Review and test your existing package management workflows when moving to DNF5, especially if they rely on legacy-specific behavior.
+
+For detailed migration and compatibility information, see the following upstream resources:
 - [Changes between DNF and DNF5](https://dnf5.readthedocs.io/en/latest/changes_from_dnf4.7.html)
 - [Migrating to DNF5](https://dnf5.readthedocs.io/en/latest/migrating_to_dnf5.7.html)
 - [Changes in DNF CLI compared to YUM](https://dnf.readthedocs.io/en/latest/cli_vs_yum.html)

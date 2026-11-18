@@ -21,8 +21,6 @@ The core image is published to Azure Marketplace with a curated set of base pack
 
 For a single workload, deploy Azure Linux to an individual VM. To scale out automatically based on demand, use virtual machine scale sets instead.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Available images
 
 Azure Linux 4.0 images are published to Azure Marketplace under the `microsoftazurelinux` publisher. Use the URN that matches your architecture and VM generation:

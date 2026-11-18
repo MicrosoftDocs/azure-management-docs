@@ -4,12 +4,16 @@
   items: 
     - name: What is Azure Linux?
       href: azure-linux-overview.md
-    - name: What's new in Azure Linux 4.0?
+    - name: What's new in Azure Linux 4?
       href: whats-new-azure-linux-4.md
     - name: Architecture overview
       href: architecture.md
     - name: Release cadence and lifecycle
       href: release-cadence-lifecycle.md
+    - name: Package maintenance policies
+      href: package-maintenance-policies.md
+    - name: Identify an Azure Linux system and version
+      href: identify-azure-linux-system.md
     - name: Supported Azure services
       href: supported-azure-services.md
     - name: Ecosystem support
@@ -152,8 +156,36 @@
   items:
     - name: Security overview
       href: security-overview.md
-    - name: Manage CVEs
-      href: manage-cves.md
+    - name: Compliance overview
+      href: compliance-overview.md
+    - name: Host hardening
+      items:
+        - name: Inspect kernel hardening
+          href: kernel-hardening.md
+        - name: Build hardened software
+          href: build-hardening.md
+        - name: Configure SELinux security
+          href: security-enhanced-linux-security.md
+        - name: Secure the host network
+          href: network-security.md
+        - name: Use eBPF
+          href: extended-berkeley-packet-filter.md
+    - name: Access and data protection
+      items:
+        - name: Manage identity and access
+          href: identity-and-access.md
+        - name: Protect disks and data
+          href: disk-and-data-protection.md
+        - name: Use system cryptographic libraries
+          href: system-crypto.md
+    - name: Audit and updates
+      items:
+        - name: Configure security logging and auditing
+          href: logging-and-auditing.md
+        - name: Manage security updates
+          href: manage-common-vulnerabilities-exposures.md
+        - name: Secure language package managers
+          href: language-package-managers.md
 - name: System management
   items:
     - name: Get started with system management
@@ -180,6 +212,10 @@
   items:
     - name: Developer guide for Azure Linux
       href: get-started-developer.md
+    - name: CPU architectures and toolchain compatibility
+      href: cpu-architectures-toolchains.md
+    - name: Language runtimes and filesystem layout
+      href: language-runtimes-filesystem-layout.md
     - name: Certificate management
       href: certificate-management.md
     - name: Build RPM packages
