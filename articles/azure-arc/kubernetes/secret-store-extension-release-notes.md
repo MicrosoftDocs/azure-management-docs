@@ -90,7 +90,7 @@ Updates and improvements to the Azure Key Vault Secret Store extension are liste
 
 ### 1.3.1
  - Includes the Kubernetes version support fix from 1.4.0 for the 1.3 release line.
- - Updated internal dependencies to address vulnerabilities and security advisories.
+- Update internal dependencies to address vulnerabilities and security advisories.
 
 ### 1.3.0
  - Added ownership checks to prevent AKVSync resources from overwriting existing SecretSync or SecretProviderClass resources.
