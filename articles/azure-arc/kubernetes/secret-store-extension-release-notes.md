@@ -135,7 +135,7 @@ Updates and improvements to the Azure Key Vault Secret Store extension are liste
 
 ## October 2025
 ### 1.0.3
-- Updated internal dependencies to address vulnerabilities and security advisories.
+- Update internal dependencies to address vulnerabilities and security advisories.
 
 ## August 2025
 ### 1.0.2
