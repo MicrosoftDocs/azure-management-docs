@@ -8,7 +8,9 @@ ms.date: 02/05/2026
 
 # Access Azure resources by using managed identity on Azure Arc-enabled servers
 
-Applications or processes running directly on an Azure Arc-enabled server can use managed identities to access other Azure resources that support Microsoft Entra ID-based authentication. An application can obtain an [access token](/azure/active-directory/develop/developer-glossary#access-token) representing its identity, which is system-assigned for Azure Arc-enabled servers, and use it as a bearer token to authenticate itself to another service.
+Applications or processes running directly on an Azure Arc-enabled server can use managed identities to access other Azure resources that support Microsoft Entra ID-based authentication. An application can obtain an [access token](/azure/active-directory/develop/developer-glossary#access-token) representing its managed identity and use it as a bearer token to authenticate itself to another service.
+
+Azure Arc-enabled servers use a system-assigned managed identity by default. To connect a supported server with user-assigned managed identities during the preview, see [Connect an Azure Arc-enabled server with a user-assigned managed identity (preview)](connect-user-assigned-managed-identity-preview.md).
 
 For a detailed description of managed identities and the distinction between system-assigned and user-assigned identities, see the [managed identity overview](/azure/active-directory/managed-identities-azure-resources/overview).
 
