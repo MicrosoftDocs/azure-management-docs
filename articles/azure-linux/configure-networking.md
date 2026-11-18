@@ -15,8 +15,6 @@ Azure Linux uses [`systemd-networkd`](https://www.freedesktop.org/software/syste
 
 This article shows you how to manage the `systemd-networkd` service, where to place network configuration files, how to define common interface configurations such as DHCP and static IP, and how to monitor and troubleshoot network state on an Azure Linux system.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Prerequisites
 
 - An Azure Linux system that you can authenticate to with shell access.

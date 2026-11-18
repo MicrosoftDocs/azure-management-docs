@@ -21,8 +21,6 @@ In this quickstart, you learn how to:
 > - Deploy an AKS cluster that uses Azure Container Linux.
 > - Connect to the cluster and verify the nodes.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).

@@ -1,6 +1,6 @@
 ---
 title: Azure Linux Official Support Options
-description: Learn about the official support options available for Azure Linux running on Azure, including production support, bug reporting, security vulnerability reporting, and community engagement opportunities.
+description: Learn about the official support options available for Azure Linux running on Azure, including support, bug reporting, security vulnerability reporting, and community engagement opportunities.
 author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
@@ -11,39 +11,85 @@ ms.date: 04/27/2026
 
 # Azure Linux official support options
 
-Azure Linux provides official support for customers running workloads on Azure in supported scenarios. This includes support for virtual machines (VMs), virtual machine scale sets (VMSS), Azure Kubernetes Service (AKS) container hosts, and Azure Linux container images.
-
-This article outlines the official support options available for Azure Linux, including how to get production support, report bugs and documentation issues, report security vulnerabilities, and engage with the community through office hours and community calls.
+This article outlines the official support options available for Azure Linux, including how to get support, report bugs and documentation issues, report security vulnerabilities, and engage with the community through office hours and community calls.
 
 > [!IMPORTANT]
 > Azure Linux is open source, but Microsoft support and lifecycle commitments apply only to **Azure scenarios**. Specifically:
 >
-> - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS container host, and container images are supported.
-> - Bare metal, ISO images, on-premises, and other clouds aren't supported.
-> - Customized images are supported only when built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)). Images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) aren't covered.
+> **Supported scenarios**
+>
+> - Azure Linux Virtual Machines (VMs) and Virtual Machine Scale Sets (VMSS)
+> - Azure Kubernetes Service (AKS) container host, including the Azure Linux Container Host and Azure Container Linux (ACL)
+> - Azure Linux container images published in Microsoft Container Registry (MCR), either under the azurelinux namespace or provided and supported by other Microsoft products or teams (for example, official .NET container based on Azure Linux).
+> - ISO images
+> - Customized images built on top of a prebuilt Azure Linux image, for example using ./customize-images.md
+>
+> **Unsupported scenarios and support exceptions**
+>
+> - Windows Subsystem for Linux (WSL): Azure Linux 4 on WSL receives best-effort support.
+> - Bare metal deployments
+> - On-premises deployments
+>   - Support for Azure Linux in on-premises environments is limited. Microsoft support applies only to specific supported scenarios and platforms, such as Azure Local.
+> - Deployments in other clouds
+> - Images built from scratch from the https://github.com/microsoft/azurelinux
+> - Self-built or third-party packages that aren't provided through official Microsoft Azure Linux repositories aren't covered by Microsoft support.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
+## Get support through Azure, GitHub, or security reporting
 
-## Production support
+### Open an Azure support request for Azure Linux workloads
 
-Azure Support is for **production issues only**. If you're running an Azure Linux production workload on Azure and you hit an outage, regression, or configuration problem that's affecting that workload, [open an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) through the Azure portal.
+Requirement:
+- An eligible [Azure support plan](https://azure.microsoft.com/support/plans/) that include technical support.
 
-Use Azure Support for production issues such as:
+For technical support for an Azure Linux workload running on Azure, please [open an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) through the Azure portal.
 
-- Package management and repository issues affecting a running workload.
-- System configuration and lifecycle management on production hosts.
-- Security baseline guidance for a deployed environment.
-- Image and deployment troubleshooting in production.
+Use Azure Support when you need help investigating or resolving an issue affecting your Azure Linux workload, such as an outage, regression, configuration problem, deployment issue, or package and repository issue.
 
-For bugs, documentation problems, feature requests, and general questions, use GitHub instead. See [Bugs, docs, and feature requests](#bugs-docs-and-feature-requests). GitHub issues aren't monitored for production support.
+### Collect diagnostic information
 
-## Bugs, docs, and feature requests
+When troubleshooting an Azure Linux system, you might be asked to collect an sos report. An sos report gathers diagnostic information from the system that can help Microsoft Support investigate and troubleshoot an issue. Before opening or while working on an Azure support request, you can generate an sos report and provide the resulting archive to Microsoft Support when requested.
 
-For bug reports, documentation improvements, and feature requests, see [Report issues and request features for Azure Linux](./report-issues-request-features.md). All issues require a GitHub issue filed in the correct repository.
+- Install sos
 
-## Security vulnerabilities
+```bash
+sudo dnf install sos
+```
 
-**Please don't report security vulnerabilities through public GitHub issues**. Follow the guidance under [Manage CVEs](./manage-cves.md#report-a-security-issue).
+- Generate an sos report
+
+Run the following command with elevated privileges:
+```bash
+sudo sos -a report
+```
+
+Follow the prompts displayed by sos. The collection process creates a compressed diagnostic archive
+
+- Locate the sos report archive
+
+When the collection finishes, sos displays the path to the generated archive in its output.
+You can also check the standard sos archive location:
+```bash
+sudo ls -lh /var/tmp/sosreport-*.tar.xz
+```
+
+- Provide the archive to Microsoft Support
+
+If you're working with Microsoft Support, provide the generated archive as requested in your support case.
+
+> [!IMPORTANT]
+> An sos report can contain system configuration, logs, and other diagnostic information. Review and handle the archive appropriately before sharing it.
+
+
+### Report bugs and request features on GitHub
+
+**If you don't have an Azure support plan** that includes technical support, or **if you simply want to engage with the Azure Linux project** for bug reports, documentation issues, feature requests, and general questions. For more information, see [Report issues and request features for Azure Linux](./report-issues-request-features.md). All issues require a GitHub issue filed in the correct repository.
+
+> [!IMPORTANT] 
+> GitHub is **not monitored for production incidents** and does not provide guaranteed responses times. It should not be used to report issues requiring immediate assistance.
+
+### Security vulnerabilities
+
+**Please don't report security vulnerabilities through public GitHub issues**. Follow the guidance under [Manage CVEs](./manage-common-vulnerabilities-exposures.md#report-a-security-issue).
 
 ## Join our Azure Linux community calls
 
@@ -64,7 +110,7 @@ The schedule for the upcoming community calls is as follows:
 
 ## Stay up-to-date
 
-Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that contains features that are in development and available for general availability (GA) and preview. We review this roadmap in each community call to highlight upcoming features and changes. We welcome you to leave feedback or ask questions on feature items.
+Azure Linux publishes a [feature roadmap](https://github.com/orgs/microsoft/projects/970/views/2) that provides visibility into upcoming features and changes. We review them in each community call and welcome your feedback and questions on individual feature items.
 
 ## Attributions
 

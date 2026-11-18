@@ -23,8 +23,6 @@ Azure Linux is open source and built on top of the broader Linux ecosystem. This
 >
 > Contributions targeting bare metal, ISO images, on-premises, other clouds, or images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) are out of scope.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Ways to contribute
 
 You can contribute to Azure Linux in several ways, depending on your interests and expertise:

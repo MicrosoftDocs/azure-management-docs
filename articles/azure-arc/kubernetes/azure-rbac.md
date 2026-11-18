@@ -225,7 +225,8 @@ The following built-in roles provide access to perform common tasks on Kubernete
 
 | Role | Description |
 |---|---|
-| [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
+| [Azure Arc Kubernetes Reader](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
+| [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | This role is currently on the path to deprecation, please use Azure Arc Kubernetes Reader instead. |
 | [Azure Arc Kubernetes Writer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-writer) | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing secrets and running pods as any `ServiceAccount` value in the namespace, so it can be used to gain the API access levels of any `ServiceAccount` value in the namespace. |
 | [Azure Arc Kubernetes Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-admin) | Allows admin access. This role is often granted within a namespace through [the `RoleBinding` object](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding). If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. However, this role doesn't allow write access to resource quota or to the namespace itself. |
 | [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows the ability to execute any action on any resource within the granted scope. When you use it in [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the cluster and in all namespaces. When you use it in [`RoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the role binding's namespace, including the namespace itself.|
@@ -245,7 +246,7 @@ az role assignment create --role "Azure Arc Kubernetes Cluster Admin" --assignee
 To create a role assignment scoped to a specific namespace within the cluster, modify the scope:
 
 ```azurecli
-az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee <AZURE-AD-ENTITY-ID> --scope $ARM_ID/namespaces/<namespace-name>
+az role assignment create --role "Azure Arc Kubernetes Reader" --assignee <AZURE-AD-ENTITY-ID> --scope $ARM_ID/namespaces/<namespace-name>
 ```
 
 ### Custom roles
@@ -485,9 +486,9 @@ Prerequisites
 
 Once access prerequisites are met, you can refresh the guard webhook certificate by performing the following steps:
 1.	Refresh the guard webhook certificate by running the following command: 
-```
-kubectl rollout restart deployment/guard -n azure-arc
-```
+    ```
+    kubectl rollout restart deployment/guard -n azure-arc
+    ```
 1.	For a [Generic cluster where no reconciler is running on the apiserver specification](#generic-cluster-where-no-reconciler-is-running-on-the-apiserver-specification), you should perform step 1a and then restart the kube-apiserver pod. 
 1. For a [Cluster created by using Cluster API](#cluster-created-by-using-cluster-api), you should perform steps 1-3. After steps 1-3 are completed, you need to trigger a re-reconcile of the KubeadmControlPlane object to apply the new webhook configs to the workload cluster. Step #4 (edit the CR) may trigger a re-reconcile of the KubeadmControlPlane object.
 

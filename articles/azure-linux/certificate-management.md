@@ -15,8 +15,6 @@ This article explains how Azure Linux handles trusted root certificates and how 
 
 Azure Linux 4.0 uses Fedora's `ca-certificates` package. Fedora maintains and distributes the package, and the certificate bundle is sourced from [Mozilla's set of trusted CAs](https://wiki.mozilla.org/CA/Included_Certificates).
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Certificate storage and management
 
 Azure Linux stores and manages certificates by using the shared trust store approach described in [Fedora's Shared System Certificates](https://docs.fedoraproject.org/en-US/quick-docs/using-shared-system-certificates/).

@@ -12,8 +12,6 @@ ms.date: 04/27/2026
 
 This guide provides a set of quickstart tutorials to help you quickly deploy and start using Azure Linux in your environment.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Select your quickstart
 
 | Quickstart | Description | Time to complete |
@@ -21,7 +19,7 @@ This guide provides a set of quickstart tutorials to help you quickly deploy and
 | [Create an Azure Linux virtual machine (VM)](./create-vm-azure-linux-4-0.md) | Deploy an Azure Linux 4.0 VM using the Azure portal and connect to it over SSH. Azure Linux VMs give you a Microsoft-supported, Azure-optimized Linux distribution for general-purpose workloads. [Learn more](./azure-linux-vm-vmss-overview.md). | 10 minutes |
 | [Deploy an Azure Linux container host for Azure Kubernetes Service (AKS)](./deploy-azure-linux-aks-cli.md) | Create an AKS cluster with Azure Linux as the container host using Azure CLI. The Azure Linux container host delivers fast boot times, strong security defaults, and end-to-end Microsoft ownership from kernel to CVE response. [Learn more](./azure-linux-aks-overview.md). | 10 minutes |
 | [Deploy Azure Container Linux (ACL) for Azure Kubernetes Service (AKS)](./quick-deploy-azure-container-linux-aks-cli.md) | Create an AKS cluster using ACL, an immutable, container-optimized operating system (OS) for AKS node pools with stronger security defaults and a read-only root filesystem. [Learn more](./azure-container-linux-overview.md). | 10 minutes |
-| [Run Azure Linux on Windows Subsystem for Linux (WSL)](./get-started-windows-subsystem-for-linux.md) | Install Azure Linux as a WSL distribution on Windows and start using it as a local development environment. [Learn more](./windows-subsystem-for-linux-overview.md). | 10 minutes |
+| [Run Azure Linux on Windows Subsystem for Linux (WSL)](./get-started-windows-subsystem-for-linux.md) | Install Azure Linux as a WSL distribution on Windows and start using it as a local development environment. Best-effort support. [Learn more](./windows-subsystem-for-linux-overview.md). | 10 minutes |
 
 ## Related content
 

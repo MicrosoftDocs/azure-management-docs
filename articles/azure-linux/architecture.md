@@ -6,14 +6,13 @@ ms.author: schaffererin
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
-ms.date: 04/27/2026
+ms.date: 10/30/2026
+ai-usage: ai-assisted
 ---
 
 # Azure Linux architecture overview
 
 Azure Linux is a Microsoft-maintained Linux distribution built on the Fedora ecosystem and optimized for Azure. This article explains how Azure Linux is structured, what it includes by default, and where it intentionally draws boundaries.
-
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## How Azure Linux relates to Fedora
 
@@ -29,7 +28,7 @@ Azure Linux uses a layered model. Each layer builds on the one below it, from ha
 
 ### Kernel layer
 
-The custom Azure Linux kernel includes Hyper-V guest drivers, security hardening patches, and performance optimizations tuned for Azure infrastructure. You can choose between Long-Term Support (LTS) kernels for stability or Hardware Enablement (HWE) kernels for new hardware and GPU support. See [Release cadence and lifecycle](./release-cadence-lifecycle.md) for details.
+The custom Azure Linux kernel includes Hyper-V guest drivers, security hardening patches, and performance optimizations tuned for Azure infrastructure. See [Manage the Azure Linux kernel](./kernel-management.md) for kernel management guidance.
 
 ### Core OS layer
 
@@ -51,7 +50,7 @@ The following table outlines what is and isn't supported on Azure Linux:
 
 | Area | Supported | Not supported |
 | ---- | --------- | ------------- |
-| **Architectures** | x86-64 (v2 minimum), ARMv8 (64-bit) | 32-bit architectures |
+| **Architectures** | x64 (`x86_64`) and ARM64 (`aarch64`) | 32-bit architectures |
 | **Environments** | Azure VMs, AKS, container images | ISO images, on-premises, multicloud, IoT, edge devices |
 | **User interface** | Text-based console, SSH | Graphical desktop environments, GUI installer |
 | **Virtualization** | KVM guests, Hyper-V | Xen |
@@ -74,7 +73,7 @@ The following table summarizes the default networking components in Azure Linux 
 | Component | Default | Alternative | Notes |
 | --------- | ------- | ----------- | ----- |
 | **Network manager** | systemd‑networkd + cloud‑init | NetworkManager (available, not default) | systemd‑networkd is the default for Azure VM and container scenarios. |
-| **Firewall** | firewalld | N/A | Enabled by default with a deny‑inbound, allow‑outbound policy. |
+| **Firewall** | None enabled | firewalld (available, not installed) | No host firewall is enabled by default. nftables and iptables-legacy are installed with no rules. Use Azure network security groups (NSGs) to control inbound traffic. |
 | **Firewall backend** | nftables | iptables (legacy, available) | nftables is the modern replacement for iptables. iptables legacy support is available but not default. |
 | **IPv6** | Enabled and hardened | N/A | Strict sysctl hardening applied for both IPv4 and IPv6. |
 
@@ -93,20 +92,13 @@ The following table summarizes the default storage settings in Azure Linux and t
 
 ## Security architecture
 
-Azure Linux is hardened at every layer, from the kernel up through the supply chain. The following sections describe the security controls that are enabled by default. See [Security and compliance](./security-overview.md) for more information.
+Azure Linux includes security controls at several layers. The following sections summarize them. For defaults and how to check them, see [Security and compliance](./security-overview.md).
 
 ### Mandatory access control
 
 Mandatory access control (MAC) confines processes to the access they actually need, even when they run as root.
 
-Azure Linux 4.0 preview enables SELinux in enforcing mode as its MAC framework.
-
-### Secure Boot
-
-Secure Boot ensures only signed bootloaders and kernels run. Kernel lockdown protects the running kernel and disables loading untrusted kernel modules at runtime.
-
-> [!NOTE]
-> Azure Linux 4.0 is now in **preview** and its components aren't yet signed for Secure Boot.
+Azure Linux 4 enables SELinux in enforcing mode as its MAC framework.
 
 ### Kernel and system hardening
 
@@ -117,8 +109,8 @@ The following table summarizes the kernel and system hardening capabilities in A
 | Capability | Description |
 | ---------- | ----------- |
 | **ASLR** | Strong address space layout randomization enabled. |
-| **Stack protection** | Compiler‑level stack protections applied to all packages. |
-| **Syscall restrictions** | Default seccomp profiles and syscall filtering. |
+| **Build hardening** | Hardened RPM build flags (stack protector, `_FORTIFY_SOURCE=3`, PIE, full RELRO) are on by default; individual packages can opt out. See [Build hardening](./build-hardening.md). |
+| **Syscall restrictions** | Kernel seccomp filtering is enabled; many system services run with systemd `SystemCallFilter` restrictions. |
 | **Minimal base image** | Reduced attack surface through minimal package set. |
 
 ### Cryptography
@@ -129,9 +121,8 @@ The following table summarizes the cryptography settings in Azure Linux:
 
 | Setting | Value |
 | ------- | ----- |
-| **FIPS** | FIPS 140‑3 certification is mandatory. |
+| **FIPS** | FIPS 140-3: In progress. Certification pending; use a certified release for FIPS-required workloads. |
 | **Crypto policies** | Fedora crypto‑policies adopted for consistent algorithm selection. |
-| **Post‑quantum** | ML‑KEM planned, aligned with Fedora and RHEL roadmap. |
 
 ### Logging and auditing
 
@@ -139,10 +130,11 @@ The following table summarizes the logging and auditing settings in Azure Linux:
 
 | Setting | Value |
 | ------- | ----- |
-| **Audit daemon** | auditd enabled. |
+| **Audit daemon** | auditd runs. The default rules suppress syscall auditing (`-a never,task`). See [Logging and auditing](./logging-and-auditing.md). |
 | **Journal storage** | Persistent journald storage. |
 
 ## Related content
 
 - To learn more about Azure Linux, see the [Azure Linux overview](./azure-linux-overview.md).
+- To plan for native application compatibility, see [CPU architectures and toolchain compatibility](./cpu-architectures-toolchains.md).
 - To plan your update strategy, review the [Release cadence and lifecycle](./release-cadence-lifecycle.md).

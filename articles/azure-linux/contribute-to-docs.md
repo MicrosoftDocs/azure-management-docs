@@ -13,8 +13,6 @@ ms.date: 04/27/2026
 
 This article explains how you can contribute to the Azure Linux documentation by fixing errors, improving guidance, or adding new content that helps users run Azure Linux on Azure and provides guidance for supported Azure Linux scenarios.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## In-scope documentation contributions
 
 The Azure Linux documentation covers **Azure scenarios only**, which is in line with Microsoft's support and lifecycle commitments. We maintain and accept contributions for content that helps people use Azure Linux on Azure, specifically:

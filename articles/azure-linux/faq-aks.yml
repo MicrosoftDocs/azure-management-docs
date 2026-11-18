@@ -5,7 +5,7 @@ metadata:
   keywords: frequently asked questions, faq
   ms.service: microsoft-linux
   ms.topic: faq
-  ms.date: 04/29/20266
+  ms.date: 10/30/2026
 title: "Azure Linux frequently asked questions (FAQ) - Azure Kubernetes Service (AKS)"
 summary: |
     This article provides answers to some of the most common questions about Azure Linux on Azure Kubernetes Service (AKS), including pricing, GPU support, certifications, and upgrade processes.
@@ -26,7 +26,7 @@ sections:
       - question: |
           What certifications does Azure Linux on AKS have?
         answer: |
-          Azure Linux passes all CIS level 1 benchmarks and offers a FIPS image.
+          Azure Linux meets the [CIS Azure Linux benchmark](https://www.cisecurity.org/benchmark/azure_linux) Level 1 Server profile by default. FIPS 140-3: In progress. Certification pending; use a certified release for FIPS-required workloads.
 
       - question: |
           How does Microsoft notify AKS users of new Azure Linux versions?

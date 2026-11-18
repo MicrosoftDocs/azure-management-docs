@@ -5,7 +5,7 @@ author: kavyamsft
 ms.author: schaffererin
 ms.service: microsoft-linux
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 10/30/2026
 ---
 
 # Core concepts for the Azure Linux Container Host for Azure Kubernetes Service (AKS)
@@ -16,9 +16,9 @@ This article explains the core concepts of the Azure Linux Container Host for AK
 
 ## CVE infrastructure
 
-The Azure Linux team scans packages shipped with the Azure Linux Container Host twice daily against the [National Vulnerability Database (NVD)](https://nvd.nist.gov/) and collaborates with the [Microsoft Security Response Center (MSRC)](https://www.microsoft.com/msrc) to evaluate, patch, and publish fixes. High and critical CVEs might be released out-of-band as a package update ahead of the next node image; medium and low CVEs are rolled into the next image release.
+The Azure Linux team manages vulnerabilities in packages shipped with the Azure Linux Container Host through a process coordinated with the [Microsoft Security Response Center (MSRC)](https://www.microsoft.com/msrc). Twice-daily scans against the [National Vulnerability Database (NVD)](https://nvd.nist.gov/) are one input to this process; the team works with MSRC to evaluate, patch, and publish fixes. High and critical CVEs might be released out-of-band as a package update ahead of the next node image; medium and low CVEs are rolled into the next image release.
 
-For the full CVE pipeline, published advisories, SLAs, and delivery models across all Azure Linux and Azure Container Linux deployment options, see [Manage CVEs on Azure Linux and Azure Container Linux](./manage-cves.md).
+For the full CVE pipeline, published advisories, SLAs, and delivery models across all Azure Linux and Azure Container Linux deployment options, see [Manage CVEs on Azure Linux and Azure Container Linux](./manage-common-vulnerabilities-exposures.md).
 
 ## Feature additions and upgrades
 

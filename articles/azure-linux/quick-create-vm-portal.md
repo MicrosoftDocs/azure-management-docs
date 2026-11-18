@@ -21,8 +21,6 @@ In this quickstart, you learn how to:
 > - Connect to the VM over SSH.
 > - Clean up resources.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/) before you begin.

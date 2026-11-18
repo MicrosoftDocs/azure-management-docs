@@ -26,8 +26,6 @@ With Image Customizer, you can:
 
 Image Customizer also supports nested customization, so you can further customize an already-customized image. For teams that build multiple images, consider creating a shared custom base image first to reduce maintenance overhead.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Prerequisites
 
 - **Docker** installed on your host.

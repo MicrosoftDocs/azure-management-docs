@@ -21,8 +21,6 @@ Azure Linux source repositories are public and follow standard open-source pull 
 >
 > Changes specific to bare metal, on-premises, other clouds, or images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) belong upstream. Consider contributing to the upstream project or the [Fedora Linux Project](https://fedoraproject.org/) instead. For more information, see the [How to contribute to Azure Linux](./how-to-contribute.md).
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Before you begin
 
 **All code contributions require an issue first**. Don't open a PR without a linked, maintainer-approved issue. PRs submitted without prior issue approval might be closed without review.

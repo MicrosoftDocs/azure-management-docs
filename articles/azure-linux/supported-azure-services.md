@@ -7,13 +7,12 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
 ms.date: 05/04/2026
+ai-usage: ai-assisted
 ---
 
 # Supported Azure services in Azure Linux
 
 Azure Linux supports a range of Azure agents, extensions, and add-ons. These services are available as RPMs on [packages.microsoft.com](https://packages.microsoft.com), container images on Azure Container Registry (ACR), virtual machine (VM) extensions, and add-ons for Azure Kubernetes Service (AKS). This article provides an overview of the supported services and their compatibility with the Azure Linux platform.
-
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
 
 ## Supported agents and extensions
 
@@ -21,16 +20,18 @@ The following table highlights commonly used agents and extensions in Azure Linu
 
 | Agent / Extension | Description |
 | ----------------- | ----------- |
-| **Azure Monitor** | End-to-end observability for applications and infrastructure |
-| **Azure Linux Agent (WALA)** | VM provisioning, networking, and extension management |
-| **Azure CLI** | Command-line interface for managing Azure resources |
-| **Key Vault** | Secure retrieval of secrets, keys, and certificates from Azure Key Vault |
-| **Microsoft Defender for Cloud** | Threat detection, vulnerability management, and security monitoring for cloud workloads |
-| **cloud-init** | Industry-standard multi-distribution method for cross-platform cloud instance initialization |
-| **Azure Arc** | Management and governance of servers and Kubernetes clusters across on-premises, multicloud, and edge environments |
 | **.NET** | Cross-platform runtime for building cloud, web, and microservice applications |
-| **Microsoft Build of OpenJDK** | Microsoft's distribution of the Java Development Kit for running Java-based workloads |
+| **Azure Arc** | Management and governance of servers and Kubernetes clusters across on-premises, multicloud, and edge environments |
+| **Azure CLI** | Command-line interface for managing Azure resources |
+| **Azure Monitor** | End-to-end observability for applications and infrastructure |
 | **Azure Resource Manager (ARM) templates** | JSON-based templates for defining and deploying Azure infrastructure as code |
+| **cloud-init** | Industry-standard multi-distribution method for cross-platform cloud instance initialization |
+| **Key Vault** | Secure retrieval of secrets, keys, and certificates from Azure Key Vault |
+| **Microsoft Build of Go** | Microsoft's distribution of Go for building Go-based applications |
+| **Microsoft Build of OpenJDK** | Microsoft's distribution of the Java Development Kit for running Java-based workloads |
+| **Microsoft Defender for Cloud** | Threat detection, vulnerability management, and security monitoring for cloud workloads |
+| **PowerShell** | Cross-platform shell and scripting language for task automation and configuration management |
+| **Watson** | Error reporting and crash diagnostics |
 
 ## Add-ons and extensions for AKS
 

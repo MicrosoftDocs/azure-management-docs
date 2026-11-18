@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
 ms.date: 07/25/2026
+ai-usage: ai-assisted
 ---
 
 # Overview of Azure Linux on Windows Subsystem for Linux (WSL)
@@ -24,6 +25,10 @@ To install WSL for Azure Linux, see [Get started with Azure Linux 4.0 on Windows
 
 - x86_64
 - arm64
+
+## Support
+
+Azure Linux 4 on Windows Subsystem for Linux (WSL) receives best-effort support.
 
 ## Release cadence
 

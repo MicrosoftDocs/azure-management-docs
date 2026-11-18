@@ -18,8 +18,6 @@ This article explains how to keep an Azure Linux virtual machine (VM) updated us
 
 Select the method that best fits your release process. You can also combine both approaches.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Image-based updates
 
 Azure Linux ships a new image release each month that includes the previous month's package updates. To stay current, redeploy your fleet from the latest Azure Linux image release.

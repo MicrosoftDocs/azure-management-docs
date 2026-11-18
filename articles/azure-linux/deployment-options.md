@@ -15,8 +15,6 @@ Azure Linux is available across multiple Azure experiences, each optimized for a
 
 This article provides an overview of the different Azure Linux deployment options, explains the scenarios each option is optimized for, and helps you determine which deployment approach is best suited for your workloads.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Deployment options
 
 The following table summarizes the primary Azure Linux deployment options, the scenarios they are optimized for, and the key features and benefits each option provides:
@@ -27,13 +25,14 @@ The following table summarizes the primary Azure Linux deployment options, the s
 | **Run containers on an immutable, hardened operating system (OS) with a minimal attack surface** | [Azure Container Linux (ACL)](./azure-container-linux-overview.md) | An immutable, container-optimized OS for AKS derived from Flatcar Container Linux with Azure Linux packages and servicing. The OS uses kernel-enforced immutability (dm-verity), SELinux, Trusted Launch with Secure Boot, and a minimal package set to reduce the attack surface and block tampering. Automated weekly image-based updates and supply-chain signing keep nodes current and verifiable. |
 | **Run general-purpose VM workloads with Microsoft-supported Linux** | [Azure Linux for Virtual Machines](./azure-linux-vm-vmss-overview.md) | A Microsoft-supported, Azure-optimized Linux distribution for scalable web apps, infrastructure services, and AI workloads. It integrates natively with Azure services, extensions, and tooling, and includes Microsoft-managed security response and lifecycle support. |
 | **Build and ship containerized applications on a consistent base image** | [Azure Linux Container Images](./container-images-overview.md) | Microsoft-maintained base images built from the Azure Linux supply chain that provide consistency from build to production. Customers can choose from full-featured base images for flexibility, runtime-optimized images for Node.js, Python, Java, and .NET, or hardened distroless images for the smallest possible attack surface. |
-| **Develop, test, and learn Linux applications directly on Windows without a VM or dual boot setup** | [Azure Linux on Windows Subsystem for Linux (WSL)](./windows-subsystem-for-linux-overview.md) | A Microsoft-supported Azure Linux experience running natively on Windows through WSL 2. Provides a lightweight, fast-starting Linux environment for development, scripting, container workflows, and learning Azure Linux. Developers can use familiar Linux tools, package management, and command-line workflows while seamlessly integrating with Windows applications, IDEs, files, and networking, enabling a productive local development experience without dedicated Linux infrastructure. |
+| **Develop, test, and learn Linux applications directly on Windows without a VM or dual boot setup** | [Azure Linux on Windows Subsystem for Linux (WSL)](./windows-subsystem-for-linux-overview.md) | Azure Linux running natively on Windows through WSL 2, with best-effort support. Provides a lightweight, fast-starting Linux environment for development, scripting, container workflows, and learning Azure Linux. Developers can use familiar Linux tools, package management, and command-line workflows while seamlessly integrating with Windows applications, IDEs, files, and networking, enabling a productive local development experience without dedicated Linux infrastructure. |
 
 > [!IMPORTANT]
 > Azure Linux is open source, but Microsoft support and lifecycle commitments apply only to **Azure scenarios**. Specifically:
 >
 > - Azure Linux Virtual Machines (VM) / Virtual Machine Scale Sets (VMSS), AKS container host, and container images are supported.
 > - Bare metal, ISO images, on-premises, and other clouds aren't supported.
+> - Azure Linux 4 on Windows Subsystem for Linux (WSL) receives best-effort support.
 > - Customized images are supported only when built on top of a prebuilt Azure Linux image (for example, with [Image Customizer](./customize-images.md)). Images built from scratch from the [Azure Linux sources on GitHub](https://github.com/microsoft/azurelinux) aren't covered.
 
 ## Related content

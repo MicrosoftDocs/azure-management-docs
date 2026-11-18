@@ -13,8 +13,6 @@ ms.date: 04/27/2026
 
 This article provides an overview of the core operational tasks for running and maintaining Azure Linux deployments, including kernel configuration, network setup, package updates, storage management, and system monitoring. It also points to the detailed guidance in each area, which you can use to effectively configure and manage your Azure Linux environment.
 
-[!INCLUDE [azure linux 4.0 preview](./includes/azure-linux-4-preview.md)]
-
 ## Core system management topics
 
 | Topic | Description |
