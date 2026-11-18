@@ -109,7 +109,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - If you use Azure RBAC for authorization checks on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurecli
-     az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
+     az role assignment create --role "Azure Arc Kubernetes Reader" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      az role assignment create --role "Azure Arc Enabled Kubernetes Cluster User Role" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      ```
 
@@ -146,7 +146,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra ID entity. For example:
 
      ```azurepowershell
-     az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
+     az role assignment create --role "Azure Arc Kubernetes Reader" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      az role assignment create --role "Azure Arc Enabled Kubernetes Cluster User Role" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      ```
 
