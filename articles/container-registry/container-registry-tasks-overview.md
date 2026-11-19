@@ -27,6 +27,10 @@ For example, with triggers for updates to a base image, you can automate [OS and
 > [!WARNING]
 > Please be advised that any information provided on the command line or as part of a URI may be logged as part of Azure Container Registry (ACR) diagnostic tracing. This includes sensitive data such as credentials, GitHub personal access tokens, and other secure information. Exercise caution to prevent any potential security risks, it is crucial to avoid including sensitive details in command lines or URIs that are subject to diagnostic logging.
 
+## Task execution and isolation
+
+ACR Tasks allows an authorized build to run with elevated privileges on its worker virtual machine (VM). The VM is the isolation boundary for all containers and steps in that run.
+
 ## Task scenarios
 
 Azure Container Registry tasks support several scenarios to build and maintain container images and other artifacts. This article describes [quick tasks](#quick-tasks), [automatically triggered tasks](#automatically-triggered-tasks), and [multi-step tasks](#multi-step-tasks).
