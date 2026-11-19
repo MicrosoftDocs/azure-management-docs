@@ -281,6 +281,8 @@ files, or an existing Azure Copilot conversation to Visual Studio Code.
    [Azure Resiliency Agent listing in Awesome Copilot](https://awesome-copilot.github.com/plugin/azure-resiliency-agent/).
 1. Review the publisher, source repository, plugin contents, and prerequisites.
 1. Select **Install in VS Code**.
+1. If Visual Studio Code asks where to install the plugin, select **VS Code**
+   for VS Code-managed shared plugins. Don't select **Copilot Native**.
 1. Review the marketplace source in Visual Studio Code, and then select
    **Add Marketplace and Install**.
 
