@@ -31,6 +31,8 @@ For example, with triggers for updates to a base image, you can automate [OS and
 
 ACR Tasks allows an authorized build to run with elevated privileges on its worker virtual machine (VM). The VM is the isolation boundary for all containers and steps in that run.
 
+You're responsible for keeping secrets out of every layer of the images you build. Use a [`.dockerignore` file](https://docs.docker.com/build/concepts/context/#dockerignore-files) at the root of the build context to exclude sensitive files, such as `.env` files and private keys. For example, if the context is `src/` and the Dockerfile is in `src/dockerfiles/`, place the file at `src/.dockerignore`.
+
 ## Task scenarios
 
 Azure Container Registry tasks support several scenarios to build and maintain container images and other artifacts. This article describes [quick tasks](#quick-tasks), [automatically triggered tasks](#automatically-triggered-tasks), and [multi-step tasks](#multi-step-tasks).
