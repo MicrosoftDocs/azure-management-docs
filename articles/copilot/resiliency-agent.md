@@ -262,6 +262,8 @@ marketplace, Visual Studio Code, or GitHub Copilot CLI.
    **Resiliency Agent in Visual Studio Code** panel.
 1. Select **Try in VS Code**.
 1. If your browser asks for confirmation, allow it to open Visual Studio Code.
+1. If Visual Studio Code asks where to install the plugin, select **VS Code**
+   for VS Code-managed shared plugins. Don't select **Copilot Native**.
 1. In Visual Studio Code, review the marketplace source, and then select
    **Add Marketplace and Install**.
 1. After installation, open the repository or folder that you want to assess
