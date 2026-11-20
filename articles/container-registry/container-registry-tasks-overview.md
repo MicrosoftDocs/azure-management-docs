@@ -27,6 +27,12 @@ For example, with triggers for updates to a base image, you can automate [OS and
 > [!WARNING]
 > Please be advised that any information provided on the command line or as part of a URI may be logged as part of Azure Container Registry (ACR) diagnostic tracing. This includes sensitive data such as credentials, GitHub personal access tokens, and other secure information. Exercise caution to prevent any potential security risks, it is crucial to avoid including sensitive details in command lines or URIs that are subject to diagnostic logging.
 
+## Task execution and isolation
+
+Build steps can run with elevated privileges in an isolated sandbox environment. The sandbox is the isolation boundary for all containers and steps in a task run.
+
+You're responsible for keeping secrets out of your images. Use a [`.dockerignore` file](https://docs.docker.com/build/concepts/context/#dockerignore-files) at the root of the Docker build context to exclude sensitive files such as private keys. `az acr build` applies ignore rules before uploading a local directory. For Git sources, Docker applies the rules during the image build.
+
 ## Task scenarios
 
 Azure Container Registry tasks support several scenarios to build and maintain container images and other artifacts. This article describes [quick tasks](#quick-tasks), [automatically triggered tasks](#automatically-triggered-tasks), and [multi-step tasks](#multi-step-tasks).
