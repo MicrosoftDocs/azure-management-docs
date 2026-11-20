@@ -73,7 +73,7 @@ resources
 ```
 
 > [!NOTE]
-> Azure Resource Graph doesn't provide instance view. To retrieve instance view, use Azure CLI or REST.
+> Azure Resource Graph doesn't provide an instance view. To retrieve an instance view, use Azure CLI or REST.
 
 ---
 
