@@ -489,7 +489,7 @@ sections:
       - question: |
           Is it expected for a build step to run with elevated privileges?
         answer: |
-          Yes. ACR Tasks allows this on the worker VM for an authorized build. See [Task execution and isolation](container-registry-tasks-overview.md#task-execution-and-isolation).
+          Yes. Build steps can run with elevated privileges in an isolated sandbox environment. See [Task execution and isolation](container-registry-tasks-overview.md#task-execution-and-isolation).
 
       - question:  |
           Where can I find sample CI/CD integration with ACR Tasks?

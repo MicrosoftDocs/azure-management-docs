@@ -29,7 +29,7 @@ For example, with triggers for updates to a base image, you can automate [OS and
 
 ## Task execution and isolation
 
-ACR Tasks allows an authorized build to run with elevated privileges on its worker virtual machine (VM). The VM is the isolation boundary for all containers and steps in that run.
+Build steps can run with elevated privileges in an isolated sandbox environment. The sandbox is the isolation boundary for all containers and steps in a task run.
 
 You're responsible for keeping secrets out of your images. Use a [`.dockerignore` file](https://docs.docker.com/build/concepts/context/#dockerignore-files) at the root of the Docker build context to exclude sensitive files such as private keys. `az acr build` applies ignore rules before uploading a local directory. For Git sources, Docker applies the rules during the image build.
 
