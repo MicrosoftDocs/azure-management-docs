@@ -249,6 +249,8 @@ az acr run \
   /dev/null
 ```
 
+To apply both policies in one command, use `--untagged` instead of `--untagged-only` and specify both tag and manifest retention flags.
+
 > [!NOTE]
 > Retention counts must be zero or greater, and a minimum can't exceed its corresponding maximum. A minimum of `0` protects nothing. A maximum of `0` selects all matching items. Minimum flags require `--ago`, even when set to `0`. Manifest retention flags require `--untagged` or `--untagged-only`. Tag retention flags can't be used with `--untagged-only`.
 >
