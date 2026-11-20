@@ -6,7 +6,7 @@ ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
-ms.date: 08/28/2026
+ms.date: 11/19/2026
 # Customer intent: As a developer, I want to efficiently purge old or unnecessary images from my container registry, so that I can maintain an organized and optimally performing storage environment.
 ---
 
@@ -20,7 +20,7 @@ To delete multiple artifacts quickly, use the `acr purge` command. You can run `
 > `acr purge` is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.19`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
+The `acr purge` command (preview) is currently distributed in a public container image (`mcr.microsoft.com/acr/acr-cli:0.21`), built from source code in the [acr-cli](https://github.com/Azure/acr-cli) repo in GitHub.
 
 Use the Azure Cloud Shell or a local installation of the Azure CLI to run the ACR task examples in this article. To install or upgrade, see [Install Azure CLI][azure-cli-install].
 
@@ -31,7 +31,7 @@ To delete single image tags or manifests by using Azure CLI commands, see [Delet
 
 ## Use the purge command
 
-The `acr purge` command deletes images by tag in a repository. It deletes all images that match a name filter and are older than a specified duration. By default, the command deletes only tag references, not the underlying [manifests](container-registry-concepts.md#manifest) and layer data. The command has an option to also delete manifests.
+The `acr purge` command deletes images by tag in a repository. It selects tags by a name filter and an age threshold, with optional minimum and maximum retention counts. By default, the command deletes only tag references, not the underlying [manifests](container-registry-concepts.md#manifest) and layer data. The command has an option to also delete manifests.
 
 > [!NOTE]
 > By default, `acr purge` doesn't delete an image tag or manifest if the `write-enabled` or `delete-enabled` attribute is set to `false`. To also purge these locked artifacts, use the `--include-locked` parameter, which unlocks each matching tag or manifest before deleting it. For more information, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
@@ -43,7 +43,7 @@ The `acr purge` command deletes images by tag in a repository. It deletes all im
 >
 > We recommend running the complete `acr purge` command. For example, run `acr purge --help` as `az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --help' /dev/null`.
 
-At a minimum, specify the following options when you run `acr purge`:
+When you delete tags with `acr purge`, specify `--filter` and either `--ago` or `--max-tags`:
 
 * `--filter` - A repository name *regular expression* and a tag name *regular expression* to filter images in the registry. For example, `--filter "hello-world:.*"` matches all tags in the `hello-world` repository, `--filter "hello-world:^1.*"` matches tags beginning with `1` in the `hello-world` repository, and `--filter ".*/cache:.*"` matches all tags in the repositories ending in `/cache`. You can also pass multiple `--filter` parameters.
 * `--ago` - A Go-style [duration string](https://go.dev/pkg/time/) that indicates a duration beyond which images are deleted. The duration consists of a sequence of one or more decimal numbers, each with a unit suffix. Valid time units include "d" for days, "h" for hours, and "m" for minutes. For example, `--ago 2d3h6m` selects all filtered images last modified more than two days, 3 hours, and 6 minutes ago, and `--ago 1.5h` selects images last modified more than 1.5 hours ago.
@@ -56,9 +56,13 @@ At a minimum, specify the following options when you run `acr purge`:
 >  The --untagged parameter honors the --ago duration filter beginning with mcr.microsoft.com/acr/acr-cli:0.17.
 
 * `--dry-run` - Specifies that no data is deleted, but the command produces the same output as if the command is run without this flag. This parameter is useful for testing a purge command to make sure it doesn't inadvertently delete data you intend to preserve.
-* `--keep` - Specifies the latest number of to-be-deleted tags or manifests per repository that are retained. The keep count applies to manifests only when you specify `--untagged` or `--untagged-only`, and it applies independently to tags and manifests. The latest tags and manifests are determined by their last modified times for each repository matched by the provided `--filter` options.
+* `--min-tags` - Protects the specified number of newest matching tags per repository from age-based deletion.
+* `--max-tags` - Selects matching tags beyond the specified number of newest tags per repository for deletion, regardless of age.
+* `--min-untagged-manifests` - Protects the specified number of newest untagged manifests per repository from age-based deletion.
+* `--max-untagged-manifests` - Selects untagged manifests beyond the specified number of newest untagged manifests per repository for deletion, regardless of age.
+* `--keep` - Specifies the latest number of to-be-deleted tags or manifests per repository that are retained. The keep count applies to manifests only when you specify `--untagged` or `--untagged-only`, and it applies independently to tags and manifests. The latest tags and manifests are determined by their last modified times for each repository matched by the provided `--filter` options. You can't combine this option with any minimum or maximum retention flag.
 * `--concurrency` - Specifies a number of purge tasks to process concurrently.
-* `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. Unlike the standard `acr purge` flow, which requires `--filter` and `--ago`, this flag makes those parameters optional. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests.
+* `--untagged-only` - Deletes only untagged manifests (dangling manifests that have no tags) without deleting any tags first. This flag makes `--filter` and `--ago` optional, unless you specify `--min-untagged-manifests`, which requires `--ago`. Without `--filter`, it scans all repositories. You can combine it with `--ago` to filter by age and `--keep` to preserve a number of recent untagged manifests, or use minimum and maximum manifest retention counts instead of `--keep`.
 * `--include-locked` - Purges tags and manifests even when they're locked (that is, their `write-enabled` or `delete-enabled` attributes are set to `false`). For each matching locked artifact, `acr purge` first unlocks it by setting both attributes back to `true`, then deletes it. Without this flag, locked tags and manifests are skipped. This parameter is available beginning with `mcr.microsoft.com/acr/acr-cli:0.17`. For more information about locking, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
 
 > [!CAUTION]
@@ -216,6 +220,39 @@ az acr run \
   --registry myregistry \
   /dev/null
 ```
+
+### Example: Combine age and retention counts
+
+The following example protects the newest 10 matching tags in `hello-world` and selects other matching tags for deletion if they're older than three days or outside the newest 50.
+
+```azurecli
+PURGE_CMD="acr purge \
+  --filter 'hello-world:.*' --ago 3d \
+  --min-tags 10 --max-tags 50"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
+```
+
+To apply a similar policy to untagged manifests without deleting tags, use `--untagged-only` with the manifest retention flags. This example protects the newest 20 untagged manifests and selects others if they're older than three days or outside the newest 100:
+
+```azurecli
+PURGE_CMD="acr purge \
+  --filter 'hello-world:.*' --untagged-only --ago 3d \
+  --min-untagged-manifests 20 --max-untagged-manifests 100"
+
+az acr run \
+  --cmd "$PURGE_CMD" \
+  --registry myregistry \
+  /dev/null
+```
+
+> [!NOTE]
+> Retention counts must be zero or greater, and a minimum can't exceed its corresponding maximum. A minimum of `0` protects nothing. A maximum of `0` selects all matching items. Minimum flags require `--ago`, even when set to `0`. Manifest retention flags require `--untagged` or `--untagged-only`. Tag retention flags can't be used with `--untagged-only`.
+>
+> Locked items count toward retention limits but aren't deleted unless you specify `--include-locked`. Locks, dependencies on retained image indexes, or skipped deletions can prevent a maximum count from being satisfied.
 
 ## Purge in ABAC-enabled registries
 
