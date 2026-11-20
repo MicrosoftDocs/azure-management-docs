@@ -447,11 +447,6 @@ sections:
           
   - name: Tasks
     questions:
-      - question: |
-          Is it expected for a build step to run with elevated privileges?
-        answer: |
-          Yes. ACR Tasks allows this on the worker VM for an authorized build. See [Task execution and isolation](container-registry-tasks-overview.md#task-execution-and-isolation).
-
       - question:  |
           How do I batch cancel runs?
         answer: |
@@ -490,6 +485,11 @@ sections:
            Why do I see an error saying no subscriptions were found?
         answer: |
           You might see an error saying that no access was configured, so no subscriptions were found when using `az login --identity` in your ACR Task. This error is generally transient and occurs when the role assignment of your managed identity isn't propagated yet. Wait a few seconds before retrying.
+
+      - question: |
+          Is it expected for a build step to run with elevated privileges?
+        answer: |
+          Yes. ACR Tasks allows this on the worker VM for an authorized build. See [Task execution and isolation](container-registry-tasks-overview.md#task-execution-and-isolation).
 
       - question:  |
           Where can I find sample CI/CD integration with ACR Tasks?
