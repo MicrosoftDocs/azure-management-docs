@@ -32,7 +32,7 @@ To delete single image tags or manifests by using Azure CLI commands, see [Delet
 
 ## Use the purge command
 
-The `acr purge` command deletes images by tag in a repository. It selects tags by a name filter and an age threshold, with optional minimum and maximum retention counts. By default, the command deletes only tag references, not the underlying [manifests](container-registry-concepts.md#manifest) and layer data. The command has an option to also delete manifests.
+The `acr purge` command deletes images by tag in a repository. It deletes all images that match a name filter and are older than a specified duration. By default, the command deletes only tag references, not the underlying [manifests](container-registry-concepts.md#manifest) and layer data. The command has an option to also delete manifests.
 
 > [!NOTE]
 > By default, `acr purge` doesn't delete an image tag or manifest if the `write-enabled` or `delete-enabled` attribute is set to `false`. To also purge these locked artifacts, use the `--include-locked` parameter, which unlocks each matching tag or manifest before deleting it. For more information, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
