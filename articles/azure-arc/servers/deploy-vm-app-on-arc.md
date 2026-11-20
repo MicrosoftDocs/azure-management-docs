@@ -106,16 +106,6 @@ az connectedmachine application add \
   --package-reference-id "{package-reference-id}"
 ```
 
-# [PowerShell](#tab/azure-powershell)
-
-```powershell
-New-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -ApplicationName "{application-resource-name}" `
-  -PackageReferenceId "{package-reference-id}"
-```
-
 # [REST](#tab/rest)
 
 ```rest
@@ -195,15 +185,6 @@ az connectedmachine application show \
   --name "{application-resource-name}" \
   --machine-name "{arc-machine-name}" \
   --resource-group "{resource-group}"
-```
-
-# [PowerShell](#tab/verify-azure-powershell)
-
-```azurepowershell
-Get-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -ApplicationName "{application-resource-name}"
 ```
 
 # [REST](#tab/verify-rest)
