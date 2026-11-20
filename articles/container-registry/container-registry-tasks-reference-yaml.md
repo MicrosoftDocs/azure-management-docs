@@ -5,7 +5,7 @@ ms.topic: reference
 ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
-ms.date: 10/31/2023
+ms.date: 11/19/2026
 ms.service: azure-container-registry
 # Customer intent: As a DevOps engineer, I want to define and execute multi-step tasks using YAML for container registry operations, so that I can automate the build, test, and deployment processes in a consistent and efficient manner.
 ---

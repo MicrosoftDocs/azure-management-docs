@@ -7,6 +7,7 @@ ms.custom: devx-track-azurecli
 author: KumudD
 ms.author: kumud
 ms.date: 11/19/2026
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to efficiently purge old or unnecessary images from my container registry, so that I can maintain an organized and optimally performing storage environment.
 ---
 
