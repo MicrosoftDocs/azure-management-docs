@@ -49,16 +49,6 @@ az connectedmachine application get-instance-view \
   --resource-group "{resource-group}"
 ```
 
-# [PowerShell](#tab/view-azure-powershell)
-
-```powershell
-Get-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -ApplicationName "{application-resource-name}" `
-  -InstanceView
-```
-
 # [REST](#tab/view-rest)
 
 ```rest
@@ -83,7 +73,7 @@ resources
 ```
 
 > [!NOTE]
-> Azure Resource Graph doesn't provide instance view. To retrieve instance view, use Azure CLI, PowerShell, or REST.
+> Azure Resource Graph doesn't provide instance view. To retrieve instance view, use Azure CLI or REST.
 
 ---
 
@@ -107,15 +97,6 @@ az connectedmachine application list \
 ```
 
 To retrieve instance view for a listed application, use `az connectedmachine application get-instance-view` with its name, as shown in [Get details of a single application](#get-details-of-a-single-application).
-
-# [PowerShell](#tab/list-azure-powershell)
-
-```powershell
-Get-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -InstanceView
-```
 
 # [REST](#tab/list-rest)
 
@@ -142,7 +123,7 @@ resources
 ```
 
 > [!NOTE]
-> Azure Resource Graph doesn't provide instance view. To retrieve instance view, use Azure CLI, PowerShell, or REST.
+> Azure Resource Graph doesn't provide instance view. To retrieve instance view, use Azure CLI or REST.
 
 ---
 
@@ -169,16 +150,6 @@ az connectedmachine application update \
   --machine-name "{arc-machine-name}" \
   --resource-group "{resource-group}" \
   --package-reference-id "{package-reference-id}"
-```
-
-# [PowerShell](#tab/update-azure-powershell)
-
-```powershell
-Update-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -ApplicationName "{application-resource-name}" `
-  -PackageReferenceId "{package-reference-id}"
 ```
 
 # [REST](#tab/update-rest)
@@ -219,15 +190,6 @@ az connectedmachine application delete \
   --name "{application-resource-name}" \
   --machine-name "{arc-machine-name}" \
   --resource-group "{resource-group}"
-```
-
-# [PowerShell](#tab/remove-azure-powershell)
-
-```powershell
-Remove-AzConnectedMachineApplication `
-  -MachineName "{arc-machine-name}" `
-  -ResourceGroupName "{resource-group}" `
-  -ApplicationName "{application-resource-name}"
 ```
 
 # [REST](#tab/remove-rest)
