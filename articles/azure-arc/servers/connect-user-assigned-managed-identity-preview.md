@@ -22,7 +22,7 @@ Before you begin, ensure you have:
 - A server that meets the [Azure Arc-enabled servers prerequisites](prerequisites.md).
 - Azure Connected Machine agent version **1.69 or later**. If needed, [upgrade the agent](manage-agent.md?tabs=windows).
 - Administrator or root access on the server to run agent commands.
-- A working TPM 2.0 on the server. The preview requires the TPM identity key store; the file-based key store isn't supported for UAMI onboarding.
+- The server must be onboarded to Azure Arc using [TPM-backed identity](tpm-backed-identity.md).
 - Registration of the `Microsoft.HybridCompute` resource provider, as described in [Azure resource providers](prerequisites.md#azure-resource-providers).
 - One or more existing [user-assigned managed identities](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal) in the same Microsoft Entra tenant as the Arc-enabled server, and the full Azure Resource Manager resource ID of each identity.
 - The target subscription ID, resource group, Azure region, and tenant ID for onboarding.
